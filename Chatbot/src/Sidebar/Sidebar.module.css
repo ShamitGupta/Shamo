@@ -1,9 +1,3 @@
-.Body{
-    display: flex;
-}
-
-
-
 .Sidebar{
     background-color: #121212;
     height: 100vh;
@@ -53,10 +47,3 @@
 }
 
 
-/* This part is for the main chat area */
-.ChatSection{
-    background-color: #212121f8;
-    height: 100vh;
-    width: 75vw;
-    display: inline-block;
-}
