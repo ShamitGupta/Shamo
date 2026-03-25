@@ -9,7 +9,30 @@
     height: 100vh;
     width: 25vw;
     display: inline-block;
+}
 
+.SidebarButtonsContainer{
+    /* background-color: red; */
+    height: 40vh;
+    width: 95%;
+    margin-top: 40%;
+    margin-left: 2.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.SidebarButtons{
+    height: 25%;
+    background-color: transparent;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #d1d1d1;
+}
+
+.SidebarButtons:hover{
+    background-color: #2c2c2c;
+    border-radius: 7px;
 }
 
 
