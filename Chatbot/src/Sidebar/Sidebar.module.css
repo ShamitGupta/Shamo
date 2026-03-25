@@ -11,11 +11,28 @@
     display: inline-block;
 }
 
+.BotName{
+    color: #d1d1d1;
+    text-align: center;
+    margin-top: 7%;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Logo{
+    height: 70px;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+
 .SidebarButtonsContainer{
     /* background-color: red; */
     height: 40vh;
     width: 95%;
-    margin-top: 40%;
+    margin-top: 25%;
     margin-left: 2.5%;
     display: flex;
     flex-direction: column;
