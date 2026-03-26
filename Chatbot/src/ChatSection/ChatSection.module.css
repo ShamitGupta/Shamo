@@ -1,10 +1,15 @@
 .ChatSection{
-    background-color: #212121f8;
+    background-color: #212121;
     height: 100vh;
     width: 75vw;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* display: inline-block; */
+}
+
+.Form{
     display: flex;
     justify-content: center;
-    /* display: inline-block; */
 }
 
 .ChatBox{
@@ -13,10 +18,11 @@
     position: fixed;
     bottom: 7vh;
     border: none;
-    border-radius: 21px;
-    color: black;
+    border-radius: 25px;
+    color: whitesmoke;
     padding-left: 2%;
     font-size: large;
+    background-color: #303030;
     /* margin-left: 1% */
 }
 
