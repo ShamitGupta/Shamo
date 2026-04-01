@@ -22,7 +22,18 @@ function ChatSection(){
 
     return(
         <div className = {styles.Body}>
+
             <div className = {styles.ChatSection}>
+
+                <div className = {styles.Chat}>
+                    <div className = {styles.ChatDisplay}>
+                    {messages.map(msg => (
+                        <p className = {styles.ChatText}>{msg.title}</p>
+                    ))}
+                    </div>
+                </div>
+
+                
                 <form onSubmit={handleSubmit} className = {styles.Form}>
                     <input 
                     type = 'text' 
