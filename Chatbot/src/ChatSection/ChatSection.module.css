@@ -8,29 +8,44 @@
 
 .Chat{
     /* height: 30vh; */
+    margin-top: 5%; /* This is so the first chat bubble doesnt appear at the very top, as that will be messy */
     width: 100%;
     background-color: #212121;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: flex-end;
 }
 
-.ChatDisplay{
-    margin-top: 5%;
-    /* height: 50%;
-    width: 80%; */
-    /* background-color: white; */
+
+/* .ChatDisplay{
+    margin-top: 5%; 
+    height: 50%;
+    width: 80%;
+    background-color: white;
     display: flex;
     align-items: center;
     flex-direction: column;
-    flex: 1;
+} */
+
+.ChatDisplay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
 }
 
-.ChatText{
+/* This is to the p tag */
+.ChatBubble{
     background-color: #363636;
-    height: 2.5rem;
+    /* height: 2.5rem; */
+    max-width: 35vw;
     border-radius: 20px;
     color: whitesmoke;
     margin-bottom: 2%;
+    margin-right: 7%;
+    padding: 1.1%;
+    line-height: 1.5;
     /* display: inline-block; */
 }
 
