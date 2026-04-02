@@ -21,7 +21,7 @@ function ChatSection(){
 
 
     return(
-        <div className = {styles.Body}>
+        // <div className = {styles.Body}>
 
             <div className = {styles.ChatSection}>
 
@@ -48,7 +48,7 @@ function ChatSection(){
                 </form>
                 
             </div>
-        </div>
+        // </div>
     )
 }
 
