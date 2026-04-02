@@ -21,34 +21,32 @@ function ChatSection(){
 
 
     return(
-        // <div className = {styles.Body}>
 
-            <div className = {styles.ChatSection}>
+        <div className = {styles.ChatSection}>
 
-                <div className = {styles.Chat}>
-                    {/* <div className = {styles.ChatDisplay}> */}
-                    {messages.map((msg,index) => (
-                        <p key = {index} className = {styles.ChatBubble}>{msg.title}</p>
-                    ))}
-                    {/* </div> */}
-                </div>
+            <div className = {styles.Chat}>
 
-                
-                <form onSubmit={handleSubmit} className = {styles.Form}>
-                    <input 
-                    type = 'text' 
-                    placeholder='Ask anything' 
-                    value = {inputValue} 
-                    onChange={(e) => {
-                        setInputValue(e.target.value);
-                        setPrompt(e.target.value);
-                    }} 
-                    className = {styles.ChatBox}>
-                    </input>
-                </form>
+                {messages.map((msg,index) => (
+                    <p key = {index} className = {styles.ChatBubble}>{msg.title}</p>
+                ))}
                 
             </div>
-        // </div>
+
+            
+            <form onSubmit={handleSubmit} className = {styles.Form}>
+                <input 
+                type = 'text' 
+                placeholder='Ask anything' 
+                value = {inputValue} 
+                onChange={(e) => {
+                    setInputValue(e.target.value);
+                    setPrompt(e.target.value);
+                }} 
+                className = {styles.ChatBox}>
+                </input>
+            </form>
+            
+        </div>
     )
 }
 

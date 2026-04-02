@@ -17,36 +17,17 @@
     align-items: flex-end;
 }
 
-
-/* .ChatDisplay{
-    margin-top: 5%; 
-    height: 50%;
-    width: 80%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-} */
-
-.ChatDisplay{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: red; */
-}
-
 /* This is to the p tag */
 .ChatBubble{
-    background-color: #363636;
+    background-color: #2D2D30;
     /* height: 2.5rem; */
     max-width: 35vw;
     border-radius: 20px;
-    color: whitesmoke;
+    color: #E0E0E0;
     margin-bottom: 2%;
     margin-right: 7%;
     padding: 1.1%;
     line-height: 1.5;
-    /* display: inline-block; */
 }
 
 .Form{
