@@ -1,10 +1,11 @@
 import styles from './ChatSection.module.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 function ChatSection(){
 
     const [inputValue,setInputValue] = useState("");
     const [prompt,setPrompt] = useState("");
+    const dummyRef = useRef();
 
     const [messages,setMessages] = useState([]); //this is to keep a history of all the messages
 
@@ -12,11 +13,14 @@ function ChatSection(){
         e.preventDefault();
         setInputValue("");
         setMessages([...messages,{title: prompt, sender: 'user'}]); //updates the history of messages
+
     }
 
     useEffect(() => {
         console.log(`Prompt is ${prompt}`);
         console.log(messages);
+        console.log(dummyRef);
+        dummyRef.current?.scrollIntoView();
     }, [messages]); //log them to the console once messages changes. Don't log inside handleSubmit() because old value will be logged.
 
 
@@ -31,6 +35,8 @@ function ChatSection(){
                 ))}
                 
             </div>
+
+            <div className = {styles.Dummy} ref = {dummyRef}></div>
 
             
             <form onSubmit={handleSubmit} className = {styles.Form}>
