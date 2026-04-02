@@ -3,8 +3,7 @@
     height: 100vh;
     width: 75vw;
     margin-left: 25vw; /*this is because Sidebar has property of fixed*/
-    flex: 1;
-    /* display: inline-block; */
+    flex: 1; /* Allows the chatbot to be scrollable */
 }
 
 .Chat{
