@@ -13,7 +13,7 @@ function ChatSection(){
         e.preventDefault();
         setInputValue("");
         setMessages([...messages,{title: prompt, sender: 'user'}]); //updates the history of messages
-
+        // dummyRef.current?.scrollIntoView();
     }
 
     useEffect(() => {
@@ -33,10 +33,11 @@ function ChatSection(){
                 {messages.map((msg,index) => (
                     <p key = {index} className = {styles.ChatBubble}>{msg.title}</p>
                 ))}
+
+                <div className = {styles.Dummy} ref = {dummyRef}></div>
                 
             </div>
 
-            <div className = {styles.Dummy} ref = {dummyRef}></div>
 
             
             <form onSubmit={handleSubmit} className = {styles.Form}>
