@@ -20,7 +20,7 @@ function ChatSection(){
         console.log(`Prompt is ${prompt}`);
         console.log(messages);
         console.log(dummyRef);
-        dummyRef.current?.scrollIntoView();
+        dummyRef.current?.scrollIntoView({behaviour: 'smooth'});
     }, [messages]); //log them to the console once messages changes. Don't log inside handleSubmit() because old value will be logged.
 
 
@@ -34,7 +34,7 @@ function ChatSection(){
                     <p key = {index} className = {styles.ChatBubble}>{msg.title}</p>
                 ))}
 
-                <div className = {styles.Dummy} ref = {dummyRef}></div>
+                <div className = {styles.Dummy} ref={dummyRef}></div>
                 
             </div>
 

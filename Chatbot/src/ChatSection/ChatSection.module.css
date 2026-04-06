@@ -5,11 +5,13 @@
     margin-left: 25vw; /*this is because Sidebar has property of fixed*/
     /* flex: 1; */
      /* Allows the chatbot to be scrollable */
+     display: flex;
+     flex-direction: column;
 }
 
 .Chat{
     /* height: 30vh; */
-    margin-top: 5%; /* This is so the first chat bubble doesnt appear at the very top, as that will be messy */
+    padding-top: 5%; /* This is so the first chat bubble doesnt appear at the very top, as that will be messy */
     width: 100%;
     background-color: #212121;
     display: flex;
@@ -18,6 +20,7 @@
     align-items: flex-end;
     flex: 1;
     overflow-y: auto;
+    padding-bottom: 20vh;
 }
 
 /* This is to the p tag */
@@ -63,6 +66,6 @@
 
 .Dummy{
     background-color: red;
-    height: 5px;
+    height: 20px;
     width: 100%;
 }
