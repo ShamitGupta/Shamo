@@ -26,21 +26,27 @@ class InformationExtracter(BaseModel):
     Exam_session: str
 
 
+def information_extraction(user_prompt:str):
+    response = client.responses.parse(
+        model="gpt-4o",  # Use an existing model like gpt-4o or gpt-3.5-turbo
+        input=[
+            {
+                "role": "system",
+                "content": system_prompt,
+            },
+            {
+                "role": "user",
+                "content": user_prompt
+            }
+        ],
+        text_format=InformationExtracter,
+    )
 
-response = client.responses.parse(
-    model="gpt-4o",  # Use an existing model like gpt-4o or gpt-3.5-turbo
-    input=[
-        {
-            "role": "system",
-            "content": system_prompt,
-        },
-        {
-            "role": "user",
-            "content": "How do I do question 5 from Oct Nov 2022 paper 22?"
-        }
-    ],
-    text_format=InformationExtracter,
-)
+    event = response.output_parsed
+    output = {'question_number': event.question_number, 'Year': event.Year, 'Paper_Variant': event.Paper_Variant, 'Exam_session': event.Exam_session}
+    return output
 
-event = response.output_parsed
-print(event)
+# test = information_extraction('Can you please help me figure out how to do question 3 of the May June 2022 P11?')
+# print(test)
+
+
