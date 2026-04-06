@@ -22,6 +22,6 @@ def read_root():
 
 
 @app.get("/get_info")
-async def get_info(user_prompt:str):
-    output = await information_extraction(user_prompt)
+def get_info():
+    output = information_extraction('Can you please help me figure out how to do question 3 of the May June 2022 P11?')
     return output
