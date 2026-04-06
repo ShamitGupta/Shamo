@@ -9,17 +9,19 @@ function ChatSection(){
 
     const [messages,setMessages] = useState([]); //this is to keep a history of all the messages
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setInputValue("");
         setMessages([...messages,{title: prompt, sender: 'user'}]); //updates the history of messages
-        // dummyRef.current?.scrollIntoView();
+        const response = await fetch("http://127.0.0.1:8000/get_info");
+        const result = response.json()
+        console.log(result);
     }
 
     useEffect(() => {
-        console.log(`Prompt is ${prompt}`);
-        console.log(messages);
-        console.log(dummyRef);
+        // console.log(`Prompt is ${prompt}`);
+        // console.log(messages);
+        // console.log(dummyRef);
         dummyRef.current?.scrollIntoView({behaviour: 'smooth'});
     }, [messages]); //log them to the console once messages changes. Don't log inside handleSubmit() because old value will be logged.
 
