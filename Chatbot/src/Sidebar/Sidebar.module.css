@@ -1,20 +1,14 @@
-.Body{
-    display: flex;
-}
-
-
-
 .Sidebar{
     background-color: #121212;
     height: 100vh;
     width: 25vw;
-    display: inline-block;
+    position: fixed; /* Ensures that the sidebar is not scrollable */
 }
 
 .BotName{
     color: #d1d1d1;
     text-align: center;
-    margin-top: 7%;
+    padding-top: 7%;
     font-size: 2rem;
     display: flex;
     justify-content: center;
@@ -53,10 +47,3 @@
 }
 
 
-/* This part is for the main chat area */
-.ChatSection{
-    background-color: #212121f8;
-    height: 100vh;
-    width: 75vw;
-    display: inline-block;
-}

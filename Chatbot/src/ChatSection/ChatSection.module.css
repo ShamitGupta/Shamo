@@ -1,0 +1,71 @@
+.ChatSection{
+    background-color: #212121;
+    height: 100vh;
+    width: 75vw;
+    margin-left: 25vw; /*this is because Sidebar has property of fixed*/
+    /* flex: 1; */
+     /* Allows the chatbot to be scrollable */
+     display: flex;
+     flex-direction: column;
+}
+
+.Chat{
+    /* height: 30vh; */
+    padding-top: 5%; /* This is so the first chat bubble doesnt appear at the very top, as that will be messy */
+    width: 100%;
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: flex-end;
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20vh;
+}
+
+/* This is to the p tag */
+.ChatBubble{
+    background-color: #2D2D30;
+    /* height: 2.5rem; */
+    max-width: 35vw;
+    border-radius: 20px;
+    color: #E0E0E0;
+    margin-bottom: 2%;
+    margin-right: 7%;
+    padding: 1.1%;
+    line-height: 1.5;
+}
+
+.Form{
+    display: flex;
+    justify-content: center;
+}
+
+.ChatBox{
+    width: 50vw;
+    height: 3.5rem;
+    position: fixed;
+    bottom: 7vh;
+    border: none;
+    border-radius: 25px;
+    color: whitesmoke;
+    padding-left: 2%;
+    font-size: large;
+    background-color: #303030;
+    /* margin-left: 1% */
+}
+
+.ChatBox:focus{
+    outline: none;
+}
+
+.ChatBox::placeholder{
+    color: gray;
+    font-size: large;
+}
+
+.Dummy{
+    background-color: red;
+    height: 20px;
+    width: 100%;
+}

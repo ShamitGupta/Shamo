@@ -18,10 +18,6 @@ function Sidebar(){
                     <button className = {styles.SidebarButtons}>Contact Us</button>
                 </div>
             </div>
-
-            <div className = {styles.ChatSection}>
-            
-            </div>
         </div>
         
     )
