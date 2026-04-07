@@ -30,7 +30,7 @@
     max-width: 35vw;
     border-radius: 20px;
     color: #E0E0E0;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     margin-right: 7%;
     padding: 1.1%;
     line-height: 1.5;
@@ -45,7 +45,7 @@
     margin-bottom: 2%;
     margin-right: 7%;
     padding: 1.1%;
-    line-height: 1.8;
+    line-height: 1.7;
 }
 
 .Form{
@@ -76,8 +76,8 @@
     font-size: large;
 }
 
-.Dummy{
+/* .Dummy{
     background-color: red;
     height: 20px;
     width: 100%;
-}
+} */

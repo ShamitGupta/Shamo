@@ -41,15 +41,3 @@ def format_data(retrieved_data: dict):
             ms_data += retrieved_data[i].get("content")
     
     return [qp_data,ms_data]
-    
-
-
-# test = information_extraction("Can you please help me figure out how to do question 7 of the May June 2024 P21?")
-
-# output = retrieve_info(test)
-# format_data(output)
-
-
-
-
-

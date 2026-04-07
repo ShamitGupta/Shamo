@@ -28,8 +28,5 @@ def get_info(data: PromptRequest):
     unformatted_data = retrieve_info(extracted_info) #returns a python dict
     formatted_data = format_data(unformatted_data) #returns a list such that list[0] = qp_data and list[1] = ms_data
 
-    qp_data = formatted_data[0]
-    ms_data = formatted_data[1]
-
     chat_response = user_response(formatted_data, data.user_prompt)
     return {'response': chat_response}
