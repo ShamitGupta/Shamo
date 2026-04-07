@@ -61,6 +61,12 @@ Note that the content in the Question and Mark Scheme contain some information w
 
 Always choose the relevant information according to what the user has asked, and reply accordingly. 
 
+Always use single dollar signs for inline math (e.g. $x^2$) and double dollar signs for block math (e.g.$$y = mx + c$$).
+
+Please use clear Markdown headers (###) for major sections. 
+Use bold text for key terms and bullet points for steps to keep 
+the response scannable and neat.
+
 Please do not start solving the question in your methodology. If asked to solve the question, please refer to the Mark Scheme material provided, and analyze and explain that accordingly."""
 
     response = client.responses.parse(

@@ -34,8 +34,12 @@
     margin-right: 7%;
     padding: 1.1%;
     line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
-
+/*
+Response Bubble which is the response of the chatbot
+*/
 .ResponseBubble{
     /* background-color: #2D2D30; */
     /* height: 2.5rem; */
@@ -43,9 +47,47 @@
     border-radius: 20px;
     color: #E0E0E0;
     margin-bottom: 2%;
-    margin-right: 7%;
+    margin-right: 20%;
     padding: 1.1%;
     line-height: 1.7;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Ensure inline math doesn't break the bubble layout */
+.ResponseBubble :global(.katex-display) {
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Vertical spacing for sections and paragraphs */
+.ResponseBubble h1, 
+.ResponseBubble h2, 
+.ResponseBubble h3 {
+    margin-top: 1.5rem;    /* More space above headers */
+    margin-bottom: 0.8rem; /* Space below headers */
+    color: #ffffff;        /* Brighter headers */
+}
+
+.ResponseBubble p {
+    margin-bottom: 1.2rem; /* Space between paragraphs */
+}
+
+/* Better list formatting */
+.ResponseBubble ol, 
+.ResponseBubble ul {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem; /* Indent the list */
+}
+
+.ResponseBubble li {
+    margin-bottom: 0.6rem; /* Space between list items */
+}
+
+/* Remove extra margin from the very last element in the bubble */
+.ResponseBubble > *:last-child {
+    margin-bottom: 0;
 }
 
 .Form{

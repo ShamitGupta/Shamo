@@ -1,5 +1,9 @@
 import styles from './ChatSection.module.css'
 import { useState, useEffect, useRef } from 'react'
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Import KaTeX CSS for styling math symbols
 
 function ChatSection(){
 
@@ -52,7 +56,11 @@ function ChatSection(){
             <div className = {styles.Chat}>
 
                 {messages.map((msg,index) => (
-                    <p key = {index} className = {msg.sender === 'user'? styles.ChatBubble : styles.ResponseBubble}>{msg.title}</p>
+                    <div key = {index} className = {msg.sender === 'user'? styles.ChatBubble : styles.ResponseBubble}>
+                        <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                            {msg.title}
+                        </ReactMarkdown>
+                    </div>
                 ))}
 
                 <div className = {styles.Dummy} ref={dummyRef}></div>
