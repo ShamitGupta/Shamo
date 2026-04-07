@@ -12,7 +12,8 @@ function ChatSection(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         setInputValue("");
-        setMessages([...messages,{title: prompt, sender: 'user'}]); //updates the history of messages
+        setMessages(prevMessages => [...prevMessages, { title: prompt, sender: 'user' }]);
+        // setMessages([...messages,{title: prompt, sender: 'user'}]); //updates the history of messages
         try{
             const response = await fetch("http://127.0.0.1:8000/get_info",{
             method: "POST",
@@ -27,6 +28,7 @@ function ChatSection(){
             }
 
             const result = await response.json()
+            setMessages(prevMessages => [...prevMessages, { title: result.response, sender: 'chatbot' }]);
             console.log(result);
 
         } catch(error){
