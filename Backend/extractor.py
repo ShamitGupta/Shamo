@@ -25,6 +25,9 @@ class InformationExtracter(BaseModel):
     Paper_Variant: int
     Exam_session: str
 
+class PromptRequest(BaseModel):
+    user_prompt: str
+
 
 def information_extraction(user_prompt:str):
     response = client.responses.parse(

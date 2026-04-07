@@ -16,10 +16,19 @@ function ChatSection(){
         try{
             const response = await fetch("http://127.0.0.1:8000/get_info",{
             method: "POST",
+            headers: {
+            "Content-Type": "application/json", // Crucial for FastAPI to parse the body
+            },
             body: JSON.stringify({user_prompt: prompt})
             });
+
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
             const result = await response.json()
             console.log(result);
+
         } catch(error){
             console.error("Error:", error);          
         }
@@ -30,7 +39,7 @@ function ChatSection(){
         // console.log(`Prompt is ${prompt}`);
         // console.log(messages);
         // console.log(dummyRef);
-        dummyRef.current?.scrollIntoView({behaviour: 'smooth'});
+        dummyRef.current?.scrollIntoView({behavior: 'smooth'});
     }, [messages]); //log them to the console once messages changes. Don't log inside handleSubmit() because old value will be logged.
 
 

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from extractor import information_extraction
+from extractor import information_extraction,PromptRequest
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -22,6 +22,6 @@ def read_root():
 
 
 @app.post("/get_info")
-def get_info(user_prompt: str):
-    output = information_extraction(user_prompt)
+def get_info(data: PromptRequest):
+    output = information_extraction(data.user_prompt)
     return {'information': output}
