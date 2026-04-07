@@ -13,9 +13,17 @@ function ChatSection(){
         e.preventDefault();
         setInputValue("");
         setMessages([...messages,{title: prompt, sender: 'user'}]); //updates the history of messages
-        const response = await fetch("http://127.0.0.1:8000/get_info");
-        const result = response.json()
-        console.log(result);
+        try{
+            const response = await fetch("http://127.0.0.1:8000/get_info",{
+            method: "POST",
+            body: JSON.stringify({user_prompt: prompt})
+            });
+            const result = await response.json()
+            console.log(result);
+        } catch(error){
+            console.error("Error:", error);          
+        }
+        
     }
 
     useEffect(() => {

@@ -21,7 +21,7 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/get_info")
-def get_info():
-    output = information_extraction('Can you please help me figure out how to do question 3 of the May June 2022 P11?')
-    return output
+@app.post("/get_info")
+def get_info(user_prompt: str):
+    output = information_extraction(user_prompt)
+    return {'information': output}
