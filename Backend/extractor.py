@@ -46,8 +46,8 @@ def information_extraction(user_prompt:str):
     )
 
     event = response.output_parsed
-    output = {'question_number': event.question_number, 'Year': event.Year, 'Paper_Variant': event.Paper_Variant, 'Exam_session': event.Exam_session}
-    return output
+    # output = {'question_number': event.question_number, 'Year': event.Year, 'Paper_Variant': event.Paper_Variant, 'Exam_session': event.Exam_session}
+    return event
 
 # test = information_extraction('Can you please help me figure out how to do question 3 of the May June 2022 P11?')
 # print(test)
