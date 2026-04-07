@@ -40,6 +40,8 @@ def format_data(retrieved_data: dict):
         if(retrieved_data[i].get("metadata").get("Document_type") == "Mark Scheme"):
             ms_data += retrieved_data[i].get("content")
     
+    return [qp_data,ms_data]
+    
 
 
 # test = information_extraction("Can you please help me figure out how to do question 7 of the May June 2024 P21?")

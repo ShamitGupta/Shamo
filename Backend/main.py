@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from extractor import information_extraction,PromptRequest
-from supabase_database import retrieve_info
+from supabase_database import retrieve_info,format_data
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -24,6 +24,9 @@ def read_root():
 
 @app.post("/get_info")
 def get_info(data: PromptRequest):
-    extracted_info = information_extraction(data.user_prompt)
-    output = retrieve_info(extracted_info)
-    return {'information': output}
+    extracted_info = information_extraction(data.user_prompt) #returns a InformationExtracter class
+    unformatted_data = retrieve_info(extracted_info) #returns a python dict
+    formatted_data = format_data(unformatted_data) #returns a list such that list[0] = qp_data and list[1] = ms_data
+    qp_data = formatted_data[0]
+    ms_data = formatted_data[1]
+    return {'qp_data': qp_data, 'ms_data': ms_data}
