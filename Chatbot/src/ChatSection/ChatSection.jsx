@@ -52,7 +52,7 @@ function ChatSection(){
             <div className = {styles.Chat}>
 
                 {messages.map((msg,index) => (
-                    <p key = {index} className = {styles.ChatBubble}>{msg.title}</p>
+                    <p key = {index} className = {msg.sender === 'user'? styles.ChatBubble : styles.ResponseBubble}>{msg.title}</p>
                 ))}
 
                 <div className = {styles.Dummy} ref={dummyRef}></div>
