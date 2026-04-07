@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-from extractor import information_extraction,user_response,PromptRequest
+from extractor import information_extraction,user_response_stream,PromptRequest
 from supabase_database import retrieve_info,format_data
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 
 app = FastAPI()
 
@@ -28,5 +29,7 @@ def get_info(data: PromptRequest):
     unformatted_data = retrieve_info(extracted_info) #returns a python dict
     formatted_data = format_data(unformatted_data) #returns a list such that list[0] = qp_data and list[1] = ms_data
 
-    chat_response = user_response(formatted_data, data.user_prompt)
-    return {'response': chat_response}
+    return StreamingResponse(
+        user_response_stream(formatted_data, data.user_prompt), 
+        media_type="text/plain"
+    )

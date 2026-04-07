@@ -31,9 +31,28 @@ function ChatSection(){
                 throw new Error(`Response status: ${response.status}`);
             }
 
-            const result = await response.json()
-            setMessages(prevMessages => [...prevMessages, { title: result.response, sender: 'chatbot' }]);
-            console.log(result);
+            setMessages(prev => [...prev, { title: "", sender: 'chatbot' }]);
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let accumulatedText = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                accumulatedText += chunk;
+
+                // Update the last message (the chatbot placeholder) with current progress
+                setMessages(prev => {
+                    const newMessages = [...prev];
+                    newMessages[newMessages.length - 1] = { 
+                        ...newMessages[newMessages.length - 1], 
+                        title: accumulatedText 
+                    };
+                    return newMessages;
+                });
+        }
 
         } catch(error){
             console.error("Error:", error);          

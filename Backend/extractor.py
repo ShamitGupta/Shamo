@@ -49,7 +49,7 @@ def information_extraction(user_prompt:str):
     # output = {'question_number': event.question_number, 'Year': event.Year, 'Paper_Variant': event.Paper_Variant, 'Exam_session': event.Exam_session}
     return event
 
-def user_response(data:list, user_prompt:str):
+def user_response_stream(data:list, user_prompt:str):
     qp_data, ms_data = data[0],data[1]
     system_prompt_response = f"""You are a expert Mathematics tutor. Your job is to teach a user based on a IGCSE Add Maths Past Paper which they don't understand how to solve. 
 
@@ -69,20 +69,20 @@ the response scannable and neat.
 
 Please do not start solving the question in your methodology. If asked to solve the question, please refer to the Mark Scheme material provided, and analyze and explain that accordingly."""
 
-    response = client.responses.parse(
-        model="gpt-4o",  # Use an existing model like gpt-4o or gpt-3.5-turbo
-        input=[
-            {
-                "role": "system",
-                "content": system_prompt_response,
-            },
-            {
-                "role": "user",
-                "content": user_prompt
-            }
+    stream = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": system_prompt_response},
+            {"role": "user", "content": user_prompt}
         ],
+        stream=True,
     )
+
+    for chunk in stream:
+        # Yield the text delta if it exists
+        if chunk.choices[0].delta.content is not None:
+            yield chunk.choices[0].delta.content
     
-    return response.output_text
+    
 
 
