@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from extractor import information_extraction,user_response_stream,PromptRequest,PromptResponse
+from extractor import information_extraction,user_response_stream
+from classes import InformationExtracter,PromptRequest,PromptResponse
 from supabase_database import retrieve_info,format_data
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse

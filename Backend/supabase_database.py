@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
-from extractor import InformationExtracter,information_extraction
+from extractor import information_extraction
+from classes import InformationExtracter,PromptRequest,PromptResponse
 
 load_dotenv()
 

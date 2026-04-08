@@ -1,7 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-from pydantic import BaseModel
+from classes import InformationExtracter,PromptRequest,PromptResponse
 
 load_dotenv()
 
@@ -19,18 +19,6 @@ User Query: I do not understand how to solve question 8 in  May June 2023 paper 
 The question_number will be 8, the paper_variant will be 11, the exam session with be May/June, and the year will be 2023."""
 
 
-class InformationExtracter(BaseModel):
-    question_number: int
-    Year: int
-    Paper_Variant: int
-    Exam_session: str
-
-class PromptRequest(BaseModel):
-    user_prompt: str
-
-class PromptResponse(BaseModel):
-    data_formatted: list
-    user_prompt: str
 
 
 def information_extraction(user_prompt:str):
