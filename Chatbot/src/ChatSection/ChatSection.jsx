@@ -16,10 +16,10 @@ function ChatSection(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         setInputValue("");
-        setMessages(prevMessages => [...prevMessages, { title: prompt, sender: 'user' }]);
-        // setMessages([...messages,{title: prompt, sender: 'user'}]); //updates the history of messages
+        setMessages(prevMessages => [...prevMessages, { title: prompt, sender: 'user' }]); //using functional assignment to avoid stacking.
+
         try{
-            const response = await fetch("http://127.0.0.1:8000/get_info",{
+            const formatted_data_response = await fetch("http://127.0.0.1:8000/get_info",{
             method: "POST",
             headers: {
             "Content-Type": "application/json", // Crucial for FastAPI to parse the body
@@ -27,12 +27,32 @@ function ChatSection(){
             body: JSON.stringify({user_prompt: prompt})
             });
 
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
+            if (!formatted_data_response.ok) {
+                throw new Error(`Response status: ${formatted_data_response.status}`);
             }
 
+            const formatted_data = await formatted_data_response.json();
+            console.log(formatted_data);
+            
+
+            //First API response completes here.
+
+            const chatbot_reply_response = await fetch("http://127.0.0.1:8000/get_response",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({data_formatted: formatted_data.past_paper_data, user_prompt: prompt})
+            })
+
+            if (!chatbot_reply_response.ok){
+                throw new Error(`Response status for call 2: ${chatbot_reply_response.status}`)
+            }
+
+
+            //THIS IS THE CODE FOR THE STREAMING LOGIC
             setMessages(prev => [...prev, { title: "", sender: 'chatbot' }]);
-            const reader = response.body.getReader();
+            const reader = chatbot_reply_response.body.getReader();
             const decoder = new TextDecoder();
             let accumulatedText = "";
 

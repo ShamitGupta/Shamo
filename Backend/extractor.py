@@ -28,6 +28,10 @@ class InformationExtracter(BaseModel):
 class PromptRequest(BaseModel):
     user_prompt: str
 
+class PromptResponse(BaseModel):
+    data_formatted: list
+    user_prompt: str
+
 
 def information_extraction(user_prompt:str):
     response = client.responses.parse(
