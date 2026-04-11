@@ -168,6 +168,38 @@
     font-size: 1rem;
 }
 
+/* Loading Animation Elements */
+.LoadingContainer {
+    align-self: flex-start;
+    margin-left: 7%;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: transparent;
+    max-width: 80%;
+}
+
+.Spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #8ba4f9; /* Subtle accent color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.LoadingText {
+    color: #a0a0a0;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .Dummy{
     height: 1px;
     width: 100%;

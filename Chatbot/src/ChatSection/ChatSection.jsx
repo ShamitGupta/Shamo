@@ -21,6 +21,7 @@ function ChatSection() {
     const chatContainerRef = useRef();
 
     const [messages, setMessages] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,6 +53,8 @@ function ChatSection() {
             title: currentPrompt || (metadataString.length > 0 ? "Search Past Paper: " + metadataString.join(", ") : ""),
             sender: 'user'
         }]);
+
+        setIsLoading(true);
 
         try {
             // First API call to get info and extract past paper data based on backendPrompt
@@ -97,6 +100,8 @@ function ChatSection() {
                 throw new Error(`Response status for call 2: ${chatbot_reply_response.status}`)
             }
 
+            setIsLoading(false);
+
             // Streaming logic
             setMessages(prev => [...prev, { title: "", sender: 'chatbot' }]);
             const reader = chatbot_reply_response.body.getReader();
@@ -129,13 +134,14 @@ function ChatSection() {
 
         } catch (error) {
             console.error("Error:", error);
+            setIsLoading(false);
         }
     }
 
-    // Scroll into view whenever a whole new message is added
+    // Scroll into view whenever a whole new message is added or loading state changes
     useEffect(() => {
         dummyRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages.length]);
+    }, [messages.length, isLoading]);
 
     return (
         <div className={styles.ChatSection}>
@@ -147,6 +153,14 @@ function ChatSection() {
                         </ReactMarkdown>
                     </div>
                 ))}
+
+                {isLoading && (
+                    <div className={styles.LoadingContainer}>
+                        <div className={styles.Spinner}></div>
+                        <p className={styles.LoadingText}>Analyzing question...</p>
+                    </div>
+                )}
+
                 <div className={styles.Dummy} ref={dummyRef}></div>
             </div>
 
