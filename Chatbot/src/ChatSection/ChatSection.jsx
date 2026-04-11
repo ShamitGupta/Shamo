@@ -12,7 +12,7 @@ function ChatSection(){
     const [paperData,setPaperData] = useState([]);
     const dummyRef = useRef();
 
-    const [messages,setMessages] = useState([]); //this is to keep a history of all the messages
+    const [messages,setMessages] = useState([]); //this is map all the messages onto the web page
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -85,6 +85,8 @@ function ChatSection(){
                     return newMessages;
                 });
         }
+        console.log('test');
+        console.log(accumulatedText);
 
         } catch(error){
             console.error("Error:", error);          

@@ -1,6 +1,11 @@
 import styles from './Sidebar.module.css'
 import logo from '../assets/ShamoLogo.png'
 function Sidebar(){
+
+    const handleRefresh = () => {
+        location.reload();
+    }
+
     return(
         <div className = {styles.Body}>
 
@@ -12,7 +17,7 @@ function Sidebar(){
                 </div>
 
                 <div className = {styles.SidebarButtonsContainer}>
-                    <button className = {styles.SidebarButtons}>New Chat</button>
+                    <button className = {styles.SidebarButtons} onClick={handleRefresh}>New Chat</button>
                     <button className = {styles.SidebarButtons}>About Us</button>
                     <button className = {styles.SidebarButtons}>Report an Issue</button>
                     <button className = {styles.SidebarButtons}>Contact Us</button>
