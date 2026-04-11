@@ -1,7 +1,9 @@
 from fastapi import FastAPI
-from extractor import information_extraction,user_response,PromptRequest
+from extractor import information_extraction,user_response_stream
+from classes import InformationExtracter,PromptRequest,PromptResponse
 from supabase_database import retrieve_info,format_data
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 
 app = FastAPI()
 
@@ -24,9 +26,15 @@ def read_root():
 
 @app.post("/get_info")
 def get_info(data: PromptRequest):
-    extracted_info = information_extraction(data.user_prompt) #returns a InformationExtracter class
+    extracted_info = information_extraction(data.metadata) #returns a dict class
     unformatted_data = retrieve_info(extracted_info) #returns a python dict
     formatted_data = format_data(unformatted_data) #returns a list such that list[0] = qp_data and list[1] = ms_data
+    
+    return {'past_paper_data':formatted_data, 'extracted_info':extracted_info}
 
-    chat_response = user_response(formatted_data, data.user_prompt)
-    return {'response': chat_response}
+@app.post("/get_response")
+def get_response(data: PromptResponse):
+    return StreamingResponse(
+        user_response_stream(data.data_formatted, data.user_prompt), 
+        media_type="text/plain"
+    )

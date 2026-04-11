@@ -1,7 +1,8 @@
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
-from extractor import InformationExtracter,information_extraction
+from extractor import information_extraction
+from classes import InformationExtracter,PromptRequest,PromptResponse
 
 load_dotenv()
 
@@ -10,12 +11,12 @@ key: str = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
 
 
-def retrieve_info(metadata: InformationExtracter):
+def retrieve_info(metadata: dict):
     search_criteria = {
-        "question_numbers": [metadata.question_number],
-        "Year": metadata.Year,
-        "Paper_Variant": metadata.Paper_Variant,
-        "Exam_session": metadata.Exam_session
+        "question_numbers": [metadata.get('question_number')],
+        "Year": metadata.get('Year'),
+        "Paper_Variant": metadata.get('Paper_Variant'),
+        "Exam_session": metadata.get('Exam_session')
     }
 
     try:

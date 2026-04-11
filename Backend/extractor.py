@@ -1,7 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-from pydantic import BaseModel
+from classes import InformationExtracter,PromptRequest,PromptResponse
 
 load_dotenv()
 
@@ -19,37 +19,21 @@ User Query: I do not understand how to solve question 8 in  May June 2023 paper 
 The question_number will be 8, the paper_variant will be 11, the exam session with be May/June, and the year will be 2023."""
 
 
-class InformationExtracter(BaseModel):
-    question_number: int
-    Year: int
-    Paper_Variant: int
-    Exam_session: str
-
-class PromptRequest(BaseModel):
-    user_prompt: str
 
 
-def information_extraction(user_prompt:str):
-    response = client.responses.parse(
-        model="gpt-4o",  # Use an existing model like gpt-4o or gpt-3.5-turbo
-        input=[
-            {
-                "role": "system",
-                "content": system_prompt_extraction,
-            },
-            {
-                "role": "user",
-                "content": user_prompt
-            }
-        ],
-        text_format=InformationExtracter,
-    )
+def information_extraction(metadata: list):
+    Year, Exam_session, Paper_Variant, question_number = metadata[0],metadata[1],metadata[2],metadata[3]
+    #need to typecaste because all the data came in as Strings from the front-end, but backend stores many of these as integers
+    extracted_info = {
+        'question_number':int(question_number),
+        'Year':int(Year),
+        'Paper_Variant': int(Paper_Variant),
+        'Exam_session': Exam_session
+    }
 
-    event = response.output_parsed
-    # output = {'question_number': event.question_number, 'Year': event.Year, 'Paper_Variant': event.Paper_Variant, 'Exam_session': event.Exam_session}
-    return event
+    return extracted_info
 
-def user_response(data:list, user_prompt:str):
+def user_response_stream(data:list, user_prompt:str):
     qp_data, ms_data = data[0],data[1]
     system_prompt_response = f"""You are a expert Mathematics tutor. Your job is to teach a user based on a IGCSE Add Maths Past Paper which they don't understand how to solve. 
 
@@ -69,20 +53,20 @@ the response scannable and neat.
 
 Please do not start solving the question in your methodology. If asked to solve the question, please refer to the Mark Scheme material provided, and analyze and explain that accordingly."""
 
-    response = client.responses.parse(
-        model="gpt-4o",  # Use an existing model like gpt-4o or gpt-3.5-turbo
-        input=[
-            {
-                "role": "system",
-                "content": system_prompt_response,
-            },
-            {
-                "role": "user",
-                "content": user_prompt
-            }
+    stream = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": system_prompt_response},
+            {"role": "user", "content": user_prompt}
         ],
+        stream=True,
     )
+
+    for chunk in stream:
+        # Yield the text delta if it exists
+        if chunk.choices[0].delta.content is not None:
+            yield chunk.choices[0].delta.content
     
-    return response.output_text
+    
 
 

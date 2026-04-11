@@ -3,47 +3,53 @@
     height: 100vh;
     width: 25vw;
     position: fixed; /* Ensures that the sidebar is not scrollable */
+    display: flex;
+    flex-direction: column;
 }
 
 .BotName{
-    color: #d1d1d1;
+    color: #ffffff;
     text-align: center;
-    padding-top: 7%;
+    padding-top: 10%;
     font-size: 2rem;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .Logo{
-    height: 70px;
+    height: 60px;
     margin-right: 5%;
     cursor: pointer;
 }
 
 
 .SidebarButtonsContainer{
-    /* background-color: red; */
-    height: 40vh;
-    width: 95%;
-    margin-top: 25%;
-    margin-left: 2.5%;
+    flex: 1;
+    width: 90%;
+    margin-top: 20%;
+    margin-left: 5%;
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .SidebarButtons{
-    height: 25%;
+    padding: 15px 20px;
     background-color: transparent;
     border: none;
-    font-size: 1.3rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
     cursor: pointer;
-    color: #d1d1d1;
+    color: #a0a0a0;
+    text-align: left;
+    transition: all 0.2s ease-in-out;
 }
 
 .SidebarButtons:hover{
-    background-color: #2c2c2c;
-    border-radius: 7px;
+    background-color: #212121;
+    color: #ffffff;
+    padding-left: 25px; /* Slight indent on hover */
 }
-
-

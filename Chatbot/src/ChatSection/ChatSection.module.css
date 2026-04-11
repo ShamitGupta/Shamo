@@ -1,125 +1,206 @@
 .ChatSection{
-    background-color: #212121;
+    background-color: #121212; /* Darker modern background */
     height: 100vh;
     width: 75vw;
-    margin-left: 25vw; /*this is because Sidebar has property of fixed*/
-    /* flex: 1; */
-     /* Allows the chatbot to be scrollable */
-     display: flex;
-     flex-direction: column;
+    margin-left: 25vw; 
+    display: flex;
+    flex-direction: column;
 }
 
 .Chat{
-    /* height: 30vh; */
-    padding-top: 5%; /* This is so the first chat bubble doesnt appear at the very top, as that will be messy */
+    padding-top: 5%; 
     width: 100%;
-    background-color: #212121;
+    background-color: #121212;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: flex-end;
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 20vh;
+    padding-bottom: 25vh;
+    scroll-behavior: smooth; /* Crucial for smooth scroll */
 }
 
-/* This is to the p tag */
+/* Scrollbar styling */
+.Chat::-webkit-scrollbar {
+    width: 8px;
+}
+.Chat::-webkit-scrollbar-track {
+    background: #121212; 
+}
+.Chat::-webkit-scrollbar-thumb {
+    background: #333; 
+    border-radius: 4px;
+}
+.Chat::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
 .ChatBubble{
-    background-color: #2D2D30;
-    /* height: 2.5rem; */
-    max-width: 35vw;
-    border-radius: 20px;
-    color: #E0E0E0;
-    margin-bottom: 3%;
+    background: linear-gradient(135deg, #2a2a30, #303036);
+    max-width: 40vw;
+    border-radius: 18px 18px 4px 18px; /* SaaS style rounded corners */
+    color: #f1f1f1;
+    margin-bottom: 25px;
     margin-right: 7%;
-    padding: 1.1%;
-    line-height: 1.5;
+    padding: 18px 24px;
+    line-height: 1.6;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-size: 1.05rem;
 }
-/*
-Response Bubble which is the response of the chatbot
-*/
+
 .ResponseBubble{
-    /* background-color: #2D2D30; */
-    /* height: 2.5rem; */
+    align-self: flex-start;
+    margin-left: 7%;
+    background-color: transparent;
     max-width: 80%;
-    border-radius: 20px;
-    color: #E0E0E0;
-    margin-bottom: 2%;
-    margin-right: 20%;
-    padding: 1.1%;
+    border-radius: 12px;
+    color: #e2e2e2;
+    margin-bottom: 25px;
+    margin-right: 7%;
+    padding: 10px 15px;
     line-height: 1.7;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    font-size: 1.05rem;
 }
 
-/* Ensure inline math doesn't break the bubble layout */
 .ResponseBubble :global(.katex-display) {
     margin: 1em 0;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
-/* Vertical spacing for sections and paragraphs */
 .ResponseBubble h1, 
 .ResponseBubble h2, 
 .ResponseBubble h3 {
-    margin-top: 1.5rem;    /* More space above headers */
-    margin-bottom: 0.8rem; /* Space below headers */
-    color: #ffffff;        /* Brighter headers */
+    margin-top: 1.5rem;    
+    margin-bottom: 0.8rem; 
+    color: #ffffff;        
+    font-weight: 600;
 }
 
 .ResponseBubble p {
-    margin-bottom: 1.2rem; /* Space between paragraphs */
+    margin-bottom: 1.2rem; 
 }
 
-/* Better list formatting */
 .ResponseBubble ol, 
 .ResponseBubble ul {
     margin-bottom: 1.2rem;
-    padding-left: 1.5rem; /* Indent the list */
+    padding-left: 1.5rem; 
 }
 
 .ResponseBubble li {
-    margin-bottom: 0.6rem; /* Space between list items */
+    margin-bottom: 0.6rem; 
 }
 
-/* Remove extra margin from the very last element in the bubble */
 .ResponseBubble > *:last-child {
     margin-bottom: 0;
+}
+
+/* Bottom Input Area */
+.InputContainer {
+    position: fixed;
+    bottom: 0;
+    width: 75vw;
+    background: linear-gradient(0deg, #121212 70%, transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5vh;
+    padding-top: 3vh;
+}
+
+.DropdownContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.SelectBtn {
+    background-color: #212121;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.SelectBtn:hover, .SelectBtn:focus {
+    border-color: #555;
 }
 
 .Form{
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .ChatBox{
-    width: 50vw;
+    width: 60vw;
     height: 3.5rem;
-    position: fixed;
-    bottom: 7vh;
-    border: none;
-    border-radius: 25px;
+    border: 1px solid #333;
+    border-radius: 20px;
     color: whitesmoke;
-    padding-left: 2%;
-    font-size: large;
-    background-color: #303030;
-    /* margin-left: 1% */
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: #1e1e1e;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .ChatBox:focus{
     outline: none;
+    border-color: #666;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
 }
 
 .ChatBox::placeholder{
-    color: gray;
-    font-size: large;
+    color: #888;
+    font-size: 1rem;
 }
 
-/* .Dummy{
-    background-color: red;
-    height: 20px;
+/* Loading Animation Elements */
+.LoadingContainer {
+    align-self: flex-start;
+    margin-left: 7%;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: transparent;
+    max-width: 80%;
+}
+
+.Spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #8ba4f9; /* Subtle accent color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.LoadingText {
+    color: #a0a0a0;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.Dummy{
+    height: 1px;
     width: 100%;
-} */
+}
