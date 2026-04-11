@@ -9,6 +9,7 @@ function ChatSection(){
 
     const [inputValue,setInputValue] = useState("");
     const [prompt,setPrompt] = useState("");
+    const [paperData,setPaperData] = useState([]);
     const dummyRef = useRef();
 
     const [messages,setMessages] = useState([]); //this is to keep a history of all the messages
@@ -31,8 +32,19 @@ function ChatSection(){
                 throw new Error(`Response status: ${formatted_data_response.status}`);
             }
 
-            const formatted_data = await formatted_data_response.json();
-            console.log(formatted_data);
+            let formatted_data = await formatted_data_response.json();
+
+
+            //BELOW IS TO KEEP MEMORY OF THE PAST PAPER DATA
+            if ((formatted_data.past_paper_data[0] === '') && (formatted_data.past_paper_data[1] === '') && (paperData.length !== 0)){ //THIS CHECKS THAT IF THE CURRENT EXTRACTION IS EMPTY, AND A PREVIOUS EXTRACTION EXISTS
+                formatted_data = paperData;
+                console.log("I am being executed");
+            }
+
+            if((formatted_data.past_paper_data[0] !== '') && (formatted_data.past_paper_data[1] !== '')){
+                setPaperData(formatted_data);
+            }
+            
             
 
             //First API response completes here.
