@@ -26,15 +26,11 @@ def read_root():
 
 @app.post("/get_info")
 def get_info(data: PromptRequest):
-    extracted_info = information_extraction(data.user_prompt) #returns a InformationExtracter class
+    extracted_info = information_extraction(data.metadata) #returns a dict class
     unformatted_data = retrieve_info(extracted_info) #returns a python dict
     formatted_data = format_data(unformatted_data) #returns a list such that list[0] = qp_data and list[1] = ms_data
-
-    # return StreamingResponse(
-    #     user_response_stream(formatted_data, data.user_prompt), 
-    #     media_type="text/plain"
-    # )
-    return {'past_paper_data':formatted_data}
+    
+    return {'past_paper_data':formatted_data, 'extracted_info':extracted_info}
 
 @app.post("/get_response")
 def get_response(data: PromptResponse):

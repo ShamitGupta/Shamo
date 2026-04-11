@@ -21,25 +21,17 @@ The question_number will be 8, the paper_variant will be 11, the exam session wi
 
 
 
-def information_extraction(user_prompt:str):
-    response = client.responses.parse(
-        model="gpt-4o",  # Use an existing model like gpt-4o or gpt-3.5-turbo
-        input=[
-            {
-                "role": "system",
-                "content": system_prompt_extraction,
-            },
-            {
-                "role": "user",
-                "content": user_prompt
-            }
-        ],
-        text_format=InformationExtracter,
-    )
+def information_extraction(metadata: list):
+    Year, Exam_session, Paper_Variant, question_number = metadata[0],metadata[1],metadata[2],metadata[3]
+    #need to typecaste because all the data came in as Strings from the front-end, but backend stores many of these as integers
+    extracted_info = {
+        'question_number':int(question_number),
+        'Year':int(Year),
+        'Paper_Variant': int(Paper_Variant),
+        'Exam_session': Exam_session
+    }
 
-    event = response.output_parsed
-    # output = {'question_number': event.question_number, 'Year': event.Year, 'Paper_Variant': event.Paper_Variant, 'Exam_session': event.Exam_session}
-    return event
+    return extracted_info
 
 def user_response_stream(data:list, user_prompt:str):
     qp_data, ms_data = data[0],data[1]

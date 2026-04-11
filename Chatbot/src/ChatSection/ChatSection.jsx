@@ -5,87 +5,95 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
-function ChatSection(){
+function ChatSection() {
 
-    const [inputValue,setInputValue] = useState("");
-    const [prompt,setPrompt] = useState("");
-    
+    const [inputValue, setInputValue] = useState("");
+    const [prompt, setPrompt] = useState("");
+
     // Metadata Dropdown States
     const [year, setYear] = useState("");
     const [session, setSession] = useState("");
     const [variant, setVariant] = useState("");
     const [questionNum, setQuestionNum] = useState("");
-    
-    const [paperData,setPaperData] = useState([]);
+
+    const [paperData, setPaperData] = useState([]);
     const dummyRef = useRef();
     const chatContainerRef = useRef();
 
-    const [messages,setMessages] = useState([]);
+    const [messages, setMessages] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         const currentPrompt = prompt;
+        // console.log(currentPrompt);
+
         // Construct backend prompt combining metadata
         let metadataString = [];
-        if (year) metadataString.push(`Year: ${year}`);
-        if (session) metadataString.push(`Session: ${session}`);
-        if (variant) metadataString.push(`Variant: ${variant}`);
-        if (questionNum) metadataString.push(`Question: ${questionNum}`);
-        
+        if (year) metadataString.push(year);
+        if (session) metadataString.push(session);
+        if (variant) metadataString.push(variant);
+        if (questionNum) metadataString.push(questionNum);
+
+        console.log(metadataString);
+
         let backendPrompt = currentPrompt;
         if (metadataString.length > 0) {
             backendPrompt = metadataString.join(", ") + ". " + currentPrompt;
         }
 
+        console.log(backendPrompt);
+
         setInputValue("");
         setPrompt(""); // Clear local prompt
 
         // Show simplified message to user (only what they typed, or metadata search summary)
-        setMessages(prevMessages => [...prevMessages, { 
-            title: currentPrompt || (metadataString.length > 0 ? "Search Past Paper: " + metadataString.join(", ") : ""), 
-            sender: 'user' 
+        setMessages(prevMessages => [...prevMessages, {
+            title: currentPrompt || (metadataString.length > 0 ? "Search Past Paper: " + metadataString.join(", ") : ""),
+            sender: 'user'
         }]);
 
-        try{
+        try {
             // First API call to get info and extract past paper data based on backendPrompt
-            const formatted_data_response = await fetch("http://127.0.0.1:8000/get_info",{
+            const formatted_data_response = await fetch("http://127.0.0.1:8000/get_info", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({user_prompt: backendPrompt})
+                body: JSON.stringify({ user_prompt: currentPrompt, metadata: metadataString })
             });
+
 
             if (!formatted_data_response.ok) {
                 throw new Error(`Response status: ${formatted_data_response.status}`);
             }
 
             let formatted_data = await formatted_data_response.json();
+            console.log(formatted_data);
 
             // Keep memory of past paper data if current extract is empty
-            if ((formatted_data.past_paper_data[0] === '') && (formatted_data.past_paper_data[1] === '') && (paperData.length !== 0)){ 
+            if ((formatted_data.past_paper_data[0] === '') && (formatted_data.past_paper_data[1] === '') && (paperData.length !== 0)) {
                 formatted_data = paperData;
                 console.log("Using cached paper data");
             }
 
-            if((formatted_data.past_paper_data[0] !== '') && (formatted_data.past_paper_data[1] !== '')){
+            if ((formatted_data.past_paper_data[0] !== '') && (formatted_data.past_paper_data[1] !== '')) {
                 setPaperData(formatted_data);
             }
 
             // Second API call for chatbot response stream, providing data separately
-            const chatbot_reply_response = await fetch("http://127.0.0.1:8000/get_response",{
+            const chatbot_reply_response = await fetch("http://127.0.0.1:8000/get_response", {
                 method: "POST",
-                headers:{
+                headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    data_formatted: formatted_data.past_paper_data, 
+                    data_formatted: formatted_data.past_paper_data,
                     user_prompt: currentPrompt // Provide clean user prompt string as requested
                 })
             })
 
-            if (!chatbot_reply_response.ok){
+            if (!chatbot_reply_response.ok) {
                 throw new Error(`Response status for call 2: ${chatbot_reply_response.status}`)
             }
 
@@ -104,13 +112,13 @@ function ChatSection(){
 
                 setMessages(prev => {
                     const newMessages = [...prev];
-                    newMessages[newMessages.length - 1] = { 
-                        ...newMessages[newMessages.length - 1], 
-                        title: accumulatedText 
+                    newMessages[newMessages.length - 1] = {
+                        ...newMessages[newMessages.length - 1],
+                        title: accumulatedText
                     };
                     return newMessages;
                 });
-                
+
                 // Jitter-free stream scrolling via RAF setting container scrollTop
                 requestAnimationFrame(() => {
                     if (chatContainerRef.current) {
@@ -119,21 +127,21 @@ function ChatSection(){
                 });
             }
 
-        } catch(error){
-            console.error("Error:", error);          
+        } catch (error) {
+            console.error("Error:", error);
         }
     }
 
     // Scroll into view whenever a whole new message is added
     useEffect(() => {
-        dummyRef.current?.scrollIntoView({behavior: 'smooth'});
-    }, [messages.length]); 
+        dummyRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages.length]);
 
-    return(
+    return (
         <div className={styles.ChatSection}>
             <div className={styles.Chat} ref={chatContainerRef}>
-                {messages.map((msg,index) => (
-                    <div key={index} className={msg.sender === 'user'? styles.ChatBubble : styles.ResponseBubble}>
+                {messages.map((msg, index) => (
+                    <div key={index} className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
                         <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                             {msg.title}
                         </ReactMarkdown>
@@ -141,7 +149,7 @@ function ChatSection(){
                 ))}
                 <div className={styles.Dummy} ref={dummyRef}></div>
             </div>
-            
+
             <div className={styles.InputContainer}>
                 <div className={styles.DropdownContainer}>
                     <select className={styles.SelectBtn} value={year} onChange={(e) => setYear(e.target.value)}>
@@ -170,20 +178,20 @@ function ChatSection(){
                     <select className={styles.SelectBtn} value={questionNum} onChange={(e) => setQuestionNum(e.target.value)}>
                         <option value="">Question (None)</option>
                         {[...Array(15)].map((_, i) => (
-                            <option key={i+1} value={i+1}>{i+1}</option>
+                            <option key={i + 1} value={i + 1}>{i + 1}</option>
                         ))}
                     </select>
                 </div>
 
                 <form onSubmit={handleSubmit} className={styles.Form}>
-                    <input 
-                        type='text' 
-                        placeholder='Ask anything...' 
-                        value={inputValue} 
+                    <input
+                        type='text'
+                        placeholder='Ask anything...'
+                        value={inputValue}
                         onChange={(e) => {
                             setInputValue(e.target.value);
                             setPrompt(e.target.value);
-                        }} 
+                        }}
                         className={styles.ChatBox}
                     />
                 </form>

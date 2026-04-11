@@ -8,6 +8,7 @@ class InformationExtracter(BaseModel):
 
 class PromptRequest(BaseModel):
     user_prompt: str
+    metadata: list
 
 class PromptResponse(BaseModel):
     data_formatted: list
