@@ -58,7 +58,7 @@ function ChatSection() {
 
         try {
             // First API call to get info and extract past paper data based on backendPrompt
-            const formatted_data_response = await fetch("https://shamo-backend.up.railway.app/get_info", {
+            const formatted_data_response = await fetch("https://shamo-production.up.railway.app/get_info", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,7 +85,7 @@ function ChatSection() {
             }
 
             // Second API call for chatbot response stream, providing data separately
-            const chatbot_reply_response = await fetch("https://shamo-backend.up.railway.app/get_response", {
+            const chatbot_reply_response = await fetch("https://shamo-production.up.railway.app/get_response", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
