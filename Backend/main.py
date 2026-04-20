@@ -8,7 +8,9 @@ from fastapi.responses import StreamingResponse
 app = FastAPI()
 
 origins = [
-    "*"
+    "http://localhost:5173",
+    "https://shamoclasses.com",            # Required: Base domain without trailing slash
+    "https://www.shamoclasses.com",        # Recommended: Include 'www' version
 ]
 
 app.add_middleware(
