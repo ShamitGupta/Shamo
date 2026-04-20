@@ -8,10 +8,7 @@ from fastapi.responses import StreamingResponse
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",
-    "https://shamoclasses.com",
-    "https://shamoclasses.com/chatbot",
-    "https://shamoclasses.com/chatbot/",
+    "*"
 ]
 
 app.add_middleware(
