@@ -176,9 +176,9 @@ function ChatSection() {
                     </select>
                     <select className={styles.SelectBtn} value={session} onChange={(e) => setSession(e.target.value)}>
                         <option value="">Session (None)</option>
-                        <option value="Feb/March">Feb/March</option>
+                        <option value="Feb/March">February/March</option>
                         <option value="May/June">May/June</option>
-                        <option value="Oct/Nov">Oct/Nov</option>
+                        <option value="Oct/Nov">October/November</option>
                     </select>
                     <select className={styles.SelectBtn} value={variant} onChange={(e) => setVariant(e.target.value)}>
                         <option value="">Variant (None)</option>
