@@ -5,12 +5,15 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
+import { getAvailableVariants } from '../utils/variantRules.js';
+
 function ChatSection() {
 
     const [inputValue, setInputValue] = useState("");
     const [prompt, setPrompt] = useState("");
 
     // Metadata Dropdown States
+    const [subject, setSubject] = useState("IGCSE Additional Mathematics");
     const [year, setYear] = useState("");
     const [session, setSession] = useState("");
     const [variant, setVariant] = useState("");
@@ -23,6 +26,14 @@ function ChatSection() {
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    // Reset variant if it is no longer valid for the selected subject/session
+    useEffect(() => {
+        const availableVariants = getAvailableVariants(subject, session);
+        if (variant && !availableVariants.includes(variant)) {
+            setVariant("");
+        }
+    }, [subject, session, variant]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -31,6 +42,7 @@ function ChatSection() {
 
         // Construct backend prompt combining metadata
         let metadataString = [];
+        if (subject) metadataString.push(subject);
         if (year) metadataString.push(year);
         if (session) metadataString.push(session);
         if (variant) metadataString.push(variant);
@@ -145,6 +157,13 @@ function ChatSection() {
 
     return (
         <div className={styles.ChatSection}>
+            <div className={styles.TopBar}>
+                <select className={styles.SelectBtn} value={subject} onChange={(e) => setSubject(e.target.value)}>
+                    <option value="IGCSE Additional Mathematics">IGCSE Additional Mathematics</option>
+                    <option value="A-level Mathematics">A-level Mathematics</option>
+                </select>
+            </div>
+
             <div className={styles.Chat} ref={chatContainerRef}>
                 {messages.map((msg, index) => (
                     <div key={index} className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
@@ -182,12 +201,9 @@ function ChatSection() {
                     </select>
                     <select className={styles.SelectBtn} value={variant} onChange={(e) => setVariant(e.target.value)}>
                         <option value="">Variant (None)</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
+                        {getAvailableVariants(subject, session).map(v => (
+                            <option key={v} value={v}>{v}</option>
+                        ))}
                     </select>
                     <select className={styles.SelectBtn} value={questionNum} onChange={(e) => setQuestionNum(e.target.value)}>
                         <option value="">Question (None)</option>
