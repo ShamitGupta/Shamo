@@ -20,7 +20,15 @@ def retrieve_info(metadata: dict):
     }
 
     try:
-        response = supabase.table("documents") \
+        #First check which document to find from
+        supabase_document = ''
+        if(metadata.get('Subject')) == 'IGCSE Additional Mathematics':
+            supabase_document = "documents"
+        if(metadata.get('Subject')) == 'A-level Mathematics':
+            supabase_document = "A_level Math"
+
+        #Now we actually start the filtering
+        response = supabase.table(supabase_document) \
             .select("content,metadata") \
             .contains("metadata", search_criteria) \
             .execute()

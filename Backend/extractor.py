@@ -23,12 +23,13 @@ The question_number will be 8, the paper_variant will be 11, the exam session wi
 
 def information_extraction(metadata: list):
 
-    if(len(metadata) !=4):
+    if(len(metadata) !=5):
         extracted_info = {}
     else:
-        Year, Exam_session, Paper_Variant, question_number = metadata[0],metadata[1],metadata[2],metadata[3]
+        Subject,Year, Exam_session, Paper_Variant, question_number = metadata[0],metadata[1],metadata[2],metadata[3],metadata[4]
         #need to typecaste because all the data came in as Strings from the front-end, but backend stores many of these as integers
         extracted_info = {
+            'Subject': Subject,
             'question_number':int(question_number),
             'Year':int(Year),
             'Paper_Variant': int(Paper_Variant),
