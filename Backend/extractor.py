@@ -38,7 +38,7 @@ def information_extraction(metadata: list):
 
     return extracted_info
 
-def user_response_stream(data:list, user_prompt:str):
+def user_response_stream(data:list, user_prompt:str, conversation_history:list | None = None):
     qp_data, ms_data = data[0],data[1]
     system_prompt_response = f"""You are a expert Mathematics tutor. Your job is to teach a user based on a IGCSE Add Maths Past Paper which they don't understand how to solve. 
 
@@ -56,14 +56,30 @@ Please use clear Markdown headers (###) for major sections.
 Use bold text for key terms and bullet points for steps to keep 
 the response scannable and neat.
 
-Please do not start solving the question in your methodology. If asked to solve the question, please refer to the Mark Scheme material provided, and analyze and explain that accordingly."""
+Please do not start solving the question in your methodology. If asked to solve the question, please refer to the Mark Scheme material provided, and analyze and explain that accordingly.
+
+If prior conversation history is provided, use it to maintain continuity with the student's latest questions and your earlier explanations."""
+
+    chat_messages = [{"role": "system", "content": system_prompt_response}]
+
+    if conversation_history:
+        chat_messages.extend(
+            {
+                "role": message["role"],
+                "content": message["content"]
+            }
+            for message in conversation_history
+            if isinstance(message, dict)
+            and message.get("role") in {"user", "assistant"}
+            and isinstance(message.get("content"), str)
+            and message["content"].strip()
+        )
+
+    chat_messages.append({"role": "user", "content": user_prompt})
 
     stream = client.chat.completions.create(
         model="gpt-4o",
-        messages=[
-            {"role": "system", "content": system_prompt_response},
-            {"role": "user", "content": user_prompt}
-        ],
+        messages=chat_messages,
         stream=True,
     )
 

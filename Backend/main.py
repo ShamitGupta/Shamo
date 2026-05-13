@@ -37,6 +37,6 @@ def get_info(data: PromptRequest):
 @app.post("/get_response")
 def get_response(data: PromptResponse):
     return StreamingResponse(
-        user_response_stream(data.data_formatted, data.user_prompt), 
+        user_response_stream(data.data_formatted, data.user_prompt, data.conversation_history), 
         media_type="text/plain"
     )

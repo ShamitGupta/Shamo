@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class InformationExtracter(BaseModel):
     question_number: int
@@ -13,3 +13,4 @@ class PromptRequest(BaseModel):
 class PromptResponse(BaseModel):
     data_formatted: list
     user_prompt: str
+    conversation_history: list = Field(default_factory=list)

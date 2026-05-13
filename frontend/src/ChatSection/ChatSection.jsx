@@ -6,6 +6,19 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
 import { getAvailableVariants } from '../utils/variantRules.js';
+import MetadataDropdown from './MetadataDropdown';
+
+const MAX_SESSION_MEMORY_MESSAGES = 10;
+
+const formatConversationHistory = (conversationHistory) => {
+    if (conversationHistory.length === 0) {
+        return "";
+    }
+
+    return conversationHistory
+        .map((message) => `${message.role === 'assistant' ? 'Assistant' : 'User'}: ${message.content}`)
+        .join('\n');
+};
 
 function ChatSection() {
 
@@ -22,9 +35,42 @@ function ChatSection() {
     const [paperData, setPaperData] = useState([]);
     const dummyRef = useRef();
     const chatContainerRef = useRef();
+    const chatSectionRef = useRef();
 
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(null);
+
+    const subjectOptions = [
+        { value: "IGCSE Additional Mathematics", label: "IGCSE Additional Mathematics" },
+        { value: "A-level Mathematics", label: "A-level Mathematics" }
+    ];
+
+    const yearOptions = [
+        { value: "", label: "Year (None)" },
+        { value: "2020", label: "2020" },
+        { value: "2021", label: "2021" },
+        { value: "2022", label: "2022" },
+        { value: "2023", label: "2023" },
+        { value: "2024", label: "2024" }
+    ];
+
+    const sessionOptions = [
+        { value: "", label: "Session (None)" },
+        { value: "February/March", label: "Feb/March" },
+        { value: "May/June", label: "May/June" },
+        { value: "October/November", label: "Oct/Nov" }
+    ];
+
+    const variantOptions = [
+        { value: "", label: "Variant (None)" },
+        ...getAvailableVariants(subject, session).map(v => ({ value: v, label: v }))
+    ];
+
+    const questionOptions = [
+        { value: "", label: "Question (None)" },
+        ...[...Array(15)].map((_, i) => ({ value: String(i + 1), label: String(i + 1) }))
+    ];
 
     // Reset variant if it is no longer valid for the selected subject/session
     useEffect(() => {
@@ -34,10 +80,48 @@ function ChatSection() {
         }
     }, [subject, session, variant]);
 
+    useEffect(() => {
+        const handlePointerDown = (event) => {
+            if (chatSectionRef.current && !chatSectionRef.current.contains(event.target)) {
+                setOpenDropdown(null);
+            }
+        };
+
+        const handleEscape = (event) => {
+            if (event.key === 'Escape') {
+                setOpenDropdown(null);
+            }
+        };
+
+        document.addEventListener('mousedown', handlePointerDown);
+        document.addEventListener('keydown', handleEscape);
+
+        return () => {
+            document.removeEventListener('mousedown', handlePointerDown);
+            document.removeEventListener('keydown', handleEscape);
+        };
+    }, []);
+
+    const handleDropdownToggle = (dropdownId) => {
+        setOpenDropdown(prev => prev === dropdownId ? null : dropdownId);
+    };
+
+    const handleDropdownSelect = (setter) => (selectedValue) => {
+        setter(selectedValue);
+        setOpenDropdown(null);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const currentPrompt = prompt;
+        const conversationHistory = messages
+            .slice(-MAX_SESSION_MEMORY_MESSAGES)
+            .map((message) => ({
+                role: message.sender === 'user' ? 'user' : 'assistant',
+                content: message.title,
+            }));
+        const formattedConversationHistory = formatConversationHistory(conversationHistory);
         // console.log(currentPrompt);
 
         // Construct backend prompt combining metadata
@@ -57,6 +141,10 @@ function ChatSection() {
 
         console.log(backendPrompt);
 
+        const responsePrompt = formattedConversationHistory
+            ? `You are continuing an existing chat session. The previous messages in this current session are below, and you should use them as accessible conversation context.\n\nConversation history:\n${formattedConversationHistory}\n\nLatest user message: ${currentPrompt}`
+            : currentPrompt;
+
         setInputValue("");
         setPrompt(""); // Clear local prompt
 
@@ -75,7 +163,7 @@ function ChatSection() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ user_prompt: currentPrompt, metadata: metadataString })
+                body: JSON.stringify({ user_prompt: backendPrompt, metadata: metadataString })
             });
 
 
@@ -104,7 +192,8 @@ function ChatSection() {
                 },
                 body: JSON.stringify({
                     data_formatted: formatted_data.past_paper_data,
-                    user_prompt: currentPrompt // Provide clean user prompt string as requested
+                    user_prompt: responsePrompt,
+                    conversation_history: conversationHistory
                 })
             })
 
@@ -156,12 +245,22 @@ function ChatSection() {
     }, [messages.length, isLoading]);
 
     return (
-        <div className={styles.ChatSection}>
+        <div className={styles.ChatSection} ref={chatSectionRef}>
             <div className={styles.TopBar}>
-                <select className={styles.SelectBtn} value={subject} onChange={(e) => setSubject(e.target.value)}>
-                    <option value="IGCSE Additional Mathematics">IGCSE Additional Mathematics</option>
-                    <option value="A-level Mathematics">A-level Mathematics</option>
-                </select>
+                <div className={styles.DropdownRegion}>
+                    <MetadataDropdown
+                        id="subject"
+                        label="Subject"
+                        value={subject}
+                        options={subjectOptions}
+                        direction="down"
+                        isOpen={openDropdown === 'subject'}
+                        onOpen={setOpenDropdown}
+                        onClose={() => setOpenDropdown(null)}
+                        onToggle={handleDropdownToggle}
+                        onSelect={handleDropdownSelect(setSubject)}
+                    />
+                </div>
             </div>
 
             <div className={styles.Chat} ref={chatContainerRef}>
@@ -184,33 +283,57 @@ function ChatSection() {
             </div>
 
             <div className={styles.InputContainer}>
-                <div className={styles.DropdownContainer}>
-                    <select className={styles.SelectBtn} value={year} onChange={(e) => setYear(e.target.value)}>
-                        <option value="">Year (None)</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                    </select>
-                    <select className={styles.SelectBtn} value={session} onChange={(e) => setSession(e.target.value)}>
-                        <option value="">Session (None)</option>
-                        <option value="February/March">Feb/March</option>
-                        <option value="May/June">May/June</option>
-                        <option value="October/November">Oct/Nov</option>
-                    </select>
-                    <select className={styles.SelectBtn} value={variant} onChange={(e) => setVariant(e.target.value)}>
-                        <option value="">Variant (None)</option>
-                        {getAvailableVariants(subject, session).map(v => (
-                            <option key={v} value={v}>{v}</option>
-                        ))}
-                    </select>
-                    <select className={styles.SelectBtn} value={questionNum} onChange={(e) => setQuestionNum(e.target.value)}>
-                        <option value="">Question (None)</option>
-                        {[...Array(15)].map((_, i) => (
-                            <option key={i + 1} value={i + 1}>{i + 1}</option>
-                        ))}
-                    </select>
+                <div className={styles.DropdownRegion}>
+                    <div className={styles.DropdownContainer}>
+                        <MetadataDropdown
+                            id="year"
+                            label="Year"
+                            value={year}
+                            options={yearOptions}
+                            direction="up"
+                            isOpen={openDropdown === 'year'}
+                            onOpen={setOpenDropdown}
+                            onClose={() => setOpenDropdown(null)}
+                            onToggle={handleDropdownToggle}
+                            onSelect={handleDropdownSelect(setYear)}
+                        />
+                        <MetadataDropdown
+                            id="session"
+                            label="Session"
+                            value={session}
+                            options={sessionOptions}
+                            direction="up"
+                            isOpen={openDropdown === 'session'}
+                            onOpen={setOpenDropdown}
+                            onClose={() => setOpenDropdown(null)}
+                            onToggle={handleDropdownToggle}
+                            onSelect={handleDropdownSelect(setSession)}
+                        />
+                        <MetadataDropdown
+                            id="variant"
+                            label="Variant"
+                            value={variant}
+                            options={variantOptions}
+                            direction="up"
+                            isOpen={openDropdown === 'variant'}
+                            onOpen={setOpenDropdown}
+                            onClose={() => setOpenDropdown(null)}
+                            onToggle={handleDropdownToggle}
+                            onSelect={handleDropdownSelect(setVariant)}
+                        />
+                        <MetadataDropdown
+                            id="question"
+                            label="Question"
+                            value={questionNum}
+                            options={questionOptions}
+                            direction="up"
+                            isOpen={openDropdown === 'question'}
+                            onOpen={setOpenDropdown}
+                            onClose={() => setOpenDropdown(null)}
+                            onToggle={handleDropdownToggle}
+                            onSelect={handleDropdownSelect(setQuestionNum)}
+                        />
+                    </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className={styles.Form}>

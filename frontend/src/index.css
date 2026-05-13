@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
+:root{
+  --sidebar-width: 320px;
+  --mobile-header-height: 72px;
+  --page-bg: #121212;
+}
+
 *{
   margin: 0px;
   padding: 0px;
@@ -7,6 +13,57 @@
   font-family: 'Inter', sans-serif;
 }
 
+html{
+  background-color: var(--page-bg);
+}
+
+body{
+  min-height: 100vh;
+  background-color: var(--page-bg);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 164, 249, 0.38) rgba(255, 255, 255, 0.04);
+}
+
 #root{
-  display: flex;
+  min-height: 100vh;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(139, 164, 249, 0.52), rgba(104, 121, 190, 0.52));
+  border-radius: 999px;
+  border: 2px solid #121212;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(157, 180, 255, 0.68), rgba(116, 135, 208, 0.68));
+}
+
+button,
+input,
+textarea,
+select{
+  font: inherit;
+}
+
+.appShell{
+  min-height: 100vh;
+  background-color: var(--page-bg);
+}
+
+@media (max-width: 960px) {
+  :root{
+    --mobile-header-height: 64px;
+  }
 }
