@@ -8,6 +8,18 @@ import 'katex/dist/katex.min.css';
 import { getAvailableVariants } from '../utils/variantRules.js';
 import MetadataDropdown from './MetadataDropdown';
 
+const MAX_SESSION_MEMORY_MESSAGES = 10;
+
+const formatConversationHistory = (conversationHistory) => {
+    if (conversationHistory.length === 0) {
+        return "";
+    }
+
+    return conversationHistory
+        .map((message) => `${message.role === 'assistant' ? 'Assistant' : 'User'}: ${message.content}`)
+        .join('\n');
+};
+
 function ChatSection() {
 
     const [inputValue, setInputValue] = useState("");
@@ -103,6 +115,13 @@ function ChatSection() {
         e.preventDefault();
 
         const currentPrompt = prompt;
+        const conversationHistory = messages
+            .slice(-MAX_SESSION_MEMORY_MESSAGES)
+            .map((message) => ({
+                role: message.sender === 'user' ? 'user' : 'assistant',
+                content: message.title,
+            }));
+        const formattedConversationHistory = formatConversationHistory(conversationHistory);
         // console.log(currentPrompt);
 
         // Construct backend prompt combining metadata
@@ -122,6 +141,10 @@ function ChatSection() {
 
         console.log(backendPrompt);
 
+        const responsePrompt = formattedConversationHistory
+            ? `You are continuing an existing chat session. The previous messages in this current session are below, and you should use them as accessible conversation context.\n\nConversation history:\n${formattedConversationHistory}\n\nLatest user message: ${currentPrompt}`
+            : currentPrompt;
+
         setInputValue("");
         setPrompt(""); // Clear local prompt
 
@@ -140,7 +163,7 @@ function ChatSection() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ user_prompt: currentPrompt, metadata: metadataString })
+                body: JSON.stringify({ user_prompt: backendPrompt, metadata: metadataString })
             });
 
 
@@ -169,7 +192,8 @@ function ChatSection() {
                 },
                 body: JSON.stringify({
                     data_formatted: formatted_data.past_paper_data,
-                    user_prompt: currentPrompt // Provide clean user prompt string as requested
+                    user_prompt: responsePrompt,
+                    conversation_history: conversationHistory
                 })
             })
 
