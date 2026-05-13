@@ -1,46 +1,55 @@
 .Sidebar{
     background-color: #121212;
     height: 100vh;
-    width: 25vw;
-    position: fixed; /* Ensures that the sidebar is not scrollable */
+    width: min(var(--sidebar-width), 28vw);
+    min-width: 260px;
+    max-width: 360px;
+    position: fixed;
+    inset: 0 auto 0 0;
     display: flex;
     flex-direction: column;
+    padding: 32px 18px 24px;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 30;
 }
 
 .BotName{
     color: #ffffff;
-    text-align: center;
-    padding-top: 10%;
-    font-size: 2rem;
+    font-size: clamp(1.45rem, 2vw, 2rem);
     font-weight: 600;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: 14px;
+    padding: 8px 12px 0;
+}
+
+.Label{
+    white-space: nowrap;
 }
 
 .Logo{
-    height: 60px;
-    margin-right: 5%;
+    width: clamp(44px, 4vw, 60px);
+    height: auto;
+    flex-shrink: 0;
     cursor: pointer;
 }
 
-
 .SidebarButtonsContainer{
     flex: 1;
-    width: 90%;
-    margin-top: 20%;
-    margin-left: 5%;
+    width: 100%;
+    margin-top: 36px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
 
 .SidebarButtons{
-    padding: 15px 20px;
+    padding: 15px 18px;
     background-color: transparent;
     border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
+    border-radius: 14px;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     color: #a0a0a0;
@@ -51,5 +60,98 @@
 .SidebarButtons:hover{
     background-color: #212121;
     color: #ffffff;
-    padding-left: 25px; /* Slight indent on hover */
+    padding-left: 24px;
+}
+
+.MobileBar,
+.MobileOverlay{
+    display: none;
+}
+
+.MobileBar{
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--mobile-header-height);
+    padding: 0 16px;
+    background: rgba(18, 18, 18, 0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    align-items: center;
+    justify-content: space-between;
+    z-index: 40;
+}
+
+.MobileBrand{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.MobileMenuButton{
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+}
+
+.MobileMenuButton span{
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 960px) {
+    .MobileBar{
+        display: flex;
+    }
+
+    .MobileOverlay{
+        display: block;
+        position: fixed;
+        inset: 0;
+        border: none;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 35;
+    }
+
+    .Sidebar{
+        width: min(82vw, 340px);
+        min-width: 0;
+        max-width: 340px;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        z-index: 45;
+        box-shadow: 18px 0 40px rgba(0, 0, 0, 0.34);
+    }
+
+    .SidebarOpen{
+        transform: translateX(0);
+    }
+
+    .BotName{
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Sidebar{
+        width: 88vw;
+        padding: 24px 14px 20px;
+    }
+
+    .SidebarButtons{
+        font-size: 0.96rem;
+        padding: 14px 16px;
+    }
 }

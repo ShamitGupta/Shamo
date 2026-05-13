@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
+:root{
+  --sidebar-width: 320px;
+  --mobile-header-height: 72px;
+  --page-bg: #121212;
+}
+
 *{
   margin: 0px;
   padding: 0px;
@@ -7,6 +13,33 @@
   font-family: 'Inter', sans-serif;
 }
 
+html{
+  background-color: var(--page-bg);
+}
+
+body{
+  min-height: 100vh;
+  background-color: var(--page-bg);
+}
+
 #root{
-  display: flex;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select{
+  font: inherit;
+}
+
+.appShell{
+  min-height: 100vh;
+  background-color: var(--page-bg);
+}
+
+@media (max-width: 960px) {
+  :root{
+    --mobile-header-height: 64px;
+  }
 }

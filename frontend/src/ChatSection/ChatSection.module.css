@@ -1,15 +1,15 @@
 .ChatSection{
-    background-color: #121212; /* Darker modern background */
-    height: 100vh;
-    width: 75vw;
-    margin-left: 25vw; 
+    background-color: #121212;
+    min-height: 100vh;
+    margin-left: min(var(--sidebar-width), 28vw);
     display: flex;
     flex-direction: column;
+    width: calc(100% - min(var(--sidebar-width), 28vw));
 }
 
 .TopBar {
     width: 100%;
-    padding: 20px 30px;
+    padding: 24px clamp(18px, 3vw, 34px) 12px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -18,7 +18,6 @@
 }
 
 .Chat{
-    padding-top: 5%; 
     width: 100%;
     background-color: #121212;
     display: flex;
@@ -26,54 +25,57 @@
     align-items: flex-end;
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 25vh;
-    scroll-behavior: smooth; /* Crucial for smooth scroll */
+    padding: 10px clamp(14px, 3vw, 28px) clamp(230px, 28vh, 300px);
+    scroll-behavior: smooth;
 }
 
-/* Scrollbar styling */
 .Chat::-webkit-scrollbar {
     width: 8px;
 }
+
 .Chat::-webkit-scrollbar-track {
-    background: #121212; 
+    background: #121212;
 }
+
 .Chat::-webkit-scrollbar-thumb {
-    background: #333; 
+    background: #333;
     border-radius: 4px;
 }
+
 .Chat::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #555;
 }
 
 .ChatBubble{
     background: linear-gradient(135deg, #2a2a30, #303036);
-    max-width: 40vw;
-    border-radius: 18px 18px 4px 18px; /* SaaS style rounded corners */
+    width: min(100%, 720px);
+    max-width: 70%;
+    border-radius: 18px 18px 4px 18px;
     color: #f1f1f1;
-    margin-bottom: 25px;
-    margin-right: 7%;
-    padding: 18px 24px;
+    margin-bottom: 20px;
+    margin-right: clamp(4px, 2vw, 16px);
+    padding: 18px 22px;
     line-height: 1.6;
     word-wrap: break-word;
     overflow-wrap: break-word;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    font-size: 1.05rem;
+    font-size: 1.02rem;
 }
 
 .ResponseBubble{
     align-self: flex-start;
-    margin-left: 7%;
+    width: min(100%, 880px);
+    max-width: 92%;
+    margin-left: clamp(2px, 1vw, 10px);
     background-color: transparent;
-    max-width: 80%;
     border-radius: 12px;
     color: #e2e2e2;
-    margin-bottom: 25px;
-    margin-right: 7%;
-    padding: 10px 15px;
+    margin-bottom: 20px;
+    padding: 10px 6px;
     line-height: 1.7;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    font-size: 1.05rem;
+    font-size: 1.02rem;
 }
 
 .ResponseBubble :global(.katex-display) {
@@ -85,65 +87,183 @@
 .ResponseBubble h1, 
 .ResponseBubble h2, 
 .ResponseBubble h3 {
-    margin-top: 1.5rem;    
-    margin-bottom: 0.8rem; 
-    color: #ffffff;        
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .ResponseBubble p {
-    margin-bottom: 1.2rem; 
+    margin-bottom: 1.2rem;
 }
 
 .ResponseBubble ol, 
 .ResponseBubble ul {
     margin-bottom: 1.2rem;
-    padding-left: 1.5rem; 
+    padding-left: 1.5rem;
 }
 
 .ResponseBubble li {
-    margin-bottom: 0.6rem; 
+    margin-bottom: 0.6rem;
 }
 
 .ResponseBubble > *:last-child {
     margin-bottom: 0;
 }
 
-/* Bottom Input Area */
 .InputContainer {
     position: fixed;
+    left: min(var(--sidebar-width), 28vw);
+    right: 0;
     bottom: 0;
-    width: 75vw;
-    background: linear-gradient(0deg, #121212 70%, transparent);
+    background: linear-gradient(0deg, #121212 72%, rgba(18, 18, 18, 0));
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 5vh;
-    padding-top: 3vh;
+    gap: 12px;
+    padding: 18px clamp(14px, 3vw, 28px) max(18px, env(safe-area-inset-bottom));
 }
 
 .DropdownContainer {
     display: flex;
     gap: 10px;
-    margin-bottom: 15px;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.DropdownRegion {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+}
+
+.Dropdown {
+    position: relative;
+}
+
+.DropdownDown {
+    padding-bottom: 10px;
+    margin-bottom: -10px;
+}
+
+.DropdownUp {
+    padding-top: 10px;
+    margin-top: -10px;
 }
 
 .SelectBtn {
-    background-color: #212121;
-    color: #e0e0e0;
-    border: 1px solid #333;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.9rem;
+    min-height: 2.5rem;
+    min-width: 10rem;
+    max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(180deg, rgba(42, 42, 46, 0.96), rgba(28, 28, 31, 0.96));
+    color: #f2f2f2;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 9px 14px;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     cursor: pointer;
     outline: none;
-    transition: border-color 0.2s;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .SelectBtn:hover, .SelectBtn:focus {
-    border-color: #555;
+    border-color: rgba(255, 255, 255, 0.18);
+    background: linear-gradient(180deg, rgba(50, 50, 55, 0.98), rgba(30, 30, 34, 0.98));
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+}
+
+.SelectBtnOpen {
+    border-color: rgba(139, 164, 249, 0.45);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34), 0 0 0 3px rgba(139, 164, 249, 0.12);
+}
+
+.SelectLabel {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.DropdownMenuWrapper {
+    position: absolute;
+    left: 0;
+    min-width: 100%;
+    z-index: 30;
+}
+
+.DropdownDown .DropdownMenuWrapper {
+    top: 100%;
+    padding-top: 8px;
+}
+
+.DropdownUp .DropdownMenuWrapper {
+    bottom: 100%;
+    padding-bottom: 8px;
+}
+
+.DropdownMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px;
+    border-radius: 18px;
+    background: rgba(22, 22, 25, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(16px);
+    max-height: min(50vh, 320px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 164, 249, 0.38) rgba(255, 255, 255, 0.04);
+}
+
+.DropdownMenu::-webkit-scrollbar {
+    width: 10px;
+}
+
+.DropdownMenu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+}
+
+.DropdownMenu::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(139, 164, 249, 0.52), rgba(104, 121, 190, 0.52));
+    border-radius: 999px;
+    border: 2px solid rgba(22, 22, 25, 0.98);
+}
+
+.DropdownMenu::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(157, 180, 255, 0.68), rgba(116, 135, 208, 0.68));
+}
+
+.DropdownOption {
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: #d7d7d9;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 0.84rem;
+    cursor: pointer;
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.DropdownOption:hover,
+.DropdownOption:focus {
+    background: rgba(139, 164, 249, 0.14);
+    color: #ffffff;
+    outline: none;
+}
+
+.DropdownOptionActive {
+    background: rgba(139, 164, 249, 0.2);
+    color: #ffffff;
 }
 
 .Form{
@@ -153,14 +273,12 @@
 }
 
 .ChatBox{
-    width: 60vw;
-    height: 3.5rem;
+    width: min(100%, 920px);
+    min-height: 3.5rem;
     border: 1px solid #333;
     border-radius: 20px;
     color: whitesmoke;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-family: inherit;
+    padding: 0 20px;
     font-size: 1rem;
     background-color: #1e1e1e;
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
@@ -178,10 +296,9 @@
     font-size: 1rem;
 }
 
-/* Loading Animation Elements */
 .LoadingContainer {
     align-self: flex-start;
-    margin-left: 7%;
+    margin-left: clamp(2px, 1vw, 10px);
     margin-bottom: 25px;
     display: flex;
     align-items: center;
@@ -194,7 +311,7 @@
     width: 22px;
     height: 22px;
     border: 3px solid rgba(255, 255, 255, 0.1);
-    border-top: 3px solid #8ba4f9; /* Subtle accent color */
+    border-top: 3px solid #8ba4f9;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -213,4 +330,146 @@
 .Dummy{
     height: 1px;
     width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .ChatBubble{
+        max-width: 78%;
+    }
+
+    .ResponseBubble{
+        max-width: 96%;
+    }
+}
+
+@media (max-width: 960px) {
+    .ChatSection{
+        width: 100%;
+        margin-left: 0;
+        padding-top: var(--mobile-header-height);
+    }
+
+    .TopBar{
+        padding: 12px 16px 8px;
+    }
+
+    .InputContainer{
+        left: 0;
+        padding: 14px 16px max(14px, env(safe-area-inset-bottom));
+    }
+
+    .DropdownContainer{
+        gap: 8px;
+        justify-content: flex-start;
+    }
+
+    .SelectBtn {
+        min-width: 8.6rem;
+    }
+
+    .Chat{
+        padding: 6px 16px calc(230px + env(safe-area-inset-bottom));
+    }
+}
+
+@media (max-width: 720px) {
+    .TopBar .DropdownRegion{
+        display: flex;
+    }
+
+    .TopBar .Dropdown{
+        width: 100%;
+    }
+
+    .TopBar .SelectBtn{
+        width: 100%;
+        min-width: 0;
+    }
+
+    .ChatBubble,
+    .ResponseBubble,
+    .LoadingContainer{
+        max-width: 100%;
+    }
+
+    .ChatBubble{
+        width: auto;
+        align-self: stretch;
+        margin-right: 0;
+        margin-left: 44px;
+        padding: 16px 18px;
+    }
+
+    .ResponseBubble{
+        width: 100%;
+        padding-inline: 0;
+        margin-left: 0;
+    }
+
+    .Chat{
+        padding-bottom: calc(270px + env(safe-area-inset-bottom));
+    }
+}
+
+@media (max-width: 560px) {
+    .TopBar{
+        padding-inline: 12px;
+    }
+
+    .Chat{
+        padding-inline: 12px;
+    }
+
+    .InputContainer{
+        padding-inline: 12px;
+        gap: 10px;
+    }
+
+    .DropdownContainer{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+    }
+
+    .DropdownContainer .Dropdown{
+        width: 100%;
+    }
+
+    .DropdownContainer .SelectBtn{
+        width: 100%;
+        min-width: 0;
+    }
+
+    .ChatBubble{
+        margin-left: 24px;
+        font-size: 0.97rem;
+    }
+
+    .ResponseBubble{
+        font-size: 0.98rem;
+        line-height: 1.65;
+    }
+
+    .ChatBox{
+        min-height: 3.2rem;
+        padding-inline: 16px;
+    }
+
+    .LoadingText{
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .DropdownContainer{
+        grid-template-columns: 1fr;
+    }
+
+    .Chat{
+        padding-bottom: calc(360px + env(safe-area-inset-bottom));
+    }
+
+    .ChatBubble{
+        margin-left: 12px;
+    }
 }
