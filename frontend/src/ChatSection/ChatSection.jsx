@@ -7,6 +7,8 @@ import 'katex/dist/katex.min.css';
 
 import { getAvailableVariants } from '../utils/variantRules.js';
 import MetadataDropdown from './MetadataDropdown';
+import AuthActions from '../Auth/AuthActions';
+import AuthOverlay from '../Auth/AuthOverlay';
 
 const MAX_SESSION_MEMORY_MESSAGES = 10;
 
@@ -40,6 +42,8 @@ function ChatSection() {
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);
+    const [isAuthOverlayOpen, setIsAuthOverlayOpen] = useState(false);
+    const [authMode, setAuthMode] = useState('signup');
 
     const subjectOptions = [
         { value: "IGCSE Additional Mathematics", label: "IGCSE Additional Mathematics" },
@@ -109,6 +113,15 @@ function ChatSection() {
     const handleDropdownSelect = (setter) => (selectedValue) => {
         setter(selectedValue);
         setOpenDropdown(null);
+    };
+
+    const handleOpenAuth = (mode) => {
+        setAuthMode(mode);
+        setIsAuthOverlayOpen(true);
+    };
+
+    const handleCloseAuth = () => {
+        setIsAuthOverlayOpen(false);
     };
 
     const handleSubmit = async (e) => {
@@ -247,19 +260,30 @@ function ChatSection() {
     return (
         <div className={styles.ChatSection} ref={chatSectionRef}>
             <div className={styles.TopBar}>
-                <div className={styles.DropdownRegion}>
-                    <MetadataDropdown
-                        id="subject"
-                        label="Subject"
-                        value={subject}
-                        options={subjectOptions}
-                        direction="down"
-                        isOpen={openDropdown === 'subject'}
-                        onOpen={setOpenDropdown}
-                        onClose={() => setOpenDropdown(null)}
-                        onToggle={handleDropdownToggle}
-                        onSelect={handleDropdownSelect(setSubject)}
-                    />
+                <div className={styles.TopBarContent}>
+                    <div className={styles.TopBarPrimary}>
+                        <div className={styles.DropdownRegion}>
+                            <MetadataDropdown
+                                id="subject"
+                                label="Subject"
+                                value={subject}
+                                options={subjectOptions}
+                                direction="down"
+                                isOpen={openDropdown === 'subject'}
+                                onOpen={setOpenDropdown}
+                                onClose={() => setOpenDropdown(null)}
+                                onToggle={handleDropdownToggle}
+                                onSelect={handleDropdownSelect(setSubject)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.TopBarActions}>
+                        <AuthActions
+                            onOpenSignUp={() => handleOpenAuth('signup')}
+                            onOpenLogIn={() => handleOpenAuth('login')}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -349,6 +373,12 @@ function ChatSection() {
                     />
                 </form>
             </div>
+
+            <AuthOverlay
+                isOpen={isAuthOverlayOpen}
+                mode={authMode}
+                onClose={handleCloseAuth}
+            />
         </div>
     )
 }

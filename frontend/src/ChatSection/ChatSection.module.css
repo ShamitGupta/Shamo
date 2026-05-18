@@ -11,10 +11,29 @@
     width: 100%;
     padding: 24px clamp(18px, 3vw, 34px) 12px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     background-color: #121212;
     z-index: 10;
+}
+
+.TopBarContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.TopBarPrimary {
+    min-width: 0;
+    flex: 1;
+}
+
+.TopBarActions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
 }
 
 .Chat{
@@ -373,6 +392,15 @@
 }
 
 @media (max-width: 720px) {
+    .TopBarContent {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .TopBarActions {
+        width: 100%;
+    }
+
     .TopBar .DropdownRegion{
         display: flex;
     }
