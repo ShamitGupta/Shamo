@@ -186,3 +186,172 @@ The frontend sends conversation context in two forms:
 2. as structured JSON in `conversation_history`
 
 The backend already accepts `conversation_history` separately and inserts it into the chat messages. That means the formatted transcript may overlap somewhat with the structured history, even though it still works.
+
+### `conversationHistory` vs `formattedConversationHistory`
+
+These two variables represent the same recent chat history in two different formats.
+
+`conversationHistory` is the structured version:
+
+```js
+const conversationHistory = messages
+    .slice(-MAX_SESSION_MEMORY_MESSAGES)
+    .map((message) => ({
+        role: message.sender === 'user' ? 'user' : 'assistant',
+        content: message.title,
+    }));
+```
+
+This version:
+
+- is an array of objects
+- preserves the `role` and `content` fields separately
+- is sent as `conversation_history` in the second API call
+- is used by the backend as proper chat history
+
+`formattedConversationHistory` is the plain-text version created from `conversationHistory`:
+
+```js
+const formattedConversationHistory = formatConversationHistory(conversationHistory);
+```
+
+This version:
+
+- is a single string
+- turns the chat into transcript lines like `User: ...` and `Assistant: ...`
+- is inserted into `responsePrompt`
+
+So the naming difference exists because the data formats are different:
+
+- `conversationHistory` = structured JSON-like chat history
+- `formattedConversationHistory` = readable text transcript
+
+### Why both are currently being sent
+
+In the second API call, the frontend sends:
+
+1. `conversation_history: conversationHistory`
+2. `user_prompt: responsePrompt`, where `responsePrompt` may already contain `formattedConversationHistory`
+
+That means the same history is being provided twice:
+
+- once as structured message history
+- once as a transcript embedded inside the latest prompt
+
+The backend already uses `conversation_history` directly when building `chat_messages`, so this makes `formattedConversationHistory` somewhat redundant in the current design.
+
+The cleaner mental model is:
+
+- `conversationHistory` is the real conversation memory
+- `formattedConversationHistory` is an extra transcript version of that same memory
+
+## API Flow
+
+### First API call: why `backendPrompt` is sent
+
+In `ChatSection.jsx`, the first API call sends:
+
+```js
+body: JSON.stringify({ user_prompt: backendPrompt, metadata: metadataString })
+```
+
+`backendPrompt` is built from:
+
+- the dropdown metadata
+- the current user message
+
+Example idea:
+
+```js
+backendPrompt = metadataString.join(", ") + ". " + currentPrompt;
+```
+
+However, in the current backend implementation, `/get_info` does not actually use `user_prompt`.
+
+In `Backend/main.py`:
+
+```python
+@app.post("/get_info")
+def get_info(data: PromptRequest):
+    extracted_info = information_extraction(data.metadata)
+```
+
+And in `backend/extractor.py`:
+
+```python
+def information_extraction(metadata: list):
+```
+
+So right now:
+
+- `/get_info` is driven by `metadata`
+- `user_prompt` is accepted by the schema but ignored in practice
+- sending `backendPrompt` instead of `currentPrompt` makes no difference for the current logic
+
+This suggests `backendPrompt` is likely left over from an earlier or future design where the backend might extract metadata from natural language.
+
+### Second API call: why conversation history is sent
+
+The second API call is different because it actually needs conversational context for the tutoring response.
+
+It sends:
+
+- `data_formatted`
+- `user_prompt`
+- `conversation_history`
+
+Here, the prompt content matters because the OpenAI model is generating the explanation. Unlike `/get_info`, this route does use the prompt meaningfully.
+
+## State And Fallbacks
+
+### Why cached `paperData` exists
+
+This block appears after the first API call:
+
+```js
+if ((formatted_data.past_paper_data[0] === '') && (formatted_data.past_paper_data[1] === '') && (paperData.length !== 0)) {
+    formatted_data = paperData;
+    console.log("Using cached paper data");
+}
+```
+
+Its purpose is to keep using the last successfully retrieved question paper and mark scheme if the current lookup returns empty data.
+
+The intended behavior is:
+
+- if the current fetch does not find a new paper
+- but the app already has previous paper data stored
+- reuse the old paper data so the conversation can continue
+
+### Is that cache necessary if dropdown state already persists?
+
+Usually, if a user asks a follow-up question and does not change the dropdowns, the same metadata is still in state and the same paper can simply be fetched again.
+
+That means:
+
+- in the normal path, the cache is not essential
+- the dropdown state already preserves the metadata
+- follow-up questions should still work without the cache as long as the fetch succeeds
+
+So the cache is better understood as a fallback safety net, not the main continuity mechanism.
+
+### When the cache helps
+
+The cache may still help in edge cases such as:
+
+- incomplete metadata being sent accidentally
+- temporary lookup failure
+- a fetch returning empty unexpectedly
+
+In those cases, the app avoids losing the previous paper context immediately.
+
+### Is it safe to remove?
+
+It is probably safe to remove if the goal is to simplify the code and you are comfortable losing that fallback behavior.
+
+Removing it would mean:
+
+- normal follow-up flows should still work if the dropdowns remain filled
+- the app would no longer recover automatically from an empty paper-data fetch by reusing the old paper
+
+So removing it simplifies the logic, but also removes a small resilience feature.

@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
 import { getAvailableVariants } from '../utils/variantRules.js';
+import { sanitizeLatex } from '../utils/sanitizeLatex.js';
 import MetadataDropdown from './MetadataDropdown';
 import AuthActions from '../Auth/AuthActions';
 import AuthOverlay from '../Auth/AuthOverlay';
@@ -285,7 +286,7 @@ function ChatSection() {
                 {messages.map((msg, index) => (
                     <div key={index} className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
                         <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                            {msg.title}
+                            {sanitizeLatex(msg.title)}
                         </ReactMarkdown>
                     </div>
                 ))}
