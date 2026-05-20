@@ -187,12 +187,6 @@ function ChatSection() {
             let formatted_data = await formatted_data_response.json();
             console.log(formatted_data);
 
-            // Keep memory of past paper data if current extract is empty
-            if ((formatted_data.past_paper_data[0] === '') && (formatted_data.past_paper_data[1] === '') && (paperData.length !== 0)) {
-                formatted_data = paperData;
-                console.log("Using cached paper data");
-            }
-
             if ((formatted_data.past_paper_data[0] !== '') && (formatted_data.past_paper_data[1] !== '')) {
                 setPaperData(formatted_data);
             }
