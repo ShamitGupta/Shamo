@@ -50,8 +50,8 @@ function AuthOverlay({ isOpen, mode, onClose }) {
                         </h2>
                         <p>
                             {isSignUp
-                                ? 'Add your details below to set up the future authenticated Shamo experience.'
-                                : 'Enter your details below to access your account once authentication is connected.'}
+                                ? 'Add your details below to set up the best learning experience.'
+                                : 'Enter your details below to access your account.'}
                         </p>
                     </div>
 
