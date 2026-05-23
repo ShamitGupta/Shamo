@@ -13,16 +13,6 @@ import AuthOverlay from '../Auth/AuthOverlay';
 
 const MAX_SESSION_MEMORY_MESSAGES = 10;
 
-const formatConversationHistory = (conversationHistory) => {
-    if (conversationHistory.length === 0) {
-        return "";
-    }
-
-    return conversationHistory
-        .map((message) => `${message.role === 'assistant' ? 'Assistant' : 'User'}: ${message.content}`)
-        .join('\n');
-};
-
 function ChatSection() {
 
     const [inputValue, setInputValue] = useState("");
@@ -135,7 +125,6 @@ function ChatSection() {
                 role: message.sender === 'user' ? 'user' : 'assistant',
                 content: message.title,
             }));
-        const formattedConversationHistory = formatConversationHistory(conversationHistory);
         // console.log(currentPrompt);
 
         // Construct backend prompt combining metadata
@@ -155,8 +144,8 @@ function ChatSection() {
 
         console.log(backendPrompt);
 
-        const responsePrompt = formattedConversationHistory
-            ? `You are continuing an existing chat session. The previous messages in this current session are below, and you should use them as accessible conversation context.\n\nConversation history:\n${formattedConversationHistory}\n\nLatest user message: ${currentPrompt}`
+        const responsePrompt = metadataString.length > 0
+            ? `The user has selected a specific past paper question using the metadata dropdowns: ${metadataString.join(", ")}. Use the retrieved question paper and mark scheme already provided to answer the user's request about that selected question.\n\nLatest user request: ${currentPrompt}`
             : currentPrompt;
 
         setInputValue("");
@@ -172,7 +161,7 @@ function ChatSection() {
 
         try {
             // First API call to get info and extract past paper data based on backendPrompt
-            const formatted_data_response = await fetch("https://shamo-production.up.railway.app/get_info", {
+            const formatted_data_response = await fetch("https://shamo-production-5438.up.railway.app/get_info", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -193,7 +182,7 @@ function ChatSection() {
             }
 
             // Second API call for chatbot response stream, providing data separately
-            const chatbot_reply_response = await fetch("https://shamo-production.up.railway.app/get_response", {
+            const chatbot_reply_response = await fetch("https://shamo-production-5438.up.railway.app/get_response", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
