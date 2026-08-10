@@ -1,0 +1,192 @@
+{
+  "paper_key": "9709_2025_oct_nov_21",
+  "ingestion_run_id": "b983fb63-0104-40d2-855b-6eda4e455682",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.2-batch-03:a_level:9709:2025:oct_nov:21",
+  "run_status": "complete",
+  "paper_status": "published",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_qp_21.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_ms_21.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International AS Level\n\nMATHEMATICS\n\nPaper 2 Pure Mathematics 2\n\nMARK SCHEME\n\nMaximum Mark: 50\n\n9709/21\n\nOctober/November 2025\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the October/November 2025 series for most Cambridge IGCSE, Cambridge International A and AS Level components, and some Cambridge O Level components.\n\nThis document consists of 16 printed pages.\n\n© Cambridge University Press & Assessment 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\n|  **GENERIC MARKING PRINCIPLE 1:** Marks must be awarded in line with: - the specific content of the mark scheme or the generic level descriptors for the question - the specific skills defined in the mark scheme or in the generic level descriptors for the question - the standard of response required by a candidate as exemplified by the standardisation scripts.  |\n| --- |\n|  **GENERIC MARKING PRINCIPLE 2:** Marks awarded are always **whole marks** (not half marks, or other fractions).  |\n|  **GENERIC MARKING PRINCIPLE 3:** Marks must be awarded **positively**: - marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate - marks are awarded when candidates clearly demonstrate what they know and can do - marks are not deducted for errors - marks are not deducted for omissions - answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.  |\n|  **GENERIC MARKING PRINCIPLE 4:** Rules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.  |\n|  **GENERIC MARKING PRINCIPLE 5:** Marks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).  |\n|  **GENERIC MARKING PRINCIPLE 6:** Marks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 2 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\nPUBLISHED\n\nOctober/November 2025\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2025\n\nPage 3 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Annotations guidance for centres**\n\nExaminers use a system of annotations as a shorthand for communicating their marking decisions to one another. Examiners are trained during the standardisation process on how and when to use annotations. The purpose of annotations is to inform the standardisation and monitoring processes and guide the supervising examiners when they are checking the work of examiners within their team. The meaning of annotations and how they are used is specific to each component and is understood by all examiners who mark the component.\n\nWe publish annotations in our mark schemes to help centres understand the annotations they may see on copies of scripts. Note that there may not be a direct correlation between the number of annotations on a script and the mark awarded. Similarly, the use of an annotation may not be an indication of the quality of the response.\n\nThe annotations listed below were available to examiners marking this component in this series.\n\n# **Annotations**\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  ^ | More information required  |\n|  A0 | Accuracy mark awarded zero  |\n|  A1 | Accuracy mark awarded one  |\n|  B0 | Independent accuracy mark awarded zero  |\n|  B1 | Independent accuracy mark awarded one  |\n|  B2 | Independent accuracy mark awarded two  |\n|  BOD | Benefit of the doubt  |\n|  BP | Blank Page  |\n|  ✗ | Incorrect  |\n|  Dep | Used to indicate DM0 or DM1  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 4 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  DM1 | Dependent on the previous M1 mark(s)  |\n|  FT | Follow through  |\n|  ~~~ | Indicate working that is right or wrong  |\n|  Highlighter | Highlight a key point in the working  |\n|  ISW | Ignore subsequent work  |\n|  J | Judgement  |\n|  JU | Judgement  |\n|  M0 | Method mark awarded zero  |\n|  Y1 | Method mark awarded one  |\n|  M2 | Method mark awarded two  |\n|  MR | Misread  |\n|  O | Omission or Other solution  |\n|  Off-page comment | Allows comments to be entered at the bottom of the RM marking window and then displayed when the associated question item is navigated to.  |\n|  On-page comment | Allows comments to be entered in speech bubbles on the candidate response.  |\n|  PE | Judgment made by the PE  |\n|  Pre | Premature approximation  |\n|  SC | Special case  |\n|  SEEN | Indicates that work/page has been seen  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 5 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme^{}[] **PUBLISHED**\n\nOctober/November 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  SF | Error in number of significant figures  |\n|  ✓ | Correct  |\n|  TE | Transcription error  |\n|  XP | Correct answer from incorrect working  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 6 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2025\n\nPage 7 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n# Abbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 8 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1 | Use identity to express integrand in the form $$k_1 + k_2 \\cos 2x$$ | **M1** |   |\n|   |  Obtain correct $$3 - 3 \\cos 2x$$ | **A1** |   |\n|   |  Integrate to obtain $$3x - \\frac{1}{2} \\sin 2x$$ | **A1** | Condone omission of $$+c$$.  |\n|   |   | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | Attempt solution of quadratic equation in $$e^{2x}$$ to obtain at least one value of $$e^{2x}$$ | **M1** |   |\n|   |  Obtain $$(e^{2x} - 12)(e^{2x} + 4) = 0$$ OE, and hence at least $$e^{2x} = 12$$ | **A1** |   |\n|   |  Obtain $$x = \\frac{1}{2} \\ln 12$$ or 1.24 and no other solution | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 9 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | Solve $$2x - 3 = 5x + 2$$ to obtain $$-\\frac{5}{3}$$ | **B1** | Or exact equivalent.  |\n|   |  Attempt solution of linear equation where $$2x$$ and $$5x$$ have different signs | **M1** |   |\n|   |  Obtain $$\\frac{1}{7}$$ | **A1** | OE  |\n|   |  **Alternative Method for Question 3(a)**  |   |   |\n|   |  State or imply non-modulus equation $$(2x - 3)^2 = (5x + 2)^2$$ | **B1** |   |\n|   |  Attempt complete solution of three-term quadratic equation | **M1** |   |\n|   |  Obtain $$-\\frac{5}{3}$$ and $$\\frac{1}{7}$$ or equivalents | **A1** | OE  |\n|   |   | **3** |   |\n|  3(b) | State or imply $$\\cos \\theta = -\\frac{3}{5}$$ | **B1 FT** | Following an appropriate answer from part (a).  |\n|   |  Attempt correct process for finding third quadrant angle | **M1** | Condone working in degrees for this mark.  |\n|   |  Obtain 4.07 | **A1** | Or greater accuracy 4.0688...  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 10 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | Attempt to express equation in terms of $$\\tan \\theta$$ only | **M1*** |   |\n|   |  Obtain $$\\frac{1}{\\tan \\theta} \\times \\frac{\\tan \\theta + \\tan 45}{1 - \\tan \\theta \\tan 45} = 7$$ | **A1** | OE  |\n|   |  Simplify to obtain equation $$7 \\tan^2 \\theta - 6 \\tan \\theta + 1 = 0$$ | **A1** |   |\n|   |  Attempt solution of three-term quadratic equation in $$\\tan \\theta$$ to obtain at least one value of $$\\theta$$ | **DM1** |   |\n|   |  Obtain $$\\tan \\theta = \\frac{1}{2}(3 \\pm \\sqrt{2})$$ or equivalent and hence 12.8 and 32.2, and no others in the given range | **A1** | Or greater accuracy 12.764..., 32.235...  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 11 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | Attempt solution of $$8e^{-\\frac{1}{2}x} - 1 = 0$$ with use of a relevant logarithm property | **M1** | E.g. $$\\frac{1}{2}\\ln x = \\ln 8$$  |\n|   |  Confirm $$x = 6\\ln 2$$ | **A1** | AG – necessary detail needed. Need to see $$\\ln 8 = 3\\ln 2$$ or $$64 = 2^6$$ OE used.  |\n|   |  **Alternative Method for Question 5(a)**  |   |   |\n|   |  Substitute $$x = 6\\ln 2$$ in $$8e^{-\\frac{1}{2}x} - 1$$ and show use of a relevant logarithm property | **M1** |   |\n|   |  Obtain $$8e^{-3\\ln 2} - 1$$ and hence $$8e^{\\ln \\frac{1}{6}} - 1$$ or equivalent and verify answer 0 | **A1** | AG – necessary detail needed.  |\n|   |  | **2** |   |\n|  5(b) | Integrate $$8e^{-\\frac{1}{2}x} - 1$$ to obtain the form $$ke^{-\\frac{1}{2}x} - x$$ | **M1** |   |\n|   |  Obtain correct $$-16e^{-\\frac{1}{2}x} - x$$ | **A1** |   |\n|   |  Apply limits 0 and $$6\\ln 2$$ to obtain $$-16e^{-\\frac{1}{2} \\times 6\\ln 2} - 6\\ln 2 + 16$$ | **A1** | OE $$14 - 6\\ln 2$$  |\n|   |  Attempt area of triangle minus area under curve | **M1** | Allow decimals for this mark (14.56).  |\n|   |  Obtain $$\\frac{1}{2} \\times 6\\ln 2 \\times 7 - (14 - 6\\ln 2)$$ or equivalent, and hence $$27\\ln 2 - 14$$ | **A1** |   |\n|   |  | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 12 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Attempt use of chain rule for differentiation of $y$ or simplification of $y$ and use of the product rule. | **M1** |   |\n|   |  Obtain $\\frac{dx}{d\\theta}=\\sec^2\\theta$ and $\\frac{dy}{d\\theta}=\\cos\\theta-6\\sin^2\\theta\\cos\\theta$ | **A1** |   |\n|   |  Attempt expression for $\\frac{dy}{dx}$ in terms of $\\cos\\theta$ only using *their* $\\frac{dx}{d\\theta}$ and $\\frac{dy}{d\\theta}$ | **M1** |   |\n|   |  Obtain $6\\cos^5\\theta-5\\cos^3\\theta$ | **A1** | AG – necessary detail needed.  |\n|   |   | **4** |   |\n|  6(b) | Attempt solution of $y=0$ to find value of $\\theta$ | **M1** | Allow if degrees used  |\n|   |  Obtain $\\sin^2\\theta=\\frac{1}{2}$ and hence $\\theta=\\frac{1}{4}\\pi$ | **A1** | Must be in radians here  |\n|   |  Obtain gradient of curve at the point is $-\\frac{1}{\\sqrt{2}}$ or exact equivalent | **A1** |   |\n|   |  Attempt equation of normal using negative reciprocal for their gradient | **M1** |   |\n|   |  Obtain $y=\\sqrt{2}x-\\sqrt{2}$ or exact equivalent | **A1** |   |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 13 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | Substitute $$x = -2$$, equate to zero and attempt solution | **M1** |   |\n|   |  Obtain $$32 - 8k + 4k - 34 + 18 = 0$$ or equivalent and hence $$k = 4$$ | **A1** |   |\n|   |   | **2** |   |\n|  7(b) | State $$\\alpha = -2$$ | **B1** |   |\n|   |  Divide by $$x + 2$$ at least as far as $$2x^3 + mx$$ | **M1** | Or equivalent method, e.g. inspection.  |\n|   |  Obtain $$2x^3 + 4x + 9$$ | **A1** |   |\n|   |  Rearrange $$2x^3 + 4x + 9 = 0$$ to confirm $$x = \\sqrt[3]{-2x - 4.5}$$ | **A1** | AG – necessary detail needed.  |\n|   |   | **4** |   |\n|  7(c) | Consider sign of $$x - \\sqrt[3]{-2x - 4.5}$$ or equivalent for $$-1.4$$ and $$-1.0$$ | **M1** | Or Example 1: $$f(x) = 2x^3 + 4x + 9$$, finding $$f(-1.4)$$ and $$f(-1)$$. Example 2: $$f(x) = \\sqrt[3]{-2x - 4.5}$$, finding $$f(-1.4)$$ and $$f(-1)$$.  |\n|   |  Obtain $$-0.2\\dots$$ and $$0.3\\dots$$ or equivalents and justify conclusion | **A1** | Example 1: $$f(-1) = 3$$, $$f(-1.4) = -1.2\\dots$$ with a correct conclusion. Example 2: $$f(-1) = -1.357\\dots$$ so $$-1 > -1.357\\dots$$ $$f(-1.4) = -1.193\\dots$$ so $$-1.4 < -1.19\\dots$$ with a correct conclusion. AG – necessary detail needed.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 14 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(d) | Use iterative process correctly at least once | **M1** |   |\n|   |  Obtain final answer –1.26 | **A1** | Answer required to exactly 3 significant figures.  |\n|   |  Show sufficient iterations to 5 sf to justify answer or show sign change in interval [–1.265, –1.255] | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 15 of 16",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8 | Differentiate to obtain the form $$k_1 e^{1-2x}(3x-1)^{\\frac{1}{2}} + k_2 e^{1-2x}(3x-1)^{-\\frac{1}{2}}$$ | ***M1** | Where $$k_1 k_2 \\neq 0$$.  |\n|   |  Obtain correct first term $$-8e^{1-2x}(3x-1)^{\\frac{1}{2}}$$ | **A1** | OE. Allow unsimplified  |\n|   |  Obtain correct second term $$+6e^{1-2x}(3x-1)^{-\\frac{1}{2}}$$ | **A1** | OE. Allow unsimplified  |\n|   |  Equate first derivative to zero and attempt solution as far as $$3x-1=k$$ | **DM1** | OE. Must be in the form $$k_1 e^{1-2x}(3x-1)^{\\frac{1}{2}} + k_2 e^{1-2x}(3x-1)^{-\\frac{1}{2}}$$  |\n|   |  Obtain $$3x-1=\\frac{3}{4}$$ OE, and hence $$x=\\frac{7}{12}$$ | **A1** | Or exact equivalent.  |\n|   |  Obtain $$y=2\\sqrt{3}e^{-\\frac{1}{4}}$$ | **A1** | Or exact equivalent.  |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 16 of 16",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0000800000001 *\n\nDFD\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\nMATHEMATICS\n\n9709/21\n\nPaper 2 Pure Mathematics 2\n\nOctober/November 2025\n\n1 hour 15 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 50.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 16 pages. Any blank pages are indicated.\n\nDC (DE/CT) 343524/3\n© UCLES 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0000800000002 *\n\nDFD\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\n# BLANK PAGE\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "|  * 0000800000003 * |   | DFD  |\n| --- | --- | --- |\n|  1 | Find $$\\int 6\\sin^2 x \\, dx$$. | [3]  |",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "* 0000800000004 *\n\nDFD\n\n4\n\n2 Solve the equation $e^{2x}(e^{2x} - 8) = 48$.\n\n[3]\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "* 0000800000005 *\n\nDFD\n\n![img-4.jpeg](img-4.jpeg)\n\n5\n\n3 (a) Solve the equation $|2x - 3| = |5x + 2|$.\n\n[3]\n\n(b) Hence solve the equation $|2 \\sec \\theta - 3| = |5 \\sec \\theta + 2|$ for $\\pi < \\theta < 2\\pi$. Give your answer correct to 3 significant figures. [3]\n\n© UCLES 2025\n\n9709/21/O/N/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0000800000006 *\n\nDFD\n\n6\n\n4 Solve the equation $\\cot \\theta \\tan(\\theta + 45^\\circ) = 7$ for $0^\\circ < \\theta < 90^\\circ$.\n\n[5]\n\n...\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\n\n![img-5.jpeg](img-5.jpeg)\n\n5\n\n7\n\n![img-6.jpeg](img-6.jpeg)\n\nThe diagram shows the curve with equation $$y = 8e^{-\\frac{1}{2}x} - 1$$. The curve meets the axes at the points $$A$$ and $$B$$. The shaded region is bounded by the curve and the line segment $$AB$$.\n\n(a) Show that the $$x$$-coordinate of $$B$$ is $$6 \\ln 2$$. [2]\n\n(b) Find the area of the shaded region. Give your answer in the form $$p \\ln 2 - q$$, where $$p$$ and $$q$$ are positive integers. [5]\n\n© UCLES 2025\n\n9709/21/O/N/25\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "* 0000800000008 *\n\nDFD\n\n8\n\n6 A curve has parametric equations\n\n$$x = \\tan \\theta, \\quad y = \\sin \\theta - 2 \\sin^3 \\theta,$$\n\nfor $$0 < \\theta < \\frac{1}{2}\\pi$$.\n\n(a) Show that $$\\frac{dy}{dx} = 6 \\cos^5 \\theta - 5 \\cos^3 \\theta$$.\n\n[4]\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "* 0000800000009 *\n\nDFD\n\n![img-7.jpeg](img-7.jpeg)\n\n9\n\n(b) Find the equation of the normal to the curve at the point where it crosses the x-axis. Give your answer in the form $y = mx + c$, where $m$ and $c$ are exact constants. [5]\n\n...\n\n© UCLES 2025\n\n9709/21/O/N/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0000800000010 *\n\nDFD\n\n10\n\n7 The polynomial p(x) is defined by\n\n$$p(x) = 2x^4 + kx^3 + kx^2 + 17x + 18,$$\n\nwhere k is a constant. It is given that (x + 2) is a factor of p(x).\n\n(a) Find the value of k.\n\n[2]\n\nIt is given that the equation p(x) = 0 has exactly two real roots, denoted by α and β, where α is an integer and β is not an integer.\n\n(b) State the value of α and show that β satisfies the equation x = √[√ - 2x - 4.5].\n\n[4]\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000011 *\n\nDFD\n\n![img-8.jpeg](img-8.jpeg)\n\n11\n\n(c) Show by calculation that $-1.4 < \\beta < -1.0$.\n\n[2]\n\n(d) Use an iterative formula, based on the equation in part (b), to find the value of $\\beta$ correct to 3 significant figures. Give the result of each iteration to 5 significant figures. [3]\n\n© UCLES 2025\n\n9709/21/O/N/25\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0000800000012 *\n\nDFD\n\n![img-9.jpeg](img-9.jpeg)\n\n12\n\n8 The equation of a curve is $y = 4e^{1-2x}\\sqrt{3x-1}$.\n\nFind the exact coordinates of the stationary point of the curve.\n\n[6]\n\n...\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "* 0000800000013 *\n\nDFD\n\n![img-10.jpeg](img-10.jpeg)\n\n13\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n© UCLES 2025\n\n9709/21/O/N/25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "* 0000800000014 *\n\nDFD\n\n![img-11.jpeg](img-11.jpeg)\n\n14\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\n...\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "* 0000800000015 *\n\nDFD\n\n![img-12.jpeg](img-12.jpeg)\n\n15\n\nBLANK PAGE\n\n© UCLES 2025\n\n9709/21/O/N/25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "* 0000800000016 *\n\nDFD\n\n16\n\n# BLANK PAGE\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2025\n\n9709/21/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

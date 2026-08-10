@@ -1,0 +1,1030 @@
+{
+  "paper_key": "9709_2025_oct_nov_41",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2025,
+    "exam_session": "oct_nov",
+    "paper_variant": "41",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "98e0a3fb-0b1d-4d92-82a0-813148cb7b71",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_qp_41.pdf",
+      "page_count": 12,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_ms_41.pdf",
+      "page_count": 18,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "A car of mass 900 kg is moving along a straight horizontal road against a constant resistance to motion of 350 N. At an instant when the car is moving at $15\\text{ m s}^{-1}$ its acceleration is $0.25\\text{ m s}^{-2}$.",
+      "total_marks": 4,
+      "source_page_numbers": [
+        2
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the driving force of the car's engine at this instant.",
+          "marks": 2,
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the power of the car's engine at this instant.",
+          "marks": 2,
+          "source_page_numbers": [
+            2
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$D - 350 = 900 \\times 0.25$",
+          "guidance_markdown": "Attempt at N2L – correct number of terms. Allow sign errors but must be dimensionally correct.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$D = 575 \\text{ N}$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "$P = 575 \\times 15$",
+          "guidance_markdown": "Use of $P = D \\times v$ with their $D$ from 1(a) and $v = 15$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$P = 8625 \\text{ W}$ or $8.625 \\text{ kW}$",
+          "guidance_markdown": "Allow 8625 without units, but 8.625 must have kW.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Newton's Laws of Motion",
+        "subtopics": [
+          "Dynamics",
+          "Forces and acceleration",
+          "Work, energy and power"
+        ],
+        "skills": [
+          "resolve forces along a line",
+          "apply Newton’s second law",
+          "use power relation with force and speed"
+        ],
+        "methods": [
+          "F=ma with driving force and resistance",
+          "instantaneous power P=Fv"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 2,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "Two particles, $P$ and $Q$, of masses 3 kg and 5 kg respectively, are at rest on a smooth horizontal plane. $P$ is projected at a speed of $4\\text{ m s}^{-1}$ directly towards $Q$. After $P$ and $Q$ collide, $P$ has speed $1\\text{ m s}^{-1}$.",
+      "total_marks": 5,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the two possible speeds of $Q$ after the collision.",
+          "marks": 3,
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "It is given that $\\lambda$ J of kinetic energy, where $\\lambda>0$, is lost during the collision. Find the value of $\\lambda$.",
+          "marks": 2,
+          "source_page_numbers": [
+            3
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$3 \\times 4 = 3 \\times (-1) + 5 \\times v$$ or $$3 \\times 4 = 3 \\times 1 + 5v$$",
+          "guidance_markdown": "Attempt at conservation of linear momentum; three non-zero terms – allow sign errors. **M1** only if using weight rather than mass.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$v = 3\\text{ m s}^{-1}$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$v = 1.8\\text{ m s}^{-1}$$",
+          "guidance_markdown": "If **A0 A0 SC B1** for both $-3$ and $-1.8$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "$$KE = \\frac{1}{2} \\times 3 \\times 4^2 (= 24)$$ or $$KE = \\frac{1}{2} \\times 3 \\times 1^2 + \\frac{1}{2} \\times 5 \\times 1.8^2 (= 9.6)$$ or $$KE = \\frac{1}{2} \\times 3 \\times 1^2 + \\frac{1}{2} \\times 5 \\times 3^2 (= 24)$$",
+          "guidance_markdown": "Attempt at either the total kinetic energy before or after the collision. The total KE (before and after) could be embedded in a calculation for the KE loss. **M1** be awarded just on sight of 24, 19.6 or 14.4.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "$$\\lambda = 14.4$$ ONLY",
+          "guidance_markdown": "Allow $-14.4$. Must have discarded $\\lambda = 0$ if mentioned.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Momentum",
+        "subtopics": [
+          "Collisions",
+          "Conservation laws",
+          "Energy in collisions"
+        ],
+        "skills": [
+          "apply conservation of momentum in one dimension with unknown post-collision velocities",
+          "handle quadratic outcomes for the target particle speed",
+          "use kinetic energy loss to form an equation for the collision parameter"
+        ],
+        "methods": [
+          "momentum conservation to relate speeds",
+          "kinetic energy before/after and use λ as lost fraction/value"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "Coplanar forces of magnitudes 45 N, 28 N, 72 N and 35 N act at a point in the directions shown in the diagram.\n\nFind, in either order, the magnitude and direction of the resultant force.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "For attempt to resolve in any direction to form an equation or expression",
+          "guidance_markdown": "Correct number of terms; allow sign errors and sin/cos mix ONLY.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Vertically: $$(Y =) \\pm (45 + 28\\sin 35 - 72\\sin 50 - 35\\sin 60)$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Horizontally: $$(X =) \\pm (28\\cos 35 + 72\\cos 50 - 35\\cos 60)$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "DM1",
+          "content_markdown": "$$R = \\sqrt{(their\\ 24.4059...)^2 + (their\\ 51.7169...)^2}$$",
+          "guidance_markdown": "Attempt to solve for $$R$$ from equations with the correct number of relevant terms (only sign errors and sin/cos mix allowed).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "DM1",
+          "content_markdown": "$$\\theta = \\tan^{-1} \\left( \\frac{their\\ 24.4059...}{their\\ 51.7169...} \\right) [= \\tan^{-1} 0.4719...]$$ OR $$\\alpha = \\tan^{-1} \\left( \\frac{their\\ 51.7169...}{their\\ 24.4059...} \\right) [= \\tan^{-1} 2.1190...]$$",
+          "guidance_markdown": "Attempt to solve for $$\\theta$$ or $$\\alpha$$ from equations with the correct number of relevant terms (only sign errors and sin/cos mix allowed).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$$R = 57.2 \\text{ N}$$ Direction is $$25.3^\\circ$$ below the positive $$x$$-direction or bearing $$115^\\circ$$",
+          "guidance_markdown": "Both correct. Giving an angle only is insufficient. Direction may be seen on a diagram, with minimum of arrow on resultant OE. May give direction relative to one of the given forces e.g. $$24.7^\\circ$$ anticlockwise from the 72 N force. Arrows on both components only is **A0** as it doesn't show the direction of the resultant. However the direction is stated, it must be able to be drawn uniquely.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 4,
+          "source_image_index": 1,
+          "asset_type": "mechanics_diagram",
+          "storage_path": "a_level/9709/2025/oct_nov/41/question_paper/q3/page-4-image-1.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Forces and Equilibrium",
+        "subtopics": [
+          "Forces",
+          "Resultant of coplanar forces",
+          "Vector addition"
+        ],
+        "skills": [
+          "construct/resolve forces into components",
+          "calculate magnitude and direction of the resultant",
+          "use either trig/geometry (law of cosines) or components consistently"
+        ],
+        "methods": [
+          "find resultant by vector addition of given force magnitudes and directions"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": true,
+        "diagram_required": true,
+        "classification_confidence": 0.66,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "Two particles, $A$ and $B$, of masses $m\\text{ kg}$ and 3 kg respectively, are connected by a light inextensible string. Particle $B$ is on a fixed plane which is at an angle of $\\sin^{-1}0.6$ to the horizontal ground. The string passes over a fixed smooth pulley at the top of the plane. Particle $A$ hangs vertically below the pulley and is $0.75\\text{ m}$ above the ground (see diagram).\n\nThe system is released from rest. In the subsequent motion $B$ moves up a line of greatest slope of the plane and does not reach the pulley. As $B$ moves up the plane there is a constant resistance to its motion of magnitude $\\frac{10}{3}\\text{ N}$. The speed of $A$ immediately before it hits the ground is $2\\text{ m s}^{-1}$.\n\nUse an energy method to find the value of $m$.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "PE lost by $A$: $\\pm mg \\times 0.75$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "PE gained by $B$: $\\pm 3g \\times 0.75 \\times 0.6\\left[ = \\pm 13.5 \\right]$",
+          "guidance_markdown": "Allow $\\sin 37$ or better for 0.6. $\\sin^{-1} 0.6 = 36.86989765$ .",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "KE gained by $A$ and $B$: $\\pm \\left( \\frac{1}{2} \\times 3 \\times 2^2 + \\frac{1}{2} \\times m \\times 2^2 \\right)\\left[ = \\pm (6 + 2m) \\right]$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "Work done against resistance = $\\pm \\frac{10}{3} \\times 0.75\\left[ = \\pm 2.5 \\right]$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "$\\frac{1}{2} \\times 3 \\times 2^2 + \\frac{1}{2} \\times m \\times 2^2 = 0.75mg - 13.5 - 2.5$",
+          "guidance_markdown": "Attempt at work-energy equation. Equivalent of 5 terms, dimensionally correct, allow sign errors, PE gained by $B$ must include a component of $3g$ .",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$m = 4$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1",
+          "content_markdown": "$2^2 = 0^2 + 2 \\times a \\times 0.75 \\Rightarrow a = \\frac{8}{3}$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "$mg - T = ma$ and $T - 3g \\times 0.6 - \\frac{10}{3} = 3a$ OR $mg - 3g \\times 0.6 - \\frac{10}{3} = (m + 3)a$",
+          "guidance_markdown": "Correct number of dimensionally correct terms, allow sign errors, allow $\\sin/\\cos \\text{ mix}$. Allow $\\sin 37$ or better for 0.6. $\\sin^{-1} 0.6 = 36.86989765$ .",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "$m = 4$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 5,
+          "source_image_index": 1,
+          "asset_type": "mechanics_diagram",
+          "storage_path": "a_level/9709/2025/oct_nov/41/question_paper/q4/page-5-image-1.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Newton's Laws of Motion",
+        "subtopics": [
+          "Dynamics",
+          "Energy methods",
+          "Motion on inclines",
+          "Friction/resistance"
+        ],
+        "skills": [
+          "apply conservation of energy with non-conservative work from resistance",
+          "relate displacements of connected particles via string/pulley geometry",
+          "compute changes in gravitational potential energy"
+        ],
+        "methods": [
+          "Apply a whole-system work-energy balance: potential energy lost by A equals potential energy gained by B plus kinetic energy gained and work done against resistance",
+          "Use the common 0.75 m displacement and common 2 m/s speed of the connected particles to solve for m"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": false,
+        "diagram_required": true,
+        "classification_confidence": 0.74,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "A particle $P$ of mass $m\\text{ kg}$ is in equilibrium on a rough plane inclined at an angle $\\theta^\\circ$ to the horizontal. The equilibrium of $P$ is maintained by a force of magnitude $8mg\\text{ N}$ making an angle $\\theta^\\circ$ with a line of greatest slope (see diagram). The coefficient of friction between $P$ and the plane is 0.5 and $P$ is on the point of slipping down the plane.\n\nFind the value of $\\theta$.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        6
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt at resolving parallel or perpendicular to the plane to form an equation",
+          "guidance_markdown": "Correct number of terms, allow sign errors, allow sin/cos mix, allow g missing on the weight term only (so **not** missing on the 8mg term). Forces that need resolving should be resolved, forces that do not need resolving should not be resolved.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$8mg \\cos \\theta + mg \\sin \\theta = F$$",
+          "guidance_markdown": "Allow with their possibly incorrect F.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$R = mg \\cos \\theta + 8mg \\sin \\theta$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "DM1",
+          "content_markdown": "Use of $$F = 0.5R$$ to get an equation in $$\\theta$$ [m and g]",
+          "guidance_markdown": "Where R is a linear combination of a weight (or mass) component and an 8mg component.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "DM1",
+          "content_markdown": "$$8mg \\cos \\theta + mg \\sin \\theta = 0.5(mg \\cos \\theta + 8mg \\sin \\theta)$$ $$\\Rightarrow \\tan \\theta = 2.5$$",
+          "guidance_markdown": "Re-arranging to $$\\tan \\theta = k$$ where $$k \\neq 0$$ (or equivalent method to reduce to a single trig. term). – dependent on both previous M1 marks.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$$\\theta = 68.2$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 6,
+          "source_image_index": 1,
+          "asset_type": "mechanics_diagram",
+          "storage_path": "a_level/9709/2025/oct_nov/41/question_paper/q5/page-6-image-1.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Forces and Equilibrium",
+        "subtopics": [
+          "Statics",
+          "Forces on rough planes",
+          "Friction and equilibrium"
+        ],
+        "skills": [
+          "resolve forces parallel/perpendicular to plane",
+          "use limiting friction condition",
+          "use equilibrium of forces including the applied force direction"
+        ],
+        "methods": [
+          "equate components for equilibrium and set friction as μR at limiting slip"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 3,
+        "calculator_required": true,
+        "diagram_required": true,
+        "classification_confidence": 0.8,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "A particle $A$ of mass 2.5 kg is released from rest from the top of a smooth plane, which makes an angle of $\\sin^{-1}0.2$ with the horizontal. The particle $A$ collides 2 seconds later with a particle $B$, of mass 3 kg, which is moving up a line of greatest slope of the plane. The speed of $B$ immediately before the collision is $3.5\\text{ m s}^{-1}$. Immediately after the collision, $B$ has a velocity of $0.5\\text{ m s}^{-1}$ down the plane.\n\nFind the distance $A$ moves up the plane after the collision.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        7
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Acceleration of $A$ down the plane is $g \\times 0.2 [= 2]$",
+          "guidance_markdown": "Allow $-g \\times 0.2$. Allow $\\pm g \\times \\sin 12$ or better. Allow $2.5a = 2.5g \\times 0.2$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "*M1",
+          "content_markdown": "Speed of $A$ before collision is $g \\times 0.2 \\times 2 [= 4]$",
+          "guidance_markdown": "Use of $v = u + at$ with $u = 0$, $t = 2$ and their $a$ which must be equivalent to either $\\pm g \\times \\sin 12$ or $\\pm g \\times \\cos 12$ ONLY.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "$3 \\times 3.5 + 2.5 \\times (-4) = 3 \\times (-0.5) + 2.5 \\times u$",
+          "guidance_markdown": "Attempt at conservation of linear momentum; four non-zero terms – allow sign errors. **M1A0** only if using weight rather than mass.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$u = 0.8$",
+          "guidance_markdown": "Correct speed (or velocity) of $A$ after impact.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "DM1",
+          "content_markdown": "$0 = 0.8^2 + 2 \\times \\left( -g \\times \\frac{1}{5} \\right) \\times s$",
+          "guidance_markdown": "Use of $v^2 = u^2 + 2as$ (or other complete method to find $s$) with $v = 0$, their $u$ and their $-a$ – condone sign errors. **Dependent on both previous M1 marks.**",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$s = 0.16$ m",
+          "guidance_markdown": "CWO.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Momentum",
+        "subtopics": [
+          "Kinematics",
+          "Collisions",
+          "Motion on inclines"
+        ],
+        "skills": [
+          "Find the acceleration and pre-collision speed of A down the smooth incline",
+          "Apply conservation of linear momentum with a consistent signed direction",
+          "Use constant-acceleration kinematics to find the stopping distance after collision"
+        ],
+        "methods": [
+          "Use a=g sin(alpha) and v=u+at to obtain the speed of A immediately before impact",
+          "Use conservation of linear momentum with the stated velocities of A and B to obtain A's post-collision speed",
+          "Use v^2=u^2+2as with deceleration g sin(alpha) to find the distance A travels up the plane"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "A particle $P$ starts from a point $O$ and moves in a straight line. The velocity $v\\text{ m s}^{-1}$ of $P$, at time $t\\text{ s}$ after leaving $O$, is given by\n\n$$v=\\frac13(2t-3)(t-4).$$",
+      "total_marks": 9,
+      "source_page_numbers": [
+        8,
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the acceleration of $P$ when $t=2$.",
+          "marks": 2,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the total distance travelled by $P$ in the first 3 seconds of its motion.",
+          "marks": 5,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Determine whether $P$ returns to $O$.",
+          "marks": 2,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$v=\\frac13(2t^2-11t+12)\\Rightarrow \\frac{dv}{dt}=\\frac13(4t-11)$$",
+          "guidance_markdown": "Expand to a 3-term quadratic equivalent and attempt to differentiate (oe e.g. product rule), decrease power by 1 and a change in coefficient in at least one term; allow un-simplified $$a=\\frac{v}{t}$$ is **M0**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$\\frac13(4\\times 2-11)=-1\\text{ m s}^{-2}$$",
+          "guidance_markdown": "Must be negative.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Attempt to integrate",
+          "guidance_markdown": "Expand to a 3-term quadratic equivalent and attempt to integrate, increase power by 1 and a change in coefficient on the same term. $$s=vt$$ is **M0**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$$s=\\frac13\\left(\\frac{2t^3}{3}-\\frac{11t^2}{2}+12t\\right)(+c)$$",
+          "guidance_markdown": "Allow un-simplified.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "[P changes direction when] $$t=1.5$$",
+          "guidance_markdown": "$$t=1.5$$ SOI.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt to evaluate their $$\\frac13\\left(\\frac{2t^3}{3}-\\frac{11t^2}{2}+12t\\right)$$ for $$t=0$$ to $$t=1.5$$ and $$t=1.5$$ to $$t=3$$",
+          "guidance_markdown": "Using the correct limits correctly.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Total distance is $$\\left[2.625+|-1.125|=\\right]3.75\\text{ m}$$",
+          "guidance_markdown": "If no integration seen, then **B1** for 3.75 (so 2 marks max.).",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "Attempt to evaluate their $s$ for $t=0$ to $t=4$",
+          "guidance_markdown": "OE e.g. compare $$\\int_0^{1.5} v\\,dt$$ with $$\\int_{1.5}^4 v\\,dt$$ or setting their three-term cubic expression in $t$ (with no constant term) equal to zero and attempting to solve or attempt discriminant.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "$$\\int_0^4 v\\,dt=\\frac89>0$$ so, no $P$ does not return to $O$",
+          "guidance_markdown": "OE e.g. obtaining $4t^2-33t+72=0$ and showing that this has no real roots (and hence $P$ does not return to $O$). $4t^2-33t+72=0$ gives $b^2-4ac=(-33)^2-4\\times4\\times72=-63$. $\\frac29t^2-\\frac{11}{6}t+4=0$ gives $b^2-4ac=\\left(-\\frac{11}{6}\\right)^2-4\\times\\frac29\\times4=-\\frac{7}{36}$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Kinematics",
+        "subtopics": [
+          "Kinematics with polynomial functions",
+          "Differentiation/integration in context"
+        ],
+        "skills": [
+          "differentiate velocity to get acceleration",
+          "integrate velocity over time to get displacement or use definite integral",
+          "analyse sign changes of velocity to determine if position returns to the start"
+        ],
+        "methods": [
+          "a=dv/dt",
+          "displacement=s(t)=∫v dt",
+          "return to origin via checking net displacement and velocity sign"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.81,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 8,
+      "stem_markdown": "A block $A$ of mass 2 kg and a particle $B$ of mass 0.5 kg are connected by a light inextensible string inclined at $15^\\circ$ to the horizontal. They are pulled across a horizontal surface with acceleration $1.2\\text{ m s}^{-2}$ by a force of magnitude 6 N, applied to $A$, acting at $20^\\circ$ above the horizontal as shown in the diagram. The string and the force applied to $A$ are in the same vertical plane.\n\nThe contact between $B$ and the surface is smooth and the contact between $A$ and the surface is rough.",
+      "total_marks": 8,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the tension in the string.",
+          "marks": 2,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the coefficient of friction between $A$ and the surface.",
+          "marks": 6,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$T\\cos15=0.5\\times1.2$$",
+          "guidance_markdown": "N2L for $$B$$ – correct number of terms, allow $$\\sin/\\cos\\text{ mix ONLY}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$T=0.621\\text{ N}$$",
+          "guidance_markdown": "Allow $$\\frac{3\\sqrt6-3\\sqrt2}{5}$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt to resolve vertically for $$A$$ to form an equation",
+          "guidance_markdown": "Correct number of terms, allow sign errors and $$\\sin/\\cos\\text{ mix}$$, allow their (possibly incorrect) $$T$$ from **8(a)**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$$6\\sin20+R_A=2g+T\\sin15$$",
+          "guidance_markdown": "$$R_A=18.10864\\dots$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt at N2L for $$A$$",
+          "guidance_markdown": "Correct number of terms, allow sign errors and $$\\sin/\\cos\\text{ mix}$$, allow their (possibly incorrect) $$T$$ from **8(a)**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$$6\\cos20-T\\cos15-F=2\\times1.2$$",
+          "guidance_markdown": "$$F=2.63815\\dots$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "DM1",
+          "content_markdown": "Use of $$F=\\mu R$$ to get an equation in $$\\mu$$ only",
+          "guidance_markdown": "Dependent on both previous M1 marks.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "$$\\mu=0.146$$",
+          "guidance_markdown": "$$\\mu=0.1456848\\dots$$",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 10,
+          "source_image_index": 1,
+          "asset_type": "mechanics_diagram",
+          "storage_path": "a_level/9709/2025/oct_nov/41/question_paper/q8/page-10-image-1.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Newton's Laws of Motion",
+        "subtopics": [
+          "Dynamics",
+          "Friction",
+          "Forces at an angle",
+          "Inclined string/constraints"
+        ],
+        "skills": [
+          "Resolve the inclined tension on B horizontally and apply Newton's second law",
+          "Use vertical equilibrium for A to find its normal reaction",
+          "Apply Newton's second law horizontally to A to find the friction force",
+          "Use F=mu R to determine the coefficient of friction"
+        ],
+        "methods": [
+          "For B, use T cos(15 degrees)=0.5(1.2) to find the tension",
+          "For A, use 6 sin(20 degrees)+R=2g+T sin(15 degrees)",
+          "For A horizontally, use 6 cos(20 degrees)-T cos(15 degrees)-F=2(1.2)",
+          "Calculate mu=F/R"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": true,
+        "diagram_required": true,
+        "classification_confidence": 0.76,
+        "review_status": "approved"
+      }
+    }
+  ]
+}

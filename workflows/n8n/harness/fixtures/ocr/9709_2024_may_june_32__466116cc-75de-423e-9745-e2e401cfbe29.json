@@ -1,0 +1,232 @@
+{
+  "paper_key": "9709_2024_may_june_32",
+  "ingestion_run_id": "466116cc-75de-423e-9745-e2e401cfbe29",
+  "idempotency_key": "budget-v2:a-level-9709-test2-pilot-v1-v2-batch-01:a_level:9709:2024:may_june:32",
+  "run_status": "complete",
+  "paper_status": "published",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_32.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_32.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International A Level\n\nMATHEMATICS\n\n9709/32\n\nPaper 3 Pure Mathematics 3\n\nMay/June 2024\n\nMARK SCHEME\n\nMaximum Mark: 75\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level and Cambridge Pre-U components, and some Cambridge O Level components.\n\nThis document consists of 20 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\nGENERIC MARKING PRINCIPLE 1:\n\nMarks must be awarded in line with:\n\n- the specific content of the mark scheme or the generic level descriptors for the question\n- the specific skills defined in the mark scheme or in the generic level descriptors for the question\n- the standard of response required by a candidate as exemplified by the standardisation scripts.\n\nGENERIC MARKING PRINCIPLE 2:\n\nMarks awarded are always **whole marks** (not half marks, or other fractions).\n\nGENERIC MARKING PRINCIPLE 3:\n\nMarks must be awarded **positively**:\n\n- marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate\n- marks are awarded when candidates clearly demonstrate what they know and can do\n- marks are not deducted for errors\n- marks are not deducted for omissions\n- answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.\n\nGENERIC MARKING PRINCIPLE 4:\n\nRules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.\n\nGENERIC MARKING PRINCIPLE 5:\n\nMarks should be awarded using the full range of marks defined in the mark scheme for the question (however, the use of the full mark range may be limited according to the quality of the candidate responses seen).\n\nGENERIC MARKING PRINCIPLE 6:\n\nMarks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Abbreviations**\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) |  | **B1** | Correct shape, roughly symmetrical. Both sections should be solid straight lines. If not drawn with a ruler the intention must be clear. Allow construction lines if dashed or clearly fainter. 2a marked on each axis (must be 2a, not just 2). Needs to extend into negative x. If a is given a value, then B0. Ignore y = 2x - 3a if seen.  |\n|   |   | **1** |   |\n|  1(b) | Solve linear equation or inequality to obtain critical value x = 5/3 a or exact equivalent. | **B1** | Ignore x = a if seen.  |\n|   |  Obtain x < 5/3 a or exact equivalent | **B1** | Accept x < 10/6 a or (-∞, 5/3 a). Must be strict inequality. Need a clear final solution: x > a or x < a must be rejected if seen as part of the working. Rejection can be implied, e.g. if only the correct inequality is underlined. B0 B0 if a is given a value.  |\n|   |  **Alternative Method for Question 1(b)**  |   |   |\n|   |  Solve quadratic equation (2x - 3a)² = (x - 2a)² to obtain critical value x = 5/3 a or exact equivalent | **(B1)** | (3x² - 8ax + 5a² = 0) Ignore x = a if seen.  |\n|   |  Obtain x < 5/3 a or exact equivalent | **(B1)** | Accept x < 10/6 a or (-∞, 5/3 a). Must be strict inequality. Need a clear final solution: x > a or x < a must be rejected if seen as part of the working. Rejection can be implied, e.g. if only the correct inequality is underlined. B0 B0 if a is given a value.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | State or imply the form $$A + \\frac{B}{2x+3} + \\frac{C}{x-4}$$ | **B1** | $$\\frac{Dx+E}{2x+3} + \\frac{F}{x-4}$$ and $$\\frac{P}{2x+3} + \\frac{Qx+R}{x-4}$$ are also valid.  |\n|   |  Use a correct method for finding a constant | **M1** | **SC:** If score B0, they can score **M1 A1** for one correct constant. B0 M1 A0 available if they substitute two values to form simultaneous equations but get an incorrect answer, or they substitute one value and make an arithmetic error.  |\n|   |  Obtain one of $$A = 3$$, $$B = -2$$ and $$C = 4$$ | **A1** | **SC:** If the horizontal equation is correct apart from an incorrect value for $$A$$, the other A marks may be available.  |\n|   |  Obtain a second value | **A1** | **SC:** If denominator factorised as $$(x + \\frac{3}{2})(x - 4)$$ can score a maximum of **B0 M1 A1 A1 A0** for a split involving 3 terms.  |\n|   |  Obtain a third value | **A1** | ISW Statement of the final split is not required.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | **Alternative method for Question 2**  |   |   |\n|   | Divide numerator by denominator | (M1) |   |\n|   | Obtain $$3 \\left( + \\frac{Px + Q}{2x^2 - 5x - 12} \\right)$$ | (A1) | $$\\left( 3 + \\frac{6x + 20}{(2x + 3)(x - 4)} \\right)$$  |\n|   | State or imply the form $$\\frac{Px + Q}{2x^2 - 5x - 12} = \\frac{D}{2x + 3} + \\frac{E}{x - 4}$$ | (B1) | Must deal with the 3 separately or include it correctly on both sides in their split.  |\n|   | Obtain one of $$D = -2$$ and $$E = 4$$ | (A1) | **SC:** If denominator factorised as $$(x + \\frac{3}{2})(x - 4)$$, then can score a maximum of **B0 M1 A1 A1 A0** for a split involving three terms.  |\n|   | Obtain a second value | (A1) | ISW Statement of the final split is not required.  |\n|   |  | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | Use logarithms to obtain a correct expression without powers e.g. $$ (2y - 1)\\ln a = (x - y)\\ln b $$ | **B1** | Could use logs to any base e.g. $$2y - 1 = (x - y)\\log_e b$$. Do not condone missing brackets unless recovered later.  |\n|   |  Separate terms and factorise to obtain $$y(2\\ln a + \\ln b) = x\\ln b + \\ln a$$ | **B1** | Or equivalent, e.g. $$y = x\\frac{\\ln b}{\\ln a^2 b} + \\frac{\\ln a}{\\ln a^2 b}$$ or $$y(2 + \\log_e b) = x\\log_e b + 1$$.  |\n|   |  Clear explanation of linear form. From correct work only. | **B1** | E.g. equation matches the linear form $$y = mx + c$$ or $$py = qx + r$$. Condone if they compare with $$y = mx + c$$, but do not actually state that it must therefore be a straight line. Stating “this is a linear equation” without comparing to a relevant standard form scores B0. B0 if they have $$m = \\dots$$ and $$c = \\dots$$ correct but never actually mention $$y = mx + c$$.  |\n|   |   | **3** |   |\n|  3(b) | Use $$a = b^3$$ and log laws to simplify their equation | **M1** | $$\\left[ y = x\\frac{\\ln b}{\\ln b^7} + \\frac{\\ln b^3}{\\ln b^7} \\right]$$ Denominator reduced to a single log term.  |\n|   |  Obtain $$y = \\frac{1}{7}x + \\frac{3}{7}$$ | **A1** | Accept $$y = \\frac{x}{7} + \\frac{3}{7}$$ but not $$y = \\frac{x+3}{7}$$.  |\n|   |  **Alternative method for Question 3(b)**  |   |   |\n|   |  Use $$a = b^3$$ to obtain $$b^{3(2y-1)} = b^{y-y}$$ or equivalent | **(M1)** | Or $$\\log_e b = \\frac{1}{3}$$.  |\n|   |  Obtain $$y = \\frac{1}{7}x + \\frac{3}{7}$$ | **(A1)** | Accept $$y = \\frac{x}{7} + \\frac{3}{7}$$ but not $$y = \\frac{x+3}{7}$$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | Substitute $y = 1$ and obtain $e^x = a$, where $a > 0$ | **M1** | Must come from a quadratic in $e^x$. ($e^{2x} + e^x - 6 = 0$) Ignore any negative solution.  |\n|   |  Obtain $e^x = 2$ only | **A1** | Or equivalent e.g. $x = \\ln 2$. Condone $x = 0.693\\dots$  |\n|   |  State or imply $\\frac{d}{dx}(ye^{2x}) = 2ye^{2x} + e^{2x}\\frac{dy}{dx}$ | **B1** | Accept $y'$ for $\\frac{dy}{dx}$.  |\n|   |  State or imply $\\frac{d}{dx}(y^2e^x) = y^2e^x + 2ye^x\\frac{dy}{dx}$ | **B1** | Accept $y'$ for $\\frac{dy}{dx}$.  |\n|   |  Differentiate RHS of given equation to obtain zero (could be implied by subsequent work), substitute for $x$ and $y$ and obtain $\\frac{dy}{dx} = \\dots$ | **M1** | Independent. $\\left[ 2 \\times 4 + 4\\frac{dy}{dx} + 2 + 4\\frac{dy}{dx} = 0 \\right]$ NB: Could also rearrange to obtain $\\frac{dy}{dx}$ then substitute. Both steps are needed for M1.  |\n|   |  Obtain $-\\frac{5}{4}$ or $-1.25$ | **A1** | Correct answer from correct working only Accept $\\frac{-10}{8}$. $-1.2499$ is A0.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | **Alternative method for Question 4: Dividing through by $e^x$**  |   |   |\n|   | Substitute $y=1$ and obtain $e^x = a$, where $a > 0$ | **(M1)** | Must come from a quadratic in $e^x$. ($e^{2x} + e^x - 6 = 0$) Ignore any negative solution.  |\n|   | Obtain $e^x = 2$ only | **(A1)** | Or equivalent e.g. $x = \\ln 2$. Condone $x = 0.693\\dots$  |\n|   | State or imply $\\frac{d}{dx}(y^2) = 2y\\frac{dy}{dx}$ | **(B1)** | Accept $y'$ for $\\frac{dy}{dx}$.  |\n|   | State or imply $\\frac{d}{dx}(ye^x) = ye^x + e^x\\frac{dy}{dx}$ | **(B1)** | Accept $y'$ for $\\frac{dy}{dx}$.  |\n|   | Differentiate RHS of given equation to obtain $-6e^{-x}$, substitute for $x$ and $y$ and obtain $\\frac{dy}{dx} = \\dots$ | **(M1)** | Independent. $$\\left[ 1 \\times 2 + 2\\frac{dy}{dx} + 2\\frac{dy}{dx} = -\\frac{6}{2} \\right]$$ NB: Could also rearrange to obtain $\\frac{dy}{dx}$ then substitute. Both steps are needed for M1.  |\n|   | Obtain $-\\frac{5}{4}$ or $-1.25$ | **(A1)** | Correct answer from correct working only Accept $-\\frac{10}{8}$. $-1.2499$ is A0.  |\n|   |  | **6** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | Calculate the value of a relevant expression or values of a pair of expressions at $$x = 0.7$$ and $$x = 0.8$$ | **M1** | Allow if working with a smaller interval, e.g. (0.72, 0.78). Need all relevant values but condone one error. Pairings must be clear for solutions involving four values (do not accept embedded values). M0 if working in degrees e.g. -1.94..., 1.04...  |\n|   |  Complete the argument correctly with correct calculated values. (can be using the equation in the rubric or the equation in (b) or equivalent) | **A1** | E.g. 4.95... > 4.26... and 4.06... < 4.49... -0.439... < 0, 0.690... > 0 1.4 < 1.5029..., 1.6 > 1.449... 1.1 > 1, 0.86 < 1 0.0515 > 0, -0.075 < 0. Allow values rounded or truncated to 2sf.  |\n|   |   | **2** |   |\n|  5(b) | State $$2x = \\ln(5 + \\cos 3x)$$ and take exponential of both sides to obtain $$e^{2x} = 5 + \\cos 3x$$ | **B1** | Given answer requires fully correct working or work vice versa. If working in reverse, must get to the iterative formula, including subscripts.  |\n|   |   | **1** |   |\n|  5(c) | Use the iterative process correctly at least once | **M1** | M0 if working in degrees (e.g. values heading for 0.89...).  |\n|   |  Obtain final answer 0.740 | **A1** |   |\n|   |  Show sufficient iterations to at least 5dp to justify 0.740 to 3dp, or show that there is a sign change in the interval (0.7395, 0.7405) | **A1** | E.g. 0.7, 0.75150, 0.73719, 0.74105, 0.74000, 0.74028 0.75, 0.73759, 0.74094, 0.74003, 0.74028 0.8, 0.72494, 0.74443, 0.73909, 0.74053, 0.74014, 0.74025 Allow recovery. Allow truncation or rounding and condone small differences in the final decimal place.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Use correct product rule | ***M1** | Or equivalent. Condone incorrect chain rule. M0 if a value is used for *a* (not equivalent work).  |\n|   |  Obtain correct derivative | **A1** | E.g. $$\\frac{dy}{dx} = -ax e^{-ax} + e^{-ax}$$  |\n|   |  Equate derivative to zero and solve for *x* | **DM1** |   |\n|   |  Obtain $$x = \\frac{1}{a}$$, $$y = \\frac{1}{ae}$$ | **A1** | ISW Or exact equivalent.  |\n|   |   | **4** |   |\n|  6(b) | Use integration by parts to obtain $$px e^{-ax} + q \\int e^{-ax} dx$$ | ***M1** | Condone sign error in parts formula and omission of dx. M0 if a value is used for *a* (not equivalent work).  |\n|   |  Obtain $$-\\frac{1}{a} x e^{-ax} + \\frac{1}{a} \\int e^{-ax} dx$$ | **A1** | OE  |\n|   |  Complete integration to obtain $$-\\frac{1}{a} x e^{-ax} - \\frac{1}{a^2} e^{-ax}$$ | **A1** | OE  |\n|   |  Correct use of limits 0 and $$\\frac{2}{a}$$ in an expression of the form $$rx e^{-ax} + s e^{-ax}$$ | **DM1** | $$\\left( \\frac{-2}{a^2} e^{-2} - \\frac{1}{a^2} e^{-2} + 0 + \\frac{1}{a^2} \\right)$$  |\n|   |  Obtain $$\\frac{1}{a^2} (1 - 3e^{-2})$$ | **A1** | ISW Or simplified 2-term equivalent, e.g. $$\\frac{e^2 - 3}{a^2 e^2}$$.  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 13 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | Factorise LHS using difference of 2 squares | *M1 | $$\\left( \\left( \\cos^2 \\theta - \\sin^2 \\theta \\right) \\left( \\cos^2 \\theta + \\sin^2 \\theta \\right) \\right)$$  |\n|   |  Simplify | DM1 | $$\\cos^2 \\theta + \\sin^2 \\theta = 1$$ must be seen or implied, e.g. $$\\left( \\cos^2 \\theta - \\sin^2 \\theta \\right) \\left( \\cos^2 \\theta + \\sin^2 \\theta \\right) = \\left( \\cos^2 \\theta - \\sin^2 \\theta \\right)$$  |\n|   |  Obtain $$\\cos^4 \\theta - \\sin^4 \\theta \\equiv \\cos 2\\theta$$ from correct working | A1 | AG  |\n|   |  **Alternative Method for Question 7(a)**  |   |   |\n|   |  Use of correct rearrangements of double angle formulae | (*M1) | E.g. $$\\left( \\frac{1 + \\cos 2\\theta}{2} \\right)^2 - \\left( \\frac{1 - \\cos 2\\theta}{2} \\right)^2$$ Only condone $$\\left( \\frac{1 + \\cos 2\\theta}{2} \\right)^2 - \\left( \\frac{\\cos 2\\theta - 1}{2} \\right)^2$$ if correct expression for $$\\sin^2 \\theta$$ seen.  |\n|   |  Expand and simplify | (DM1) | Collect like terms. Condone recovery from missing brackets.  |\n|   |  Obtain $$\\cos^4 \\theta - \\sin^4 \\theta \\equiv \\cos 2\\theta$$ from correct working | (A1) | AG  |\n|   |  **Alternative Method 2 for Question 7(a)**  |   |   |\n|   |  Correct use of Pythagoras | (*M1) | E.g. $$\\left( 1 - \\sin^2 \\theta \\right)^2 - \\sin^4 \\theta$$ or $$\\cos^2 \\theta \\left( 1 - \\sin^2 \\theta \\right) - \\sin^2 \\theta \\left( 1 - \\cos^2 \\theta \\right)$$  |\n|   |  Expand and simplify | (DM1) | Condone recovery from missing brackets.  |\n|   | Obtain $$\\cos^4 \\theta - \\sin^4 \\theta \\equiv \\cos 2\\theta$$ from correct working | (A1) | AG  |\n|   |  | 3 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 14 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(b) | Use part (a) and correct double angle formula to obtain expression involving $$\\int \\sin^2 2\\theta \\, d\\theta$$ or $$\\int \\cos^2 2\\theta \\, d\\theta$$ | M1 | $$\\int \\cos^4 \\theta - \\sin^4 \\theta + 4 \\sin^2 \\theta \\cos^2 \\theta \\, d\\theta = \\int \\cos 2\\theta + \\sin^2 2\\theta \\, d\\theta$$ Allow BOD for $$2 \\sin^2 2\\theta$$ if $$\\sin 2\\theta = 2 \\sin \\theta \\cos \\theta$$ seen.  |\n|   |  $$\\int \\cos 2\\theta \\, d\\theta = \\frac{1}{2} \\sin 2\\theta$$ | B1 | Seen or implied.  |\n|   |  Use of correct double angle formula on second part of the integral to obtain a form that can be integrated directly | M1 | e.g. $$\\int \\sin^2 2\\theta \\, d\\theta = \\int \\frac{1 - \\cos 4\\theta}{2} \\, d\\theta$$  |\n|   |  Obtain $$\\frac{1}{2} \\theta - \\frac{1}{8} \\sin 4\\theta$$ | A1 | Condone a mixture of $$x$$ and $$\\theta$$.  |\n|   |  Correct use of limits $$\\pm \\frac{\\pi}{8}$$ in an expression of the form $$p\\theta + q \\sin 2\\theta + r \\sin 4\\theta$$ and evaluate the trig | M1 | $$\\left( 2 \\left( \\frac{1}{2} \\times \\frac{1}{\\sqrt{2}} + \\frac{\\pi}{16} - \\frac{1}{8} \\right) \\right)$$  |\n|   |  Obtain $$\\frac{1}{2} \\sqrt{2} + \\frac{1}{8} \\pi - \\frac{1}{4}$$ | A1 | ISW Or exact equivalent from exact working.  |\n|   |   | 6 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 15 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(a) | Correct direction vector seen or implied ($\\vec{BC} = 3\\mathbf{i} + 3\\mathbf{j} - 3\\mathbf{k}$) | **B1** | Condone $\\vec{BC} = -3\\mathbf{i} - 3\\mathbf{j} + 3\\mathbf{k}$.  |\n|   |  Use a correct method to form a vector equation | **M1** | Allow for the RHS with no LHS.  |\n|   |  Obtain $\\mathbf{r} = 5\\mathbf{i} + 2\\mathbf{j} + \\lambda(\\mathbf{i} + \\mathbf{j} - \\mathbf{k})$ | **A1** | ISW Must have $\\mathbf{r} = \\dots$ or $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = \\dots$, **not** $l_1 = \\dots$ Or, equivalent vector form, e.g. $\\mathbf{r} = 8\\mathbf{i} + 5\\mathbf{j} - 3\\mathbf{k} + \\alpha(\\mathbf{i} + \\mathbf{j} - \\mathbf{k})$ or $\\mathbf{r} = 5\\mathbf{i} + 2\\mathbf{j} + \\lambda(3\\mathbf{i} + 3\\mathbf{j} - 3\\mathbf{k})$. Condone a column vector with $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$.  |\n|   |   | **3** |   |\n|  8(b) | Use components to form two relevant equations in 2 unknowns For their $l_1$ B0 if they use the same unknown for both lines. | **B1FT** | Two components of $\\begin{pmatrix} 5 + \\lambda \\\\ 2 + \\lambda \\\\ -\\lambda \\end{pmatrix} = \\begin{pmatrix} -2 + 3\\mu \\\\ 1 + \\mu \\\\ 4 - 2\\mu \\end{pmatrix}$ seen or implied.  |\n|   |  Solve 2 relevant equations in 2 unknowns for $\\lambda$ or $\\mu$ | **M1** | For *their* $l_1$.  |\n|   |  Obtain $\\lambda = 2$ or $\\mu = 3$ | **A1** | Or equivalent e.g. using $\\vec{BC}$ as direction vector gives $\\lambda = \\frac{2}{3}$.  |\n|   |  Obtain $(7, 4, -2)$ No need to check the third equation – the question implies that the lines intersect. | **A1** | Accept position vector. Condone a column vector with $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$. **SC: B1 M1 A1 A1** if one component of their line is incorrect but they do not use that component.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 16 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(c) | State $$AB = \\sqrt{7^2 + 1^2 + 4^2} \\left( = \\sqrt{66} \\right)$$ | **B1** | Or $$(AB)^2 = 66$$. Condone a sign error in $$\\overline{AB}$$.  |\n|   |  State $$\\overline{BD}$$ in component form | **B1** | $$\\begin{pmatrix} -7 + 3r \\\\ -1 + r \\\\ 4 - 2r \\end{pmatrix}$$ or equivalent.  |\n|   |  $$AB = BD \\Rightarrow (3r - 7)^2 + (r - 1)^2 + (-2r + 4)^2 = 66$$ $$(14r^2 - 60r = 0)$$ | **M1** | Or equivalent equation in one unknown for their $$AB$$ and their $$\\overline{BD} \\neq \\overline{OD}$$. If you never see a correct form and they go direct to $$9r^2 + 49 + r^2 + 1$$... then M0.  |\n|   |  $$\\Rightarrow r = \\frac{30}{7}$$ | **A1** | Correct only. Ignore $$r = 0$$ if seen.  |\n|   |  $$\\overline{OD} = \\frac{26}{7} \\mathbf{i} + \\frac{37}{7} \\mathbf{j} - \\frac{32}{7} \\mathbf{k}$$ | **A1** | Must be a vector. Condone if also have $$\\overline{OD} = \\overline{OA}$$.  |\n|   |  | **5** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(a) | State $$z\\omega = (-3 + 3\\sqrt{3}) + (3 + 3\\sqrt{3})\\mathbf{i}$$ | **B1** | Or exact equivalent with real and imaginary parts collected. Need brackets around the coefficient of $$\\mathbf{i}$$. Allow for $$a = b$$ stated correctly.  |\n|   |   | **1** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 17 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(b) | Obtain $|z|=\\sqrt{2}$ | **B1** |   |\n|   |  Obtain $\\arg z=-\\frac{\\pi}{4}$ final answer | **B1** |   |\n|   |  Obtain $|\\omega|=6$ | **B1** |   |\n|   |  Obtain $\\arg \\omega=\\frac{2\\pi}{3}$ final answer | **B1** |   |\n|   |   | **4** |   |\n|  9(c) |  |  | Note: The question does not require the diagram. If they use $\\frac{5\\pi}{12}$ they need to demonstrate where it comes from. Complex number equivalent to $AB$ is $3\\sqrt{3}+3i$.  |\n|   |  Show $|OA|=|AB|=6$, hence isosceles | **B1** | One mark for 'isosceles' and one mark for 'right angle'. There will be alternatives e.g. use of Pythagoras (ratio of lengths is $1:1:\\sqrt{2}$), expressing each number in 'vector' form and using scalar product or explaining the effect of multiplying by $1-i$.  |\n|   |  $\\angle AOB=\\arg \\omega-\\arg z\\omega=-\\arg z=\\frac{\\pi}{4}$ hence third angle is a right angle | **B1**  |   |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 18 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(d) | $$\\arg z\\omega = \\arg z + \\arg \\omega \\left( \\frac{2\\pi}{3} - \\frac{\\pi}{4} = \\frac{5\\pi}{12} \\right)$$ | M1 | For showing correct use of their angles from part (b). Must demonstrate where $$\\frac{5\\pi}{12}$$ comes from.  |\n|   |  $$\\arg z\\omega = \\tan^{-1} \\frac{3 + 3\\sqrt{3}}{-3 + 3\\sqrt{3}}$$ | M1 | Correct method for *their* $$z\\omega$$ from part (a). Must link to point $$B$$ on diagram or to $$\\arg z\\omega$$. Need to see $$\\tan^{-1} \\frac{3 + 3\\sqrt{3}}{-3 + 3\\sqrt{3}}$$ or $$\\tan \\theta = \\frac{3 + 3\\sqrt{3}}{-3 + 3\\sqrt{3}}$$ and not just $$\\tan^{-1} \\frac{1 + \\sqrt{3}}{-1 + \\sqrt{3}}$$.  |\n|   |  $$\\Rightarrow \\tan \\left( \\frac{5}{12}\\pi \\right) = \\frac{\\sqrt{3} + 1}{\\sqrt{3} - 1}$$ | A1 | Obtain given answer from full and correct working.  |\n|   |   | 3 |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(a) | Use of correct chain rule (and correct quotient rule) and $$\\cos^{-3} \\theta$$ | M1 | Obtain $$k \\times (\\cos \\theta)^{-4} \\times \\sin \\theta$$ or equivalent.  |\n|   |  $$\\frac{dy}{d\\theta} = -3 \\times -\\sin \\theta (\\cos \\theta)^{-4} = 3 \\sin \\theta \\sec^3 \\theta$$ Must be expressed in the given form | A1 | Obtain given answer from full and correct working (signs must be shown), but condone $$\\frac{d}{d\\theta} (\\sec^3 \\theta) = \\dots$$ and $$y'(\\theta)$$.  |\n|   |   | 2 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 19 of 20",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(b) | Separate variables: $$\\int \\frac{\\sin \\theta}{\\cos^2 \\theta} \\mathrm{d}\\theta = \\int \\frac{(x+3)}{(x^2+9)} \\mathrm{d}x$$ | **B1** | Or $$\\int \\frac{3\\sin \\theta}{\\cos^2 \\theta} \\mathrm{d}\\theta = \\int \\frac{3x+9}{x^2+9} \\mathrm{d}x$$. Condone missing integral signs or missing dx or dθ, but not both.  |\n|   |  Obtain $$p \\sec^3 \\theta (+A)$$ | **B1** | Correct form, p any constant but not 0.  |\n|   |  Use $$\\int \\frac{3x+9}{x^2+9} \\mathrm{d}x = \\int \\left( \\frac{3x}{x^2+9} + \\frac{9}{x^2+9} \\right) \\mathrm{d}x$$ and obtain $$q \\ln(x^2+9)$$ or $$r \\tan^{-1} \\frac{x}{3} (+C)$$. | ***M1** | Might have one third of both sides. Alt: substitute $$x = 3 \\tan \\phi$$ to obtain $$q \\int 1 + \\tan \\phi \\, \\mathrm{d}\\phi$$; condone if have $$\\theta$$ in place of $$\\phi$$ in this method.  |\n|   |  Obtain $$q \\ln(x^2+9)$$ and $$r \\tan^{-1} \\frac{x}{3} (+C)$$ | **DM1** | Obtain $$q (\\phi \\mp \\ln(\\cos \\phi))$$ OE.  |\n|   |  Obtain $$\\sec^3 \\theta = \\frac{3}{2} \\ln(x^2+9) + 3 \\tan^{-1} \\frac{x}{3} (+C)$$ or equivalent | **A1** | Or might see a third of both sides. Must have 2 different variables.  |\n|   |  Use $$\\theta = \\frac{1}{3}\\pi$$, $$x = 3$$ in an equation including $$p \\sec^3 \\theta$$, $$q \\ln(x^2+9)$$ and $$r \\tan^{-1} \\frac{x}{3}$$ to evaluate the constant of integration | **M1** | Or as limits in a definite integral. Limits for $$\\phi$$ are 0 and $$\\frac{1}{4}\\pi$$.  |\n|   |  Obtain constant = $$8 - \\frac{3}{2} \\ln 18 - \\frac{3}{4} \\pi$$ | **A1** | OE, e.g. 1.308... to at least 3sf.  |\n|   |  Obtain $$\\cos \\theta = 0.601$$ | **A1** | Accept AWRT 0.601.  |\n|   |   | **8** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 20 of 20",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "Cambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-0.jpeg](img-0.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nMATHEMATICS\n\n9709/32\n\nPaper 3 Pure Mathematics 3\n\nMay/June 2024\n\n1 hour 50 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 75.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 20 pages. Any blank pages are indicated.\n\nDC (LK/CGW) 329945/3\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "2\n\n# **BLANK PAGE**\n\n© UCLES 2024\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "3\n\n1 (a) Sketch the graph of $y = |x - 2a|$, where $a$ is a positive constant.\n\n[1]\n\n(b) Solve the inequality $2x - 3a < |x - 2a|$.\n\n[2]\n\n© UCLES 2024\n\n9709/32/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "4\n\n2 Express $$\\frac{6x^2 - 9x - 16}{2x^2 - 5x - 12}$$ in partial fractions.\n\n[5]\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "5\n\n3 The variables $x$ and $y$ satisfy the equation $a^{2y-1} = b^{x-y}$, where $a$ and $b$ are constants.\n\n(a) Show that the graph of $y$ against $x$ is a straight line.\n\n[3]\n\n© UCLES 2024\n\n9709/32/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "6\n\n4 The equation of a curve is $y e^{2x} + y^2 e^x = 6$.\n\nFind the gradient of the curve at the point where $y = 1$.\n\n[6]\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "7\n\n5 (a) It is given that the equation $e^{2x} = 5 + \\cos 3x$ has only one root.\n\nShow by calculation that this root lies in the interval $0.7 < x < 0.8$ .\n\n[2]\n\n$$x_{n+1} = \\frac{1}{2} \\ln(5 + \\cos 3x_n)$$\n\nconverges then it converges to the root of the equation in part (a).\n\n(c) Use this iterative formula to determine the root correct to 3 decimal places. Give the result of each iteration to 5 decimal places.\n\n© UCLES 2024\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "8\n\n6\n\n![img-2.jpeg](img-2.jpeg)\n\nThe diagram shows the curve $y = xe^{-ax}$, where $a$ is a positive constant, and its maximum point $M$.\n\n(a) Find the exact coordinates of $M$.\n\n[4]\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9\n\n(b) Find the exact value of $$\\int_0^{\\frac{2}{a}} x e^{-ax} \\, dx$$.\n\n[5]\n\n9709/32/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "10\n\n7 (a) Show that $\\cos^4\\theta - \\sin^4\\theta \\equiv \\cos 2\\theta$.\n\n[3]\n\n...\n\n© UCLES 2024\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "11\n\n(b) Hence find the exact value of $$\\int_{-\\frac{1}{8}\\pi}^{\\frac{1}{8}\\pi} (\\cos^4\\theta - \\sin^4\\theta + 4\\sin^2\\theta\\cos^2\\theta)\\,d\\theta.$$ [6]\n\n© UCLES 2024\n\n9709/32/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "12\n\n8 The points $A$, $B$ and $C$ have position vectors $\\overrightarrow{OA} = -2\\mathbf{i} + \\mathbf{j} + 4\\mathbf{k}$, $\\overrightarrow{OB} = 5\\mathbf{i} + 2\\mathbf{j}$ and $\\overrightarrow{OC} = 8\\mathbf{i} + 5\\mathbf{j} - 3\\mathbf{k}$, where $O$ is the origin. The line $l_1$ passes through $B$ and $C$.\n\n(a) Find a vector equation for $l_1$. [3]\n\n(b) Find the coordinates of the point of intersection of $l_1$ and $l_2$. [4]\n\n© UCLES 2024",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "13\n\n(c) The point $D$ on $l_2$ is such that $AB = BD$.\n\nFind the position vector of $D$.\n\n[5]\n\n9709/32/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "14\n\n9 The complex numbers $z$ and $\\omega$ are defined by $z = 1 - i$ and $\\omega = -3 + 3\\sqrt{3}i$.\n\n(a) Express $z\\omega$ in the form $a + bi$, where $a$ and $b$ are real and in exact surd form. [1]\n\n(c) On an Argand diagram, the points representing $\\omega$ and $z\\omega$ are $A$ and $B$ respectively.\n\n© UCLES 2024",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "15\n\n© UCLES 2024\n\n9709/32/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "16\n\n10 (a) By writing $y = \\sec^3 \\theta$ as $\\frac{1}{\\cos^3 \\theta}$, show that $\\frac{dy}{d\\theta} = 3 \\sin \\theta \\sec^4 \\theta$. [2]\n\n$(x^2 + 9) \\sin \\theta \\frac{d\\theta}{dx} = (x + 3) \\cos^4 \\theta$.\n\nIt is given that $x = 3$ when $\\theta = \\frac{1}{3} \\pi$.\n\nSolve the differential equation to find the value of $\\cos \\theta$ when $x = 0$. Give your answer correct to 3 significant figures. [8]\n\n© UCLES 2024",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "17\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "18\n\n# **Additional page**\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "19\n\n# **BLANK PAGE**\n\n© UCLES 2024\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "20\n\n# BLANK PAGE\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/32/M/J/24",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

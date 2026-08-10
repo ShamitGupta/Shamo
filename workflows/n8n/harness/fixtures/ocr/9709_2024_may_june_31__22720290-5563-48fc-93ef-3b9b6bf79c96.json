@@ -1,0 +1,207 @@
+{
+  "paper_key": "9709_2024_may_june_31",
+  "ingestion_run_id": "22720290-5563-48fc-93ef-3b9b6bf79c96",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.2-batch-04:a_level:9709:2024:may_june:31",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_31.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_31.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International A Level\n\nMATHEMATICS\n\nPaper 3 Pure Mathematics 3\n\nMARK SCHEME\n\nMaximum Mark: 75\n\n9709/31\n\nMay/June 2024\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level and Cambridge Pre-U components, and some Cambridge O Level components.\n\nThis document consists of 15 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\nGENERIC MARKING PRINCIPLE 1:\n\nMarks must be awarded in line with:\n\n- the specific content of the mark scheme or the generic level descriptors for the question\n- the specific skills defined in the mark scheme or in the generic level descriptors for the question\n- the standard of response required by a candidate as exemplified by the standardisation scripts.\n\nGENERIC MARKING PRINCIPLE 2:\n\nMarks awarded are always **whole marks** (not half marks, or other fractions).\n\nGENERIC MARKING PRINCIPLE 3:\n\nMarks must be awarded **positively**:\n\n- marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate\n- marks are awarded when candidates clearly demonstrate what they know and can do\n- marks are not deducted for errors\n- marks are not deducted for omissions\n- answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.\n\nGENERIC MARKING PRINCIPLE 4:\n\nRules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.\n\nGENERIC MARKING PRINCIPLE 5:\n\nMarks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).\n\nGENERIC MARKING PRINCIPLE 6:\n\nMarks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\nAbbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1 | State correct unsimplified first two terms of the expansion of $$(1 - 2x)^{\\frac{1}{2}}$$, e.g. $$1 + \\frac{1}{2}(-2x)$$ | **B1** | Symbolic coefficients are not sufficient. $$1 - x$$  |\n|   |  State correct unsimplified term in $$x^2$$, e.g. $$\\frac{\\frac{1}{2}\\left(\\frac{1}{2} - 1\\right)(-2x)^2}{2!}$$ | **B1** | Symbolic coefficients are not sufficient. $$-\\frac{1}{2}x^2$$  |\n|   |  Obtain sufficient terms of the product of $$(3 + x)$$ and the expansion up to the term in $$x^2$$ | **M1** |   |\n|   |  Obtain final answer $$3 - 2x - \\frac{5}{2}x^2$$ | **A1** |   |\n|   |   | **4** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | Use law of logarithm of a product (or quotient) on correct terms | ***M1** |   |\n|   |  Use correct method to eliminate logarithm | **DM1** |   |\n|   |  Obtain a correct quadratic in $$x$$, e.g. $$x^2 - 5x - e^7 = 0$$ (allow decimals) | **A1** |   |\n|   |  Obtain answer $$x = 35.71$$ only | **A1** |   |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3 | State or imply that $y\\,\\{\\backslash ln\\; a\\; =\\; \\backslash ln\\; b\\; +\\; \\backslash ln\\; x$ | **B1** |   |\n|   |  Carry out a completely correct method for finding $\\backslash ln\\; a$ or $\\backslash ln\\; b$ | **M1** | E.g., from $\\backslash ln\\; a\\; =\\; \\backslash ln\\; b\\; +\\; 0.336$ $1.5\\,\\backslash ln\\; a\\; =\\; \\backslash ln\\; b\\; +\\; 1.31$.  |\n|   |  Obtain value $a\\; =\\; 7$ | **A1** |   |\n|   |  Obtain value $b\\; =\\; 5$ | **A1** |   |\n|   |   | **4** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(a) | State or imply $r\\; =\\; 2$ | **B1** |   |\n|   |  State or imply $\\backslashtheta\\; =\\; -\\; \\backslash frac\\{2\\}\\{3\\}\\; \\backslash mu\\; \\backslash text\\{r\\}$ | **B1** |   |\n|   |   | **2** |   |\n|  4(b) | State or imply $r\\; =\\; \\backslash frac\\{5\\}\\{2\\}$ | **B1FT** | FT $\\backslash frac\\{5\\}\\{\\backslash text\\{their\\; 2\\}\\}$.  |\n|   |  State or imply $\\backslashtheta\\; =\\; \\backslash frac\\{5\\}\\{6\\}\\; \\backslash mu\\; \\backslash text\\{r\\}$ | **B1FT** | FT $\\backslash frac\\{1\\}\\{6\\}\\; \\backslash mu\\; -\\; \\backslash text\\{their\\}\\; -\\; \\backslash frac\\{2\\}\\{3\\}\\; \\backslash mu\\; \\backslash text\\{r\\}$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5 | Use correct quotient (or product) rule | *M1 |   |\n|   |  Obtain correct derivative $$\\frac{e^{\\sin x} \\cos^3 x - (-2e^{\\sin x} \\sin x \\cos x)}{(\\cos^2 x)^2}$$ or equivalent | A1 |   |\n|   |  Equate numerator to zero | DM1 |   |\n|   |  Obtain equation in one unknown | DM1 | E.g. $$\\sin^2 x - 2\\sin x - 1 = 0$$.  |\n|   |  Solve a 3 term quadratic in $$\\sin x$$ to find a value for $$x$$ | M1 |   |\n|   |  Obtain a correct solution to the quadratic equation, e.g. $$3.57^\\circ$$ | A1 | At least 3sf.  |\n|   |  Obtain a further correct solution, e.g. $$x = 5.86^\\circ$$ and no others in the interval | A1FT | At least 3sf. FT $$3\\pi$$ – *their* 3.57.  |\n|   |  **Alternative Method for the first 3 marks:**  |   |   |\n|   |  Take logarithms of both sides and simplify | (*M1) | $$\\ln y = \\sin x - 2\\ln \\cos x$$ or equivalent.  |\n|   |  Obtain $$\\frac{1}{y} \\frac{dy}{dx} = \\cos x + 2 \\frac{\\sin x}{\\cos x}$$ | (A1) | Or equivalent.  |\n|   |  Equate $$\\frac{dy}{dx}$$ to zero | (DM1) |   |\n|   |  Continue as for the original |  |   |\n|   |   | 7 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Sketch a relevant graph, e.g. $$y = e^x - 3$$ Correct shape, correct vertical intercept | **B1** |   |\n|   |  Sketch a second relevant graph, e.g. $$y = \\text{cosec} \\frac{x}{2}$$ (correct shape, minimum above the axis) and justify the given statement. Need to mark intersection with a dot, a cross, or say root at points of intersection, or equivalent | **B1**  |   |\n|   |   | **2**  |   |\n|  6(b) | Calculate the values of a relevant expression or pair of expressions at $$x = 1$$ and $$x = 2$$ | **M1** | Use of degrees is M0.  |\n|   |  Complete the argument correctly with correct calculated values | **A1** | E.g. $$-0.282 < 2.086, 4.389 > 1.188$$ $$1 < 1.626, 2 > 1.432$$ $$2.36 > 0, -3.2 < 0$$ At least 2sf. Condone truncation.  |\n|   |   | **2** |   |\n|  6(c) | State $$x = \\ln \\left( \\text{cosec} \\frac{1}{2} x + 3 \\right)$$ and rearrange to the given equation $$\\text{cosec} \\frac{x}{2} = e^x - 3$$ | **B1** | AG. Or vice versa and obtain the iterative formula.  |\n|   |   | **1** |   |\n|  6(d) | Use the iterative formula correctly at least twice | **M1** | Use of degrees in M0 (might see 1.38...).  |\n|   |  Obtain final answer 1.50 | **A1** |   |\n|   |  Show sufficient iterations to 4 dp to justify 1.50 to 4 dp or show there is a sign change in the interval (1.495, 1.505) | **A1** | 1.5156, 1.4940, 1.4978, 1.4971.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(e) | 4 | B1 |   |\n|   |   | 1 |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | Show a circle centre (3, –2) | B1 |   |\n|   |  Show a circle with radius 2 FT centre not at the origin | B1FT  |   |\n|   |  Show the point representing (–3, 4) or the midpoint (0, 1) | B1  |   |\n|   |  Show the perpendicular bisector of the line joining (–3, 4) and centre of the circle FT is on the position of (–3, 4) and centre of the circle | B1FT  |   |\n|   |   | 4  |   |\n|  7(b) | Carry out a correct method for finding the least value of $$|z - w|$$ | M1 | (Distance (3, –2) to (0, 1)) – 2.  |\n|   |  Obtain answer $$\\sqrt{18} - 2$$ or $$3\\sqrt{2} - 2$$ | A1 |   |\n|   |   | 2 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8 | State or imply $$du = -\\cos x\\,dx$$ | **B1** |   |\n|   |  Use $$\\sin 2x = 2\\sin x\\cos x$$ and write the integral in terms of $$u$$ | ***M1** |   |\n|   |  Obtain $$\\pm 2\\int \\frac{(1-u)}{\\sqrt{u}}\\,du$$ or equivalent | **A1** |   |\n|   |  Integrate correctly to obtain $$au^{\\frac{1}{2}} + bu^{\\frac{3}{2}}$$ | **DM1** |   |\n|   |  Obtain correct $$-4u^{\\frac{1}{2}} + \\frac{4}{3}u^{\\frac{3}{2}}$$ | **A1** |   |\n|   |  Correctly use limits $$u = 2$$ and $$0$$ in an expression of the form $$au^{\\frac{1}{2}} + bu^{\\frac{3}{2}}$$ OR limits $$x = \\frac{3}{2}\\pi$$ and $$\\frac{1}{2}\\pi$$ in an expression of the form $$a(1-\\sin x)^{\\frac{1}{2}} + b(1-\\sin x)^{\\frac{3}{2}}$$ | **DM1** |   |\n|   |  Obtain $$\\frac{8}{3} - \\frac{4}{3}\\sqrt{2}$$ | **A1** |   |\n|   |   | **7** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(a) | Carry out correct process for evaluating the scalar product of direction vectors, equate the result to zero and obtain given value of $$a = 4$$ | **B1** | E.g. $$2(3) + (-1)(-2) + a(-2) = 0$$.  |\n|   |   | **1** |   |\n|  9(b) | Express general point of at least one line correctly in component form, i.e. $$(1 + 2\\lambda, -2 - \\lambda, 3 + 4\\lambda)$$ or $$(-1 + 3\\mu, -1 - 2\\mu, -1 - 2\\mu)$$ | **B1** | The third component could be implied by a correct final answer.  |\n|   |  Equate at least two pairs of corresponding components and solve for $$\\lambda$$ or for $$\\mu$$ | **M1** |   |\n|   |  Obtain $$\\lambda = -1$$ or $$\\mu = 0$$ | **A1** |   |\n|   |  Obtain position vector of point of intersection is $$-\\mathbf{i} - \\mathbf{j} - \\mathbf{k}$$ | **A1** |   |\n|   |   | **4** |   |\n|  9(c) | Equate one component of $$l_1$$ to matching component of $$A$$ and solve to find $$\\lambda$$ | **M1** |   |\n|   |  Use $$\\lambda = -3$$ in equation of $$l_1$$ and show this gives position vector of $$A$$ | **A1** | AG Or show $$\\lambda = -3$$ for all three components equated.  |\n|   |   | **2** |   |\n|  9(d) | Method to find position vector of $$B$$ | **M1** | E.g. $$\\pm 2 \\times \\text{their}(-\\mathbf{i} - \\mathbf{j} - \\mathbf{k}) \\pm (-5\\mathbf{i} + \\mathbf{j} - 9\\mathbf{k})$$  |\n|   |  Obtain position vector of $$B$$ is $$3\\mathbf{i} - 3\\mathbf{j} + 7\\mathbf{k}$$ | **A1** |   |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(a) | Obtain $$2 = \\sec^2 y \\frac{dy}{dx}$$ or equivalent | **B1** | E.g. $$2 \\frac{dx}{dy} = \\sec^2 y$$ by differentiation with respect to $$y$$.  |\n|   |  Use $$\\sec^2 y = 1 + \\tan^2 y$$ | **M1** |   |\n|   |  Replace $$\\tan y$$ with $$2x$$ and rearrange to obtain given answer $$\\frac{dy}{dx} = \\frac{2}{1 + 4x^2}$$ | **A1** |   |\n|   |   | **3** |   |\n|  10(b) | Integrate by parts and reach $$ax^2 \\tan^{-1} 2x + b \\int \\frac{x^2}{1 + 4x^2} \\, dx$$ | ***M1** |   |\n|   |  Obtain $$\\frac{1}{2} x^2 \\tan^{-1} 2x - \\int \\frac{x^2}{1 + 4x^2} \\, dx$$ | **A1** | OE  |\n|   |  Reduce integral to expression of the form $$\\int m + \\frac{n}{1 + 4x^2} \\, dx$$ | **M1** |   |\n|   |  Complete integration and reach $$px^2 \\tan^{-1} 2x + qx + r \\tan^{-1} 2x$$ | **M1** |   |\n|   |  Obtain $$\\frac{1}{2} x^2 \\tan^{-1} 2x - \\frac{1}{4} x + \\frac{1}{8} \\tan^{-1} 2x$$ | **A1** | OE  |\n|   |  Use limits of $$x = \\frac{1}{2}$$ and $$x = \\frac{1}{2}\\sqrt{3}$$ in the correct order, having integrated twice | **DM1** |   |\n|   |  Obtain answer $$\\frac{5}{48} \\pi - \\frac{1}{8} \\sqrt{3} + \\frac{1}{8}$$ or exact equivalent | **A1** |   |\n|   |   | **7** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 13 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  11(a) | State or imply equation of the form $$\\frac{dx}{dt} = kx(300 - x)$$ and use $$\\frac{dx}{dt} = 0.2$$ and $$x = 1$$ | **M1** | M0 for verification.  |\n|   |  Obtain $$k = \\frac{1}{1495}$$ and rearrange to the given answer | **A1** | $$1495 \\frac{dx}{dt} = x(300 - x)$$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 14 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  11(b) | Separate variables correctly | **B1** | $$\\int \\frac{1}{x(300-x)} \\, dx = \\int \\frac{1}{1495} \\, dt$$  |\n|   |  Correct integration of *t* term | **B1** | E.g. obtain *t* or $$\\frac{t}{1495}$$.  |\n|   |  State or imply partial fractions of the form $$\\frac{A}{x} + \\frac{B}{300-x}$$ | **B1** |   |\n|   |  Correct method to find *A* or *B* | **M1** | $$A = \\frac{1}{300}$$ and $$B = \\frac{1}{300}$$. May see $$A = B = \\frac{1495}{300} = \\frac{299}{60}$$.  |\n|   |  Obtain terms $$\\frac{1495}{300} \\ln x - \\frac{1495}{300} \\ln(300 - x)$$ | **A1** | OE. May see $$\\frac{1}{300} \\ln x - \\frac{1}{300} \\ln(300 - x)$$.  |\n|   |  Use *t* = 0, *x* = 1 to evaluate a constant or as limits in a solution containing terms of the form $$\\ln x$$, $$\\ln(300 - x)$$ and *t*. | **M1** |   |\n|   |  Obtain correct answer in any form | **A1** | E.g. $$\\frac{1495}{300} [\\ln x - \\ln(300 - x)] = t - \\frac{1495}{300} \\ln 299$$.  |\n|   |  Use law of logarithms twice to obtain an expression for *t* | **M1** |   |\n|   |  Obtain final answer $$t = \\frac{299}{60} \\ln \\frac{299x}{300 - x}$$ or equivalent single logarithm | **A1** |   |\n|   |   | **9** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 15 of 15",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "Cambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-0.jpeg](img-0.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nMATHEMATICS\n\n9709/31\n\nPaper 3 Pure Mathematics 3\n\nMay/June 2024\n\n1 hour 50 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 75.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 20 pages. Any blank pages are indicated.\n\nDC (DE/CGW) 329950/3\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "2\n\n1 Expand $(3+x)(1-2x)^{\\frac{1}{2}}$ in ascending powers of $x$, up to and including the term in $x^2$, simplifying the coefficients. [4]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "3\n\n2 Solve the equation $$\\ln(x-5)=7-\\ln x$$. Give your answer correct to 2 decimal places.\n\n[4]\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "4\n\n3\n\n![img-2.jpeg](img-2.jpeg)\n\nThe variables $x$ and $y$ satisfy the equation $a^y = bx$, where $a$ and $b$ are constants. The graph of $y$ against $\\ln x$ is a straight line passing through the points $(0.336, 1.00)$ and $(1.31, 1.50)$, as shown in the diagram.\n\nFind the values of $a$ and $b$. Give each value correct to the nearest integer. [4]\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "5\n\n4 The complex number $u$ is given by $u = -1 - \\mathrm{i}\\sqrt{3}$.\n\n(a) Express $u$ in the form $r(\\cos\\theta + \\mathrm{i}\\sin\\theta)$, where $r > 0$ and $-\\pi < \\theta \\leqslant \\pi$. Give the exact values of $r$ and $\\theta$. [2]\n\nThe complex number $v$ is given by $v = 5\\left(\\cos\\frac{1}{6}\\pi + \\mathrm{i}\\sin\\frac{1}{6}\\pi\\right)$.\n\n(b) Express the complex number $\\frac{v}{u}$ in the form $re^{i\\theta}$ where $r > 0$ and $-\\pi < \\theta \\leqslant \\pi$. [2]\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "6\n\n5 The equation of a curve is $y = \\frac{e^{\\sin x}}{\\cos^2 x}$ for $0 \\leq x \\leq 2\\pi$.\n\nFind $\\frac{dy}{dx}$ and hence find the $x$-coordinates of the stationary points of the curve. [7]\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "7\n\n...\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "8\n\n6 (a) By sketching a suitable pair of graphs, show that the equation $\\csc \\frac{1}{2}x = e^x - 3$ has exactly one root, denoted by $\\alpha$, in the interval $0 < x < \\pi$. [2]\n\n(b) Verify by calculation that $\\alpha$ lies between 1 and 2. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9\n\n(c) Show that if a sequence of values in the interval $0 < x < \\pi$ given by the iterative formula\n\n$$x_{n+1} = \\ln(\\csc \\frac{1}{2}x_n + 3)$$\n\nconverges, then it converges to $\\alpha$.\n\n[1]\n\n...\n...\n...\n...\n...\n...\n...\n\n(d) Use this iterative formula with an initial value of 1.4 to determine $\\alpha$ correct to 2 decimal places. Give the result of each iteration to 4 decimal places. [3]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n(e) State the minimum number of calculated iterations needed with this initial value to determine $\\alpha$ correct to 2 decimal places. [1]\n\n...\n...\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "10\n\n# BLANK PAGE\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "11\n\n7 (a) On a single Argand diagram sketch the loci given by the equations $|z-3+2i|=2$ and $|w-3+2i|=|w+3-4i|$ where $z$ and $w$ are complex numbers. [4]\n\n(b) Hence find the least value of $|z-w|$ for points on these loci. Give your answer in an exact form. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "12\n\n8 Use the substitution $u = 1 - \\sin x$ to find the exact value of\n\n$$\\int_{\\pi}^{\\frac{1}{2}\\pi} \\frac{\\sin 2x}{\\sqrt{1 - \\sin x}}\\,dx.$$\n\nGive your answer in the form $a + b\\sqrt{2}$ where $a$ and $b$ are rational numbers to be determined. [7]\n\n...\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "13\n\n...\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "14\n\n9 The equations of two straight lines $l_1$ and $l_2$ are\n\n$$l_1: \\mathbf{r} = \\mathbf{i} - 2\\mathbf{j} + 3\\mathbf{k} + \\lambda(2\\mathbf{i} - \\mathbf{j} + a\\mathbf{k}) \\quad \\text{and} \\quad l_2: \\mathbf{r} = -\\mathbf{i} - \\mathbf{j} - \\mathbf{k} + \\mu(3\\mathbf{i} - 2\\mathbf{j} - 2\\mathbf{k}),$$\n\nwhere $a$ is a constant.\n\nThe lines $l_1$ and $l_2$ are perpendicular.\n\n(a) Show that $a = 4$.\n\n[1]\n\nThe lines $l_1$ and $l_2$ also intersect.\n\n(b) Find the position vector of the point of intersection.\n\n[4]\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "15\n\nThe point $A$ has position vector $-5\\mathbf{i} + \\mathbf{j} - 9\\mathbf{k}$.\n\n(c) Show that $A$ lies on $l_1$.\n\n[2]\n\nThe point $B$ is the image of $A$ after a reflection in the line $l_2$.\n\n(d) Find the position vector of $B$.\n\n[2]\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "16\n\n10 (a) Given that $2x = \\tan y$, show that $\\frac{dy}{dx} = \\frac{2}{1 + 4x^2}$. [3]\n\n(b) Hence find the exact value of $\\int_{\\frac{1}{2}}^{\\frac{\\sqrt{3}}{2}} x \\tan^{-1}(2x) dx$. [7]\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "17\n\n...\n\n© UCLES 2024\n\n9709/31/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "18\n\n11 In a field there are 300 plants of a certain species, all of which can be infected by a particular disease. At time $t$ after the first plant is infected there are $x$ infected plants. The rate of change of $x$ is proportional to the product of the number of plants infected and the number of plants that are **not** yet infected. The variables $x$ and $t$ are treated as continuous, and it is given that $\\frac{dx}{dt} = 0.2$ and $x = 1$ when $t = 0$.\n\n(a) Show that $x$ and $t$ satisfy the differential equation\n\n$$1495 \\frac{dx}{dt} = x(300 - x). \\quad [2]$$\n\n(b) Using partial fractions, solve the differential equation and obtain an expression for $t$ in terms of a single logarithm involving $x$. [9]\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "19\n\n...\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "20\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/31/M/J/24",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

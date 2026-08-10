@@ -1,0 +1,197 @@
+{
+  "paper_key": "9709_2024_may_june_41",
+  "ingestion_run_id": "c40d29c6-7941-4657-8a04-5d1c424a13c7",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.2-batch-03:a_level:9709:2024:may_june:41",
+  "run_status": "complete",
+  "paper_status": "published",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_41.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_41.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International AS & A Level\n\nMATHEMATICS\n\nPaper 4 Mechanics\n\nMARK SCHEME\n\nMaximum Mark: 50\n\n9709/41\n\nMay/June 2024\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level and Cambridge Pre-U components, and some Cambridge O Level components.\n\nThis document consists of 17 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\n|  **GENERIC MARKING PRINCIPLE 1:** Marks must be awarded in line with: - the specific content of the mark scheme or the generic level descriptors for the question - the specific skills defined in the mark scheme or in the generic level descriptors for the question - the standard of response required by a candidate as exemplified by the standardisation scripts.  |\n| --- |\n|  **GENERIC MARKING PRINCIPLE 2:** Marks awarded are always **whole marks** (not half marks, or other fractions).  |\n|  **GENERIC MARKING PRINCIPLE 3:** Marks must be awarded **positively**: - marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate - marks are awarded when candidates clearly demonstrate what they know and can do - marks are not deducted for errors - marks are not deducted for omissions - answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.  |\n|  **GENERIC MARKING PRINCIPLE 4:** Rules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.  |\n|  **GENERIC MARKING PRINCIPLE 5:** Marks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).  |\n|  **GENERIC MARKING PRINCIPLE 6:** Marks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate’s intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\nAbbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) | Trapezium on the *t*-axis starting at (0, 0) | **B1** |   |\n|   |  Fully correct with correct labels | **B1** | With height 20, intersecting the *t*-axis at 60, horizontal line segment between 10 and 40. Axis need not be labelled with *t* and *v* but if they are they must be correct. If not labelled, then must assume *t* is on the horizontal axis.  |\n|   |   | **2** |   |\n|  1(b) | Area = $$\\frac{1}{2}(30 + 60) \\times 20$$ or Area = $$\\frac{1}{2} \\times 10 \\times 20 + 30 \\times 20 + \\frac{1}{2} \\times 20 \\times 20$$ | **M1** | Must be considering the area of a trapezium. Allow a single slip in one term only. Must be adding all terms together if considering two triangles and a rectangle. Using *their* 20 from **(a)**. If no value for the height shown on the graph in **(a)**, then it must be correct.  |\n|   |  = 900m | **A1FT** | FT *their* 20 (= 45 × *their* 20) but A0 FT if using 2.  |\n|   |   | **2** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(a) | $$F = 20 \\sin 60$$ | **M1** | Attempt to resolve in *y*-direction; 2 terms; must be 20 cos 60 or 20 sin 60 and must be linked to *F* (can be implied by the correct answer seen only).  |\n|   |  = 17.3 N | **A1** | AWRT 17.3 (17.320508...) or $$10\\sqrt{3}$$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(b) | For resolving in any direction | *M1 | Correct number of terms; allow sin/cos mix; allow sign errors.  |\n|   |  (Horizontal component = $$X = R \\cos \\theta$$) = $$\\pm (20 \\cos 60) \\ [\\pm 10]$$ (Vertical component = $$Y = R \\sin \\theta$$) = $$\\pm (20 \\sin 60 - 10)$$ [$$= \\pm 7.3205\\dots$$] | A1 | For both correct.  |\n|   |  Magnitude = $$\\sqrt{(20 \\sin 60 - 10)^2 + (20 \\cos 60)^2}$$ [$$= 12.393136\\dots$$] | DM1 | OE – correct number of terms.  |\n|   |  Angle = $$\\tan^{-1} \\left( \\frac{20 \\sin 60 - 10}{20 \\cos 60} \\right)$$ [$$= 36.206023\\dots$$] | DM1 | OE (e.g. reciprocal) - correct number of terms.  |\n|   |  Magnitude = 12.4 N and Direction = $$36.2^\\circ$$ above (positive) x-axis | A1 | OE for direction e.g. $$36.2^\\circ$$ anticlockwise from (positive) x-direction, $$36.2^\\circ$$ above the horizontal. Possibly seen on a diagram. (Radians: 0.63191... to 3sf or better)  |\n|   |   | 5 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3 | PE gained = $$180000g \\times 1500 \\sin 1.5$$ [= 70677760.4...] | **B1** | $$180000g \\times 39.2654...$$  |\n|   |  $$KE_{Initial} = \\frac{1}{2} \\times 180000 \\times 45^2$$ [= 182 250 000] $$KE_{Final} = \\frac{1}{2} \\times 180000 \\times 40^2$$ [= 144 000 000] | **B1** | For initial KE or final KE (for reference: difference in KE is 38 250 000).  |\n|   |  For work energy equation: $$WD = 180000g \\times 1500 \\sin 1.5 + 12000000$$ $$- \\left( \\frac{1}{2} \\times 180000 \\times 45^2 - \\frac{1}{2} \\times 180000 \\times 40^2 \\right)$$ | **M1** | Correct number of terms; dimensionally correct; allow sign errors and minor slip(s) in values; allow sin/cos mix on PE term. Work done = $$(70677760.4... + 12000000 - 38250000)$$ $$J = (70677.7... + 12000 - 38250) kJ$$  |\n|   |  = 44400 kJ [44427.7604...] | **A1** | Must be in kJ.  |\n|   |  **Alternative Method for Question 3: Newton’s second law and equations of motion**  |   |   |\n|   |  $$a = -0.142$$ [= -0.141666...] | **(B1)** | Correct acceleration from $$40^2 = 45^2 + 2a(1500)$$. Allow AWRT -0.14 or exact $$-\\frac{17}{120}$$.  |\n|   |  $$1500(D - \\frac{12000000}{1500} - 180000g \\sin 1.5) = 180000 \\times -\\frac{17}{120} \\times 1500$$ | **(M1)** | **M1** for applying Newton’s second law parallel to the hill. Correct number of terms, allow sin/cos mix on weight component, dimensionally correct and multiplying both sides by 1500. Allow *their a* or *a* for acceleration (and minor slip(s) in values).  |\n|   |   |  **(B1)** | Correct weight component multiplied by 1500.  |\n|   |  $$WD (= 1500D) = 44400 \\text{ kJ}$$ [44427.7604...] | **(A1)** | Must be in kJ.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | Driving force = $$\\frac{14000}{20}$$ [ = 700 ] | **B1** | OE, e.g. $$20 \\times DF = 14000$$.  |\n|   |  Attempt at Newton’s second law on car or trailer or system | ***M1** | Correct number of relevant terms (e.g. correct masses); allow sign errors.  |\n|   |  $$700 - 400 - T = 1700a$$ $$T - 150 = 300a$$ $$700 - 400 - 150 = (1700 + 300)a$$ | **A2** | A1 for one correct and A2 for any two correct. May have $$DF$$ (or *their DF*) for 700 but A0 if using 14000 as $$DF$$ without first stating $$DF$$. Must have same $$T$$ if using first two equations for A2.  |\n|   |  Solving for $$a$$ or $$T$$ | **DM1** | From equations with the correct number of relevant terms.  |\n|   |  Acceleration = $$\\frac{3}{40} = 0.075\\,\\text{ms}^{-2}$$ |  | For both correct answers.  |\n|   |  Tension = 172.5 N | **A1** | Condone 173.  |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | $$a = 2.08$$ [2.07911...] | **B1** | From $$mg \\sin 12 = ma$$. Allow exact (e.g. $$a = g \\sin 12$$).  |\n|   |  $$v^2 = 5^2 + 2a \\times 60$$ | **M1** | For use of $$v^2 = u^2 + 2as$$ with $$u = 5$$ and $$s = 60$$. Allow sign errors but $$a$$ must be either $$g \\sin 12$$ or $$g \\cos 12$$ only.  |\n|   |  Speed = $$16.6 \\text{ ms}^{-1}$$ [16.567861...] | **A1** | AWRT 16.6  |\n|   |  **Alternative Method for Q5(a)**  |   |   |\n|   |  For attempt at work energy equation | **(M1)** | 3 terms, dimensionally correct. Allow sign errors; allow sin/cos mix on PE term – condone $$m$$ missing from all terms. Must be a weight component.  |\n|   |  $$\\frac{1}{2}mv^2 = \\frac{1}{2}m \\times 5^2 + mg \\times 60 \\sin 12$$ | **(A1)** | Correct equation. (for reference: $$60 \\sin 12 = 12.4747...$$)  |\n|   |  Speed = $$16.6 \\text{ ms}^{-1}$$ [16.567861...] | **(A1)** | AWRT 16.6  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b) | $$R = mg \\cos 12$$ | **B1** | Resolving correctly perpendicular to the plane.  |\n|   |  $$mg \\sin 12 - F = ma$$ | ***M1** | Use of Newton’s second law, correct number of terms; allow sign errors; allow sin/cos mix (must be a weight component).  |\n|   |  For use of $$F = 0.03R$$ to get equation in $$a$$ (and $$m$$) only | **DM1** | Where $$R$$ is a component of weight only (dimensionally correct but allow sin/cos mix). $$[\\Rightarrow a = 1.79 [1.78567\\dots]$$  |\n|   |  $$60 = 5t + \\frac{1}{2}at^2$$ and solve for $$t$$ | **DM1** | Dependent on previous two M marks. For use of $$s = ut + \\frac{1}{2}at^2$$ with $$s = 60$$, $$u = 5$$ and *their* $$a$$ or other complete method to find positive value(s) of $$t$$.  |\n|   |  Time = 5.86s [5.86260…] | **A1** | AWRT 5.86 (from using $$a = 1.79$$ or better). AWRT 5.85 (from using $$a = 1.8$$). AWRT 5.87 (from correct working).  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b) | **Alternative method for Question 5(b): Using energy**  |   |   |\n|   |  $$R = mg \\cos 12$$ | **(B1)** | Resolving correctly perpendicular to the plane.  |\n|   |  $$\\frac{1}{2}mv^2 - \\frac{1}{2}m \\times 5^2 = 60 \\times mg \\sin 12 - 60 \\times F$$ | **(*M1)** | Use of work-energy principle, correctly number of relevant terms; allow sign errors; allow sin/cos mix on PE term (must be a weight component).  |\n|   |  For use of $$F = 0.03R$$ to get equation in $$v$$ (and $$m$$) only | **(DM1)** | Where $$R$$ is a component of weight only (dimensionally correct but allow sin/cos mix) $$[\\Rightarrow v = 15.5 [15.46870\\dots]$$.  |\n|   |  $$60 = \\frac{1}{2}(5 + v)t$$ and solve for $$t$$ | **(DM1)** | Dependent on previous two M marks. Use of $$s = \\frac{1}{2}(u + v)t$$ with $$s = 60$$, $$u = 5$$ and *their* $$v$$ or other complete method to find positive value(s) of $$t$$.  |\n|   |  Time = 5.86s [5.86260...] | **(A1)** |   |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | For an attempt at differentiation | *M1 | Decrease power by 1 and a change in coefficient in at least one term (which must be the same term). Therefore, must see $$\\frac{d}{dt}(kt^{\\frac{1}{2}}) = ct^{-\\frac{1}{2}}$$ with $$c \\neq k$$.  |\n|   |  $$a = \\frac{1}{2}kt^{\\frac{1}{2}-1} - 2t^{1-1} + 0 = \\frac{1}{2}kt^{-\\frac{1}{2}} - 2$$ | A1 | May be unsimplified.  |\n|   |  $$a = 0 \\Rightarrow \\frac{1}{2}kt^{-\\frac{1}{2}} - 2 = 0 \\left[ t = \\frac{k^2}{16} \\right]$$ or $$k = 4t^{\\frac{1}{2}}$$ | DM1 | Equate $$a$$ to 0 and attempt to solve for $$t$$ or $$k$$. Must be of the correct form, e.g. $$t = \\lambda k^2$$ or $$k = \\delta t^{\\frac{1}{2}}$$ (possibly implied by forming a correct equation in $$k$$).  |\n|   |  $$(v =)k \\left( \\frac{k^2}{16} \\right)^{\\frac{1}{2}} - 2 \\frac{k^2}{16} - 8 = 4.5$$ | M1 | Or complete method to find $$k$$ or an equation involving $$k$$, e.g. $$4t^{\\frac{1}{2}} \\times t^{\\frac{1}{2}} - 2t - 8 = 4.5 \\Rightarrow t = 6.25$$ therefore $$k = 4(6.25)^{\\frac{1}{2}}$$. Dependent on both previous M marks.  |\n|   |  $$\\Rightarrow \\frac{k^2}{8} = 12.5 \\Rightarrow k = 10$$ | A1 | AG - Allow verification. Any errors seen is A0.  |\n|   |  **Alternative method for last two marks of Question 6(a): Completing the square method**  |   |   |\n|   |  (Let $$x = t^{\\frac{1}{2}}$$) $$v = -2 \\left( x^2 - \\frac{k}{2}x + 4 \\right) = -2 \\left( x^2 - \\frac{k}{2}x + \\frac{k^2}{16} \\right) + \\frac{k^2}{8} - 8$$ | (M1) | Dependent on both previous M marks.  |\n|   |  so $$\\frac{k^2}{8} - 8 = 12.5$$ so $$k = 10$$ | (A1) | AG  |\n|   |  | 5 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 13 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(b)(i) | $$10 \\times 1^{\\frac{1}{2}} - 2 \\times 1 - 8 = 0$$ and $$10 \\times 16^{\\frac{1}{2}} - 2 \\times 16 - 8 = 0$$ Or equate $$v = 0$$ and solve for $$t$$ to get $$t = 1$$ and $$t = 16$$. | **B1** | AG Any errors seen is B0.  |\n|   |   | **1** |   |\n|  6(b)(ii) | For integration (do not penalise missing $$c$$) | ***M1** | Increase power by 1 and a change in coefficient in at least one term (which must be the same term).  |\n|   |  $$(s =) \\frac{10^{\\frac{3}{2}}}{2} t^{\\frac{3}{2}} - \\frac{2t^2}{2} - 8t \\left[ +c \\right] = \\frac{20}{3} t^{\\frac{3}{2}} - t^2 - 8t \\left[ +c \\right]$$ or $$ (s =) \\frac{k^{\\frac{3}{2}}}{2} t^{\\frac{3}{2}} - \\frac{2t^2}{2} - 8t \\left[ +c \\right] = \\frac{2k}{3} t^{\\frac{3}{2}} - t^2 - 8t \\left[ +c \\right] $$ | **A1** | Allow unsimplified; allow with $$k$$ not substituted.  |\n|   |  $$\\left( \\frac{20}{3} 1^{\\frac{3}{2}} - 1^2 - 8 \\times 1 \\right) - 0 \\left[ = -\\frac{7}{3} \\right]$$ and $$\\left( \\frac{20}{3} 16^{\\frac{3}{2}} - 16^2 - 8 \\times 16 \\right) - \\left( \\frac{20}{3} 1^{\\frac{3}{2}} - 1^2 - 8 \\times 1 \\right) = \\left[ \\frac{128}{3} - -\\frac{7}{3} = 45 \\right]$$ | **DM1** | Attempt at correct use of limits 0 and 1 or 1 and 16 – allow a single slip.  |\n|   |  For both set of limits applied correctly | **DM1** | Allow at most one slip in both.  |\n|   |  $$\\frac{142}{3} \\text{ m}$$ | **A1** | Allow 47.3 or better (47.3333...) **SC** if no integration shown: **B1** for $$\\pm \\frac{7}{3}$$ or 45, **B1** for $$\\frac{142}{3}$$ (so 2 marks max).  |\n|   |  | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 14 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | $$v^2 = 25^2 - 2g \\times 20$$ | **M1** | For use of $$v^2 = u^2 + 2as$$ or equivalent to get an equation in $$v$$ only with $$u = 25$$, $$s = 20$$ and $$a = \\pm g$$.  |\n|   |  $$\\Rightarrow \\text{speed} = 15 \\text{ ms}^{-1}$$ | **A1** | AG Allow verification – at least one intermediate step from equation of motion to given result. Any errors seen is A0.  |\n|   |  **Alternative method for Question 7(a):**  |   |   |\n|   |  $$0.2g \\times 20 = \\frac{1}{2} \\times 0.2 \\times 25^2 - \\frac{1}{2} \\times 0.2 \\times v^2$$ | **(M1)** | Attempt at energy with $$m = 0.2$$, $$h = 20$$, $$u = 25$$; correct number of terms, allow sign errors.  |\n|   |  $$\\Rightarrow \\text{speed} = 15 \\text{ ms}^{-1}$$ | **(A1)** | AG Allow verification - at least one intermediate step from conservation of energy to given result. Any errors seen is A0.  |\n|   |  | **2** |   |\n|  7(b) | $$0.2 \\times 15 - 0.1 \\times 20 = 0 + 0.1v$$ or $$0.2 \\times 15 - 0.1 \\times 20 = 0 - 0.1V$$ | **M1** | OE Attempt at conservation of momentum; 3 non-zero terms; allow sign errors – use of 25 is M0.  |\n|   |  $$v = 10 \\text{ ms}^{-1}$$ upwards | **A1** | Must have direction (possibly seen on diagram). If using $$mgv$$ for momentum, then M1 A0 max.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 15 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(c) | Speed of $P$ at impact is $20\\,\\text{m s}^{-1}$ | **B1** | From $v^2 = 0 + 2 \\times g \\times 20$ (OE) - possibly implied by speed of $P$ after impact being stated at 10.  |\n|   |  Time to when $P$ reaches ground = 2 s | **B1** | From $20 = 0 + \\frac{1}{2} \\times g \\times t^2$ (OE).  |\n|   |  $s_P = 10t + \\frac{1}{2} \\times -g \\times t^2$ | **M1** | Distance travelled by $P$ after impact with the ground. Must be using *their* 10 (speed of $P$ after impact with the ground) and $a = \\pm g$.  |\n|   |  $s_Q = 10t + \\frac{1}{2} \\times g \\times t^2$ | **M1** | Distance travelled by $Q$ after $P$'s impact with the ground. Must be using their $\\pm 10$ (the speed/vel. of $Q$ after *their* 2 s ($= |10' + (-g) \\times 2|$ where '10' is the value from **(b)**) and $a = \\pm g$.  |\n|   |  $s_P + s_Q = 20 \\Rightarrow t = 1$ | **A1** | Time after $P$ hits the ground to next collision.  |\n|   |  Height = 5 m | **A1** | CWO  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 16 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/41\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(c) | **Alternative Method for last 4 marks:**  |   |   |\n|   |  $$s_Q = 10t + \\frac{1}{2} \\times -g \\times t^2$$ | **(M1)** | Expression for the displacement of $$Q$$ after first impact of $$P$$ and $$Q$$. Must be using *their* 10 (from **(b)**) and $$a = \\pm g$$.  |\n|   |  $$s_P = 10 \\times (t - 2) + \\frac{1}{2} \\times -g \\times (t - 2)^2$$ | **(M1)** | Expression for the displacement of $$P$$ (for values of $$t \\geq 2$$) measured from point of first collision between $$P$$ and $$Q$$. Must be using *their* 2 (time for $$P$$ to reach ground), *their* 10 (speed of $$P$$ after impact with the ground), $$a = \\pm g$$.  |\n|   |  $$s_Q + 20 = s_P \\Rightarrow t = 3$$ | **(A1)** | Correct time between collisions of $$P$$ and $$Q$$.  |\n|   |  Height = 5 m | **(A1)** | CWO  |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 17 of 17",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "Cambridge Assessment\n\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE NAME\n\nCENTRE NUMBER\n\n![img-0.jpeg](img-0.jpeg)\n\nCANDIDATE NUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\n![img-2.jpeg](img-2.jpeg)\n\n# MATHEMATICS\n\n9709/41\n\nPaper 4 Mechanics\n\nMay/June 2024\n\n1 hour 15 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\n# INSTRUCTIONS\n\nAnswer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\nWrite your name, centre number and candidate number in the boxes at the top of the page.\nWrite your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n- Where a numerical value for the acceleration due to gravity \\((g)\\) is needed, use \\(10\\mathrm{ms}^{-2}\\).\n\n# INFORMATION\n\nThe total mark for this paper is 50.\nThe number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 16 pages. Any blank pages are indicated.\n\nDC (KS/SG) 329254/2\n\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "2\n\n# BLANK PAGE\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "3\n\n1 A car starts from rest and accelerates at 2 ms$^{-2}$ for 10 s. It then travels at a constant speed for 30 s. The car then uniformly decelerates to rest over a period of 20 s.\n\n(a) Sketch a velocity-time graph for the motion of the car. [2]\n\n![img-3.jpeg](img-3.jpeg)\n\n(b) Find the total distance travelled by the car. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/41/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "4\n\n2\n\n![img-4.jpeg](img-4.jpeg)\n\nTwo forces of magnitudes 20 N and $F$ N act at a point $P$ in the directions shown in the diagram.\n\n(a) Given that the resultant force has no component in the $y$-direction, calculate the value of $F$. [2]\n\n...\n...\n...\n...\n...\n...\n\n(b) Given instead that $F = 10$, find the magnitude and direction of the resultant force. [5]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "5\n\n...\n\n© UCLES 2024\n\n9709/41/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "6\n\n3 A train of mass 180 000 kg ascends a straight hill of length 1.5 km, inclined at an angle of 1.5° to the horizontal. As it ascends the hill, the total work done to overcome the resistance to motion is 12 000 kJ and the speed of the train decreases from 45 m s⁻¹ to 40 m s⁻¹.\n\nFind the work done by the engine of the train as it ascends the hill, giving your answer in kJ. [4]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "7\n\n4 A car of mass 1700 kg is pulling a trailer of mass 300 kg along a straight horizontal road. The car and trailer are connected by a light inextensible cable which is parallel to the road. There are constant resistances to motion of 400 N on the car and 150 N on the trailer. The power of the car's engine is 14 000 W.\n\nFind the acceleration of the car and the tension in the cable when the speed is 20 m s⁻¹. [6]\n\n© UCLES 2024\n\n9709/41/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "8\n\n5 A straight slope of length 60 m is inclined at an angle of 12° to the horizontal. A bobsled starts at the top of the slope with a speed of 5 m s⁻¹. The bobsled slides directly down the slope.\n\n(a) It is given that there is no resistance to the bobsled's motion.\n\nFind its speed when it reaches the bottom of the slope.\n\n[3]\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9\n\n(b) It is given instead that the coefficient of friction between the bobsled and the slope is 0.03 .\n\nFind the time that it takes for the bobsled to reach the bottom of the slope.\n\n[5]\n\n...\n\n© UCLES 2024\n\n9709/41/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "10\n\n6 A particle moves in a straight line, starting from a point $O$. The velocity of the particle at time $t$ s after leaving $O$ is $v\\,\\text{m s}^{-1}$. It is given that $v = kt^{\\frac{1}{2}} - 2t - 8$, where $k$ is a positive constant. The maximum velocity of the particle is $4.5\\,\\text{m s}^{-1}$.\n\n(a) Show that $k = 10$.\n\n[5]\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "11\n\n(b) (i) Verify that $v = 0$ when $t = 1$ and $t = 16$.\n\n[1]\n\n...\n...\n...\n...\n...\n...\n...\n\n(ii) Find the distance travelled by the particle in the first 16s.\n\n[5]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/41/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "12\n\n7 A particle $P$ of mass 0.2 kg is projected vertically upwards from horizontal ground with speed $25\\,\\text{m s}^{-1}$.\n\n(a) Show that the speed of $P$ when it reaches 20 m above the ground is $15\\,\\text{m s}^{-1}$. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\nWhen $P$ reaches 20 m above the ground it collides with a second particle $Q$ of mass 0.1 kg which is moving downwards at $20\\,\\text{m s}^{-1}$. $P$ is brought to instantaneous rest in the collision.\n\n(b) Find the velocity of $Q$ immediately after the collision. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "13\n\nWhen $P$ reaches the ground it rebounds back directly upwards with half of the speed that it had immediately before hitting the ground.\n\n(c) Find the height above the ground at which $P$ and $Q$ next collide.\n\n[6]\n\n...\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "14\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "15\n\n# BLANK PAGE\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "16\n\n# **BLANK PAGE**\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/41/M/J/24",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

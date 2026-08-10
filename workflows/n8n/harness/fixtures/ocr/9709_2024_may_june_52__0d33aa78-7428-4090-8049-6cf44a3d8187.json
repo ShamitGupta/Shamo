@@ -1,0 +1,197 @@
+{
+  "paper_key": "9709_2024_may_june_52",
+  "ingestion_run_id": "0d33aa78-7428-4090-8049-6cf44a3d8187",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.2-batch-03:a_level:9709:2024:may_june:52",
+  "run_status": "complete",
+  "paper_status": "published",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_52.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_52.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International AS & A Level\n\nMATHEMATICS\n\nPaper 5 Probability & Statistics 1\n\nMARK SCHEME\n\nMaximum Mark: 50\n\n9709/52\n\nMay/June 2024\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level and Cambridge Pre-U components, and some Cambridge O Level components.\n\nThis document consists of 17 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\n|  **GENERIC MARKING PRINCIPLE 1:** Marks must be awarded in line with: - the specific content of the mark scheme or the generic level descriptors for the question - the specific skills defined in the mark scheme or in the generic level descriptors for the question - the standard of response required by a candidate as exemplified by the standardisation scripts.  |\n| --- |\n|  **GENERIC MARKING PRINCIPLE 2:** Marks awarded are always **whole marks** (not half marks, or other fractions).  |\n|  **GENERIC MARKING PRINCIPLE 3:** Marks must be awarded **positively**: - marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate - marks are awarded when candidates clearly demonstrate what they know and can do - marks are not deducted for errors - marks are not deducted for omissions - answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.  |\n|  **GENERIC MARKING PRINCIPLE 4:** Rules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.  |\n|  **GENERIC MARKING PRINCIPLE 5:** Marks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).  |\n|  **GENERIC MARKING PRINCIPLE 6:** Marks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) | $$[(0.7)^6 \\times 0.3] = 0.0353$$ | **B1** | $$\\frac{352947}{10000000}$$ or 0.03529... to at least 3sf.  |\n|   |   | **1** |   |\n|  1(b) | **Method 1**  |   |   |\n|   |  $$[P(X < 6) =] 1 - 0.7^5$$ | **M1** | $$1 - 0.7^d, d = 5, 6.$$  |\n|   |  $$= 0.832$$ | **A1** | Accept 0.83193 to at least 3sf. If M0 scored, **SC B1** for 0.8319[3].  |\n|   |  **Method 2**  |   |   |\n|   |  $$[P(X < 6) =] 0.3 + (0.3)(0.7) + (0.3)(0.7)^2 + (0.3)(0.7)^3 + (0.3)(0.7)^4$$ | **(M1)** | $$0.3 + (0.3)(0.7) + (0.3)(0.7)^2 + (0.3)(0.7)^3 + (0.3)(0.7)^4 + (0.3)(0.7)^4$$  |\n|   |  $$= 0.832$$ | **(A1)** | Accept 0.83193 to at least 3sf. If M0 scored, **SC B1** for 0.8319[3].  |\n|  1(c) | $$(0.7)^8 \\times (0.3)^2 \\times {}^9C_1$$ or $$(0.7)^8 \\times (0.3) \\times {}^9C_1 \\times (0.3)$$ | **M1** | $$(0.7)^8 \\times (0.3)^2 \\times k, k$$ a positive integer, 1 may be implied. No addition/subtraction/additional terms.  |\n|   |  $$= 0.0467$$ | **A1** |   |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(a) | **Method 1**  |   |   |\n|   |  $$P(HR) + P(TR) + P(TBR)$$ $$\\frac{1}{3} \\times \\frac{4}{9} + \\frac{2}{3} \\times \\frac{4}{9} + \\frac{2}{3} \\times \\frac{5}{9} \\times \\frac{4}{8}$$ or $$P(HR) + (P(TRR) + P(TRB)) + P(TBR)$$ $$\\frac{1}{3} \\times \\frac{4}{9} + \\left( \\frac{2}{3} \\times \\frac{4}{9} \\times \\frac{3}{8} + \\frac{2}{3} \\times \\frac{4}{9} \\times \\frac{5}{8} \\right) + \\frac{2}{3} \\times \\frac{5}{9} \\times \\frac{4}{8}$$ | **B1** | Two of the calculations for P(HR), P(TBR), either P(TR) or P(TRR) + P(TRB) unsimplified, ignore any identification. Condone $$\\frac{4}{8} = \\frac{1}{2}$$ in the unsimplified calculation. Condone use of tree diagram to show calculation if values correct at end.  |\n|   |   |  **M1** | Values of all correct identified scenarios added. Correct branches may be identified on the tree diagram.  |\n|   |  $$\\left[ = \\frac{4}{27} + \\frac{8}{27} + \\frac{5}{27} \\right] = \\frac{17}{27}$$ | **A1** | 0.6296..., 0.630 If M0 scored **SC B1** for acceptable answers, WWW.  |\n|   |  **Method 2**  |   |   |\n|   |  $$1 - P(HB) - P(TBB) = 1 - \\left( \\frac{1}{3} \\times \\frac{5}{9} + \\frac{2}{3} \\times \\frac{5}{9} \\times \\frac{4}{8} \\right) = \\left[ 1 - \\frac{5}{27} - \\frac{5}{27} \\right]$$ | **(B1)** | One calculation of P(HB), P(TBB), unsimplified, ignore any identification. 1 – probability must be seen. Condone use of tree diagram to show calculation if values correct at end.  |\n|   |   |  **(M1)** | 1 – values of two correct identified scenarios subtracted. Correct branches may be identified on the tree diagram.  |\n|  $$= \\frac{17}{27}$$ | **(A1)** | 0.6296..., 0.630 If M0 scored **SC B1** for acceptable answers, WWW.  |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(a) | **Method 3** |  |   |\n|   |  P(HR) + P(T, (1 – no R)) = $$\\frac{1}{3} \\times \\frac{4}{9} + \\frac{2}{3} \\left( 1 - \\left( \\frac{5}{9} \\times \\frac{4}{8} \\right) \\right) =$$ $$\\left[ \\frac{4}{27} + \\frac{2}{3} \\left( 1 - \\frac{20}{27} \\right) \\right]$$ | **(B1)** | Calculation for P(T, (1 – no R)) seen unsimplified. Condone use of tree diagram to show calculation if values correct at end.  |\n|   |   | **(M1)** | Values of two correct identified scenarios added. Correct branches may be identified on the tree diagram.  |\n|   |  = $$\\frac{17}{27}$$ | **(A1)** | 0.6296..., 0.630 If M0 scored **SC B1** for acceptable answers, WWW.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(b) | **Method 1**  |   |   |\n|   |  $$\\left[ P(\\text{head} \\mid \\text{no reds}) = \\frac{P(\\text{head} \\cap \\text{no reds})}{P(\\text{no reds})} \\right]$$ $$= \\frac{\\frac{1}{3} \\times \\frac{5}{9}}{1 - \\frac{17}{27}} = \\frac{\\frac{5}{27}}{\\frac{10}{27}} =$$ | **M1** | $$\\frac{d}{1 - \\text{their}(\\mathbf{a})}$$ or $$\\frac{d}{1 - \\frac{17}{27}}$$ or $$\\frac{d}{\\frac{10}{27}}, 0 < d < 1.$$ Condone $$\\frac{10}{27} = 0.3704$$ or more accurate.  |\n|   |  $$= \\frac{1}{2}$$ | **A1** | OE Condone $$0.499[9\\dots]$$.  |\n|   |  **Method 2**  |   |   |\n|   |  $$\\left[ P(\\text{head} \\mid \\text{no reds}) = \\frac{P(\\text{head} \\cap \\text{blue})}{P(\\text{HB}) + P(\\text{TBB})} \\right]$$ $$= \\frac{\\frac{1}{3} \\times \\frac{5}{9}}{\\frac{1}{3} \\times \\frac{5}{9} + \\frac{2}{3} \\times \\frac{5}{9} \\times \\frac{4}{8}} = \\frac{\\frac{5}{27}}{\\frac{10}{27}} =$$ | **(M1)** | $$\\frac{d}{\\frac{1}{3} \\times \\frac{5}{9} + \\frac{2}{3} \\times \\frac{5}{9} \\times \\frac{4}{8}}$$ or $$\\frac{d}{\\frac{10}{27}}, 0 < d < 1.$$ Condone $$\\frac{10}{27} = 0.3704$$ or more accurate.  |\n|   |  $$= \\frac{1}{2}$$ | **(A1)** | OE Condone $$0.499[9\\dots]$$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | $$P(X > 184) = P\\left(Z > \\frac{184 - 131}{54}\\right) [= P(Z > 0.9815)]$$ | **M1** | Use of $$\\pm$$ standardisation formula with 184, 131 and 54, no continuity correction. Condone use of $$\\sigma^2$$, $$\\sqrt{\\sigma}$$.  |\n|   |  $$1 - 0.837 [= 0.163]$$ | **M1** | Calculating the appropriate probability area (leading to their final answer).  |\n|   |  Percentage $$[= 0.163 \\times 100] = 16.3$$ | **A1** | AWRT  |\n|   |   | **3** |   |\n|  3(b) | $$[P(X < w) = P(Z < \\frac{w - 131}{54}) = 0.2]$$ $$\\frac{w - 131}{54} = -0.842$$ | **B1** | $$-0.842 \\leqslant z < -0.8415$$ or $$0.8415 < z \\leqslant 0.842$$ seen.  |\n|   |   | **M1** | Use of the $$\\pm$$ standardisation formula with 131, 54, $$w$$ and a $$z$$-value (not 0.2, 0.8, 0.158, 0.508[0], 0.492[0], 0.7881, 0.2119, 0.5593, 0.4407).  |\n|   |  $$w = 85.5$$ | **A1** | $$85.5 \\leqslant p \\leqslant 85.6$$ Signs must be consistent to create a positive answer.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(a) | Median = 32000 | **B1** | Clearly identified, e.g. Q2, med. Accept 32k.  |\n|   |  [UQ = 33500, LQ = 31200] [IQR =] 33500 – 31200 | **M1** | 33300 ≤ UQ ≤ 33700 – 31100 ≤ LQ ≤ 31200 Implied if both quartile values are stated and an appropriate IQR is calculated accurately.  |\n|   |  = 2300 | **A1** | WWW Ignore $ signs. If M0 scored, **SC B1** for 2300 WWW. If key ignored consistently: B0 Median = 320 **SC M1** 325 ≤ UQ ≤ 335 – 311 ≤ LQ ≤ 312 **SC A1** 23.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(b) | Box-and-whisker plot on provided grid | **B1** | All five key values for *R* plotted accurately in standard format using a linear scale with at least three linear values. Labelled *R*. Condone whiskers through box or at corners of boxes or extending $$\\frac{1}{2}$$ square beyond limit. Scale no less than 1 cm = $1000. Daylight rule applied to vertical lines of box.  |\n|   |   | **B1FT** | All five key values for *P*, FT from (a), plotted accurately in standard format using a linear scale with at least three linear values. Labelled *P*. Condone whiskers through box or at corners of boxes or extending $$\\frac{1}{2}$$ square beyond limit. Scale no less than 1 cm = $1000. Daylight rule applied to vertical lines of box.  |\n|   |   | **B1** | Whiskers not through box (condone $$\\frac{1}{2}$$ square in box) for either, not drawn at corners of boxes. single linear scale for the diagram and labelled 'salaries' (OE) and $. If only one plot attempted, **SC B1** for meeting all the requirements above.  |\n|   |   | **3** |   |\n|  4(c) | Median because there is an extreme value ($36 800) | **B1** | Do not accept 'values'. Must identify median and reference either the extreme value (anomaly, outlier, 36 800) or the skew in context (e.g. concentrated in lower values, positive skew).  |\n|   |   | **1** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | [$7 =] [$]5 + [$]2 [Probability =] $$\\frac{1}{5} \\times \\frac{2}{4} \\times 2 = \\frac{1}{5} = 0.2$$ Or [Probability =] $$0.2 \\times 0.5 \\times 2 = 0.2$$ | **B1** | AG Must include [$7], 5, 2 and link the probabilities to the appropriate value $$\\frac{\\left[ {}^1C_1 \\right] \\times {}^2C_1}{{}^5C_2} = 0.2.$$ $$\\frac{1}{5} \\times \\frac{2}{4} + \\frac{2}{5} \\times \\frac{1}{4}$$, not $$\\frac{1}{5} \\times \\frac{2}{4} + \\frac{1}{5} \\times \\frac{2}{4}$$ unless 5 and 2 and 2 and 5 seen in solution. If all possibilities identified (e.g. outcome table), must be clearly labelled and terms fulfilling the condition identified.  |\n|   |  | **1** |   |\n|  5(b) | $$x$$ $$P(X=x)$$ $$2$$ $$3$$ $$4$$ $$6$$ $$7$$ $$0.1$$ $$0.4$$ $$0.1$$ $$0.2$$ $$0.2$$ | **B1** | Table with correct x values and at least one further non-zero probability correct. Condone extra x values if probability stated as 0.  |\n|   |  | **B1** | Two more correct non-zero probabilities linked with correct outcomes. Accept probabilities not in table if clearly identified.  |\n|   |  | **B1** | All five probabilities correct. Accept probabilities not in table if clearly identified. **SC B1** for four further non-zero probabilities adding to 0.8 if B1 max scored.  |\n|   |  | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(c) | $$[E(X) = 0.1 \\times 2 + 0.4 \\times 3 + 0.1 \\times 4 + 0.2 \\times 6 + 0.2 \\times 7]$$ $$0.2 + 1.2 + 0.4 + 1.2 + 1.4 [= 4.4]$$ | **M1** | Accept unsimplified expression. May be calculated in the variance, FT *their* table with **at least 5** probabilities, $$0 < p < 1$$, that sum to 1. FT acceptable at the bold partially evaluated stage.  |\n|   |  $$[\\text{Var}(X) = 0.1 \\times 2^2 + 0.4 \\times 3^2 + 0.1 \\times 4^2 + 0.2 \\times 6^2 + 0.2 \\times 7^2 - 4.4^2$$ $$0.1 \\times 4 + 0.4 \\times 9 + 0.1 \\times 16 + 0.2 \\times 36 + 0.2 \\times 49 - 4.4^2$$ | **M1** | Appropriate variance formula using *their* $$(E(X))^2$$ value. FT *their* table with **at least 4** probabilities, $$0 < p < 1$$, that may not sum to 1. FT acceptable at the bold partially evaluated stage. Note: if table is correct, $$22.6 - (4.4^2 \\text{ or } 19.36)$$ implies this M1.  |\n|   |  $$= 3.24$$ | **A1** | CAO $$\\frac{81}{25}, 3\\frac{6}{25}$$ scores A0. Only dependent upon previous M1 (M0 M1 A1 possible). If M0 M0 scored, **SC B1** for 3.24 WWW.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Mean $$[=110 \\times 0.25] = 27.5$$ Variance $$[=110 \\times 0.25 \\times 0.75] = 20.625, \\frac{165}{8}$$ | **B1** | 27.5 and 20.625 (CAO) seen, allow unsimplified. May be in standardisation formula (4.541475... to at least 4sf or $$\\sqrt{\\frac{165}{8}}$$ or $$\\frac{\\sqrt{330}}{4}$$ implies correct variance). Penalise incorrect identification, condone no identification.  |\n|   |  $$P(X < 22) = P\\left(Z < \\frac{21.5 - 27.5}{\\sqrt{20.625}}\\right)$$ | **M1** | Substituting *their* 27.5 and *their* 20.625 into the $$\\pm$$standardising formula (any number for 21.5), not $$\\sigma^2$$, not $$\\sqrt{\\sigma}$$.  |\n|   |   | **M1** | Using continuity correction 21.5 or 22.5 in *their* standardisation formula.  |\n|   |  $$[P(Z < -1.3212) = 1 - \\Phi(1.3212)]$$ $$1 - 0.9068 =$$ | **M1** | Appropriate probability area, from final process, must be a probability. May be implied by a sketch of the required probability area. Expect final answer $$< 0.5$$.  |\n|   |  0.0932 | **A1** | $$0.0932 \\leq p < 0.09325$$ If either M1 not awarded for standardisation and/or M1 not awarded for finding probability area, **SC B1** $$0.0932 \\leq p < 0.09325$$ WWW.  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 13 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n| Question | Answer | Marks | Guidance |\n| --- | --- | --- | --- |\n| 6(b) | **Method 1** |\n| $$[1 - P(8, 9, 10) = ]$$ $$1 - (^{10}C_8 0.85^8 0.15^2 + ^{10}C_9 0.85^9 0.15^1 + 0.85^{10})$$ $$[ = 1 - (0.275897 + 0.347425 + 0.196874)]$$ | **M1** | One term $$^{10}C_x (p)^x (1-p)^{10-x}$$, $$0 < p < 1$$, $$x \\neq 0$$ or 10. |\n| **A1** | Correct unsimplified expression. Condone omission of last bracket only. |\n| $$= 0.180$$ | **B1** | $$0.1795 < p \\leq 0.180$$ |\n| **Method 2** |\n| $$[P(0, 1, 2, 3, 4, 5, 6, 7) = ]$$ $$0.15^{10} + ^{10}C_1 0.85 \\times 0.15^9 + \\dots + ^{10}C_7 0.85^7 0.15^3$$ | **(M1)** | One term $$^{10}C_x (p)^x (1-p)^{10-x}$$, $$0 < p < 1$$, $$x \\neq 0$$ or 10. |\n| **(A1)** | Correct unsimplified expression. |\n| $$= 0.180$$ | **(B1)** | $$0.1795 < p \\leq 0.180$$ |\n|  | **3** |  |\n| 6(c) | $$0.25 \\times 0.6 \\times 0.15 \\times 6$$ | **M1** | $$0.25 \\times 0.6 \\times 0.15 \\times k$$, $$k$$ an integer $$> 1$$. |\n| $$0.135, \\frac{27}{200}$$ | **A1** |  |\n|  | **2** |  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 14 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | $$\\left[ \\frac{10!}{2!4!} = \\right] 75600$$ | **B1** |   |\n|   |   | **1** |   |\n|  7(b) | $$4! \\times 3!$$ | **M1** | 4! SOI in all terms leading to final answer. Allow 24 if 4! = 24 is seen.  |\n|   |   |  **M1** | Ignoring any values used to justify 4! Either 3! SOI in expression leading to final answer, or at least 6 distinct scenarios identified and added in expression leading to final answer. Condone 3 distinct scenarios × 2. Ignore repeated scenarios.  |\n|   |   |  **A1** | 4! × 3! Fully correct unsimplified expression leading to final answer.  |\n|   |  144 | **B1** | WWW  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 15 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(c) | **Method 1: If denominator is from 7(a), no denominator or incorrect denominator**  |   |   |\n|   |  [Numerator = Number of required arrangements =] $$\\frac{5!}{2!} \\times \\frac{5!}{4!} \\times 2 \\text{ [ = 600]}$$ | **B1** | $$\\frac{5!}{2!}$$ seen (arrangements of consonants).  |\n|   |   |  **B1** | $$\\frac{5!}{4!}$$ seen (arrangements of vowels).  |\n|   |   | **M1** | $$\\frac{5!}{r} \\times \\frac{5!}{s} \\times 2, r = 1 \\text{ or } 2, s = 1, 4, 4! \\text{ or } 24.$$  |\n|   |  [Probability =] $$\\frac{\\text{their } 600}{\\text{their } 75600}$$ | **M1** | $$\\frac{\\text{their } 600}{\\text{their } (\\mathbf{a})} \\text{ or } \\frac{\\text{their } 600}{75600}.$$  |\n|   |  $$= \\frac{1}{126}, 0.00794$$ | **A1** | Accept $$\\frac{600}{75600}$$ OE.  |\n|   |  **Method 2: If denominator 10!**  |   |   |\n|   |  [Numerator = Number of required arrangements =] $$5! \\times 5! \\times 2 \\text{ [ = 28800]}$$ | **(B1)** | 5! seen (arrangements of consonants).  |\n|   |   |  **(B1)** | A second 5! seen (arrangements of vowels).  |\n|   |   | **(M1)** | $$5! \\times 5! \\times k, k = 1 \\text{ or } 2.$$  |\n|   |  [Probability =] $$\\frac{\\text{their } 28800}{10!}$$ | **(M1)** |   |\n|   |  $$= \\frac{1}{126}, 0.00794$$ | **(A1)** | Accept $$\\frac{600}{75600}$$ OE.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 16 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/52\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(c) | **Method 3: Using probabilities**  |   |   |\n|   |  $$\\frac{5}{10} \\times \\frac{5}{9} \\times \\frac{4}{8} \\times \\frac{4}{7} \\times \\frac{3}{6} \\times \\frac{3}{5} \\times \\frac{2}{4} \\times \\frac{2}{3} \\times \\frac{1}{2} \\times \\frac{1}{1} \\times 2$$ | **(B1)** | $$\\frac{5}{a} \\times \\frac{4}{b} \\times \\frac{3}{c} \\times \\frac{2}{d} \\times \\frac{1}{e}$$ seen. $$10 \\geq a > b > c > d > e \\geq 1$$ (arrangements of consonants).  |\n|   |   |  **(B1)** | A second $$\\frac{5}{f} \\times \\frac{4}{g} \\times \\frac{3}{h} \\times \\frac{2}{i} \\times \\frac{1}{j}$$ seen. $$10 \\geq f > g > h > i > j \\geq 1$$ (arrangements of vowels).  |\n|   |   |  **(M1)** | $$\\frac{5}{a} \\times \\frac{4}{b} \\times \\frac{3}{c} \\times \\frac{2}{d} \\times \\frac{1}{e} \\times \\frac{5}{f} \\times \\frac{4}{g} \\times \\frac{3}{h} \\times \\frac{2}{i} \\times \\frac{1}{j} \\times k$$ $$k = 1 \\text{ or } 2.$$  |\n|   |   |  **(M1)** | $$\\text{their } 5 \\times 4 \\times 3 \\times 2 \\times 1 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1$$ $$10 \\times 9 \\times 8 \\times 7 \\times 6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1$$  |\n|   |  $$= \\frac{1}{126}, 0.00794$$ | **(A1)** | Accept $$\\frac{28800}{362800}$$ OE.  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 17 of 17",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "Cambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-0.jpeg](img-0.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nMATHEMATICS\n\n9709/52\n\nPaper 5 Probability & Statistics 1\n\nMay/June 2024\n\n1 hour 15 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 50.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 16 pages. Any blank pages are indicated.\n\nDC (DE/CB) 330105/3\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "2\n\n1 Rajesh applies once every year for a ticket to a music festival. The probability that he is successful in any particular year is 0.3, independently of other years.\n\n(a) Find the probability that Rajesh is successful for the first time on his 7th attempt. [1]\n\n...\n...\n...\n...\n...\n...\n\n(b) Find the probability that Rajesh is successful for the first time before his 6th attempt. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n(c) Find the probability that Rajesh is successful for the second time on his 10th attempt. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "3\n\n2 Seva has a coin which is biased so that when it is thrown the probability of obtaining a head is $\\frac{1}{3}$. He also has a bag containing 4 red marbles and 5 blue marbles.\n\nSeva throws the coin. If he obtains a head, he selects one marble from the bag at random. If he obtains a tail, he selects two marbles from the bag at random and without replacement.\n\n(a) Find the probability that Seva selects at least one red marble. [3]\n\n(b) Find the probability that Seva obtains a head given that he selects no red marbles. [2]\n\n© UCLES 2024\n\n9709/52/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "4\n\n3 The weights of oranges can be modelled by a normal distribution with mean 131 grams and standard deviation 54 grams. Oranges are classified as small, medium or large. A large orange weighs at least 184 grams and 20% of oranges are classified as small.\n\n(a) Find the percentage of oranges that are classified as large.\n\n[3]\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "5\n\n(b) Find the greatest possible weight of a small orange.\n\n[3]\n\n...\n\n© UCLES 2024\n\n9709/52/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "6\n\n4 The back-to-back stem-and-leaf diagram shows the annual salaries of 19 employees at each of two companies, Petral and Ravon.\n\n|  Petral |   |   |   |   |   | Ravon  |   |   |   |   |   |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n|   |  |  | 3 | 0 | 0 | 30 | 2 | 6 |  |  |   |\n|  9 | 9 | 8 | 2 | 2 | 1 | 31 | 1 | 5 |  |  |   |\n|   |  | 5 | 5 | 4 | 0 | 32 | 0 | 0 | 2 |  |   |\n|   |  |  | 7 | 5 | 3 | 33 | 0 | 4 | 8 | 9 |   |\n|   |  |  |  | 1 | 0 | 34 | 1 | 1 | 3 | 4 | 6  |\n|   |  |  |  |  |  | 35 | 3 |  |  |  |   |\n|   |  |  |  |  | 8 | 36 | 7 | 9 |  |  |   |\n\nKey: 2 | 31 | 5 means $31 200 for a Petral employee and $31 500 for a Ravon employee.\n\n(a) Find the median and the interquartile range of the salaries of the Petral employees. [3]\n\n...\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "7\n\nThe median salary of the Ravon employees is $33 800, the lower quartile is $32 000 and the upper quartile is $34 400.\n\n(b) Represent the data shown in the back-to-back stem-and-leaf diagram by a pair of box-and-whisker plots in a single diagram. [3]\n\n![img-2.jpeg](img-2.jpeg)\n\n(c) Comment on whether the mean or the median would be a better representation of the data for the employees at Petral. [1]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/52/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "8\n\n5 Jasmine has one $5 coin, two $2 coins and two $1 coins. She selects two of these coins at random. The random variable $X$ is the total value, in dollars, of these two coins.\n\n(a) Show that $P(X = 7) = 0.2$ . [1]\n\n...\n...\n...\n...\n...\n...\n\n(b) Draw up the probability distribution table for $X$ . [3]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9\n\n(c) Find the value of Var(X).\n\n[3]\n\n...\n\n© UCLES 2024\n\n9709/52/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "10\n\n6 The residents of Mahjing were asked to classify their local bus service:\n\n- 25% of residents classified their service as good.\n- 60% of residents classified their service as satisfactory.\n- 15% of residents classified their service as poor.\n\n(a) A random sample of 110 residents of Mahjing is chosen.\n\nUse a suitable approximation to find the probability that fewer than 22 residents classified their bus service as good. [5]\n\n...\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "11\n\n(b) For a random sample of 10 residents of Mahjing, find the probability that fewer than 8 classified their bus service as good or satisfactory. [3]\n\n(c) Three residents of Mahjing are selected at random.\n\nFind the probability that one resident classified the bus service as good, one as satisfactory and one as poor. [2]\n\n© UCLES 2024\n\n9709/52/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "12\n\n7 (a) How many different arrangements are there of the 10 letters in the word REGENERATE? [1]\n\n...\n...\n...\n...\n...\n...\n\n(b) How many different arrangements are there of the 10 letters in the word REGENERATE in which the 4 Es are together and the 2 Rs have exactly 3 letters in between them? [4]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "13\n\n(c) Find the probability that a randomly chosen arrangement of the 10 letters in the word REGENERATE is one in which the consonants (G, N, R, R, T) and vowels (A, E, E, E, E) alternate, so that no two consonants are next to each other and no two vowels are next to each other. [5]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "14\n\n# Additional page\n\nIf you use the following lined page to complete the answer(s) to any question(s), the question number(s) must be clearly shown.\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "15\n\n# BLANK PAGE\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "16\n\n# BLANK PAGE\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/52/M/J/24",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

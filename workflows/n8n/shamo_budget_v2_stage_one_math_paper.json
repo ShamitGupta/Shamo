@@ -1,0 +1,2383 @@
+{
+  "name": "Shamo Budget v2 - Structured Maths Paper Staging",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Budget v2 structured extraction\nQuestion paper → mark-scheme page map → one request per question → metadata → deterministic validation → optional targeted repair.\n\nEvery paid stage is reserved and finalized in Supabase. Existing budget-v1 ingestion runs are not changed.",
+        "height": 300,
+        "width": 520,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -500
+      ],
+      "id": "6ff4d72d-56d4-3c73-638b-ae9e092ab489",
+      "name": "Child workflow note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        0
+      ],
+      "id": "7e23fbe2-19f5-4865-9662-ebfa43e19be6",
+      "name": "When Called by Batch Controller"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst input = $input.first().json;\nif (!input || !input.config || !input.batch || !input.pair) {\n  throw new Error('Expected config, batch and pair objects from the batch controller.');\n}\nconst config = input.config;\nconst batch = input.batch;\nconst pair = input.pair;\nif (!/^https:\\/\\/[^/]+\\.supabase\\.co$/i.test(config.supabase_url || '')) {\n  throw new Error('Set a valid Supabase project URL in the batch controller.');\n}\nconst permittedModels = new Set(['gpt-5.4-mini', 'gpt-5.4-nano']);\nfor (const field of ['question_model', 'page_map_model', 'mark_scheme_model', 'metadata_model', 'repair_model']) {\n  if (!permittedModels.has(config[field])) {\n    throw new Error('Unsupported guarded model in config.' + field + ': ' + config[field]);\n  }\n}\nconst reservations = config.stage_reservations_usd || {};\nfor (const [stage, amount] of Object.entries(reservations)) {\n  if (!(Number(amount) > 0) || Number(amount) > 0.25) {\n    throw new Error('Each stage reservation must be greater than $0 and no more than $0.25: ' + stage);\n  }\n}\nif (!batch.id || !batch.batch_key) throw new Error('The Supabase batch row is missing.');\nif (!Array.isArray(pair.documents) || pair.documents.length !== 2) {\n  throw new Error('Each paper pair must contain exactly a question paper and mark scheme.');\n}\nconst types = new Set(pair.documents.map((document) => document.document_type));\nif (!types.has('question_paper') || !types.has('mark_scheme')) {\n  throw new Error('The pair must contain one question paper and one mark scheme.');\n}\nfor (const document of pair.documents) {\n  if (!/^https:\\/\\//i.test(document.source_url || '')) {\n    throw new Error('Every document needs an HTTPS source URL.');\n  }\n}\nconst paperType = String(pair.paper_variant || '').charAt(0);\nconst expectedTotalMarks = ['1', '3'].includes(paperType) ? 75 : 50;\nconst sourceKey = [\n  pair.qualification,\n  pair.syllabus_code,\n  pair.year,\n  pair.exam_session,\n  pair.paper_variant,\n].join(':');\nconst idempotencyKey = ['budget-v2', batch.batch_key, sourceKey].join(':');\nreturn [{\n  json: {\n    config,\n    batch,\n    pair,\n    batch_position: input.batch_position,\n    batch_size: input.batch_size,\n    source_key: sourceKey,\n    idempotency_key: idempotencyKey,\n    expected_total_marks: expectedTotalMarks,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        0
+      ],
+      "id": "5193d803-3b21-e94c-52fb-f9cec1ca664e",
+      "name": "Validate Paper Input"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_runs?idempotency_key=eq.' + encodeURIComponent($json.idempotency_key) + '&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "8fae4ce8-1562-7c31-82d5-1b566619a434",
+      "name": "Check Existing Ingestion Run",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst rows = Array.isArray(response) ? response : (response?.id ? [response] : []);\nconst state = $('Validate Paper Input').first().json;\nif (!rows.length) return [{ json: { ...state, skip_existing: false } }];\nconst run = rows[0];\nconst finishedStatuses = [\n  'awaiting_review',\n  'approved',\n  'published',\n  'search_pending',\n  'complete',\n];\nif (finishedStatuses.includes(run.status)) {\n  return [{\n    json: {\n      ...state,\n      skip_existing: true,\n      existing_run: run,\n    },\n  }];\n}\nif (run.status === 'processing') {\n  throw new Error(\n    'This paper already has a processing run. Inspect ingestion run ' + run.id +\n    ' before retrying to avoid duplicate API work.'\n  );\n}\nreturn [{ json: { ...state, skip_existing: false, retry_run: run } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        40,
+        0
+      ],
+      "id": "255c55fa-bac4-cf22-18c1-4f88ba660950",
+      "name": "Inspect Existing Ingestion Run"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5eaa26c4-0a09-fa2c-0a8a-dd6231b6bfc7",
+              "leftValue": "={{ $json.skip_existing }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        280,
+        0
+      ],
+      "id": "e3ac37f9-d2b6-109c-6f3e-c60cea060465",
+      "name": "Already Staged or Published"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nreturn [{\n  json: {\n    success: true,\n    skipped_existing: true,\n    message: 'This paper was already staged or published, so no OCR or OpenAI call was made.',\n    ingestion_run_id: state.existing_run.id,\n    paper_id: state.existing_run.paper_id,\n    batch_id: state.batch.id,\n    batch_position: state.batch_position,\n    batch_size: state.batch_size,\n    config: state.config,\n    actual_cost_usd: 0,\n    ready_for_approval: state.existing_run.validation_report?.passed === true,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        -180
+      ],
+      "id": "e5d1c036-d1ed-f7eb-d2ae-667f52b75fb3",
+      "name": "Existing Paper Result"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nreturn [{\n  json: {\n    ...state,\n    paper_row: {\n      qualification: state.pair.qualification,\n      syllabus_code: state.pair.syllabus_code,\n      subject: state.pair.subject,\n      year: state.pair.year,\n      exam_session: state.pair.exam_session,\n      paper_variant: state.pair.paper_variant,\n      status: 'staging',\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        80
+      ],
+      "id": "97efd626-9f4f-1f89-801e-1aa79a6739f6",
+      "name": "Prepare Paper Upsert"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_papers?on_conflict=qualification,syllabus_code,year,exam_session,paper_variant&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=representation"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.paper_row }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        760,
+        80
+      ],
+      "id": "013bd2bc-025e-6d35-9730-36cd2173244f",
+      "name": "Upsert Paper",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst paper = Array.isArray(response) ? response[0] : response;\nconst state = $('Prepare Paper Upsert').first().json;\nif (!paper?.id) throw new Error('Supabase did not return the paper row.');\nreturn [{\n  json: {\n    ...state,\n    paper_id: paper.id,\n    run_body: {\n      paper_id: paper.id,\n      idempotency_key: state.idempotency_key,\n      mode: 'production',\n      status: 'processing',\n      review_status: 'pending',\n      source_key: state.source_key,\n      ocr_model: state.config.ocr_model,\n      extraction_model: state.config.question_model,\n      verifier_model: null,\n      attempt_count: Number(state.retry_run?.attempt_count || 0) + 1,\n      source_summary: {\n        batch_id: state.batch.id,\n        batch_key: state.batch.batch_key,\n        batch_position: state.batch_position,\n        documents: state.pair.documents,\n      },\n      extraction_summary: {},\n      verifier_report: {},\n      validation_report: {},\n      started_at: new Date().toISOString(),\n      finished_at: null,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        80
+      ],
+      "id": "dc015e6a-8ef3-bbcf-9da8-6d64b6123ede",
+      "name": "Prepare Ingestion Run"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_runs?on_conflict=idempotency_key&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=representation"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.run_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1240,
+        80
+      ],
+      "id": "209f85d5-f1c2-5dcf-2891-170bd613ad45",
+      "name": "Create or Retry Ingestion Run",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst run = Array.isArray(response) ? response[0] : response;\nconst state = $('Prepare Ingestion Run').first().json;\nif (!run?.id) throw new Error('Supabase did not return the ingestion run.');\nreturn state.pair.documents.map((document, index) => ({\n  json: {\n    config: state.config,\n    batch: state.batch,\n    pair: state.pair,\n    batch_position: state.batch_position,\n    batch_size: state.batch_size,\n    paper_id: state.paper_id,\n    ingestion_run_id: run.id,\n    source_key: state.source_key,\n    idempotency_key: state.idempotency_key,\n    expected_total_marks: state.expected_total_marks,\n    document,\n    mistral_request: {\n      model: state.config.ocr_model,\n      document: {\n        type: 'document_url',\n        document_url: document.source_url,\n      },\n      bbox_annotation_format: {\n        type: 'json_schema',\n        json_schema: {\n          name: 'shamo_instructional_asset',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"decorative_or_irrelevant\",\"other_instructional\"]},\"description\":{\"type\":\"string\"},\"required_to_solve\":{\"type\":\"boolean\"},\"likely_question_number\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\"}},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false}},\"required\":[\"asset_type\",\"description\",\"required_to_solve\",\"likely_question_number\",\"part_path\",\"mathematical_details\"],\"additionalProperties\":false},\n        },\n      },\n      include_image_base64: true,\n      confidence_scores_granularity: 'page',\n    },\n  },\n  pairedItem: { item: index },\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        80
+      ],
+      "id": "bd84cc37-3a21-2a27-81ef-90b7e3075478",
+      "name": "Expand Paper Documents"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.mistral_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1720,
+        80
+      ],
+      "id": "34bca2a6-7e12-5ec3-f187-df2c6e628bc2",
+      "name": "Mistral OCR Both Documents",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 10000
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const responses = $input.all();\nconst sources = $('Expand Paper Documents').all();\nif (responses.length !== 2 || sources.length !== 2) {\n  throw new Error('OCR must return exactly two document responses.');\n}\nreturn responses.map((item, index) => {\n  const source = sources[index].json;\n  const ocr = item.json;\n  if (!Array.isArray(ocr.pages) || !ocr.pages.length) {\n    throw new Error('Mistral OCR returned no pages for ' + source.document.document_type + '.');\n  }\n  return {\n    json: {\n      ...source,\n      ocr_model_returned: ocr.model || source.config.ocr_model,\n      ocr_usage: ocr.usage_info || {},\n      pages: ocr.pages,\n    },\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1960,
+        80
+      ],
+      "id": "93ba2c21-2036-8583-0c88-cb8f3c848091",
+      "name": "Attach OCR Results"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const documents = $input.all().map((item) => item.json);\nif (documents.length !== 2) throw new Error('Expected exactly two OCR documents.');\nconst first = documents[0];\nconst pageRows = [];\nconst compactDocuments = [];\nfor (const document of documents) {\n  const compactPages = [];\n  for (const page of document.pages) {\n    const pageNumber = Number(page.index) + 1;\n    pageRows.push({\n      ingestion_run_id: document.ingestion_run_id,\n      document_type: document.document.document_type,\n      page_number: pageNumber,\n      raw_markdown: page.markdown || '',\n      ocr_confidence: page.confidence ?? page.confidence_score ?? null,\n    });\n    compactPages.push({\n      page_number: pageNumber,\n      markdown: page.markdown || '',\n      images: (page.images || []).map((image, imageIndex) => ({\n        source_image_index: imageIndex,\n        id: image.id || null,\n        top_left_x: image.top_left_x ?? null,\n        top_left_y: image.top_left_y ?? null,\n        bottom_right_x: image.bottom_right_x ?? null,\n        bottom_right_y: image.bottom_right_y ?? null,\n        image_annotation: image.image_annotation || null,\n      })),\n    });\n  }\n  compactDocuments.push({\n    document_type: document.document.document_type,\n    source_url: document.document.source_url,\n    page_count: document.pages.length,\n    ocr_model: document.ocr_model_returned,\n    pages: compactPages,\n  });\n}\nreturn [{\n  json: {\n    config: first.config,\n    batch: first.batch,\n    pair: first.pair,\n    batch_position: first.batch_position,\n    batch_size: first.batch_size,\n    paper_id: first.paper_id,\n    ingestion_run_id: first.ingestion_run_id,\n    source_key: first.source_key,\n    idempotency_key: first.idempotency_key,\n    expected_total_marks: first.expected_total_marks,\n    ocr_documents: documents,\n    compact_documents: compactDocuments,\n    known_documents: compactDocuments.map((document) => ({\n      document_type: document.document_type,\n      source_url: document.source_url,\n      source_url_hash: null,\n      page_count: document.page_count,\n      ocr_model: document.ocr_model,\n    })),\n    ocr_page_rows: pageRows,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        80
+      ],
+      "id": "4cfdfa5d-55b8-9b6b-09a5-cb4db407b6d6",
+      "name": "Build OCR State"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Validate Paper Input').first().json.config.supabase_url + '/rest/v1/shamo_ingestion_pages?on_conflict=ingestion_run_id,document_type,page_number' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=minimal"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.ocr_page_rows }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2440,
+        80
+      ],
+      "id": "761f7a8c-7a8f-3ad4-df7e-8aa6473d6f20",
+      "name": "Store Temporary OCR Pages",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst state = $('Build OCR State').first().json;\nconst openaiIdempotencyKey = state.idempotency_key + ':question_paper_extraction';\nreturn [{\n  json: {\n    ...state,\n    openai_idempotency_key: openaiIdempotencyKey,\n    reserve_body: {\n      requested_batch_id: state.batch.id,\n      requested_ingestion_run_id: state.ingestion_run_id,\n      requested_idempotency_key: openaiIdempotencyKey,\n      requested_provider: 'openai',\n      requested_model: state.config.question_model,\n      requested_operation: 'question_paper_extraction',\n      requested_reserved_usd: state.config.stage_reservations_usd.question_paper,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2680,
+        80
+      ],
+      "id": "bf33c5f6-acb2-43af-849d-20938dcf0719",
+      "name": "Prepare Question Paper Reservation"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_reserve_api_budget' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.reserve_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2920,
+        80
+      ],
+      "id": "a96e1025-4611-44d3-a8e0-9979c694704a",
+      "name": "Reserve Question Paper Budget",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst reservationResponse = $input.first().json;\nconst reservation = Array.isArray(reservationResponse) ? reservationResponse[0] : reservationResponse;\nconst state = $('Prepare Question Paper Reservation').first().json;\nif (!reservation?.cost_event_id) throw new Error('Question-paper budget reservation was not returned.');\nconst questionPaper = state.compact_documents.find((document) => document.document_type === 'question_paper');\nif (!questionPaper) throw new Error('Question-paper OCR document is missing.');\nconst prompt = [\n  'Extract only the question paper from this official Cambridge Mathematics paper.',\n  'The paper identity is supplied in the request. Its expected total is ' + state.expected_total_marks + ' marks.',\n  'Use the PDF as the visual source of truth and OCR JSON as a page-indexed aid.',\n  'Return every main question in numerical order and make question totals add exactly to the expected paper total.',\n  'Transcribe every mathematical sign, exponent, radical, limit, coordinate and inequality exactly.',\n  'A main question number is an integer. Never put labels such as (a) in question_number.',\n  'Create a part only when a label such as (a), (b), (i) or (ii) is visibly printed.',\n  'For nested parts use paths such as [\"a\",\"i\"]. Never include the main question number in label_path.',\n  'For an unparted question use parts=[] and put the complete question in stem_markdown.',\n  'Do not duplicate an instruction between stem_markdown and a part prompt.',\n  'When a parent part has child parts, keep its shared prompt but set its marks to null unless a separate mark value is visibly printed for the parent.',\n  'Use 1-based PDF page numbers. Ignore answer lines, barcodes, footers and margin instructions.',\n  'Include only diagrams, graphs and tables needed to understand or solve a question.',\n  'Every asset must match an OCR image using its exact page number and zero-based source_image_index.',\n  'Do not extract mark-scheme content or topic metadata in this call.',\n].join('\\n');\nreturn [{\n  json: {\n    ...state,\n    cost_event_id: reservation.cost_event_id,\n    question_paper_request: {\n      model: state.config.question_model,\n      reasoning: { effort: 'medium' },\n      store: false,\n      max_output_tokens: 22000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: JSON.stringify({\n                paper: {\n                  qualification: state.pair.qualification,\n                  syllabus_code: state.pair.syllabus_code,\n                  subject: state.pair.subject,\n                  year: state.pair.year,\n                  exam_session: state.pair.exam_session,\n                  paper_variant: state.pair.paper_variant,\n                  expected_total_marks: state.expected_total_marks,\n                },\n                question_paper_ocr: questionPaper,\n              }),\n            },\n            { type: 'input_file', file_url: questionPaper.source_url },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_v2_question_paper',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"questions\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"stem_markdown\":{\"type\":\"string\"},\"total_marks\":{\"type\":\"integer\",\"minimum\":0},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"label_path\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"prompt_markdown\":{\"type\":\"string\"},\"marks\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"sort_order\":{\"type\":\"integer\",\"minimum\":0}},\"required\":[\"label_path\",\"prompt_markdown\",\"marks\",\"source_page_numbers\",\"sort_order\"],\"additionalProperties\":false}},\"assets\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"document_type\":{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},\"source_page_number\":{\"type\":\"integer\",\"minimum\":1},\"source_image_index\":{\"type\":\"integer\",\"minimum\":0},\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"other_instructional\"]},\"bounding_box\":{\"anyOf\":[{\"type\":\"object\",\"properties\":{\"top_left_x\":{\"type\":\"number\"},\"top_left_y\":{\"type\":\"number\"},\"bottom_right_x\":{\"type\":\"number\"},\"bottom_right_y\":{\"type\":\"number\"}},\"required\":[\"top_left_x\",\"top_left_y\",\"bottom_right_x\",\"bottom_right_y\"],\"additionalProperties\":false},{\"type\":\"null\"}]},\"description\":{\"type\":\"string\"},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false},\"required_to_solve\":{\"type\":\"boolean\"}},\"required\":[\"part_path\",\"document_type\",\"source_page_number\",\"source_image_index\",\"asset_type\",\"bounding_box\",\"description\",\"mathematical_details\",\"required_to_solve\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"stem_markdown\",\"total_marks\",\"source_page_numbers\",\"parts\",\"assets\"],\"additionalProperties\":false}}},\"required\":[\"questions\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3160,
+        80
+      ],
+      "id": "526afc20-9e40-45ac-b88d-57da2e45a4b4",
+      "name": "Build Question Paper Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Idempotency-Key",
+              "value": "={{ $json.openai_idempotency_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.question_paper_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        3400,
+        80
+      ],
+      "id": "6ce32605-7ae0-4896-bafd-06230e2d3d0e",
+      "name": "OpenAI Question Paper",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 15000,
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst response = $input.first().json;\nconst state = $('Build Question Paper Request').first().json;\nif (response.status === 'incomplete') {\n  throw new Error('Question-paper extraction was incomplete: ' + JSON.stringify(response.incomplete_details || {}));\n}\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nif (!message) throw new Error('Question-paper extraction returned no message output.');\nconst refusal = (message.content || []).find((entry) => entry.type === 'refusal');\nif (refusal) throw new Error('Question-paper extraction refused: ' + (refusal.refusal || 'unknown refusal'));\nconst outputText = (message.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText?.text) throw new Error('Question-paper extraction returned no structured text.');\nconst extracted = JSON.parse(outputText.text);\nif (!Array.isArray(extracted.questions) || !extracted.questions.length) {\n  throw new Error('Question-paper extraction has no questions.');\n}\nconst model = state.config.question_model;\n\nconst usage = response.usage || {};\nconst inputTokens = Number(usage.input_tokens || 0);\nconst cachedInputTokens = Number(usage.input_tokens_details?.cached_tokens || 0);\nconst outputTokens = Number(usage.output_tokens || 0);\nconst prices = state.config.openai_prices_per_million[model];\nif (!prices) throw new Error('No price configuration exists for ' + model + '.');\nconst actualCostUsd =\n  Math.max(0, inputTokens - cachedInputTokens) * Number(prices.input) / 1000000 +\n  cachedInputTokens * Number(prices.cached_input) / 1000000 +\n  outputTokens * Number(prices.output) / 1000000;\nreturn [{\n  json: {\n    ...state,\n    question_paper_questions: extracted.questions,\n    extraction_response_ids: [response.id || null],\n    api_events: [{\n      operation: 'question_paper_extraction',\n      model,\n      input_tokens: inputTokens,\n      cached_input_tokens: cachedInputTokens,\n      output_tokens: outputTokens,\n      actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n    }],\n    finalize_cost_body: {\n      requested_cost_event_id: state.cost_event_id,\n      requested_input_tokens: inputTokens,\n      requested_cached_input_tokens: cachedInputTokens,\n      requested_output_tokens: outputTokens,\n      requested_actual_usd: Number(actualCostUsd.toFixed(8)),\n      requested_provider_request_id: response.id || null,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3640,
+        80
+      ],
+      "id": "9b8e8682-9b06-47c5-a08e-4510db662dcc",
+      "name": "Parse Question Paper"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_finalize_api_cost_event' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.finalize_cost_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        3880,
+        80
+      ],
+      "id": "bd19ec85-7e01-46c1-8ab3-c4e31ea685d0",
+      "name": "Finalize Question Paper Cost",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Parse Question Paper').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4120,
+        80
+      ],
+      "id": "3b14d180-6d68-4b6a-a311-cdc24efc0e30",
+      "name": "Restore Question Paper State"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst state = $('Restore Question Paper State').first().json;\nconst openaiIdempotencyKey = state.idempotency_key + ':mark_scheme_page_map';\nreturn [{\n  json: {\n    ...state,\n    openai_idempotency_key: openaiIdempotencyKey,\n    reserve_body: {\n      requested_batch_id: state.batch.id,\n      requested_ingestion_run_id: state.ingestion_run_id,\n      requested_idempotency_key: openaiIdempotencyKey,\n      requested_provider: 'openai',\n      requested_model: state.config.page_map_model,\n      requested_operation: 'mark_scheme_page_map',\n      requested_reserved_usd: state.config.stage_reservations_usd.page_map,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4360,
+        80
+      ],
+      "id": "2c0cdac1-2463-4d69-bb2f-30515f614aad",
+      "name": "Prepare Page Map Reservation"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_reserve_api_budget' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.reserve_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        4600,
+        80
+      ],
+      "id": "267b15bf-d672-4666-b62f-86e778a92590",
+      "name": "Reserve Page Map Budget",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst reservationResponse = $input.first().json;\nconst reservation = Array.isArray(reservationResponse) ? reservationResponse[0] : reservationResponse;\nconst state = $('Prepare Page Map Reservation').first().json;\nif (!reservation?.cost_event_id) throw new Error('Page-map budget reservation was not returned.');\nconst markScheme = state.compact_documents.find((document) => document.document_type === 'mark_scheme');\nif (!markScheme) throw new Error('Mark-scheme OCR document is missing.');\nconst prompt = [\n  'Map the official Cambridge mark scheme by main question number.',\n  'This is routing only: do not transcribe answers and do not solve anything.',\n  'For every visible main question, return every 1-based PDF page on which its mark-scheme table continues.',\n  'A page can belong to two questions when one ends and the next begins on that page.',\n  'Do not confuse part labels, mark values, page numbers or totals with main question numbers.',\n  'Use the printed paper total when visible. Otherwise return source_total_marks=null.',\n].join('\\n');\nreturn [{\n  json: {\n    ...state,\n    cost_event_id: reservation.cost_event_id,\n    page_map_request: {\n      model: state.config.page_map_model,\n      reasoning: { effort: 'low' },\n      store: false,\n      max_output_tokens: 3000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [{\n            type: 'input_text',\n            text: JSON.stringify({\n              paper_variant: state.pair.paper_variant,\n              expected_question_numbers: state.question_paper_questions.map((question) => question.question_number),\n              mark_scheme_ocr: markScheme,\n            }),\n          }],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_v2_mark_scheme_page_map',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"source_question_count\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"source_total_marks\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"question_pages\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}}},\"required\":[\"question_number\",\"page_numbers\"],\"additionalProperties\":false}}},\"required\":[\"source_question_count\",\"source_total_marks\",\"question_pages\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4840,
+        80
+      ],
+      "id": "5545fa87-47fe-4278-b75b-2272b4846fb9",
+      "name": "Build Page Map Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Idempotency-Key",
+              "value": "={{ $json.openai_idempotency_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.page_map_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        5080,
+        80
+      ],
+      "id": "8363b84c-f29f-4681-bbf2-a3eb18fc1396",
+      "name": "OpenAI Mark Scheme Page Map",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 15000,
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst response = $input.first().json;\nconst state = $('Build Page Map Request').first().json;\nif (response.status === 'incomplete') throw new Error('Page-map extraction was incomplete.');\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nconst outputText = (message?.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText?.text) throw new Error('Page-map extraction returned no structured text.');\nconst extracted = JSON.parse(outputText.text);\nconst pageMap = {};\nfor (const entry of extracted.question_pages || []) {\n  const number = Number(entry.question_number);\n  const pages = [...new Set((entry.page_numbers || []).map(Number))].sort((a, b) => a - b);\n  if (pageMap[number]) throw new Error('Page map contains duplicate question ' + number + '.');\n  pageMap[number] = pages;\n}\nconst model = state.config.page_map_model;\n\nconst usage = response.usage || {};\nconst inputTokens = Number(usage.input_tokens || 0);\nconst cachedInputTokens = Number(usage.input_tokens_details?.cached_tokens || 0);\nconst outputTokens = Number(usage.output_tokens || 0);\nconst prices = state.config.openai_prices_per_million[model];\nif (!prices) throw new Error('No price configuration exists for ' + model + '.');\nconst actualCostUsd =\n  Math.max(0, inputTokens - cachedInputTokens) * Number(prices.input) / 1000000 +\n  cachedInputTokens * Number(prices.cached_input) / 1000000 +\n  outputTokens * Number(prices.output) / 1000000;\nreturn [{\n  json: {\n    ...state,\n    mark_scheme_page_map: pageMap,\n    paper_summary: {\n      question_count_from_source: Number.isInteger(extracted.source_question_count)\n        ? extracted.source_question_count\n        : null,\n      total_marks_from_source: state.expected_total_marks,\n      mark_scheme_total_marks_reported: Number.isInteger(extracted.source_total_marks)\n        ? extracted.source_total_marks\n        : null,\n    },\n    extraction_response_ids: [...(state.extraction_response_ids || []), response.id || null],\n    api_events: [...(state.api_events || []), {\n      operation: 'mark_scheme_page_map',\n      model,\n      input_tokens: inputTokens,\n      cached_input_tokens: cachedInputTokens,\n      output_tokens: outputTokens,\n      actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n    }],\n    finalize_cost_body: {\n      requested_cost_event_id: state.cost_event_id,\n      requested_input_tokens: inputTokens,\n      requested_cached_input_tokens: cachedInputTokens,\n      requested_output_tokens: outputTokens,\n      requested_actual_usd: Number(actualCostUsd.toFixed(8)),\n      requested_provider_request_id: response.id || null,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5320,
+        80
+      ],
+      "id": "553b52c2-bbc2-41f2-8238-51596f153148",
+      "name": "Parse Page Map"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_finalize_api_cost_event' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.finalize_cost_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        5560,
+        80
+      ],
+      "id": "2060fedc-c53e-4f23-8e68-f733be483864",
+      "name": "Finalize Page Map Cost",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Parse Page Map').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5800,
+        80
+      ],
+      "id": "aa71bb42-bd26-4cd1-bd07-dbde502aa6b0",
+      "name": "Restore Page Map State"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst state = $('Restore Page Map State').first().json;\nconst openaiIdempotencyKey = state.idempotency_key + ':mark_scheme_question_extraction';\nreturn [{\n  json: {\n    ...state,\n    openai_idempotency_key: openaiIdempotencyKey,\n    reserve_body: {\n      requested_batch_id: state.batch.id,\n      requested_ingestion_run_id: state.ingestion_run_id,\n      requested_idempotency_key: openaiIdempotencyKey,\n      requested_provider: 'openai',\n      requested_model: state.config.mark_scheme_model,\n      requested_operation: 'mark_scheme_question_extraction',\n      requested_reserved_usd: state.config.stage_reservations_usd.mark_scheme,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6040,
+        80
+      ],
+      "id": "1a1afe5f-01d7-4c66-8071-c3822abf777a",
+      "name": "Prepare Mark Scheme Reservation"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_reserve_api_budget' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.reserve_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        6280,
+        80
+      ],
+      "id": "eefc81aa-606d-4c02-8edb-67f64d938eea",
+      "name": "Reserve Mark Scheme Budget",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst reservationResponse = $input.first().json;\nconst reservation = Array.isArray(reservationResponse) ? reservationResponse[0] : reservationResponse;\nconst state = $('Prepare Mark Scheme Reservation').first().json;\nif (!reservation?.cost_event_id) throw new Error('Mark-scheme budget reservation was not returned.');\nconst markScheme = state.compact_documents.find((document) => document.document_type === 'mark_scheme');\nif (!markScheme) throw new Error('Mark-scheme OCR document is missing.');\nconst pageByNumber = new Map(markScheme.pages.map((page) => [Number(page.page_number), page]));\nconst prompt = [\n  'Extract exactly one main question from an official Cambridge Mathematics mark scheme.',\n  'Use only the supplied pages and the supplied question-paper structure.',\n  'The table columns are Question, Answer, Marks and Guidance.',\n  'Return one item for every visible source row that contains Answer, Marks or Guidance information.',\n  'Do not merge rows with different Marks cells or different Guidance cells.',\n  'content_markdown contains the complete Answer cell. guidance_markdown contains the complete Guidance cell.',\n  'Only the Marks column determines mark_code. Preserve dependency asterisks exactly.',\n  'If Answer is blank but a Marks code exists, put a faithful short description of the marked step in content_markdown; never emit an empty row with a mark code.',\n  'If both Answer and Marks are blank but Guidance is present, use content_markdown=\"\", mark_code=null and preserve all guidance.',\n  'Never include the main question number in part_path. Use only part paths present in question_structure.',\n  'When question_structure.parts is empty, every part_path must be [].',\n  'Preserve alternatives, examiner abbreviations, conditions, signs, factors, brackets and exponents.',\n  'Use 1-based PDF page numbers and sequence rows in visible source order.',\n].join('\\n');\nconst outputs = [];\nfor (const question of state.question_paper_questions) {\n  const questionNumber = Number(question.question_number);\n  const mapped = state.mark_scheme_page_map[String(questionNumber)] || state.mark_scheme_page_map[questionNumber] || [];\n  const requestedPages = mapped.length ? mapped : markScheme.pages.map((page) => Number(page.page_number));\n  const pages = requestedPages.map((pageNumber) => pageByNumber.get(Number(pageNumber))).filter(Boolean);\n  if (!pages.length) throw new Error('No mark-scheme OCR pages are available for question ' + questionNumber + '.');\n  outputs.push({\n    json: {\n      ...state,\n      cost_event_id: reservation.cost_event_id,\n      question_number: questionNumber,\n      expected_pages: requestedPages,\n      used_full_mark_scheme_fallback: mapped.length === 0,\n      mark_scheme_idempotency_key: state.idempotency_key + ':mark-scheme:q' + questionNumber,\n      mark_scheme_request: {\n        model: state.config.mark_scheme_model,\n        reasoning: { effort: 'low' },\n        store: false,\n        max_output_tokens: 6500,\n        input: [\n          { role: 'system', content: prompt },\n          {\n            role: 'user',\n            content: [{\n              type: 'input_text',\n              text: JSON.stringify({\n                paper: {\n                  syllabus_code: state.pair.syllabus_code,\n                  year: state.pair.year,\n                  exam_session: state.pair.exam_session,\n                  paper_variant: state.pair.paper_variant,\n                },\n                question_number: questionNumber,\n                question_structure: {\n                  stem_markdown: question.stem_markdown,\n                  total_marks: question.total_marks,\n                  parts: question.parts,\n                },\n                mark_scheme_ocr_pages: pages,\n              }),\n            }],\n          },\n        ],\n        text: {\n          format: {\n            type: 'json_schema',\n            name: 'shamo_v2_mark_scheme_question',\n            strict: true,\n            schema: {\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"mark_scheme_items\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"sequence_number\":{\"type\":\"integer\",\"minimum\":1},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"mark_code\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}]},\"content_markdown\":{\"type\":\"string\"},\"guidance_markdown\":{\"type\":\"string\"},\"is_final_answer\":{\"type\":\"boolean\"},\"is_alternative_method\":{\"type\":\"boolean\"},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}}},\"required\":[\"sequence_number\",\"part_path\",\"mark_code\",\"content_markdown\",\"guidance_markdown\",\"is_final_answer\",\"is_alternative_method\",\"source_page_numbers\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"mark_scheme_items\"],\"additionalProperties\":false},\n          },\n        },\n      },\n    },\n    pairedItem: { item: 0 },\n  });\n}\nreturn outputs;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6520,
+        80
+      ],
+      "id": "382f75b5-00d2-4d41-a248-966db32da77f",
+      "name": "Build Mark Scheme Requests"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Idempotency-Key",
+              "value": "={{ $json.mark_scheme_idempotency_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.mark_scheme_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000,
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        6760,
+        80
+      ],
+      "id": "92da4d59-f55f-4400-be76-aa841dd3e999",
+      "name": "OpenAI Mark Scheme Questions",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 15000,
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst responses = $input.all();\nconst sources = $('Build Mark Scheme Requests').all();\nconst state = $('Prepare Mark Scheme Reservation').first().json;\nif (responses.length !== sources.length) {\n  throw new Error('Mark-scheme response count does not match request count.');\n}\nconst results = [];\nconst responseIds = [];\nlet inputTokens = 0;\nlet cachedInputTokens = 0;\nlet outputTokens = 0;\nfor (let index = 0; index < responses.length; index++) {\n  const response = responses[index].json;\n  const source = sources[index].json;\n  if (response.status === 'incomplete') {\n    throw new Error('Mark-scheme extraction was incomplete for question ' + source.question_number + '.');\n  }\n  const message = (response.output || []).find((entry) => entry.type === 'message');\n  const outputText = (message?.content || []).find((entry) => entry.type === 'output_text');\n  if (!outputText?.text) {\n    throw new Error('Mark-scheme extraction returned no structured text for question ' + source.question_number + '.');\n  }\n  const extracted = JSON.parse(outputText.text);\n  if (Number(extracted.question_number) !== Number(source.question_number)) {\n    throw new Error('Mark-scheme response returned the wrong question number.');\n  }\n  const items = (extracted.mark_scheme_items || [])\n    .sort((left, right) => Number(left.sequence_number) - Number(right.sequence_number))\n    .map((item, itemIndex) => ({ ...item, sequence_number: itemIndex + 1 }));\n  if (!items.length) throw new Error('Question ' + source.question_number + ' has no mark-scheme items.');\n  results.push({\n    question_number: Number(source.question_number),\n    expected_pages: source.expected_pages,\n    used_full_mark_scheme_fallback: source.used_full_mark_scheme_fallback,\n    mark_scheme_items: items,\n  });\n  const usage = response.usage || {};\n  inputTokens += Number(usage.input_tokens || 0);\n  cachedInputTokens += Number(usage.input_tokens_details?.cached_tokens || 0);\n  outputTokens += Number(usage.output_tokens || 0);\n  responseIds.push(response.id || null);\n}\nconst model = state.config.mark_scheme_model;\nconst prices = state.config.openai_prices_per_million[model];\nconst actualCostUsd =\n  Math.max(0, inputTokens - cachedInputTokens) * Number(prices.input) / 1000000 +\n  cachedInputTokens * Number(prices.cached_input) / 1000000 +\n  outputTokens * Number(prices.output) / 1000000;\nresults.sort((left, right) => left.question_number - right.question_number);\nconst costEventId = sources[0]?.json?.cost_event_id;\nreturn [{\n  json: {\n    ...state,\n    mark_scheme_results: results,\n    extraction_response_ids: [...(state.extraction_response_ids || []), ...responseIds],\n    api_events: [...(state.api_events || []), {\n      operation: 'mark_scheme_question_extraction',\n      model,\n      input_tokens: inputTokens,\n      cached_input_tokens: cachedInputTokens,\n      output_tokens: outputTokens,\n      actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n    }],\n    finalize_cost_body: {\n      requested_cost_event_id: costEventId,\n      requested_input_tokens: inputTokens,\n      requested_cached_input_tokens: cachedInputTokens,\n      requested_output_tokens: outputTokens,\n      requested_actual_usd: Number(actualCostUsd.toFixed(8)),\n      requested_provider_request_id: responseIds.filter(Boolean).join(',').slice(0, 500) || null,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7000,
+        80
+      ],
+      "id": "3ea57a7b-6f00-4577-8a2f-94853c8657f9",
+      "name": "Parse Mark Scheme Responses"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_finalize_api_cost_event' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.finalize_cost_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        7240,
+        80
+      ],
+      "id": "633b3812-e745-4ad4-aabe-d7c5ca7726e5",
+      "name": "Finalize Mark Scheme Cost",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Parse Mark Scheme Responses').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7480,
+        80
+      ],
+      "id": "e7520dab-6f51-4126-9c22-db501de92644",
+      "name": "Restore Mark Scheme State"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst state = $input.first().json;\nconst markSchemeByQuestion = new Map(\n  state.mark_scheme_results.map((result) => [Number(result.question_number), result.mark_scheme_items])\n);\nconst questions = [...state.question_paper_questions]\n  .sort((left, right) => Number(left.question_number) - Number(right.question_number))\n  .map((question) => {\n    const markSchemeItems = markSchemeByQuestion.get(Number(question.question_number));\n    if (!markSchemeItems) {\n      throw new Error('No mark-scheme result exists for question ' + question.question_number + '.');\n    }\n    return { ...question, mark_scheme_items: markSchemeItems };\n  });\nreturn [{\n  json: {\n    ...state,\n    paper_bundle: { documents: state.known_documents, questions },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7720,
+        80
+      ],
+      "id": "d5518d4b-ae40-4407-897d-cb801f91bd48",
+      "name": "Merge Paper Bundle"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst state = $('Merge Paper Bundle').first().json;\nconst openaiIdempotencyKey = state.idempotency_key + ':question_metadata';\nreturn [{\n  json: {\n    ...state,\n    openai_idempotency_key: openaiIdempotencyKey,\n    reserve_body: {\n      requested_batch_id: state.batch.id,\n      requested_ingestion_run_id: state.ingestion_run_id,\n      requested_idempotency_key: openaiIdempotencyKey,\n      requested_provider: 'openai',\n      requested_model: state.config.metadata_model,\n      requested_operation: 'question_metadata',\n      requested_reserved_usd: state.config.stage_reservations_usd.metadata,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7960,
+        80
+      ],
+      "id": "11336f93-41f8-496b-8b9f-1a67ee465a9f",
+      "name": "Prepare Metadata Reservation"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_reserve_api_budget' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.reserve_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        8200,
+        80
+      ],
+      "id": "971d7ca9-c5a8-47a5-a765-022161e2c00f",
+      "name": "Reserve Metadata Budget",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst reservationResponse = $input.first().json;\nconst reservation = Array.isArray(reservationResponse) ? reservationResponse[0] : reservationResponse;\nconst state = $('Prepare Metadata Reservation').first().json;\nif (!reservation?.cost_event_id) throw new Error('Metadata budget reservation was not returned.');\nconst prompt = [\n  'Classify each Cambridge Mathematics question for student search and recommendation.',\n  'Use concise, consistent syllabus terminology.',\n  'main_topic is broad, for example Algebra, Calculus, Trigonometry, Vectors, Statistics or Mechanics.',\n  'skills and methods describe what a student must do, not just words copied from the question.',\n  'Difficulty is 1 for very routine through 5 for unusually demanding, or null when uncertain.',\n  'Use confidence below 0.75 whenever the classification is genuinely uncertain.',\n  'Return exactly one metadata record per supplied question number.',\n].join('\\n');\nconst compactQuestions = state.paper_bundle.questions.map((question) => ({\n  question_number: question.question_number,\n  stem_markdown: question.stem_markdown,\n  parts: question.parts,\n  total_marks: question.total_marks,\n  has_instructional_asset: (question.assets || []).length > 0,\n}));\nreturn [{\n  json: {\n    ...state,\n    cost_event_id: reservation.cost_event_id,\n    metadata_request: {\n      model: state.config.metadata_model,\n      reasoning: { effort: 'low' },\n      store: false,\n      max_output_tokens: 6000,\n      input: [\n        { role: 'system', content: prompt },\n        { role: 'user', content: [{ type: 'input_text', text: JSON.stringify(compactQuestions) }] },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_v2_question_metadata',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"questions\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"main_topic\":{\"type\":\"string\"},\"subtopics\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"skills\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"string\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"question_style\":{\"type\":\"string\",\"enum\":[\"routine_calculation\",\"multi_step_problem\",\"proof_or_show\",\"modelling\",\"interpretation\",\"mixed\"]},\"difficulty_level\":{\"anyOf\":[{\"type\":\"integer\",\"minimum\":1,\"maximum\":5},{\"type\":\"null\"}]},\"calculator_required\":{\"anyOf\":[{\"type\":\"boolean\"},{\"type\":\"null\"}]},\"diagram_required\":{\"type\":\"boolean\"},\"classification_confidence\":{\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"question_number\",\"main_topic\",\"subtopics\",\"skills\",\"methods\",\"question_style\",\"difficulty_level\",\"calculator_required\",\"diagram_required\",\"classification_confidence\"],\"additionalProperties\":false}}},\"required\":[\"questions\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        8440,
+        80
+      ],
+      "id": "b8581361-1e68-4fd7-8eaf-7523880ea50c",
+      "name": "Build Metadata Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Idempotency-Key",
+              "value": "={{ $json.openai_idempotency_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.metadata_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        8680,
+        80
+      ],
+      "id": "182c3df9-1146-4df4-b780-91dd9090ff50",
+      "name": "OpenAI Question Metadata",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 15000,
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst response = $input.first().json;\nconst state = $('Build Metadata Request').first().json;\nif (response.status === 'incomplete') throw new Error('Metadata classification was incomplete.');\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nconst outputText = (message?.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText?.text) throw new Error('Metadata classification returned no structured text.');\nconst extracted = JSON.parse(outputText.text);\nconst metadataByNumber = new Map((extracted.questions || []).map((item) => [Number(item.question_number), item]));\nif (metadataByNumber.size !== state.paper_bundle.questions.length) {\n  throw new Error('Metadata response did not contain exactly one row per question.');\n}\nconst questions = state.paper_bundle.questions.map((question) => {\n  const item = metadataByNumber.get(Number(question.question_number));\n  if (!item) throw new Error('Metadata omitted question ' + question.question_number + '.');\n  const { question_number, ...metadata } = item;\n  return {\n    ...question,\n    metadata: {\n      ...metadata,\n      metadata_model: state.config.metadata_model,\n      taxonomy_version: 'cambridge-maths-v1',\n    },\n  };\n});\nconst model = state.config.metadata_model;\n\nconst usage = response.usage || {};\nconst inputTokens = Number(usage.input_tokens || 0);\nconst cachedInputTokens = Number(usage.input_tokens_details?.cached_tokens || 0);\nconst outputTokens = Number(usage.output_tokens || 0);\nconst prices = state.config.openai_prices_per_million[model];\nif (!prices) throw new Error('No price configuration exists for ' + model + '.');\nconst actualCostUsd =\n  Math.max(0, inputTokens - cachedInputTokens) * Number(prices.input) / 1000000 +\n  cachedInputTokens * Number(prices.cached_input) / 1000000 +\n  outputTokens * Number(prices.output) / 1000000;\nreturn [{\n  json: {\n    ...state,\n    paper_bundle: { ...state.paper_bundle, questions },\n    extraction_response_ids: [...(state.extraction_response_ids || []), response.id || null],\n    api_events: [...(state.api_events || []), {\n      operation: 'question_metadata',\n      model,\n      input_tokens: inputTokens,\n      cached_input_tokens: cachedInputTokens,\n      output_tokens: outputTokens,\n      actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n    }],\n    finalize_cost_body: {\n      requested_cost_event_id: state.cost_event_id,\n      requested_input_tokens: inputTokens,\n      requested_cached_input_tokens: cachedInputTokens,\n      requested_output_tokens: outputTokens,\n      requested_actual_usd: Number(actualCostUsd.toFixed(8)),\n      requested_provider_request_id: response.id || null,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        8920,
+        80
+      ],
+      "id": "d71c03ce-0ab0-46f9-b4ef-4d2ff6c6f3f7",
+      "name": "Parse Metadata"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_finalize_api_cost_event' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.finalize_cost_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        9160,
+        80
+      ],
+      "id": "2ccb41ce-f31d-44ed-9d26-0506d0110222",
+      "name": "Finalize Metadata Cost",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Parse Metadata').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9400,
+        80
+      ],
+      "id": "a4143580-06fd-4cd6-8def-0e21f9c6b0bf",
+      "name": "Restore Metadata State"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst bundle = state.paper_bundle;\nconst issues = [];\nfor (const result of state.mark_scheme_results || []) {\n  if (result.used_full_mark_scheme_fallback) {\n    issues.push({\n      severity: 'warning',\n      issue_code: 'MARK_SCHEME_PAGE_MAP_FALLBACK',\n      document_type: 'mark_scheme',\n      page_number: null,\n      question_number: result.question_number,\n      part_path: [],\n      message: 'The page mapper missed this question, so extraction used the complete mark scheme.',\n    });\n  }\n}\nconst addIssue = (severity, issue_code, message, extra = {}) => issues.push({\n  severity,\n  issue_code,\n  document_type: extra.document_type || null,\n  page_number: extra.page_number || null,\n  question_number: extra.question_number || null,\n  part_path: extra.part_path || [],\n  message,\n});\nconst questions = Array.isArray(bundle?.questions) ? bundle.questions : [];\nif (!questions.length) {\n  addIssue('blocking', 'NO_QUESTIONS_EXTRACTED', 'No questions were extracted.');\n}\nconst numbers = questions.map((question) => Number(question.question_number));\nconst uniqueNumbers = new Set(numbers);\nif (uniqueNumbers.size !== numbers.length) {\n  addIssue('blocking', 'DUPLICATE_QUESTION_NUMBER', 'Duplicate question numbers were extracted.');\n}\nconst maxNumber = numbers.length ? Math.max(...numbers) : 0;\nfor (let number = 1; number <= maxNumber; number++) {\n  if (!uniqueNumbers.has(number)) {\n    addIssue('blocking', 'MISSING_QUESTION_NUMBER', 'Question ' + number + ' is missing.', {\n      question_number: number,\n    });\n  }\n}\nconst statedQuestionCount = state.paper_summary?.question_count_from_source;\nif (Number.isInteger(statedQuestionCount) && statedQuestionCount !== questions.length) {\n  addIssue('blocking', 'QUESTION_COUNT_MISMATCH',\n    'The source indicates ' + statedQuestionCount + ' questions but ' + questions.length + ' were extracted.');\n}\nconst extractedMarks = questions.reduce((sum, question) => sum + Number(question.total_marks || 0), 0);\nconst statedMarks = state.expected_total_marks;\nif (Number.isInteger(statedMarks) && statedMarks !== extractedMarks) {\n  addIssue('blocking', 'PAPER_MARK_TOTAL_MISMATCH',\n    'The source indicates ' + statedMarks + ' marks but extracted question totals add to ' + extractedMarks + '.');\n}\nconst pageCounts = Object.fromEntries(\n  state.known_documents.map((document) => [document.document_type, document.page_count])\n);\nconst imageKeys = new Set();\nconst imageDataKeys = new Set();\nfor (const document of state.ocr_documents) {\n  for (const page of document.pages) {\n    (page.images || []).forEach((image, index) => {\n      const key = [\n        document.document.document_type,\n        Number(page.index) + 1,\n        index,\n      ].join(':');\n      imageKeys.add(key);\n      if (image.image_base64) imageDataKeys.add(key);\n    });\n  }\n}\nconst forbiddenPattern = /(DO NOT WRITE IN THIS MARGIN|0000800000|\\*{1,2}\\d{8,}\\*{1,2})/i;\nfor (const question of questions) {\n  const qn = Number(question.question_number);\n  if (!(question.stem_markdown || '').trim() && !(question.parts || []).length) {\n    addIssue('blocking', 'EMPTY_QUESTION_TEXT', 'Question has no stem or parts.', { question_number: qn });\n  }\n  if (forbiddenPattern.test(question.stem_markdown || '')) {\n    addIssue('blocking', 'OCR_ARTIFACT_IN_QUESTION', 'Question text contains a margin or barcode artifact.', {\n      question_number: qn,\n    });\n  }\n  const questionPages = question.source_page_numbers || [];\n  if (!questionPages.length || questionPages.some(\n    (page) => page < 1 || page > Number(pageCounts.question_paper || 0)\n  )) {\n    addIssue('blocking', 'INVALID_QUESTION_PAGE', 'Question has an invalid source page.', {\n      question_number: qn,\n    });\n  }\n  const partPaths = new Set();\n  let knownPartMarks = 0;\n  let allPartMarksKnown = true;\n  const rawParts = question.parts || [];\n  const isLeafPart = (candidate) => !rawParts.some((other) =>\n    other !== candidate &&\n    (other.label_path || []).length > (candidate.label_path || []).length &&\n    (candidate.label_path || []).every((label, index) => other.label_path[index] === label)\n  );\n  for (const part of question.parts || []) {\n    const path = (part.label_path || []).join('.');\n    if (!path || partPaths.has(path)) {\n      addIssue('blocking', 'DUPLICATE_OR_EMPTY_PART_PATH', 'Question contains an empty or duplicate part path.', {\n        question_number: qn,\n        part_path: part.label_path || [],\n      });\n    }\n    partPaths.add(path);\n    if ((part.label_path || [])[0] === String(qn)) {\n      addIssue('blocking', 'QUESTION_NUMBER_INSIDE_PART_PATH',\n        'A part path incorrectly includes the main question number.', {\n          question_number: qn,\n          part_path: part.label_path || [],\n        });\n    }\n    if (isLeafPart(part)) {\n      if (part.marks === null) allPartMarksKnown = false;\n      else knownPartMarks += Number(part.marks || 0);\n    }\n    if (!(part.prompt_markdown || '').trim()) {\n      addIssue('blocking', 'EMPTY_PART_TEXT', 'A question part has no prompt.', {\n        question_number: qn,\n        part_path: part.label_path || [],\n      });\n    }\n  }\n  if ((question.parts || []).length && allPartMarksKnown\n      && question.total_marks !== null\n      && knownPartMarks !== Number(question.total_marks)) {\n    addIssue('blocking', 'QUESTION_MARK_TOTAL_MISMATCH',\n      'Part marks add to ' + knownPartMarks + ' but the question total is ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n  const markItems = question.mark_scheme_items || [];\n  if (!markItems.length) {\n    addIssue('blocking', 'MISSING_MARK_SCHEME', 'Question has no mark-scheme rows.', {\n      question_number: qn,\n    });\n  }\n  const sequenceNumbers = new Set();\n  let primaryMarkCount = 0;\n  for (const mark of markItems) {\n    if (sequenceNumbers.has(mark.sequence_number)) {\n      addIssue('blocking', 'DUPLICATE_MARK_SCHEME_SEQUENCE',\n        'Duplicate mark-scheme sequence ' + mark.sequence_number + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    sequenceNumbers.add(mark.sequence_number);\n    const partPath = (mark.part_path || []).join('.');\n    if (partPath && !partPaths.has(partPath)) {\n      addIssue('blocking', 'MARK_SCHEME_UNKNOWN_PART',\n        'Mark scheme references missing part ' + partPath + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    const hasAnswer = (mark.content_markdown || '').trim().length > 0;\n    const hasGuidance = (mark.guidance_markdown || '').trim().length > 0;\n    if (!hasAnswer && !hasGuidance) {\n      addIssue('blocking', 'EMPTY_MARK_SCHEME_ROW',\n        'Mark-scheme row has neither answer nor guidance.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (!hasAnswer && mark.mark_code !== null) {\n      addIssue('blocking', 'GUIDANCE_ONLY_ROW_HAS_MARK_CODE',\n        'A guidance-only row must have mark_code=null.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    for (const page of mark.source_page_numbers || []) {\n      if (page < 1 || page > Number(pageCounts.mark_scheme || 0)) {\n        addIssue('blocking', 'INVALID_MARK_SCHEME_PAGE',\n          'Mark-scheme row has an invalid page reference.', {\n            question_number: qn,\n            part_path: mark.part_path || [],\n          });\n      }\n    }\n    if (!mark.is_alternative_method && mark.mark_code) {\n      primaryMarkCount += (\n        String(mark.mark_code).match(/(?:\\*?D?M1|A1|B1|B2|B3)/g) || []\n      ).reduce((count, code) => {\n        const value = Number(code.match(/\\d+/)?.[0] || 1);\n        return count + value;\n      }, 0);\n    }\n  }\n  if (question.total_marks !== null && primaryMarkCount < Number(question.total_marks)) {\n    addIssue('warning', 'MARK_CODE_COVERAGE_TOO_LOW',\n      'Primary mark codes cover ' + primaryMarkCount +\n      ' marks but the question is worth ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n  const metadata = question.metadata || {};\n  if (!(metadata.main_topic || '').trim() || !(metadata.skills || []).length) {\n    addIssue('blocking', 'INCOMPLETE_QUESTION_METADATA',\n      'Question needs a main topic and at least one skill.', { question_number: qn });\n  }\n  if (Number(metadata.classification_confidence || 0) < 0.75) {\n    addIssue('warning', 'LOW_METADATA_CONFIDENCE',\n      'Topic/skill classification confidence is below 0.75 and should be reviewed.', {\n        question_number: qn,\n      });\n  }\n  for (const asset of question.assets || []) {\n    const key = [\n      asset.document_type,\n      asset.source_page_number,\n      asset.source_image_index,\n    ].join(':');\n    if (!imageKeys.has(key)) {\n      addIssue('blocking', 'ASSET_SOURCE_NOT_FOUND', 'Asset does not match an OCR image: ' + key + '.', {\n        document_type: asset.document_type,\n        page_number: asset.source_page_number,\n        question_number: qn,\n        part_path: asset.part_path || [],\n      });\n    } else if (!imageDataKeys.has(key)) {\n      addIssue('blocking', 'ASSET_IMAGE_DATA_MISSING', 'OCR image data is missing: ' + key + '.', {\n        document_type: asset.document_type,\n        page_number: asset.source_page_number,\n        question_number: qn,\n        part_path: asset.part_path || [],\n      });\n    }\n  }\n}\nconst blockingCount = issues.filter((issue) => issue.severity === 'blocking').length;\nconst apiEvents = state.api_events || [];\nconst aggregateUsage = apiEvents.reduce((totals, event) => ({\n  input_tokens: totals.input_tokens + Number(event.input_tokens || 0),\n  cached_input_tokens: totals.cached_input_tokens + Number(event.cached_input_tokens || 0),\n  output_tokens: totals.output_tokens + Number(event.output_tokens || 0),\n  actual_cost_usd: totals.actual_cost_usd + Number(event.actual_cost_usd || 0),\n}), { input_tokens: 0, cached_input_tokens: 0, output_tokens: 0, actual_cost_usd: 0 });\nreturn [{\n  json: {\n    ...state,\n    extraction_response_id: state.extraction_response_ids || [],\n    api_usage: {\n      ...aggregateUsage,\n      actual_cost_usd: Number(aggregateUsage.actual_cost_usd.toFixed(8)),\n      events: apiEvents,\n    },\n    validation_report: {\n      passed: blockingCount === 0,\n      question_count: questions.length,\n      extracted_total_marks: extractedMarks,\n      source_question_count: statedQuestionCount ?? null,\n      source_total_marks: statedMarks ?? null,\n      blocking_issue_count: blockingCount,\n      warning_count: issues.filter((issue) => issue.severity === 'warning').length,\n      issues,\n    },\n    verifier_report: {\n      passed: blockingCount === 0,\n      mode: 'manual_review_gate',\n      independent_paid_verifier_used: false,\n      note: 'Bulk mode uses deterministic checks and requires human review before publication.',\n      issues: [],\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9640,
+        80
+      ],
+      "id": "68ae3e61-902a-408f-ba2c-aa79168636e3",
+      "name": "Deterministic Validation Before Repair"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst blockingIssues = [\n  ...(state.validation_report?.issues || []),\n  ...(state.verifier_report?.issues || []),\n].filter((issue) => issue.severity === 'blocking');\n\nconst initialState = {\n  ...state,\n  initial_validation_report: state.validation_report,\n  initial_verifier_report: state.verifier_report,\n  initial_verifier_response_id: state.verifier_response_id || null,\n};\n\nif (!blockingIssues.length) {\n  return [{\n    json: {\n      ...initialState,\n      repair_needed: false,\n      repair_question_numbers: [],\n      repair_response_id: null,\n    },\n  }];\n}\n\nconst allQuestionNumbers = state.paper_bundle.questions.map(\n  (question) => question.question_number\n);\nconst issueQuestionNumbers = blockingIssues\n  .map((issue) => issue.question_number)\n  .filter((value) => Number.isInteger(value));\nconst repairQuestionNumbers =\n  issueQuestionNumbers.length === blockingIssues.length\n    ? [...new Set(issueQuestionNumbers)].sort((a, b) => a - b)\n    : allQuestionNumbers;\n\nconst qp = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'question_paper'\n);\nconst ms = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'mark_scheme'\n);\nconst affectedQuestions = state.paper_bundle.questions.filter(\n  (question) => repairQuestionNumbers.includes(question.question_number)\n);\n\nconst prompt = [\n  'Repair only the listed questions in an extracted Cambridge past-paper bundle.',\n  'Use both official PDFs as the source of truth and independently confirm every reported issue.',\n  'Return exactly one complete corrected question for every requested question number and no other questions.',\n  'Do not remove correct mark-scheme rows, alternatives, examiner guidance, page references or instructional assets.',\n  'A part exists only if its label is visibly printed. For an unparted question use parts=[] and mark-scheme part_path=[].',\n  'Never repeat an unparted instruction in both stem_markdown and a synthetic part.',\n  'The Marks column alone determines mark_code. Preserve leading dependency asterisks exactly.',\n  'For a source row with blank Answer and Marks but non-empty Guidance, use content_markdown=\"\", mark_code=null and is_final_answer=false.',\n  'Preserve every factor, sign, bracket, exponent, angle symbol and examiner condition.',\n  'Use semantic LaTeX such as \\\\angle OAB for an angle; never use an overbar for a printed angle symbol.',\n  'Correct the data, not the issue report. Do not merely copy suggested wording without checking the PDFs.',\n].join('\\n');\n\nreturn [{\n  json: {\n    ...initialState,\n    repair_needed: true,\n    repair_question_numbers: repairQuestionNumbers,\n    repair_request: {\n      model: state.config.repair_model,\n      reasoning: { effort: 'medium' },\n      store: false,\n      max_output_tokens: 22000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: JSON.stringify({\n                requested_question_numbers: repairQuestionNumbers,\n                blocking_issues: blockingIssues,\n                questions_to_repair: affectedQuestions,\n              }),\n            },\n            { type: 'input_file', file_url: qp.source_url },\n            { type: 'input_file', file_url: ms.source_url },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_v2_targeted_question_repairs',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"corrected_questions\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"stem_markdown\":{\"type\":\"string\"},\"total_marks\":{\"type\":\"integer\",\"minimum\":0},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"label_path\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"prompt_markdown\":{\"type\":\"string\"},\"marks\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"sort_order\":{\"type\":\"integer\",\"minimum\":0}},\"required\":[\"label_path\",\"prompt_markdown\",\"marks\",\"source_page_numbers\",\"sort_order\"],\"additionalProperties\":false}},\"mark_scheme_items\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"sequence_number\":{\"type\":\"integer\",\"minimum\":1},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"mark_code\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}]},\"content_markdown\":{\"type\":\"string\"},\"guidance_markdown\":{\"type\":\"string\"},\"is_final_answer\":{\"type\":\"boolean\"},\"is_alternative_method\":{\"type\":\"boolean\"},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}}},\"required\":[\"sequence_number\",\"part_path\",\"mark_code\",\"content_markdown\",\"guidance_markdown\",\"is_final_answer\",\"is_alternative_method\",\"source_page_numbers\"],\"additionalProperties\":false}},\"assets\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"document_type\":{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},\"source_page_number\":{\"type\":\"integer\",\"minimum\":1},\"source_image_index\":{\"type\":\"integer\",\"minimum\":0},\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"other_instructional\"]},\"bounding_box\":{\"anyOf\":[{\"type\":\"object\",\"properties\":{\"top_left_x\":{\"type\":\"number\"},\"top_left_y\":{\"type\":\"number\"},\"bottom_right_x\":{\"type\":\"number\"},\"bottom_right_y\":{\"type\":\"number\"}},\"required\":[\"top_left_x\",\"top_left_y\",\"bottom_right_x\",\"bottom_right_y\"],\"additionalProperties\":false},{\"type\":\"null\"}]},\"description\":{\"type\":\"string\"},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false},\"required_to_solve\":{\"type\":\"boolean\"}},\"required\":[\"part_path\",\"document_type\",\"source_page_number\",\"source_image_index\",\"asset_type\",\"bounding_box\",\"description\",\"mathematical_details\",\"required_to_solve\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"stem_markdown\",\"total_marks\",\"source_page_numbers\",\"parts\",\"mark_scheme_items\",\"assets\"],\"additionalProperties\":false}}},\"required\":[\"corrected_questions\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9880,
+        80
+      ],
+      "id": "abb08efa-2a67-41b0-89af-5ab875ce94d4",
+      "name": "Build Targeted Repair Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dc12820e-be57-423b-8b7b-0b64cb745cad",
+              "leftValue": "={{ $json.repair_needed }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        10120,
+        80
+      ],
+      "id": "b4fba424-b401-4e38-ab56-8537cb3d2db5",
+      "name": "Repair Needed"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst state = $input.first().json;\nconst openaiIdempotencyKey = state.idempotency_key + ':targeted-repair';\nreturn [{\n  json: {\n    ...state,\n    openai_idempotency_key: openaiIdempotencyKey,\n    reserve_body: {\n      requested_batch_id: state.batch.id,\n      requested_ingestion_run_id: state.ingestion_run_id,\n      requested_idempotency_key: openaiIdempotencyKey,\n      requested_provider: 'openai',\n      requested_model: state.config.repair_model,\n      requested_operation: 'targeted_question_repair',\n      requested_reserved_usd: state.config.stage_reservations_usd.repair,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        10360,
+        -80
+      ],
+      "id": "371af05d-abef-4b17-96aa-48868eeac5fa",
+      "name": "Prepare Repair Reservation"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_reserve_api_budget' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.reserve_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        10600,
+        -80
+      ],
+      "id": "11d256ee-8344-4e7b-b510-0696181484df",
+      "name": "Reserve Repair Budget",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst response = $input.first().json;\nconst reservation = Array.isArray(response) ? response[0] : response;\nconst state = $('Prepare Repair Reservation').first().json;\nif (!reservation?.cost_event_id) throw new Error('Repair budget reservation was not returned.');\nreturn [{ json: { ...state, cost_event_id: reservation.cost_event_id } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        10840,
+        -80
+      ],
+      "id": "454ae8f0-d3bc-4f48-a55b-2387e8199ab4",
+      "name": "Attach Repair Reservation"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Idempotency-Key",
+              "value": "={{ $json.openai_idempotency_key }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.repair_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        11080,
+        -80
+      ],
+      "id": "5b68f167-a720-4a73-993b-e2b598db637c",
+      "name": "OpenAI Targeted Repair",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 15000,
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "\nconst response = $input.first().json;\nconst state = $('Attach Repair Reservation').first().json;\nif (response.status === 'incomplete') throw new Error('OpenAI repair was incomplete.');\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nconst outputText = (message?.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText?.text) throw new Error('OpenAI repair returned no structured text.');\nconst repaired = JSON.parse(outputText.text);\nconst correctedQuestions = repaired.corrected_questions || [];\nconst expectedNumbers = state.repair_question_numbers;\nconst actualNumbers = correctedQuestions.map((question) => Number(question.question_number));\nif (actualNumbers.length !== expectedNumbers.length ||\n    expectedNumbers.some((number) => !actualNumbers.includes(number)) ||\n    new Set(actualNumbers).size !== actualNumbers.length) {\n  throw new Error('Repair did not return exactly the requested questions.');\n}\nconst originalByNumber = new Map(\n  state.paper_bundle.questions.map((question) => [Number(question.question_number), question])\n);\nconst correctedByNumber = new Map(\n  correctedQuestions.map((question) => [Number(question.question_number), question])\n);\nconst mergedQuestions = state.paper_bundle.questions.map((question) => {\n  const corrected = correctedByNumber.get(Number(question.question_number));\n  if (!corrected) return question;\n  const original = originalByNumber.get(Number(question.question_number));\n  return {\n    ...corrected,\n    assets: original.assets || [],\n    metadata: original.metadata,\n  };\n});\nconst model = state.config.repair_model;\n\nconst usage = response.usage || {};\nconst inputTokens = Number(usage.input_tokens || 0);\nconst cachedInputTokens = Number(usage.input_tokens_details?.cached_tokens || 0);\nconst outputTokens = Number(usage.output_tokens || 0);\nconst prices = state.config.openai_prices_per_million[model];\nif (!prices) throw new Error('No price configuration exists for ' + model + '.');\nconst actualCostUsd =\n  Math.max(0, inputTokens - cachedInputTokens) * Number(prices.input) / 1000000 +\n  cachedInputTokens * Number(prices.cached_input) / 1000000 +\n  outputTokens * Number(prices.output) / 1000000;\nreturn [{\n  json: {\n    ...state,\n    paper_bundle: { ...state.paper_bundle, questions: mergedQuestions },\n    repair_applied: true,\n    repair_response_id: response.id || null,\n    extraction_response_ids: [...(state.extraction_response_ids || []), response.id || null],\n    api_events: [...(state.api_events || []), {\n      operation: 'targeted_question_repair',\n      model,\n      input_tokens: inputTokens,\n      cached_input_tokens: cachedInputTokens,\n      output_tokens: outputTokens,\n      actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n    }],\n    finalize_cost_body: {\n      requested_cost_event_id: state.cost_event_id,\n      requested_input_tokens: inputTokens,\n      requested_cached_input_tokens: cachedInputTokens,\n      requested_output_tokens: outputTokens,\n      requested_actual_usd: Number(actualCostUsd.toFixed(8)),\n      requested_provider_request_id: response.id || null,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        11320,
+        -80
+      ],
+      "id": "07aa522d-682a-4008-9f7c-9beb7e00f70b",
+      "name": "Parse Targeted Repair"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_finalize_api_cost_event' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.finalize_cost_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        11560,
+        -80
+      ],
+      "id": "08a7ca5c-465b-4e92-bc8b-5c8f92638379",
+      "name": "Finalize Repair Cost",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Parse Targeted Repair').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        11800,
+        -80
+      ],
+      "id": "672df5a9-489f-4356-a0ec-b2d293a92075",
+      "name": "Restore Repaired State"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst bundle = state.paper_bundle;\nconst issues = [];\nfor (const result of state.mark_scheme_results || []) {\n  if (result.used_full_mark_scheme_fallback) {\n    issues.push({\n      severity: 'warning',\n      issue_code: 'MARK_SCHEME_PAGE_MAP_FALLBACK',\n      document_type: 'mark_scheme',\n      page_number: null,\n      question_number: result.question_number,\n      part_path: [],\n      message: 'The page mapper missed this question, so extraction used the complete mark scheme.',\n    });\n  }\n}\nconst addIssue = (severity, issue_code, message, extra = {}) => issues.push({\n  severity,\n  issue_code,\n  document_type: extra.document_type || null,\n  page_number: extra.page_number || null,\n  question_number: extra.question_number || null,\n  part_path: extra.part_path || [],\n  message,\n});\nconst questions = Array.isArray(bundle?.questions) ? bundle.questions : [];\nif (!questions.length) {\n  addIssue('blocking', 'NO_QUESTIONS_EXTRACTED', 'No questions were extracted.');\n}\nconst numbers = questions.map((question) => Number(question.question_number));\nconst uniqueNumbers = new Set(numbers);\nif (uniqueNumbers.size !== numbers.length) {\n  addIssue('blocking', 'DUPLICATE_QUESTION_NUMBER', 'Duplicate question numbers were extracted.');\n}\nconst maxNumber = numbers.length ? Math.max(...numbers) : 0;\nfor (let number = 1; number <= maxNumber; number++) {\n  if (!uniqueNumbers.has(number)) {\n    addIssue('blocking', 'MISSING_QUESTION_NUMBER', 'Question ' + number + ' is missing.', {\n      question_number: number,\n    });\n  }\n}\nconst statedQuestionCount = state.paper_summary?.question_count_from_source;\nif (Number.isInteger(statedQuestionCount) && statedQuestionCount !== questions.length) {\n  addIssue('blocking', 'QUESTION_COUNT_MISMATCH',\n    'The source indicates ' + statedQuestionCount + ' questions but ' + questions.length + ' were extracted.');\n}\nconst extractedMarks = questions.reduce((sum, question) => sum + Number(question.total_marks || 0), 0);\nconst statedMarks = state.expected_total_marks;\nif (Number.isInteger(statedMarks) && statedMarks !== extractedMarks) {\n  addIssue('blocking', 'PAPER_MARK_TOTAL_MISMATCH',\n    'The source indicates ' + statedMarks + ' marks but extracted question totals add to ' + extractedMarks + '.');\n}\nconst pageCounts = Object.fromEntries(\n  state.known_documents.map((document) => [document.document_type, document.page_count])\n);\nconst imageKeys = new Set();\nconst imageDataKeys = new Set();\nfor (const document of state.ocr_documents) {\n  for (const page of document.pages) {\n    (page.images || []).forEach((image, index) => {\n      const key = [\n        document.document.document_type,\n        Number(page.index) + 1,\n        index,\n      ].join(':');\n      imageKeys.add(key);\n      if (image.image_base64) imageDataKeys.add(key);\n    });\n  }\n}\nconst forbiddenPattern = /(DO NOT WRITE IN THIS MARGIN|0000800000|\\*{1,2}\\d{8,}\\*{1,2})/i;\nfor (const question of questions) {\n  const qn = Number(question.question_number);\n  if (!(question.stem_markdown || '').trim() && !(question.parts || []).length) {\n    addIssue('blocking', 'EMPTY_QUESTION_TEXT', 'Question has no stem or parts.', { question_number: qn });\n  }\n  if (forbiddenPattern.test(question.stem_markdown || '')) {\n    addIssue('blocking', 'OCR_ARTIFACT_IN_QUESTION', 'Question text contains a margin or barcode artifact.', {\n      question_number: qn,\n    });\n  }\n  const questionPages = question.source_page_numbers || [];\n  if (!questionPages.length || questionPages.some(\n    (page) => page < 1 || page > Number(pageCounts.question_paper || 0)\n  )) {\n    addIssue('blocking', 'INVALID_QUESTION_PAGE', 'Question has an invalid source page.', {\n      question_number: qn,\n    });\n  }\n  const partPaths = new Set();\n  let knownPartMarks = 0;\n  let allPartMarksKnown = true;\n  const rawParts = question.parts || [];\n  const isLeafPart = (candidate) => !rawParts.some((other) =>\n    other !== candidate &&\n    (other.label_path || []).length > (candidate.label_path || []).length &&\n    (candidate.label_path || []).every((label, index) => other.label_path[index] === label)\n  );\n  for (const part of question.parts || []) {\n    const path = (part.label_path || []).join('.');\n    if (!path || partPaths.has(path)) {\n      addIssue('blocking', 'DUPLICATE_OR_EMPTY_PART_PATH', 'Question contains an empty or duplicate part path.', {\n        question_number: qn,\n        part_path: part.label_path || [],\n      });\n    }\n    partPaths.add(path);\n    if ((part.label_path || [])[0] === String(qn)) {\n      addIssue('blocking', 'QUESTION_NUMBER_INSIDE_PART_PATH',\n        'A part path incorrectly includes the main question number.', {\n          question_number: qn,\n          part_path: part.label_path || [],\n        });\n    }\n    if (isLeafPart(part)) {\n      if (part.marks === null) allPartMarksKnown = false;\n      else knownPartMarks += Number(part.marks || 0);\n    }\n    if (!(part.prompt_markdown || '').trim()) {\n      addIssue('blocking', 'EMPTY_PART_TEXT', 'A question part has no prompt.', {\n        question_number: qn,\n        part_path: part.label_path || [],\n      });\n    }\n  }\n  if ((question.parts || []).length && allPartMarksKnown\n      && question.total_marks !== null\n      && knownPartMarks !== Number(question.total_marks)) {\n    addIssue('blocking', 'QUESTION_MARK_TOTAL_MISMATCH',\n      'Part marks add to ' + knownPartMarks + ' but the question total is ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n  const markItems = question.mark_scheme_items || [];\n  if (!markItems.length) {\n    addIssue('blocking', 'MISSING_MARK_SCHEME', 'Question has no mark-scheme rows.', {\n      question_number: qn,\n    });\n  }\n  const sequenceNumbers = new Set();\n  let primaryMarkCount = 0;\n  for (const mark of markItems) {\n    if (sequenceNumbers.has(mark.sequence_number)) {\n      addIssue('blocking', 'DUPLICATE_MARK_SCHEME_SEQUENCE',\n        'Duplicate mark-scheme sequence ' + mark.sequence_number + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    sequenceNumbers.add(mark.sequence_number);\n    const partPath = (mark.part_path || []).join('.');\n    if (partPath && !partPaths.has(partPath)) {\n      addIssue('blocking', 'MARK_SCHEME_UNKNOWN_PART',\n        'Mark scheme references missing part ' + partPath + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    const hasAnswer = (mark.content_markdown || '').trim().length > 0;\n    const hasGuidance = (mark.guidance_markdown || '').trim().length > 0;\n    if (!hasAnswer && !hasGuidance) {\n      addIssue('blocking', 'EMPTY_MARK_SCHEME_ROW',\n        'Mark-scheme row has neither answer nor guidance.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (!hasAnswer && mark.mark_code !== null) {\n      addIssue('blocking', 'GUIDANCE_ONLY_ROW_HAS_MARK_CODE',\n        'A guidance-only row must have mark_code=null.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    for (const page of mark.source_page_numbers || []) {\n      if (page < 1 || page > Number(pageCounts.mark_scheme || 0)) {\n        addIssue('blocking', 'INVALID_MARK_SCHEME_PAGE',\n          'Mark-scheme row has an invalid page reference.', {\n            question_number: qn,\n            part_path: mark.part_path || [],\n          });\n      }\n    }\n    if (!mark.is_alternative_method && mark.mark_code) {\n      primaryMarkCount += (\n        String(mark.mark_code).match(/(?:\\*?D?M1|A1|B1|B2|B3)/g) || []\n      ).reduce((count, code) => {\n        const value = Number(code.match(/\\d+/)?.[0] || 1);\n        return count + value;\n      }, 0);\n    }\n  }\n  if (question.total_marks !== null && primaryMarkCount < Number(question.total_marks)) {\n    addIssue('warning', 'MARK_CODE_COVERAGE_TOO_LOW',\n      'Primary mark codes cover ' + primaryMarkCount +\n      ' marks but the question is worth ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n  const metadata = question.metadata || {};\n  if (!(metadata.main_topic || '').trim() || !(metadata.skills || []).length) {\n    addIssue('blocking', 'INCOMPLETE_QUESTION_METADATA',\n      'Question needs a main topic and at least one skill.', { question_number: qn });\n  }\n  if (Number(metadata.classification_confidence || 0) < 0.75) {\n    addIssue('warning', 'LOW_METADATA_CONFIDENCE',\n      'Topic/skill classification confidence is below 0.75 and should be reviewed.', {\n        question_number: qn,\n      });\n  }\n  for (const asset of question.assets || []) {\n    const key = [\n      asset.document_type,\n      asset.source_page_number,\n      asset.source_image_index,\n    ].join(':');\n    if (!imageKeys.has(key)) {\n      addIssue('blocking', 'ASSET_SOURCE_NOT_FOUND', 'Asset does not match an OCR image: ' + key + '.', {\n        document_type: asset.document_type,\n        page_number: asset.source_page_number,\n        question_number: qn,\n        part_path: asset.part_path || [],\n      });\n    } else if (!imageDataKeys.has(key)) {\n      addIssue('blocking', 'ASSET_IMAGE_DATA_MISSING', 'OCR image data is missing: ' + key + '.', {\n        document_type: asset.document_type,\n        page_number: asset.source_page_number,\n        question_number: qn,\n        part_path: asset.part_path || [],\n      });\n    }\n  }\n}\nconst blockingCount = issues.filter((issue) => issue.severity === 'blocking').length;\nconst apiEvents = state.api_events || [];\nconst aggregateUsage = apiEvents.reduce((totals, event) => ({\n  input_tokens: totals.input_tokens + Number(event.input_tokens || 0),\n  cached_input_tokens: totals.cached_input_tokens + Number(event.cached_input_tokens || 0),\n  output_tokens: totals.output_tokens + Number(event.output_tokens || 0),\n  actual_cost_usd: totals.actual_cost_usd + Number(event.actual_cost_usd || 0),\n}), { input_tokens: 0, cached_input_tokens: 0, output_tokens: 0, actual_cost_usd: 0 });\nreturn [{\n  json: {\n    ...state,\n    extraction_response_id: state.extraction_response_ids || [],\n    api_usage: {\n      ...aggregateUsage,\n      actual_cost_usd: Number(aggregateUsage.actual_cost_usd.toFixed(8)),\n      events: apiEvents,\n    },\n    validation_report: {\n      passed: blockingCount === 0,\n      question_count: questions.length,\n      extracted_total_marks: extractedMarks,\n      source_question_count: statedQuestionCount ?? null,\n      source_total_marks: statedMarks ?? null,\n      blocking_issue_count: blockingCount,\n      warning_count: issues.filter((issue) => issue.severity === 'warning').length,\n      issues,\n    },\n    verifier_report: {\n      passed: blockingCount === 0,\n      mode: 'manual_review_gate',\n      independent_paid_verifier_used: false,\n      note: 'Bulk mode uses deterministic checks and requires human review before publication.',\n      issues: [],\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        12040,
+        80
+      ],
+      "id": "5144e351-7021-4afe-9d9d-efc40fadf53e",
+      "name": "Deterministic Validation"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst imageMap = new Map();\nfor (const document of state.ocr_documents) {\n  for (const page of document.pages) {\n    (page.images || []).forEach((image, index) => {\n      imageMap.set([\n        document.document.document_type,\n        Number(page.index) + 1,\n        index,\n      ].join(':'), image);\n    });\n  }\n}\nconst output = [];\nstate.paper_bundle.questions.forEach((question, questionIndex) => {\n  (question.assets || []).forEach((asset, assetIndex) => {\n    const key = [\n      asset.document_type,\n      asset.source_page_number,\n      asset.source_image_index,\n    ].join(':');\n    const image = imageMap.get(key);\n    if (!image?.image_base64) return;\n    const match = String(image.image_base64).match(\n      /^data:(image\\/[A-Za-z0-9.+-]+);base64,(.+)$/s\n    );\n    const mimeType = match ? match[1] : 'image/png';\n    const base64 = match ? match[2] : String(image.image_base64);\n    const extension = mimeType.includes('jpeg')\n      ? 'jpg'\n      : (mimeType.split('/')[1] || 'png').replace('+xml', '');\n    const partSuffix = (asset.part_path || []).length\n      ? '-part-' + asset.part_path.join('-')\n      : '';\n    const storagePath = [\n      state.pair.qualification,\n      state.pair.syllabus_code,\n      state.pair.year,\n      state.pair.exam_session,\n      state.pair.paper_variant,\n      asset.document_type,\n      'q' + question.question_number + partSuffix,\n      'page-' + asset.source_page_number + '-image-' +\n        asset.source_image_index + '.' + extension,\n    ].join('/');\n    output.push({\n      json: {\n        skip_upload: false,\n        question_index: questionIndex,\n        asset_index: assetIndex,\n        storage_path: storagePath,\n        storage_bucket: state.config.storage_bucket,\n        mime_type: mimeType,\n        byte_size: Math.floor(base64.length * 3 / 4),\n        checksum: null,\n      },\n      binary: {\n        data: {\n          data: base64,\n          mimeType,\n          fileName: storagePath.split('/').pop(),\n          fileExtension: extension,\n        },\n      },\n    });\n  });\n});\nif (!output.length) return [{ json: { skip_upload: true } }];\nreturn output;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        12280,
+        80
+      ],
+      "id": "9901e295-ec0a-5a87-8ded-c6aed15066f1",
+      "name": "Prepare Instructional Assets"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6ae34d01-c424-dec4-35a2-682e422f2659",
+              "leftValue": "={{ !$json.skip_upload }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        12520,
+        80
+      ],
+      "id": "73f3a061-981d-377b-baba-ce24b7e895b9",
+      "name": "Has Instructional Assets"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Validate Paper Input').first().json.config.supabase_url + '/storage/v1/object/' + $json.storage_bucket + '/' + $json.storage_path }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-upsert",
+              "value": "true"
+            },
+            {
+              "name": "Content-Type",
+              "value": "={{ $json.mime_type }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        12760,
+        -40
+      ],
+      "id": "0ff40197-4a50-b559-7617-4417934d645b",
+      "name": "Upload Instructional Assets",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const prepared = $('Prepare Instructional Assets').all().filter(\n  (item) => !item.json.skip_upload\n);\nconst responses = $input.all();\nif (responses.length !== prepared.length) {\n  throw new Error('Supabase Storage response count does not match prepared assets.');\n}\nreturn [{\n  json: {\n    uploaded_assets: prepared.map((item, index) => ({\n      ...item.json,\n      upload_response: responses[index].json,\n    })),\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        13000,
+        -40
+      ],
+      "id": "5b122a50-55f6-0040-dbc5-ec38b28d76b5",
+      "name": "Collect Asset Uploads"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: { uploaded_assets: [] } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        12760,
+        200
+      ],
+      "id": "550a81f6-4df6-a691-2755-c7abb23d33a3",
+      "name": "No Instructional Assets"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $('Deterministic Validation').first().json;\nconst branch = $input.first().json;\nconst uploaded = branch.uploaded_assets || [];\nconst bundle = JSON.parse(JSON.stringify(state.paper_bundle));\nconst extractedAssetCount = bundle.questions.reduce(\n  (sum, question) => sum + (question.assets || []).length,\n  0\n);\nfor (const uploadedAsset of uploaded) {\n  const asset = bundle.questions[uploadedAsset.question_index]\n    .assets[uploadedAsset.asset_index];\n  asset.storage_bucket = uploadedAsset.storage_bucket;\n  asset.storage_path = uploadedAsset.storage_path;\n  asset.mime_type = uploadedAsset.mime_type;\n  asset.byte_size = uploadedAsset.byte_size || null;\n  asset.checksum = uploadedAsset.checksum || null;\n}\nfor (const question of bundle.questions) {\n  question.assets = (question.assets || []).filter((asset) => asset.storage_path);\n}\nconst issues = [...(state.validation_report.issues || [])];\nif (uploaded.length !== extractedAssetCount) {\n  issues.push({\n    severity: 'blocking',\n    issue_code: 'ASSET_UPLOAD_COUNT_MISMATCH',\n    document_type: null,\n    page_number: null,\n    question_number: null,\n    part_path: [],\n    message: 'Extracted ' + extractedAssetCount + ' assets but uploaded ' + uploaded.length + '.',\n  });\n}\nconst seen = new Set();\nconst uniqueIssues = issues.filter((issue) => {\n  const key = JSON.stringify([\n    issue.severity,\n    issue.issue_code,\n    issue.document_type,\n    issue.page_number,\n    issue.question_number,\n    issue.part_path,\n    issue.message,\n  ]);\n  if (seen.has(key)) return false;\n  seen.add(key);\n  return true;\n});\nconst issueRows = uniqueIssues.map((issue) => ({\n  ingestion_run_id: state.ingestion_run_id,\n  severity: issue.severity,\n  issue_code: issue.issue_code,\n  document_type: issue.document_type || null,\n  page_number: issue.page_number || null,\n  question_number: issue.question_number || null,\n  part_path: (issue.part_path || []).length ? issue.part_path : null,\n  message: issue.message,\n}));\nconst partCount = bundle.questions.reduce(\n  (sum, question) => sum + (question.parts || []).length,\n  0\n);\nconst assetCount = bundle.questions.reduce(\n  (sum, question) => sum + (question.assets || []).length,\n  0\n);\nconst hasBlocking = uniqueIssues.some((issue) => issue.severity === 'blocking');\nconst readyForApproval = state.validation_report.passed === true && !hasBlocking;\nconst summary = {\n  questions: bundle.questions.length,\n  parts: partCount,\n  assets: assetCount,\n  issues: issueRows.length,\n  blocking_issues: issueRows.filter((issue) => issue.severity === 'blocking').length,\n  openai_cost_usd: state.api_usage.actual_cost_usd,\n};\nreturn [{\n  json: {\n    config: state.config,\n    batch: state.batch,\n    pair: state.pair,\n    batch_position: state.batch_position,\n    batch_size: state.batch_size,\n    paper_id: state.paper_id,\n    ingestion_run_id: state.ingestion_run_id,\n    paper_bundle: bundle,\n    issue_rows: issueRows,\n    ready_for_approval: readyForApproval,\n    summary,\n    api_usage: state.api_usage,\n    update_body: {\n      status: 'awaiting_review',\n      review_status: 'pending',\n      extraction_summary: {\n        paper_bundle: bundle,\n        extraction_response_id: state.extraction_response_id,\n        ready_for_approval: readyForApproval,\n        manual_review_required: true,\n        independent_paid_verifier_used: false,\n        api_usage: state.api_usage,\n        staged_at: new Date().toISOString(),\n        summary,\n      },\n      verifier_report: state.verifier_report,\n      validation_report: {\n        ...state.validation_report,\n        passed: readyForApproval,\n        issues: uniqueIssues,\n      },\n      question_count: bundle.questions.length,\n      question_part_count: partCount,\n      asset_count: assetCount,\n      finished_at: new Date().toISOString(),\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        13240,
+        80
+      ],
+      "id": "572ecaec-e809-57b2-8528-ad2f78ac95d6",
+      "name": "Finalize Review Package"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_runs?id=eq.' + $json.ingestion_run_id + '&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.update_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        13480,
+        80
+      ],
+      "id": "7e2e2f1e-9233-263d-0725-8119865a24e0",
+      "name": "Update Staged Ingestion Run",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Finalize Review Package').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        13720,
+        80
+      ],
+      "id": "3b5500eb-dac3-9480-bcae-a723b83a3f69",
+      "name": "Restore Final Review State"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ebd6b108-928f-f610-3bb6-0cf7eaa9f990",
+              "leftValue": "={{ $json.issue_rows.length > 0 }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        13960,
+        80
+      ],
+      "id": "0393b61f-6af2-9258-5e01-9637efc9e6b8",
+      "name": "Has Validation Issues"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_issues' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "return=minimal"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.issue_rows }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        14200,
+        -40
+      ],
+      "id": "a0c68074-11c1-68e1-7ac7-6694e6d1c3d1",
+      "name": "Store Validation Issues",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $('Restore Final Review State').first().json;\nreturn [{\n  json: {\n    success: true,\n    skipped_existing: false,\n    message: state.ready_for_approval\n      ? 'Paper is staged for manual review.'\n      : 'Paper is staged with issues that must be corrected.',\n    ingestion_run_id: state.ingestion_run_id,\n    paper_id: state.paper_id,\n    batch_id: state.batch.id,\n    batch_key: state.batch.batch_key,\n    batch_position: state.batch_position,\n    batch_size: state.batch_size,\n    config: state.config,\n    ready_for_approval: state.ready_for_approval,\n    summary: state.summary,\n    actual_cost_usd: state.api_usage.actual_cost_usd,\n    next_step: 'Review this run in shamo_ingestion_review_queue. Do not publish automatically.',\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        14440,
+        80
+      ],
+      "id": "87946ffc-10c2-f7ee-f5f6-9101bf271517",
+      "name": "Paper Staging Result"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Called by Batch Controller": {
+      "main": [
+        [
+          {
+            "node": "Validate Paper Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Paper Input": {
+      "main": [
+        [
+          {
+            "node": "Check Existing Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Existing Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Inspect Existing Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inspect Existing Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Already Staged or Published",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Already Staged or Published": {
+      "main": [
+        [
+          {
+            "node": "Existing Paper Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare Paper Upsert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Paper Upsert": {
+      "main": [
+        [
+          {
+            "node": "Upsert Paper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert Paper": {
+      "main": [
+        [
+          {
+            "node": "Prepare Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Create or Retry Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create or Retry Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Expand Paper Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expand Paper Documents": {
+      "main": [
+        [
+          {
+            "node": "Mistral OCR Both Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral OCR Both Documents": {
+      "main": [
+        [
+          {
+            "node": "Attach OCR Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach OCR Results": {
+      "main": [
+        [
+          {
+            "node": "Build OCR State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build OCR State": {
+      "main": [
+        [
+          {
+            "node": "Store Temporary OCR Pages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Temporary OCR Pages": {
+      "main": [
+        [
+          {
+            "node": "Prepare Question Paper Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Question Paper Reservation": {
+      "main": [
+        [
+          {
+            "node": "Reserve Question Paper Budget",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reserve Question Paper Budget": {
+      "main": [
+        [
+          {
+            "node": "Build Question Paper Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Question Paper Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Question Paper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Question Paper": {
+      "main": [
+        [
+          {
+            "node": "Parse Question Paper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Question Paper": {
+      "main": [
+        [
+          {
+            "node": "Finalize Question Paper Cost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Question Paper Cost": {
+      "main": [
+        [
+          {
+            "node": "Restore Question Paper State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Question Paper State": {
+      "main": [
+        [
+          {
+            "node": "Prepare Page Map Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Page Map Reservation": {
+      "main": [
+        [
+          {
+            "node": "Reserve Page Map Budget",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reserve Page Map Budget": {
+      "main": [
+        [
+          {
+            "node": "Build Page Map Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Page Map Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Mark Scheme Page Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Mark Scheme Page Map": {
+      "main": [
+        [
+          {
+            "node": "Parse Page Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Page Map": {
+      "main": [
+        [
+          {
+            "node": "Finalize Page Map Cost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Page Map Cost": {
+      "main": [
+        [
+          {
+            "node": "Restore Page Map State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Page Map State": {
+      "main": [
+        [
+          {
+            "node": "Prepare Mark Scheme Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Mark Scheme Reservation": {
+      "main": [
+        [
+          {
+            "node": "Reserve Mark Scheme Budget",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reserve Mark Scheme Budget": {
+      "main": [
+        [
+          {
+            "node": "Build Mark Scheme Requests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Mark Scheme Requests": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Mark Scheme Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Mark Scheme Questions": {
+      "main": [
+        [
+          {
+            "node": "Parse Mark Scheme Responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Mark Scheme Responses": {
+      "main": [
+        [
+          {
+            "node": "Finalize Mark Scheme Cost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Mark Scheme Cost": {
+      "main": [
+        [
+          {
+            "node": "Restore Mark Scheme State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Mark Scheme State": {
+      "main": [
+        [
+          {
+            "node": "Merge Paper Bundle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Paper Bundle": {
+      "main": [
+        [
+          {
+            "node": "Prepare Metadata Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Metadata Reservation": {
+      "main": [
+        [
+          {
+            "node": "Reserve Metadata Budget",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reserve Metadata Budget": {
+      "main": [
+        [
+          {
+            "node": "Build Metadata Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Metadata Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Question Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Question Metadata": {
+      "main": [
+        [
+          {
+            "node": "Parse Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Metadata": {
+      "main": [
+        [
+          {
+            "node": "Finalize Metadata Cost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Metadata Cost": {
+      "main": [
+        [
+          {
+            "node": "Restore Metadata State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Metadata State": {
+      "main": [
+        [
+          {
+            "node": "Deterministic Validation Before Repair",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deterministic Validation Before Repair": {
+      "main": [
+        [
+          {
+            "node": "Build Targeted Repair Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Targeted Repair Request": {
+      "main": [
+        [
+          {
+            "node": "Repair Needed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Repair Needed": {
+      "main": [
+        [
+          {
+            "node": "Prepare Repair Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Deterministic Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Repair Reservation": {
+      "main": [
+        [
+          {
+            "node": "Reserve Repair Budget",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reserve Repair Budget": {
+      "main": [
+        [
+          {
+            "node": "Attach Repair Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach Repair Reservation": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Targeted Repair",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Targeted Repair": {
+      "main": [
+        [
+          {
+            "node": "Parse Targeted Repair",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Targeted Repair": {
+      "main": [
+        [
+          {
+            "node": "Finalize Repair Cost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Repair Cost": {
+      "main": [
+        [
+          {
+            "node": "Restore Repaired State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Repaired State": {
+      "main": [
+        [
+          {
+            "node": "Deterministic Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deterministic Validation": {
+      "main": [
+        [
+          {
+            "node": "Prepare Instructional Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Instructional Assets": {
+      "main": [
+        [
+          {
+            "node": "Has Instructional Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Instructional Assets": {
+      "main": [
+        [
+          {
+            "node": "Upload Instructional Assets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Instructional Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Instructional Assets": {
+      "main": [
+        [
+          {
+            "node": "Collect Asset Uploads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Asset Uploads": {
+      "main": [
+        [
+          {
+            "node": "Finalize Review Package",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Instructional Assets": {
+      "main": [
+        [
+          {
+            "node": "Finalize Review Package",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Review Package": {
+      "main": [
+        [
+          {
+            "node": "Update Staged Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Staged Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Restore Final Review State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Final Review State": {
+      "main": [
+        [
+          {
+            "node": "Has Validation Issues",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Validation Issues": {
+      "main": [
+        [
+          {
+            "node": "Store Validation Issues",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Paper Staging Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Validation Issues": {
+      "main": [
+        [
+          {
+            "node": "Paper Staging Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
+  },
+  "versionId": "4c5f97ea-8944-cc8a-cc9b-afa4ccfacecf",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

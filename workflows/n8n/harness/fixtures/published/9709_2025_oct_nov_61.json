@@ -1,0 +1,1009 @@
+{
+  "paper_key": "9709_2025_oct_nov_61",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2025,
+    "exam_session": "oct_nov",
+    "paper_variant": "61",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "1121a744-16aa-49ea-a689-939d29a83b06",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_qp_61.pdf",
+      "page_count": 12,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_ms_61.pdf",
+      "page_count": 15,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "The random variables \\(X\\) and \\(Y\\) have independent distributions \\(X \\sim \\mathrm{Po}(3)\\) and \\(Y \\sim \\mathrm{Po}(2)\\) respectively.",
+      "total_marks": 9,
+      "source_page_numbers": [
+        2,
+        3
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find \\(\\mathrm{P}(2 < X < 5)\\).",
+          "marks": 2,
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find \\(\\mathrm{P}(X + Y > 2)\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "The total of 100 random values of \\(X\\) and 150 random values of \\(Y\\) is denoted by \\(T\\). Use a suitable approximating distribution to find \\(\\mathrm{P}(T < 560)\\).",
+          "marks": 4,
+          "source_page_numbers": [
+            3
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$e^{-3}(\\frac{3^3}{3!} + \\frac{3^4}{4!}) = e^{-3}(4.5 + 3.375) = 0.22404 + 0.16803$$",
+          "guidance_markdown": "Allow one end error. Allow incorrect $$\\lambda$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$= 0.392\\ (3\\ \\text{sf})$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "$$\\lambda = 5$$",
+          "guidance_markdown": "SOI. Need to be stating or using Poisson.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "$$1 - e^{-5}(1 + 5 + \\frac{5^2}{2!}) = 1 - e^{-5}(1+5+12.5)$$ $$= 1 - (0.0067379 + 0.0336897 + 0.0842243)$$",
+          "guidance_markdown": "Allow one end error and any $$\\lambda$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "$$= 0.875\\ (3\\ \\text{sf})$$",
+          "guidance_markdown": "Alternative combinations method. **B1** for one correct product, **M1** for correct structure (incl $$1 - \\dots$$) and probs of full set of totals = 1 or probs of full set of totals = 2. **A1** for 0.875.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "$$T \\sim N(600, 600)$$",
+          "guidance_markdown": "SOI.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "$$\\frac{559.5-600}{\\sqrt{600}}\\ [= -1.653]$$",
+          "guidance_markdown": "For standardising. Must have sqrt. Allow with no or incorrect continuity correction.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "$$\\Phi(\\text{‘}-1.653\\text{’}) = 1 - \\Phi(\\text{‘}1.653\\text{’})$$",
+          "guidance_markdown": "For correct area consistent with their working.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "$$= 0.0492\\ (3\\ \\text{sf})\\ \\text{or}\\ 0.0491$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "The Poisson Distribution",
+        "subtopics": [
+          "Poisson probabilities",
+          "Sum of independent Poisson variables",
+          "Normal approximation to Poisson for a total of many variables"
+        ],
+        "skills": [
+          "Use the Poisson probability mass function to compute interval/event probabilities.",
+          "Use independence to model X+Y as a Poisson random variable and compute tail probabilities.",
+          "Approximate a Poisson (from a large-sample sum) using a normal distribution with appropriate mean and variance, then compute P(T<k)."
+        ],
+        "methods": [
+          "Poisson pmf calculations",
+          "Poisson closure under addition",
+          "Normal approximation (with continuity correction if required by the scheme)"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "The mean mass of packets of Trueleaf tea is supposed to be 500 grams. An inspector wishes to test whether this value is correct. He weighs 60 randomly chosen packets and notes the mass, \\(x\\) grams, of each packet. The results are summarised as follows.\n\n\\[\nn = 60 \\qquad \\sum x = 29970 \\qquad \\sum x^2 = 14970300\n\\]\n\nTest, at the 5% significance level, whether the population mean mass is 500 grams. [8]",
+      "total_marks": 8,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "est (μ) = 499.5 or 29970/60",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "est (σ²) = $$\\frac{60}{59} (\\frac{14970300}{60} - '499.5'^2)$$ or 1/59(14970300 - (29970)²/60 )",
+          "guidance_markdown": "Biased var = 4.75 **M0**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "= 4.83 or 285/59",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "H₀: Pop mean (or μ) = 500 H₁: Pop mean (or μ) ≠ 500",
+          "guidance_markdown": "Both. Not just 'mean'.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "$$\\frac{499.5'-500}{\\sqrt[3]{4.83'}}$$",
+          "guidance_markdown": "For standardising with their values. Must have ÷√60 . Ignore cc s.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "= -1.762",
+          "guidance_markdown": "Allow -1.778 (from biased variance) accept 3 sf if nothing better.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "'1.762' < 1.96 or -'1.762' > -1.96 0.0390 > 0.025",
+          "guidance_markdown": "For valid comparison. Allow 1.778 < 1.96 0.0377 > 0.025.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1 FT",
+          "content_markdown": "There is insufficient evidence that [mean ] mass is not 500g",
+          "guidance_markdown": "In context. Not definite. No contradictions. **FT** from incorrect z. μ only accepted if defined. Accept CV method 499.5 > 499.44. Using biased var or using incorrect hypothesis can score a maximum of 6/8.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Hypothesis Tests",
+        "subtopics": [
+          "One-sample tests for a population mean",
+          "Test statistic using sample mean and variance",
+          "Significance level and decision rule"
+        ],
+        "skills": [
+          "Formulate null and alternative hypotheses for the population mean.",
+          "Compute the test statistic from summary statistics.",
+          "Compare the test statistic to the 5% critical value (or compute the p-value) and conclude whether to reject H0."
+        ],
+        "methods": [
+          "Normal/t-based one-sample mean test",
+          "Critical value or p-value approach at a specified significance level"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.85,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "The data produced by a certain data entry firm always include a small number of incorrect characters that occur at random. The proportion of incorrect characters is denoted by \\(p\\), and experience has shown that \\(p = 0.0001\\). A particular data set from the firm contains 14500 characters, of which \\(X\\) characters are incorrect.\n\nThe firm's management wishes to decrease the value of \\(p\\) by giving their employees some training. Their aim is that, for a data set containing 14500 characters, the value of \\(\\mathrm{P}(X = 0)\\) for the new value of \\(p\\) should be double the value of \\(\\mathrm{P}(X = 0)\\) when \\(p = 0.0001\\).",
+      "total_marks": 6,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Use a suitable approximating distribution to find \\(\\mathrm{P}(X < 4)\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Use a suitable approximating distribution to find the new value of \\(p\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "$$\\lambda = 1.45$$",
+          "guidance_markdown": "Need indication of Poisson.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "$$e^{-1.45}(1 + 1.45 + \\frac{1.45^2}{2!} + \\frac{1.45^3}{3!}) = e^{-1.45}(1+1.45+1.05125+0.5081041)$$",
+          "guidance_markdown": "Allow one term extra or omitted or incorrect. Allow incorrect lambda.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$= 0.94[0]$$ or $$0.941$$",
+          "guidance_markdown": "SC use of Binomial(14500, 0.0001) to find prob (< 4) = 0.940485 = 0.940 scores **B2**. Unjustified 0.94[0] or 0.941scores **B1B1**.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1 FT",
+          "content_markdown": "$$e^{-14500p}$$ seen or $$2e^{-1.45} [= 0.46914]$$ seen",
+          "guidance_markdown": "**FT** their $$\\lambda$$ from **3(a)**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "$$e^{-14500p} = 2e^{-1.45} [\\Rightarrow -14500p = \\ln 2 + (-1.45)]$$",
+          "guidance_markdown": "Forming an equation in p and attempting to solve. **FT** their $$e^{-14500p}$$. Factor of 2 on the wrong side of the equation can still score **M1**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$$p = 0.0000522$$ (3 sf)",
+          "guidance_markdown": "OE. Use of binomial reaching 0.0000522 scores **SCB2**.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "The Poisson Distribution",
+        "subtopics": [
+          "Binomial to Poisson approximation",
+          "Poisson probabilities at x=0 and small counts",
+          "Scaling parameter to achieve a probability ratio"
+        ],
+        "skills": [
+          "Model the number of incorrect characters as a Poisson random variable using an appropriate approximation.",
+          "Compute an approximate probability P(X<4).",
+          "Use the Poisson form P(X=0)=e^{-λ} and the requirement that the new value of P(X=0) is double the old value to solve for the new λ and hence new p."
+        ],
+        "methods": [
+          "Poisson approximation to Bin(n,p) for small p and large n",
+          "Poisson probability with x=0 using e^{-λ}",
+          "Algebra to solve for the new parameter"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "The masses of a certain species of animal are known to be normally distributed with standard deviation \\(\\sigma\\) kg. A researcher obtains the masses of a random sample of \\(n\\) animals of this species and uses these masses to find two confidence intervals (\\(\\alpha\\%\\) and 90%) for the population mean. The width of the \\(\\alpha\\%\\) confidence interval is \\(1.414 \\times\\) the width of the 90% confidence interval.",
+      "total_marks": 4,
+      "source_page_numbers": [
+        6
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find \\(\\alpha\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the probability that the 90% confidence interval contains the population mean given that the \\(\\alpha\\%\\) confidence interval contains the population mean.",
+          "marks": 1,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$[2 \\times] z \\times \\frac{\\sigma}{\\sqrt{n}} = 1.414 \\times [2 \\times] 1.645 \\times \\frac{\\sigma}{\\sqrt{n}} \\quad [z = 2.326]$$",
+          "guidance_markdown": "Form an equation in $$z$$ (accept $$z = 1.414 \\times 1.645$$ OE). Factor of 1.414 on the wrong side of the equation can still score **M1**. Condone 1.282 instead of 1.645 for **M1**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "$$2\\Phi('2.326') - 1$$",
+          "guidance_markdown": "OE.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$a = 98$$ (3 sf)",
+          "guidance_markdown": "Allow 98%.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1 FT",
+          "content_markdown": "$$\\frac{90}{98'} = \\frac{45}{49}$$ or 0.918 (3 sf)",
+          "guidance_markdown": "**FT** their $$a$$. no ft if alpha $$< 90$$ in **4(a)**.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Sampling and Estimation",
+        "subtopics": [
+          "Confidence intervals for a normal mean",
+          "Relationship between confidence level and interval width",
+          "Coverage probability for overlapping confidence intervals"
+        ],
+        "skills": [
+          "Use the fact that interval width is proportional to the z-multiplier to relate two confidence levels.",
+          "Translate the width ratio into a relationship between the corresponding critical values.",
+          "Use the z-interval coverage property to find the probability the 90% interval contains the mean given the α% interval contains it."
+        ],
+        "methods": [
+          "Normal confidence interval quantiles (z-scores)",
+          "Proportionality of widths to critical values",
+          "Conditional probability using symmetry/coverage properties"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.74,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "It is known that 20% of households in a certain country contain more than 4 people. Laxmi believes that, in her town, the percentage is lower than 20%. She chooses a random sample of 40 households in her town and notes the number which contain more than 4 people. She then carries out a test at the 2.5% significance level using a binomial distribution.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        7
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the probability of a Type I error.",
+          "marks": 4,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "State the rejection region for the test.",
+          "marks": 1,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Laxmi finds that exactly 2 households in her sample contain more than 4 people. Explain why it is impossible for Laxmi to make a Type II error.",
+          "marks": 1,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$P(X \\leq 2) = 0.8^{40} + 40 \\times 0.8^{39} \\times 0.2 + ^{40}C_2 \\times 0.8^{38} \\times 0.2^2$$ $$= 0.0001329 + 0.0013292 + 0.0064799$$",
+          "guidance_markdown": "Attempt $$P(X \\leq 2)$$ or $$P(X \\leq 3)$$ using B(40, 0.2). Need to see expressions.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$= 0.00794$$ ($$< 0.025$$)",
+          "guidance_markdown": "**SC** unjustified $$X \\leq 2 = 0.00794$$ scores **M0B1**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1 FT",
+          "content_markdown": "$$P(X \\leq 3) = [0.00794 + ^{40}C_3 \\times 0.8^{37} \\times 0.2^3]$$ $$= 0.0079421 + 0.0205199 = 0.0285 > 0.025$$",
+          "guidance_markdown": "Correct term $$P(X = 3)$$ added to $$P(X \\leq 2)$$ and one relevant comparison seen. Need to see expressions.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "$$P(\\text{Type I}) = 0.00794$$ (3 sf) with both relevant comparisons seen",
+          "guidance_markdown": "Unjustified final answer 0.00794 scores **SCB1B1**.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Rejection region is $$X \\leq 2$$",
+          "guidance_markdown": "OE.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "H_{0} will be rejected Or result lies in the rejection region",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Hypothesis Tests",
+        "subtopics": [
+          "Binomial hypothesis testing",
+          "Type I and Type II errors",
+          "Rejection region construction for a given significance level"
+        ],
+        "skills": [
+          "Treat the number of households with more than 4 people as a Binomial(n,p) variable under H0.",
+          "Compute the probability of a Type I error as the probability of rejecting H0 when p equals 0.2.",
+          "Identify the rejection region based on the 2.5% significance level.",
+          "Use the sample outcome (exactly 2 successes) to explain why a Type II error cannot occur for that test outcome."
+        ],
+        "methods": [
+          "Binomial distribution probability calculations",
+          "Critical region determination at given α",
+          "Error-type reasoning (impossibility based on the rejection rule)"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.86,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "The masses, in kilograms, of large and small bags of potatoes have the independent distributions \\(N(2.5, 0.05)\\) and \\(N(0.8, 0.02)\\) respectively.",
+      "total_marks": 10,
+      "source_page_numbers": [
+        8,
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the probability that the total mass of a randomly chosen large bag of potatoes and a randomly chosen small bag of potatoes is more than 3.55 kg.",
+          "marks": 5,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the probability that the mass of a randomly chosen large bag of potatoes is less than 3 times the mass of a randomly chosen small bag of potatoes.",
+          "marks": 5,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "\\(N(3.3, \\dots)\\)",
+          "guidance_markdown": "SOI for \\(N(3.3, \\dots)\\) give at early stage OE.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "\\(0.07\\)",
+          "guidance_markdown": "SOI for \\(0.07\\) give at early stage OE.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "\\(\\dfrac{3.55-3.3}{\\sqrt{0.07}}\\) \\([= 0.945]\\)",
+          "guidance_markdown": "For standardising with their values.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "\\(1-\\phi(0.945)\\)",
+          "guidance_markdown": "For area consistent with their values.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "\\(=0.172\\) (3 sf)",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "\\(E(D)=2.5-3\\times0.8=0.1\\)",
+          "guidance_markdown": "Give at early stage. OE.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "\\(\\mathrm{Var}(D)=0.05+3^2\\times0.02=0.23\\)",
+          "guidance_markdown": "Give at early stage.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "\\(\\dfrac{0-0.1}{\\sqrt{0.23}}\\) \\([= -0.2085\\text{ or }0.209\\text{ or }0.208]\\)",
+          "guidance_markdown": "For standardising with their values. Must have used the vars for denom.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "M1",
+          "content_markdown": "\\(\\phi(-0.2085)=1-\\phi(0.2085)\\)",
+          "guidance_markdown": "For area consistent with their values.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "\\(=0.417\\) (3 sf) or \\(0.418\\)",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Linear Combinations of Random Variables",
+        "subtopics": [
+          "Sum of independent normal random variables",
+          "Linear transformation of normal variables",
+          "Probability statements for normal sums/ratios"
+        ],
+        "skills": [
+          "Use independence and normality to find the distribution of the sum of two independent normal variables.",
+          "Compute P(S>c) for a normal random variable S.",
+          "Model the event involving a ratio/comparison of independent normals as a linear inequality in a derived normal variable.",
+          "Compute the required probability using the normal distribution."
+        ],
+        "methods": [
+          "Normal distribution algebra for sums",
+          "Difference/linear combination reduction",
+          "Standard normal (z-score) probability calculation"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.82,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "The time, in minutes, taken by students to complete a test is modelled by the random variable \\(X\\) with probability density function\n\n\\[\nf(x) = \\begin{cases}\n-\\frac{3}{4}(x-3)(x-5) & 3 \\leqslant x \\leqslant 5, \\\\\n0 & \\text{otherwise.}\n\\end{cases}\n\\]",
+      "total_marks": 7,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the probability that a randomly chosen student takes longer than 4.5 minutes to complete the test.",
+          "marks": 4,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Write down the median of \\(X\\).",
+          "marks": 1,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Without performing an integration, use your answer to part (a) to find \\(\\mathrm{P}(3.5 < X < 4.5)\\).",
+          "marks": 2,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$-\\frac{3}{4} \\int_{4.5}^{5} (x^2 - 8x + 15) \\, dx$$",
+          "guidance_markdown": "Attempt to integrate their $$f(x)$$. Condone missing $$-3/4$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$= -\\frac{3}{4} \\left[ \\frac{x^3}{3} - 4x^2 + 15x \\right]_{4.5}^{5}$$",
+          "guidance_markdown": "Correct integration and correct limits 4.5 and 5. OE e.g. 1– integration from 3 to 4.5 condone missing $$-3/4$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "$$-\\frac{3}{4} \\left[ \\frac{125}{3} - 100 + 75 - \\left( \\frac{4.5^3}{3} - 4 \\times 4.5^2 + 15 \\times 4.5 \\right) \\right]$$",
+          "guidance_markdown": "Attempt substitute correct limits in correct integral must have the $$-3/4$$. OE. May be implied by correct answer.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$$= \\frac{5}{32}$$ or 0.15625 or 0.156 (3 sf)",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Median = 4",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "$$1 - 2 \\times \\left( \\frac{5}{32} \\right)$$ or $$2(0.5 - \\left( \\frac{5}{32} \\right))$$",
+          "guidance_markdown": "Must see working. **FT** their $$\\frac{5}{32}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1 FT",
+          "content_markdown": "$$\\frac{11}{16}$$ or 0.6875 or 0.687 or 0.688 (3 sf)",
+          "guidance_markdown": "**FT** their $$\\frac{5}{32}$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": null,
+          "content_markdown": "",
+          "guidance_markdown": "**SC** not using **7(a)** and integrating from 3.5 to 4.5 and getting 11/16 OE scores **B1** only.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Continuous Random Variables",
+        "subtopics": [
+          "Working with a probability density function",
+          "CDF/probability via definite integration",
+          "Median from distribution properties",
+          "Probability using complements without extra integration"
+        ],
+        "skills": [
+          "Verify/use the given pdf to compute P(X>4.5) by integrating over the relevant interval.",
+          "Find the median by solving for m such that P(X≤m)=0.5.",
+          "Use the previously computed tail probability values (from part a) plus total probability 1 to obtain P(3.5<X<4.5) without performing a new integration."
+        ],
+        "methods": [
+          "Definite integration of the pdf",
+          "Median condition from the CDF",
+          "Complementary probability and total probability"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "pending"
+      }
+    }
+  ]
+}

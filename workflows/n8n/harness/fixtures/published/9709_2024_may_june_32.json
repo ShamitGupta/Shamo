@@ -1,0 +1,1697 @@
+{
+  "paper_key": "9709_2024_may_june_32",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "may_june",
+    "paper_variant": "32",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "466116cc-75de-423e-9745-e2e401cfbe29",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_32.pdf",
+      "page_count": 20,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_32.pdf",
+      "page_count": 20,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "",
+      "total_marks": 3,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Sketch the graph of $y = |x - 2a|$, where $a$ is a positive constant.",
+          "marks": 1,
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Solve the inequality $2x - 3a < |x - 2a|$.",
+          "marks": 2,
+          "source_page_numbers": [
+            3
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Correct sketch of $y = |x - 2a|$ with vertex at $(2a,0)$, two solid straight-line sections, symmetry about $x=2a$, and $2a$ marked on both axes.",
+          "guidance_markdown": "Correct shape, roughly symmetrical. Both sections should be solid straight lines. If not drawn with a ruler the intention must be clear. Allow construction lines if dashed or clearly fainter. $2a$ marked on each axis (must be $2a$, not just $2$). Needs to extend into negative $x$. If $a$ is given a value, then B0. Ignore $y = 2x - 3a$ if seen.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "Solve linear equation or inequality to obtain critical value $x = \\frac{5}{3}a$ or exact equivalent.",
+          "guidance_markdown": "Ignore $x = a$ if seen.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $x < \\frac{5}{3}a$ or exact equivalent.",
+          "guidance_markdown": "Accept $x < \\frac{10}{6}a$ or $(-\\infty, \\frac{5}{3}a)$. Must be strict inequality. Need a clear final solution: $x > a$ or $x < a$ must be rejected if seen as part of the working. Rejection can be implied, e.g. if only the correct inequality is underlined. B0 B0 if $a$ is given a value.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "Solve quadratic equation $(2x - 3a)^2 = (x - 2a)^2$ to obtain critical value $x = \\frac{5}{3}a$ or exact equivalent.",
+          "guidance_markdown": "$(3x^2 - 8ax + 5a^2 = 0)$ Ignore $x = a$ if seen.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $x < \\frac{5}{3}a$ or exact equivalent.",
+          "guidance_markdown": "Accept $x < \\frac{10}{6}a$ or $(-\\infty, \\frac{5}{3}a)$. Must be strict inequality. Need a clear final solution: $x > a$ or $x < a$ must be rejected if seen as part of the working. Rejection can be implied, e.g. if only the correct inequality is underlined. B0 B0 if $a$ is given a value.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Graphing absolute value functions",
+          "Inequalities involving absolute value"
+        ],
+        "skills": [
+          "Sketch graphs using transformations of y=|x|",
+          "Solve inequalities by splitting into cases and using absolute value properties"
+        ],
+        "methods": [
+          "Rewrite |x-2a| as a translated absolute value function",
+          "Casework based on the sign of x-2a (and compare with 2x-3a)"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 2,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "Express $\\frac{6x^2 - 9x - 16}{2x^2 - 5x - 12}$ in partial fractions.",
+      "total_marks": 5,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "State or imply the form $$A + \\frac{B}{2x+3} + \\frac{C}{x-4}$$",
+          "guidance_markdown": "$$\\frac{Dx+E}{2x+3} + \\frac{F}{x-4}$$ and $$\\frac{P}{2x+3} + \\frac{Qx+R}{x-4}$$ are also valid.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Use a correct method for finding a constant",
+          "guidance_markdown": "**SC:** If score B0, they can score **M1 A1** for one correct constant. B0 M1 A0 available if they substitute two values to form simultaneous equations but get an incorrect answer, or they substitute one value and make an arithmetic error.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain one of $$A = 3$$, $$B = -2$$ and $$C = 4$$",
+          "guidance_markdown": "**SC:** If the horizontal equation is correct apart from an incorrect value for $$A$$, the other A marks may be available.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain a second value",
+          "guidance_markdown": "**SC:** If denominator factorised as $$(x + \\frac{3}{2})(x - 4)$$ can score a maximum of **B0 M1 A1 A1 A0** for a split involving 3 terms.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain a third value",
+          "guidance_markdown": "ISW Statement of the final split is not required.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "Divide numerator by denominator",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$3 \\left( + \\frac{Px + Q}{2x^2 - 5x - 12} \\right)$$",
+          "guidance_markdown": "$$\\left( 3 + \\frac{6x + 20}{(2x + 3)(x - 4)} \\right)$$",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1",
+          "content_markdown": "State or imply the form $$\\frac{Px + Q}{2x^2 - 5x - 12} = \\frac{D}{2x + 3} + \\frac{E}{x - 4}$$",
+          "guidance_markdown": "Must deal with the 3 separately or include it correctly on both sides in their split.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain one of $$D = -2$$ and $$E = 4$$",
+          "guidance_markdown": "**SC:** If denominator factorised as $$(x + \\frac{3}{2})(x - 4)$$, then can score a maximum of **B0 M1 A1 A1 A0** for a split involving three terms.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "Obtain a second value",
+          "guidance_markdown": "ISW Statement of the final split is not required.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Partial fractions",
+          "Rational functions"
+        ],
+        "skills": [
+          "Divide an improper rational expression or include its constant term",
+          "Factorise the denominator into linear factors",
+          "Solve for the partial-fraction coefficients"
+        ],
+        "methods": [
+          "Use polynomial division, or start with a constant plus two proper partial fractions",
+          "Factor 2x^2-5x-12 as (2x+3)(x-4)",
+          "Substitute convenient values or equate coefficients to obtain the constants"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "The variables $x$ and $y$ satisfy the equation $a^{2y-1} = b^{x-y}$, where $a$ and $b$ are constants.",
+      "total_marks": 5,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that the graph of $y$ against $x$ is a straight line.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Given that $a^3 = b$, state the equation of the straight line in the form $y = px + q$, where $p$ and $q$ are rational numbers in their simplest form.",
+          "marks": 2,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Use logarithms to obtain a correct expression without powers e.g. $$ (2y - 1)\\ln a = (x - y)\\ln b $$",
+          "guidance_markdown": "Could use logs to any base e.g. $$2y - 1 = (x - y)\\log_e b$$. Do not condone missing brackets unless recovered later.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "Separate terms and factorise to obtain $$y(2\\ln a + \\ln b) = x\\ln b + \\ln a$$",
+          "guidance_markdown": "Or equivalent, e.g. $$y = x\\frac{\\ln b}{\\ln a^2 b} + \\frac{\\ln a}{\\ln a^2 b}$$ or $$y(2 + \\log_e b) = x\\log_e b + 1$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "Clear explanation of linear form. From correct work only.",
+          "guidance_markdown": "E.g. equation matches the linear form $$y = mx + c$$ or $$py = qx + r$$. Condone if they compare with $$y = mx + c$$, but do not actually state that it must therefore be a straight line. Stating “this is a linear equation” without comparing to a relevant standard form scores B0. B0 if they have $$m = \\dots$$ and $$c = \\dots$$ correct but never actually mention $$y = mx + c$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "Use $$a = b^3$$ and log laws to simplify their equation",
+          "guidance_markdown": "$$\\left[ y = x\\frac{\\ln b}{\\ln b^7} + \\frac{\\ln b^3}{\\ln b^7} \\right]$$ Denominator reduced to a single log term.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$y = \\frac{1}{7}x + \\frac{3}{7}$$",
+          "guidance_markdown": "Accept $$y = \\frac{x}{7} + \\frac{3}{7}$$ but not $$y = \\frac{x+3}{7}$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": null,
+          "content_markdown": "Alternative method for Question 3(b)",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Use $$a = b^3$$ to obtain $$b^{3(2y-1)} = b^{y-y}$$ or equivalent",
+          "guidance_markdown": "Or $$\\log_e b = \\frac{1}{3}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$y = \\frac{1}{7}x + \\frac{3}{7}$$",
+          "guidance_markdown": "Accept $$y = \\frac{x}{7} + \\frac{3}{7}$$ but not $$y = \\frac{x+3}{7}$$.",
+          "is_final_answer": true,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Exponential and Logarithmic Functions",
+        "subtopics": [
+          "Logarithms and change of base",
+          "Linearisation of exponentials"
+        ],
+        "skills": [
+          "Manipulate exponential equations into linear form",
+          "Use logarithm rules to show a straight-line relationship and extract parameters"
+        ],
+        "methods": [
+          "Take logs on both sides to convert exponents into products",
+          "Rearrange into y=px+q and substitute given relation between constants"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.82,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "The equation of a curve is $y e^{2x} + y^2 e^x = 6$.\n\nFind the gradient of the curve at the point where $y = 1$.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        6
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Substitute $y = 1$ and obtain $e^x = a$, where $a > 0$.",
+          "guidance_markdown": "Must come from a quadratic in $e^x$. ($e^{2x} + e^x - 6 = 0$) Ignore any negative solution.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $e^x = 2$ only.",
+          "guidance_markdown": "Or equivalent e.g. $x = \\ln 2$. Condone $x = 0.693\\dots$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $\\frac{d}{dx}(ye^{2x}) = 2ye^{2x} + e^{2x}\\frac{dy}{dx}$",
+          "guidance_markdown": "Accept $y'$ for $\\frac{dy}{dx}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $\\frac{d}{dx}(y^2e^x) = y^2e^x + 2ye^x\\frac{dy}{dx}$",
+          "guidance_markdown": "Accept $y'$ for $\\frac{dy}{dx}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Differentiate RHS of given equation to obtain zero (could be implied by subsequent work), substitute for $x$ and $y$ and obtain $\\frac{dy}{dx} = \\dots$",
+          "guidance_markdown": "Independent.\n\n$\\left[ 2 \\times 4 + 4\\frac{dy}{dx} + 2 + 4\\frac{dy}{dx} = 0 \\right]$\n\nNB: Could also rearrange to obtain $\\frac{dy}{dx}$ then substitute. Both steps are needed for M1.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $-\\frac{5}{4}$ or $-1.25$.",
+          "guidance_markdown": "Correct answer from correct working only. Accept $-\\frac{10}{8}$. $-1.2499$ is A0.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": null,
+          "content_markdown": "**Alternative method for Question 4: Dividing through by $e^x$**",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "Substitute $y = 1$ and obtain $e^x = a$, where $a > 0$.",
+          "guidance_markdown": "Must come from a quadratic in $e^x$. ($e^{2x} + e^x - 6 = 0$) Ignore any negative solution.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $e^x = 2$ only.",
+          "guidance_markdown": "Or equivalent e.g. $x = \\ln 2$. Condone $x = 0.693\\dots$",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $\\frac{d}{dx}(y^2) = 2y\\frac{dy}{dx}$",
+          "guidance_markdown": "Accept $y'$ for $\\frac{dy}{dx}$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $\\frac{d}{dx}(ye^x) = ye^x + e^x\\frac{dy}{dx}$",
+          "guidance_markdown": "Accept $y'$ for $\\frac{dy}{dx}$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 12,
+          "mark_code": "M1",
+          "content_markdown": "Differentiate RHS of given equation to obtain $-6e^{-x}$, substitute for $x$ and $y$ and obtain $\\frac{dy}{dx} = \\dots$",
+          "guidance_markdown": "Independent.\n\n$\\left[ 1 \\times 2 + 2\\frac{dy}{dx} + 2\\frac{dy}{dx} = -\\frac{6}{2} \\right]$\n\nNB: Could also rearrange to obtain $\\frac{dy}{dx}$ then substitute. Both steps are needed for M1.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 13,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $-\\frac{5}{4}$ or $-1.25$.",
+          "guidance_markdown": "Correct answer from correct working only. Accept $-\\frac{10}{8}$. $-1.2499$ is A0.",
+          "is_final_answer": true,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Implicit differentiation",
+          "Exponential functions",
+          "Gradients of curves"
+        ],
+        "skills": [
+          "Use the curve condition y=1 to solve for e^x",
+          "Differentiate products involving y and exponential functions implicitly",
+          "Evaluate dy/dx at the resulting point"
+        ],
+        "methods": [
+          "Substitute y=1 into the curve equation and solve e^(2x)+e^x-6=0 to obtain e^x=2",
+          "Differentiate ye^(2x)+y^2e^x=6 implicitly using product and chain rules",
+          "Substitute y=1 and e^x=2 into the derivative equation and solve for dy/dx"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.76,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "It is given that the equation $e^{2x} = 5 + \\cos 3x$ has only one root.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        7
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show by calculation that this root lies in the interval $0.7 < x < 0.8$.",
+          "marks": 2,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Show that if a sequence of values in the interval $0.7 < x_n < 0.8$ given by the iterative formula $x_{n+1} = \\frac{1}{2} \\ln(5 + \\cos 3x_n)$ converges then it converges to the root of the equation in part (a).",
+          "marks": 1,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Use this iterative formula to determine the root correct to 3 decimal places. Give the result of each iteration to 5 decimal places.",
+          "marks": 3,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Calculate the value of a relevant expression or values of a pair of expressions at $x = 0.7$ and $x = 0.8$.",
+          "guidance_markdown": "Allow if working with a smaller interval, e.g. $(0.72, 0.78)$. Need all relevant values but condone one error. Pairings must be clear for solutions involving four values (do not accept embedded values). M0 if working in degrees e.g. $-1.94\\dots, 1.04\\dots$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Complete the argument correctly with correct calculated values. (Can be using the equation in the rubric or the equation in (b) or equivalent.)",
+          "guidance_markdown": "E.g. $4.95\\dots > 4.26\\dots$ and $4.06\\dots < 4.49\\dots$; $-0.439\\dots < 0$, $0.690\\dots > 0$; $1.4 < 1.5029\\dots$, $1.6 > 1.449\\dots$; $1.1 > 1$, $0.86 < 1$; $0.0515 > 0$, $-0.075 < 0$. Allow values rounded or truncated to 2sf.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "State $2x = \\ln(5 + \\cos 3x)$ and take exponential of both sides to obtain $e^{2x} = 5 + \\cos 3x$.",
+          "guidance_markdown": "Given answer requires fully correct working or work vice versa. If working in reverse, must get to the iterative formula, including subscripts.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "Use the iterative process correctly at least once.",
+          "guidance_markdown": "M0 if working in degrees (e.g. values heading for $0.89\\dots$).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain final answer $0.740$.",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Show sufficient iterations to at least 5dp to justify $0.740$ to 3dp, or show that there is a sign change in the interval $(0.7395, 0.7405)$.",
+          "guidance_markdown": "E.g. $0.7, 0.75150, 0.73719, 0.74105, 0.74000, 0.74028$; $0.75, 0.73759, 0.74094, 0.74003, 0.74028$; $0.8, 0.72494, 0.74443, 0.73909, 0.74053, 0.74014, 0.74025$. Allow recovery. Allow truncation or rounding and condone small differences in the final decimal place.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Numerical Methods",
+        "subtopics": [
+          "Numerical methods for solving equations",
+          "Fixed-point iteration",
+          "Roots and interval location"
+        ],
+        "skills": [
+          "Locate a root using a sign change",
+          "Assume the sequence converges and take limits in the recurrence",
+          "Use fixed-point iteration to find the root to the required accuracy"
+        ],
+        "methods": [
+          "Evaluate f(x)=e^(2x)-5-cos(3x) at 0.7 and 0.8",
+          "Let x_n tend to L, take limits in the recurrence and rearrange to recover e^(2L)=5+cos(3L)",
+          "Iterate from the supplied starting value, record five decimal places and report the root to three decimal places"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": true,
+        "diagram_required": false,
+        "classification_confidence": 0.7,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "The diagram shows the curve $y = xe^{-ax}$, where $a$ is a positive constant, and its maximum point $M$.",
+      "total_marks": 9,
+      "source_page_numbers": [
+        8,
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the exact coordinates of $M$.",
+          "marks": 4,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the exact value of $\\int_0^{\\frac{2}{a}} x e^{-ax} \\, dx$.",
+          "marks": 5,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Use correct product rule",
+          "guidance_markdown": "Or equivalent. Condone incorrect chain rule. M0 if a value is used for *a* (not equivalent work).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct derivative",
+          "guidance_markdown": "E.g. $$\\frac{dy}{dx} = -ax e^{-ax} + e^{-ax}$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Equate derivative to zero and solve for *x*",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$x = \\frac{1}{a}$$, $$y = \\frac{1}{ae}$$",
+          "guidance_markdown": "ISW Or exact equivalent.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "*M1",
+          "content_markdown": "Use integration by parts to obtain $$px e^{-ax} + q \\int e^{-ax} dx$$",
+          "guidance_markdown": "Condone sign error in parts formula and omission of dx. M0 if a value is used for *a* (not equivalent work).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$-\\frac{1}{a} x e^{-ax} + \\frac{1}{a} \\int e^{-ax} dx$$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Complete integration to obtain $$-\\frac{1}{a} x e^{-ax} - \\frac{1}{a^2} e^{-ax}$$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "DM1",
+          "content_markdown": "Correct use of limits 0 and $$\\frac{2}{a}$$ in an expression of the form $$rx e^{-ax} + s e^{-ax}$$",
+          "guidance_markdown": "$$\\left( \\frac{-2}{a^2} e^{-2} - \\frac{1}{a^2} e^{-2} + 0 + \\frac{1}{a^2} \\right)$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{1}{a^2} (1 - 3e^{-2})$$",
+          "guidance_markdown": "ISW Or simplified 2-term equivalent, e.g. $$\\frac{e^2 - 3}{a^2 e^2}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 8,
+          "source_image_index": 0,
+          "asset_type": "graph",
+          "storage_path": "a_level/9709/2024/may_june/32/question_paper/q6/page-8-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Differentiation to find maxima",
+          "Definite integrals",
+          "Exponential functions"
+        ],
+        "skills": [
+          "Differentiate to locate and classify stationary points",
+          "Find exact coordinates of a maximum",
+          "Compute definite integrals of the form x e^{-ax}"
+        ],
+        "methods": [
+          "Differentiate y=xe^{-ax}, set derivative to zero and use positivity/second derivative reasoning",
+          "Use integration by parts (or known reduction) to evaluate ∫ x e^{-ax} dx exactly and apply limits"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.79,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "",
+      "total_marks": 9,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that $\\cos^4\\theta - \\sin^4\\theta \\equiv \\cos 2\\theta$.",
+          "marks": 3,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Hence find the exact value of $\\int_{-\\frac{1}{8}\\pi}^{\\frac{1}{8}\\pi} (\\cos^4\\theta - \\sin^4\\theta + 4\\sin^2\\theta\\cos^2\\theta)\\,d\\theta$.",
+          "marks": 6,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Factorise LHS using difference of 2 squares",
+          "guidance_markdown": "$$\\left( \\left( \\cos^2 \\theta - \\sin^2 \\theta \\right) \\left( \\cos^2 \\theta + \\sin^2 \\theta \\right) \\right)$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "DM1",
+          "content_markdown": "Simplify",
+          "guidance_markdown": "$$\\cos^2 \\theta + \\sin^2 \\theta = 1$$ must be seen or implied, e.g. $$\\left( \\cos^2 \\theta - \\sin^2 \\theta \\right) \\left( \\cos^2 \\theta + \\sin^2 \\theta \\right) = \\left( \\cos^2 \\theta - \\sin^2 \\theta \\right)$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\cos^4 \\theta - \\sin^4 \\theta \\equiv \\cos 2\\theta$$ from correct working",
+          "guidance_markdown": "AG",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "*M1",
+          "content_markdown": "Use of correct rearrangements of double angle formulae",
+          "guidance_markdown": "E.g. $$\\left( \\frac{1 + \\cos 2\\theta}{2} \\right)^2 - \\left( \\frac{1 - \\cos 2\\theta}{2} \\right)^2$$ Only condone $$\\left( \\frac{1 + \\cos 2\\theta}{2} \\right)^2 - \\left( \\frac{\\cos 2\\theta - 1}{2} \\right)^2$$ if correct expression for $$\\sin^2 \\theta$$ seen.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "DM1",
+          "content_markdown": "Expand and simplify",
+          "guidance_markdown": "Collect like terms. Condone recovery from missing brackets.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\cos^4 \\theta - \\sin^4 \\theta \\equiv \\cos 2\\theta$$ from correct working",
+          "guidance_markdown": "AG",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "*M1",
+          "content_markdown": "Correct use of Pythagoras",
+          "guidance_markdown": "E.g. $$\\left( 1 - \\sin^2 \\theta \\right)^2 - \\sin^4 \\theta$$ or $$\\cos^2 \\theta \\left( 1 - \\sin^2 \\theta \\right) - \\sin^2 \\theta \\left( 1 - \\cos^2 \\theta \\right)$$",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "DM1",
+          "content_markdown": "Expand and simplify",
+          "guidance_markdown": "Condone recovery from missing brackets.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\cos^4 \\theta - \\sin^4 \\theta \\equiv \\cos 2\\theta$$ from correct working",
+          "guidance_markdown": "AG",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "M1",
+          "content_markdown": "Use part (a) and correct double angle formula to obtain expression involving $$\\int \\sin^2 2\\theta\\, d\\theta$$ or $$\\int \\cos^2 2\\theta\\, d\\theta$$.\n\n$$\\int \\cos^4 \\theta - \\sin^4 \\theta + 4 \\sin^2 \\theta \\cos^2 \\theta \\, d\\theta = \\int \\cos 2\\theta + \\sin^2 2\\theta \\, d\\theta$$",
+          "guidance_markdown": "Allow BOD for $$2 \\sin^2 2\\theta$$ if $$\\sin 2\\theta = 2 \\sin \\theta \\cos \\theta$$ seen.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "B1",
+          "content_markdown": "$$\\int \\cos 2\\theta \\, d\\theta = \\frac{1}{2} \\sin 2\\theta$$",
+          "guidance_markdown": "Seen or implied.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 12,
+          "mark_code": "M1",
+          "content_markdown": "Use of correct double angle formula on second part of the integral to obtain a form that can be integrated directly",
+          "guidance_markdown": "e.g. $$\\int \\sin^2 2\\theta \\, d\\theta = \\int \\frac{1 - \\cos 4\\theta}{2} \\, d\\theta$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 13,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{1}{2} \\theta - \\frac{1}{8} \\sin 4\\theta$$",
+          "guidance_markdown": "Condone a mixture of $$x$$ and $$\\theta$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 14,
+          "mark_code": "M1",
+          "content_markdown": "Correct use of limits $$\\pm \\frac{\\pi}{8}$$ in an expression of the form $$p\\theta + q \\sin 2\\theta + r \\sin 4\\theta$$ and evaluate the trig",
+          "guidance_markdown": "$$\\left( 2 \\left( \\frac{1}{2} \\times \\frac{1}{\\sqrt{2}} + \\frac{\\pi}{16} - \\frac{1}{8} \\right) \\right)$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 15,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{1}{2} \\sqrt{2} + \\frac{1}{8} \\pi - \\frac{1}{4}$$",
+          "guidance_markdown": "ISW Or exact equivalent from exact working.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Trigonometry",
+        "subtopics": [
+          "Trigonometric identities",
+          "Definite integrals of trigonometric functions"
+        ],
+        "skills": [
+          "Manipulate trig powers using identities",
+          "Integrate using simplification and symmetry/definite integral evaluation"
+        ],
+        "methods": [
+          "Use algebraic rewriting of sin^4 and cos^4 and reduce to cos2θ",
+          "Simplify the integrand to a constant/trig term and integrate over the symmetric interval"
+        ],
+        "question_style": "proof_or_show",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.83,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 8,
+      "stem_markdown": "The points $A$, $B$ and $C$ have position vectors $\\overrightarrow{OA} = -2\\mathbf{i} + \\mathbf{j} + 4\\mathbf{k}$, $\\overrightarrow{OB} = 5\\mathbf{i} + 2\\mathbf{j}$ and $\\overrightarrow{OC} = 8\\mathbf{i} + 5\\mathbf{j} - 3\\mathbf{k}$, where $O$ is the origin. The line $l_1$ passes through $B$ and $C$.\n\nThe line $l_2$ has equation $\\mathbf{r} = -2\\mathbf{i} + 4\\mathbf{j} + \\mathbf{k} + \\lambda(3\\mathbf{i} - 2\\mathbf{j} - \\mathbf{k})$.",
+      "total_marks": 12,
+      "source_page_numbers": [
+        12,
+        13
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find a vector equation for $l_1$.",
+          "marks": 3,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the coordinates of the point of intersection of $l_1$ and $l_2$.",
+          "marks": 4,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "The point $D$ on $l_2$ is such that $AB = BD$.\n\nFind the position vector of $D$.",
+          "marks": 5,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Correct direction vector seen or implied ($\\vec{BC} = 3\\mathbf{i} + 3\\mathbf{j} - 3\\mathbf{k}$).",
+          "guidance_markdown": "Condone $\\vec{BC} = -3\\mathbf{i} - 3\\mathbf{j} + 3\\mathbf{k}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Use a correct method to form a vector equation.",
+          "guidance_markdown": "Allow for the RHS with no LHS.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\mathbf{r} = 5\\mathbf{i} + 2\\mathbf{j} + \\lambda(\\mathbf{i} + \\mathbf{j} - \\mathbf{k})$.",
+          "guidance_markdown": "ISW. Must have $\\mathbf{r} = \\dots$ or $\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = \\dots$, not $l_1 = \\dots$. Or, equivalent vector form, e.g. $\\mathbf{r} = 8\\mathbf{i} + 5\\mathbf{j} - 3\\mathbf{k} + \\alpha(\\mathbf{i} + \\mathbf{j} - \\mathbf{k})$ or $\\mathbf{r} = 5\\mathbf{i} + 2\\mathbf{j} + \\lambda(3\\mathbf{i} + 3\\mathbf{j} - 3\\mathbf{k})$. Condone a column vector with $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1 FT",
+          "content_markdown": "Use components to form two relevant equations in 2 unknowns. For their $l_1$ B0 if they use the same unknown for both lines.",
+          "guidance_markdown": "Two components of $\\begin{pmatrix} 5 + \\lambda \\\\ 2 + \\lambda \\\\ -\\lambda \\end{pmatrix} = \\begin{pmatrix} -2 + 3\\mu \\\\ 1 + \\mu \\\\ 4 - 2\\mu \\end{pmatrix}$ seen or implied.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Solve 2 relevant equations in 2 unknowns for $\\lambda$ or $\\mu$.",
+          "guidance_markdown": "For their $l_1$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\lambda = 2$ or $\\mu = 3$.",
+          "guidance_markdown": "Or equivalent e.g. using $\\vec{BC}$ as direction vector gives $\\lambda = \\frac{2}{3}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $(7, 4, -2)$. No need to check the third equation — the question implies that the lines intersect.",
+          "guidance_markdown": "Accept position vector. Condone a column vector with $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$. **SC: B1 M1 A1 A1** if one component of their line is incorrect but they do not use that component.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1",
+          "content_markdown": "State $AB = \\sqrt{7^2 + 1^2 + 4^2} (= \\sqrt{66})$.",
+          "guidance_markdown": "Or $(AB)^2 = 66$. Condone a sign error in $\\overrightarrow{AB}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "B1",
+          "content_markdown": "State $\\overrightarrow{BD}$ in component form.",
+          "guidance_markdown": "$\\begin{pmatrix} -7 + 3r \\\\ -1 + r \\\\ 4 - 2r \\end{pmatrix}$ or equivalent.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "M1",
+          "content_markdown": "$AB = BD \\Rightarrow (3r - 7)^2 + (r - 1)^2 + (-2r + 4)^2 = 66$; hence $14r^2 - 60r = 0$.",
+          "guidance_markdown": "Or equivalent equation in one unknown for their $AB$ and their $BD$. If you never see a correct form and they go direct to $9r^2 + 49 + r^2 + 1 \\ldots$ then M0.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "A1",
+          "content_markdown": "$r = \\frac{30}{7}$.",
+          "guidance_markdown": "Correct only. Ignore $r = 0$ if seen.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 12,
+          "mark_code": "A1",
+          "content_markdown": "$\\overrightarrow{OD} = \\frac{76}{7}\\mathbf{i} + \\frac{37}{7}\\mathbf{j} - \\frac{32}{7}\\mathbf{k}$.",
+          "guidance_markdown": "Must be a vector. Condone if also have $\\overrightarrow{OD} = \\overrightarrow{OA}$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Vectors",
+        "subtopics": [
+          "Equations of lines in vector form",
+          "Line intersection in 3D",
+          "Distance conditions on lines"
+        ],
+        "skills": [
+          "Form a parametric/vector equation for a line from two points",
+          "Solve simultaneous vector parameter equations to find intersection",
+          "Use distance equality along a line to determine a point"
+        ],
+        "methods": [
+          "Use direction vectors from B to C for l1",
+          "Equate r-vectors and solve for parameters",
+          "Let D correspond to a parameter value on l2 and apply AB=BD using vector norms"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 9,
+      "stem_markdown": "The complex numbers $z$ and $\\omega$ are defined by $z = 1 - i$ and $\\omega = -3 + 3\\sqrt{3}i$.",
+      "total_marks": 10,
+      "source_page_numbers": [
+        14,
+        15
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Express $z\\omega$ in the form $a + bi$, where $a$ and $b$ are real and in exact surd form.",
+          "marks": 1,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Express $z$ and $\\omega$ in the form $re^{i\\theta}$, where $r > 0$ and $-\\pi < \\theta \\le \\pi$. Give the exact values of $r$ and $\\theta$ in each case.",
+          "marks": 4,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "On an Argand diagram, the points representing $\\omega$ and $z\\omega$ are $A$ and $B$ respectively. Prove that $OAB$ is an isosceles right-angled triangle, where $O$ is the origin.",
+          "marks": 2,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "label_path": [
+            "d"
+          ],
+          "prompt_markdown": "Using your answers to part (b), prove that $\\tan \\frac{5\\pi}{12} = 2 + \\sqrt{3}$.",
+          "marks": 3,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "State $$z\\omega = (-3 + 3\\sqrt{3}) + (3 + 3\\sqrt{3})\\mathbf{i}$$",
+          "guidance_markdown": "Or exact equivalent with real and imaginary parts collected. Need brackets around the coefficient of $$\\mathbf{i}$$. Allow for $$a = b$$ stated correctly.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $|z|=\\sqrt{2}$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $\\arg z=-\\frac{\\pi}{4}$ final answer",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $|\\omega|=6$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $\\arg \\omega=\\frac{2\\pi}{3}$ final answer",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": null,
+          "content_markdown": "",
+          "guidance_markdown": "Note: The question does not require the diagram. If they use $\\frac{5\\pi}{12}$ they need to demonstrate where it comes from. Complex number equivalent to $AB$ is $3\\sqrt{3}+3i$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1",
+          "content_markdown": "Show $|OA|=|AB|=6$, hence isosceles",
+          "guidance_markdown": "One mark for 'isosceles' and one mark for 'right angle'. There will be alternatives e.g. use of Pythagoras (ratio of lengths is $1:1:\\sqrt{2}$), expressing each number in 'vector' form and using scalar product or explaining the effect of multiplying by $1-i$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1",
+          "content_markdown": "$\\angle AOB=\\arg \\omega-\\arg z\\omega=-\\arg z=\\frac{\\pi}{4}$ hence third angle is a right angle",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "M1",
+          "content_markdown": "Use the arguments from part (b): $$\\arg(z\\omega)=\\arg z+\\arg\\omega=-\\frac{\\pi}{4}+\\frac{2\\pi}{3}=\\frac{5\\pi}{12}.$$",
+          "guidance_markdown": "The working must show where $$\\frac{5\\pi}{12}$$ comes from.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "M1",
+          "content_markdown": "Use the Cartesian form from part (a): $$\\tan(\\arg(z\\omega))=\\frac{3+3\\sqrt{3}}{-3+3\\sqrt{3}}.$$",
+          "guidance_markdown": "Use a correct exact tangent ratio for the point representing $$z\\omega$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "A1",
+          "content_markdown": "Hence obtain $$\\tan\\frac{5\\pi}{12}=2+\\sqrt{3}.$$",
+          "guidance_markdown": "Obtain the given result from complete exact working.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            19
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Complex Numbers",
+        "subtopics": [
+          "Algebra of complex numbers",
+          "Polar form and arguments",
+          "Argand diagrams",
+          "Trigonometric identities from complex numbers"
+        ],
+        "skills": [
+          "Multiply complex numbers in Cartesian form",
+          "Convert to polar (r,θ) and determine principal arguments",
+          "Use geometry on Argand diagrams to deduce triangle properties",
+          "Relate arguments to tangent values"
+        ],
+        "methods": [
+          "Compute zω and represent as a+bi",
+          "Find modulus and argument using real/imag parts and quadrant checks",
+          "Use rotation/scaling interpretation on Argand diagram to show isosceles right triangle",
+          "Use θ results to derive tan(5π/12) exactly"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 5,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.71,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 10,
+      "stem_markdown": "",
+      "total_marks": 10,
+      "source_page_numbers": [
+        16,
+        17
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "By writing $y = \\sec^3\\theta$ as $\\frac{1}{\\cos^3\\theta}$, show that $\\frac{dy}{d\\theta} = 3\\sin\\theta\\sec^4\\theta$.",
+          "marks": 2,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "The variables $x$ and $\\theta$ satisfy the differential equation $(x^2 + 9)\\sin\\theta\\,\\frac{d\\theta}{dx} = (x + 3)\\cos^4\\theta$.\\n\\nIt is given that $x = 3$ when $\\theta = \\frac{1}{3}\\pi$.\\n\\nSolve the differential equation to find the value of $\\cos\\theta$ when $x = 0$. Give your answer correct to 3 significant figures.",
+          "marks": 8,
+          "source_page_numbers": [
+            16,
+            17
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Use of correct chain rule (and correct quotient rule) and $\\cos^{-3} \\theta$",
+          "guidance_markdown": "Obtain $k \\times (\\cos \\theta)^{-4} \\times \\sin \\theta$ or equivalent.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$\\frac{dy}{d\\theta} = -3 \\times -\\sin \\theta (\\cos \\theta)^{-4} = 3 \\sin \\theta \\sec^3 \\theta$ Must be expressed in the given form",
+          "guidance_markdown": "Obtain given answer from full and correct working (signs must be shown), but condone $\\frac{d}{d\\theta} (\\sec^3 \\theta) = \\dots$ and $y'(\\theta)$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "Separate variables: $$\\int \\frac{\\sin \\theta}{\\cos^2 \\theta} \\mathrm{d}\\theta = \\int \\frac{(x+3)}{(x^2+9)} \\mathrm{d}x$$",
+          "guidance_markdown": "Or $$\\int \\frac{3\\sin \\theta}{\\cos^2 \\theta} \\mathrm{d}\\theta = \\int \\frac{3x+9}{x^2+9} \\mathrm{d}x$$. Condone missing integral signs or missing dx or dθ, but not both.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $$p \\sec^3 \\theta (+A)$$",
+          "guidance_markdown": "Correct form, p any constant but not 0.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "*M1",
+          "content_markdown": "Use $$\\int \\frac{3x+9}{x^2+9} \\mathrm{d}x = \\int \\left( \\frac{3x}{x^2+9} + \\frac{9}{x^2+9} \\right) \\mathrm{d}x$$ and obtain $$q \\ln(x^2+9)$$ or $$r \\tan^{-1} \\frac{x}{3} (+C)$$.",
+          "guidance_markdown": "Might have one third of both sides. Alt: substitute $$x = 3 \\tan \\phi$$ to obtain $$q \\int 1 + \\tan \\phi \\, \\mathrm{d}\\phi$$; condone if have $$\\theta$$ in place of $$\\phi$$ in this method.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "DM1",
+          "content_markdown": "Obtain $$q \\ln(x^2+9)$$ and $$r \\tan^{-1} \\frac{x}{3} (+C)$$",
+          "guidance_markdown": "Obtain $$q (\\phi \\mp \\ln(\\cos \\phi))$$ OE.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\sec^3 \\theta = \\frac{3}{2} \\ln(x^2+9) + 3 \\tan^{-1} \\frac{x}{3} (+C)$$ or equivalent",
+          "guidance_markdown": "Or might see a third of both sides. Must have 2 different variables.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "Use $$\\theta = \\frac{1}{3}\\pi$$, $$x = 3$$ in an equation including $$p \\sec^3 \\theta$$, $$q \\ln(x^2+9)$$ and $$r \\tan^{-1} \\frac{x}{3}$$ to evaluate the constant of integration",
+          "guidance_markdown": "Or as limits in a definite integral. Limits for $$\\phi$$ are 0 and $$\\frac{1}{4}\\pi$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain constant = $$8 - \\frac{3}{2} \\ln 18 - \\frac{3}{4} \\pi$$",
+          "guidance_markdown": "OE, e.g. 1.308... to at least 3sf.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\cos \\theta = 0.601$$",
+          "guidance_markdown": "Accept AWRT 0.601.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Differential Equations",
+        "subtopics": [
+          "Differentiation",
+          "Separable differential equations",
+          "Trigonometric functions in ODEs"
+        ],
+        "skills": [
+          "Differentiate powers of secant using chain rule",
+          "Rearrange and solve a separable differential equation",
+          "Apply initial condition and compute trig value numerically/approximately"
+        ],
+        "methods": [
+          "Write sec^3θ as cos^{-3}θ to differentiate cleanly",
+          "Separate variables in θ and x, integrate both sides, apply given x and θ to determine constant, then solve for cosθ"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": true,
+        "diagram_required": false,
+        "classification_confidence": 0.77,
+        "review_status": "approved"
+      }
+    }
+  ]
+}

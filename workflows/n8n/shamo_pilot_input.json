@@ -1,0 +1,24 @@
+{
+  "source_workbook": "C:\\Users\\sheli\\Downloads\\Past paper data - Alevel Maths (final) (2).xlsx",
+  "source_sheet": "Test",
+  "qualification": "a_level",
+  "syllabus_code": "9709",
+  "subject": "Mathematics",
+  "year": 2025,
+  "exam_session": "feb_march",
+  "paper_variant": "12",
+  "expected_question_count": 11,
+  "expected_total_marks": 75,
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m25_qp_12.pdf",
+      "expected_page_count": 16
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m25_ms_12.pdf",
+      "expected_page_count": 22
+    }
+  ]
+}

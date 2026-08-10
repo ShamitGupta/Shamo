@@ -1,0 +1,1800 @@
+{
+  "paper_key": "9709_2024_feb_march_42",
+  "ingestion_run_id": "38103a22-dc31-4060-aead-7bad9b77a174",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.1-batch-02:a_level:9709:2024:feb_march:42",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Normalized Markdown wrappers, parentheses, compact suffixes or special-case prefixes in 2 mark-code cells before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_CODE_FORMAT_NORMALIZED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 1
+      },
+      {
+        "message": "Normalized Markdown wrappers, parentheses, compact suffixes or special-case prefixes in 1 mark-code cells before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_CODE_FORMAT_NORMALIZED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 2
+      },
+      {
+        "message": "Normalized Markdown wrappers, parentheses, compact suffixes or special-case prefixes in 1 mark-code cells before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_CODE_FORMAT_NORMALIZED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 5
+      },
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 7
+      }
+    ],
+    "passed": true,
+    "warning_count": 4,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": null
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 11,
+      "assets": 3,
+      "issues": 4,
+      "questions": 7,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.13760217
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "input_tokens": 8375,
+          "output_tokens": 10236,
+          "actual_cost_usd": 0.04698645,
+          "cached_input_tokens": 7936
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "input_tokens": 12285,
+          "output_tokens": 289,
+          "actual_cost_usd": 0.00065249,
+          "cached_input_tokens": 12032
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_question_extraction",
+          "input_tokens": 16296,
+          "output_tokens": 12360,
+          "actual_cost_usd": 0.01700424,
+          "cached_input_tokens": 9472
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "input_tokens": 2017,
+          "output_tokens": 976,
+          "actual_cost_usd": 0.00130084,
+          "cached_input_tokens": 1792
+        },
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "targeted_question_repair",
+          "input_tokens": 35945,
+          "output_tokens": 14810,
+          "actual_cost_usd": 0.07165815,
+          "cached_input_tokens": 32512
+        }
+      ],
+      "input_tokens": 74918,
+      "output_tokens": 38671,
+      "actual_cost_usd": 0.13760217,
+      "cached_input_tokens": 63744
+    },
+    "staged_at": "2026-08-06T14:28:18.722Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_qp_42.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 22,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_ms_42.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the velocity of the particle during the last 20 s of its motion.",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Sketch a velocity-time graph for the motion of the particle from \\(t = 0\\) to \\(t = 60\\).",
+              "source_page_numbers": [
+                2
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 7899,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "A displacement-time graph for a particle. The horizontal axis is time \\(t\\) in seconds and the vertical axis is displacement \\(s\\) in metres. The graph is piecewise linear with 4 straight line segments, matching the described motion: the particle first moves away from the origin, then continues at constant speed, then remains at rest, then returns to the starting point.",
+              "bounding_box": {
+                "top_left_x": 117,
+                "top_left_y": 95,
+                "bottom_right_x": 622,
+                "bottom_right_y": 261
+              },
+              "storage_path": "a_level/9709/2024/feb_march/42/question_paper/q1/page-2-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 2,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [
+                  "50 m in the first 10 s",
+                  "2 m s⁻¹ for a period of 10 s",
+                  "20 s at rest",
+                  "returns to its starting point when t = 60"
+                ],
+                "relationships": [
+                  "The graph consists of 4 straight line segments.",
+                  "The slope of each segment represents velocity.",
+                  "A horizontal segment represents zero velocity."
+                ],
+                "visible_labels": [
+                  "s (m)",
+                  "t (s)",
+                  "0",
+                  "10",
+                  "20",
+                  "40",
+                  "60",
+                  "50"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Use displacement-time graph segments to obtain velocities",
+              "Construct velocity-time graph from piecewise linear displacement-time data"
+            ],
+            "methods": [
+              "Read slopes of displacement-time graph to find velocities",
+              "Convert each displacement-time segment into corresponding constant-velocity interval on a velocity-time graph"
+            ],
+            "subtopics": [
+              "Kinematics",
+              "Displacement-time and velocity-time graphs"
+            ],
+            "main_topic": "Mechanics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 5,
+          "stem_markdown": "The displacement of a particle at time \\(t\\) s after leaving a fixed point \\(O\\) is \\(s\\) m. The diagram shows a displacement-time graph which models the motion of the particle. The graph consists of 4 straight line segments. The particle travels 50 m in the first 10 s, then travels at \\(2\\text{ m s}^{-1}\\) for a period of 10 s. The particle then comes to rest for a period of 20 s, before returning to its starting point when \\(t = 60\\).",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Total distance travelled = 50 + 2 × 10 [= 70]",
+              "guidance_markdown": "Any explicit expression for the distance, e.g. $$\\frac{x-50}{20-10} = 2 \\rightarrow x = 2(20-10) + 50$$.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Velocity = $$-\\frac{70}{20} = -3.5 \\text{ m s}^{-1}$$",
+              "guidance_markdown": "Oe. Ft *their* distance ≠ 50. Must be negative. Do not ISW if (e.g.) velocity = 3.5. Do allow “3.5 m s⁻¹, directed towards O.”",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Velocity 5 m s⁻¹ for 0 ≤ t ≤ 10",
+              "guidance_markdown": "May be seen on diagram.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "",
+              "guidance_markdown": "Stepped diagram with four horizontal lines segments. Ignore vertical line segments.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "",
+              "guidance_markdown": "All correct. 10, 20, 40 and 60 indicated on the t-axis. *Their* 5, 2 and *their* –3.5 (allow –3 and –4 is acceptable too with line segment halfway between them) indicated on the v-axis, corresponding to the position of the horizontal line segments. FT *their* –3.5 m s⁻¹ and/or FT their 5 m s⁻¹. If their answer to (a) is positive, allow use of negative their answer for this mark.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the speed of projection of the particle.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the distance travelled by the particle between the two times at which its speed is \\(10\\text{ m s}^{-1}\\).",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use given speed at a time to find initial speed",
+              "Apply constant acceleration to find time differences",
+              "Use kinematics to calculate distance traveled over a speed interval"
+            ],
+            "methods": [
+              "Use v = u + at to relate upward projection speed to speed at a given time",
+              "Use energy/kinematic relations with constant acceleration to find when speed equals a value and compute distance over that time interval"
+            ],
+            "subtopics": [
+              "Kinematics",
+              "Motion under gravity"
+            ],
+            "main_topic": "Mechanics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.88
+          },
+          "total_marks": 4,
+          "stem_markdown": "A particle is projected vertically upwards from horizontal ground. The speed of the particle 2 seconds after it is projected is \\(5\\text{ m s}^{-1}\\) and it is travelling downwards.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$-5 = u - g \\times 2$$ or $$5 = u + g \\times 2$$ or $$5 = 0 + gt \\Rightarrow t = 0.5$$, so time to greatest height is $$T = 2 - 0.5 = 1.5$$. Hence $$0 = u + (-g) \\times 1.5$$",
+              "guidance_markdown": "For use of constant acceleration to get an equation in $$u$$ only. Using $$v = -5$$, $$t = 2$$ and $$a = \\pm g$$.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": " Speed = $$15 \\text{ m s}^{-1}$$ ",
+              "guidance_markdown": "Must be positive.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$0^2 = 10^2 - 2gs \\quad [\\Rightarrow s = 5]$$ or $$10^2 = [0^2 + 2]gs \\quad [\\Rightarrow s = 5]$$ or $$10 = 0 + gt \\Rightarrow t = 1$$, so $$s = 10 \\times 1 - \\frac{1}{2}g \\times 1^2 \\quad [\\Rightarrow s = 5]$$ or $$\\frac{1}{2}(m) \\times 10^2 = (m)gh \\quad [\\Rightarrow h = 5]$$",
+              "guidance_markdown": "For use of constant acceleration formula(e) to find distance travelled from height with speed $$10 \\text{ m s}^{-1}$$ to maximum height with speed $$0 \\text{ m s}^{-1}$$, $$a = \\pm g$$. Must be a complete method, e.g. $$0^2 = (\\text{their } 15)^2 - 2gs_1 \\quad [\\Rightarrow s_1 = 11.25]$$ and $$10^2 = (\\text{their } 15)^2 - 2gs_2 \\quad [\\Rightarrow s_2 = 6.25]$$ or $$10 = (\\text{their } 15) - gt \\quad [\\Rightarrow t = 0.5]$$, $$s_2 = \\frac{1}{2}(\\text{their } 15 + 10) \\times (\\text{their } 0.5)$$ and with an attempt at $$s_1 - s_2 = 5$$. Energy method with 2 terms, dimensionally correct.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": " Total distance = $$10 \\text{ m}$$ ",
+              "guidance_markdown": "FT $$\\text{their } 15 \\text{ m s}^{-1}$$ if used.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Resolve forces on an inclined plane",
+              "Use power to relate driving force and velocity",
+              "Set up and solve equilibrium/constant-speed friction condition to find coefficient of friction"
+            ],
+            "methods": [
+              "Use P = Fv to find the rope tension from power and speed",
+              "Use T balanced against component of weight and friction at constant speed to obtain μ"
+            ],
+            "subtopics": [
+              "Dynamics",
+              "Forces and friction",
+              "Work/Power"
+            ],
+            "main_topic": "Mechanics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 5,
+          "stem_markdown": "A crate of mass 600 kg is being pulled up a line of greatest slope of a rough plane at a constant speed of \\(2\\text{ m s}^{-1}\\) by a rope attached to a winch. The plane is inclined at an angle of \\(30^\\circ\\) to the horizontal and the rope is parallel to the plane. The winch is working at a constant rate of 8 kW.\\n\\nFind the coefficient of friction between the crate and the plane.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Driving force = $$\\frac{8000}{2}$$ or 4000",
+              "guidance_markdown": "Use of $$F = \\frac{P}{v}$$, oe. E.g. $$DF \\times 2 = 8000$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$R = 600g \\cos 30 [= 3000\\sqrt{3} = 5196.152423]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "*their* Driving force – $$600g \\sin 30 - F = 0$$ [$$F = 4000 - 3000 = 1000$$]",
+              "guidance_markdown": "For attempt to resolve parallel to the plane; 3 terms; allow sign errors; allow sin/cos mix; allow $$g$$ missing; $$F$$ not resolved. Allow with just DF.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Use of $$F = \\mu R$$",
+              "guidance_markdown": "To form an equation in $$\\mu$$ only where $$R$$ is a component of weight or mass.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$\\mu = 0.192$$ or $$\\frac{\\sqrt{3}}{9}$$",
+              "guidance_markdown": "Awrt 0.192 [0.1924500897]. Oe, e.g. $$\\frac{1}{3\\sqrt{3}}$$. Allow 2sf.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 4575,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "mechanics_diagram",
+              "description": "A mechanics diagram showing four coplanar forces acting at a point. The visible labels include \\(F\\text{ N}\\), \\(2F\\text{ N}\\), \\(3F\\text{ N}\\), \\(30\\text{ N}\\), \\(45^\\circ\\), and \\(\\theta\\). The directions of the force arrows are shown around the point of application.",
+              "bounding_box": {
+                "top_left_x": 193,
+                "top_left_y": 91,
+                "bottom_right_x": 523,
+                "bottom_right_y": 259
+              },
+              "storage_path": "a_level/9709/2024/feb_march/42/question_paper/q4/page-5-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 5,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [
+                  "45°"
+                ],
+                "relationships": [
+                  "Four forces act at a point.",
+                  "The forces are in equilibrium."
+                ],
+                "visible_labels": [
+                  "F N",
+                  "2F N",
+                  "3F N",
+                  "30 N",
+                  "45°",
+                  "θ"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Resolve multiple forces into components",
+              "Use equilibrium of forces in two directions",
+              "Solve simultaneous equations for unknown force magnitude and angle"
+            ],
+            "methods": [
+              "Apply ΣFx = 0 and ΣFy = 0 using the diagram’s force directions",
+              "Use given force magnitudes relative to F to express component equations in terms of F and θ"
+            ],
+            "subtopics": [
+              "Statics",
+              "Resolution of forces",
+              "Resultant and equilibrium"
+            ],
+            "main_topic": "Mechanics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 6,
+          "stem_markdown": "Four coplanar forces act at a point. The magnitudes of the forces are \\(F\\text{ N}\\), \\(2F\\text{ N}\\), \\(3F\\text{ N}\\) and \\(30\\text{ N}\\). The directions of the forces are as shown in the diagram.\\n\\nGiven that the forces are in equilibrium, find the value of \\(F\\) and the value of \\(\\theta\\).",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "",
+              "guidance_markdown": "Correct number of terms allow sign errors; allow sin/cos mix on $$\\theta$$. Forces that need resolving should be resolved.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$F + 2F \\cos 45 = 30 \\sin \\theta$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$2F \\sin 45 + 3F = 30 \\cos \\theta$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\theta = \\tan^{-1} \\left( \\frac{1 + 2 \\cos 45}{2 \\sin 45 + 3} \\right)$$ or $$\\theta = \\sin^{-1} \\left( \\frac{F + 2F \\cos 45}{30} \\right)$$ or $$\\theta = \\cos^{-1} \\left( \\frac{2F \\sin 45 + 3F}{30} \\right)$$",
+              "guidance_markdown": "For attempt to find $$\\theta$$. Using their $$F$$ which can be solved for $$\\theta$$. From equations with correct number of relevant terms, forces that need resolving should be resolved. If $$\\tan \\theta = \\frac{\\cos \\theta}{\\sin \\theta}$$, so have $$\\theta = \\tan^{-1} \\left( \\frac{2 \\sin 45 + 3}{1 + 2 \\cos 45} \\right)$$, then allow M1.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$\\left[ F^2 (3 + 2 \\sin 45)^2 + F^2 (1 + 2 \\cos 45)^2 = 30^2 \\Rightarrow \\right]$$ $$F = \\sqrt{\\frac{30^2}{(3 + 2 \\sin 45)^2 + (1 + 2 \\cos 45)^2}}$$ or $$F = \\frac{30 \\sin \\theta}{1 + 2 \\cos 45}$$ or $$F = \\frac{30 \\cos \\theta}{3 + 2 \\sin 45}$$",
+              "guidance_markdown": "For attempt to find $$F$$. From equations with the correct number of relevant terms, forces that need resolving should be resolved. Using *their* $$\\theta$$.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$F = 5.96$$ [5.96270...] and $$\\theta = 28.7$$ [28.6750...]",
+              "guidance_markdown": "Awrt to 5.96 and 28.7. Allow 5.97.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the distance travelled between \\(t = 0\\) and \\(t = \\frac{1}{2}\\).",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the positive value of \\(t\\) at which the acceleration is zero. Hence find the total distance travelled between \\(t = 0\\) and this instant.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Integrate velocity to find distance over a time interval",
+              "Find when acceleration is zero by differentiating velocity",
+              "Use sign of velocity to split intervals for total distance"
+            ],
+            "methods": [
+              "Compute displacement via definite integral of v(t)",
+              "Differentiate v(t) to get a(t), solve a(t)=0 for t in allowed region, then integrate v(t) over the relevant time range taking account of negative velocity"
+            ],
+            "subtopics": [
+              "Kinematics",
+              "Variable velocity",
+              "Acceleration from velocity"
+            ],
+            "main_topic": "Mechanics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.87
+          },
+          "total_marks": 8,
+          "stem_markdown": "A particle moves in a straight line starting from a point \\(O\\). The velocity \\(v\\text{ m s}^{-1}\\) of the particle \\(t\\) s after leaving \\(O\\) is given by\\n\\n$$v = t^3 - \\frac{9}{2}t^2 + 1 \\text{ for } 0 \\leq t \\leq 4.$$\\n\\nYou may assume that the velocity of the particle is positive for \\(t < \\frac{1}{2}\\), is zero at \\(t = \\frac{1}{2}\\) and is negative for \\(t > \\frac{1}{2}\\).",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "",
+              "guidance_markdown": "Increase power by 1 and a change in coefficient in at least one term (which must be the same term). $$s = vt$$ is M0.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$(s =) \\frac{1}{(3+1)} t^{3+1} - \\frac{9}{2 \\times (2+1)} t^{2+1} + t[+c] = \\frac{1}{4} t^4 - \\frac{3}{2} t^3 + t[+c]$$",
+              "guidance_markdown": "May be unsimplified.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\text{Distance} = \\left( \\frac{1}{4} \\times \\left( \\frac{1}{2} \\right)^4 - \\frac{3}{2} \\left( \\frac{1}{2} \\right)^3 + \\left( \\frac{1}{2} \\right) \\right) [-(0)]$$",
+              "guidance_markdown": "Use limits 0 and $$\\frac{1}{2}$$ correctly, or substitute $$t = \\frac{1}{2}$$. M0 if including other regions.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$= \\frac{21}{64} \\text{ m}$$",
+              "guidance_markdown": "Oe, e.g. 0.328125. Condone 0.328.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$\\frac{21}{64} \\text{ m}$$",
+              "guidance_markdown": "Oe, e.g. 0.328125. Condone 0.328.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Attempt to differentiate $$\\left[ (a =) 3t^2 - 9t \\right]$$",
+              "guidance_markdown": "Decrease power by 1 and a change in coefficient in at least one term (which must be the same term). $$a = \\frac{v}{t}$$ is M0.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Solve $$a = 0$$ to get $$t = 3$$",
+              "guidance_markdown": "Ignore $$t = 0$$ if not rejected.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Distance from $$t = \\frac{1}{2}$$ to $$t = 3 =$$ $$\\pm \\left( \\left( \\frac{1}{4} \\times 3^4 - \\frac{3}{2} \\times 3^3 + 3 \\right) - \\left( \\frac{1}{4} \\times \\left( \\frac{1}{2} \\right)^4 - \\frac{3}{2} \\left( \\frac{1}{2} \\right)^3 + \\left( \\frac{1}{2} \\right) \\right) \\right) =$$ $$\\pm \\left( \\left( \\frac{1}{4} \\times 3^4 - \\frac{3}{2} \\times 3^3 + 3 \\right) - \\frac{21}{64} \\right) \\left[ = \\mp 17 \\frac{37}{64} = \\mp \\frac{1125}{64} = \\mp 17.578125 \\right]$$",
+              "guidance_markdown": "Must be using an expression for s from integration. Allow missing minus sign at start; use limits $$\\frac{1}{2}$$ and their 3 correctly, where $$\\frac{1}{2} < \\text{their } 3 \\le 4$$. Or use limit 3 and find difference from $$\\text{their } \\frac{21}{64}$$ from part (a). May see $$2 \\times \\left( \\frac{1}{4} \\times \\left( \\frac{1}{2} \\right)^4 - \\frac{3}{2} \\left( \\frac{1}{2} \\right)^3 + \\left( \\frac{1}{2} \\right) \\right) - \\left( \\frac{1}{4} \\times 3^4 - \\frac{3}{2} \\times 3^3 + 3 \\right)$$",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "So total $$\\left[ = \\frac{21}{64} + 17 \\frac{37}{64} \\right] = 17 \\frac{29}{32} \\text{ m}$$",
+              "guidance_markdown": "Oe, e.g. $$\\frac{573}{32}$$, 17.90625. Condone 17.9. FT $$\\text{their}$$ positive integration value in part (a), e.g. $$17 \\frac{37}{64} + \\text{their (a)}$$ or $$\\frac{69}{4} + 2 \\times \\text{their (a)}$$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Attempt to differentiate $$\\left[ (a =) 3t^2 - 9t \\right]$$",
+              "guidance_markdown": "Decrease power by 1 and a change in coefficient in at least one term (which must be the same term). $$a = \\frac{v}{t}$$ is M0.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "Solve $$a = 0$$ to get $$t = 3$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 12,
+              "content_markdown": "$$17 \\frac{29}{32} \\text{ m}$$",
+              "guidance_markdown": "Oe, e.g. $$\\frac{573}{32}$$, 17.90625. Condone 17.9.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "It is given that \\(F = 100\\). Find the acceleration of the car and the tension in the tow-bar.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "It is given instead that the total work done against \\(F\\) in moving a distance of 50 m up the road is 6000 J. The speed of the car at the start of the 50 m is \\(20\\text{ m s}^{-1}\\). Use an energy method to find the speed of the car at the end of the 50 m.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Resolve forces up the incline",
+              "Apply Newton’s second law to find acceleration and tow-bar tension",
+              "Use energy/work to relate change in kinetic energy to work against resistances and gravity component"
+            ],
+            "methods": [
+              "Use F=ma with forces parallel to the plane and tension as an internal force to find acceleration",
+              "Use work-energy: change in kinetic energy equals work done by the engine minus work against resistances (including gravity component through sin α)"
+            ],
+            "subtopics": [
+              "Dynamics",
+              "Inclined plane resistance",
+              "Towing/tension",
+              "Work and energy"
+            ],
+            "main_topic": "Mechanics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.84
+          },
+          "total_marks": 10,
+          "stem_markdown": "A car of mass 1800 kg is towing a trailer of mass 300 kg up a straight road inclined at an angle \\(\\alpha\\) to the horizontal, where \\(\\sin \\alpha = 0.05\\). The car and trailer are connected by a tow-bar which is light and rigid and is parallel to the road. There is a resistance force of 800 N acting on the car and a resistance force of \\(F\\text{ N}\\) acting on the trailer. The driving force of the car's engine is 3000 N.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "",
+              "guidance_markdown": "Correct number of terms; allow sign errors; allow sin/cos mix; $$\\sin \\alpha$$ or $$\\alpha = 2.865\\dots$$ needs to be substituted; allow with $$\\alpha = 2.87$$ or $$2.9$$ or better; allow $$g$$ missing.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Car: $$3000 - 1800g \\times 0.05 - 800 - T = 1800a$$ $$[3000 - 900 - 800 - T = 1800a \\rightarrow 1300 - T = 1800a]$$ Trailer: $$T - 300g \\times 0.05 - 100 = 300a$$ $$[T - 150 - 100 = 300a \\rightarrow T - 250 = 300a]$$ System: $$3000 - 1800g \\times 0.05 - 300g \\times 0.05 - 800 - 100 = (1800 + 300)a$$ $$[3000 - 900 - 150 - 800 - 100 = 2100a \\rightarrow 1050 = 2100a]$$",
+              "guidance_markdown": "Any two equations correct.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "From equations with correct number of relevant terms, allow $$g$$ missing. If no working seen, must be correct for their equations.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Acceleration $$= 0.5 \\text{ m s}^{-2}$$",
+              "guidance_markdown": "Oe. Allow 0.499 from $$\\alpha = 2.87$$.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Tension $$= 400 \\text{ N}$$",
+              "guidance_markdown": "Allow awrt 400 to 3sf, www. Condone using car equation with 0.499 to get $$T = 400.5$$. Using exact $$a$$ from an inexact angle gives $$T = 400$$.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Work done against resistance on car = $$800 \\times 50 [= 40000]$$ or Work done by driving force = $$3000 \\times 50 [= 150000]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "PE change = $$(1800 + 300) g \\times 50 \\times 0.05 [= 52500]$$",
+              "guidance_markdown": "Allow $$2100g \\times 50 \\times \\sin 2.9$$. Or $$2100g \\times 50 \\times \\sin 2.87$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Initial KE = $$\\frac{1}{2} \\times (1800 + 300) \\times 20^2 [420000]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$\\frac{1}{2} \\times (1800 + 300) v^2 = 3000 \\times 50 - 800 \\times 50 - 6000 - (1800 + 300) g \\times 50 \\times 0.05 + \\frac{1}{2} \\times (1800 + 300) \\times 20^2$$ $$[1050v^2 = 150000 - 40000 - 6000 - 52500 + 420000]$$ $$[1050v^2 = 471500]$$",
+              "guidance_markdown": "Attempt at work-energy equation; correct number of relevant terms; dimensionally correct; allow sign errors; allow sin/cos mix in relevant resolved terms. Only PE must be from a component. Allow $$2100g \\times 50 \\times \\sin 2.9$$ or $$2100g \\times 50 \\times \\sin 2.87$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "Speed = $$21.2 \\text{ m s}^{-1}$$ [21.1907...]",
+              "guidance_markdown": "Awrt 21.2 to 3sf. $$\\alpha = 2.87$$ gives 21.18909187. $$\\alpha = 2.9$$ gives 21.17674855.  ",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "Car: $$3000 - 1800g \\times 0.05 - 800 - T = 1800a$$ Trailer: $$T - 300g \\times 0.05 - \\frac{6000}{50} = 300a$$ Solve to get $$T = \\frac{2920}{7} = 417.1428571$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "Work done against resistance on car = $$800 \\times 50 [= 40000]$$ or Work done by driving force = $$3000 \\times 50 [= 150000]$$ or Work done against tension = $$\\frac{2920}{7} \\times 50 [= \\frac{146000}{7}]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "PE change = $$1800g \\times 50 \\times 0.05 [= 45000]$$ or Initial KE = $$\\frac{1}{2} \\times 1800 \\times 20^2 [360000]$$",
+              "guidance_markdown": "Or $$300g \\times 50 \\times 0.05 [= 7500]$$. Allow $$1800g \\times 50 \\times \\sin 2.9$$ or $$1800g \\times 50 \\times \\sin 2.87$$. Or $$\\frac{1}{2} \\times 300 \\times 20^2 [60000]$$.  ",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "$$\\frac{1}{2} \\times 1800v^2 = 3000 \\times 50 - 800 \\times 50 - \\frac{2920}{7} \\times 50 - 1800g \\times 50 \\times 0.05 + \\frac{1}{2} \\times 1800 \\times 20^2$$",
+              "guidance_markdown": "Attempt at work-energy equation; correct number of relevant terms; dimensionally correct; allow sign errors; allow sin/cos mix in relevant resolved terms. Only PE must be from a component. M0 if using $$T$$ from part (a). ",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 15,
+              "content_markdown": "Speed = $$21.2 \\text{ m s}^{-1}$$ [21.1907...]",
+              "guidance_markdown": "Awrt 21.2 to 3sf.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "$$F = \\frac{6000}{50} = 120, \\quad 2100a = 3000 - \\frac{6000}{50} - 800 - 2100g \\times 0.05 \\left[ a = \\frac{103}{210} \\right]$$",
+              "guidance_markdown": "Oe. Allow $$2100a = 3000 - \\frac{6000}{50} - 800 - 2100g \\times \\sin 2.9$$. Allow $$2100a = 3000 - \\frac{6000}{50} - 800 - 2100g \\times \\sin 2.87$$.  ",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 17,
+              "content_markdown": "$$\\left[ v^2 = 20^2 + 2 \\times 50 \\times \\frac{103}{210} \\right] \\quad v = 21.2 \\text{ m s}^{-1}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Verify that particle \\(P\\) reaches \\(B\\) 0.5 s after it is released, with speed \\(3\\text{ m s}^{-1}\\).",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the time that it takes from the instant the two particles are released until they collide.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find the time that it takes from the instant the particles collide until the combined particle reaches \\(C\\).",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 6096,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "geometry_diagram",
+              "description": "A geometry diagram showing a plane labelled \\(ABC\\) inclined to the horizontal, with points \\(A\\), \\(B\\), \\(C\\), \\(P\\) and \\(Q\\) marked on or near the plane. The lengths \\(AB = 0.75\\text{ m}\\) and \\(BC = 3.25\\text{ m}\\) are shown, together with the angle \\(\\theta\\). The section \\(AB\\) is smooth and the section \\(BC\\) is rough.",
+              "bounding_box": {
+                "top_left_x": 208,
+                "top_left_y": 93,
+                "bottom_right_x": 510,
+                "bottom_right_y": 324
+              },
+              "storage_path": "a_level/9709/2024/feb_march/42/question_paper/q7/page-10-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 10,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [
+                  "AB = 0.75 m",
+                  "BC = 3.25 m",
+                  "sin θ = 0.6",
+                  "coefficient of friction = 0.25"
+                ],
+                "relationships": [
+                  "The plane ABC is inclined at an angle θ to the horizontal.",
+                  "AB is smooth.",
+                  "BC is rough.",
+                  "Particles P and Q move along the line of greatest slope of the plane."
+                ],
+                "visible_labels": [
+                  "A",
+                  "B",
+                  "C",
+                  "P",
+                  "Q",
+                  "θ",
+                  "0.75 m",
+                  "3.25 m"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Compute motion time and speed on smooth/rough sections using constant acceleration",
+              "Use friction to find retarding acceleration on rough section",
+              "Handle collision of inelastic coalescence using conservation of momentum along the plane",
+              "Determine subsequent motion time with friction after collision"
+            ],
+            "methods": [
+              "Model each particle’s motion with constant acceleration from gravity components and friction, then use SUVAT to get travel times",
+              "For the collision, apply conservation of momentum for the coalesced particle along the plane (with friction acting after collision)",
+              "After collision, treat combined mass and compute time to reach C under new acceleration"
+            ],
+            "subtopics": [
+              "Dynamics",
+              "Inclined planes",
+              "Friction",
+              "Collision and coalescence",
+              "Kinematics"
+            ],
+            "main_topic": "Mechanics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 5,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.73
+          },
+          "total_marks": 12,
+          "stem_markdown": "The diagram shows two particles \\(P\\) and \\(Q\\) which lie on a line of greatest slope of a plane \\(ABC\\). Particles \\(P\\) and \\(Q\\) are each of mass \\(m\\) kg. The plane is inclined at an angle \\(\\theta\\) to the horizontal, where \\(\\sin \\theta = 0.6\\). The length of \\(AB\\) is \\(0.75\\text{ m}\\) and the length of \\(BC\\) is \\(3.25\\text{ m}\\). The section \\(AB\\) of the plane is smooth and the section \\(BC\\) is rough. The coefficient of friction between each particle and the section \\(BC\\) is 0.25. Particle \\(P\\) is released from rest at \\(A\\). At the same instant, particle \\(Q\\) is released from rest at \\(B\\).\n\nThe two particles coalesce when they collide. The coefficient of friction between the combined particle and the plane is still 0.25.",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$(m)a = (m)g\\sin \\theta = (m)g \\times 0.6 \\ [\\Rightarrow a = 6]$$",
+              "guidance_markdown": "For attempt at Newton’s second law; 2 terms; allow sign errors; allow sin/cos mix, allow $$\\theta = 36.9$$ or better. Allow $$\\theta = 37$$. Allow for $$a = 6$$ seen/used.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$v^2 = [0^2] + 2 \\times 6 \\times 0.75 \\Rightarrow v = 3$$",
+              "guidance_markdown": "AG.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$3 = [0] + 6t \\Rightarrow t = 0.5$$",
+              "guidance_markdown": "AG. Allow A2 for use of $$a = 6$$ with any 2 of $$v = 3$$, $$t = 0.5$$ and $$s = 0.75$$ to get the third value.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$(m)a = (m)g\\sin \\theta = (m)g \\times 0.6 \\ [\\Rightarrow a = 6]$$",
+              "guidance_markdown": "For attempt at Newton’s second law; 2 terms; allow sign errors; allow sin/cos mix, allow $$\\theta = 36.9$$ or better. Allow $$\\theta = 37$$. Allow for $$a = 6$$ seen/used.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$0 + 6 \\times 0.5 = 3$$",
+              "guidance_markdown": "AG.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$0 \\times 0.5 + \\frac{1}{2} \\times 6 \\times 0.5^2 = 0.75$$ or $$3 \\times 0.5 - \\frac{1}{2} \\times 6 \\times 0.5^2 = 0.75$$",
+              "guidance_markdown": "AG. Allow A2 for $$3 \\times 0.5 - \\frac{1}{2} \\times 6 \\times 0.5^2 = 0.75$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$\\frac{1}{2}(m)v^2 = (m)g \\times 0.75 \\times 0.6$$",
+              "guidance_markdown": "Attempt at conservation of energy, 2 terms, dimensionally correct, allow sin/cos mix, allow $$\\theta = 36.9$$ or better. Allow $$\\theta = 37$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$v = 3$$",
+              "guidance_markdown": "AG.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Use constant acceleration to get $$t = 0.5$$",
+              "guidance_markdown": "AG. Must show $$a = 6$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$(s =) \\frac{1}{2}(0 + 3) \\times 0.5$$ or $$0.75 = \\frac{1}{2}(0 + v) \\times 0.5$$ or $$0.75 = \\frac{1}{2}(0 + 3)t$$",
+              "guidance_markdown": "Use $$s = \\frac{1}{2}(u + v)t$$ with $$u = 0$$ with any 2 of $$v = 3$$, $$t = 0.5$$ and $$s = 0.75$$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "Correctly identifies one value.",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 12,
+              "content_markdown": "$$(s =) 0.75$$ or $$v = 3$$ or $$t = 0.5$$",
+              "guidance_markdown": "AG.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "$$3^2 = (0^2) + 2\\times a \\times 0.75 \\Rightarrow a = 6$$ or $$3 = (0) + 0.5a \\Rightarrow a = 6$$ or $$0.75 = (0 \\times 0.5) + \\frac{1}{2} \\times a \\times 0.5^2 \\Rightarrow a = 6$$ or $$0.75 = 3\\times 0.5 - \\frac{1}{2} \\times a \\times 0.5^2 \\Rightarrow a = 6$$",
+              "guidance_markdown": "Use constant acceleration to get an equation in \\(a\\) only, using \\(u = 0\\) and any 2 of \\(v = 3\\), \\(t = 0.5\\) and \\(s = 0.75\\). Or using \\(v = 3\\), \\(t = 0.5\\) and \\(s = 0.75\\).",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "$$3 = (0) + 6t,\\; 0.75 = (0\\times t) + \\frac{1}{2}\\times 6\\times t^2,\\; 0.75 = 3t - \\frac{1}{2}\\times 6\\times t^2$$ or $$s = (0\\times 0.5) + \\frac{1}{2}\\times 6\\times 0.5^2,\\; s = 3\\times 0.5 - \\frac{1}{2}\\times 6\\times 0.5^2$$ or $$v = (0) + 0.5\\times 6,\\; v^2 = (0^2) + 2\\times 6\\times 0.75,\\; 0.75 = 0.5v - \\frac{1}{2}\\times 6\\times 0.5^2$$ or $$3 = u + 6\\times 0.5,\\; 3^2 = u^2 + 2\\times 6\\times 0.75,\\; 0.75 = 0.5u + \\frac{1}{2}\\times 6\\times 0.5^2$$",
+              "guidance_markdown": "Use constant acceleration formula in an attempt to find the third unused value using $$a = 6$$. Or use constant acceleration formula in an attempt to find \\(u\\) using $$a = 6$$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 15,
+              "content_markdown": "Get correct unused value",
+              "guidance_markdown": "Or \\(u = 0\\) if using all 3 values to find \\(a = 6\\). AG.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "For \\(BC\\; (m)a = (m)g\\sin \\theta - (m)g \\times 0.8 \\times 0.25 = (m)g \\times 0.6 - (m)g \\times 0.8 \\times 0.25\\) \\([\\Rightarrow a = 4]\\)",
+              "guidance_markdown": "For attempt at Newton’s second law; 3 terms; allow sign errors; allow \\(g\\) missing; allow sin/cos mix, allow \\(\\theta = 36.9\\) or better.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "For \\(P\\), \\(s_P = 3t + \\frac{1}{2} \\times 4t^2\\) For \\(Q\\), \\(s_Q = \\frac{1}{2} \\times 4(t + 0.5)^2\\) Or for \\(P\\), \\(s_P = 3(T - 0.5) + \\frac{1}{2} \\times 4(T - 0.5)^2\\) For \\(Q\\), \\(s_Q = \\frac{1}{2} \\times 4T^2\\)",
+              "guidance_markdown": "For either \\(s_P\\) or \\(s_Q\\). \\(t\\) is the time after \\(P\\) arrives at \\(B\\). \\(T\\) is the time from when both particles released.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 18,
+              "content_markdown": "$$3t + \\frac{1}{2} \\times 4t^2 = \\frac{1}{2} \\times 4(t + 0.5)^2 \\; [\\Rightarrow 3t + 2t^2 = 2t^2 + 2t + 0.5]$$ Or $$3(T - 0.5) + \\frac{1}{2} \\times 4(T - 0.5)^2 = \\frac{1}{2} \\times 4T^2 \\; [\\Rightarrow 3T - 1.5 + 2(T^2 - T + 0.25) = 2T^2]$$",
+              "guidance_markdown": "For use of \\(s_P = s_Q\\); \\(s_P\\) and \\(s_Q\\) of correct form. Using their \\(a \\neq\\) their \\(6\\) from part (a), \\(a \\neq \\pm g\\). Using same \\(a\\) in both \\(s_P\\) and \\(s_Q\\).",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 19,
+              "content_markdown": "\\(t = 0.5\\), so total time = 1s or time \\(T = 1s\\)",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 20,
+              "content_markdown": "For \\(BC\\; (m)a = (m)g\\sin \\theta - (m)g \\times 0.8 \\times 0.25 = (m)g \\times 0.6 - (m)g \\times 0.8 \\times 0.25\\) \\([\\Rightarrow a = 4]\\)",
+              "guidance_markdown": "For attempt at Newton’s second law; 3 terms; allow sign errors; allow \\(g\\) missing; allow sin/cos mix, allow \\(\\theta = 36.9\\) or better.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 21,
+              "content_markdown": "For \\(P\\), \\(s_P = 3t + \\frac{1}{2} \\times 4t^2\\) Or \\(Q\\) has speed \\(2\\text{ ms}^{-1}\\) after \\(0.5\\) s, so \\(s_Q = 2t + \\frac{1}{2} \\times 4t^2\\)",
+              "guidance_markdown": "For either. \\(t\\) is the time after \\(P\\) arrives at \\(B\\).",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 22,
+              "content_markdown": "$$3t + \\frac{1}{2} \\times 4t^2 = 2t + \\frac{1}{2} \\times 4t^2 + \\frac{1}{2} \\times 4 \\times 0.5^2$$",
+              "guidance_markdown": "For use of \\(s_P = s_Q \\pm\\) their \\(\\frac{1}{2} \\times 4 \\times 0.5^2\\); \\(s_P\\) or \\(s_Q\\) of correct form. Using their \\(a \\neq\\) their \\(6\\) from part (a), \\(a \\neq \\pm g\\). Using same \\(a\\) in both \\(s_P\\) or \\(s_Q\\).",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 23,
+              "content_markdown": "\\(t = 0.5\\), so total time = 1s",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 24,
+              "content_markdown": "For \\(BC\\; (m)a = (m)g\\sin \\theta - (m)g \\times 0.8 \\times 0.25 = (m)g \\times 0.6 - (m)g \\times 0.8 \\times 0.25\\) \\([\\Rightarrow a = 4]\\)",
+              "guidance_markdown": "For attempt at Newton’s second law; 3 terms; allow \\(g\\) missing; allow sign errors; allow sin/cos mix.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 25,
+              "content_markdown": "[In \\(0.5\\) s] \\(Q\\) has speed \\(2\\text{ ms}^{-1}\\) and has moved \\(0.5\\text{ m}\\)",
+              "guidance_markdown": "For both.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 26,
+              "content_markdown": "$$t = \\frac{0.5}{3 - 2}$$",
+              "guidance_markdown": "Attempt at time from relative velocity using their \\(0.5\\text{ m}\\) and their \\(2\\text{ ms}^{-1}\\).",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 27,
+              "content_markdown": "\\(t = 0.5\\) so total time = 1 s",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 28,
+              "content_markdown": "Immediately before the collision speed of \\(P\\) \\([= 3 + 4 \\times \\frac{1}{2}] = 5\\text{ ms}^{-1}\\) Speed of \\(Q\\) \\([= 0 + 4 \\times 1] = 4\\text{ ms}^{-1}\\)",
+              "guidance_markdown": "For either.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 29,
+              "content_markdown": "$$5(m) + 4(m) = [(m) + (m)] \\times v \\quad [\\Rightarrow v = 4.5]$$",
+              "guidance_markdown": "Use of conservation of momentum; 4 non-zero terms; allow sign errors; allow their \\(4\\text{ ms}^{-1}\\) (\\(\\neq 0\\) or 2) and \\(5\\text{ ms}^{-1}\\) (\\(\\neq 3\\)). Use of \\(mg\\) then withhold final A mark.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 30,
+              "content_markdown": "Distance from \\(B\\) at collision = \\(\\frac{1}{2} \\times 4 \\times 1^2 = 2\\text{ m}\\) OR \\(3 \\times 0.5 + \\frac{1}{2} \\times 4 \\times 0.5^2 = 2\\text{ m}\\)",
+              "guidance_markdown": "May be implied by 1.25 m.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 31,
+              "content_markdown": "$$1.25 = 4.5t + \\frac{1}{2} \\times 4t^2$$",
+              "guidance_markdown": "Use of constant acceleration with \\(u\\) their \\(4.5\\), \\(a\\) their \\(4\\) (\\(\\neq \\pm g\\)) and \\(s\\) their \\(= 3.25 -\\) their 2, \\(s \\neq 3.25\\), \\(s \\neq 0.75\\), \\(s \\neq 4\\), \\(s \\neq 2.75\\), \\(s \\neq 0.5\\). If using two formulae, must be a complete method to get an equation in \\(t\\) only.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 32,
+              "content_markdown": "\\(t = 0.25\\text{ s}\\) only",
+              "guidance_markdown": "A0 if from use of \\(mg\\) in conservation of momentum.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "validation_correction": {
+      "reason": "Resolved source-checked duplicate Answer/Guidance false positives",
+      "version": "v2.1",
+      "corrected_at": "2026-08-07T10:13:14.732895+00:00",
+      "affected_questions": [
+        {
+          "paper_variant": "31",
+          "question_number": 7,
+          "ingestion_run_id": "38aa9576-9519-49bd-81ce-34275525f985",
+          "mark_scheme_sequence": 6
+        },
+        {
+          "part_path": [
+            "a"
+          ],
+          "paper_variant": "42",
+          "question_number": 7,
+          "ingestion_run_id": "38103a22-dc31-4060-aead-7bad9b77a174",
+          "mark_scheme_sequence": 6
+        }
+      ]
+    },
+    "extraction_response_id": [
+      "resp_0099e4e8fd3c9a38016a7496711cc48198acdd5d8c7066601a",
+      "resp_0a93f156fbf9796b016a7496d11f28819ab7e2bcd395ce44bd",
+      "resp_0f3782d6125bd4b4016a7497aec3248198a0787a67f10feb05",
+      "resp_00b4d0ffe0a482f5016a7497b0ae688198a02120f431ffaea8",
+      "resp_08808002ec33b2a4016a7497b2af30819abbafff37628b766b",
+      "resp_0ab2f4407ba263b3016a7497b4bc7c8199a13b48ac5c632381",
+      "resp_03f9b55311653240016a7497b6bee08198bc12d8546263d35c",
+      "resp_0aeada29c2a8a5aa016a7497b8bcbc819ba50b1c0addb9b61c",
+      "resp_0c8a9fdceadbd489016a7497bac98c8199bdf89a8c7bffe366",
+      "resp_099e782f1b9d711e016a74980f5ab08199ac1489557ab56a7c",
+      "resp_09ff69c0d554bdfc016a74999c2c1c819b9c57fb6e1df2de96"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

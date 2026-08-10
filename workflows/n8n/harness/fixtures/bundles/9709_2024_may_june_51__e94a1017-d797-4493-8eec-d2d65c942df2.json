@@ -1,0 +1,1746 @@
+{
+  "paper_key": "9709_2024_may_june_51",
+  "ingestion_run_id": "e94a1017-d797-4493-8eec-d2d65c942df2",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.1-batch-02:a_level:9709:2024:may_june:51",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Normalized Markdown wrappers, parentheses, compact suffixes or special-case prefixes in 3 mark-code cells before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_CODE_FORMAT_NORMALIZED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 4
+      },
+      {
+        "message": "All mark codes cover the question total, but rows marked as alternative reduce primary coverage to 5 of 6 marks.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_CODE_ALTERNATIVE_CLASSIFICATION",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 3
+      },
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 7
+      }
+    ],
+    "passed": true,
+    "warning_count": 3,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": 7
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 17,
+      "assets": 1,
+      "issues": 3,
+      "questions": 7,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.09674999
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "input_tokens": 8811,
+          "output_tokens": 6211,
+          "actual_cost_usd": 0.02920095,
+          "cached_input_tokens": 7936
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "input_tokens": 10309,
+          "output_tokens": 264,
+          "actual_cost_usd": 0.00059468,
+          "cached_input_tokens": 9984
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_question_extraction",
+          "input_tokens": 14601,
+          "output_tokens": 9982,
+          "actual_cost_usd": 0.01373882,
+          "cached_input_tokens": 9216
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "input_tokens": 2014,
+          "output_tokens": 1558,
+          "actual_cost_usd": 0.00202774,
+          "cached_input_tokens": 1792
+        },
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "targeted_question_repair",
+          "input_tokens": 31330,
+          "output_tokens": 10339,
+          "actual_cost_usd": 0.0511878,
+          "cached_input_tokens": 27904
+        }
+      ],
+      "input_tokens": 67065,
+      "output_tokens": 28354,
+      "actual_cost_usd": 0.09674999,
+      "cached_input_tokens": 56832
+    },
+    "staged_at": "2026-08-06T15:55:03.775Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_51.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 20,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_51.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the mean of all 45 values of \\(x\\).",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the standard deviation of all 45 values of \\(x\\).",
+              "source_page_numbers": [
+                2
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use given sums of deviations to find the overall mean",
+              "Use given sums of squared deviations to find the overall standard deviation"
+            ],
+            "methods": [
+              "Compute the mean from \\(\\sum(x-30)\\) over the combined sample size",
+              "Compute variance from \\(\\sum(x-30)^2\\) and the relationship \\(\\sum(x-\bar x)^2=\\sum(x-30)^2-n(\\bar x-30)^2\\)",
+              "Take square root to obtain standard deviation"
+            ],
+            "subtopics": [
+              "Summary statistics",
+              "Mean and variance"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 4,
+          "stem_markdown": "A summary of 20 values of \\(x\\) gives\n\n\\[\n\\sum(x-30)=439,\\qquad \\sum(x-30)^2=12\\,405.\n\\]\n\nA summary of another 25 values of \\(x\\) gives\n\n\\[\n\\sum(x-30)=470,\\qquad \\sum(x-30)^2=11\\,346.\n\\]",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\frac{439+470}{45}+30$$",
+              "guidance_markdown": "$$\\frac{439+470}{45}$$ or $$\\frac{909}{45}$$ seen.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "= 50.2",
+              "guidance_markdown": "If M0 awarded, **SC B1** 50.2 WWW.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\frac{25\\times30+470+20\\times30+439}{45}$$",
+              "guidance_markdown": "$$\\frac{1220+1039}{45}$$ or $$\\frac{2259}{45}$$ seen.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "= 50.2",
+              "guidance_markdown": "If M0 awarded, **SC B1** 50.2 WWW.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "For all 45 values $$Sd^2=\\frac{12405+11346}{45}-\\left(\\frac{909}{45}\\right)^2$$",
+              "guidance_markdown": "$$\\frac{their(12405+11346)\\ or\\ 23751}{45}-\\left(their\\frac{909}{45}\\right)^2$$",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$sd\\ [=\\sqrt{119.76}\\ ]=10.9$$",
+              "guidance_markdown": "If M0 awarded, **SC B1** 10.9 WWW.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the probability that a randomly chosen adult raccoon of this species has a tail length between 23 cm and 35 cm.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the value of \\(\\sigma\\).",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Convert tail-length bounds to standard scores using the given mean and standard deviation",
+              "Use normal CDF/standard normal probabilities to form an equation",
+              "Determine the unknown standard deviation from a given probability about the other variable"
+            ],
+            "methods": [
+              "Standardise using \\(z=(x-\\mu)/\\sigma\\)",
+              "Use \\(P(X>a)=P(Z>(a-\\mu)/\\sigma)\\) with standard normal probabilities",
+              "Solve for \\(\\sigma\\) using equality of probabilities"
+            ],
+            "subtopics": [
+              "Normal distributions",
+              "Working with quantiles and probabilities"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.88
+          },
+          "total_marks": 7,
+          "stem_markdown": "The lengths of the tails of adult raccoons of a certain species are normally distributed with mean 28 cm and standard deviation 3.3 cm.\n\nThe masses of adult raccoons of this species are normally distributed with mean 8.5 kg and standard deviation \\(\\sigma\\) kg. 75% of adult raccoons of this species have mass greater than 7.6 kg.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$P(23 < X < 35) = P(\\frac{23-28}{3.3} < Z < \\frac{35-28}{3.3})$$ $$[= P(-1.515 < Z < 2.121)]$$",
+              "guidance_markdown": "Using $$\\pm$$ standardisation formula once with 23 or 35, 28 and 3.3, allow $$\\sigma^2$$, allow $$\\sqrt{\\sigma}$$, no continuity correction.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "",
+              "guidance_markdown": "One fully correct $$\\pm$$ standardisation formula.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$[= \\Phi(2.121) + \\Phi(1.5151) - 1]$$ $$= 0.9830 + 0.9351 - 1$$",
+              "guidance_markdown": "Appropriate area $$\\Phi$$, from final process, must be a probability.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$= 0.918$$",
+              "guidance_markdown": "AWRT",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$[P(X > 7.6) = P(Z > \\frac{7.6-8.5}{\\sigma}) = 0.75]$$ $$\\frac{7.6-8.5}{\\sigma} = -0.674$$",
+              "guidance_markdown": "0.674 or $$-0.674$$ seen. CAO as critical value.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "",
+              "guidance_markdown": "Use of the $$\\pm$$ standardisation formula with 7.6, 8.5, $$\\sigma$$ and a $$z$$-value (not 0.75, 0.25, 0.7734, 0.2266, 0.5987 nor $$1 - z$$-value: 0.326, 0.5987). Condone use of $$\\frac{\\pm 0.9}{\\sigma}$$.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$\\sigma = 1.34$$",
+              "guidance_markdown": "$$1.33 \\leqslant \\sigma \\leqslant 1.34$$",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Draw a histogram to represent this information.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The interquartile range is \\(R\\) cm. Show that \\(R\\) is not greater than 15.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 75789,
+              "mime_type": "image/jpeg",
+              "part_path": [
+                "a"
+              ],
+              "asset_type": "coordinate_grid",
+              "description": "Blank grid for drawing the histogram in part (a).",
+              "bounding_box": {
+                "top_left_x": 102,
+                "top_left_y": 269,
+                "bottom_right_x": 618,
+                "bottom_right_y": 750
+              },
+              "storage_path": "a_level/9709/2024/may_june/51/question_paper/q3-part-a/page-4-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 4,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [],
+                "relationships": [],
+                "visible_labels": []
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Construct a histogram with appropriate class intervals and frequencies",
+              "Compute quartiles for grouped data using cumulative frequencies",
+              "Find and justify an upper bound for the interquartile range"
+            ],
+            "methods": [
+              "Choose histogram class widths from the grouped intervals and scale heights by frequency",
+              "Use cumulative frequency to locate the 25th and 75th percentiles",
+              "Use the quartile interpolation formula for grouped data to estimate \\(Q_1\\) and \\(Q_3\\) then bound \\(R=Q_3-Q_1\\)",
+              "Conclude \\(R\\le 15\\) from the computed bounds"
+            ],
+            "subtopics": [
+              "Grouped data",
+              "Histograms",
+              "Quartiles and interquartile range"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.83
+          },
+          "total_marks": 6,
+          "stem_markdown": "The heights, in cm, of 200 adults in Barimba are summarised in the following table.\n\n| Height \\((h\\text{ cm})\\) | \\(130 \\le h < 150\\) | \\(150 \\le h < 160\\) | \\(160 \\le h < 170\\) | \\(170 \\le h < 175\\) | \\(175 \\le h < 195\\) |\n| --- | --- | --- | --- | --- | --- |\n| Frequency | 16 | 32 | 76 | 64 | 12 |",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "cw",
+              "guidance_markdown": "At least four frequency densities calculated $$\\frac{f}{cw}$$ (e.g. $$\\frac{16}{20}$$). Condone $$\\frac{f}{cw \\pm 0.5}$$ if unsimplified. Accept unsimplified, may be read from graph using *their* scale no lower than 1 cm = fd 2.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "fd",
+              "guidance_markdown": "All bar heights correct on graph, not FT. Using their suitable linear scale with at least three values indicated, no lower than 1 cm = fd 2.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "Bar ends at 150, 160, 170, 175, 195. Five bars drawn with a horizontal linear scale no lower than 1 cm = 10 cm, with at least three values indicated, 130 ≤ horizontal scale ≤ 195.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "",
+              "guidance_markdown": "Axes labelled frequency density (fd) height (h) and cm, OE, or an appropriate title. (Axes may be reversed)",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "[LQ:] 160 ≤ h < 170 [UQ:] 170 ≤ h < 175 175 – 160 = 15",
+              "guidance_markdown": "170 ≤ h < 175 – 160 ≤ h < 170 UQ and LQ classes seen.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "175 – 160 = 15",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "",
+              "guidance_markdown": "If M0 scored, **SC B1** for 175 – 160 = 15.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4,
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that the probability that a player obtains a 4 in one turn is \\(\\frac{37}{64}\\).",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Xeno and Yao play this game.\n\nFind the probability that neither Xeno nor Yao score any points in their first two turns.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Xeno and Yao each have three turns.\n\nFind the probability that Xeno scores 2 more points than Yao.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute probability of getting the required outcome (a 4) within up to three throws",
+              "Use the stopping rule to determine when points are scored",
+              "Compute probabilities involving sums/differences of scores across two independent players"
+            ],
+            "methods": [
+              "Find \\(P(4\\text{ occurs in a turn})=1-P(\\text{no 4 in up to 3 throws})\\)",
+              "Model each turn as either scoring 1 point or scoring 0 points based on whether a 4 occurs",
+              "For ‘no points’ multiply the relevant turn probabilities",
+              "For ‘difference in scores’ treat the number of scoring turns as binomial and sum appropriate probabilities"
+            ],
+            "subtopics": [
+              "Discrete probability",
+              "Geometric/negative binomial style processes",
+              "Independent trials with stopping rules"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 6,
+          "stem_markdown": "A game for two players is played using a fair 4-sided dice with sides numbered 1, 2, 3 and 4. One turn consists of throwing the dice repeatedly up to a maximum of three times. When a 4 is obtained, no further throws are made during that turn. A player who obtains a 4 in their turn scores 1 point.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "",
+              "guidance_markdown": "1 - (s)^3, s = \\frac{3}{4} or \\frac{1}{4}.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "",
+              "guidance_markdown": "AG",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "t + t(1-t) + t(1-t)^2, t = \\frac{1}{4} or \\frac{3}{4}.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "",
+              "guidance_markdown": "AG",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$^3C_1 \\times \\frac{1}{4} \\times \\left(\\frac{3}{4}\\right)^2 + ^3C_2 \\times \\left(\\frac{1}{4}\\right)^2 \\times \\frac{3}{4} + ^3C_3 \\times \\left(\\frac{1}{4}\\right)^3 = \\frac{37}{64}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "",
+              "guidance_markdown": "AG",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$\\left(1 - \\frac{37}{64}\\right)^4 = 0.0317$$",
+              "guidance_markdown": "$$(1 - \\text{their}(\\mathbf{a}))^4$$, accept unsimplified.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "",
+              "guidance_markdown": "Accept unsimplified.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$[\\text{Probability no 4s is}] \\left(\\frac{3}{4}\\right)^6 \\times \\left(\\frac{3}{4}\\right)^6 = 0.0317$$",
+              "guidance_markdown": "Accept unsimplified.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$\\begin{array}{l} \\text{X3} \\\\ \\text{Y1} \\end{array} \\quad \\left(\\frac{37}{64}\\right)^3 \\times \\frac{37}{64} \\times \\left(\\frac{27}{64}\\right)^2 \\times 3 \\quad [= 0.059645]$$ $$\\begin{array}{l} \\text{X2} \\\\ \\text{Y0} \\end{array} \\quad \\left(\\frac{37}{64}\\right)^2 \\times \\frac{27}{64} \\times \\left(\\frac{27}{64}\\right)^3 \\times 3 \\quad [= 0.03176]$$",
+              "guidance_markdown": "Correct probability for 1 identified scenario. Accept unsimplified.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "",
+              "guidance_markdown": "Add values of 2 correct scenarios. Identification may be implied by correct unsimplified expressions (condone omission of $$\\times 3$$). Values may not be probabilities.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 12,
+              "content_markdown": "Probability = 0.0914",
+              "guidance_markdown": "If A0 scored, SC B1 for 0.0914 WWW.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the probability that in a week (7 days) it snows on at least five days.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the probability that in three randomly chosen weeks at least one is a white week.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "In a different area in the Arctic, the probability that a week is a white week is 0.8.\n\nUse a suitable approximation to find the probability that in 60 randomly chosen weeks fewer than 47 are white weeks.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Model number of snow days as a binomial random variable and calculate a tail probability",
+              "Handle multiple independent weeks using complementary probability",
+              "Approximate a binomial probability for large \\(n\\) to estimate a lower-tail event"
+            ],
+            "methods": [
+              "Use \\(X\\sim\\text{Bin}(7,0.7)\\) and compute \\(P(X\\ge 5)\\)",
+              "Use independence across weeks and compute \\(1-P(\\text{no white weeks})\\) for part (b)",
+              "Use an appropriate approximation (e.g., normal or continuity correction) for \\(\\text{Bin}(60,0.8)\\) and calculate \\(P(X<47)\\)"
+            ],
+            "subtopics": [
+              "Binomial distribution",
+              "Normal/large-sample approximation"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 10,
+          "stem_markdown": "In a certain area in the Arctic the probability that it snows on any given day is 0.7, independent of all other days.\n\nA week in which it snows on at least five days out of seven is called a ‘white’ week.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$[P(5, 6, 7) =]$$ $$^7C_5 0.7^5 0.3^2 + ^7C_6 0.7^6 0.3^1 + 0.7^7$$ $$[ = 0.31765 + 0.24706 + 0.08235]$$",
+              "guidance_markdown": "One term $$^7C_x (p)^x (1-p)^{7-x}$$, with $$0 < p < 1$$, $$x \\neq 0$$ or 7.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "",
+              "guidance_markdown": "Correct expression, accept unsimplified, no terms omitted leading to final answer.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.647$$",
+              "guidance_markdown": "$$0.647 \\leqslant p < 0.6475$$",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$[P(5, 6, 7) = 1 - P(0, 1, 2, 3, 4) =]$$ $$1 - \\{0.3^7 + ^7C_1 0.7^1 0.3^6 + ^7C_2 0.7^2 0.3^5 + ^7C_3 0.7^3 0.3^4 + ^7C_4 0.7^4 0.3^3\\}$$",
+              "guidance_markdown": "One term $$^7C_x (p)^x (1-p)^{7-x}$$, with $$0 < p < 1$$, $$x \\neq 0$$ or 7.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "",
+              "guidance_markdown": "Correct expression, accept unsimplified, no terms omitted leading to final answer. Condone omission of final bracket ‘}’. If other brackets omitted, allow recovery if $$1 - 0.35294$$ seen.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$= 0.647$$",
+              "guidance_markdown": "$$0.647 \\leqslant p < 0.6475$$",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "[1 – P(0 white weeks) =] 1 – (1 – 0.647)^{3}",
+              "guidance_markdown": "1 – $$p^3$$, 0 < $$p$$ < 1, $$p = 1$$ – *their* (a), or correct.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "0.956",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "[P(1, 2, 3 white weeks) =] $$3 \\times 0.647 \\times 0.353^2 + 3 \\times 0.647^2 \\times 0.353 + 0.647^3$$",
+              "guidance_markdown": "$$3 \\times q \\times (1 - q)^2 + 3 \\times q^2 \\times (1 - q) + q^3$$, $$q$$ = *their* (a), or correct.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "0.956",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "[Mean = 60 × 0.8 =] 48 [Variance = 60 × 0.8 × 0.2 =] 9.6",
+              "guidance_markdown": "48 and 9.6, $9\\frac{3}{5}$, $\\frac{48}{5}$ seen, allow unsimplified. May be seen in the standardisation formula $([\\sigma =] 3.098 \\leqslant \\sigma \\leqslant 3.1[0]$ implies correct variance). Incorrect notation penalised but values can be used as anticipated in remainder of question.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$P(X < 47) = P\\left(Z < \\frac{46.5 - 48}{\\sqrt{9.6}}\\right)$",
+              "guidance_markdown": "Substituting *their* $\\mu$ and $\\sigma$ into $\\pm$ standardising formula (any number for 46.5), not *their* $\\sigma^2$ or $\\sqrt{their\\sigma}$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "",
+              "guidance_markdown": "Use continuity correction 46.5 or 47.5 in *their* standardised formula. Note: $\\frac{\\pm 1.5}{\\sqrt{9.6}}$ or $\\frac{\\pm 1.5}{3.098}$ seen gains M2 BOD.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "$[P(Z < -0.4841) = 1 - \\Phi(0.4841)]$ 1 – 0.6858",
+              "guidance_markdown": "Appropriate area $\\Phi$, from final process, must be a probability. Expect final answer < 0.5. Note: appropriate final answer implies this M1.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "= 0.314",
+              "guidance_markdown": "$0.314 \\leqslant p < 0.3145$",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Draw up the probability distribution table for \\(X\\).",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Harry has two other coins, each of which is biased so that the probability of obtaining a head when it is thrown is \\(p\\). He throws all five coins at the same time. The random variable \\(Y\\) is the number of heads that he obtains.\n\nGiven that \\(P(Y=0)=6P(Y=5)\\), find the value of \\(p\\).",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Derive the full probability distribution for the number of heads from three different biased coins",
+              "Form and solve an equation involving binomial-like probabilities after adding two further identical coins"
+            ],
+            "methods": [
+              "Compute \\(P(X=k)\\) by summing products of success/failure probabilities across all combinations of the three coins",
+              "For \\(Y\\), use that it is the sum of 5 independent Bernoulli trials with probability \\(p\\) each and write \\(P(Y=0)\\) and \\(P(Y=5)\\)",
+              "Use the given relation \\(P(Y=0)=6P(Y=5)\\) to solve for \\(p\\) using \\(P(Y=0)=(1-p)^5\\) and \\(P(Y=5)=p^5\\)"
+            ],
+            "subtopics": [
+              "Discrete random variables",
+              "Probability distributions of sums of Bernoulli trials",
+              "Conditional equation solving"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 7,
+          "stem_markdown": "Harry has three coins:\n\n- One coin is biased so that the probability of obtaining a head when it is thrown is \\(\\frac{1}{3}\\).\n- The second coin is biased so that the probability of obtaining a head when it is thrown is \\(\\frac{1}{4}\\).\n- The third coin is biased so that the probability of obtaining a head when it is thrown is \\(\\frac{1}{5}\\).\n\nHarry throws the three coins. The random variable \\(X\\) is the number of heads that he obtains.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "x 0 1 2 3",
+              "guidance_markdown": "Table with correct X values and at least one probability. Values need not be in order, lines may not be drawn, may be vertical, X and P(X) may be omitted. Condone any additional X values if probability stated as 0.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "P(X = x)  $$\\frac{24}{60}$$  $$\\frac{26}{60}$$  $$\\frac{9}{60}$$  $$\\frac{1}{60}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\frac{2}{5}$$ $$\\frac{13}{30}$$ $$\\frac{3}{20}$$ $$\\frac{1}{60}$$",
+              "guidance_markdown": "P(X = 1) or P(X = 2) correct and identified, need not be in table, accept unsimplified.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "0.4 0.433 0.15 0.0167",
+              "guidance_markdown": "Two more correct and identified probabilities, need not be in table, accept unsimplified.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "",
+              "guidance_markdown": "4 correct probabilities linked with correct outcomes, may not be in table. Decimals correct to at least 3sf. SC B1 for four probabilities summing to 1 placed in a probability distribution table with the correct x values.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$[P(Y=0)=] \\frac{2}{3} \\times \\frac{3}{4} \\times \\frac{4}{5} \\times (1-p)^2$$; $$[P(Y=5)=] \\frac{1}{3} \\times \\frac{1}{4} \\times \\frac{1}{5} \\times p^2$$",
+              "guidance_markdown": "Either $$\\frac{2}{3} \\times \\frac{3}{4} \\times \\frac{4}{5} \\times (1-p)^2$$, not $$\\frac{2}{5} \\times (1-p)^2$$; or $$\\frac{1}{3} \\times \\frac{1}{4} \\times \\frac{1}{5} \\times p^2$$, not $$\\frac{1}{60} \\times p^2$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$\\frac{2}{3} \\times \\frac{3}{4} \\times \\frac{4}{5} \\times (1-p)^2 = 6 \\times \\frac{1}{3} \\times \\frac{1}{4} \\times \\frac{1}{5} \\times p^2$$ $$[24(1-p)^2 = 6 \\times p^2]$$ $$3p^2 - 8p + 4 = 0$$",
+              "guidance_markdown": "Equating and forming a 3 term quadratic equation. *Their P(Y=0) = 6 × their P(Y=5).*",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$$p = \\frac{2}{3}$$",
+              "guidance_markdown": "Not dependent on B1. A0 if $$p=2$$ seen and not clearly rejected.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "",
+              "guidance_markdown": "SC B1 if $$p=\\frac{2}{3}$$ obtained from a correct quadratic with more than three terms. If $$p=2$$ seen and not clearly rejected, SC B0.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "How many different arrangements are there of these 8 digits?",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the number of different arrangements of the 8 digits in which there is a 2 at the beginning, a 2 at the end and the three 4s are not all together.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Three digits are selected at random from the eight digits 1, 2, 2, 3, 4, 4, 4, 5.\n\nFind the probability that the three digits are all different.",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Count distinct permutations of a multiset",
+              "Count permutations with fixed positions and a ‘not all together’ restriction",
+              "Compute probability of selecting digits that are all different using combinations"
+            ],
+            "methods": [
+              "Use multinomial/permutation formula \\(\\frac{8!}{2!3!}\\) after accounting for repeated digits",
+              "Condition on arrangements with 2 fixed at start/end and subtract those where all three 4s are together using complementary counting",
+              "Use combinations to compute \\(P(\\text{all different})=\\frac{\\binom{1+1+1+?}{3}}{\\binom{8}{3}}\\) by counting favourable selections as triples drawn from distinct values (accounting for repeats)"
+            ],
+            "subtopics": [
+              "Counting",
+              "Permutations with repeated digits",
+              "Combinations and probability"
+            ],
+            "main_topic": "Algebra",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.55
+          },
+          "total_marks": 10,
+          "stem_markdown": "The eight digits 1, 2, 2, 3, 4, 4, 4, 5 are arranged in a line.\n\n(a) How many different arrangements are there of these 8 digits? [1]\n\n(b) Find the number of different arrangements of the 8 digits in which there is a 2 at the beginning, a 2 at the end and the three 4s are not all together. [4]\n\n(c) Three digits are selected at random from the eight digits 1, 2, 2, 3, 4, 4, 4, 5.\n\nFind the probability that the three digits are all different. [5]",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$\\left[ \\frac{8!}{2!3!} = \\right] 3360$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$\\frac{6!}{3!} - 4!$",
+              "guidance_markdown": "$\\frac{6!}{3!} \\times r - s,\\ r = 1, 2$ and $s$ a positive integer (including 0).",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "$4!$ Seen either alone or in $t - 4!$, $t$ an integer value $> 24$.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "",
+              "guidance_markdown": "$\\frac{6!}{3!} \\times r - 4! \\times u,\\ r = 1, 2$ and $u = 1, 2$.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "= 96",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$^3C_3$",
+              "guidance_markdown": "One correct calculation, unsimplified for an identified scenario containing 1, 2 and/or 1, 4.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "0 0 3 $^3C_3$ 1",
+              "guidance_markdown": "Two correct outcomes evaluated, accept unsimplified.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "0 1 2 $^3C_1 \\times {}^3C_2$ 9",
+              "guidance_markdown": "Four correct scenarios added.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "1 0 2 $^2C_1 \\times {}^3C_2$ 6",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "1 1 1 $^2C_1 \\times {}^3C_1 \\times {}^3C_1$ 18",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "[Total number of selections = ] $^8C_3$ [= 56]",
+              "guidance_markdown": "Used as denominator of probability expression.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 12,
+              "content_markdown": "[Probability =] $\\left[\\frac{34}{{}^8C_3}\\right] = \\frac{17}{28}$, 0.607",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "$^{1}C_{1} \\times ^{2}C_{1} \\times ^{1}C_{1}$",
+              "guidance_markdown": "(M1) One correct calculation, unsimplified for an identified scenario containing 1, 2 and/or 1, 4.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "1,2,3 $^{1}C_{1} \\times ^{2}C_{1} \\times ^{1}C_{1}$ 2",
+              "guidance_markdown": "(A1) Five correct outcomes evaluated, accept unsimplified.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "1,2,4 $^{1}C_{1} \\times ^{2}C_{1} \\times ^{3}C_{1}$ 6",
+              "guidance_markdown": "(M1) Ten correct scenarios added.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "[Total 34 ways] [Total number of selections = ] $^8C_3$ [= 56]",
+              "guidance_markdown": "$^8C_3$ or 56 as denominator of probability expression.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "[Probability =] $\\left[\\frac{34}{^8C_3}\\right] = \\frac{17}{28}$, 0.607",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 18,
+              "content_markdown": "$$\\frac{1}{8} \\times \\frac{2}{7} \\times \\frac{1}{6} \\times 3!$$",
+              "guidance_markdown": "One correct calculation, unsimplified for an identified scenario containing 1, 2 and/or 1, 4. **(A1)** Five correct outcomes evaluated, accept unsimplified. **(M1)** Ten correct scenarios added.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 19,
+              "content_markdown": "$$\\frac{6}{336}$$",
+              "guidance_markdown": "1-1 correct calculation, unsimplified for an identified scenario not containing three 4s.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 20,
+              "content_markdown": "$$\\frac{18}{336}$$",
+              "guidance_markdown": "Five correct probabilities evaluated, accept unsimplified.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 21,
+              "content_markdown": "$$\\frac{18}{336}$$",
+              "guidance_markdown": "Nine correct scenarios subtracted.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 22,
+              "content_markdown": "$$\\frac{17}{28}$$, 0.607",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 23,
+              "content_markdown": "",
+              "guidance_markdown": "336 or 8 × 7 × 6 seen as a denominator.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 24,
+              "content_markdown": "[Probability] = $$1 - \\frac{132}{336} \\cdot \\frac{204}{336}$$, 0.607",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_040bf6d6e70b8d2d016a749abf84f8819b9f7469b337aa8d0a",
+      "resp_0f77e5bc1e4de303016a749b171a5c819b864c591eed4db8be",
+      "resp_0f7c06aca4ce23ad016a749bbec4ec819895522d534188625a",
+      "resp_0e894a78686a3c9e016a749bc0c78c8198bb15e039749c7bcd",
+      "resp_067746ff13e2e506016a749bc2e27881988c30edd8f2412a59",
+      "resp_0cbf6c6bbc2f5f28016a749bc602f8819bbdd3f3cc66004bb3",
+      "resp_061b91a01caa1a61016a749bc6ddc48199b45fc073c21a63f4",
+      "resp_0bd2c58edf286a17016a749bc8d4e88199884bee1d7167f9c7",
+      "resp_02fc761b6a291159016a749bcae0548198885805f43e14290a",
+      "resp_04f6c7519c0288ba016a749c18fe0c819a98fd94045b11f6c6",
+      "resp_063c4e5fda88e1ed016a749d9b2c68819a8498c9c18f0d0796"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "name": "Shamo Harness - Run One Paper (Webhook)",
+  "nodes": [
+    {
+      "id": "9b34e444-9a7d-49b8-af5e-c4975c441140",
+      "name": "Harness Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "02983ccc-7f98-437c-a78a-ca15acbe20c0",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "shamo-harness-one-paper",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "90adb0fe-1eed-4b22-ab6e-eb0c01a6eeb1",
+      "name": "Harness Configuration",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Harness configuration. Every budget and identity value is hardcoded here\n// rather than read from the request, so a malformed or hostile body cannot\n// widen the blast radius. The webhook chooses WHICH paper, never HOW MUCH.\nconst body = $input.first().json.body || $input.first().json || {};\n\nconst config = {\n  supabase_url: 'https://exjfaggqphjkxniyshfl.supabase.co',\n  qualification: 'a_level',\n  syllabus_code: '9709',\n  subject: 'Mathematics',\n  campaign_key: 'shamo-harness-v1',\n  workflow_version: 'harness-v1',\n  batch_number: 0,\n  max_papers_per_run: 1,\n  batch_budget_limit_usd: 0.60,\n  campaign_budget_limit_usd: 7.00,\n  stage_reservations_usd: {\n    question_paper: 0.12,\n    page_map: 0.02,\n    mark_scheme: 0.12,\n    metadata: 0.02,\n    repair: 0.20,\n  },\n  database_safety_megabytes: 350,\n  ocr_model: 'mistral-ocr-latest',\n  question_model: 'gpt-5.4-mini',\n  page_map_model: 'gpt-5.4-nano',\n  mark_scheme_model: 'gpt-5.4-nano',\n  metadata_model: 'gpt-5.4-nano',\n  repair_model: 'gpt-5.4-mini',\n  openai_prices_per_million: {\n    'gpt-5.4-mini': { input: 0.75, cached_input: 0.075, output: 4.50 },\n    'gpt-5.4-nano': { input: 0.20, cached_input: 0.02, output: 1.25 },\n  },\n  storage_bucket: 'past-paper-assets',\n};\n\nconst label = String(body.label || 'r0').replace(/[^a-z0-9-]/gi, '').toLowerCase() || 'r0';\nconst variant = String(body.paper_variant || '').trim();\nif (!/^[0-9]{2}$/.test(variant)) {\n  throw new Error('paper_variant must be a two-digit variant such as \"62\".');\n}\nif (!body.question_paper_url || !body.mark_scheme_url) {\n  throw new Error('question_paper_url and mark_scheme_url are both required.');\n}\n\n// The ONE request-controlled config value, and it is safe to expose because it\n// can only REMOVE an input, never widen a budget, change a paper, or reach a\n// different campaign. It exists so the cost A/B is a request parameter rather\n// than a redeploy between the two halves of the experiment -- redeploying\n// mid-experiment would change more than the variable under test.\n// Anything other than an explicit false leaves current behaviour untouched.\nconfig.attach_source_pdf = body.attach_source_pdf !== false;\n\nreturn [{\n  json: {\n    config,\n    label,\n    batch_key: 'shamo-harness-v1-' + label,\n    pair: {\n      qualification: config.qualification,\n      syllabus_code: config.syllabus_code,\n      subject: config.subject,\n      year: Number(body.year),\n      exam_session: String(body.exam_session || ''),\n      // The -h suffix is the primary isolation control. See the header comment.\n      paper_variant: variant + '-h',\n      documents: [\n        { document_type: 'question_paper', source_url: String(body.question_paper_url) },\n        { document_type: 'mark_scheme', source_url: String(body.mark_scheme_url) },\n      ],\n    },\n  },\n}];"
+      }
+    },
+    {
+      "id": "0d8f0a2c-a03b-4743-acfb-2a503cc00c49",
+      "name": "Guard Harness Isolation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Fail closed. Every isolation invariant is re-checked here rather than trusted\n// from the node above, because this is the single place a reviewer has to read\n// to convince themselves the harness cannot touch production data.\nconst state = $input.first().json;\nconst { config, pair, batch_key } = state;\n\nif (config.campaign_key !== 'shamo-harness-v1') {\n  throw new Error('Harness runs must use the shamo-harness-v1 campaign.');\n}\nif (!String(batch_key).startsWith('shamo-harness-v1-')) {\n  throw new Error('Harness batch keys must start with shamo-harness-v1-.');\n}\nif (!/-h$/.test(pair.paper_variant)) {\n  throw new Error(\n    'Harness paper_variant must end in -h so it cannot collide with a real paper. ' +\n    'Without the suffix, Upsert Paper would set a published paper back to staging.'\n  );\n}\nif (config.campaign_budget_limit_usd > 7) {\n  throw new Error('Harness campaign budget cannot exceed $7.');\n}\nif (config.batch_budget_limit_usd > 0.60) {\n  throw new Error('Harness batch budget cannot exceed $0.60.');\n}\nif (config.max_papers_per_run !== 1) {\n  throw new Error('The harness runs exactly one paper per request.');\n}\nconst reservationTotal = Object.values(config.stage_reservations_usd)\n  .reduce((total, amount) => total + Number(amount), 0);\nif (reservationTotal > config.batch_budget_limit_usd) {\n  throw new Error(\n    'Stage reservations total $' + reservationTotal.toFixed(2) +\n    ', which exceeds the $' + config.batch_budget_limit_usd.toFixed(2) + ' batch cap.'\n  );\n}\nif (!Number.isInteger(pair.year) || pair.year < 2000 || pair.year > 2100) {\n  throw new Error('A valid four-digit year is required.');\n}\nfor (const document of pair.documents) {\n  if (!/^https:\\/\\//.test(document.source_url)) {\n    throw new Error('Source documents must be fetched over https.');\n  }\n}\nreturn [{ json: state }];"
+      }
+    },
+    {
+      "id": "0e97bea6-c10f-455a-ad5a-ce7475188017",
+      "name": "Create or Reuse Harness Batch",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        0
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      },
+      "parameters": {
+        "method": "POST",
+        "url": "=https://exjfaggqphjkxniyshfl.supabase.co/rest/v1/shamo_ingestion_batches?on_conflict=batch_key",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=representation"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ batch_key: $json.batch_key, campaign_key: $json.config.campaign_key, source_sheet: 'harness (no sheet)', qualification: $json.config.qualification, syllabus_code: $json.config.syllabus_code, subject: $json.config.subject, max_papers: 1, planned_papers: 1, batch_budget_limit_usd: $json.config.batch_budget_limit_usd, campaign_budget_limit_usd: $json.config.campaign_budget_limit_usd, status: 'processing', started_at: new Date().toISOString() }) }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "dfd896ef-eba8-43df-85cf-6e5bae5959c5",
+      "name": "Expand Harness Pair",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// The child expects exactly the shape the production controller builds:\n// { config, batch, pair, batch_position, batch_size }.\nconst response = $input.first().json;\nconst batch = Array.isArray(response) ? response[0] : response;\nconst state = $('Guard Harness Isolation').first().json;\nif (!batch?.id) throw new Error('Supabase did not return the harness ingestion batch.');\nreturn [{\n  json: {\n    config: state.config,\n    batch,\n    pair: state.pair,\n    batch_position: 1,\n    batch_size: 1,\n  },\n}];"
+      }
+    },
+    {
+      "id": "bd76e512-52a3-40b6-bc85-a661f98aeb36",
+      "name": "Run One Paper Sub-workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        0
+      ],
+      "parameters": {
+        "workflowId": "",
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      }
+    },
+    {
+      "id": "a084013b-c7ee-4bc1-ac55-0d02fc30d7ea",
+      "name": "Collect Harness Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Compact, machine-readable result. The agent reads ingestion_run_id from here\n// and then queries Supabase directly for the staged bundle.\nconst result = $input.first().json;\nconst state = $('Guard Harness Isolation').first().json;\nconst validation = result.validation_report || {};\nreturn [{\n  json: {\n    ok: true,\n    label: state.label,\n    paper_key: [\n      state.pair.syllabus_code, state.pair.year, state.pair.exam_session, state.pair.paper_variant,\n    ].join('_'),\n    ingestion_run_id: result.ingestion_run_id || null,\n    status: result.status || null,\n    ready_for_approval: result.ready_for_approval ?? null,\n    question_count: result.question_count ?? null,\n    part_count: result.question_part_count ?? null,\n    asset_count: result.asset_count ?? null,\n    blocking_issue_count: validation.blocking_issue_count ?? null,\n    warning_count: validation.warning_count ?? null,\n    issue_codes: [...new Set((validation.issues || []).map((issue) => issue.issue_code))],\n    api_usage: result.api_usage || null,\n  },\n}];"
+      }
+    },
+    {
+      "id": "6670e2a6-8b63-434f-a5ce-96b957d2fc7c",
+      "name": "Respond to Harness",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1540,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Harness Webhook": {
+      "main": [
+        [
+          {
+            "node": "Harness Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Harness Configuration": {
+      "main": [
+        [
+          {
+            "node": "Guard Harness Isolation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guard Harness Isolation": {
+      "main": [
+        [
+          {
+            "node": "Create or Reuse Harness Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create or Reuse Harness Batch": {
+      "main": [
+        [
+          {
+            "node": "Expand Harness Pair",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expand Harness Pair": {
+      "main": [
+        [
+          {
+            "node": "Run One Paper Sub-workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run One Paper Sub-workflow": {
+      "main": [
+        [
+          {
+            "node": "Collect Harness Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Harness Result": {
+      "main": [
+        [
+          {
+            "node": "Respond to Harness",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

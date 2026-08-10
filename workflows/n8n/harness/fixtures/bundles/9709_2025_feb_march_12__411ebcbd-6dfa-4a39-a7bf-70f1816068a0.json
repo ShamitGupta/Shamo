@@ -1,0 +1,1622 @@
+{
+  "paper_key": "9709_2025_feb_march_12",
+  "ingestion_run_id": "411ebcbd-6dfa-4a39-a7bf-70f1816068a0",
+  "idempotency_key": "pilot:a_level:9709:2025:feb_march:12:execution:578",
+  "pipeline_version": "pilot",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [],
+    "passed": true,
+    "warning_count": 0,
+    "actual_total_marks": 75,
+    "blocking_issue_count": 0,
+    "expected_total_marks": 75,
+    "actual_question_count": 11,
+    "expected_question_count": 11
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 20,
+      "assets": 4,
+      "issues": 37,
+      "questions": 11,
+      "blocking_issues": 33
+    },
+    "staged_at": "2026-07-25T02:18:56.467Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 22,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m25_ms_12.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m25_qp_12.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [],
+          "assets": [],
+          "total_marks": 4,
+          "stem_markdown": "A curve has equation $y=5+3x-2x^2$ and a straight line has equation $y=kx+13$, where $k$ is a constant.\n\nFind the set of values of $k$ for which the curve and the line do **not** meet.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$[kx+13=5+3x-2x^2\\Rightarrow]\\ 2x^2+(k-3)x+8\\ [=0]$. OE; eliminate $y$ to obtain a three-term quadratic.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Use $b^2-4ac<0$ or $b^2-4ac=0$ with their coefficients of their new quadratic equation. Condone $\\pm$ errors only. OE; use of $>0$ scores M0, unless recovered.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$-5$ and $11$. Identification of correct critical values.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$-5<k<11$. CWO; do not allow “or”; A0 if $\\leq$ signs are used.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the gradient of the curve at $P$.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the coordinates of $M$. Give each coordinate correct to 3 significant figures.",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 4386,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "graph",
+              "description": "Coordinate-axis sketch of the curve, showing the intercept $P$, minimum point $M$, and origin $O$.",
+              "bounding_box": {
+                "top_left_x": 253,
+                "top_left_y": 87,
+                "bottom_right_x": 463,
+                "bottom_right_y": 341
+              },
+              "storage_path": "a_level/9709/2025/feb_march/12/question_paper/q2/page-3-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": false,
+              "source_image_index": 1,
+              "source_page_number": 3,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [
+                  "P(1,0)"
+                ],
+                "measurements": [],
+                "relationships": [
+                  "$M$ is a minimum point; the curve crosses the $x$-axis at $P$."
+                ],
+                "visible_labels": [
+                  "O",
+                  "P",
+                  "M",
+                  "x",
+                  "y"
+                ]
+              }
+            }
+          ],
+          "total_marks": 5,
+          "stem_markdown": "The diagram shows the curve with equation $y=2x^2-\\frac{5}{x}+3$. The curve crosses the $x$-axis at the point $P(1,0)$ and $M$ is a minimum point.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$\\displaystyle \\frac{dy}{dx}=4x+\\frac{5}{x^2}$. OE.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$\\left[\\frac{dy}{dx}=\\right]9$. Correct use of $x=1$ in their two-term differentiated expression, defined as an expression with one correct power.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Their $\\left(4x+\\frac{5}{x^2}\\right)=0$ and valid method as far as $x=\\ldots$. Equate their derivative of form $Ax\\pm\\frac{B}{x^2}$ to zero, where $A,B\\ne0$, and solve.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$x=-1.08$. AWRT.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "$y=9.96$. AWRT.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the complete expansion of $\\left(2x-\\frac{3}{x}\\right)^4$.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Hence determine the coefficient of $x^2$ in the expansion of $\\left(x^2+5\\right)\\left(2x-\\frac{3}{x}\\right)^4$.",
+              "source_page_numbers": [
+                4
+              ]
+            }
+          ],
+          "assets": [],
+          "total_marks": 6,
+          "stem_markdown": "",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$(2x)^4$ and $\\left(\\frac{\\pm3}{x}\\right)^4$. May be seen in a full expansion.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$4(2x)^3\\left(\\frac{-3}{x}\\right)+6(2x)^2\\left(\\frac{-3}{x}\\right)^2+4(2x)\\left(\\frac{-3}{x}\\right)^3$. Correct numerical coefficients for the middle three terms.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$[16x^4]+k_1x^2+k_2[x^0]+k_3x^{-2}[+81x^{-4}]$. OE; powers simplified correctly, with their $k_1,k_2,k_3\\ne0$.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 13,
+              "content_markdown": "$16x^4-96x^2+216-216x^{-2}+81x^{-4}$. OE.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "Use of (their $216$) $+5\\times$(their $-96$) only, to arrive at the coefficient of $x^2$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 15,
+              "content_markdown": "$-264$. Accept $-264x^2$ as the final answer.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the perimeter of the shaded region.",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the area of the shaded region.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 4977,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "geometry_diagram",
+              "description": "Shaded annular-sector-like region within triangle $OAB$, bounded externally by $AB$ and internally by arc $CD$.",
+              "bounding_box": {
+                "top_left_x": 267,
+                "top_left_y": 87,
+                "bottom_right_x": 448,
+                "bottom_right_y": 266
+              },
+              "storage_path": "a_level/9709/2025/feb_march/12/question_paper/q4/page-5-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 5,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [
+                  "$OA=OB=10\\text{ cm}$",
+                  "$OC=OD=6\\text{ cm}$",
+                  "$CA=DB=4\\text{ cm}$",
+                  "$\\angle AOB=0.8$ radians"
+                ],
+                "relationships": [
+                  "Arc $CD$ has centre $O$ and radius $6\\text{ cm}$."
+                ],
+                "visible_labels": [
+                  "O",
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "0.8 rad",
+                  "4 cm",
+                  "6 cm"
+                ]
+              }
+            }
+          ],
+          "total_marks": 6,
+          "stem_markdown": "The diagram shows a triangle $OAB$ where $OA=OB=10\\text{ cm}$ and angle $AOB=0.8$ radians. Points $C$ and $D$ on $OA$ and $OB$ respectively are such that the arc $CD$ is part of a circle with centre $O$ and radius $6\\text{ cm}$. The shaded region is bounded by the arc $CD$ and the line segments $CA$, $AB$ and $BD$.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "$6\\times0.8$. Accept $\\frac{45.8}{360}\\times12\\pi$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "$AB^2=10^2+10^2-2\\times10\\times10\\cos0.8$, or $AB=2(10\\sin0.4)$, or $AB=\\frac{10\\sin0.8}{\\sin\\left(\\frac{\\pi-0.8}{2}\\right)}$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 18,
+              "content_markdown": "$20.6$. AWRT.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 19,
+              "content_markdown": "[Area of sector $=$] $\\frac12\\times6^2\\times0.8$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 20,
+              "content_markdown": "[Area of triangle $=$] $\\frac12\\times10^2\\times\\sin0.8$, or $10\\sin0.4\\times10\\cos0.4$, or other complete method.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 21,
+              "content_markdown": "$21.5$. AWRT.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "total_marks": 6,
+          "stem_markdown": "An arithmetic progression has first term $5$ and common difference $6$.\n\nFor this progression, find the sum of all the terms that lie between $150$ and $400$.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 22,
+              "content_markdown": "Attempt to solve either $5+(n-1)6=150$ or $5+(n-1)6=400$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 23,
+              "content_markdown": "$\\frac{151}{6}$ and $\\frac{401}{6}$. OE.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 24,
+              "content_markdown": "Correct use of $S_n$ formula with their $66$ and their $25$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 25,
+              "content_markdown": "$S_{66\\text{ or }67}-S_{25\\text{ or }26}$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 26,
+              "content_markdown": "$S_{66}-S_{25}$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 27,
+              "content_markdown": "$11275$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 28,
+              "content_markdown": "**Alternative method:** attempt to find new $a$ and $l$ for reduced series.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 29,
+              "content_markdown": "$155$ and $395$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 30,
+              "content_markdown": "Their $395=$ their $155+(n-1)6$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 31,
+              "content_markdown": "$n=41$. CWO.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 32,
+              "content_markdown": "$S_{\\text{their }41}=\\frac{\\text{their }41}{2}(\\text{their }155+\\text{their }395)$. OE.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 33,
+              "content_markdown": "$11275$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "State the coordinates of the centre of the circle in terms of $r$.",
+              "source_page_numbers": [
+                7
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Given that the distance between the origin and the centre of the circle is $15$ units, find the value of $r$.",
+              "source_page_numbers": [
+                7
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "The point on the circle furthest from the origin is denoted by $P$.\n\nFind the gradient of the tangent to the circle at $P$.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 2802,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "Axes with a circle in the first quadrant, its centre marked, and a radius labelled $r$.",
+              "bounding_box": {
+                "top_left_x": 279,
+                "top_left_y": 91,
+                "bottom_right_x": 436,
+                "bottom_right_y": 267
+              },
+              "storage_path": "a_level/9709/2025/feb_march/12/question_paper/q6/page-7-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": false,
+              "source_image_index": 1,
+              "source_page_number": 7,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [
+                  "radius $r$"
+                ],
+                "relationships": [
+                  "All points of the circle have positive $x$- and $y$-coordinates."
+                ],
+                "visible_labels": [
+                  "O",
+                  "x",
+                  "y",
+                  "r"
+                ]
+              }
+            }
+          ],
+          "total_marks": 6,
+          "stem_markdown": "The diagram shows a circle $C$ of radius $r$, where $x>0$ and $y>0$ for all points on $C$. The least distance between any point on $C$ and the $x$-axis is $8$ units, and the least distance between any point on $C$ and the $y$-axis is $5$ units.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 34,
+              "content_markdown": "$(r+5,r+8)$. OE.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 35,
+              "content_markdown": "Their $(r+5)^2+$ their $(r+8)^2=15^2$. OE.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 36,
+              "content_markdown": "$[r^2+13r-68[=0]\\Rightarrow(r+17)(r-4)[=0]]$, or other valid method for their three-term quadratic.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 37,
+              "content_markdown": "$r=4$. CWO.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 38,
+              "content_markdown": "$\\frac{\\text{their }(r+8)}{\\text{their }(r+5)}$ from (a), with their $r$ from (b). $r>0$ only.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 39,
+              "content_markdown": "$-\\frac34$. OE.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $3\\tan^2\\theta+5\\sin^2\\theta\\equiv\\frac{8\\sin^2\\theta-5\\sin^4\\theta}{1-\\sin^2\\theta}$.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Hence solve the equation $3\\tan^2\\theta+5\\sin^2\\theta=9$ for $0^\\circ<\\theta<270^\\circ$.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "total_marks": 7,
+          "stem_markdown": "",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 40,
+              "content_markdown": "Use of $\\tan^2\\theta=\\frac{\\sin^2\\theta}{\\cos^2\\theta}$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 41,
+              "content_markdown": "Relevant use of $\\cos^2\\theta=1-\\sin^2\\theta$ at least once.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 42,
+              "content_markdown": "$\\frac{8\\sin^2\\theta-5\\sin^4\\theta}{1-\\sin^2\\theta}$. AG; all necessary detail needed.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 43,
+              "content_markdown": "Attempt to solve their $5\\sin^4\\theta-17\\sin^2\\theta+9=0$ using a correct method.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 44,
+              "content_markdown": "$\\sin\\theta=[\\pm]0.81[0]$ or $\\sqrt{\\frac{17-\\sqrt{109}}{10}}$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 45,
+              "content_markdown": "Their $54.1$, and $180-\\text{their }54.1$ or $180+\\text{their }54.1$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 46,
+              "content_markdown": "$54.1,\\ 125.9,\\ 234.1$. AWRT.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the common ratio.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The first nine terms of the progression are now removed.\n\nFind the sum to infinity of the remaining terms of the progression.",
+              "source_page_numbers": [
+                10
+              ]
+            }
+          ],
+          "assets": [],
+          "total_marks": 7,
+          "stem_markdown": "A geometric progression is such that its second term is $-120$ and its sum to infinity is $160$.",
+          "question_number": 8,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 47,
+              "content_markdown": "$ar=-120$ and $\\frac{a}{1-r}=160$.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 48,
+              "content_markdown": "$-\\frac{120}{r}\\times\\frac1{1-r}=160$ or $\\frac{a}{1+\\frac{120}{a}}=160$. Elimination of either $a$ or $r$.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 49,
+              "content_markdown": "$4r^2-4r-3[=0]$ or $a^2-160a-19200[=0]$. OE.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 50,
+              "content_markdown": "$r=-\\frac12$ only.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 51,
+              "content_markdown": "$[a=]240$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 52,
+              "content_markdown": "$160-\\frac{240\\left(1-\\left(-\\frac12\\right)^9\\right)}{1-\\left(-\\frac12\\right)}$. Condone reversed subtraction.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 53,
+              "content_markdown": "$-\\frac5{16}$ or $-0.3125$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT, M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 54,
+              "content_markdown": "**Alternative method 1:** $[a=]240$; then $\\frac{240\\times\\left(-\\frac12\\right)^9}{1-\\left(-\\frac12\\right)}$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1 FT, M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 55,
+              "content_markdown": "**Alternative method 2:** [10th term $=$] $-\\frac{15}{32}$, $0.46875$ OE; then $\\frac{-\\frac{15}{32}}{1-\\left(-\\frac12\\right)}$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use the expression for $\\frac{d^2y}{dx^2}$ to determine whether the stationary point is a maximum or a minimum point.",
+              "source_page_numbers": [
+                11
+              ]
+            },
+            {
+              "marks": 7,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the equation of the curve.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "total_marks": 9,
+          "stem_markdown": "A curve is such that $\\frac{d^2y}{dx^2}=\\frac{6}{x^4}-\\frac{5}{x^3}$. It is given that the curve has a stationary point at $\\left(\\frac12,9\\right)$.",
+          "question_number": 9,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 56,
+              "content_markdown": "$\\frac{6}{\\left(\\frac12\\right)^4}-\\frac{5}{\\left(\\frac12\\right)^3}$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 57,
+              "content_markdown": "$96-40[=56]>0\\Rightarrow$ Minimum. CWO; evidence and conclusion.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 58,
+              "content_markdown": "$\\left\\{\\frac6{-3}x^{-3}\\right\\}\\left\\{-\\frac5{-2}x^{-2}\\right\\}[+c_1]$. B1 for each correct braces.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 59,
+              "content_markdown": "$0=\\frac6{-3}\\left(\\frac12\\right)^{-3}-\\frac5{-2}\\left(\\frac12\\right)^{-2}+c_1$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 60,
+              "content_markdown": "$c_1=6$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 61,
+              "content_markdown": "$k_1x^{-2}+k_2x^{-1}+k_3x\\ [+c_2]$. Integration of their $\\frac{dy}{dx}$ with at least two correct powers.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 62,
+              "content_markdown": "$9=\\frac1{\\left(\\frac12\\right)^2}-\\frac5{2\\left(\\frac12\\right)}+6\\left(\\frac12\\right)+c_2$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 63,
+              "content_markdown": "$y=x^{-2}-\\frac52x^{-1}+6x+7$. OE.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the area of region $A$.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the area of region $B$.",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 6978,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "graph",
+              "description": "Axes, curve, tangent segment $PQ$, and shaded regions $A$ and $B$.",
+              "bounding_box": {
+                "top_left_x": 246,
+                "top_left_y": 91,
+                "bottom_right_x": 469,
+                "bottom_right_y": 296
+              },
+              "storage_path": "a_level/9709/2025/feb_march/12/question_paper/q10/page-12-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 12,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [
+                  "P(7,0)"
+                ],
+                "measurements": [],
+                "relationships": [
+                  "$Q$ is the $y$-intercept of the tangent at $P$; region $A$ is under the curve and region $B$ is between the tangent and curve."
+                ],
+                "visible_labels": [
+                  "O",
+                  "Q",
+                  "P",
+                  "x",
+                  "y",
+                  "A",
+                  "B"
+                ]
+              }
+            }
+          ],
+          "total_marks": 9,
+          "stem_markdown": "The diagram shows the curve with equation\n\n$$y=4(3x+4)^{\\frac12}-2x-6$$\n\nfor values of $x$ such that $0\\leq x\\leq7$. The tangent to the curve at the point $P(7,0)$ meets the $y$-axis at the point $Q$. Region $A$ is bounded by the curve and the two axes. Region $B$ is bounded by the curve, the line segment $PQ$ and the $y$-axis.",
+          "question_number": 10,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1 B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 64,
+              "content_markdown": "$\\left\\{\\frac23\\times\\frac43(3x+4)^{\\frac32}\\right\\}\\left\\{-\\frac{2x^2}{2}-6x\\right\\}$. B1 for each correct braces.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 65,
+              "content_markdown": "$[A=]\\left(\\frac89(21+4)^{\\frac32}-7^2-6\\times7\\right)-\\left(\\frac89(4)^{\\frac32}\\right)$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 66,
+              "content_markdown": "$13$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 67,
+              "content_markdown": "$\\left(2(3x+4)^{\\frac12}\\times3\\right)-2$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 68,
+              "content_markdown": "$y-0=(\\text{their }\\frac{dy}{dx}\\text{ with }x=7)(x-7)$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 69,
+              "content_markdown": "Either: $[Q\\text{ is}]\\left(0,\\frac{28}{5}\\right)$, using $x=0$ in their equation of $PQ$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 70,
+              "content_markdown": "[Area of $OPQ=$] $\\frac12\\times7\\times\\left(\\text{their }\\frac{28}{5}\\right)$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 71,
+              "content_markdown": "$\\left[\\frac12\\times7\\times\\left(\\text{their }\\frac{28}{5}\\right)-(\\text{their }13\\text{ from (a)})\\right]=\\frac{33}{5}$.",
+              "source_page_numbers": [
+                20,
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1, DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 72,
+              "content_markdown": "**Alternative method:** $\\int\\left(\\text{their}\\left(-\\frac45(x-7)\\right)\\right)\\,dx$; evaluate their $\\left(-\\frac45\\left(\\frac{x^2}{2}-7x\\right)\\right)$ with limits $7$ and $0$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $gf(x)=8x^2-k-1$.",
+              "source_page_numbers": [
+                14
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The curve with equation $y=8x^2-k-1$ is transformed to the curve with equation $y=h(x)$ by the following sequence of transformations.\n\nTranslation of $\\binom{2}{3}$\n\nStretch in the $y$-direction by scale factor $k$\n\nReflection in the $x$-axis\n\nFind an expression for $h(x)$ in terms of $x$ and $k$.",
+              "source_page_numbers": [
+                15
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "The range of $h$ is given by $h(x)\\leq15$.\n\nFind the values of $c$ and $k$.",
+              "source_page_numbers": [
+                15
+              ]
+            }
+          ],
+          "assets": [],
+          "total_marks": 10,
+          "stem_markdown": "Functions $f$ and $g$ are defined for all real values of $x$ by\n\n$$f(x)=4x^2-c\\quad\\text{and}\\quad g(x)=2x+k,$$\n\nwhere $c$ and $k$ are positive constants. It is given that $g^{-1}(3k+1)=c$.",
+          "question_number": 11,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 73,
+              "content_markdown": "State or imply $g^{-1}(x)=\\frac12(x-k)$, or equivalent.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 74,
+              "content_markdown": "Obtain $\\frac12(3k+1-k)=c$ and hence $2k+1=2c$. OE.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 75,
+              "content_markdown": "$[gf(x)=]2(4x^2-c)+k$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 76,
+              "content_markdown": "$[8x^2-2c+k\\Rightarrow8x^2-(2k+1)+k\\Rightarrow]gf(x)=8x^2-k-1$. AG; all necessary detail needed.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1, B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 77,
+              "content_markdown": "**Alternative start:** $g(c)=3k+1$; $[2c+k=3k+1\\Rightarrow]2c=2k+1$. OE.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 78,
+              "content_markdown": "$8(x-2)^2-k-1+3$. OE; translation before stretch.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 79,
+              "content_markdown": "$k\\left(\\text{their}\\left(8(x-2)^2-k-1+3\\right)\\right)$. OE; stretch.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 80,
+              "content_markdown": "$[h(x)=]-\\left(k\\left(\\text{their}\\left(8(x-2)^2-k-1+3\\right)\\right)\\right)$. OE; reflection.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 81,
+              "content_markdown": "$k^2-2k=15$ or $k^2-2k\\leq15$. OE.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 82,
+              "content_markdown": "$k=5$ only.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 83,
+              "content_markdown": "$c=\\frac{11}{2}$ only. OE.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            14,
+            15
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": false,
+    "verifier_response_id": "resp_0c5381783727529c016a641ca575f4819aabb4c5fcb91c0a87",
+    "extraction_response_id": "resp_041b267bae635387016a641c767074819aad6d44d3870d7eb4"
+  }
+}
