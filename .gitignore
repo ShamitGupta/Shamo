@@ -1,0 +1,37 @@
+# Secrets. Never commit these -- the Supabase service_role key and the OpenAI
+# key both grant full access, and git history is forever even after a delete.
+.env
+.env.*
+!.env.example
+
+# Agent operating guides. Deliberately local-only: they carry the detailed
+# extraction methodology, prompts and operational state.
+CLAUDE.md
+AGENTS.md
+
+# Local audit artifacts and downloaded source PDFs. ~25 MB of scratch that is
+# reproducible and is not product code.
+tmp/
+
+# Vendored third-party skill documentation, installed from skills-lock.json.
+# Same relationship as node_modules to package-lock.json: commit the lockfile,
+# not the contents.
+.agents/skills/
+.claude/skills/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
