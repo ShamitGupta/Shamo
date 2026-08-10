@@ -5,9 +5,11 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
-import { getAvailableVariants } from '../utils/variantRules.js';
 import { sanitizeLatex } from '../utils/sanitizeLatex.js';
+import { fetchQuestion, streamChat, TUTOR_MODES, ApiError } from '../api/tutorApi.js';
+import { usePaperCatalogue } from './usePaperCatalogue.js';
 import MetadataDropdown from './MetadataDropdown';
+import QuestionPanel from './QuestionPanel';
 import AuthActions from '../Auth/AuthActions';
 import AuthOverlay from '../Auth/AuthOverlay';
 
@@ -16,64 +18,67 @@ const MAX_SESSION_MEMORY_MESSAGES = 10;
 function ChatSection() {
 
     const [inputValue, setInputValue] = useState("");
-    const [prompt, setPrompt] = useState("");
 
-    // Metadata Dropdown States
-    const [subject, setSubject] = useState("IGCSE Additional Mathematics");
-    const [year, setYear] = useState("");
-    const [session, setSession] = useState("");
-    const [variant, setVariant] = useState("");
-    const [questionNum, setQuestionNum] = useState("");
+    // Every selector option comes from the published corpus, so an unavailable
+    // paper cannot be chosen. See usePaperCatalogue.
+    const catalogue = usePaperCatalogue();
 
-    const [paperData, setPaperData] = useState([]);
+    const [mode, setMode] = useState('explain');
+    const [question, setQuestion] = useState(null);
+    const [questionStatus, setQuestionStatus] = useState('idle'); // idle | loading | ready | error
+    const [questionError, setQuestionError] = useState(null);
+
     const dummyRef = useRef();
     const chatContainerRef = useRef();
     const chatSectionRef = useRef();
 
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [chatError, setChatError] = useState(null);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [isAuthOverlayOpen, setIsAuthOverlayOpen] = useState(false);
     const [authMode, setAuthMode] = useState('signup');
 
-    const subjectOptions = [
-        { value: "IGCSE Additional Mathematics", label: "IGCSE Additional Mathematics" },
-        { value: "A-level Mathematics", label: "A-level Mathematics" }
-    ];
+    const reference = catalogue.reference;
+    const referenceKey = reference ? JSON.stringify(reference) : null;
 
-    const yearOptions = [
-        { value: "", label: "Year (None)" },
-        { value: "2020", label: "2020" },
-        { value: "2021", label: "2021" },
-        { value: "2022", label: "2022" },
-        { value: "2023", label: "2023" },
-        { value: "2024", label: "2024" }
-    ];
-
-    const sessionOptions = [
-        { value: "", label: "Session (None)" },
-        { value: "February/March", label: "Feb/March" },
-        { value: "May/June", label: "May/June" },
-        { value: "October/November", label: "Oct/Nov" }
-    ];
-
-    const variantOptions = [
-        { value: "", label: "Variant (None)" },
-        ...getAvailableVariants(subject, session).map(v => ({ value: v, label: v }))
-    ];
-
-    const questionOptions = [
-        { value: "", label: "Question (None)" },
-        ...[...Array(15)].map((_, i) => ({ value: String(i + 1), label: String(i + 1) }))
-    ];
-
-    // Reset variant if it is no longer valid for the selected subject/session
+    // Load the question as soon as the selection is complete, before the student
+    // asks anything. They see what they picked, and a bad reference surfaces
+    // immediately rather than at the end of a failed chat request.
     useEffect(() => {
-        const availableVariants = getAvailableVariants(subject, session);
-        if (variant && !availableVariants.includes(variant)) {
-            setVariant("");
+        if (!reference) {
+            setQuestion(null);
+            setQuestionStatus('idle');
+            setQuestionError(null);
+            return;
         }
-    }, [subject, session, variant]);
+        let cancelled = false;
+        setQuestionStatus('loading');
+        setQuestionError(null);
+        fetchQuestion(reference)
+            .then((data) => {
+                if (cancelled) return;
+                setQuestion(data);
+                setQuestionStatus('ready');
+            })
+            .catch((error) => {
+                if (cancelled) return;
+                setQuestion(null);
+                setQuestionError(error.message);
+                setQuestionStatus('error');
+            });
+        return () => { cancelled = true; };
+        // referenceKey rather than reference: the object is rebuilt each render,
+        // so comparing by identity would refetch on every keystroke.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [referenceKey]);
+
+    // A new question is a new conversation. Carrying history across questions
+    // would let the tutor answer about paper A while grounded in paper B.
+    useEffect(() => {
+        setMessages([]);
+        setChatError(null);
+    }, [referenceKey]);
 
     useEffect(() => {
         const handlePointerDown = (event) => {
@@ -115,150 +120,101 @@ function ChatSection() {
         setIsAuthOverlayOpen(false);
     };
 
+    const canSend = Boolean(reference) && questionStatus === 'ready' && !isLoading;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const currentPrompt = prompt;
-        const conversationHistory = messages
+        const currentPrompt = inputValue.trim();
+        if (!currentPrompt || !canSend) return;
+
+        const history = messages
             .slice(-MAX_SESSION_MEMORY_MESSAGES)
             .map((message) => ({
                 role: message.sender === 'user' ? 'user' : 'assistant',
                 content: message.title,
             }));
-        // console.log(currentPrompt);
-
-        // Construct backend prompt combining metadata
-        let metadataString = [];
-        if (subject) metadataString.push(subject);
-        if (year) metadataString.push(year);
-        if (session) metadataString.push(session);
-        if (variant) metadataString.push(variant);
-        if (questionNum) metadataString.push(questionNum);
-
-        console.log(metadataString);
-
-        let backendPrompt = currentPrompt;
-        if (metadataString.length > 0) {
-            backendPrompt = metadataString.join(", ") + ". " + currentPrompt;
-        }
-
-        console.log(backendPrompt);
-
-        const responsePrompt = metadataString.length > 0
-            ? `The user has selected a specific past paper question using the metadata dropdowns: ${metadataString.join(", ")}. Use the retrieved question paper and mark scheme already provided to answer the user's request about that selected question.\n\nLatest user request: ${currentPrompt}`
-            : currentPrompt;
 
         setInputValue("");
-        setPrompt(""); // Clear local prompt
-
-        // Show simplified message to user (only what they typed, or metadata search summary)
-        setMessages(prevMessages => [...prevMessages, {
-            title: currentPrompt || (metadataString.length > 0 ? "Search Past Paper: " + metadataString.join(", ") : ""),
-            sender: 'user'
-        }]);
-
+        setChatError(null);
+        setMessages(prev => [...prev, { title: currentPrompt, sender: 'user' }]);
         setIsLoading(true);
 
         try {
-            // First API call to get info and extract past paper data based on backendPrompt
-            const formatted_data_response = await fetch("https://shamo-production-5438.up.railway.app/get_info", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            // Only a reference to the question travels. The server retrieves the
+            // content itself, so the browser cannot put words in the tutor's
+            // source material.
+            let started = false;
+            await streamChat(
+                {
+                    question: reference,
+                    mode,
+                    message: currentPrompt,
+                    // In Check mode the student's working IS the message; the
+                    // API keeps them separate so the prompt can label it.
+                    attempt: mode === 'check' ? currentPrompt : null,
+                    history,
                 },
-                body: JSON.stringify({ user_prompt: backendPrompt, metadata: metadataString })
-            });
-
-
-            if (!formatted_data_response.ok) {
-                throw new Error(`Response status: ${formatted_data_response.status}`);
-            }
-
-            let formatted_data = await formatted_data_response.json();
-            console.log(formatted_data);
-
-            if ((formatted_data.past_paper_data[0] !== '') && (formatted_data.past_paper_data[1] !== '')) {
-                setPaperData(formatted_data);
-            }
-
-            // Second API call for chatbot response stream, providing data separately
-            const chatbot_reply_response = await fetch("https://shamo-production-5438.up.railway.app/get_response", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    data_formatted: formatted_data.past_paper_data,
-                    user_prompt: responsePrompt,
-                    conversation_history: conversationHistory
-                })
-            })
-
-            if (!chatbot_reply_response.ok) {
-                throw new Error(`Response status for call 2: ${chatbot_reply_response.status}`)
-            }
-
-            setIsLoading(false);
-
-            // Streaming logic
-            setMessages(prev => [...prev, { title: "", sender: 'chatbot' }]);
-            const reader = chatbot_reply_response.body.getReader();
-            const decoder = new TextDecoder();
-            let accumulatedText = "";
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-
-                const chunk = decoder.decode(value, { stream: true });
-                accumulatedText += chunk;
-
-                setMessages(prev => {
-                    const newMessages = [...prev];
-                    newMessages[newMessages.length - 1] = {
-                        ...newMessages[newMessages.length - 1],
-                        title: accumulatedText
-                    };
-                    return newMessages;
-                });
-
-                // Jitter-free stream scrolling via RAF setting container scrollTop
-                requestAnimationFrame(() => {
-                    if (chatContainerRef.current) {
-                        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+                (accumulated) => {
+                    if (!started) {
+                        started = true;
+                        setIsLoading(false);
+                        setMessages(prev => [...prev, { title: "", sender: 'chatbot' }]);
                     }
-                });
-            }
-
+                    setMessages(prev => {
+                        const next = [...prev];
+                        next[next.length - 1] = { ...next[next.length - 1], title: accumulated };
+                        return next;
+                    });
+                    requestAnimationFrame(() => {
+                        if (chatContainerRef.current) {
+                            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+                        }
+                    });
+                },
+            );
         } catch (error) {
-            console.error("Error:", error);
+            // Shown to the student, not just logged. A 404 here carries the
+            // server's explanation of what is published instead.
+            setChatError(
+                error instanceof ApiError
+                    ? error.message
+                    : 'Could not reach the tutor. Is the API running on ' +
+                      (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000') + '?',
+            );
+        } finally {
             setIsLoading(false);
         }
     }
 
-    // Scroll into view whenever a whole new message is added or loading state changes
     useEffect(() => {
         dummyRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages.length, isLoading]);
+
+    const placeholder = !reference
+        ? 'Pick a paper and question to begin…'
+        : mode === 'check'
+            ? 'Type or paste your working…'
+            : 'Ask anything about this question…';
 
     return (
         <div className={styles.ChatSection} ref={chatSectionRef}>
             <div className={styles.TopBar}>
                 <div className={styles.TopBarContent}>
                     <div className={styles.TopBarPrimary}>
-                        <div className={styles.DropdownRegion}>
-                            <MetadataDropdown
-                                id="subject"
-                                label="Subject"
-                                value={subject}
-                                options={subjectOptions}
-                                direction="down"
-                                isOpen={openDropdown === 'subject'}
-                                onOpen={setOpenDropdown}
-                                onClose={() => setOpenDropdown(null)}
-                                onToggle={handleDropdownToggle}
-                                onSelect={handleDropdownSelect(setSubject)}
-                            />
+                        <div className={styles.ModeGroup} role="group" aria-label="Tutor mode">
+                            {TUTOR_MODES.map((option) => (
+                                <button
+                                    key={option.value}
+                                    type="button"
+                                    title={option.blurb}
+                                    aria-pressed={mode === option.value}
+                                    className={`${styles.ModeButton} ${mode === option.value ? styles.ModeButtonActive : ''}`}
+                                    onClick={() => setMode(option.value)}
+                                >
+                                    {option.label}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
@@ -272,6 +228,18 @@ function ChatSection() {
             </div>
 
             <div className={styles.Chat} ref={chatContainerRef}>
+                {catalogue.status === 'error' && (
+                    <div className={styles.Notice}>
+                        Could not load the paper list. {catalogue.error}
+                    </div>
+                )}
+
+                <QuestionPanel
+                    question={question}
+                    isLoading={questionStatus === 'loading'}
+                    error={questionError}
+                />
+
                 {messages.map((msg, index) => (
                     <div key={index} className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
                         <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
@@ -283,9 +251,11 @@ function ChatSection() {
                 {isLoading && (
                     <div className={styles.LoadingContainer}>
                         <div className={styles.Spinner}></div>
-                        <p className={styles.LoadingText}>Analyzing question...</p>
+                        <p className={styles.LoadingText}>Reading the mark scheme…</p>
                     </div>
                 )}
+
+                {chatError && <div className={styles.Notice}>{chatError}</div>}
 
                 <div className={styles.Dummy} ref={dummyRef}></div>
             </div>
@@ -296,63 +266,66 @@ function ChatSection() {
                         <MetadataDropdown
                             id="year"
                             label="Year"
-                            value={year}
-                            options={yearOptions}
+                            value={catalogue.year}
+                            options={catalogue.yearOptions}
                             direction="up"
                             isOpen={openDropdown === 'year'}
                             onOpen={setOpenDropdown}
                             onClose={() => setOpenDropdown(null)}
                             onToggle={handleDropdownToggle}
-                            onSelect={handleDropdownSelect(setYear)}
+                            onSelect={handleDropdownSelect(catalogue.setYear)}
                         />
                         <MetadataDropdown
                             id="session"
                             label="Session"
-                            value={session}
-                            options={sessionOptions}
+                            value={catalogue.session}
+                            options={catalogue.sessionOptions}
                             direction="up"
                             isOpen={openDropdown === 'session'}
                             onOpen={setOpenDropdown}
                             onClose={() => setOpenDropdown(null)}
                             onToggle={handleDropdownToggle}
-                            onSelect={handleDropdownSelect(setSession)}
+                            onSelect={handleDropdownSelect(catalogue.setSession)}
                         />
                         <MetadataDropdown
                             id="variant"
                             label="Variant"
-                            value={variant}
-                            options={variantOptions}
+                            value={catalogue.variant}
+                            options={catalogue.variantOptions}
                             direction="up"
                             isOpen={openDropdown === 'variant'}
                             onOpen={setOpenDropdown}
                             onClose={() => setOpenDropdown(null)}
                             onToggle={handleDropdownToggle}
-                            onSelect={handleDropdownSelect(setVariant)}
+                            onSelect={handleDropdownSelect(catalogue.setVariant)}
                         />
                         <MetadataDropdown
                             id="question"
                             label="Question"
-                            value={questionNum}
-                            options={questionOptions}
+                            value={catalogue.questionNum}
+                            options={catalogue.questionOptions}
                             direction="up"
                             isOpen={openDropdown === 'question'}
                             onOpen={setOpenDropdown}
                             onClose={() => setOpenDropdown(null)}
                             onToggle={handleDropdownToggle}
-                            onSelect={handleDropdownSelect(setQuestionNum)}
+                            onSelect={handleDropdownSelect(catalogue.setQuestionNum)}
                         />
                     </div>
+                    {catalogue.status === 'ready' && (
+                        <span className={styles.CatalogueHint}>
+                            {catalogue.paperCount} papers available
+                        </span>
+                    )}
                 </div>
 
                 <form onSubmit={handleSubmit} className={styles.Form}>
                     <input
                         type='text'
-                        placeholder='Ask anything...'
+                        placeholder={placeholder}
                         value={inputValue}
-                        onChange={(e) => {
-                            setInputValue(e.target.value);
-                            setPrompt(e.target.value);
-                        }}
+                        disabled={!reference}
+                        onChange={(e) => setInputValue(e.target.value)}
                         className={styles.ChatBox}
                     />
                 </form>

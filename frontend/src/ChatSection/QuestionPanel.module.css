@@ -1,0 +1,130 @@
+.Panel {
+    margin: 0 auto 1rem;
+    max-width: 52rem;
+    width: 100%;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.035);
+    padding: 1rem 1.15rem;
+    box-sizing: border-box;
+}
+
+.PanelError {
+    border-color: rgba(248, 113, 113, 0.45);
+    background: rgba(248, 113, 113, 0.08);
+}
+
+.Header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.Title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.Marks {
+    display: inline-block;
+    margin-top: 0.2rem;
+    font-size: 0.78rem;
+    opacity: 0.62;
+}
+
+.Body {
+    margin-top: 0.85rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.Stem :global(p) {
+    margin: 0 0 0.6rem;
+}
+
+.Part {
+    margin-top: 0.75rem;
+    padding-left: 0.85rem;
+    border-left: 2px solid rgba(148, 163, 184, 0.28);
+}
+
+.PartHeader {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-weight: 600;
+}
+
+.PartLabel {
+    font-size: 0.9rem;
+}
+
+.PartMarks {
+    font-size: 0.78rem;
+    opacity: 0.62;
+    font-weight: 500;
+}
+
+.Figure {
+    margin: 0.9rem 0;
+    text-align: center;
+}
+
+/* Cambridge diagrams are cropped page regions on a white background, so they
+   need a light surface to stay legible if the app is on a dark theme. */
+.DiagramImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.Caption {
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    opacity: 0.62;
+}
+
+.DiagramMissing {
+    margin: 0.9rem 0;
+    padding: 0.7rem 0.85rem;
+    border-radius: 10px;
+    border: 1px dashed rgba(248, 113, 113, 0.5);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.Muted {
+    margin: 0;
+    opacity: 0.62;
+    font-size: 0.88rem;
+}
+
+.ErrorText {
+    margin: 0 0 0.5rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.TextButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    color: inherit;
+    opacity: 0.68;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+}
+
+.TextButton:hover {
+    opacity: 1;
+}

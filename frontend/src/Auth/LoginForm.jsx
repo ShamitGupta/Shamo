@@ -16,6 +16,7 @@ function LoginForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('Submitted Login Form');
     };
 
     return (

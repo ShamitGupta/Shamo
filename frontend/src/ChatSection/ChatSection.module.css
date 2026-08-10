@@ -501,3 +501,67 @@
         margin-left: 12px;
     }
 }
+
+/* --- Tutor mode selector -------------------------------------------------
+   Hint, Explain and Check are separate modes on the API because they differ in
+   what the tutor may reveal, so they are separate controls here rather than
+   something the student has to phrase correctly in prose. */
+.ModeGroup {
+    display: inline-flex;
+    gap: 0.25rem;
+    padding: 0.2rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 999px;
+}
+
+.ModeButton {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    color: inherit;
+    opacity: 0.66;
+    padding: 0.32rem 0.85rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.ModeButton:hover {
+    opacity: 1;
+}
+
+.ModeButtonActive {
+    opacity: 1;
+    font-weight: 600;
+    background: rgba(148, 163, 184, 0.18);
+}
+
+/* --- Notices -------------------------------------------------------------
+   The previous version sent failures to console.error, so a student saw the
+   spinner stop and nothing else. Errors are now shown where they happened. */
+.Notice {
+    margin: 0.6rem auto;
+    max-width: 52rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    border: 1px solid rgba(248, 113, 113, 0.45);
+    background: rgba(248, 113, 113, 0.08);
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.CatalogueHint {
+    display: inline-block;
+    margin-left: 0.65rem;
+    font-size: 0.74rem;
+    opacity: 0.5;
+    white-space: nowrap;
+}
+
+.ChatBox:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
