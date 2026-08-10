@@ -57,6 +57,9 @@ const PREFLIGHT_HOOK = `${N8N_BASE}/shamo-preflight-selection`;
 const VERSION_TAG = "v2.3";
 const SHEET_NAME = "Batch 5";
 const CONTROLLER_ID = "KYZZfrDq0nwN96PJ";
+// The child counts as liveness too: the controller awaits it, so a running child
+// means the batch is progressing even in the moment the controller is idle.
+const CHILD_ID = "YnY7rMfDFvfqzdvG";
 
 // Guards. Each one stops the run rather than continuing into a worse state.
 const LIMITS = {
@@ -252,23 +255,61 @@ function n8nApiKey() {
  * legitimate quiet periods here are long: papers take up to 18 minutes and
  * there is a deliberate 10-minute pause after paper five.
  */
+/** Is anything actually running?
+ *
+ * n8n's public /executions LIST OMITS RUNNING EXECUTIONS. Proven by probing ids
+ * above the newest listed one: execution 825 returned status "running" while the
+ * list's newest entry was 824, finished six minutes earlier. There is no
+ * status=running filter either -- the enum is success/error/waiting.
+ *
+ * So scanning the list for stoppedAt === null can NEVER see a healthy in-flight
+ * run, and always answers "dead". The first version of this function did exactly
+ * that. It happened to be right on two real failures, because a crashed
+ * execution DOES appear in the list, and I reported it as "proven twice" on that
+ * basis. Then it declared a perfectly healthy batch 9 dead and abandoned it.
+ *
+ * Being right for the wrong reason is the failure mode to watch for here: the
+ * check had no way to return "alive", so every test that expected "dead" passed.
+ *
+ * Probing forward by id is definitive, so that is what this does.
+ */
 async function controllerLiveness() {
   const key = n8nApiKey();
   if (!key) return { known: false, alive: null, lastError: null };
+  const base = process.env.N8N_API_URL ?? "http://localhost:5678/api/v1";
+  const headers = { "X-N8N-API-KEY": key };
+  const WATCHED = new Set([CONTROLLER_ID, CHILD_ID]);
+
   try {
-    const response = await fetch(
-      `${process.env.N8N_API_URL ?? "http://localhost:5678/api/v1"}/executions?workflowId=${CONTROLLER_ID}&limit=5`,
-      { headers: { "X-N8N-API-KEY": key } },
-    );
-    if (!response.ok) return { known: false, alive: null, lastError: null };
-    const body = await response.json();
-    const executions = body.data ?? [];
-    const alive = executions.some((e) => e.stoppedAt === null || e.stoppedAt === undefined);
-    const latest = executions[0] ?? null;
+    const listed = await fetch(`${base}/executions?limit=1`, { headers });
+    if (!listed.ok) return { known: false, alive: null, lastError: null };
+    const newest = ((await listed.json()).data ?? [])[0] ?? null;
+    if (!newest) return { known: true, alive: false, lastError: null };
+
+    // The newest listed row may itself be running on some versions.
+    if (
+      (newest.status === "running" || newest.stoppedAt === null) &&
+      WATCHED.has(newest.workflowId)
+    ) {
+      return { known: true, alive: true, lastError: null };
+    }
+
+    // Then probe ids beyond it, where running executions hide.
+    const from = Number(newest.id);
+    for (let id = from + 1; id <= from + 8; id += 1) {
+      const response = await fetch(`${base}/executions/${id}`, { headers });
+      if (!response.ok) continue; // 404 -- id not allocated
+      const execution = await response.json();
+      if (!WATCHED.has(execution.workflowId)) continue;
+      if (execution.status === "running" || execution.stoppedAt === null) {
+        return { known: true, alive: true, lastError: null };
+      }
+    }
+
     return {
       known: true,
-      alive,
-      lastError: latest && latest.status === "error" ? latest : null,
+      alive: false,
+      lastError: newest.status === "error" ? newest : null,
     };
   } catch {
     return { known: false, alive: null, lastError: null };
