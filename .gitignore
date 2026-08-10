@@ -35,3 +35,7 @@ dist/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Live-workflow backups written by sync_live_workflow.mjs before each write.
+# Recovery artifacts, not source.
+workflows/n8n/harness/backup_*.json
