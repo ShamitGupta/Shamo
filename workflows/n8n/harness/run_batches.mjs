@@ -56,6 +56,7 @@ const PREFLIGHT_HOOK = `${N8N_BASE}/shamo-preflight-selection`;
 
 const VERSION_TAG = "v2.3";
 const SHEET_NAME = "Batch 5";
+const CONTROLLER_ID = "KYZZfrDq0nwN96PJ";
 
 // Guards. Each one stops the run rather than continuing into a worse state.
 const LIMITS = {
@@ -225,9 +226,89 @@ async function qualityGate(batchNumber) {
   return findings;
 }
 
+function n8nApiKey() {
+  if (process.env.N8N_API_KEY) return process.env.N8N_API_KEY;
+  const claudeConfig = path.join(process.env.USERPROFILE ?? process.env.HOME ?? "", ".claude.json");
+  if (fs.existsSync(claudeConfig)) {
+    const match = fs.readFileSync(claudeConfig, "utf8").match(/"N8N_API_KEY"\s*:\s*"([^"]+)"/);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+/** Is a controller execution actually alive, and if not, why did the last one end?
+ *
+ * THE GAP THIS CLOSES
+ *
+ * The batch row is updated by the controller itself, so when the controller
+ * DIES the row stays 'processing' forever and polling it learns nothing. On
+ * 10 August Mistral returned 402, the child failed, the controller failed with
+ * it -- and this script kept politely reporting "processing 2/6" for 57 minutes
+ * until the operator noticed. Waiting for a row that nothing will ever update
+ * is not monitoring.
+ *
+ * A running execution has stoppedAt === null. That is a definitive liveness
+ * signal and does not depend on any timeout guess, which matters because the
+ * legitimate quiet periods here are long: papers take up to 18 minutes and
+ * there is a deliberate 10-minute pause after paper five.
+ */
+async function controllerLiveness() {
+  const key = n8nApiKey();
+  if (!key) return { known: false, alive: null, lastError: null };
+  try {
+    const response = await fetch(
+      `${process.env.N8N_API_URL ?? "http://localhost:5678/api/v1"}/executions?workflowId=${CONTROLLER_ID}&limit=5`,
+      { headers: { "X-N8N-API-KEY": key } },
+    );
+    if (!response.ok) return { known: false, alive: null, lastError: null };
+    const body = await response.json();
+    const executions = body.data ?? [];
+    const alive = executions.some((e) => e.stoppedAt === null || e.stoppedAt === undefined);
+    const latest = executions[0] ?? null;
+    return {
+      known: true,
+      alive,
+      lastError: latest && latest.status === "error" ? latest : null,
+    };
+  } catch {
+    return { known: false, alive: null, lastError: null };
+  }
+}
+
+/** Ask n8n why the most recent child execution failed, so the report names a cause. */
+async function lastChildError() {
+  const key = n8nApiKey();
+  if (!key) return null;
+  try {
+    const base = process.env.N8N_API_URL ?? "http://localhost:5678/api/v1";
+    const list = await fetch(`${base}/executions?status=error&limit=3`, {
+      headers: { "X-N8N-API-KEY": key },
+    });
+    if (!list.ok) return null;
+    const executions = (await list.json()).data ?? [];
+    if (!executions.length) return null;
+    const detail = await fetch(`${base}/executions/${executions[0].id}?includeData=true`, {
+      headers: { "X-N8N-API-KEY": key },
+    });
+    if (!detail.ok) return `execution ${executions[0].id} failed`;
+    const data = await detail.json();
+    const error = data?.data?.resultData?.error;
+    const node = data?.data?.resultData?.lastNodeExecuted;
+    if (!error) return `execution ${executions[0].id} failed`;
+    const httpCode = error.httpCode ? ` (HTTP ${error.httpCode})` : "";
+    return `${node ?? "unknown node"}: ${error.message ?? "unknown error"}${httpCode}`;
+  } catch {
+    return null;
+  }
+}
+
 async function waitForBatch(batchNumber) {
   const deadline = Date.now() + LIMITS.batchTimeoutMinutes * 60_000;
   let lastReport = "";
+  // Two consecutive dead observations before declaring death, so the gap between
+  // firing the webhook and the execution appearing cannot be misread.
+  let deadObservations = 0;
+
   while (Date.now() < deadline) {
     const row = await batchRow(batchNumber);
     const runs = await runsFor(batchNumber);
@@ -238,6 +319,20 @@ async function waitForBatch(batchNumber) {
       lastReport = report;
     }
     if (row && row.status !== "processing" && row.status !== "planned") return row;
+
+    const liveness = await controllerLiveness();
+    if (liveness.known && liveness.alive === false) {
+      deadObservations += 1;
+      if (deadObservations >= 2) {
+        const cause = (await lastChildError()) ?? "cause not available from n8n";
+        console.log(`   ${stamp()} NO LIVE EXECUTION -- the controller has stopped.`);
+        console.log(`   ${stamp()} cause: ${cause}`);
+        return { ...(row ?? {}), status: "died", died_reason: cause };
+      }
+    } else {
+      deadObservations = 0;
+    }
+
     await sleep(LIMITS.pollSeconds * 1000);
   }
   return null;
@@ -296,8 +391,22 @@ async function main() {
     // any paid stage, so it cost nothing, but the guard is the backstop and this
     // condition is the actual fix.
     const existing = await batchRow(n);
-    const alreadyRunning = existing?.status === "processing";
     const alreadyFinished = existing && !["processing", "planned"].includes(existing.status);
+
+    // A batch row reading 'processing' does NOT prove anything is running. The
+    // controller updates that row itself, so when it dies the row is frozen
+    // mid-flight -- batch 9 sat at 'processing' for an hour after Mistral's 402
+    // killed it. Trusting the row alone would refuse to resume a dead batch
+    // forever; trusting nothing would fire a second controller onto a live one.
+    // So ask n8n which it is.
+    const liveness = await controllerLiveness();
+    const alreadyRunning = existing?.status === "processing" && liveness.alive !== false;
+
+    if (existing?.status === "processing" && liveness.alive === false) {
+      console.log(
+        `   ${stamp()} batch row says 'processing' but no execution is alive -- stale, re-firing`,
+      );
+    }
 
     if (alreadyRunning) {
       console.log(`   ${stamp()} already running -- not firing again, waiting on it`);
@@ -317,6 +426,21 @@ async function main() {
     if (!row) {
       console.log(`STOP: batch ${n} did not finish within ${LIMITS.batchTimeoutMinutes} minutes.`);
       summary.push({ n, outcome: "timed out" });
+      break;
+    }
+    if (row.status === "died") {
+      // Stop the whole run. A provider outage or a credential problem will hit
+      // the next batch the same way, and firing four more batches into it would
+      // strand four more runs at 'processing' for someone to clean up.
+      console.log(`\nSTOP: batch ${n} died mid-flight.`);
+      console.log(`  ${row.died_reason}`);
+      const staged = (await runsFor(n)).filter((r) => r.finished_at).length;
+      console.log(`  ${staged} paper(s) staged before it stopped.`);
+      console.log(
+        "  A run left at status 'processing' blocks its own retry -- the child refuses\n" +
+          "  a paper that already has a processing run. Clear it before resuming.",
+      );
+      summary.push({ n, outcome: "died", staged, detail: row.died_reason });
       break;
     }
 
