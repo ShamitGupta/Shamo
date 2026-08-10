@@ -39,7 +39,15 @@ import { fileURLToPath } from "node:url";
 import { select } from "./supabase_client.mjs";
 
 const HARNESS = path.dirname(fileURLToPath(import.meta.url));
-const REPO = path.resolve(HARNESS, "..", "..");
+// harness -> n8n -> workflows -> repo root. THREE levels, not two.
+//
+// This was `resolve(HARNESS, "..", "..")`, which lands on workflows/ and made
+// every spawned check resolve to workflows/workflows/n8n/harness/... So all six
+// checks failed with MODULE_NOT_FOUND on batches 4 and 5, and the run reported
+// "6 check(s) reported something" for two batches whose data was in fact fine.
+// A gate that fails open is worse than no gate; a gate that fails LOUD but for
+// the wrong reason trains you to ignore it, which is worse still.
+const REPO = path.resolve(HARNESS, "..", "..", "..");
 const PDF_DIR = path.join(REPO, "tmp", "pdfs");
 
 const N8N_BASE = process.env.N8N_WEBHOOK_BASE ?? "http://localhost:5678/webhook";

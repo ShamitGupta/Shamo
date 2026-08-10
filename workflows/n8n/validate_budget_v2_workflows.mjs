@@ -220,6 +220,7 @@ check(validationCode?.includes("INVALID_MARK_CODE"), "child: invalid mark-code b
     const validator = new RegExp(validatorPattern, "i");
     const REAL_CODES = [
       "M1", "A1", "B1", "DM1", "DB1",       // the ordinary forms
+      "DA1",                                 // dependent accuracy: 9709/63 M/J 2024 Q6(b)
       "*M1", "M1*",                          // dependency, both sides
       "A1 FT", "A1FT", "B1 FT",              // follow-through, spaced and not
       "B2,1,0",                              // award 2, 1 or 0

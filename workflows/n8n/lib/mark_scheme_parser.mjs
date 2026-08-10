@@ -35,7 +35,15 @@
 //     but 9709/62 page 11 prints `M1*`. Rejecting the trailing form dropped a
 //     whole mark row and made 7(c) reconcile at 3 against a printed 4.
 //   - `FT` may be attached (`A1FT`) or spaced (`A1 FT`).
-const ONE_CODE = String.raw`\*?(?:DM|DB|M|A|B)\d+\*?(?:\s*FT)?(?:\s*,\s*\d+)*`;
+// DA is as real as DM and DB. Cambridge's own generic marking principles define
+// "DM or DA" as a method or accuracy mark dependent on a previous mark, and
+// 9709/63 M/J 2024 Q6(b) prints a bare DA1. Its absence here blocked that whole
+// paper on INVALID_MARK_CODE against a correctly-read printed code, and targeted
+// repair could not clear it because there was nothing wrong with the extraction.
+//
+// Longer alternatives must precede shorter ones, so DM/DB/DA are tried before
+// the single letters and DA1 stays one code rather than parsing as D + A1.
+const ONE_CODE = String.raw`\*?(?:DM|DB|DA|M|A|B)\d+\*?(?:\s*FT)?(?:\s*,\s*\d+)*`;
 
 // A whole Marks cell: one or more codes, e.g. `M1`, `*M1`, `A1 FT`, `B1 B1`.
 //

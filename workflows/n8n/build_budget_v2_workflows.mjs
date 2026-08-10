@@ -1285,7 +1285,7 @@ deterministicValidationCode = deterministicValidationCode.replace(
     // fixed corpus of real printed codes, so they cannot drift apart silently.
     // (No backticks in this comment: it lives inside a String.raw template.)
     if (mark.mark_code !== null && String(mark.mark_code).trim() !== '' &&
-        !/^\*?(?:DM|DB|M|A|B)\d+\*?(?:\s*FT)?(?:\s*,\s*\d+)*(?:\s*\*?(?:DM|DB|M|A|B)\d+\*?(?:\s*FT)?(?:\s*,\s*\d+)*)*$/i
+        !/^\*?(?:DM|DB|DA|M|A|B)\d+\*?(?:\s*FT)?(?:\s*,\s*\d+)*(?:\s*\*?(?:DM|DB|DA|M|A|B)\d+\*?(?:\s*FT)?(?:\s*,\s*\d+)*)*$/i
           .test(String(mark.mark_code).trim())) {
       addIssue('blocking', 'INVALID_MARK_CODE',
         'Mark code is not a valid printed Cambridge mark code: ' + mark.mark_code + '.', {
