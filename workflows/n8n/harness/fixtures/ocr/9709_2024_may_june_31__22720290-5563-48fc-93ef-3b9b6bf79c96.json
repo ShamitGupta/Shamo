@@ -2,8 +2,8 @@
   "paper_key": "9709_2024_may_june_31",
   "ingestion_run_id": "22720290-5563-48fc-93ef-3b9b6bf79c96",
   "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.2-batch-04:a_level:9709:2024:may_june:31",
-  "run_status": "awaiting_review",
-  "paper_status": "staging",
+  "run_status": "complete",
+  "paper_status": "published",
   "ocr_model": "mistral-ocr-latest",
   "source_documents": [
     {

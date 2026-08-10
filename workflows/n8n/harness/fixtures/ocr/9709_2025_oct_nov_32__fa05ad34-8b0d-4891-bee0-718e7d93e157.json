@@ -1,0 +1,277 @@
+{
+  "paper_key": "9709_2025_oct_nov_32",
+  "ingestion_run_id": "fa05ad34-8b0d-4891-bee0-718e7d93e157",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-13:a_level:9709:2025:oct_nov:32",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_qp_32.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_ms_32.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International A Level\n\nMATHEMATICS\n\nPaper 3 Pure Mathematics 3\n\nMARK SCHEME\n\nMaximum Mark: 75\n\n9709/32\n\nOctober/November 2025\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the October/November 2025 series for most Cambridge IGCSE, Cambridge International A and AS Level components, and some Cambridge O Level components.\n\nThis document consists of 29 printed pages.\n\n© Cambridge University Press & Assessment 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\n|  **GENERIC MARKING PRINCIPLE 1:** Marks must be awarded in line with: - the specific content of the mark scheme or the generic level descriptors for the question - the specific skills defined in the mark scheme or in the generic level descriptors for the question - the standard of response required by a candidate as exemplified by the standardisation scripts.  |\n| --- |\n|  **GENERIC MARKING PRINCIPLE 2:** Marks awarded are always **whole marks** (not half marks, or other fractions).  |\n|  **GENERIC MARKING PRINCIPLE 3:** Marks must be awarded **positively**: - marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate - marks are awarded when candidates clearly demonstrate what they know and can do - marks are not deducted for errors - marks are not deducted for omissions - answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.  |\n|  **GENERIC MARKING PRINCIPLE 4:** Rules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.  |\n|  **GENERIC MARKING PRINCIPLE 5:** Marks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).  |\n|  **GENERIC MARKING PRINCIPLE 6:** Marks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 2 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nOctober/November 2025\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2025\n\nPage 3 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n# **Annotations guidance for centres**\n\nExaminers use a system of annotations as a shorthand for communicating their marking decisions to one another. Examiners are trained during the standardisation process on how and when to use annotations. The purpose of annotations is to inform the standardisation and monitoring processes and guide the supervising examiners when they are checking the work of examiners within their team. The meaning of annotations and how they are used is specific to each component and is understood by all examiners who mark the component.\n\nWe publish annotations in our mark schemes to help centres understand the annotations they may see on copies of scripts. Note that there may not be a direct correlation between the number of annotations on a script and the mark awarded. Similarly, the use of an annotation may not be an indication of the quality of the response.\n\nThe annotations listed below were available to examiners marking this component in this series.\n\n# **Annotations**\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  ^ | More information required  |\n|  A0 | Accuracy mark awarded zero  |\n|  A1 | Accuracy mark awarded one  |\n|  B0 | Independent accuracy mark awarded zero  |\n|  B1 | Independent accuracy mark awarded one  |\n|  B2 | Independent accuracy mark awarded two  |\n|  BOD | Benefit of the doubt  |\n|  BP | Blank Page  |\n|  ✗ | Incorrect  |\n|  Dep | Used to indicate DM0 or DM1  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 4 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  DM1 | Dependent on the previous M1 mark(s)  |\n|  FT | Follow through  |\n|  ~~~ | Indicate working that is right or wrong  |\n|  Highlighter | Highlight a key point in the working  |\n|  ISW | Ignore subsequent work  |\n|  J | Judgement  |\n|  JU | Judgement  |\n|  M0 | Method mark awarded zero  |\n|  Y1 | Method mark awarded one  |\n|  M2 | Method mark awarded two  |\n|  MR | Misread  |\n|  O | Omission or Other solution  |\n|  Off-page comment | Allows comments to be entered at the bottom of the RM marking window and then displayed when the associated question item is navigated to.  |\n|  On-page comment | Allows comments to be entered in speech bubbles on the candidate response.  |\n|  PE | Judgment made by the PE  |\n|  Pre | Premature approximation  |\n|  SC | Special case  |\n|  SEEN | Indicates that work/page has been seen  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 5 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] **PUBLISHED**\n\nOctober/November 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  SF | Error in number of significant figures  |\n|  ✓ | Correct  |\n|  TE | Transcription error  |\n|  XP | Correct answer from incorrect working  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 6 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2025\n\nPage 7 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n# Abbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 8 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) | ![img-0.jpeg](img-0.jpeg) | B1 | Roughly symmetrical.Condone some inaccuracy, but needs to look as if they intended symmetry and straight lines. If not, then B0.Needs to be in the correct position.Needs to have two solid line segments.Needs to exist in both quadrants above the axis.Ignore dotted lines below the axis.Solid line below the axis is B0.Condone if no scale shown, but need to see 3a and -3a marked.Ignore y=a-2x if seen.  |\n|   |   | 1 |   |\n|  1(b) | Obtain critical value -2a/3 from x+3a=a-2x | B1 | Ignore x=4a if seen.  |\n|   |  State final answer x>-2a/3 | B1 | Need a clear conclusion – must imply rejection of x=4a.B0 if using ≥.  |\n|   |  Alternative Method for Question 1(b)  |   |   |\n|   |  Obtain critical value -2a/3 from (x+3a)2=(a-2x)2 | B1 | Ignore x=4a if seen.  |\n|   |  State final answer x>-2a/3 | B1 | Need a clear conclusion – must imply rejection of x=4a.B0 if using ≥.  |\n|   |   | 2 |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 9 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | Use a correct law for the logarithm of a product or the logarithm of a power | *M1 | Not available after incorrect manipulation, e.g. $$6^{x+1} = 12^{2x-3}$$  |\n|   |  Obtain $$\\ln 3 + (x+1)\\ln 2 = \\ln 4 + (2x-3)\\ln 3$$ | A1 | Or equivalent with no powers  |\n|   |  Solve for $$x$$ | DM1 | E.g. $$x = \\frac{\\ln \\frac{2}{81}}{\\ln \\frac{2}{9}}$$ Allow with logarithms evaluated.  |\n|   |  Obtain 2.46 only | A1 |   |\n|   |  **Alternative Method for Question 2**  |   |   |\n|   |  Use a correct law of indices for a product or a power | *M1 | E.g. $$2^{x+1} = 2 \\times 2^x$$ Not available after incorrect manipulation, e.g. $$6^{x+1} = 12^{2x-3}$$. $$4 = 2^2$$ on its own is not enough.  |\n|   |  Obtain $$\\left(\\frac{2}{9}\\right)^x = \\frac{2}{81}$$ | A1 | OE with powers of $$x$$ only, e.g. $$6 \\times 2^x = \\frac{4}{27} \\times 9^x$$ Note: $$\\left(3^x\\right)^2$$ is not far enough.  |\n|   |  Solve for $$x$$ | DM1 | E.g. $$x = \\frac{\\ln \\frac{2}{81}}{\\ln \\frac{2}{9}}$$ or $$x = \\ln \\frac{2}{81}$$. Allow with logarithms evaluated.  |\n|   |  Obtain 2.46 only | A1 |   |\n|   |   | 4 |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 10 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | Complete method to obtain equation in $y$ only or Obtain the $y$ coordinate of $P$ | **M1** | E.g. $(2-3)^2 + (y-1)^2 = 4$ Or consider triangle and state $\\pm(\\sqrt{3}-1)$. $\\begin{array}{c} 1 \\\\ \\sqrt{3} \\end{array}$  |\n|   |  Obtain $2+i(1-\\sqrt{3})$ | **A1** | Or exact equivalent in the form $x+iy$. Allow $2-i(\\sqrt{3}-1)$. Must not be coordinates, and not $x, y$ stated separately.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 11 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nPUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(b) | State one relevant angle, e.g. $$\\tan^{-1}\\frac{1}{3}$$ or $$\\sin^{-1}\\frac{2}{\\sqrt{10}}$$ | **B1** | Note: $$\\tan^{-1}\\frac{1}{3} = \\sin^{-1}\\frac{1}{\\sqrt{10}}$$  |\n|   |  Complete method to obtain the required angle | **M1** | $$\\tan^{-1}\\frac{1}{3} + \\sin^{-1}\\frac{2}{\\sqrt{10}}$$  |\n|   |  Obtain 1.01 radians or 57.7° | **A1** | Accept AWRT  |\n|   |  **Alternative Method for Question 3(b)**  |   |   |\n|   |  If $$y = mx$$ is a tangent to the circle $$\\Rightarrow (x-3)^2 + (mx-1)^2 = 4$$ $$\\Rightarrow ((1+m^2)x^2 + (-6-2m)x + 6 = 0)$$, then $$(-6-2m)^2 - 24(1+m^2) = 0$$ and $$m = \\frac{3+2\\sqrt{6}}{5}$$ | **B1** | Must be choosing the positive root.  |\n|   |  Substitute into the quadratic and solve for $$x$$, or use gradient to obtain tangent Required angle is $$\\frac{\\pi}{2} - \\sin^{-1}\\left(\\frac{9-\\sqrt{6}}{\\sqrt{6}}\\right)$$ OE | **M1** | Note $$x = \\frac{9-\\sqrt{6}}{5}$$  |\n|   |  Obtain 1.01 radians or 57.7° | **A1** | Accept AWRT  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 12 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | Begin integration by parts and obtain $$px^2 \\tan^{-1} x + q \\int \\frac{x^2}{1+x^2} dx$$ | **M1*** | Condone sign error in formula for integration by parts.  |\n|   |  Obtain $$\\frac{x^2}{2} \\tan^{-1} x - \\frac{1}{2} \\int \\frac{x^2}{1+x^2} dx$$ | **A1** | OE Allow with $$\\arctan x$$ or $$\\tan^{-1} x$$.  |\n|   |  Use $$\\int \\frac{x^2}{1+x^2} dx = \\int 1 - \\frac{1}{1+x^2} dx$$ and integrate to obtain $$\\beta x + \\gamma \\tan^{-1} x$$ | **DM1** | Split the fraction and integrate.  |\n|   |  Obtain $$\\frac{x^2}{2} \\tan^{-1} x - \\frac{1}{2} (x - \\tan^{-1} x)$$ | **A1** | OE  |\n|   |  Substitute correct limits correctly in an expression of the form $$\\alpha x^2 \\tan^{-1} x + \\beta x + \\gamma \\tan^{-1} x$$ | **DM1** | $$\\frac{\\pi}{8} - 0 - \\frac{1}{2} + \\frac{\\pi}{8} + 0(-0)$$ Dependent on both previous M marks. Need to see evidence of the use of the lower limit at least once. Must evaluate the trigonometry using radians.  |\n|   |  Obtain $$\\frac{\\pi}{4} - \\frac{1}{2}$$ | **A1** | ISW Or exact two term equivalent  |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 13 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | Use correct product rule | **M1** | $$f'(x) = (x-a)^2 g'(x) + 2(x-a)g(x)$$ Allow incorrect chain rule.  |\n|   |  Obtain correct derivative and state a clear conclusion | **A1** | **AG** E.g. take out a factor of $$(x-a)$$ and show the factorised form as far as $$(x-a)h(x)$$ correctly (no further comment needed), or show that $$f'(a) = 0$$ and state that ‘$$(x-a)$$ is a factor’.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 14 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b) | Use $$f(3)=0$$ | **M1** | $$2 \\times 3^3 - 4 \\times 3^2 + 3p + q = 0$$  |\n|   |  Obtain $$3p + q = -18$$ | **A1** | OE Powers should be evaluated but do not need to be simplified.  |\n|   |  Use $$f'(3)=0$$ | **M1** | $$54 - 24 + p = 0$$  |\n|   |  Obtain $$p = -30$$ | **A1** | OE  |\n|   |  Obtain $$p = -30, q = 72$$ | **A1** | Correct only.  |\n|   |  **Alternative Method for Question 5(b)** |  |   |\n|   |  Attempt division of $$f(x)$$ by $$(x-3)^2$$ as far as $$(2x+Q)$$ | **M1** | $$Q \\neq 0$$  |\n|   |  Obtain quotient $$(2x+8)$$ | **A1** |   |\n|   |  Equate linear remainder to zero and compare coefficients | **M1** | Or expand $$(2x+8)(x-3)^2$$ and compare coefficients. Method to obtain an equation in $$p$$ or $$q$$.  |\n|   |  obtain one of $$p = -30, q = 72$$ | **A1** |   |\n|   |  Obtain $$p = -30, q = 72$$ | **A1** | Correct answers only.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 15 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b) | **Alternative Method 2 for Question 5(b)**  |   |   |\n|   |  Use $$f(3)=0$$ | **M1** | $$54-36+3p+q=0$$  |\n|   |  Obtain $$3p+q=-18$$ | **A1** | OE Powers evaluated.  |\n|   |  Divide $$f(x)$$ by $$(x-3)^2$$ as far as $$(2x+Q)$$ and form an equation in $$p$$ only **or** $$q$$ only **or** in $$p$$ and $$q$$ | **M1** | Using this as part of a hybrid method they need to be working towards a second equation by considering coefficients in the remainder **or** use $$f(-4)=0$$ or equivalent for *their* $$(2x+8)$$.  |\n|   |  Obtain correct equation in $$p$$ or $$q$$ | **A1** |   |\n|   |  Obtain $$p=-30, q=72$$ | **A1** | Correct answer only.  |\n|   |  **Alternative Method 3 for Question 5(b)**  |   |   |\n|   |  $$f'(x)=6x^2-8x+p$$ | **B1** |   |\n|   |  $$=(x-3)(6x+10)$$ | **M1** | Use the factor $$x-3$$.  |\n|   |  Obtain $$p=-30$$ | **A1** |   |\n|   |  $$f(x)=(x-3)^2(2x+Q) \\quad (=2x^3-4x^2-30x+q)$$ | **M1** | Use the factor $$(x-3)^2$$.  |\n|   |  $$\\Rightarrow Q=8, \\quad q=72$$ | **A1** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 16 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b) | **Alternative Method 4 for Question 5(b)** |  |   |\n|   | Expand $$f(x)=(x-3)^2 (Ax+B)$$ and compare at least one coefficient other than for $$x^3$$ | **M1** | $$A=2$$ can be found by inspection.  |\n|   | Obtain $$q=9B$$ and $$p=9A-6B$$ or obtain $$B=8$$ | **A1** |   |\n|   | Use *their* $$A$$ and $$B$$ to solve for $$p$$ or $$q$$ | **M1** | $$A=2\\ B=8$$  |\n|   | Obtain one of $$p=-30, q=72$$ | **A1** |   |\n|   | Obtain $$p=-30, q=72$$ | **A1** | Correct answer only.  |\n|   |  | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 17 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Sketch a relevant graph, e.g. $y = \\cot 2x$ Scales must be correct if seen. Do not need a full scale, but do need to be able to verify the key points mentioned below: For $y = \\cot 2x$, correct intercept on $x$-axis, asymptotes at $x = 0$, $x = \\frac{1}{2}\\pi$ implied (condone large gap between the curve and the asymptote on the RHS). Must be continuous. For $2\\sin 2x - 1$, correct shape and position. No incorrect curvature. Correct maximum implied. Intercept at $(0, -1)$. | **B1** |   |\n|   |  Sketch a second relevant graph, e.g. $y = 2\\sin 2x - 1$ and justify the given statement | **B1** | Need to see enough of both graphs to confirm there is not a second intersection in the given interval. Need to mark the intersection with a dot or a cross, or say that the root lies at the point of intersection (or equivalent).  |\n|   |   | **2** |   |\n|  6(b) | Calculate the values of a relevant expression or pair of expressions at $x = 0.4$ and $x = 0.6$ Allow working on a smaller interval contained within the given interval | **M1** | E.g. $0.9712 > 0.435$ and $0.389 < 0.864$ $0.537 > 0$ and $-0.475 < 0$ Or using the iterative formula, $0.18 > 0$, $-0.17 < 0$ Or using $\\tan 2x(2\\sin 2x - 1) - 1 = 0$ $-0.55 < 0$, and $1.22 > 0$. M0 if working in degrees.  |\n|   |  Justify the given statement with correct calculated values | **A1** | Values to 2 sf or better. Accept values with statement $f(0.4) \\times f(0.6) < 0$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 18 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(c) | Use the iterative process $$x_{n+1} = \\frac{1}{2} \\tan^{-1} \\left( \\frac{1}{2 \\sin 2x_n - 1} \\right)$$ correctly at least once | **M1** | M0 if working in degrees. Need to get as far as a second iteration completed.  |\n|   |  Obtain final answer 0.49 | **A1** |   |\n|   |  Show sufficient iterations to 4 d.p. to justify 0.49 to 2 d.p. or show that there is a sign change in (0.485, 0.495) $$-0.0157 < 0, 0.355 > 0$$ | **A1** | E.g. 0.5, 0.4858, 0.4967, 0.4883, 0.4947, ... or 0.4, 0.5804, 0.4378, 0.5395, 0.4595, 0.5188, 0.4726, 0.5075, 0.4804, 0.5009, 0.4851, 0.4972, 0.4879, 0.4950, 0.4895, 0.4937 or 0.6, 0.4291, 0.5483, 0.4544, 0.5235, 0.4695, 0.5101, 0.4786, 0.5025, 0.4840, 0.4981, 0.4872, 0.4955, 0.4891, 0.4940 The last 2 options are a lot of iterations. Allow the marks if they start correctly and finish correctly. Condone if there are some missing in the middle.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 19 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | State or imply $$6y^2 \\frac{dy}{dx}$$ as the derivative of $$2y^3$$ | **B1** |   |\n|   |  State or imply $$3x^2 \\frac{dy}{dx} + 6xy$$ as the derivative of $$3x^2y$$ | **B1** |   |\n|   |  Complete the differentiation and equate the derivative of the LHS to zero and solve for $$\\frac{dy}{dx}$$ (the $$= 0$$ can be implied) | **M1** | Needs to be clear how the value of $$\\frac{dy}{dx}$$ was obtained, e.g. collecting like terms and using brackets.  |\n|   |  Obtain $$\\frac{dy}{dx} = \\frac{x^2 + 2xy}{2y^2 - x^2}$$ from correct working | **A1** | **AG** Accept $$\\frac{dy}{dx} = \\frac{2xy + x^2}{2y^2 - x^2}$$. No incorrect statements, e.g. ‘cancel by 3’ or ‘divide top and bottom by 3’ are acceptable, but to have $$\\frac{dy}{dx} = \\frac{3x^2 + 6xy}{6y^2 - 3x^2}$$ and say “divide by 3” at the final step scores A0.  |\n|   |   | **4** |   |\n|  7(b) | Equate derivative to 0 and solve for $$x$$ or for $$x$$ in terms of $$y$$. | ***M1** | E.g., $$x^2 + 2xy = 0 \\Rightarrow x = 0$$ or $$x = -2y$$. Must be using the numerator.  |\n|   |  Obtain $$(0, 2)$$ | **B1** | Allow if the values are stated separately. Do not ISW.  |\n|   |  Use *their* $$x = -2y$$ to form an equation in one unknown Or equivalent e.g. substitute $$y = -\\frac{x^2}{2x}$$ | **dM1** | E.g., $$2y^3 - 12y^3 + 8y^3 = 16$$ or $$-2\\left(\\frac{1}{8}x^3\\right) + 3\\left(\\frac{1}{2}x^3\\right) - x^3 = 16$$.  |\n|   |  Obtain $$(4, -2)$$ | **A1** | Allow if the values are stated separately. Do not ISW  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 20 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 21,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(a) | Use correct double angle formula to expand $$\\sin 4x$$ | *M1 | $$2\\sin 2x\\cos 2x$$ OE  |\n|   |  Use correct double angle formulae to obtain an expression in $$\\sin x$$ and $$\\cos x$$ | dM1 | E.g., $$4\\sin x\\cos x\\left(2\\cos^2 x-1\\right)$$ OE.  |\n|   |  Obtain $$\\sin 4x \\equiv 4\\sin x\\left(2\\cos^3 x-\\cos x\\right)$$ from fully correct working | A1 | AG  |\n|   |  **Alternative Method for Question 8(a)**  |   |   |\n|   |  Use correct double angle formula to rearrange the RHS | *M1 | E.g. $$2\\sin 2x\\left(2\\cos^2 x-1\\right)$$  |\n|   |  Use correct double angle formula to obtain an expression in $$\\sin 2x$$ and $$\\cos 2x$$ | dM1 | E.g. $$2\\sin 2x\\cos 2x$$  |\n|   |  Obtain $$\\sin 4x \\equiv 4\\sin x\\left(2\\cos^3 x-\\cos x\\right)$$ from fully correct working | A1 | AG  |\n|   |  **Alternative Method 2 for Question 8(a)**  |   |   |\n|   |  Use correct angle sum formulae to expand $$\\sin 4x$$ as far as an expression in $$\\sin x$$, $$\\cos x$$, $$\\sin 2x$$ and $$\\cos 2x$$ | *M1 | E.g. $$\\sin x(\\cos x\\cos 2x-\\sin x\\sin 2x) + \\cos x(\\sin x\\cos 2x+\\cos x\\sin 2x)$$  |\n|   |  Use correct double angle formulae to obtain an expression in $$\\sin x$$ and $$\\cos x$$ | dM1 | E.g., $$\\sin x\\cos x\\left(2\\cos^2 x-1\\right)-2\\sin^3 x\\cos x + \\sin x\\cos x\\left(2\\cos^2 x-1\\right)+2\\sin x\\cos^3 x$$  |\n|   |  Obtain $$\\sin 4x \\equiv 4\\sin x\\left(2\\cos^3 x-\\cos x\\right)$$ from fully correct working | A1 |   |\n|   |   | 3 |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 21 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 22,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(b) | Use the identity to obtain $$p\\int \\sin x\\cos^6 x\\,dx + q\\int \\sin x\\cos^4 x\\,dx$$ | **B1** | $$8\\int \\sin x\\cos^6 x\\,dx - 4\\int \\sin x\\cos^4 x\\,dx$$ Accept terms of the correct form but without the integral signs or the dx.  |\n|   |  Obtain $$r\\cos^7 x + s\\cos^5 x$$ | **B1** |   |\n|   |  Obtain $$-\\frac{8}{7}\\cos^7 x + \\frac{4}{5}\\cos^5 x$$ | **B1** | If using the substitution $$u = \\cos x$$, accept the form $$-\\frac{8}{7}u^7 + \\frac{4}{5}u^5$$.  |\n|   |  Use the correct limits correctly in an expression of the form $$r\\cos^7 x + s\\cos^5 x$$ | **M1** | OE Must be evaluated, e.g. $$-\\frac{8}{7} \\times \\frac{1}{8\\sqrt{2}} + \\frac{4}{5} \\times \\frac{1}{4\\sqrt{2}} + \\frac{8}{7} - \\frac{4}{5}$$.  |\n|   |  Obtain $$\\frac{1}{35}(\\sqrt{2} + 12)$$ | **A1** | Or exact simplified equivalent (e.g. as 2 terms).  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 22 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 23,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(a) | State or imply the form $$A + \\frac{B}{x+2a} + \\frac{C}{x+3a}$$ | **B1** |   |\n|   |  Use a correct method for finding a coefficient | **M1** |   |\n|   |  Obtain one of $$A=1$$, $$B=2a$$ and $$C=-3a$$ | **A1** | **SC:** If B0 is scored because of an omission of ‘*A*’, then maximum M1A1 is available for one constant correct. **SC:** If they substitute a value for *a*, or if their working implies the use of *a*=1, they can score maximum B1M1.  |\n|   |  Obtain a second value | **A1** |   |\n|   |  Obtain the third value | **A1** |   |\n|   |  **Alternative Method for Question 9(a)**  |   |   |\n|   |  State or imply $$1 + \\frac{\\text{linear expression}}{(x+2a)(x+3a)}$$ | **B1** | $$1 + \\frac{-ax}{(x+2a)(x+3a)}$$  |\n|   |  State or imply the form $$1 + \\frac{B}{x+2a} + \\frac{C}{x+3a}$$ | **B1** |   |\n|   |  Use a correct method for finding *B* or *C* | **M1** |   |\n|   |  Obtain one of $$B=2a$$ and $$C=-3a$$ | **A1** |   |\n|   |  Obtain the second value | **A1** |   |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 23 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 24,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(b) | Integrate and obtain terms $$Ax + B\\ln(x + 2a) + C\\ln(x + 3a)$$ | **B2FT** | B1 for any two terms correct, B2 for all three terms correct. The FT is on $$A$$, $$B$$ and $$C$$: $$x + 2a\\ln(x + 2a) - 3a\\ln(x + 3a)$$. Allow for FT on a split completed in **(b)**.  |\n|   |  Substitute limits correctly in an integral containing at least 2 terms from the form $$rx + s\\ln(x + 2a) + t\\ln(x + 3a)$$ | **M1** | E.g. $$2a + 2a\\ln\\left(\\frac{3}{1}\\right) - 3a\\ln\\left(\\frac{4}{2}\\right)$$  |\n|   |  Obtain $$a\\left(2 + \\ln\\left(\\frac{9}{8}\\right)\\right)$$ from correct working | **A1** | Accept equivalent fractions with integers. A0 XP if $$a\\left(2 + \\ln\\left(\\frac{9}{8}\\right)\\right)$$ is following an error in **(a)**.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 24 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 25,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(a) | State $$\\frac{dV}{dt} = 5000 - kh^2$$ | **B1** | SOI  |\n|   |  Use $$V = 2500h$$ and chain rule to obtain $$\\frac{\\left( \\text{their } \\frac{dV}{dt} \\right)}{2500}$$ | ***M1** | OE $$\\frac{dh}{dt} = \\frac{5000 - kh^2}{2500}$$  |\n|   |  Use $$h = 20$$, $$\\frac{dh}{dt} = 0.4$$ to obtain $$k$$ | **dM1** | $$0.4 = \\frac{5000 - 400k}{2500} \\Rightarrow k = 10$$  |\n|   |  Obtain $$\\frac{dh}{dt} = \\frac{500 - h^2}{250}$$ from correct working | **A1** | AG There needs to be a complete statement for A1. Condone ‘divide by 10’ in place of showing the cancelling.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 25 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 26,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(b) | Separate variables correctly | **B1** | E.g. $$\\int \\frac{1}{500 - h^2} dh = \\frac{1}{250} \\int 1 dt$$ Condone missing integral signs or missing dh, dt, but not both.  |\n|   |  Obtain $$\\frac{1}{250} t$$ | **B1** | OE (depending on how they use the 250).  |\n|   |  Obtain $$\\frac{1}{2\\sqrt{500}} \\ln \\left| \\frac{\\sqrt{500} + h}{\\sqrt{500} - h} \\right|$$ | **B1** | OE, e.g. $$\\frac{1}{20\\sqrt{5}} \\ln \\left| \\frac{10\\sqrt{5} + h}{10\\sqrt{5} - h} \\right|$$. Coefficients will depend on where the 250 is. Condone missing modulus signs.  |\n|   |  Use $$t = 0, h = 0$$ in an expression of the form $$pt + q \\ln(a + h) + r \\ln(b - h)$$ to obtain the constant of integration or as limits on a definite integral | **M1** | Requires a value for the constant. M0 if *their* equation has no solution. M0 if they never had a constant. Need some indication that the conclusion is based on using $$t = 0, h = 0$$, e.g. \"$$t = 0, h = 0 \\Rightarrow C = 0$$\".  |\n|   |  Obtain $$t = 16.1$$ (s) | **A1** | Accept AWRT.  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 26 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 27,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  11(a) | $$\\overrightarrow{MB} = -\\mathbf{i} + 5\\mathbf{j} + 2\\mathbf{k}$$ | **B1** | Do not ISW. Accept as a column vector.  |\n|   |  $$\\overrightarrow{MC} = -5\\mathbf{i} - 3\\mathbf{j} + 4\\mathbf{k}$$ | **B1** | Do not ISW. Accept as a column vector. **SC:** B0B1 for column vectors with **i**, **j**, **k** (or coordinates) (allow one slip).  |\n|   |   | **2** |   |\n|  11(b) | Carry out the correct process for evaluating the scalar product of $$\\overrightarrow{MB}$$ and $$\\overrightarrow{MC}$$ | **M1** | Or $$\\overrightarrow{BM}$$ and $$\\overrightarrow{CM}$$. Need some evidence of an attempt to evaluate the scalar product.  |\n|   |  Using the correct process for the moduli, divide the scalar product by the product of the moduli for their two vectors. | **M1** | $$\\pm \\left( \\frac{5 - 15 + 8}{\\sqrt{30} \\cdot \\sqrt{50}} \\right)$$ The scalar product could be incorrect, but it must be a scalar. Condone a sign change.  |\n|   |  Obtain $$-\\frac{\\sqrt{15}}{75}$$ | **A1** | Or exact equivalent, e.g. $$-\\frac{1}{5\\sqrt{15}}, \\frac{-2}{\\sqrt{30}\\sqrt{50}}$$. A0 if they never have a statement '$$\\cos\\theta = \\dots$$'. ISW if they have correct '$$\\cos\\theta = \\dots$$' and then state the angle.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 27 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 28,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|   | **Alternative Method for Question 11(b)** |  |   |\n|   | Carry out the correct process for finding the lengths of the sides of triangle *BMC* | **M1** | $$MB = \\sqrt{30},\\ MC = \\sqrt{50},\\ BC = \\sqrt{84}$$  |\n|   | Correct use of the cosine rule as far as $$\\cos\\theta = ...$$ | **M1** | $$\\cos M = \\frac{their|MB|^2 + their|MC|^2 - 84}{2their|MB| \\times their|MC|}$$ $$\\left( \\cos M = \\frac{50 + 30 - 84}{2\\sqrt{50}\\sqrt{30}} \\right)$$  |\n|   | Obtain $$\\frac{-1}{\\sqrt{375}}$$ | **A1** | Or exact equivalent. A0 if they never have a statement '$$\\cos\\theta = ...$$'. ISW if they have correct '$$\\cos\\theta = ...$$' and then state the angle.  |\n|   |  | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 28 of 29",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 29,
+          "raw_markdown": "9709/32\n\nCambridge International A Level – Mark Scheme\n\nPUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  11(c) | Working with triangle MBC: Correct method to calculate the exact value of sin(∠CMB) | M1 |   |\n|   |  sin(∠CMB) = √(374/375) | A1 | Or equivalent, e.g. sin(∠CMB) = √(5400/5625). A0 XP if they had changed the sign in their working for the cosine in (b) and for the final answer.  |\n|   |  Correct method to calculate the area of triangle ABC using MB and MC | M1 | 2 × area of CMB.  |\n|   |  2 × ½√30√50 × √(374/375) = 2√374 | A1 | Or exact equivalent, e.g. 2√2√11√17 or √(3366000000)/1500.  |\n|   |  **Alternative Method for Question 11(c)**  |   |   |\n|   |  Working with triangle ABC: correct method to calculate the exact sine of an angle in the triangle ABC | M1 | cos A = 56/√120×76, cos B = 64/√120×84, cos C = 20/√76×84  |\n|   |  Obtain sin A = 4√374/√120√76 or sin B = 4√374/√120√84 or sin C = 4√374/√76√84 | A1 | Or exact equivalent.  |\n|   |  Correct method to calculate the area of triangle ABC | M1 | Must have a matching set of sides for their angle.  |\n|   |  Area = ½√120√76 4√374/√120√76 or area = ½√120√84 4√374/√120√84 or area = ½√76√84 4√374/√76√84 = 2√374 | A1 | Or exact equivalent.  |\n|   |   | 4 |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 29 of 29",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0000800000001 *\n\nDFD\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\nMATHEMATICS\n\n9709/32\n\nPaper 3 Pure Mathematics 3\n\nOctober/November 2025\n\n1 hour 50 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 75.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 20 pages. Any blank pages are indicated.\n\nDC (DE/SG) 343356/3\n© UCLES 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0000800000002 *\n\nDFD\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\n1 (a) Sketch the graph of $y = |x + 3a|$, where $a$ is a positive constant.\n\n[1]\n\n(b) Hence or otherwise solve the inequality $|x + 3a| > a - 2x$.\n\n[2]\n\n...\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "* 0000800000003 *\n\nDFD\n\n![img-4.jpeg](img-4.jpeg)\n\n3\n\n2 Solve the equation $3 \\times 2^{x+1} = 4 \\times 3^{2x-3}$. Give your answer correct to 3 significant figures. [4]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n© UCLES 2025\n\n9709/32/O/N/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "![img-5.jpeg](img-5.jpeg)\n\n4\n\n3\n\n![img-6.jpeg](img-6.jpeg)\n\nThe shaded region in the Argand diagram, bounded by a line and a circle, represents the complex numbers $z$ satisfying\n\n$$\\text{Re } z \\leqslant 2 \\text{ and } |z - (3 + i)| \\leqslant 2.$$\n\nThe point $P$ shown on the diagram is one of the points of intersection of the line and the circle.\n\n(a) Find the complex number represented by the point $P$. Give your answer in the form $x + iy$, where $x$ and $y$ are real and exact. [2]\n\n(b) Find the greatest value of $\\arg z$ for points in the shaded region. [3]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000005 *\n\nDFD\n\n![img-7.jpeg](img-7.jpeg)\n\n5\n\n4 Find the exact value of $$\\int_0^1 x \\tan^{-1} x \\, dx$$.\n\n[6]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0000800000006 *\n\nDFD\n\n![img-8.jpeg](img-8.jpeg)\n\n6\n\n5 (a) It is given that $f(x) = (x-a)^2 g(x)$, where $f(x)$ and $g(x)$ are polynomials.\n\nShow that $(x-a)$ is a factor of $f'(x)$.\n\n[2]\n\n(b) It is given that $(x-3)^2$ is a factor of $2x^3 - 4x^2 + px + q$, where $p$ and $q$ are constants.\n\nFind the values of $p$ and $q$.[ \"{\"box_2d\": [887, 416, 918, 434], \"label\": \"text\", \"caption\": \"[5]\"}]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000007 *\n\nDFD\n\n![img-9.jpeg](img-9.jpeg)\n\n7\n\n6 (a) By sketching a suitable pair of graphs, show that the equation $$\\cot 2x = 2 \\sin 2x - 1$$ has exactly one root in the interval $$0 < x < \\frac{1}{2}\\pi$$. [2]\n\n(b) Show by calculation that the root is in the interval $$0.4 < x < 0.6$$. [2]\n\n(c) Use the iterative formula $$x_{n+1} = \\frac{1}{2} \\tan^{-1} \\left( \\frac{1}{2 \\sin 2x_n - 1} \\right)$$ to calculate the root correct to 2 decimal places. Give the result of each iteration to 4 decimal places. [3]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "* 0000800000008 *\n\nDFD\n\n![img-10.jpeg](img-10.jpeg)\n\n8\n\n7 The equation of a curve is $2y^3 - 3x^2y - x^3 = 16$.\n\n(a) Show that $\\frac{dy}{dx} = \\frac{x^2 + 2xy}{2y^2 - x^2}$.\n\n[4]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "* 0000800000009 *\n\nDFD\n\n![img-11.jpeg](img-11.jpeg)\n\n9\n\n(b) Hence find the coordinates of the points on the curve at which the normal is parallel to the y-axis.\n[4]\n\n![img-12.jpeg](img-12.jpeg)\n\n© UCLES 2025\n\n9709/32/O/N/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0000800000010 *\n\nDFD\n\n10\n\n8 (a) Prove the identity $$\\sin 4x \\equiv 4 \\sin x (2 \\cos^3 x - \\cos x)$$.\n\n[3]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "* 0000800000011 *\nDFD\n11\n(b) Hence find the exact value of $$\\int_0^{\\frac{1}{4}\\pi} \\cos^3 x \\sin 4x \\, dx$$. [5]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0000800000012 *\n\nDFD\n\n12\n\n9 Let $$f(x) = \\frac{x^2 + 4ax + 6a^2}{(x + 2a)(x + 3a)}$$, where $$a$$ is a positive constant.\n\n(a) Express $$f(x)$$ in partial fractions.\n\n[5]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "* 0000800000013 *\n\nDFD\n\n![img-13.jpeg](img-13.jpeg)\n\n13\n\n(b) Hence find the exact value of $$\\int_{-a}^a f(x)dx$$. Give your answer in the form $$a(p+\\ln q)$$, where $$p$$ and $$q$$ are rational. [4]\n\n...\n\n© UCLES 2025\n\n9709/32/O/N/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "* 0000800000014 *\nDFD\n\n10\n\n14\n\n![img-14.jpeg](img-14.jpeg)\n\nThe diagram shows a tank for holding water. The tank is in the shape of a cube of side 50 cm. At time t seconds, the depth of water in the tank is h cm. Water is poured into the tank at a rate of 5000 cm³ s⁻¹. Water pours out of the tank through a hole in the bottom at a rate proportional to h².\n\nWhen h = 20, the depth of the water is increasing at a rate of 0.4 cm s⁻¹.\n\n(a) Show that $$\\frac{dh}{dt} = \\frac{500 - h^2}{250}$$ . [4]\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "* 0000800000015 *\n\nDFD\n\n![img-15.jpeg](img-15.jpeg)\n\n15\n\n(b) Given that $h = 0$ when $t = 0$, find the time taken for the depth of the water in the tank to reach 20 cm. [5]\n\n...\n\n© UCLES 2025\n\n9709/32/O/N/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "* 0000800000016 *\n\nDFD\n\n![img-16.jpeg](img-16.jpeg)\n\n16\n\n11\n\n![img-17.jpeg](img-17.jpeg)\n\nRelative to the origin $O$, the position vectors of the points $A$, $B$ and $C$ are\n\n$$\\overrightarrow{OA} = 4\\mathbf{i} - 2\\mathbf{j},\\ \\overrightarrow{OB} = 2\\mathbf{i} + 8\\mathbf{j} + 4\\mathbf{k},\\ \\text{and}\\ \\overrightarrow{OC} = -2\\mathbf{i} + 6\\mathbf{k}.$$\n\nThe midpoint of $AB$ is $M$, as shown in the diagram.\n\n(a) Find the vectors $\\overrightarrow{MB}$ and $\\overrightarrow{MC}$. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n(b) Calculate the exact value of the cosine of angle $CMB$. [3]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "* 0000800000017 *\n\nDFD\n\n![img-18.jpeg](img-18.jpeg)\n\n17\n\n(c) Hence or otherwise find the exact area of triangle ABC.\n\n[4]\n\n...\n\n© UCLES 2025\n\n9709/32/O/N/25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "* 0000800000018 *\n\nDFD\n\n![img-19.jpeg](img-19.jpeg)\n\n18\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\n...\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "* 0000800000019 *\n\nDFD\n\n![img-20.jpeg](img-20.jpeg)\n\n19\n\nBLANK PAGE\n\n© UCLES 2025\n\n9709/32/O/N/25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "* 0000800000020 *\n\nDFD\n\n![img-21.jpeg](img-21.jpeg)\n\n20\n\n# BLANK PAGE\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2025\n\n9709/32/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

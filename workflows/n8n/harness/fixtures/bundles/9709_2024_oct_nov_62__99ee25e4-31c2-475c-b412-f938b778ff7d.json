@@ -1,0 +1,1377 @@
+{
+  "paper_key": "9709_2024_oct_nov_62",
+  "ingestion_run_id": "99ee25e4-31c2-475c-b412-f938b778ff7d",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-06:a_level:9709:2024:oct_nov:62",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 5
+      }
+    ],
+    "passed": true,
+    "warning_count": 1,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": null
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 17,
+      "assets": 0,
+      "issues": 1,
+      "questions": 7,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.0332012
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 10948,
+              "total_tokens": 17240,
+              "output_tokens": 6292,
+              "input_tokens_details": {
+                "cached_tokens": 10496,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 4748
+              }
+            },
+            "response_id": "resp_0a085373c7924397016a79b8e7de60819a96533c5bf8aaae4b",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 10948,
+            "priced_output_tokens": 6292,
+            "reported_total_tokens": 17240
+          },
+          "input_tokens": 10948,
+          "output_tokens": 6292,
+          "actual_cost_usd": 0.0294402,
+          "cached_input_tokens": 10496
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 6522,
+              "total_tokens": 6809,
+              "output_tokens": 287,
+              "input_tokens_details": {
+                "cached_tokens": 5888,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 173
+              }
+            },
+            "response_id": "resp_0dab8ce41baaadc8016a79b93099bc81988585791a938e2814",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 6522,
+            "priced_output_tokens": 287,
+            "reported_total_tokens": 6809
+          },
+          "input_tokens": 6522,
+          "output_tokens": 287,
+          "actual_cost_usd": 0.00060331,
+          "cached_input_tokens": 5888
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_question_extraction",
+          "usage_audit": {
+            "usage_raw": [
+              {
+                "input_tokens": 1448,
+                "total_tokens": 2502,
+                "output_tokens": 1054,
+                "input_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0
+                },
+                "output_tokens_details": {
+                  "reasoning_tokens": 341
+                }
+              }
+            ],
+            "response_id": [
+              "resp_0f82753f2d84aa40016a79b964571081998742923a751768b5"
+            ],
+            "model_reported": "gpt-5.4-nano",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 1448,
+            "priced_output_tokens": 1054,
+            "reported_total_tokens": 2502
+          },
+          "input_tokens": 1448,
+          "output_tokens": 1054,
+          "actual_cost_usd": 0.0016071,
+          "cached_input_tokens": 0
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2372,
+              "total_tokens": 3491,
+              "output_tokens": 1119,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              }
+            },
+            "response_id": "resp_0a38295588a0ae30016a79b9a5232c8198a6d30bee81ac54a5",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2372,
+            "priced_output_tokens": 1119,
+            "reported_total_tokens": 3491
+          },
+          "input_tokens": 2372,
+          "output_tokens": 1119,
+          "actual_cost_usd": 0.00155059,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "paid_calls": 4,
+      "input_tokens": 21290,
+      "output_tokens": 8752,
+      "actual_cost_usd": 0.0332012,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 18176
+    },
+    "staged_at": "2026-08-10T11:44:46.778Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_qp_62.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_ms_62.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Identify Poisson mean from given parameters",
+              "Compute a Poisson tail probability P(X ≥ k)"
+            ],
+            "methods": [
+              "Poisson probability mass function",
+              "Use summation or Poisson distribution tail probability"
+            ],
+            "subtopics": [
+              "Poisson parameter estimation via given mean rate",
+              "Tail probabilities using Poisson CDF/survival function",
+              "Approximating P(X ≥ k) with Poisson"
+            ],
+            "main_topic": "The Poisson Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 3,
+          "stem_markdown": "A random variable $X$ has the distribution $\\text{B}\\left(4500\\,000, \\frac{1}{1000\\,000}\\right)$.\n\nUse a Poisson distribution to calculate an estimate of $\\text{P}(X \\geqslant 4)$.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\lambda = 4.5$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$1 - e^{-4.5}(1 + 4.5 + \\frac{4.5^2}{2} + \\frac{4.5^3}{3!}) = 1 - e^{-4.5}(1 + 4.5 + 10.125 + 15.1875)$$ $$= 1 - (0.011109 + 0.049999 + 0.11248 + 0.16872)$$",
+              "guidance_markdown": "Expression must be seen or implied by correct figures. Any $$\\lambda$$. Allow one end error. Accept fully correct $$\\Sigma$$ notation.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "0.658 (3 sf)",
+              "guidance_markdown": "SC unsupported 0.658 scores **B1 B1**.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the mean length of the 50 roads in the sample.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Calculate an estimate of the standard deviation of the lengths of roads in this region.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "It is now given that the lengths of roads in this region are normally distributed.\n\nState, with a reason, whether this fact would make any difference to your calculation in part (b).",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use a given 95% confidence interval to recover the sample mean",
+              "Use the CI margin of error to estimate standard deviation",
+              "Assess whether a normality assumption changes an earlier CI-based calculation"
+            ],
+            "methods": [
+              "Normal-based confidence interval formula with z value",
+              "Rearrange CI endpoints to obtain mean and standard deviation",
+              "Reasoning about robustness under normality vs CLT"
+            ],
+            "subtopics": [
+              "Confidence interval for a population mean",
+              "Deriving sample mean from a CI",
+              "Estimating population standard deviation from a CI width",
+              "Effect of assuming normality on standard deviation estimation/CI construction"
+            ],
+            "main_topic": "Sampling and Estimation",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 4,
+          "stem_markdown": "The lengths of a random sample of 50 roads in a certain region were measured. Using the results, a 95% confidence interval for the mean length, in metres, of all roads in this region was found to be $[245,263]$.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "254 [m]",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$263 = '254' + 1.96 \\times \\frac{\\sigma}{\\sqrt{50}}$$ oe or $$2 \\times 1.96 \\times \\frac{\\sigma}{\\sqrt{50}} = 18$$",
+              "guidance_markdown": "ft their '254' accept 1.96 or 1.645 for **M1**.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$[\\sigma = \\frac{9\\sqrt{50}}{1.96}] = \\text{]. s.d.} = 32.5 \\text{ [m]} \\text{ (3 sf)}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "No Because the sample mean is approximately normally distributed [for large $$n$$]",
+              "guidance_markdown": "Both needed. Or because of the Central Limit theorem. Or because $$n$$ is large [accept $$\\geq 30$$ condone $$\\geq 50$$].",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use the binomial distribution to carry out the test at the 10% significance level.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Given that there are 30 employees at the factory comment on the suitability of the owner's model.",
+              "source_page_numbers": [
+                4
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Set up binomial test for p increased",
+              "Compute test probability under H0 and make a decision at 10% level",
+              "Relate the model B(25, p) to a different implied scenario using a binomial calculation"
+            ],
+            "methods": [
+              "Binomial distribution probabilities",
+              "Significance level comparison (critical region or p-value)",
+              "Compute binomial probabilities/expectations for interpretative comment"
+            ],
+            "subtopics": [
+              "Binomial hypothesis testing",
+              "Null vs alternative for success probability",
+              "Computing p-value / critical region at specified significance level",
+              "Interpreting model suitability with conditional scenario (n=30)"
+            ],
+            "main_topic": "The Binomial and Geometric Distributions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.84
+          },
+          "total_marks": 6,
+          "stem_markdown": "A factory owner models the number of employees who use the factory canteen on any day by the distribution $\\text{B}(25, p)$. In the past the value of $p$ was $0.8$. A new menu is introduced in the canteen and the owner wants to test whether the value of $p$ has increased.\n\nOn a randomly chosen day he notes that the number of employees who use the canteen is 23.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "H_{0}: $$p = 0.8$$ H_{1}: $$p > 0.8$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": " [Assuming H_{0}, P(X ≥ 23) =] ^{25}C_{23}×0.2^{2}×0.8^{23} + ^{25}C_{24}×0.2×0.8^{24} + 0.8^{25} =0.070835 + 0.0236118 + 0.0037779",
+              "guidance_markdown": "No end errors. Expression must be seen or supported by enough figures to be convinced B(25,0.8) used. Accept correct Σ notation.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": " = 0.0982",
+              "guidance_markdown": "SC B1 for 0.0982 unsupported.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": " 0.0982 < 0.1",
+              "guidance_markdown": "Valid comparison their 0.0982 must be a tail probability.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": " [There is evidence to reject H_{0}] There is sufficient evidence to suggest that *p* has increased",
+              "guidance_markdown": "No contradictions. In context, non-definite. Condone ‘there is sufficient evidence that the ‘claim’ is correct’ and condone ‘there is sufficient evidence that the number of employees (using the canteen) has increased’ Note: CR method will include P(X ≥ 23) so M1 A1 as above, and P(X ≥22)=0.234>0.1 with at least one probability comparison with 0.1 needed to find CR of 23,24,25 (so 23 in CR) M1 A1ft as above.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Not suitable as model does not allow for more than 25 employees to use the canteen/Not suitable as uses a sample instead of all employees/Not suitable doesn’t include all employees /Not suitable as 30 is only just bigger than 25 should have used 30 OR Suitable as owner knows that not all employees use the canteen, or similar",
+              "guidance_markdown": "Need both (i.e. suitable or not suitable plus reason).",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find $P(\\bar{X} > 36)$.",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "It is given that $P(\\bar{X} < a) = 0.986$. Find the value of $a$.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute P(Xbar > value) using the distribution of Xbar",
+              "Use given tail probability to determine a quantile a for Xbar"
+            ],
+            "methods": [
+              "Normal transformation/standardization",
+              "Use N(0,1) tail probabilities (z-scores)"
+            ],
+            "subtopics": [
+              "Distribution of sample mean for normal data",
+              "Sampling distribution of \u00170Xbar",
+              "Standardization and normal tail probabilities",
+              "Finding quantiles from a given lower-tail probability"
+            ],
+            "main_topic": "Continuous Random Variables",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 6,
+          "stem_markdown": "A population is normally distributed with mean 35 and standard deviation 8.1. A random sample of size 140 is chosen from this population and the sample mean is denoted by $\\bar{X}$.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\frac{36-35}{8.1+\\sqrt{140}}$$ [= 1.461]",
+              "guidance_markdown": "Ignore inclusion of cc for **M1**. Must have $$\\sqrt{140}$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$1 - \\Phi(\\text{‘}1.461\\text{’})$$",
+              "guidance_markdown": "For area consistent with their values.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "= 0.0720 (3 sf)",
+              "guidance_markdown": "Allow 0.072.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$[\\Phi^{-1}(0.986)] = 2.197$$ to 2.198",
+              "guidance_markdown": "Seen. Note: 2.2 and nothing better seen scores **B0**",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$\\pm \\frac{a-35}{8.1+\\sqrt{140}} = \\pm \\text{‘}2.198\\text{’}$$",
+              "guidance_markdown": "Must be a z value.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$a = 36.5$$ (3 sf)",
+              "guidance_markdown": "CWO Note: use of 2.2 scores **A1** so 2/3. But e.g. 2.196 gives 36.5 but scores **B0 M1 A0** so 1/3",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the probability that the number of lemon sweets in the bag is more than 2 but not more than 5.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the probability that the total number of lemon and orange sweets in the bag is less than 4.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 6,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "10 bags of sweets are chosen at random.\n\nUse approximating distributions to find the probability that the total number of lemon sweets in the 10 bags is less than the total number of orange sweets in the 10 bags.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute P(2 < L \u0014 <= 5) for a Poisson variable",
+              "Compute probability that sum of two independent Poisson variables is less than a threshold",
+              "Approximate distributions for sums over 10 bags and compare totals"
+            ],
+            "methods": [
+              "Poisson pmf and cumulative sums",
+              "Use that sum of independent Poissons is Poisson",
+              "Use normal/CLT or other appropriate approximation to compare two independent totals"
+            ],
+            "subtopics": [
+              "Poisson probability for ranges",
+              "Sum of independent Poisson random variables",
+              "Poisson approximations for comparing totals",
+              "Difference between totals using approximating distributions across multiple bags"
+            ],
+            "main_topic": "The Poisson Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 5,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.7
+          },
+          "total_marks": 11,
+          "stem_markdown": "A machine puts sweets into bags at random. The numbers of lemon and orange sweets in a bag have the independent distributions $\\text{Po}(3.7)$ and $\\text{Po}(2.6)$ respectively.\n\nA bag of sweets is chosen at random.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$e^{-3.7} \\left( \\frac{3.7^3}{3!} + \\frac{3.7^4}{4!} + \\frac{3.7^5}{5!} \\right) = e^{-3.7} (8.44217 + 7.80900 + 5.77866) = 0.20872 + 0.19307 + 0.14287$$",
+              "guidance_markdown": "Expression must be seen or implied by correct figures. Any $$\\lambda$$. Allow one end error. Accept fully correct $$\\Sigma$$ notation.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "= 0.545 (3 sf)",
+              "guidance_markdown": "SC 0.545 unsupported scores **B1**.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$[\\lambda] = 6.3$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$e^{-6.3}(1 + 6.3 + \\frac{6.3^2}{2!} + \\frac{6.3^3}{3!}) = e^{-6.3}(1 + 6.3 + 19.845 + 41.6745) = 0.0018363 + 0.011569 + 0.0364415 + 0.076527$$",
+              "guidance_markdown": "Expression must be seen or implied by correct figures. Any $$\\lambda$$. Allow one end error. Accept fully correct $$\\Sigma$$ notation.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$= 0.126$$ (3 sf)",
+              "guidance_markdown": "SC 0.126 unsupported scores **B1 B1**",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "L~N(37, 37), O~N(26, 26)",
+              "guidance_markdown": "SOI.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "(O - L) ~ N(-11, 63)",
+              "guidance_markdown": "For N($$\\pm 11$$, ...) SOI.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "",
+              "guidance_markdown": "For var = 37+26 SOI.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$\\frac{0 - ' - 11'}{\\sqrt{63'}}$$ [=1.386] or $$\\frac{0 + 0.5 - ' - 11'}{\\sqrt{63'}}$$ [=1.449]",
+              "guidance_markdown": "Standardising with their values (wrong cc scores **M1**).",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$1 - \\Phi('1.386')$$ or $$1 - \\Phi('1.449')$$",
+              "guidance_markdown": "For area consistent with their working.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 11,
+              "content_markdown": "$$= 0.0828$$ or $$0.0829$$ (3 sf) or $$= 0.0737$$ or $$0.0736$$ (3 sf)",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "",
+              "guidance_markdown": "SC1 10 used twice N(37,37), N(26,26) and use of 10O-10L>0 Apply MR rules max **B1 B1 M1 M1 M1 A0** (MR) SC2 P(11) giving N(11,11) scores **B0 B1 M0 M1 M1 A0**",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "State what the constants $a$ and $b$ represent in this context.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Show that $a=\\dfrac{b}{b+1}$.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "It is given that $E(X)=\\ln 3$.\n\nShow that $b=2$ and find the value of $a$.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "d"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "Find the median of $X$.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Interpret constants a and b as support bounds",
+              "Compute a and b using normalization (integral of pdf equals 1)",
+              "Use E(X) to solve for remaining parameter values",
+              "Find the median by solving P(X ≤ m)=0.5"
+            ],
+            "methods": [
+              "Integration to enforce pdf normalization",
+              "Expectation via integral",
+              "Derive CDF from pdf and solve for median"
+            ],
+            "subtopics": [
+              "Valid pdf constraints",
+              "Determining normalization constant via integral",
+              "Using expectation to determine distribution parameters",
+              "Finding median from CDF",
+              "Piecewise-defined pdf interpretation"
+            ],
+            "main_topic": "Continuous Random Variables",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 11,
+          "stem_markdown": "The time, $X$ hours, taken by a large number of people to complete a challenge is modelled by the probability density function given by\n\n$$f(x)=\\begin{cases}\n\\dfrac{1}{x^2} & a \\leqslant x \\leqslant b,\\\\\n0 & \\text{otherwise},\n\\end{cases}$$\n\nwhere $a$ and $b$ are constants.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "Min and max times [to complete challenge]",
+              "guidance_markdown": "In context (e.g. min and max x scores **B0**).",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\int_a^b \\frac{1}{x^2} dx = 1$$",
+              "guidance_markdown": "Attempt to integrate f(x) and =1, ignore limits.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$[\\left[-\\frac{1}{x}\\right]_a^b = 1] - \\frac{1}{b} + \\frac{1}{a} = 1$$",
+              "guidance_markdown": "For correct equation using correct limits into correct integration and = 1.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$-a + b = ab$$ or $$b = a(b + 1)$$",
+              "guidance_markdown": "Convincingly obtained. No errors seen. $$OE \\Rightarrow a = \\frac{b}{b+1} \\text{ AG.}$$",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$E(X) = \\int_a^b \\frac{1}{x} dx$$",
+              "guidance_markdown": "Attempt to integrate $$xf(x)$$. Limits $$a$$ and $$b$$ or $$b/(b+1)$$ and $$b$$ (condone $$a$$ and $$2$$ for **M1**) See SC for use of limits $$2/3$$ and $$2$$",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$= \\ln b - \\ln a$$ or $$\\ln b - \\ln (b/(b+1))$$",
+              "guidance_markdown": "Correct integration and limits substituted. Condone $$\\ln 2 - \\ln a$$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$[= \\ln b - (\\ln b - \\ln (b + 1))] = \\ln b - \\ln(b/(b+1)) = \\ln 3$$ $$= \\ln (b + 1) = \\ln 3$$ or $$b+1 = 3$$ or $$b^2 + b = 3b$$ or $$\\frac{b}{\\left(\\frac{b}{b+1}\\right)} = 3$$",
+              "guidance_markdown": "For correct equation in $$b$$ only (i.e. using part **(b)**).",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$$b = 2 (\\mathbf{AG}) \\quad a = \\frac{2}{3}$$",
+              "guidance_markdown": "Both obtained correctly (Note: if $$b=2$$ not shown but used can score **M1 A1, A1/A0** depending on where $$b=2$$ is introduced, **A0**)",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "",
+              "guidance_markdown": "SC verification: using $$b=2$$ and $$a=2/3$$ then integrating $$xf(x)$$ from $$2/3$$ to $$2$$ scores **M1 A1** for integration and limits substituted, then **A1** for showing $$=\\ln 3$$ Final **A0** (as verified not shown) max $$\\frac{3}{4}$$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$\\int_{-\\frac{1}{2}}^{m} \\frac{1}{x^2} dx = 0.5$$ or $$\\int_{m}^{2} \\frac{1}{x^2} dx = 0.5$$",
+              "guidance_markdown": "Attempt to integrate $$f(x)$$ equated to $$0.5$$ and correct limits stated.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$\\left[-\\frac{1}{x}\\right]_{\\frac{2}{3}}^{m} = 0.5$$ or $$\\left[-\\frac{1}{x}\\right]_{m}^{2} = 0.5$$",
+              "guidance_markdown": "Correct integration FT *their a*.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 12,
+              "content_markdown": "$$[-\\frac{1}{m} + \\frac{3}{2} = 0.5]$$ or $$[-\\frac{1}{2} + \\frac{1}{m} = 0.5]$$ $$m = 1$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "State the probability that she will make a Type I error.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 7,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Carry out the test at the 2% significance level.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "The scientist carries out the test correctly, but another scientist claims that she has made a Type II error.\n\nComment on this claim.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "State the probability of Type I error from the given significance level",
+              "Compute and carry out the hypothesis test at 2% significance",
+              "Assess whether a stated Type II error has been made (interpretation rather than recalculation)"
+            ],
+            "methods": [
+              "Significance level \u00171 (Type I error = alpha)",
+              "Normal (z) or t-test procedure using sum/sum of squares to get sample mean and/or standard error",
+              "Decision rule comparison with critical value/ p-value",
+              "Logical interpretation of Type II error statement"
+            ],
+            "subtopics": [
+              "Type I and Type II errors",
+              "One-sample test for a normal mean with known/assumed variance",
+              "Test statistic computation using summary statistics",
+              "Decision at given significance level",
+              "Interpretation of Type II claim"
+            ],
+            "main_topic": "Hypothesis Tests",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 9,
+          "stem_markdown": "The heights of one-year-old trees of a certain variety are known to have mean 2.3 m. A scientist believes that, on average, trees of this age and variety in her region are slightly taller than in other places. She plans to carry out a hypothesis test, at the 2% significance level, in order to test her belief.\n\nShe takes a random sample of 100 such trees in her region and measures their heights, $h$ m. Her results are summarised below.\n\n$$n=100 \\quad \\sum h=238 \\quad \\sum h^2=580$$",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "0.02 or 2%",
+              "guidance_markdown": "<0.02 **B0**",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "H_{0}: $$\\mu = 2.3$$ H_{1}: $$\\mu > 2.3$$",
+              "guidance_markdown": "Accept ‘population mean’ for $$\\mu$$ (not just mean) If not seen here, can be awarded if correctly seen in part (a)",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$s^2 = \\frac{100}{99} (\\frac{580}{100} - (2.38)^2)$$ or $$1/99 (580 - 238^2/100)$$",
+              "guidance_markdown": "Correct substitution in $$s^2$$ or $$\\sqrt{s^2}$$ formula.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$= 0.137 = 113/825$$ or $$s = 0.370$$ (3 sf) and $$\\bar{x} = 238/100$$ [$$= 2.38$$]",
+              "guidance_markdown": "$$\\bar{x}$$ and $$s^2$$ (or $$s$$) correct. (SC biased estimate 0.1356 and $$\\bar{x} = 2.38$$ scores **B1**).",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$\\frac{2.38-2.3}{\\sqrt{\\frac{0.137}{100}}}$$ [$$= 2.161$$ or $$2.162$$]",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$= 2.16$$ (3 sf) OR $$0.0153/0.0154$$ if area comparison used",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "‘2.16’ > 2.054 (or 2.055) OR ‘0.0153 or 0.0154’<0.02",
+              "guidance_markdown": "Valid comparison.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "[There is evidence to reject H_{0}.] There is sufficient evidence to suggest that the [mean] height [in scientist’s region] is greater than 2.3 [m] OR there is sufficient evidence to suggest that the scientist’s claim is justified.",
+              "guidance_markdown": "No contradictions. In context, non-definite. Accept CV method $$x = 2.376 < 2.38$$ or $$x = 2.304 > 2.3$$ **M1 A1** for $$x$$ and M1 A1ft for comparison and conclusion Two tail test can score **B0 M1 A1 M1 A1 M1** (comparison with 0.01oe) A0ft max 5/7",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Not possible since H_{0} was rejected.",
+              "guidance_markdown": "Need both. Accept No as H_{0} was rejected. Follow through their conclusion in (b). Condone a definite statement.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_0a085373c7924397016a79b8e7de60819a96533c5bf8aaae4b",
+      "resp_0dab8ce41baaadc8016a79b93099bc81988585791a938e2814",
+      "resp_0f82753f2d84aa40016a79b964571081998742923a751768b5",
+      "resp_0a38295588a0ae30016a79b9a5232c8198a6d30bee81ac54a5"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

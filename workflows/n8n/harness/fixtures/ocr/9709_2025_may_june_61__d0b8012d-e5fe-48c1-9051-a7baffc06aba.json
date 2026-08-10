@@ -1,0 +1,167 @@
+{
+  "paper_key": "9709_2025_may_june_61",
+  "ingestion_run_id": "d0b8012d-e5fe-48c1-9051-a7baffc06aba",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-09:a_level:9709:2025:may_june:61",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_qp_61.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_ms_61.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International A Level\n\nMATHEMATICS\n\nPaper 6 Probability & Statistics 2\n\nMARK SCHEME\n\nMaximum Mark: 50\n\n9709/61\n\nMay/June 2025\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2025 series for most Cambridge IGCSE, Cambridge International A and AS Level components, and some Cambridge O Level components.\n\nThis document consists of 15 printed pages.\n\n© Cambridge University Press & Assessment 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\nGENERIC MARKING PRINCIPLE 1:\n\nMarks must be awarded in line with:\n\n- the specific content of the mark scheme or the generic level descriptors for the question\n- the specific skills defined in the mark scheme or in the generic level descriptors for the question\n- the standard of response required by a candidate as exemplified by the standardisation scripts.\n\nGENERIC MARKING PRINCIPLE 2:\n\nMarks awarded are always **whole marks** (not half marks, or other fractions).\n\nGENERIC MARKING PRINCIPLE 3:\n\nMarks must be awarded **positively**:\n\n- marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate\n- marks are awarded when candidates clearly demonstrate what they know and can do\n- marks are not deducted for errors\n- marks are not deducted for omissions\n- answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.\n\nGENERIC MARKING PRINCIPLE 4:\n\nRules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.\n\nGENERIC MARKING PRINCIPLE 5:\n\nMarks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).\n\nGENERIC MARKING PRINCIPLE 6:\n\nMarks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.\n\n© Cambridge University Press & Assessment 2025\n\nPage 2 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2025\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2025\n\nPage 3 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n# **Annotations guidance for centres**\n\nExaminers use a system of annotations as a shorthand for communicating their marking decisions to one another. Examiners are trained during the standardisation process on how and when to use annotations. The purpose of annotations is to inform the standardisation and monitoring processes and guide the supervising examiners when they are checking the work of examiners within their team. The meaning of annotations and how they are used is specific to each component and is understood by all examiners who mark the component.\n\nWe publish annotations in our mark schemes to help centres understand the annotations they may see on copies of scripts. Note that there may not be a direct correlation between the number of annotations on a script and the mark awarded. Similarly, the use of an annotation may not be an indication of the quality of the response.\n\nThe annotations listed below were available to examiners marking this component in this series.\n\n# **Annotations**\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  ^ | More information required  |\n|  A0 | Accuracy mark awarded zero  |\n|  A1 | Accuracy mark awarded one  |\n|  B0 | Independent accuracy mark awarded zero  |\n|  B1 | Independent accuracy mark awarded one  |\n|  B2 | Independent accuracy mark awarded two  |\n|  BOD | Benefit of the doubt  |\n|  BP | Blank Page  |\n|  ✗ | Incorrect  |\n|  Dep | Used to indicate DM0 or DM1  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 4 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  DM1 | Dependent on the previous M1 mark(s)  |\n|  FT | Follow through  |\n|  ~~~~~ | Indicate working that is right or wrong  |\n|  Highlighter | Highlight a key point in the working  |\n|  ISW | Ignore subsequent work  |\n|  J | Judgement  |\n|  JU | Judgement  |\n|  M0 | Method mark awarded zero  |\n|  Y1 | Method mark awarded one  |\n|  M2 | Method mark awarded two  |\n|  MR | Misread  |\n|  O | Omission or Other solution  |\n|  Off-page comment | Allows comments to be entered at the bottom of the RM marking window and then displayed when the associated question item is navigated to.  |\n|  On-page comment | Allows comments to be entered in speech bubbles on the candidate response.  |\n|  PE | Judgment made by the PE  |\n|  Pre | Premature approximation  |\n|  SC | Special case  |\n|  SEEN | Indicates that work/page has been seen  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 5 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme^{}[] **PUBLISHED**\n\nMay/June 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  SF | Error in number of significant figures  |\n|  ✓ | Correct  |\n|  TF | Transcription error  |\n|  XP | Correct answer from incorrect working  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 6 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2025\n\nPage 7 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2025\n\nAbbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 8 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1 | $$(\\lambda) = 4$$ | **B1** | SOI.  |\n|   |  $$e^{-4}\\left(1+4+\\frac{4^2}{2!}+\\frac{4^3}{3!}\\right)=e^{-4}(1+4+8+10.6666)$$ $$= 0.018316 + 0.073263 + 0.146525 + 0.19537$$ | **M1** | Allow any $$\\lambda$$, allow one end error.  |\n|   |  $$= 0.433$$ | **A1** | **SC_{1}** Unsupported answer of 0.433 scores **B1B1**. **SC_{2}** Use of Normal mean = 4 **B1**. **SC_{3}** Use Binomial 0.432 or 0.433 scores **B1**.  |\n|   |   | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(a) | N (6, ...) | **B1** | Normal used with a mean of 6.  |\n|   |  $$\\sigma^2 = \\frac{3}{2} = 1.5$$ (or $$\\sigma = \\sqrt{1.5}$$ or $$\\frac{\\sqrt{6}}{2}$$ or 1.22 (3sf)) | **M1** | Var of 1.5 (or sd found).  |\n|   |  $$\\frac{6.2 - 6}{\\sqrt{\\frac{1.5}{100}}}$$ | **M1** | For standardising. Must have $$\\sqrt{100}$$. Ignore incorrect continuity correction (correct cc if used is 1/2n).  |\n|   |  $$= 1.633$$ | **A1** | Or accept 1.674 with correct cc.  |\n|   |  $$P(\\bar{X} > 6.2) = 1 - \\Phi('1.633')$$ | **M1** |   |\n|   |  $$= 0.0512$$ or $$0.0513$$ (3sf) | **A1** | Or accept 0.0471 with correct cc (scores full marks).  |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 9 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(b) | Population (X) is not normally distributed / Population (X) is Binomial | **B1** | OE. Accept underlying distribution.  |\n|   |   | **1** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | $$\\text{Est}(\\mu) = \\frac{2750}{60} \\text{ or } \\frac{275}{6} \\text{ or } 45.8 \\text{ (3 sf)}$$ | **B1** |   |\n|   |  $$\\text{Est}(\\sigma^2) = \\frac{60}{59} \\left( \\frac{127000}{60} - \\left( \\frac{275}{6} \\right)^2 \\right)$$ | **M1** | Or $$\\frac{1}{59} \\left( 127000 - \\frac{2750^2}{60} \\right)$$ Note: $$\\sigma$$ (4.03) can score **M1** for correct expression Use of biased (15.97) **M0**.  |\n|   |  $$= 16.2 \\text{ (3 sf) or } \\frac{2875}{177}$$ | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 10 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(b) | H₀: Population mean time = 45 H₁: Population mean time > 45 | **B1** | Allow ‘μ’ but not just ‘mean’.  |\n|   |  $$\\frac{’275'}{6} - 45$$ $$\\sqrt{’16.24294'}$$ | **M1** | Standardise using their values from **3(a)**. Must have $$\\sqrt{60}$$ (ignore cc).  |\n|   |  = 1.602 to 1.595 | **A1** | Accept 3sf 1.6(0) if nothing better seen. (or area = 0.0546 to 0.0553). **FT** Biased in **3(a)** scores **A1** for 1.608 to 1.615.  |\n|   |  ‘1.602’ < 1.645 | **M1** | Or compare areas. i.e. 0.0546 to 0.0553 > 0.05.  |\n|   |  [Accept H₀] There is insufficient evidence [at 5% level] to reject the company’s claim OR There is insufficient evidence to accept the passenger’s belief OR There is insufficient evidence that the mean time is more than 45 minutes | **A1FT** | OE. **FT** their z-calc. No contradictions, In context, Not definite, e.g. not ‘Mean time is more than 45 mins’. Note: accept cv method (45.856 > 45.83 or 44.98 < 45).  |\n|   |   | **5** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(a) | Mean = 6 [$] | **B1** | Ignore units in both parts of question 4.  |\n|   |  Variance = 0.40² × 9 | **M1** |   |\n|   |  = 1.44 [$²] | **A1** |   |\n|   |   | **3** |   |\n|  4(b) | Mean = 35 × ‘6’ = 210 [$] | **B1FT** | **FT** their mean in **4(a)**  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 11 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|   | Variance = 35 × ‘1.44’ | **M1** | **FT** their variance of cost for one person.  |\n|   | = 50.4 [$²] | **A1** |   |\n|   |  | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a)(i) | $$e^{-3.5} \\left( \\frac{3.5^3}{3!} + \\frac{3.5^4}{4!} + \\frac{3.5^5}{5!} \\right) = e^{-3.5} (7.1458 + 6.2526 + 4.37682) = 0.21579 + 0.18881 + 0.13217$$ | **M1** | Any $$\\lambda$$, allow one end error. Must see expression or terms.  |\n|   |  = 0.537 | **A1** | **SCB1** for unsupported answer of 0.537.  |\n|   |   | **2** |   |\n|  5(a)(ii) | Use of N(1.2 × 100 + 2.3 × 200, ...) = N(580, ...) | **B1** | SOI give at early stage.  |\n|   |  Var(S) = 1.2 × 100 + 2.3 × 200 = 580 | **M1** | SOI give at early stage.  |\n|   |  $$\\frac{600.5 - '580'}{\\sqrt{580'}}$$ | **M1** | For standardising with their values. Allow with omitted or incorrect continuity correction.  |\n|   |  = 0.851 | **A1** |   |\n|   |  1 - Φ('0.581') | **M1** | For area consistent with their working  |\n|   |  = 0.197 (3sf) | **A1** |   |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 12 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b) | $$\\frac{5}{2} \\times \\frac{\\lambda^3}{3!} + \\frac{\\lambda^4}{4!} = \\frac{\\lambda^5}{5!} \\text{ Or } \\left( \\frac{5}{2} \\right) e^{-\\lambda} \\left( \\frac{\\lambda^3}{3!} \\right) + e^{-\\lambda} \\left( \\frac{\\lambda^4}{4!} \\right) = e^{-\\lambda} \\left( \\frac{\\lambda^5}{5!} \\right)$$ | **B1** | Accept with or without each term multiplied by $$e^{-\\lambda}$$.  |\n|   |  $$\\lambda^2 - 5\\lambda - 50 = 0$$ | **M1** | Legitimately obtain quadratic in $$\\lambda$$.  |\n|   |  $$(\\lambda - 10)(\\lambda + 5) = 0 \\text{ or } \\lambda = \\frac{5 \\pm \\sqrt{25 + 4 \\times 50}}{2}$$ $$\\lambda = 10$$ | **A1** | Alone.  |\n|   |   | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | H0: Proportion (at college) owning Pumpkin phone = 0.25 H1: Proportion (at college) owning Pumpkin phone < 0.25 | **B1** | Allow $$p = 0.25, p < 0.25$$. Allow 25%.  |\n|   |   | **1** |   |\n|  6(b) | B(30, 0.1) and P($$X \\geqslant 5$$) attempted | **M1** | May be implied.  |\n|   |  $$1 - (0.9^{30} + 30 \\times 0.9^{29} \\times 0.1 + ^{30}\\text{C}_2 \\times 0.9^{28} \\times 0.1^2 + ^{30}\\text{C}_3 \\times 0.9^{27} \\times 0.1^3 + ^{30}\\text{C}_4 \\times 0.9^{26} \\times 0.1^4)$$ $$= 1 - (0.042391 + 0.141304 + 0.22766 + 0.236088 + 0.177066)$$ | **M1** | For expression or terms. No end errors.  |\n|   |  $$= 0.175 \\text{ (3 sf)}$$ accept 0.176 | **A1** | **SC** Unsupported working and correct answer scores **M1B1**.  |\n|   |   | **3** |   |\n|  6(c) | $$\\frac{1}{8} \\pm z \\sqrt{\\frac{\\frac{1}{8} \\times \\frac{7}{8}}{40}}$$ | **M1** | Any $$z$$ must be a $$z$$. Only one side calculated can score **M1**.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 13 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|   | $$z = 1.96$$ | **B1** | Seen.  |\n|   | 0.0225 to 0.227 (3 sf) | **A1** | Must be an interval.  |\n|   |  | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | $$\\int_0^{\\frac{1}{2}}(1 + \\cos \\pi x)\\,dx$$ | **M1** | Attempt to integrate $$f(x)$$. Ignore limits.  |\n|   |  $$= \\left[ x + \\frac{\\sin \\pi x}{\\pi} \\right]_0^{\\frac{1}{2}}$$ | **A1** | Correct integration and limits.  |\n|   |  $$= \\frac{1}{2} + \\frac{\\sin \\frac{\\pi}{2}}{\\pi} = \\frac{1}{2} + \\frac{1}{\\pi}$$ | **A1** | **AG.** Must see intermediate step. Convincingly obtained. No errors seen.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 14 of 15",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/61\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(b) | $$\\int_0^1 (x + x \\cos \\pi x) \\, dx$$ | **M1*** | Attempt to integrate $$x f(x)$$. Ignore limits.  |\n|   |  $$= \\left[ \\frac{x^2}{2} + x \\times \\frac{\\sin \\pi x}{\\pi} - \\int \\frac{\\sin \\pi x}{\\pi} \\, dx \\right]_0^1$$ | **M1*** | Attempt to integrate by parts to reach expression with at least two terms correct (must be more than two terms). May be implied by next line.  |\n|   |  $$= \\left[ \\frac{x^2}{2} + x \\times \\frac{\\sin \\pi x}{\\pi} + \\frac{\\cos \\pi x}{\\pi^2} \\right]_0^1$$ | **A1** |   |\n|   |  $$= \\frac{1}{2} + \\frac{\\sin \\pi}{\\pi} + \\frac{\\cos \\pi}{\\pi^2} \\cdot \\frac{\\cos 0}{\\pi^2}$$ | **DM1** | Substitute correct limits, dep **M1M1**.  |\n|   |  $$= \\frac{1}{2} - \\frac{2}{\\pi^2}$$ | **A1** | **AG.** Legitimately obtained. No errors seen  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 15 of 15",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0000800000001 *\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\nMATHEMATICS\n\n9709/61\n\nPaper 6 Probability & Statistics 2\n\nMay/June 2025\n\n1 hour 15 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 50.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 12 pages.\n\nDC (PQ) 343527/3\n© UCLES 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0000800000002 *\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\n1 It is known that 1% of houses in a certain area have a wind turbine. A random sample of 400 houses in this area is chosen for a survey on domestic heating. The number of houses in the sample that have a wind turbine is denoted by $X$.\n\nUse a suitable approximating distribution to find $P(X \\leq 3)$.\n\n[3]\n\n...\n\n© UCLES 2025\n\n9709/61/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "* 0000800000003 *\n\n![img-4.jpeg](img-4.jpeg)\n\n3\n\n2 The random variable $X$ has the distribution $B\\left(8, \\frac{3}{4}\\right)$. A random sample of 100 values of $X$ is chosen, and the sample mean, $\\bar{X}$, is found.\n\n(a) Find $P(\\bar{X} > 6.2)$. You are **not** expected to use a continuity correction. [6]\n\n(b) State why the Central Limit Theorem was needed in the calculation in part (a). [1]\n\n© UCLES 2025\n\n9709/61/M/J/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "* 0000800000004 *\n\n![img-5.jpeg](img-5.jpeg)\n\n4\n\n3 The time, $T$ minutes, for a certain daily bus journey is normally distributed. The bus company claims that the mean of $T$ is 45. A passenger believes that the mean of $T$ is actually greater than 45. She notes the times taken for this journey on a random sample of 60 days. The results are summarised below.\n\n$$n = 60 \\quad \\sum t = 2750 \\quad \\sum t^2 = 127000$$\n\n(a) Calculate unbiased estimates of the population mean and variance.\n\n[3]\n\n(b) Test the passenger's belief at the 5% significance level.\n\n[5]\n\n© UCLES 2025\n\n9709/61/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "* 0000800000005 *\n\n![img-6.jpeg](img-6.jpeg)\n\n5\n\n4 At an entertainment centre, the cost for using a particular video game is $0.40 per minute. The number of minutes for which people use the video game has mean 15 and variance 9.\n\n(a) Find the mean and variance of the amount people pay for using the video game. [3]\n\nEach day, 35 people independently use the video game.\n\n(b) Find the mean and variance of the total amount paid by 35 people. [3]\n\n© UCLES 2025\n\n9709/61/M/J/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0000800000006 *\n\n![img-7.jpeg](img-7.jpeg)\n\n6\n\n5 (a) The random variables $W$ and $X$ have the independent distributions $\\text{Po}(1,2)$ and $\\text{Po}(2,3)$ respectively.\n\n(i) Find $\\text{P}(3 \\leqslant W + X \\leqslant 5)$. [2]\n\n...\n...\n...\n...\n...\n...\n\nThe random variable $S$ is the sum of 100 independent values of $W$ and 200 independent values of $X$.\n\n(ii) Use a suitable approximation to find $\\text{P}(S > 600)$. [6]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2025\n\n9709/61/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "* 0000800000007 *\n\n![img-8.jpeg](img-8.jpeg)\n\n7\n\n(b) The random variable $Y$ has the distribution $\\text{Po}(\\lambda)$, where $\\lambda > 0$.\n\nIt is given that $\\frac{5}{2}\\text{P}(Y=3) + \\text{P}(Y=4) = \\text{P}(Y=5)$.\n\nFind the value of $\\lambda$.\n\n[3]\n\n...\n\n© UCLES 2025\n\n9709/61/M/J/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "* 0000800000008 *\n\n![img-9.jpeg](img-9.jpeg)\n\n8\n\n6 A manufacturer of cell phones claims that 25% of students own a Pumpkin phone. Jeyeraj thinks that the proportion of students at his large college who own a Pumpkin phone is less than 25%. He plans to test the manufacturer's claim. He chooses a random sample of 30 students at his college. If the number of students who own a Pumpkin phone is less than 5, Jeyeraj will reject the manufacturer's claim.\n\n(a) State suitable hypotheses for the test.\n\n[1]\n\n(b) Given that the true proportion of students at the college who own a Pumpkin phone is 10%, use a binomial distribution to find the probability of a Type II error. [3]\n\n© UCLES 2025\n\n9709/61/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "* 0000800000009 *\n\n![img-10.jpeg](img-10.jpeg)\n\n9\n\nAt Florence’s college, in a random sample of 40 students, it was found that 5 own a Pumpkin phone.\n\n(c) Calculate an approximate 95% confidence interval for the proportion of students at Florence’s college who own a Pumpkin phone. [3]\n\n...\n\n© UCLES 2025\n\n9709/61/M/J/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0000800000010 *\n\n![img-11.jpeg](img-11.jpeg)\n\n10\n\n7 X is a random variable with probability density function given by\n\n$$f(x) = \\begin{cases} (1 + \\cos \\pi x) & 0 \\leqslant x \\leqslant 1, \\\\ 0 & \\text{otherwise.} \\end{cases}$$\n\n(a) Show that $$P\\left(X < \\frac{1}{2}\\right) = \\frac{1}{2} + \\frac{1}{\\pi}$$.\n\n[3]\n\n© UCLES 2025\n\n9709/61/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000011 *\n\n![img-12.jpeg](img-12.jpeg)\n\n11\n\n(b) Show that $$E(X) = \\frac{1}{2} - \\frac{2}{\\pi^2}$$.\n\n[5]\n\n© UCLES 2025\n\n9709/61/M/J/25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0000800000012 *\n\n![img-13.jpeg](img-13.jpeg)\n\n12\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2025\n\n9709/61/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

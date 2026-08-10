@@ -1,0 +1,1395 @@
+{
+  "paper_key": "9709_2025_may_june_63",
+  "ingestion_run_id": "072aaea9-1b79-42da-8f65-218c5712002d",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-11:a_level:9709:2025:may_june:63",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [],
+    "passed": true,
+    "warning_count": 0,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": 7
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 19,
+      "assets": 0,
+      "issues": 0,
+      "questions": 7,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.0308577
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 11339,
+              "total_tokens": 16936,
+              "output_tokens": 5597,
+              "input_tokens_details": {
+                "cached_tokens": 11008,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 3886
+              }
+            },
+            "response_id": "resp_080e8c7a1b925ea2016a7a1b873e4081988fc7b46bb734648b",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 11339,
+            "priced_output_tokens": 5597,
+            "reported_total_tokens": 16936
+          },
+          "input_tokens": 11339,
+          "output_tokens": 5597,
+          "actual_cost_usd": 0.02626035,
+          "cached_input_tokens": 11008
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 6797,
+              "total_tokens": 7057,
+              "output_tokens": 260,
+              "input_tokens_details": {
+                "cached_tokens": 5888,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 144
+              }
+            },
+            "response_id": "resp_0e8f4a53a37bd52b016a7a1bcc58a4819aaa0a2050d385c6c6",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 6797,
+            "priced_output_tokens": 260,
+            "reported_total_tokens": 7057
+          },
+          "input_tokens": 6797,
+          "output_tokens": 260,
+          "actual_cost_usd": 0.00062456,
+          "cached_input_tokens": 5888
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_question_extraction",
+          "usage_audit": {
+            "usage_raw": [
+              {
+                "input_tokens": 2038,
+                "total_tokens": 3283,
+                "output_tokens": 1245,
+                "input_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0
+                },
+                "output_tokens_details": {
+                  "reasoning_tokens": 508
+                }
+              }
+            ],
+            "response_id": [
+              "resp_092bf2d14998b830016a7a1c311fa08199b7099b7b0af9266f"
+            ],
+            "model_reported": "gpt-5.4-nano",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2038,
+            "priced_output_tokens": 1245,
+            "reported_total_tokens": 3283
+          },
+          "input_tokens": 2038,
+          "output_tokens": 1245,
+          "actual_cost_usd": 0.00196385,
+          "cached_input_tokens": 0
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2545,
+              "total_tokens": 4003,
+              "output_tokens": 1458,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 343
+              }
+            },
+            "response_id": "resp_02b621b5f404964a016a7a1c7f4a54819b8d688712059583f5",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2545,
+            "priced_output_tokens": 1458,
+            "reported_total_tokens": 4003
+          },
+          "input_tokens": 2545,
+          "output_tokens": 1458,
+          "actual_cost_usd": 0.00200894,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "paid_calls": 4,
+      "input_tokens": 22719,
+      "output_tokens": 8560,
+      "actual_cost_usd": 0.0308577,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 18688
+    },
+    "staged_at": "2026-08-10T18:46:33.993Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_qp_63.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 15,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_ms_63.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the probability that, in a randomly chosen 1-minute period, at least 2 customers arrive.",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": null,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The random variable $X$ denotes the number of customers who arrive in a randomly chosen 1-hour period.",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b",
+                "i"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "State a suitable approximating distribution for $X$, giving the value(s) of any parameter(s).",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b",
+                "ii"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "Use your approximating distribution to find $P(20 < X < 30)$.",
+              "source_page_numbers": [
+                2
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Convert an arrival rate to the appropriate Poisson parameter for a given time",
+              "Compute Poisson probabilities for an interval/event",
+              "Choose and state a suitable approximation distribution",
+              "Use an approximation to estimate a Poisson probability"
+            ],
+            "methods": [
+              "Poisson distribution with parameter λ proportional to time",
+              "Probability calculations using Poisson pmf",
+              "Normal approximation to Poisson with matching mean/variance (as appropriate)"
+            ],
+            "subtopics": [
+              "Poisson modelling for event counts",
+              "Parameter scaling with time intervals",
+              "Poisson probabilities",
+              "Approximation to Poisson (normal approximation)"
+            ],
+            "main_topic": "The Poisson Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.88
+          },
+          "total_marks": 8,
+          "stem_markdown": "At a certain shop, customers arrive independently and randomly at a constant average rate of 23.4 per hour.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\lambda = \\frac{23.4}{60}$$ or 0.39",
+              "guidance_markdown": "First **B1** only scored if see 0.39.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$1 - e^{-0.39}(1 + 0.39) = 1 - (0.67706 + 0.26405)$$",
+              "guidance_markdown": "Any $$\\lambda$$. Allow one end error.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.0589$$ (3 sf)",
+              "guidance_markdown": "**SC** unsupported answer score **B1** instead of **M1A1**.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1B1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "N(23.4, 23.4)",
+              "guidance_markdown": "**B1** for N(23.4, ...) **B1** for Var($$\\bar{X}$$) = 23.4. Note: marks for **(i)** cannot be recovered from **(ii)**.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$\\frac{20.5 - 23.4}{\\sqrt{23.4}} [= -0.5995] \\frac{29.5 - 23.4}{\\sqrt{23.4}} [= 1.2610]$$",
+              "guidance_markdown": "Attempt to standardise both with their values. Must have square roots. Allow no (or incorrect) continuity correction(s).",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$\\Phi(\\pm 1.2610) - \\Phi(\\pm -0.5995) (0.8964 - 0.2743)$$",
+              "guidance_markdown": "For attempt at area between 20 and 30 consistent with their working.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$= 0.622$$ (3 sf)",
+              "guidance_markdown": "**SC** no working seen can score **B2** for 0.622.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": null,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "He finds that the value of the test statistic $z$ is 1.995 correct to 3 decimal places.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "a",
+                "i"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Calculate the value of $\\sigma$.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "a",
+                "ii"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Carry out the hypothesis test at the 2.5% significance level.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "Explain whether it was necessary to use the Central Limit Theorem in carrying out the test.",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use a given test statistic value to deduce the population standard deviation",
+              "Carry out a two-sided or one-sided hypothesis test at a specified significance level using z",
+              "Interpret whether CLT was necessary given sample size/distribution"
+            ],
+            "methods": [
+              "z-test for a mean with normal sampling/CLT",
+              "Significance level decision rule using standard normal distribution",
+              "Reasoning about CLT necessity"
+            ],
+            "subtopics": [
+              "Inference for a normal population mean",
+              "Test statistic for mean using normal/CLT justification",
+              "Estimating standard deviation from hypothesis test context",
+              "p-values/critical regions at a given significance level",
+              "Role of Central Limit Theorem"
+            ],
+            "main_topic": "The Normal Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 7,
+          "stem_markdown": "The lengths of pencils made at a factory are normally distributed. The standard deviation of the lengths is $\\sigma$ cm, and the mean is supposed to be 10 cm. An inspector thinks that the mean is actually greater than 10 cm. He takes a random sample of 50 pencils produced at the factory and finds that the mean of these 50 lengths is 10.03 cm. He then carries out a hypothesis test.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\frac{10.03 - 10}{\\frac{\\sigma}{\\sqrt{50}}} = 1.995$$",
+              "guidance_markdown": "For standardising. Must have square root 50.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "",
+              "guidance_markdown": "Equating to 1.995 (not phi 1.995).",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.106$$ (3 sf)",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "H_{0}: $$\\mu = 10$$ H_{1}: $$\\mu > 10$$",
+              "guidance_markdown": "Accept if seen in part (i) but not in (ii). Accept population mean but not just mean.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "1.995 > 1.96",
+              "guidance_markdown": "Valid comparison. 0.977 > 0.975 or 0.023 < 0.025. Accept 2.00 or 2.001 > 1.96.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "[Reject H_{0} ] There is sufficient evidence [at 2.5% level] to suggest that mean length is greater than 10 cm. Or There is suff evidence to support the inspectors thought /claim.",
+              "guidance_markdown": "No contradictions. In context. Not definite. Accept ‘... that mean length has increased’ Note 2 tail test scores **B0M1A0**.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "No, because population distribution [of lengths] is normal",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": null,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Calculate unbiased estimates of the population mean, $\\mu$, and population variance, $\\sigma^2$.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "a",
+                "i"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Calculate unbiased estimates of the population mean, $\\mu$, and population variance, $\\sigma^2$.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "a",
+                "ii"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Calculate a 95% confidence interval for $\\mu$.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "Another random sample of $n$ cups of coffee is taken, where $100 < n < 120$. A 95% confidence interval for $\\mu$ is calculated using this sample. You may assume that, for large samples, unbiased estimates of $\\sigma^2$ are very similar.\n\nWithout calculation, state whether this confidence interval would be wider or narrower than the confidence interval found in part (a)(ii). Give a reason for your answer.",
+              "source_page_numbers": [
+                4
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute unbiased estimates of population mean and population variance from sufficient statistics",
+              "Construct a 95% confidence interval for the mean",
+              "Compare widths of confidence intervals without calculation based on sample size"
+            ],
+            "methods": [
+              "Sample mean and unbiased sample variance formulas",
+              "Confidence interval for μ using an appropriate large-sample/normal approximation",
+              "Reasoning with standard error proportional to 1/√n"
+            ],
+            "subtopics": [
+              "Unbiased estimation of mean and variance",
+              "Confidence intervals for a normal mean",
+              "Use of sample estimates in t/z intervals",
+              "Comparison of confidence interval widths for different sample sizes"
+            ],
+            "main_topic": "The Normal Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 8,
+          "stem_markdown": "A machine dispenses coffee into cups. The volume, $V\\text{ cm}^3$, of coffee in a cup was measured for a random sample of 150 cups. The results were summarised as follows.\n\n$$\\Sigma v = 46350 \\qquad \\Sigma v^2 = 14410800$$",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Est($\\mu$) = $$\\frac{46350}{150}$$ or 309",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Est($$\\sigma^2$$) = $$\\frac{150}{149} \\left[ \\frac{14410800}{150} - \\left( \\frac{46350}{150} \\right)^2 \\right] \\left[ = \\frac{150}{149} \\times 591 \\right]$$",
+              "guidance_markdown": "Use of correct formula. $$\\frac{1}{149} (14410800 - \\frac{46350^2}{150}).$$ OE.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "= 595 (3 sf) or 88650/149",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$z = 1.96$$",
+              "guidance_markdown": "Seen.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$309 \\pm z \\times \\sqrt{\\frac{595'}{150}}$$",
+              "guidance_markdown": "Any *z*. Use of correct formula.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$= 305$$ to $$313$$ (3 sf)",
+              "guidance_markdown": "Use of biased (591) gives same interval but scores **B1M1A0**. Unsupported correct answer scores max **B1B1**.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Either Smaller sample means more uncertainty about the value of $$\\mu$$.",
+              "guidance_markdown": "OE.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "or $$n < 120$$ means that $$\\frac{1}{\\sqrt{n}} > \\frac{1}{\\sqrt{150}}$$",
+              "guidance_markdown": "OE.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Therefore Wider",
+              "guidance_markdown": "Dep on previous **B1**.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "By considering probabilities, show that the choice made by this method is not random.",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Describe how Emma could use a single throw of a fair six-sided dice to make this random choice.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute the probability of each choice under the coin-based rule",
+              "Use probability reasoning to show the method is biased",
+              "Design an equivalent random mechanism with a uniform distribution across the three people"
+            ],
+            "methods": [
+              "Calculate probabilities from the coin-toss outcome space",
+              "Construct a fair mapping from 6 equally likely outcomes to 3 choices (with equal totals)"
+            ],
+            "subtopics": [
+              "Mapping outcomes to choices",
+              "Checking whether a rule gives uniform probabilities",
+              "Constructing a fair random choice using dice"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 4,
+          "stem_markdown": "Emma needs to choose one person at random from three people, P, Q and R. She plans to throw two fair coins and note the number, $n$, of heads. If $n$ is 0, she will choose P. If $n$ is 1, she will choose Q. If $n$ is 2, she will choose R.\n\nLater, Emma has to choose two people at random from three people.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "The probabilities are not equal",
+              "guidance_markdown": "OE. SOI.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "e.g. $$P(n=0)=\\frac{1}{4}$$ and $$P(n=1)=\\frac{1}{2}$$ or $$P(n=1)=2 \\times P(n=0)$$ or similar",
+              "guidance_markdown": "Numerical justification or there is one way to get 0 but two ways to get 1, or similar **B1B1**.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Choose $PQ$ or $QR$ or $RP$ soi or reject $R$ or $P$ or $Q$ soi",
+              "guidance_markdown": "Identifying the three correct cases to choose or reject and correctly identifying choosing or rejecting.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "eg 1 or 2 [ choose ] $PQ$. 3 or 4 [choose] $QR$. 5 or 6 [choose] $RP$",
+              "guidance_markdown": "OE.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "or 1 or 2 [reject] $R$. 3 or 4 [reject] $P$. 5 or 6 [reject] $Q$",
+              "guidance_markdown": "OE. Using the score on the dice to give each of the three cases equal probability. More than one throw of the dice scores **B0B0**.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Assume independence (and constant distribution) to model total load",
+              "Derive the distribution parameters for the total load",
+              "Translate the unsafe probability requirement into an inequality",
+              "Solve for the maximum integer n satisfying the constraint"
+            ],
+            "methods": [
+              "Sum of independent normally distributed variables",
+              "Standardisation to use normal tail probability"
+            ],
+            "subtopics": [
+              "Linear combination of normal random variables",
+              "Distribution of sum of independent normals",
+              "Inequality probability constraint",
+              "Finding maximum sample size under a tail probability bound"
+            ],
+            "main_topic": "The Normal Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.87
+          },
+          "total_marks": 4,
+          "stem_markdown": "In Urberia, the masses, in kilograms, of men have the distribution $N(70.3, 5.9^2)$. A certain footbridge in Urberia can take a maximum safe load of 1500 kg. When $n$ men stand on the bridge, the probability that the bridge is unsafe is less than 0.01.\n\nStating a necessary assumption, find the maximum value of $n$.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Assume the men on the bridge are a random sample",
+              "guidance_markdown": "OE. Allow: assume that all the men on the bridge are independent of one another.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\frac{1500 - 70.3n}{5.9\\sqrt{n}} = 2.326$$",
+              "guidance_markdown": "Must have square root n. Allow wrong $z$ but must be a $z$ value.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$70.3n + 13.7234\\sqrt{n} - 1500 = 0$$ Or $4942.09\\text{ n}^2 - 211088.33\\text{ n} + 2250000 = 0$",
+              "guidance_markdown": "Correct quadratic equation or inequality in square root n. OE.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$[\\sqrt{n} = 4.5226\\ (3\\ \\text{sf})]$$ Max value of $n$ is 20",
+              "guidance_markdown": "CWO.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $a = \\frac{2}{b^2}$.",
+              "source_page_numbers": [
+                7
+              ]
+            },
+            {
+              "marks": 6,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Show that $P(X < E(X)) = \\frac{4}{9}$.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Find constants in a pdf using the condition that total probability is 1",
+              "Compute E(X) from the pdf",
+              "Find P(X < E(X)) using integration of the pdf (or the CDF)"
+            ],
+            "methods": [
+              "Normalisation of pdf: ∫ f(x) dx = 1",
+              "Expectation via E(X)=∫ x f(x) dx",
+              "Compute probability by integrating f(x) over the required range"
+            ],
+            "subtopics": [
+              "Probability density functions and normalisation",
+              "Expectation of a continuous random variable",
+              "Inequalities involving expectation",
+              "Computing probabilities using the CDF/integration"
+            ],
+            "main_topic": "Continuous Random Variables",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 9,
+          "stem_markdown": "A random variable $X$ has probability density function given by\n\n$$f(x) = \\begin{cases} ax & 0 \\leqslant x \\leqslant b, \\\\ 0 & \\text{otherwise}, \\end{cases}$$\n\nwhere $a$ and $b$ are constants.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\frac{1}{2} \\times b \\times ab = 1$$ or $$a \\int_0^b x dx = 1$$",
+              "guidance_markdown": "Attempt triangle area or integrate $$f(x)$$ (ignore limits) and $$= 1$$.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$a \\left[ \\frac{x^2}{2} \\right]_0^b = 1$$",
+              "guidance_markdown": "Correct integration. $$\\frac{1}{2} \\times b \\times ab = 1$$.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$\\frac{ab^2}{2} = 1 \\Rightarrow a = \\frac{2}{b^2}$$",
+              "guidance_markdown": "Convincingly obtained. No errors seen.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$E(X)=\\frac{2}{b^2}\\int_0^b x^2\\,dx$$",
+              "guidance_markdown": "Attempt to integrate $$x f(x)$$. Ignore limits.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$=\\frac{2}{b^2}\\left[\\frac{x^3}{3}\\right]_0^b$$",
+              "guidance_markdown": "Correct integration and limits.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$=\\frac{2}{3}b$$",
+              "guidance_markdown": "OE. E.g. $$ab^3/3$$",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$P(X < E(X))=\\frac{2}{b^2}\\int_0^{\\frac{2}{3}b} x\\,dx$$",
+              "guidance_markdown": "OE. Integrate $$f(x)$$ with limits 0 and their E(X) Condone $$a$$ instead of $$\\frac{2}{b^2}$$ Or using areas, $$\\text{prob} = \\frac{1}{2} \\times \\frac{2b}{3} \\times \\frac{2}{3}ab$$",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$=\\frac{2}{b^2}\\left[\\frac{x^2}{2}\\right]_0^{\\frac{2}{3}b}$$",
+              "guidance_markdown": "Correct integration and limits, **FT** their $$E(X)$$. Need $$\\frac{2}{b^2}$$. Or $$\\text{prob} = \\frac{1}{2} \\times \\frac{2b}{3} \\times \\frac{2}{3} \\times \\frac{2b}{b^2}$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "$$=\\frac{2}{b^2} \\times \\frac{9}{2} = \\frac{4}{9}$$",
+              "guidance_markdown": "Must see correct expression after substituting limits. Convincingly obtained. No errors seen. Or expression correctly simplified.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 6,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use a binomial distribution to find the largest value of $r$ that would provide sufficient evidence that the director's belief is correct.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Explain the meaning of a Type I error in this context, and state the probability of a Type I error.",
+              "source_page_numbers": [
+                9
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Given that the proportion of job applicants with first class degrees this year is actually 0.05, find the probability of a Type II error.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Model r as a binomial count given n and success probability under H0",
+              "Find the largest r that still leads to rejecting H0 at a given significance level",
+              "Interpret and compute Type I error probability",
+              "Compute Type II error probability when the true proportion is given"
+            ],
+            "methods": [
+              "Binomial distribution with parameters (n, p)",
+              "Decision rule at significance level using binomial tail probabilities",
+              "Type I/II error calculations via binomial probabilities"
+            ],
+            "subtopics": [
+              "Hypothesis testing for a population proportion",
+              "Binomial modelling of number of successes",
+              "Type I error definition and probability",
+              "Type II error probability using alternative true proportion"
+            ],
+            "main_topic": "The Binomial and Geometric Distributions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 10,
+          "stem_markdown": "In the past, one quarter of job applicants at a certain firm had first-class degrees. A change is made in the job description and a director of the firm believes that, on average, the proportion of job applicants with first class degrees has decreased.\n\nIn the month following the change, there were 35 job applicants, and $r$ of these had first-class degrees. The firm carried out a hypothesis test at the 4% significance level to test the director's belief.\n\nIn another month, the director carries out a similar test at the 4% significance level using the 35 job applicants from that month.",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "B(35, 0.25)",
+              "guidance_markdown": "SOI.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$0.75^{35} + 35 \\times 0.75^{34} \\times 0.25 + ^{35}\\text{C}_2 \\times 0.75^{33} \\times 0.25^2 + ^{35}\\text{C}_3 \\times 0.75^{32} \\times 0.25^3$$ $$= 0.000042378 + 0.0004944 + 0.00280168 + 0.01027283$$",
+              "guidance_markdown": "Attempt P($r \\leq 3$) Expressions or terms.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.0136 \\text{ (3 sf)} [ < 0.04 ]$$",
+              "guidance_markdown": "**SC** unsupported answer 0.0136 **B1**.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$0.0136 + ^{35}\\text{C}_4 \\times 0.75^{31} \\times 0.25^4 = 0.0136 + 0.0273942$$",
+              "guidance_markdown": "Attempt P($r \\leq 4$) Expressions or terms",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$= 0.041[0] \\text{ (2 sf)} [ > 0.04 ]$$",
+              "guidance_markdown": "**SC** unsupported answer 0.041 **B1**.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Maximum value of $r$ is 3",
+              "guidance_markdown": "Dep on above two correct probabilities seen and at least one comparison with 0.04.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Concluding proportion has decreased when in fact it hasn't",
+              "guidance_markdown": "Or concluding that the director's belief is correct when in fact it isn't.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "0.0136",
+              "guidance_markdown": "**FT** their P($r \\leq 3$), dep < 0.04 OE.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$1 - (0.95^{35} + 35 \\times 0.95^{34} \\times 0.05 + ^{35}\\text{C}_2 \\times 0.95^{33} \\times 0.05^2 + ^{35}\\text{C}_3 \\times 0.95^{32} \\times 0.05^3)$$ $$= 1 - (0.16608 + 0.305943 + 0.2737385 + 0.158480)$$",
+              "guidance_markdown": "Attempt 1 – P($r \\leq 3$) with B(35, 0.05). Expressions or terms.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "$$= 0.0958 \\text{ (3 sf)}$$",
+              "guidance_markdown": "**SC** unsupported answer 0.0958 **B1**.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_080e8c7a1b925ea2016a7a1b873e4081988fc7b46bb734648b",
+      "resp_0e8f4a53a37bd52b016a7a1bcc58a4819aaa0a2050d385c6c6",
+      "resp_092bf2d14998b830016a7a1c311fa08199b7099b7b0af9266f",
+      "resp_02b621b5f404964a016a7a1c7f4a54819b8d688712059583f5"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

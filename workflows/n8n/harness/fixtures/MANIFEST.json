@@ -2,14 +2,14 @@
   "generated_by": "workflows/n8n/harness/snapshot_fixtures.mjs",
   "source_project": "exjfaggqphjkxniyshfl.supabase.co",
   "counts": {
-    "papers": 29,
-    "ingestion_runs": 47,
-    "runs_with_ocr": 46,
-    "ocr_pages": 1518,
-    "staged_bundles": 27,
-    "published_papers": 19,
-    "published_questions": 160,
-    "published_mark_rows": 1389
+    "papers": 82,
+    "ingestion_runs": 101,
+    "runs_with_ocr": 100,
+    "ocr_pages": 3358,
+    "staged_bundles": 75,
+    "published_papers": 25,
+    "published_questions": 210,
+    "published_mark_rows": 1795
   },
   "note": "Snapshot of the live ingestion corpus. OCR pages are the input side of every accuracy measurement; most were already past expires_at when this was taken. Published mark rows are Tier B (unreviewed) -- see each published/*.json trust block."
 }

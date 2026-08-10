@@ -1,0 +1,1340 @@
+{
+  "paper_key": "9709_2024_may_june_63",
+  "ingestion_run_id": "4b13e9a0-c924-43d5-ae48-7f8c5f9a6ab7",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-04:a_level:9709:2024:may_june:63",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Mark code is not a valid printed Cambridge mark code: DA1.",
+        "severity": "blocking",
+        "part_path": [
+          "c"
+        ],
+        "issue_code": "INVALID_MARK_CODE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 6
+      },
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 7
+      },
+      {
+        "message": "Targeted repair ran but 1 blocking issues remain. There is no second repair pass, so this paper needs human correction before approval.",
+        "severity": "blocking",
+        "part_path": [],
+        "issue_code": "REPAIR_DID_NOT_CLEAR_BLOCKERS",
+        "page_number": null,
+        "document_type": null,
+        "question_number": null
+      }
+    ],
+    "passed": false,
+    "warning_count": 1,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 1,
+    "extracted_total_marks": 50,
+    "source_question_count": 7
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 14,
+      "assets": 0,
+      "issues": 3,
+      "questions": 7,
+      "blocking_issues": 2,
+      "openai_cost_usd": 0.06929706
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 10630,
+              "total_tokens": 15653,
+              "output_tokens": 5023,
+              "input_tokens_details": {
+                "cached_tokens": 9984,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 3624
+              }
+            },
+            "response_id": "resp_0b930b8380b9e48c016a79993bffa8819a98fdda19564a31a1",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 10630,
+            "priced_output_tokens": 5023,
+            "reported_total_tokens": 15653
+          },
+          "input_tokens": 10630,
+          "output_tokens": 5023,
+          "actual_cost_usd": 0.0238368,
+          "cached_input_tokens": 9984
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 5870,
+              "total_tokens": 6110,
+              "output_tokens": 240,
+              "input_tokens_details": {
+                "cached_tokens": 4864,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 124
+              }
+            },
+            "response_id": "resp_0f8471b7b0947fa2016a7999816be4819abc75eac212251c74",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 5870,
+            "priced_output_tokens": 240,
+            "reported_total_tokens": 6110
+          },
+          "input_tokens": 5870,
+          "output_tokens": 240,
+          "actual_cost_usd": 0.00059848,
+          "cached_input_tokens": 4864
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_question_extraction",
+          "usage_audit": {
+            "usage_raw": [
+              {
+                "input_tokens": 2044,
+                "total_tokens": 3096,
+                "output_tokens": 1052,
+                "input_tokens_details": {
+                  "cached_tokens": 1792,
+                  "cache_write_tokens": 0
+                },
+                "output_tokens_details": {
+                  "reasoning_tokens": 129
+                }
+              }
+            ],
+            "response_id": [
+              "resp_0748bb1773c3a05d016a7999ced76c819ba32f638543d26e7a"
+            ],
+            "model_reported": "gpt-5.4-nano",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2044,
+            "priced_output_tokens": 1052,
+            "reported_total_tokens": 3096
+          },
+          "input_tokens": 2044,
+          "output_tokens": 1052,
+          "actual_cost_usd": 0.00140124,
+          "cached_input_tokens": 1792
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2226,
+              "total_tokens": 3232,
+              "output_tokens": 1006,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 0
+              }
+            },
+            "response_id": "resp_0eeee7f4dad789c4016a799a0ed264819a933be060a2283a8b",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2226,
+            "priced_output_tokens": 1006,
+            "reported_total_tokens": 3232
+          },
+          "input_tokens": 2226,
+          "output_tokens": 1006,
+          "actual_cost_usd": 0.00138014,
+          "cached_input_tokens": 1792
+        },
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "targeted_question_repair",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 20796,
+              "total_tokens": 29734,
+              "output_tokens": 8938,
+              "input_tokens_details": {
+                "cached_tokens": 20352,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 6214
+              }
+            },
+            "response_id": "resp_0c98d0a1abe9df1c016a799adb2ff08199b1aa6570ea467f68",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 20796,
+            "priced_output_tokens": 8938,
+            "reported_total_tokens": 29734
+          },
+          "input_tokens": 20796,
+          "output_tokens": 8938,
+          "actual_cost_usd": 0.0420804,
+          "cached_input_tokens": 20352
+        }
+      ],
+      "paid_calls": 5,
+      "input_tokens": 41566,
+      "output_tokens": 16259,
+      "actual_cost_usd": 0.06929706,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 38784
+    },
+    "staged_at": "2026-08-10T09:34:12.598Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_63.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_63.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use a suitable approximating distribution to find $P(2 \\leq X < 5)$.",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Justify your approximating distribution in this case.",
+              "source_page_numbers": [
+                2
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Identify suitable approximating distribution for a binomial probability",
+              "Compute P(2 ≤ X < 5) using the approximation",
+              "Justify the choice of approximation"
+            ],
+            "methods": [
+              "Normal approximation to a binomial with large n",
+              "Continuity correction for inequalities"
+            ],
+            "subtopics": [
+              "Normal approximation to the binomial",
+              "Continuity correction"
+            ],
+            "main_topic": "The Binomial and Geometric Distributions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 4,
+          "stem_markdown": "The random variable $X$ has the distribution $B(4000, 0.001)$.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$[\\lambda =] 4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$e^{-4} \\left( \\frac{4^2}{2!} + \\frac{4^3}{3!} + \\frac{4^4}{4!} \\right)$$ or $$e^{-4} (8 + 10.67 + 10.67)$$ or $$0.1465 + 0.19537 + 0.19537$$",
+              "guidance_markdown": "Allow one end error. Any $$\\lambda$$. Expression must be seen.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.537 \\text{ (3sf)}$$",
+              "guidance_markdown": "**SC B1 B1** for unsupported correct answer. **SC B2** for use of Binomial leading to 0.537. Note: use of normal could score B1 only for mean = 4.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$n = 4000 > 50$$ and either $$np = 4 < 5$$ or $$p = 0.001 < 0.1$$",
+              "guidance_markdown": "Explicit values seen.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Calculate an estimate of the population standard deviation.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Explain whether it was necessary to use the Central Limit theorem in your answer to part (a).",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use a given confidence interval to back-calculate an estimate of population standard deviation",
+              "Decide whether CLT is required given sample size/context"
+            ],
+            "methods": [
+              "Rearrange the confidence interval formula for a mean (unknown σ) using the standard error",
+              "Assessment of CLT necessity for large n"
+            ],
+            "subtopics": [
+              "Confidence intervals for a population mean",
+              "Standard deviation estimation from a confidence interval",
+              "Central Limit Theorem relevance"
+            ],
+            "main_topic": "Sampling and Estimation",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 4,
+          "stem_markdown": "The widths, $w$ cm, of a random sample of 150 leaves of a certain kind were measured. The sample mean of $w$ was found to be 3.12 cm.\n\nUsing this sample, an approximate 95% confidence interval for the population mean of the widths in centimetres was found to be $[3.01, 3.23]$.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$3.12 + z \\times \\frac{\\sigma}{\\sqrt{150}} = 3.23$$",
+              "guidance_markdown": "OE – correct expression. Any $$z$$, but must be a $$z$$ value.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$z = 1.96$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$\\sigma = 0.687 \\text{ (3sf) [cm]}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Yes, because population [of widths] not given to be normally distributed",
+              "guidance_markdown": "Or ‘underlying distribution’ instead of population. Allow ‘yes, because population distribution not known’. Need both statements.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use normal distribution properties for sums",
+              "Convert the event involving two independent sums into a single normal probability",
+              "Compute the required probability using standardisation"
+            ],
+            "methods": [
+              "Sum/difference of independent normals: linear combination remains normal",
+              "Standardise to Z"
+            ],
+            "subtopics": [
+              "Sums of independent normal random variables",
+              "Difference of independent normal variables"
+            ],
+            "main_topic": "Linear Combinations of Random Variables",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 5,
+          "stem_markdown": "The masses in kilograms of large and small bags of cement have the independent distributions $N(50, 2.4)$ and $N(26, 1.8)$ respectively.\n\nFind the probability that the total mass of 5 randomly chosen large bags of cement is greater than the total mass of 10 randomly chosen small bags of cement.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\text{Diff} \\sim N(5 \\times 50 - 10 \\times 26, 5 \\times 2.4 + 10 \\times 1.8) \\quad [= N(-10, 30)]$$",
+              "guidance_markdown": "For N and mean = $$\\pm(5 \\times 50 - 10 \\times 26)$$ SOI",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "",
+              "guidance_markdown": "For var = $$5 \\times 2.4 + 10 \\times 1.8$$ SOI",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\frac{0 - (-10^\\circ)}{\\sqrt[3]{30^\\circ}}$$ [= 1.826]",
+              "guidance_markdown": "Standardising with *their* values.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$1 - \\Phi(\\text{'1.826'})$$",
+              "guidance_markdown": "For area consistent with *their* values.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "= 0.0339 or 0.034[0] (3sf)",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Carry out a hypothesis test for a population proportion",
+              "Use the normal/binomial test without approximation instruction override? (here: exact not required? likely CLT)",
+              "Make a conclusion about whether support has decreased"
+            ],
+            "methods": [
+              "Hypothesis testing for proportion with binomial model",
+              "Comparison to 5% significance level using test statistic/critical value"
+            ],
+            "subtopics": [
+              "One-proportion z test",
+              "Formulate null/alternative and test statistic",
+              "p-value/critical region at 5% significance"
+            ],
+            "main_topic": "Hypothesis Tests",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 5,
+          "stem_markdown": "In this question you should **not** use an approximating distribution.\n\nAt an election in Menham last year, 24% of voters supported the Today Party. A student wishes to test whether support for the Today Party has decreased since last year. He chooses a random sample of 25 voters in Menham and finds that exactly 2 of them say that they support the Today Party.\n\nTest at the 5% significance level whether support for the Today Party has decreased.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$H_0: p = 0.24$$ $$H_1: p < 0.24$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$P(X \\leq 2) = 0.76^{25} + 25 \\times 0.76^{24} \\times 0.24 + {}^{25}C_2 \\times 0.76^{23} \\times 0.24^2$$ or $$0.0010479 + 0.0082732 + 0.0313513$$",
+              "guidance_markdown": "Expression must be seen. No end errors.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "= 0.0407",
+              "guidance_markdown": "**SC B1** for unsupported 0.0407.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "0.0407 < 0.05",
+              "guidance_markdown": "For valid comparison.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "[Evidence to reject $$H_0$$.] There is sufficient evidence to suggest that the support for the Today Party has decreased.",
+              "guidance_markdown": "FT *their* probability. In context, not definite, no contradictions. **SC**: if $$H_1: p \\neq 0.24$$ and compare with 0.025; max **B0 M1 A1 M1 A0**.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $a = 2$.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the median of $X$.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find the exact value of $E(X)$.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use normalisation condition to find the constant a",
+              "Solve for the median from P(X ≤ m)=1/2",
+              "Integrate x f(x) to find E(X) exactly"
+            ],
+            "methods": [
+              "Set ∫ f(x) dx = 1",
+              "Median via cumulative distribution equation",
+              "Expectation via ∫ x f(x) dx"
+            ],
+            "subtopics": [
+              "Determining constants in a pdf",
+              "Median of a continuous distribution",
+              "Expectation from a pdf"
+            ],
+            "main_topic": "Continuous Random Variables",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 10,
+          "stem_markdown": "A random variable $X$ has probability density function $f$ given by\n\n$$f(x) = \\begin{cases} ax - x^3 & 0 \\leqslant x \\leqslant \\sqrt{2}, \\\\ 0 & \\text{otherwise}, \\end{cases}$$\n\nwhere $a$ is a constant.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\int_0^{\\sqrt{2}} (ax - x^3) dx = 1$$",
+              "guidance_markdown": "Attempted integration of f(x) and equated to 1.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\left[ a \\frac{x^2}{2} - \\frac{x^4}{4} \\right]_0^{\\sqrt{2}} = 1$$\n$$a - \\frac{4}{4} = 1$$",
+              "guidance_markdown": "Correct integration and substitute correct limits.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$a = 2$$",
+              "guidance_markdown": "AG Convincingly obtained and no errors seen.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\int_0^m (2x - x^3) dx = \\frac{1}{2}$$",
+              "guidance_markdown": "Attempt integrate f(x) with limits 0 to m (or m to $$\\sqrt{2}$$) and equate to $$\\frac{1}{2}$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$m^2 - \\frac{m^4}{4} = \\frac{1}{2}$$",
+              "guidance_markdown": "For correct quartic in any form.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$m^4 - 4m^2 + 2 = 0 \\Rightarrow m^2 = \\frac{4 \\pm \\sqrt{16-8}}{2} \\quad [= 2 \\pm \\sqrt{2}]$$",
+              "guidance_markdown": "For solving their three term quartic to find $$m^2$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$m = \\sqrt{2 - \\sqrt{2}} \\text{ or } 0.765 \\text{ (3sf)}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$\\int\\limits_{0}^{\\sqrt{2}}(2x^2 - x^4)\\,dx$$",
+              "guidance_markdown": "Attempt to integrate $$x\\,f(x)$$. Ignore limits.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$\\left[\\frac{2x^3}{3} - \\frac{x^5}{5}\\right]_{0}^{\\sqrt{2}}$$",
+              "guidance_markdown": "Correct integration and correct limits.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "$$[=\\frac{4\\sqrt{2}}{3} - \\frac{4\\sqrt{2}}{5}] = \\frac{8}{15}\\sqrt{2}$$",
+              "guidance_markdown": "OE For single exact term.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Calculate an unbiased estimate for the population mean of the number of green sweets in a packet of Frutos, and show that an unbiased estimate of the population variance is 0.783 correct to 3 significant figures.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "State suitable null and alternative hypotheses for the test.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Show that the result of Anji's test is significant at the 5% level but not at the 1% level.",
+              "source_page_numbers": [
+                9
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "d"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "It is given that Anji made a Type I error.\n\nExplain how this shows that the significance level that Anji used in her test was not 1%.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute an unbiased estimator of the population mean from a frequency table",
+              "Compute an unbiased estimator of population variance",
+              "Formulate appropriate hypotheses for a one-sided mean test",
+              "Determine significance at 5% and 1% levels",
+              "Use the idea of Type I error to interpret the effective significance level"
+            ],
+            "methods": [
+              "Unbiased estimators from sample moments",
+              "Test statistic for mean using estimated variance",
+              "Compare test statistic (or p-value) to critical values at given α"
+            ],
+            "subtopics": [
+              "One-sample mean test",
+              "Estimating mean and variance from grouped data",
+              "t-test/normal approximation for testing a mean",
+              "Type I error interpretation"
+            ],
+            "main_topic": "Hypothesis Tests",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 5,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 9,
+          "stem_markdown": "The numbers of green sweets in 200 randomly chosen packets of Frutos are summarised in the table.\n\n| Number of green sweets | 0 | 1 | 2 | 3 | > 3 |\n| --- | --- | --- | --- | --- | --- |\n| Number of packets | 32 | 50 | 97 | 21 | 0 |\n\nThe manufacturers of Frutos claim that the mean number of green sweets in a packet is 1.65.\n\nAnji believes that the true value of the mean, $\\mu$, is less than 1.65. She uses the results from the 200 randomly chosen packets to test the manufacturers' claim.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\hat{\\mu} = \\frac{307}{200}$$ or 1.535",
+              "guidance_markdown": "Accept 3sf if nothing better seen (1.53 or 1.54).",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\Sigma x^2f = 627, \\quad \\mathrm{Est}(\\sigma^2) = \\frac{200}{199}\\left(\\frac{627}{200} - 1.535^2\\right)$$ or $$\\frac{1}{199}\\left(627 - \\frac{307^2}{200}\\right)$$",
+              "guidance_markdown": "Use of a correct formula with *their* values.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.783$$",
+              "guidance_markdown": "AG Correctly obtained with no errors seen.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$H_0: \\mu = 1.65$$ $$H_1: \\mu < 1.65$$",
+              "guidance_markdown": "Accept ‘population mean’ but not just ‘mean’.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$\\frac{1.535 - 1.65}{\\sqrt{0.783/200}}$$",
+              "guidance_markdown": "Standardising with *their* mean.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": " = -1.838 or -1.84",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$\\Phi(0.05)$ and $\\Phi(0.01)$ attempted",
+              "guidance_markdown": "Or $P(z < -1.838)$ attempted. SC: Condone $\\Phi(0.025)=2.807$ and $\\Phi(0.005)=3.291$ following two-tailed test in (b).",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DA1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$-1.645 > -1.838 > -2.326$ [Hence significant at 5% but not 1% level]",
+              "guidance_markdown": "AG = 0.033 and 0.05 > 0.033 > 0.01. SC: use of 1.54 or 1.53 for the mean leading to -1.645 > -1.758 > -2.326 or -1.645 > -1.918 > -2.326 or 0.95 < 0.9606 or 0.9724 < 0.99 scores M1 M1 A1. Accept use of critical value method 1.535 < 1.547 or accept 1.65 > 1.638.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "At the 1% level $H_0$ is not rejected Or a Type I error can only occur if $H_0$ is rejected.",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find $P(X + Y < 4)$.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the probability that $X = 2$ given that $X + Y < 4$.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 6,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "A sample of 60 randomly chosen pairs of values of $X$ and $Y$ is taken, and the value of $X + Y$ is calculated for each pair. The sample mean of these 60 values is found.\n\nFind the probability that the sample mean of $X + Y$ is less than 4.0.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute P(X+Y<4) using Poisson properties",
+              "Find conditional probability P(X=2 | X+Y<4) using joint/conditional structure",
+              "Model the distribution of X+Y and use it to find probability the sample mean is <4.0"
+            ],
+            "methods": [
+              "X+Y ~ Po(λ1+λ2)",
+              "Conditional probability via Poisson mass functions",
+              "Sampling distribution for the mean of i.i.d. Poisson variables (approximate/standardise as required)"
+            ],
+            "subtopics": [
+              "Sum of independent Poisson random variables",
+              "Conditional probability with Poisson sums",
+              "Poisson large-parameter/CLT approximation for sample mean"
+            ],
+            "main_topic": "The Poisson Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.74
+          },
+          "total_marks": 13,
+          "stem_markdown": "The independent random variables $X$ and $Y$ have the distributions $Po(1.9)$ and $Po(2.2)$ respectively.",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\lambda = 1.9 + 2.2 [= 4.1]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$e^{-4.1}\\left(1 + 4.1 + \\frac{4.1^2}{2!} + \\frac{4.1^3}{3!}\\right)$$ or $$e^{-4.1}(1 + 4.1 + 8.405 + 11.487)$$ or $$0.01657 + 0.06795 + 0.13929 + 0.19037$$",
+              "guidance_markdown": "Allow any $\\lambda$. Allow one end error. Must see expression.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.414 \\,(3\\text{sf})$$",
+              "guidance_markdown": "SC: unsupported answer 0.414 scores B1 B1.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$P(X + Y < 4 \\text{ and } X = 2) = P(2, 0 \\text{ or } 2, 1)$$",
+              "guidance_markdown": "Stated or implied.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$= e^{-1.9}\\times \\frac{1.9^2}{2}(e^{-2.2} + e^{-2.2}\\times 2.2)\\,[= 0.0957]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$P(X = 2 \\mid X + Y < 4) = \\frac{0.0957}{0.414}$$",
+              "guidance_markdown": "Attempt $$\\frac{P(X+Y < 4 \\text{ and } X = 2)}{P(X+Y < 4)}$$. Prob for denominator can be found in (a).",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$0.231\\,(3\\text{sf})$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$E(X + Y) = 4.1 \\quad Var(X + Y) = 4.1$$ or $$Po(246)$$",
+              "guidance_markdown": "SOI",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "Normal and var = $$\\frac{4.1}{60}$$ Or normal and var = 246",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$\\frac{4.0 - 4.1}{\\sqrt{4.1/60}}$$ or totals method $$\\frac{240 - 246}{\\sqrt{246}}$$ or use of continuity correction",
+              "guidance_markdown": "No mixed methods. Or continuity correction: $$\\frac{239.5 - 246}{\\sqrt{246}}$$. Condone incorrect continuity correction for M1.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "= -0.383 (3sf)",
+              "guidance_markdown": "= -0.414",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$$\\Phi(-0.383') = 1 - \\Phi(0.383')$$",
+              "guidance_markdown": "$$\\Phi(-0.414') = 1 - \\Phi(0.414')$$",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 13,
+              "content_markdown": "= 0.351 (3sf)",
+              "guidance_markdown": "= 0.340 or 0.339",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": false,
+    "extraction_response_id": [
+      "resp_0b930b8380b9e48c016a79993bffa8819a98fdda19564a31a1",
+      "resp_0f8471b7b0947fa2016a7999816be4819abc75eac212251c74",
+      "resp_0748bb1773c3a05d016a7999ced76c819ba32f638543d26e7a",
+      "resp_0eeee7f4dad789c4016a799a0ed264819a933be060a2283a8b",
+      "resp_0c98d0a1abe9df1c016a799adb2ff08199b1aa6570ea467f68"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

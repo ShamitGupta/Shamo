@@ -1,0 +1,1980 @@
+{
+  "paper_key": "9709_2025_may_june_12",
+  "ingestion_run_id": "70fb423b-a675-45fc-bc5d-b2f87a618404",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-10:a_level:9709:2025:may_june:12",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [],
+    "passed": true,
+    "warning_count": 0,
+    "question_count": 11,
+    "source_total_marks": 75,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 75,
+    "source_question_count": 11
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 22,
+      "assets": 3,
+      "issues": 0,
+      "questions": 11,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.08079102
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 17630,
+              "total_tokens": 34546,
+              "output_tokens": 16916,
+              "input_tokens_details": {
+                "cached_tokens": 17280,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 14371
+              }
+            },
+            "response_id": "resp_09e6cd83d99193f0016a79fcfbbee0819ab47cd4560361ddce",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 17630,
+            "priced_output_tokens": 16916,
+            "reported_total_tokens": 34546
+          },
+          "input_tokens": 17630,
+          "output_tokens": 16916,
+          "actual_cost_usd": 0.0776805,
+          "cached_input_tokens": 17280
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 10897,
+              "total_tokens": 11308,
+              "output_tokens": 411,
+              "input_tokens_details": {
+                "cached_tokens": 9984,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 247
+              }
+            },
+            "response_id": "resp_0ee292df73d96442016a79fd8caa248198abcca3a0ae615862",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 10897,
+            "priced_output_tokens": 411,
+            "reported_total_tokens": 11308
+          },
+          "input_tokens": 10897,
+          "output_tokens": 411,
+          "actual_cost_usd": 0.00089603,
+          "cached_input_tokens": 9984
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2804,
+              "total_tokens": 4385,
+              "output_tokens": 1581,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 232
+              }
+            },
+            "response_id": "resp_01b7654475282d27016a79fdd8493c81988f77087f9666519d",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2804,
+            "priced_output_tokens": 1581,
+            "reported_total_tokens": 4385
+          },
+          "input_tokens": 2804,
+          "output_tokens": 1581,
+          "actual_cost_usd": 0.00221449,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "paid_calls": 3,
+      "input_tokens": 31331,
+      "output_tokens": 18908,
+      "actual_cost_usd": 0.08079102,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 29056
+    },
+    "staged_at": "2026-08-10T16:35:49.376Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 20,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_qp_12.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 22,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_ms_12.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 26976,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "A coordinate grid showing two piecewise linear graphs labelled $y=f(x)$ and $y=g(x)$.",
+              "bounding_box": {
+                "top_left_x": 124,
+                "top_left_y": 95,
+                "bottom_right_x": 593,
+                "bottom_right_y": 511
+              },
+              "storage_path": "a_level/9709/2025/may_june/12/question_paper/q1/page-2-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 2,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [],
+                "relationships": [
+                  "Two piecewise linear graphs are shown on the same coordinate grid."
+                ],
+                "visible_labels": [
+                  "y = f(x)",
+                  "y = g(x)",
+                  "x-axis",
+                  "y-axis"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Identify the transformations mapping one graph to another",
+              "Apply two successive transformations in the correct order"
+            ],
+            "methods": [
+              "Translation/reflection/scaling of graphs",
+              "Algebraic description of transformed coordinates"
+            ],
+            "subtopics": [
+              "Graph transformations"
+            ],
+            "main_topic": "Functions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "interpretation",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 4,
+          "stem_markdown": "The diagram shows the graphs with equations $y=f(x)$ and $y=g(x)$.\n\nDescribe fully a sequence of two transformations which transforms the graph of $y=f(x)$ to the graph of $y=g(x)$. Make clear the order in which the transformations should be applied.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B2,1,0",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "{Stretch} {factor 2} {‘parallel to y-axis’ or ‘in y-direction’ or ‘vertically’}",
+              "guidance_markdown": "B2 for 3 correct components. B1 for 2.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B2,1,0",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "{Translation} $$\\begin{pmatrix} \\{0\\} \\\\ \\{-14\\} \\end{pmatrix}$$ or {-14} {‘parallel to the y-axis’ or ‘in the y-direction’ or ‘vertically’.}",
+              "guidance_markdown": "B2 for 3 correct components. B1 for 2.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B2,1,0",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "{Translation by} $$\\begin{pmatrix} \\{0\\} \\\\ \\{-7\\} \\end{pmatrix}$$ or {-7} {‘parallel to the y-axis’ or ‘in the y-direction’ or ‘vertically’}",
+              "guidance_markdown": "B2 for 3 correct components. B1 for 2.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B2,1,0",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "{Stretch} {factor 2} {‘parallel to y-axis’ or ‘in y-direction’ or ‘vertically’}",
+              "guidance_markdown": "B2 for 3 correct components. B1 for 2.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Solve for coordinates of intersection points of a line and a curve"
+            ],
+            "methods": [
+              "Substitute one equation into the other",
+              "Solve the resulting equation"
+            ],
+            "subtopics": [
+              "Intersection of curve and line",
+              "Solving simultaneous equations"
+            ],
+            "main_topic": "Coordinate Geometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.85
+          },
+          "total_marks": 4,
+          "stem_markdown": "Find the coordinates of the points of intersection of the curve and the line with equations $2xy + 5y^2 = 24$ and $2x + y + 4 = 0$.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$2\\left(\\frac{-y-4}{2}\\right)y+5y^2=24$$ or $$2\\left(\\frac{24-5y^2}{2y}\\right)+y+4\\ [=0]$$ or $$2x(-4-2x)+5(-4-2x)^2=24$$",
+              "guidance_markdown": "OE For eliminating $$x$$ or $$y$$. Condone sign errors in the rearrangements.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$4y^2-4y=24$$ or $$16x^2+72x+56\\ [=0]$$",
+              "guidance_markdown": "OE For simplifying to a 3-term quadratic; terms do not all have to be on the same side. Condone sign errors in the expansions or in the collecting of terms.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\Rightarrow y=-2, y=3$$ or $$x=-1, x=-\\frac{7}{2}$$",
+              "guidance_markdown": "OE Not for a correct $$(x, y)$$ pair. Allow from a correct quadratic (ignore any working seen).",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$(-1, -2), \\left(-\\frac{7}{2}, 3\\right)$$",
+              "guidance_markdown": "OE Allow from a correct quadratic (ignore any working seen). Condone $$x=-1$$ and $$y=-2$$ and $$x=-\\frac{7}{2}$$ and $$y=3$$.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Expand (px^2 + (4/p)x)^5 sufficiently to identify the x^7 term",
+              "Solve for the parameter p from the given coefficient"
+            ],
+            "methods": [
+              "Binomial theorem",
+              "Matching powers of x"
+            ],
+            "subtopics": [
+              "Binomial expansion",
+              "Coefficient finding"
+            ],
+            "main_topic": "Series",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 4,
+          "stem_markdown": "The coefficient of $x^7$ in the expansion of $\n\\left(px^2 + \\frac{4}{p}x\\right)^5$ is 1280.\n\nFind the value of the constant $p$.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\begin{pmatrix} 5 \\\\ 3 \\end{pmatrix}$$ or $$\\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$$ or $$10 \\times (px^2)^{5-3} \\times \\left( \\frac{4}{p}x \\right)^3$$",
+              "guidance_markdown": "May be seen in a list. Allow with or without x's. Condone missing brackets only if recovered later.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$10p^2 \\times \\frac{64}{p^3}$$",
+              "guidance_markdown": "This term must now be identified if given as part of a list. Allow with or without x's.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\frac{\\text{Their integer } k}{p} [x^7] = 1280[x^7]$$",
+              "guidance_markdown": "Condone e.g. $$\\frac{640x^7}{p} = 1280$$ if $$x^7$$ then disappears in subsequent work. Must be from $$a \\times (px^2)^{5-3} \\times \\left( \\frac{4}{p}x \\right)^3$$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$p = \\frac{1}{2}$$",
+              "guidance_markdown": "OE **SC B1** for $$\\begin{pmatrix} 5 \\\\ 4 \\end{pmatrix}$$ or $$\\begin{pmatrix} 5 \\\\ 1 \\end{pmatrix}$$ or $$5 \\times (px^2)^{5-1} \\times \\left( \\frac{4}{px} \\right)^1 \\Rightarrow p = 4$$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 0,
+              "prompt_markdown": "Find the rate at which the $y$-coordinate of $P$ is changing when $x = 9$. Give your answer in terms of the constant $a$.",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Given that the curve has a minimum point when $x = \\frac{1}{4}$, find the value of $a$.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use the chain rule/implicit differentiation to relate dx/dt to dy/dt",
+              "Evaluate dy/dt at a specified x-value",
+              "Use stationary/minimum condition to determine parameter"
+            ],
+            "methods": [
+              "Differentiate y with respect to x",
+              "Multiply by dx/dt",
+              "Set dy/dx = 0 to locate turning point and solve for a"
+            ],
+            "subtopics": [
+              "Related rates",
+              "Differentiation with respect to time"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 5,
+          "stem_markdown": "A point $P$ is moving along the curve with equation $y = ax^{\\frac{3}{2}} - 12x$ in such a way that the $x$-coordinate of $P$ is increasing at a constant rate of 5 units per second.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\left[ \\frac{dy}{dx} \\right] = \\frac{3}{2} a x^{\\frac{1}{2}} - 12$$",
+              "guidance_markdown": "For attempt at differentiation; at least one correct term needed. Condone poor notation throughout.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\left[ \\frac{dy}{dt} = \\frac{dy}{dx} \\times \\frac{dx}{dt} \\right] \\left( \\frac{3}{2} a \\times 9^{\\frac{1}{2}} - 12 \\right) \\times 5$$",
+              "guidance_markdown": "For correct use of chain rule with 5, $$x=9$$ and their $$\\frac{dy}{dx}$$. Condone missing brackets and allow errors in their working.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$\\left[ \\frac{dy}{dt} \\right] = \\left[ 5 \\left( \\frac{9}{2} a - 12 \\right) \\text{ or } \\frac{45}{2} a - 60 \\text{ or } 22.5a - 60 \\text{ or } \\frac{45a - 120}{2} \\right.$$ or $$\\left. \\frac{15}{2} (3a - 8) \\right)$$",
+              "guidance_markdown": "OE simplified form.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\frac{3}{2} a \\times \\left( \\frac{1}{4} \\right)^{\\frac{1}{2}} - 12 = 0$$",
+              "guidance_markdown": "For setting their 2 term $$\\frac{dy}{dx}$$ with at least one term correct = 0 and substituting $$x=0.25$$. Condone missing brackets. Allow a restart for $$\\frac{dy}{dx}$$ if 2 terms seen and at least one term correct.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$\\Rightarrow a = 16$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 0,
+              "prompt_markdown": "State the greatest and least possible values of $y$.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Sketch the curve.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Hence determine the number of solutions of the equation $4\\cos 2x + 3 = 2x - 1$ for $0 \\leq x \\leq 2\\pi$.",
+              "source_page_numbers": [
+                6
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Find maximum and minimum values of y",
+              "Sketch the curve over the given interval",
+              "Determine the number of solutions to an equation on an interval"
+            ],
+            "methods": [
+              "Use amplitude/vertical shift for range",
+              "Graph features (period, intercepts, key points) for sketching",
+              "Combine/compare functions or use properties of cos to count intersections"
+            ],
+            "subtopics": [
+              "Trigonometric function range",
+              "Sketching sinusoidal graphs",
+              "Solving trigonometric equations (with parameter/linear term)"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 5,
+          "stem_markdown": "The equation of a curve is $y = 4\\cos 2x + 3$ for $0 \\leq x \\leq 2\\pi$.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "[Greatest] 7, [least] -1",
+              "guidance_markdown": "B2 for answers of -1 and 7 only. B1 for one correct value. Ignore incorrect identification/inequality.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B2,1,0",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "![img-0.jpeg](img-0.jpeg)",
+              "guidance_markdown": "Ignore any graph outside domain (0, 2π).B1 for two complete cycles, one from 0 to approximately π and the other finishing at approximately 2π. Starting at their greatest value and initially decreasing. Condone straight lines and minimum above the x-axis or joining points with straight lines.B2 for correct curve; condone any incorrect x-axis intercepts. Graph must start to level off at both 0 and 2π. Ignore any y-labels, but the curve should be more above the x-axis than below.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "3 [solutions]",
+              "guidance_markdown": "Ignore any graphs drawn",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 6864,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "A coordinate grid showing the curve $y = \\frac{9}{(5x + 4)^{\\frac{1}{2}}}$ and the line $y = 6 - 3x$ intersecting at $P$.",
+              "bounding_box": {
+                "top_left_x": 143,
+                "top_left_y": 93,
+                "bottom_right_x": 574,
+                "bottom_right_y": 312
+              },
+              "storage_path": "a_level/9709/2025/may_june/12/question_paper/q6/page-7-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 7,
+              "mathematical_details": {
+                "equations": [
+                  "$y = \\frac{9}{(5x + 4)^{\\frac{1}{2}}}$",
+                  "$y = 6 - 3x$"
+                ],
+                "coordinates": [
+                  "P"
+                ],
+                "measurements": [],
+                "relationships": [
+                  "The line and the curve intersect at $P$.",
+                  "Point $P$ has $y$-coordinate 3."
+                ],
+                "visible_labels": [
+                  "O",
+                  "P",
+                  "x",
+                  "y"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Find intersection point(s) using the given y-values",
+              "Set up and evaluate the area of the shaded region bounded by the curve and line"
+            ],
+            "methods": [
+              "Solve simultaneous equations for limits",
+              "Integrate difference of functions over the interval"
+            ],
+            "subtopics": [
+              "Area between a curve and a line",
+              "Definite integration from intersections"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.75
+          },
+          "total_marks": 6,
+          "stem_markdown": "The diagram shows the curve with equation $$y = \\frac{9}{(5x + 4)^{\\frac{1}{2}}}$$ and the line $$y = 6 - 3x$$. The line and the curve intersect at the point $P$ which has $y$-coordinate 3.\n\nFind the area of the shaded region.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$6 - 3x = 3 \\Rightarrow x\\text{-coordinate of point of intersection} = 1$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\left[ \\frac{18}{5}(5x + 4)^{\\frac{1}{2}} \\right]_0^1$$",
+              "guidance_markdown": "B1 for $$k(5x + 4)^{\\frac{1}{2}}$$",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\text{Area} = \\frac{18}{5} \\times 3 - \\frac{18}{5} \\times 2 \\left[ = \\frac{18}{5} \\right]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Line crosses $$x$$-axis at $$x = 2$$, so triangle area $$= \\frac{1}{2} \\times 3 \\times 1$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Total area $$= \\frac{51}{10}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 0,
+              "prompt_markdown": "Prove the identity $$\\frac{\\tan\\theta+7}{\\tan^2\\theta-3} \\equiv \\frac{\\sin\\theta\\cos\\theta+7\\cos^2\\theta}{1-4\\cos^2\\theta}$$.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Hence solve the equation $$\\frac{\\sin\\theta\\cos\\theta+7\\cos^2\\theta}{1-4\\cos^2\\theta}=\\frac{5}{\\tan\\theta}$$ for $0^\\circ\\leqslant\\theta\\leqslant180^\\circ$.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Prove a given trigonometric identity by transforming expressions",
+              "Solve a trigonometric equation on a specified angle interval"
+            ],
+            "methods": [
+              "Convert between tan, sin, cos using reciprocal and product identities",
+              "Reduce to an algebraic equation in tan/cos",
+              "Check solutions against the given domain"
+            ],
+            "subtopics": [
+              "Trigonometric identities",
+              "Trigonometric equations",
+              "Algebraic manipulation using sin/cos/tan"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "proof_or_show",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.85
+          },
+          "total_marks": 7,
+          "stem_markdown": "",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "For appropriate use of $$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$$ or $$\\tan \\theta \\cos \\theta = \\sin \\theta$$ at least once",
+              "guidance_markdown": "**The first two marks can be applied in the reverse order but as soon as an error occurs, no further marks are awarded.** Candidates can work from LHS to RHS or RHS to LHS for full marks. If they work on both sides simultaneously, maximum of M1M1 only if a common correct expression is reached. Condone missing brackets. If the numerator and denominator are worked on separately, they need to be brought together for the second mark.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "For appropriate use of $$\\sin^2 \\theta + \\cos^2 \\theta = 1$$ or $$1 + \\tan^2 \\theta = \\sec^2 \\theta$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Fully correct proof",
+              "guidance_markdown": "WWW Condone missing brackets if recovered.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\frac{\\tan \\theta + 7}{\\tan^2 \\theta - 3} = \\frac{5}{\\tan \\theta} \\Rightarrow \\tan \\theta(\\tan \\theta + 7) = 5(\\tan^2 \\theta - 3)$$",
+              "guidance_markdown": "OE Using part (a) and eliminating fractions.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$\\Rightarrow 4 \\tan^2 \\theta - 7 \\tan \\theta - 15 = 0 \\Rightarrow (4 \\tan \\theta + 5)(\\tan \\theta - 3) = 0$$",
+              "guidance_markdown": "Factorising or other accepted method for solving *their* 3-term quadratic in $$\\tan \\theta$$. Condone errors made in forming 3-term quadratic.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$\\tan \\theta = -1.25$$ and $$\\tan \\theta = 3$$",
+              "guidance_markdown": "OE Independent of factorisation of the quadratic. And no extra solutions. Allow e.g. $$x = \\dots$$ provided $$x = \\tan \\theta$$ is seen. Can be implied by a correct final answer.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$\\theta = 71.6^\\circ$$ and $$\\theta = 128.7^\\circ$$",
+              "guidance_markdown": "AWRT No others in range $$0 \\leqslant \\theta \\leqslant 180^\\circ$$. Ignore any answers outside this range. Maximum 3/4 if incorrect factorisation or formula.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 0,
+              "prompt_markdown": "Find the coordinates of $A$, $B$ and $C$.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the angle $ACB$ in radians. Give your answer correct to 3 significant figures.",
+              "source_page_numbers": [
+                11
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The chord $AB$ divides the circle into two segments.\n\nFind the area of the larger segment.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 5259,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "A coordinate grid showing a circle with centre $C$ and the horizontal line $y=-2$ intersecting the circle at $A$ and $B$.",
+              "bounding_box": {
+                "top_left_x": 238,
+                "top_left_y": 95,
+                "bottom_right_x": 477,
+                "bottom_right_y": 305
+              },
+              "storage_path": "a_level/9709/2025/may_june/12/question_paper/q8/page-10-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 10,
+              "mathematical_details": {
+                "equations": [
+                  "$x^2+y^2-14x+8y+36=0$",
+                  "$y=-2$"
+                ],
+                "coordinates": [],
+                "measurements": [],
+                "relationships": [
+                  "The line $y=-2$ intersects the circle at $A$ and $B$.",
+                  "$C$ is the centre of the circle."
+                ],
+                "visible_labels": [
+                  "A",
+                  "B",
+                  "C",
+                  "x",
+                  "y"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Find intersection points of a line with a circle and the centre of the circle",
+              "Calculate the angle subtended at the centre",
+              "Find area of the larger circular segment"
+            ],
+            "methods": [
+              "Complete the square / use standard circle form",
+              "Solve line-circle intersection",
+              "Use central angle and sector/segment area formulas"
+            ],
+            "subtopics": [
+              "Circle geometry",
+              "Chord and segment area",
+              "Angles subtended by a chord"
+            ],
+            "main_topic": "Coordinate Geometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 9,
+          "stem_markdown": "The diagram shows the circle with equation $x^2+y^2-14x+8y+36=0$ and the line $y=-2$. The line intersects the circle at the points $A$ and $B$. The centre of the circle is $C$.",
+          "question_number": 8,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "(2, -2)",
+              "guidance_markdown": "Condone $$x = 2$$ and $$y = -2$$ if seen together.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "(12, -2)",
+              "guidance_markdown": "Condone $$x = 12$$ and $$y = -2$$ if seen together.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "(7, -4)",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\tan\\left(\\frac{1}{2}\\theta\\right) = \\frac{5}{2} \\left[ \\Rightarrow \\theta = 2\\tan^{-1}\\frac{5}{2} \\right]$$ or $$\\sin\\left(\\frac{\\theta}{2}\\right) = \\frac{5}{\\sqrt{29}}$$ or $$\\cos\\left(\\frac{\\theta}{2}\\right) = \\frac{2}{\\sqrt{29}}$$ or $$\\theta = \\pi - 2 \\times \\tan^{-1}\\frac{2}{5}$$ or $$\\pi - 2 \\times 0.381$$ or $$10^2 = 29 + 29 - 2 \\times \\sqrt{29} \\times \\sqrt{29} \\cos \\theta \\left[ \\Rightarrow \\cos \\theta = \\frac{29 + 29 - 100}{2 \\times \\sqrt{29} \\times \\sqrt{29}} = \\frac{-21}{29} \\right]$$",
+              "guidance_markdown": "Or other correct method for an isosceles triangle using their $$A$$ and $$B$$ of the form $$(\\cdot, -2)$$ and $$C$$ of the form $$(\\cdot, -d)$$, where $$-d < -2$$. **Note:** $$\\tan \\theta = \\frac{5}{2} \\Rightarrow 0/2$$ unless $$\\theta$$ is then doubled. Using $$r = 29$$ scores $$0/2$$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$[\\theta =] 2.38$$",
+              "guidance_markdown": "AWRT Final answer of $$136.4^\\circ$$ scores max $$1/2$$. Ignore degree symbol if present.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$\\tan \\theta = \\frac{\\frac{-2}{5} - \\frac{2}{5}}{1 + \\frac{-2}{5} \\times \\frac{2}{5}} \\left[ = -\\frac{20}{21} \\right]$$",
+              "guidance_markdown": "Use of $$\\tan \\theta = \\frac{m_2 - m_1}{1 + m_2 m_1}$$, where $$m_1$$ and $$m_2$$ are the gradients of their $$AC$$ and $$BC$$, where $$A$$, $$B$$ and $$C$$ are of the required form.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$[\\theta =] 2.38$$",
+              "guidance_markdown": "AWRT Ignore degree symbol if present.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "[Length $AC$ = Length $BC$ = $\\sqrt{5^2 + 2^2}$ ] = $\\sqrt{29}$ [=5.385...]",
+              "guidance_markdown": "Sight of $\\sqrt{29}$, SOI. Condone 5.4. Could be found in parts (a) or (b), but do not award unless it is seen in part (c).",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "[Area of large sector =] $\\frac{1}{2} \\times \\sqrt{29} \\times \\sqrt{29} \\times (2\\pi - \\text{their } \\theta)$ [= 56.587..] or [Area of small sector =] $\\frac{1}{2} \\times \\sqrt{29} \\times \\sqrt{29} \\times \\text{their } \\theta$ [= 34.518...]",
+              "guidance_markdown": "Use of correct sector formula with *their* identified radius (e.g. 29) and *their* $(2\\pi - \\theta)$ or *their* $\\theta$. May be embedded as part of the segment formula.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Area of triangle = $\\frac{1}{2} \\times \\sqrt{29} \\times \\sqrt{29} \\times \\sin \\theta$ or $\\frac{1}{2} \\times 10 \\times 2$ [= 10]",
+              "guidance_markdown": "Use of correct triangle formula with *their* identified radius (e.g. 29) and *their* $\\theta$. May be embedded as part of the segment formula.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 11,
+              "content_markdown": "[Segment area = ] 66.6",
+              "guidance_markdown": "AWRT [Area of circle – smaller segment = $\\pi \\times 29 - 34.52 + 10$]",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 0,
+              "prompt_markdown": "Find an expression for $$\\frac{dy}{dx}$$.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the $x$-coordinate of the other stationary point of the curve, and determine the nature of this stationary point.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the equation of the curve.",
+              "source_page_numbers": [
+                13
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "d"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find the equation of the normal to the curve at the point where $$\\frac{dy}{dx}=-\\frac{9}{4}$$ and $x$ is positive. Express your answer in the form $px+qy+r=0$, where $p$, $q$ and $r$ are integers.",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Integrate given second derivative to find dy/dx",
+              "Use stationary point condition to find remaining constants",
+              "Classify a stationary point",
+              "Form the equation of the curve from derivatives",
+              "Use the gradient to construct the normal equation at a specified point"
+            ],
+            "methods": [
+              "Integrate d^2y/dx^2 twice with constants",
+              "Apply dy/dx=0 at stationary points",
+              "Second derivative test (or sign analysis)",
+              "Normal slope = -1/(tangent slope) and line equation"
+            ],
+            "subtopics": [
+              "Stationary points from derivatives",
+              "Normal to a curve",
+              "Integrating differential information"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 5,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.85
+          },
+          "total_marks": 12,
+          "stem_markdown": "The equation of a curve is such that $$\\frac{d^2y}{dx^2} = -\\frac{24}{x^3}$$. It is given that the curve has a stationary point at $(-2,19)$.",
+          "question_number": 9,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$\\left[ \\frac{dy}{dx} = \\right] \\frac{-24x^{-2}}{-2} \\left[ = \\frac{12}{x^2} \\right] [+c]$",
+              "guidance_markdown": "May be unsimplified.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$\\frac{12}{(-2)^2} + c = 0$ [⇒ $c = -3$]",
+              "guidance_markdown": "Substituting $x = -2$ into their $\\frac{dy}{dx}$ of the form $kx^{-2} + c$, and setting = 0. Condone missing bracket.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$\\left[ \\frac{dy}{dx} = \\right] \\frac{12}{x^2} - 3$ or $12x^{-2} - 3$",
+              "guidance_markdown": "$\\frac{-24}{-2}$ must be simplified to 12, but accept $c = -3$ as the final answer.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\left[ \\frac{12}{x^2} - 3 = 0 \\Rightarrow x^2 = 4 \\Rightarrow x = \\pm 2 \\Rightarrow \\right] x = 2$$",
+              "guidance_markdown": "May be done by inspection or calculator, but must be WWW. Condone $$\\pm 2$$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$\\left[ \\frac{d^2y}{dx^2} = \\right] - \\frac{24}{(2)^3}$$ or $$-3$$ or $$< 0 \\Rightarrow$$ maximum",
+              "guidance_markdown": "WWW. Or other valid method. Ignore any working for $$x = -2$$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$[y = ] - 12x^{-1} + \\text{their } cx \\left[ = -\\frac{12}{x} - 3x \\right] [+d]$$",
+              "guidance_markdown": "May be unsimplified. FT *their* nonzero $$c$$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$19 = -\\frac{12}{-2} - 3 \\times (-2) + d \\quad [\\Rightarrow d = 7]$$",
+              "guidance_markdown": "Substituting $$(-2, 19)$$ into their integrated expression (defined by having at least one correct power) and including $$+d$$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$$y = -\\frac{12}{x} - 3x + 7$$",
+              "guidance_markdown": "Accept $$d = 7$$ as final answer if $$y = ...$$ seen previously. Allow '$$f(x)$$=' in place of '$$y$$='.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$\\frac{12}{x^2} - 3 = -\\frac{9}{4} \\Rightarrow \\frac{12}{x^2} = \\frac{3}{4} \\Rightarrow x = \\dots \\quad [\\Rightarrow x^2 = 16 \\Rightarrow x = 4, y = -8]$$",
+              "guidance_markdown": "Setting *their* $$\\frac{dy}{dx}$$ of the form $$kx^{-2} + c = -\\frac{9}{4}$$, and correctly solving for $$x$$ from their equation where $$x^2 > 0$$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Gradient of normal = $$\\frac{4}{9}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$\\frac{y+8}{(x-4)} = \\frac{4}{9}$$",
+              "guidance_markdown": "For using *their* stated positive $$x$$ and *their* stated $$y$$ and a changed gradient to correctly form a line equation; condone $$-\\frac{4}{9}$$ or $$\\frac{9}{4}$$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 12,
+              "content_markdown": "$$4x - 9y - 88 = 0$$",
+              "guidance_markdown": "OE in correct form.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": null,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 0,
+              "prompt_markdown": "The first, second and third terms of an arithmetic progression are $4k$, $k^2$ and $8k$ respectively, where $k$ is a non-zero constant.",
+              "source_page_numbers": [
+                14
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "a",
+                "i"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the value of $k$.",
+              "source_page_numbers": [
+                14
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "a",
+                "ii"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the sum of the first 20 terms of the progression.",
+              "source_page_numbers": [
+                14
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "The fourth and sixth terms of a geometric progression are 36 and 6 respectively. The common ratio of the progression is positive.\n\nFind the sum to infinity of the progression. Give your answer in the form $$\\frac{a}{\\sqrt{b}-c}$$, where $a$, $b$ and $c$ are integers.",
+              "source_page_numbers": [
+                15
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use given terms to find the common parameter",
+              "Compute the sum of a finite arithmetic progression",
+              "Find sum to infinity of a geometric progression given terms"
+            ],
+            "methods": [
+              "Arithmetic progression nth term relations",
+              "Geometric progression sum formula a/(1-r) for |r|<1",
+              "Algebra to fit given term values"
+            ],
+            "subtopics": [
+              "Arithmetic progressions",
+              "Geometric progressions",
+              "Sum to infinity"
+            ],
+            "main_topic": "Series",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 10,
+          "stem_markdown": "",
+          "question_number": 10,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$8k - k^2 = k^2 - 4k$$ or $$2k^2 = 4k + 8k$$ or $$4k + 2(k^2 - 4k) = 8k$$",
+              "guidance_markdown": "OE Forming an equation in $$k$$ only, clearly using the first 3 terms of an AP.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "$$[2k(k-6) = 0 \\Rightarrow]\\ k = 6$$ [or $$k = 0$$]",
+              "guidance_markdown": "Condone extra 'solution' $$k = 0$$. Note: can be done by inspection or with no working. $$2/2$$",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$d\\left[=8k-k^2\\text{ or }2k\\text{ or }k^2-4k\\right]=12\\text{ and }a\\left[=4k\\right]=24$$",
+              "guidance_markdown": "Using a correct method to find $$a$$ and $$d$$ from *their* $$k$$. SOI. May have been found in **(a)(i)** but must be used in **(ii)**.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$S_{20}=\\frac{20}{2}(2\\times 24+19\\times 12)\\text{ or }=\\frac{20}{2}(24+252)$$",
+              "guidance_markdown": "Use of correct sum formula with $$n=20$$ and *their* $$a$$ and $$d$$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$S_{20}=2760$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$ar^3=36\\text{ and }ar^5=6$$ or $$r^2=\\frac{1}{6}$$",
+              "guidance_markdown": "SOI WWW",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$r=\\sqrt{\\frac{6}{36}}\\left[=\\frac{1}{\\sqrt{6}}\\text{ or }\\frac{\\sqrt{6}}{6}\\right]$$",
+              "guidance_markdown": "Using a correct method to find $$r$$. Condone $$\\pm$$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$a=\\frac{36}{\\left(\\frac{1}{\\sqrt{6}}\\right)^3}\\left[=36\\times\\sqrt{6}^3,\\ 216\\sqrt{6}\\text{ or }\\frac{1296}{\\sqrt{6}}\\right]$$",
+              "guidance_markdown": "Using a correct method to find $$a$$. Condone $$\\pm$$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$S_\\infty=\\frac{216\\sqrt{6}}{1-\\frac{1}{\\sqrt{6}}}$$",
+              "guidance_markdown": "Using the correct formula with *their* $$a$$ and *their* $$",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "$$[S_\\infty=]\\frac{1296}{\\sqrt{6}-1}\\text{ or }\\frac{7776}{\\sqrt{216}-6}$$",
+              "guidance_markdown": "OE in the required form. $$r=0.408\\Rightarrow a=529\\Rightarrow S_\\infty=894\\text{ scores }4/5$$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            14,
+            15
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 0,
+              "prompt_markdown": "Express $x^2 + 4x + 2$ in the form $(x + a)^2 + b$, where $a$ and $b$ are integers.",
+              "source_page_numbers": [
+                16
+              ]
+            },
+            {
+              "marks": null,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "The functions $f$ and $g$ are defined as follows.\n\n$$f(x) = x^2 + 4x + 2 \\quad \\text{for } x \\leq -2$$\n\n$$g(x) = -x - 4 \\quad \\text{for } x \\geq -2$$",
+              "source_page_numbers": [
+                16,
+                17
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b",
+                "i"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find an expression for $f^{-1}(x)$.",
+              "source_page_numbers": [
+                16
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b",
+                "ii"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find an expression for $(gf)^{-1}(x)$.",
+              "source_page_numbers": [
+                17
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Rewrite a quadratic in completed-square form",
+              "Find the inverse of a piecewise-defined function over its domain",
+              "Find the inverse of the composition (gf)^{-1}(x)"
+            ],
+            "methods": [
+              "Complete the square",
+              "Swap x and y and solve for the new y to form f^{-1}",
+              "Use (gf)^{-1} = f^{-1} ∘ g^{-1} with appropriate domain restrictions"
+            ],
+            "subtopics": [
+              "Completing square for function form",
+              "Inverse functions",
+              "Inverse of composite/through composition"
+            ],
+            "main_topic": "Functions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 9,
+          "stem_markdown": "",
+          "question_number": 11,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "$$\\{(x+2)^2\\}\\{-2\\}$$",
+              "guidance_markdown": "B1 for each correct { } . Allow $$a=2$$, $$b=-2$$. If contradictory, give preference to the expression.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$y=(x+2)^2-2 \\Rightarrow y+2=(x+2)^2$$",
+              "guidance_markdown": "Equating $$y$$ or $$f^{-1}(x)$$ or $$f^{-1}$$ or $$f(x)$$ to *their* completed square form and first step. $$x$$ and $$y$$ may be interchanged at this stage. Condone $$\\pm$$ errors.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$x=[\\pm]\\sqrt{y+2}-2$$",
+              "guidance_markdown": "Condone $$\\pm$$ errors during simplification.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$[f^{-1}(x)=]-\\sqrt{x+2}-2$$",
+              "guidance_markdown": "Do not condone $$x=$$ or $$f(x)=$$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$[gf(x)=] - \\{their\\ completed\\ square\\ form\\} - 4$$ or $$-(x^2 + 4x + 2) - 4$$",
+              "guidance_markdown": "Using $$fg(x) = \\{(-x - 4) + 2\\}^2 - 2$$ scores $$0/4$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$[gf(x)=] - (x + 2)^2 - 2$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$x = [\\pm]\\sqrt{-y - 2} - 2$$",
+              "guidance_markdown": "Finding $$x$$ from $$their$$ completed square form, which must contain a $$-(x + k)^2$$ term. Condone $$\\pm$$ errors only during simplification. $$x = -\\sqrt{y + 2} - 2$$ is DM0 (Square rooting then $$\\div$$ or $$\\times - 1$$) $$x$$ and $$y$$ may be interchanged at this stage.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$$[(gf)^{-1}(x)=] - \\sqrt{-x - 2} - 2$$",
+              "guidance_markdown": "Do not condone $$x = .$$",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$(gf)^{-1} = f^{-1}g^{-1}$$",
+              "guidance_markdown": "SOI Allow with $$their\\ f^{-1}$$ and $$their\\ g^{-1}$$. Using $$g^{-1}f^{-1}(x)$$ scores $$0/4$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$g^{-1}(x) = -x - 4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$(gf)^{-1}(x) = -\\sqrt{-x - 4 + 2} - 2$$",
+              "guidance_markdown": "Allow with $$their\\ f^{-1}$$ and $$their\\ g^{-1}$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$$[(gf)^{-1}(x)=] - \\sqrt{-x - 2} - 2$$",
+              "guidance_markdown": "Do not condone $$x =$$",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            16,
+            17
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_09e6cd83d99193f0016a79fcfbbee0819ab47cd4560361ddce",
+      "resp_0ee292df73d96442016a79fd8caa248198abcca3a0ae615862",
+      "resp_01b7654475282d27016a79fdd8493c81988f77087f9666519d"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

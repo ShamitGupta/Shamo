@@ -1,0 +1,152 @@
+{
+  "paper_key": "9709_2024_may_june_63",
+  "ingestion_run_id": "4b13e9a0-c924-43d5-ae48-7f8c5f9a6ab7",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-04:a_level:9709:2024:may_june:63",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_63.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_63.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International A Level\n\nMATHEMATICS\n\nPaper 6 Probability & Statistics 2\n\nMARK SCHEME\n\nMaximum Mark: 50\n\n9709/63\n\nMay/June 2024\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level and Cambridge Pre-U components, and some Cambridge O Level components.\n\nThis document consists of 12 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\nGENERIC MARKING PRINCIPLE 1:\n\nMarks must be awarded in line with:\n\n- the specific content of the mark scheme or the generic level descriptors for the question\n- the specific skills defined in the mark scheme or in the generic level descriptors for the question\n- the standard of response required by a candidate as exemplified by the standardisation scripts.\n\nGENERIC MARKING PRINCIPLE 2:\n\nMarks awarded are always **whole marks** (not half marks, or other fractions).\n\nGENERIC MARKING PRINCIPLE 3:\n\nMarks must be awarded **positively**:\n\n- marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate\n- marks are awarded when candidates clearly demonstrate what they know and can do\n- marks are not deducted for errors\n- marks are not deducted for omissions\n- answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.\n\nGENERIC MARKING PRINCIPLE 4:\n\nRules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.\n\nGENERIC MARKING PRINCIPLE 5:\n\nMarks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).\n\nGENERIC MARKING PRINCIPLE 6:\n\nMarks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate’s intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\nAbbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) | $$[\\lambda =] 4$$ | **B1** |   |\n|   |  $$e^{-4} \\left( \\frac{4^2}{2!} + \\frac{4^3}{3!} + \\frac{4^4}{4!} \\right)$$ or $$e^{-4} (8 + 10.67 + 10.67)$$ or $$0.1465 + 0.19537 + 0.19537$$ | **M1** | Allow one end error. Any $$\\lambda$$. Expression must be seen.  |\n|   |  $$= 0.537 \\text{ (3sf)}$$ | **A1** | **SC B1 B1** for unsupported correct answer. **SC B2** for use of Binomial leading to 0.537. Note: use of normal could score B1 only for mean = 4.  |\n|   |   | **3** |   |\n|  1(b) | $$n = 4000 > 50$$ and either $$np = 4 < 5$$ or $$p = 0.001 < 0.1$$ | **B1** | Explicit values seen.  |\n|   |   | **1** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(a) | $$3.12 + z \\times \\frac{\\sigma}{\\sqrt{150}} = 3.23$$ | **M1** | OE – correct expression. Any $$z$$, but must be a $$z$$ value.  |\n|   |  $$z = 1.96$$ | **B1** |   |\n|   |  $$\\sigma = 0.687 \\text{ (3sf) [cm]}$$ | **A1** |   |\n|   |   | **3** |   |\n|  2(b) | Yes, because population [of widths] not given to be normally distributed | **B1** | Or ‘underlying distribution’ instead of population. Allow ‘yes, because population distribution not known’. Need both statements.  |\n|   |   | **1** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3 | $$\\text{Diff} \\sim N(5 \\times 50 - 10 \\times 26, 5 \\times 2.4 + 10 \\times 1.8) \\quad [= N(-10, 30)]$$ | **B1** | For N and mean = $$\\pm(5 \\times 50 - 10 \\times 26)$$ SOI  |\n|   |   |  **B1** | For var = $$5 \\times 2.4 + 10 \\times 1.8$$ SOI  |\n|   |  $$\\frac{0 - (-10^\\circ)}{\\sqrt[3]{30^\\circ}}$$ [= 1.826] | **M1** | Standardising with *their* values.  |\n|   |  $$1 - \\Phi(\\text{'1.826'})$$ | **M1** | For area consistent with *their* values.  |\n|   |  = 0.0339 or 0.034[0] (3sf) | **A1** |   |\n|   |  | **5** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | $$H_0: p = 0.24$$ $$H_1: p < 0.24$$ | **B1** |   |\n|   |  $$P(X \\leq 2) = 0.76^{25} + 25 \\times 0.76^{24} \\times 0.24 + {}^{25}C_2 \\times 0.76^{23} \\times 0.24^2$$ or $$0.0010479 + 0.0082732 + 0.0313513$$ | **M1** | Expression must be seen. No end errors.  |\n|   |  = 0.0407 | **A1** | **SC B1** for unsupported 0.0407.  |\n|   |  0.0407 < 0.05 | **M1** | For valid comparison.  |\n|   |  [Evidence to reject $$H_0$$.] There is sufficient evidence to suggest that the support for the Today Party has decreased. | **A1FT** | FT *their* probability. In context, not definite, no contradictions. **SC**: if $$H_1: p \\neq 0.24$$ and compare with 0.025; max **B0 M1 A1 M1 A0**.  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | $$\\int_0^{\\sqrt{2}} (ax - x^3) dx = 1$$ | **M1** | Attempted integration of f(x) and equated to 1.  |\n|   |  $$\\left[ a \\frac{x^2}{2} - \\frac{x^4}{4} \\right]_0^{\\sqrt{2}} = 1$$ | **A1** | Correct integration and substitute correct limits.  |\n|   |  $$a - \\frac{4}{4} = 1$$ |  |   |\n|   |  $$a = 2$$ | **A1** | AG Convincingly obtained and no errors seen.  |\n|   |  | **3** |   |\n|  5(b) | $$\\int_0^m (2x - x^3) dx = \\frac{1}{2}$$ | **M1** | Attempt integrate f(x) with limits 0 to m (or m to $$\\sqrt{2}$$) and equate to $$\\frac{1}{2}$$.  |\n|   |  $$m^2 - \\frac{m^4}{4} = \\frac{1}{2}$$ | **A1** | For correct quartic in any form.  |\n|   |  $$m^4 - 4m^2 + 2 = 0 \\Rightarrow m^2 = \\frac{4 \\pm \\sqrt{16-8}}{2} \\quad [= 2 \\pm \\sqrt{2}]$$ | **M1** | For solving their three term quartic to find $$m^2$$.  |\n|   |  $$m = \\sqrt{2 - \\sqrt{2}} \\text{ or } 0.765 \\text{ (3sf)}$$ | **A1** |   |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(c) | $$\\int\\limits_{0}^{\\sqrt{2}}(2x^2 - x^4)\\,dx$$ | **M1** | Attempt to integrate $$x\\,f(x)$$. Ignore limits.  |\n|   |  $$\\left[\\frac{2x^3}{3} - \\frac{x^5}{5}\\right]_{0}^{\\sqrt{2}}$$ | **A1** | Correct integration and correct limits.  |\n|   |  $$[=\\frac{4\\sqrt{2}}{3} - \\frac{4\\sqrt{2}}{5}] = \\frac{8}{15}\\sqrt{2}$$ | **A1** | OE For single exact term.  |\n|   |   | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | $$\\hat{\\mu} = \\frac{307}{200}$$ or 1.535 | **B1** | Accept 3sf if nothing better seen (1.53 or 1.54).  |\n|   |  $$\\Sigma x^2 f = 627$$, $$\\text{Est}(\\sigma^2) = \\frac{200}{199}(\\frac{627}{200} - 1.535^{2/3})$$ or $$\\frac{1}{199}(\\frac{627}{200} - \\frac{307}{200})$$ | **M1** | Use of a correct formula with *their* values.  |\n|   |  $$= 0.783$$ | **A1** | AG Correctly obtained with no errors seen.  |\n|   |   | **3** |   |\n|  6(b) | $$H_0: \\mu = 1.65$$ $$H_1: \\mu < 1.65$$ | **B1** | Accept ‘population mean’ but not just ‘mean’.  |\n|   |   | **1** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(c) | $$\\frac{1.535 - 1.65}{\\sqrt{0.783 + 200}}$$ | **M1** | Standardising with *their* mean.  |\n|   |  = -1.838 or -1.84 | **A1*** |   |\n|   |  Φ(0.05) and Φ(0.01) attempted | **M1** | Or P(z < -`1.838`) attempted. **SC**: Condone Φ(0.025) = 2.807 and Φ(0.005) = 3.291 following two-tailed test in **(b)**.  |\n|   |  -1.645 > -1.838 > -2.326 [Hence significant at 5% but not 1% level] | **DA1** | AG = 0.033 and 0.05 > 0.033 > 0.01 **SC**: use of 1.54 or 1.53 for the mean leading to -1.645 > -1.758 > -2.326 or -1.645 > -1.918 > -2.326 or 0.95 < 0.9606 or 0.9724 < 0.99 scores **M1 M1 A1**. Accept use of critical value method 1.535 < 1.547 or accept 1.65 > 1.638.  |\n|   |   | **4** |   |\n|  6(d) | At the 1% level H_{0} is not rejected Or a Type I error can only occur if H_{0} is rejected. | **B1** | OE  |\n|   |   | **1** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | $$\\lambda = 1.9 + 2.2 [= 4.1]$$ | **B1** |   |\n|   |  $$e^{-4.1}(1 + 4.1 + \\frac{4.1^2}{2!} + \\frac{4.1^3}{3!})$$ or $$e^{-4.1}(1 + 4.1 + 8.405 + 11.487)$$ or $$0.01657 + 0.06795 + 0.13929 + 0.19037$$ | **M1** | Allow any $$\\lambda$$. Allow one end error. Must see expression.  |\n|   |  $$= 0.414 (3sf)$$ | **A1** | **SC:** unsupported answer 0.414 scores **B1 B1**.  |\n|   |   | **3** |   |\n|  7(b) | $$P(X + Y < 4 \\text{ and } X = 2) = P(2, 0 \\text{ or } 2, 1)$$ | **M1** | Stated or implied.  |\n|   |  $$= e^{-1.9 \\times \\frac{1.9^2}{2}} (e^{-2.2} + e^{-2.2} \\times 2.2) [= 0.0957]$$ | **M1** |   |\n|   |  $$P(X = 2 \\mid X + Y < 4) = \\frac{0.0957}{0.414}$$ | **M1** | Attempt $$\\frac{P(X+Y < 4 \\text{ and } X = 2)}{P(X+Y < 4)}$$. Prob for denominator can be found in **(a)**.  |\n|   |  $$0.231 (3sf)$$ | **A1** |   |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/63\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(c) | $$E(X + Y) = 4.1 \\quad Var(X + Y) = 4.1$$ or $$Po(246)$$ | **B1** | SOI  |\n|   |  Normal and var = $$\\frac{4.1}{60}$$ Or normal and var = 246 | **M1** |   |\n|   |  $$\\frac{4.0-4.1}{\\sqrt{4.1+60}}$$ or totals method $$\\frac{240-246}{\\sqrt{246}}$$ or use of continuity correction | **M1** | No mixed methods. Or continuity correction: $$\\frac{4.0-\\frac{1}{120}-4.1}{\\sqrt{(4.1+60)}}$$ or $$\\frac{239.5-246}{\\sqrt{246}}$$. Condone incorrect continuity correction for M1.  |\n|   |  = -0.383 (3sf) | **A1** | = -0.414  |\n|   |  $$\\Phi(-0.383') = 1 - \\Phi(-0.383')$$ | **M1** | $$\\Phi(-0.414') = 1 - \\Phi(-0.414')$$  |\n|   |  = 0.351 (3sf) | **A1** | = 0.340 or 0.339  |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 12",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0019655001501 *\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\n## MATHEMATICS\n\nPaper 6 Probability & Statistics 2\n\n9709/63\n\nMay/June 2024\n\n1 hour 15 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\n## INSTRUCTIONS\n\n- Answer **all** questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do **not** use an erasable pen or correction fluid.\n- Do **not** write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\n## INFORMATION\n\n- The total mark for this paper is 50.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has **12** pages.\n\nDC (PQ) 330132/2\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0019655001502 *\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\n1 The random variable $X$ has the distribution B(4000, 0.001).\n\n(a) Use a suitable approximating distribution to find $P(2 \\leq X < 5)$. [3]\n\n(b) Justify your approximating distribution in this case. [1]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0019655001503 *\n\n![img-4.jpeg](img-4.jpeg)\n\n3\n\n2 The widths, w cm, of a random sample of 150 leaves of a certain kind were measured. The sample mean of w was found to be 3.12 cm.\n\nUsing this sample, an approximate 95% confidence interval for the population mean of the widths in centimetres was found to be [3.01, 3.23].\n\n(a) Calculate an estimate of the population standard deviation. [3]\n\n(b) Explain whether it was necessary to use the Central Limit theorem in your answer to part (a). [1]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "* 0019655001504 *\n\n![img-5.jpeg](img-5.jpeg)\n\n4\n\n3 The masses in kilograms of large and small bags of cement have the independent distributions N(50, 2.4) and N(26, 1.8) respectively.\n\nFind the probability that the total mass of 5 randomly chosen large bags of cement is greater than the total mass of 10 randomly chosen small bags of cement. [5]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "* 0019655001505 *\n\n![img-6.jpeg](img-6.jpeg)\n\n5\n\n4 In this question you should **not** use an approximating distribution.\n\nAt an election in Menham last year, 24% of voters supported the Today Party. A student wishes to test whether support for the Today Party has decreased since last year. He chooses a random sample of 25 voters in Menham and finds that exactly 2 of them say that they support the Today Party.\n\nTest at the 5% significance level whether support for the Today Party has decreased. [5]\n\n...\n\n© UCLES 2024\n\n9709/63/M/J/24\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0019655001506 *\n\n![img-7.jpeg](img-7.jpeg)\n\n6\n\n5 A random variable X has probability density function f given by\n\n$$f(x) = \\begin{cases} ax - x^3 & 0 \\leqslant x \\leqslant \\sqrt{2}, \\\\ 0 & \\text{otherwise}, \\end{cases}$$\n\nwhere a is a constant.\n\n(a) Show that a = 2. [3]\n\n(b) Find the median of X. [4]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0019655001607 *\n\n![img-8.jpeg](img-8.jpeg)\n\n7\n\n(c) Find the exact value of E(X).\n\n[3]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "* 0019655001608 *\n\n![img-9.jpeg](img-9.jpeg)\n\n8\n\n6 The numbers of green sweets in 200 randomly chosen packets of Frutos are summarised in the table.\n\n|  Number of green sweets | 0 | 1 | 2 | 3 | > 3  |\n| --- | --- | --- | --- | --- | --- |\n|  Number of packets | 32 | 50 | 97 | 21 | 0  |\n\n(a) Calculate an unbiased estimate for the population mean of the number of green sweets in a packet of Frutos, and show that an unbiased estimate of the population variance is 0.783 correct to 3 significant figures. [3]\n\nThe manufacturers of Frutos claim that the mean number of green sweets in a packet is 1.65 .\n\nAnji believes that the true value of the mean, μ, is less than 1.65 . She uses the results from the 200 randomly chosen packets to test the manufacturers' claim.\n\n(b) State suitable null and alternative hypotheses for the test. [1]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "* 0019655001609 *\n\n![img-10.jpeg](img-10.jpeg)\n\n9\n\n(c) Show that the result of Anji’s test is significant at the 5% level but not at the 1% level. [4]\n\n(d) It is given that Anji made a Type I error.\n\nExplain how this shows that the significance level that Anji used in her test was not 1%. [1]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0019655001610 *\n\n![img-11.jpeg](img-11.jpeg)\n\n10\n\n7 The independent random variables X and Y have the distributions Po(1.9) and Po(2.2) respectively.\n\n(a) Find P(X + Y < 4).\n\n[3]\n\n(b) Find the probability that X = 2 given that X + Y < 4.\n\n[4]\n\n© UCLES 2024\n\n9709/63/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0019655001611 *\n\n![img-12.jpeg](img-12.jpeg)\n\n11\n\n(c) A sample of 60 randomly chosen pairs of values of X and Y is taken, and the value of X + Y is calculated for each pair. The sample mean of these 60 values is found.\n\nFind the probability that the sample mean of X + Y is less than 4.0 .\n\n[6]\n\n© UCLES 2024\n\n9709/63/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0019655001612 *\n\n![img-13.jpeg](img-13.jpeg)\n\n12\n\n# Additional page\n\nIf you use the following lined page to complete the answer(s) to any question(s), the question number(s) must be clearly shown.\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/63/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "paper_key": "9709_2024_oct_nov_21",
+  "ingestion_run_id": "40da0bf4-2d5b-4436-b355-1021aab619e5",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-05:a_level:9709:2024:oct_nov:21",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_qp_21.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_ms_21.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International AS Level\n\nMATHEMATICS\n\nPaper 2 Pure Mathematics 2\n\nMARK SCHEME\n\nMaximum Mark: 50\n\n9709/21\n\nOctober/November 2024\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the October/November 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level components, and some Cambridge O Level components.\n\nThis document consists of 12 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\nGENERIC MARKING PRINCIPLE 1:\n\nMarks must be awarded in line with:\n\n- the specific content of the mark scheme or the generic level descriptors for the question\n- the specific skills defined in the mark scheme or in the generic level descriptors for the question\n- the standard of response required by a candidate as exemplified by the standardisation scripts.\n\nGENERIC MARKING PRINCIPLE 2:\n\nMarks awarded are always **whole marks** (not half marks, or other fractions).\n\nGENERIC MARKING PRINCIPLE 3:\n\nMarks must be awarded **positively**:\n\n- marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate\n- marks are awarded when candidates clearly demonstrate what they know and can do\n- marks are not deducted for errors\n- marks are not deducted for omissions\n- answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.\n\nGENERIC MARKING PRINCIPLE 4:\n\nRules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.\n\nGENERIC MARKING PRINCIPLE 5:\n\nMarks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).\n\nGENERIC MARKING PRINCIPLE 6:\n\nMarks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n# Mathematics Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n# Abbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) | State or imply $$2y\\ln a = 3x + k$$ and conclude that gradient is $$\\frac{3}{2\\ln a}$$ | **B1** | AG – necessary detail needed.  |\n|   |   | **1** |   |\n|  1(b) | Equate $$\\frac{3}{2\\ln a}$$ to gradient of line | **M1** |   |\n|   |  Obtain $$\\frac{3}{2\\ln a} = \\frac{2.85}{2.9}$$ or equivalent and hence obtain $$a = 4.6$$ or $$a = e^{\\frac{29}{19}}$$ | **A1** | Allow greater accuracy.  |\n|   |  Substitute appropriate values to find value of $$k$$ | **M1** |   |\n|   |  Obtain $$k = 1.7$$ | **A1** |   |\n|   |  **Alternative Method for Question 1(b)** |  |   |\n|   |  Obtain $$0.95(2\\ln a) = 3(0.4) + k$$ or $$a^{1.9} = e^{1.2+k}$$ | **M1** | OE  |\n|   |  Obtain $$3.80(2\\ln a) = 3(3.3) + k$$ or $$a^{7.6} = e^{9.9+k}$$ | **M1** | OE  |\n|   |  Obtain $$a = 4.6$$ or $$a = e^{\\frac{29}{19}}$$ | **A1** | Allow greater accuracy.  |\n|   |  Obtain $$k = 1.7$$ | **A1** |   |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | Attempt solution of equation or inequality, where signs of $x$ and $4x$ are different | **M1** |   |\n|   |  Obtain $\\backslash frac\\{4\\}\\{5\\}$ ... | **A1** | OE  |\n|   |  ... and finally no other value | **A1** |   |\n|   |  Conclude $x\\; <\\; \\backslash frac\\{4\\}\\{5\\}$ | **A1** | Allow $\\backslash left(\\backslash text\\{-\\backslash c\\},\\; \\backslash frac\\{4\\}\\{5\\})$  |\n|   |  **Alternative Method for Question 2**  |   |   |\n|   |  State or imply non-modulus equation $(x-7)^2\\; =\\; (4x+3)^2$ or inequality | **B1** |   |\n|   |  Attempt solution of three-term quadratic equation or inequality | **M1** |   |\n|   |  Obtain finally $\\backslash frac\\{4\\}\\{5\\}$ only | **A1** |   |\n|   |  Conclude $x\\; <\\; \\backslash frac\\{4\\}\\{5\\}$ | **A1** | Allow $\\backslash left(\\backslash text\\{-\\backslash c\\},\\; \\backslash frac\\{4\\}\\{5\\})$  |\n|   |   | **4** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | Differentiate to obtain form $k\\; \\backslash tan\\; \\backslash frac\\{1\\}\\{2\\}\\; x\\; sec^2\\; \\backslash frac\\{1\\}\\{2\\}\\; x$ | **M1** | OE. May use identities before differentiation.  |\n|   |  Obtain correct $\\backslash tan\\; \\backslash frac\\{1\\}\\{2\\}\\; x\\; sec^2\\; \\backslash frac\\{1\\}\\{2\\}\\; x$ | **A1** | OE. Allow unsimplified.  |\n|   |  Substitute $\\backslash frac\\{2\\}\\{3\\}\\; \\backslash pi$ to obtain $4\\backslash sqrt\\{3\\}$ | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(b) | Express integrand as $$\\sec^2 \\frac{1}{2}x - 1 + \\sin x$$ | **B1** |   |\n|   |  Integrate to obtain $$k_1 \\tan \\frac{1}{2}x - x + k_2 \\cos x$$ | **M1** | Where $$k_1 k_2 \\neq 0$$.  |\n|   |  Obtain correct $$2 \\tan \\frac{1}{2}x - x - \\cos x$$ | **A1** |   |\n|   |  Apply limits correctly to obtain $$3 - \\frac{1}{2}\\pi$$ or exact equivalent | **A1** |   |\n|   |   | **4** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(a) | Substitute $$x = -2$$, equate to zero and attempt solution | **M1** |   |\n|   |  Obtain $$a = 4$$ | **A1** |   |\n|   |   | **2** |   |\n|  4(b) | Divide by $$x + 2$$ at least as far as $$k_1 x^2 + k_2 x$$ | **M1** |   |\n|   |  Obtain $$4x^2 - 12x + 9$$ | **A1** |   |\n|   |  Obtain $$(x + 2)(2x - 3)^2$$ or equivalent with integer coefficients only | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(c) | Equate $$\\sin^2 \\theta$$ to appropriate value from factorised form and attempt solution | **M1** | Using *their* $$\\frac{2}{3}$$.  |\n|   |  Obtain 54.7 | **A1** | Or greater accuracy.  |\n|   |  Obtain -54.7 | **A1** | Or greater accuracy. No others in $$-90^\\circ < \\theta < 90^\\circ$$.  |\n|   |   | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | Obtain integral of form $$k \\ln(2x + 1)$$ | ***M1** |   |\n|   |  Obtain correct $$5 \\ln(2x + 1)$$ | **A1** |   |\n|   |  Apply limits correctly and equate to 7 | **DM1** |   |\n|   |  Apply appropriate logarithm property to reach at least $$a^3 = ...$$ | **DM1** |   |\n|   |  Confirm $$a = \\sqrt[3]{0.5e^{1.4}(2a + 1) - 0.5}$$ | **A1** | AG – necessary detail needed.  |\n|   |   | **5** |   |\n|  5(b) | Use iterative process correctly at least once | **M1** |   |\n|   |  Obtain final answer 2.18 | **A1** | Answer required to exactly 3 sf.  |\n|   |  Show sufficient iterations to 5 sf to justify answer or show a sign change in the interval [2.175, 2.185] | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Differentiate $x$ using quotient rule or correct equivalent | *M1 |   |\n|   |  Obtain $\\frac{(e^{2t}+1)2e^{2t}-(e^{2t}-2)2e^{2t}}{(e^{2t}+1)^2}$ or equivalent | A1 |   |\n|   |  Attempt expression for $\\frac{dy}{dx}$ in terms of $t$ | DM1 |   |\n|   |  Obtain $\\frac{1}{2}e^t(e^{2t}+1)^2$ or (unsimplified) equivalent | A1 | No fractions within fractions. Attempt to simplify $(e^{2t}+1)2e^{2t}-(e^{2t}-2)2e^{2t}$ must be seen.  |\n|   |   | 4 |   |\n|  6(b) | Identify $t=\\frac{1}{2}\\ln 2$ at point where curve crosses $y$-axis | B1 |   |\n|   |  Substitute non-zero value of $t$ in *their* expression for $\\frac{dy}{dx}$ and attempt simplification | M1 |   |\n|   |  Obtain $\\frac{9}{2}\\sqrt{2}$ or exact equivalent | A1 |   |\n|   |   | 3 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\n# **PUBLISHED**\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | State $$(\\cos\\theta\\cos30 - \\sin\\theta\\sin30)(\\cos\\theta\\cos60 - \\sin\\theta\\sin60)$$ | **B1** |   |\n|   |  Expand and use correct exact values | **M1** |   |\n|   |  Obtain $$\\frac{1}{4}\\sqrt{3}(\\cos^2\\theta + \\sin^2\\theta) - \\sin\\theta\\cos\\theta$$ or similarly simplified equivalent | **A1** |   |\n|   |  Conclude $$\\frac{1}{4}\\sqrt{3} - \\frac{1}{2}\\sin2\\theta$$ | **A1** | AG – necessary detail needed.  |\n|   |   | **4** |   |\n|  7(b) | Use identity to obtain value for $$\\sin4\\alpha$$ | ***M1** |   |\n|   |  Obtain $$\\sin4\\alpha = \\frac{1}{2}\\sqrt{3} - \\frac{2}{3}$$ or 0.466... | **A1** |   |\n|   |  Show correct process to obtain one value of $$\\alpha$$ | **DM1** |   |\n|   |  Obtain 6.9 and 38.1 | **A1** | Or greater accuracy; and no others between 0° and 90°.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 12",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/21\n\nCambridge International AS Level – Mark Scheme\n\nOctober/November 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(c) | Substitute $$\\theta = -10$$ to obtain $$\\cos 20\\cos 50 = \\frac{1}{4}\\sqrt{3} - \\frac{1}{2}\\sin(-20)$$ | **B1** |   |\n|   |  Substitute $$\\theta = 10$$ to obtain $$\\cos 40\\cos 70 = \\frac{\\sqrt{3}}{4} - \\frac{1}{2}\\sin 20$$ | **B1** |   |\n|   |  Add and confirm $$\\frac{1}{2}\\sqrt{3}$$ with clear indication that $$\\sin(-20) = -\\sin 20$$ | **B1** | AG – necessary detail needed.  |\n|   |  **Alternative solution for Question 7(c)**  |   |   |\n|   |  Rewrite as $$\\sin 70\\cos 50 + \\sin 50\\cos 70$$ or $$\\cos 20\\sin 40 + \\cos 40\\sin 20$$ or $$\\sin 70\\sin 40 + \\cos 70\\cos 40$$ | **B1** |   |\n|   |  Obtain $$\\sin 120$$ or $$\\sin 60$$ or $$\\cos 30$$ | **B1** |   |\n|   |  Confirm $$\\frac{1}{2}\\sqrt{3}$$ | **B1** | AG – necessary detail needed.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 12",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0000800000001 *\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\nMATHEMATICS\n\n9709/21\n\nPaper 2 Pure Mathematics 2\n\nOctober/November 2024\n\n1 hour 15 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 50.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 16 pages. Any blank pages are indicated.\n\nDC (LK) 336237/2\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0000800000002 *\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\n1 The variables $x$ and $y$ satisfy the equation $a^{2y} = e^{3x+k}$, where $a$ and $k$ are constants.\nThe graph of $y$ against $x$ is a straight line.\n\n(a) Use logarithms to show that the gradient of the straight line is $\\frac{3}{2\\ln a}$. [1]\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n(b) Given that the straight line passes through the points $(0.4, 0.95)$ and $(3.3, 3.80)$, find the values of $a$ and $k$. [4]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "* 0000800000003 *\n\n![img-4.jpeg](img-4.jpeg)\n\n3\n\n2 Solve the inequality $|x - 7| > 4x + 3$.\n\n[4]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n© UCLES 2024\n\n9709/21/O/N/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "* 0000800000004 *\n\n4\n\n3 The function f is defined by f(x) = tan²(1/2 x) for 0 ≤ x < π.\n\n(a) Find the exact value of f'(2/3 π).\n\n[3]\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000005 *\n\n![img-5.jpeg](img-5.jpeg)\n\n5\n\n(b) Find the exact value of $$\\int_0^{\\frac{1}{2}\\pi} (f(x) + \\sin x) dx$$.\n\n[4]\n\n© UCLES 2024\n\n9709/21/O/N/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0000800000006 *\n\n![img-6.jpeg](img-6.jpeg)\n\n6\n\n4 The polynomial p(x) is defined by\n\n$$p(x) = ax^3 - ax^2 - 15x + 18,$$\n\nwhere a is a constant. It is given that (x+2) is a factor of p(x).\n\n(a) Find the value of a.\n\n[2]\n\n(b) Hence factorise p(x) completely.\n\n[3]\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "* 0000800000007 *\n\n![img-7.jpeg](img-7.jpeg)\n\n7\n\n(c) Solve the equation $p(\\cosec^2 \\theta) = 0$ for $-90^\\circ < \\theta < 90^\\circ$.\n\n[3]\n\n...\n\n© UCLES 2024\n\n9709/21/O/N/24\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "* 0000800000008 *\n\n![img-8.jpeg](img-8.jpeg)\n\n8\n\n5 It is given that $$\\int_a^{a^3} \\frac{10}{2x+1} dx = 7$$, where $a$ is a constant greater than 1.\n\n(a) Show that $$a = \\sqrt[3]{0.5e^{1.4}(2a+1) - 0.5}$$.\n\n[5]\n\n...\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "* 0000800000009 *\n\n![img-9.jpeg](img-9.jpeg)\n\n9\n\n(b) Use an iterative formula, based on the equation in part (a), to find the value of a correct to 3 significant figures. Use an initial value of 2 and give the result of each iteration to 5 significant figures. [3]\n\n...\n\n© UCLES 2024\n\n9709/21/O/N/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0000800000010 *\n\n![img-10.jpeg](img-10.jpeg)\n\n10\n\n6 A curve has parametric equations\n\n$$x = \\frac{\\mathrm{e}^{2t} - 2}{\\mathrm{e}^{2t} + 1}, \\quad y = \\mathrm{e}^{3t} + 1.$$\n\n(a) Find an expression for $$\\frac{\\mathrm{d}y}{\\mathrm{d}x}$$ in terms of t. [4]\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "* 0000800000011 *\n\n![img-11.jpeg](img-11.jpeg)\n\n11\n\n(b) Find the exact gradient of the curve at the point where the curve crosses the y-axis.\n\n[3]\n\n![img-12.jpeg](img-12.jpeg)\n\n© UCLES 2024\n\n9709/21/O/N/24\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0000800000012 *\n\n![img-13.jpeg](img-13.jpeg)\n\n12\n\n7 (a) Prove that $\\cos(\\theta + 30^\\circ)\\cos(\\theta + 60^\\circ) \\equiv \\frac{1}{4}\\sqrt{3} - \\frac{1}{2}\\sin 2\\theta$. [4]\n\n(b) Solve the equation $5\\cos(2\\alpha + 30^\\circ)\\cos(2\\alpha + 60^\\circ) = 1$ for $0^\\circ < \\alpha < 90^\\circ$. [4]\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000013 *\n\n![img-14.jpeg](img-14.jpeg)\n\n13\n\n(c) Show that the exact value of $\\cos 20^{\\circ} \\cos 50^{\\circ} + \\cos 40^{\\circ} \\cos 70^{\\circ}$ is $\\frac{1}{2}\\sqrt{3}$. [3]\n\n© UCLES 2024\n\n9709/21/O/N/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "* 0000800000014 *\n\n![img-15.jpeg](img-15.jpeg)\n\n14\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\n...\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "* 0000800000015 *\n\n![img-16.jpeg](img-16.jpeg)\n\n15\n\nBLANK PAGE\n\n© UCLES 2024\n\n9709/21/O/N/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "* 0000800000016 *\n\n![img-17.jpeg](img-17.jpeg)\n\n16\n\n# BLANK PAGE\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/21/O/N/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

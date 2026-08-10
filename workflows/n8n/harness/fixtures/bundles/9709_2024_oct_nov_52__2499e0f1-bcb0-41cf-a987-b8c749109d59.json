@@ -1,0 +1,1543 @@
+{
+  "paper_key": "9709_2024_oct_nov_52",
+  "ingestion_run_id": "2499e0f1-bcb0-41cf-a987-b8c749109d59",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-06:a_level:9709:2024:oct_nov:52",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 7
+      },
+      {
+        "message": "Metadata marks this question as requiring a source diagram, but the diagram is tabular and OCR captured it as text inside the question. Nothing is missing; there is no image to recover.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "DIAGRAM_CAPTURED_AS_TEXT",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 6
+      }
+    ],
+    "passed": true,
+    "warning_count": 2,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": 7
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 19,
+      "assets": 0,
+      "issues": 2,
+      "questions": 7,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.03339137
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 12068,
+              "total_tokens": 18672,
+              "output_tokens": 6604,
+              "input_tokens_details": {
+                "cached_tokens": 11648,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 4767
+              }
+            },
+            "response_id": "resp_02e2f9cc6d51043c016a79b5624ae4819b8e3ce70a4057d61c",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 12068,
+            "priced_output_tokens": 6604,
+            "reported_total_tokens": 18672
+          },
+          "input_tokens": 12068,
+          "output_tokens": 6604,
+          "actual_cost_usd": 0.0309066,
+          "cached_input_tokens": 11648
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 10700,
+              "total_tokens": 10956,
+              "output_tokens": 256,
+              "input_tokens_details": {
+                "cached_tokens": 9984,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 130
+              }
+            },
+            "response_id": "resp_0a95b1c625eb947c016a79b5af29a0819aa3bf14fca636d33c",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 10700,
+            "priced_output_tokens": 256,
+            "reported_total_tokens": 10956
+          },
+          "input_tokens": 10700,
+          "output_tokens": 256,
+          "actual_cost_usd": 0.00066288,
+          "cached_input_tokens": 9984
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2666,
+              "total_tokens": 3955,
+              "output_tokens": 1289,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 309
+              }
+            },
+            "response_id": "resp_01ebd98ebd13eb4d016a79b5ee0424819b8ddf45453e278142",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2666,
+            "priced_output_tokens": 1289,
+            "reported_total_tokens": 3955
+          },
+          "input_tokens": 2666,
+          "output_tokens": 1289,
+          "actual_cost_usd": 0.00182189,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "paid_calls": 3,
+      "input_tokens": 25434,
+      "output_tokens": 8149,
+      "actual_cost_usd": 0.03339137,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 23424
+    },
+    "staged_at": "2026-08-10T11:28:56.590Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_qp_52.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 18,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_ms_52.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find \\(P(X \\mid N)\\).",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find \\(P(N \\mid X)\\).",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Determine whether or not \\(X\\) and \\(N\\) are independent events.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "d"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "Find the probability that she succeeds on fewer than 3 of these shots.",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Apply conditional probability using event counts/proportions from a two-way table",
+              "Use Bayes’ theorem (conditional probability reversal)",
+              "Test for independence using P(A and B) vs P(A)P(B) or equivalent ratios",
+              "Use a binomial model for the number of successes in independent trials with constant probability"
+            ],
+            "methods": [
+              "Conditional probability formula P(X|N)=P(X∩N)/P(N)",
+              "Bayes’ theorem P(N|X)=P(X|N)P(N)/P(X)",
+              "Independence check via comparing P(X∩N) with P(X)P(N)",
+              "Binomial probability P(Y=k)=C(n,k)p^k(1-p)^(n-k) and summing for a range"
+            ],
+            "subtopics": [
+              "The Binomial and Geometric Distributions"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.76
+          },
+          "total_marks": 6,
+          "stem_markdown": "At a college, the students choose exactly one of tennis, hockey or netball to play. The table shows the numbers of students in Year 1 and Year 2 at the college playing each of these sports.\n\n|   | Tennis | Hockey | Netball |\n| --- | --- | --- | --- |\n| Year 1 | 16 | 22 | 12 |\n| Year 2 | 24 | 18 | 28 |\n\nOne student is chosen at random from the 120 students. Events \\(X\\) and \\(N\\) are defined as follows:\n\n\\(X\\): the student is in Year 1\n\n\\(N\\): the student plays netball.\n\nOne of the students who plays netball takes 8 shots at goal. On each shot, the probability that she will succeed is 0.15, independently of all other shots.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "$$[P(X | N) =] \\frac{12}{40}$$",
+              "guidance_markdown": "0.3, $$\\frac{3}{10}$$, 30% OE.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "$$[P(N | X) =] \\frac{12}{50}$$",
+              "guidance_markdown": "0.24, $$\\frac{6}{25}$$ OE.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$P(N \\cap X) = \\frac{12}{120},\\ P(N) = \\frac{40}{120},\\ P(X) = \\frac{50}{120}$$ $$\\frac{40}{120} \\times \\frac{50}{120} = \\frac{5}{36}, 0.138[8\\dots] \\neq \\frac{12}{120}, 0.1$$ Not independent",
+              "guidance_markdown": "$$P(N), P(X)$$ and $$P(N \\cap X)$$ or $$P(N \\text{ and } X)$$ notation seen and equated to the values for $$P(N), P(X)$$ and $$P(N \\cap X)$$ or $$P(N \\text{ and } X)$$. Calculation stated and evaluated. Not independent clearly stated. $$\\frac{5}{36} \\neq \\frac{12}{120}$$ does not need to be stated. All values OE. Condone consistent use of $$A$$, $$B$$ etc. If values for $$P(N), P(X)$$ stated, accept $$P(N) \\times P(X) = \\frac{5}{36}.$$",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$[P(0, 1, 2) =] (0.85)^8 + {}^8C_1(0.85)^7(0.15) + {}^8C_2(0.85)^6(0.15)^2$$ $$[= 0.27249 + 0.38469 + 0.23760]$$",
+              "guidance_markdown": "One term of form $${}^8C_x(p)^x(1-p)^{8-x}$$. With $$0 < p < 1$$, $$x \\neq 0$$ or 8.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "",
+              "guidance_markdown": "Correct unsimplified expression, no terms omitted leading to final answer.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$= 0.895$$",
+              "guidance_markdown": "$$0.8945 \\leqslant p \\leqslant 0.895$$.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$[P(0, 1, 2) =] 1 - \\{ {}^8C_3(0.85)^5(0.15)^3 + {}^8C_4(0.85)^4(0.15)^4 + {}^8C_5(0.85)^3(0.15)^5 + {}^8C_6(0.85)^2(0.15)^6 + {}^8C_7(0.85)(0.15)^7 + (0.15)^8\\}$$",
+              "guidance_markdown": "One term of form $${}^8C_x(p)^x(1-p)^{8-x}$$ With $$0 < p < 1$$, $$x \\neq 0$$ or 8.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "",
+              "guidance_markdown": "Correct unsimplified expression. Condone omission of final bracket ‘}’. If other brackets omitted, allow recovery if $$1 - 0.1052[...]$$ seen.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$= 0.895$$",
+              "guidance_markdown": "$$0.8945 \\leqslant p \\leqslant 0.895$$.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the number of different arrangements of the 9 letters in the word ALGEBRAIC.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the number of different arrangements of the 9 letters in the word ALGEBRAIC in which there are no more than two letters between the two As.",
+              "source_page_numbers": [
+                4
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Calculate the number of distinct arrangements of letters with repetition restrictions",
+              "Count arrangements subject to separation constraints between identical letters"
+            ],
+            "methods": [
+              "Use factorial counts for permutations with repeated letters",
+              "Convert the separation constraint into a placement/counting argument for identical letters"
+            ],
+            "subtopics": [],
+            "main_topic": "Permutations and Combinations",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 4,
+          "stem_markdown": "",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "$$\\left[ \\frac{9!}{2!} = \\right] 181440$$",
+              "guidance_markdown": "Exact value must be seen. CAO.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Scenario number of letters between As",
+              "guidance_markdown": "Correct outcome/value for 1 identified scenario, accept unsimplified.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "A A [^ ^ ^ ^ ^ ^ ^] | 7! × 8 or 8! | [ = 40320]\nA ^ A [^ ^ ^ ^ ^ ^] | 7! × 7 | [ = 35280]\nA ^ ^ A [^ ^ ^ ^ ^] | 7! × 6 | [ = 30240]\nTotal: 7! × (8 + 7 + 6)",
+              "guidance_markdown": "Add values of 3 correct scenarios, no incorrect/repeated scenarios.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "= 105 840",
+              "guidance_markdown": "If M1 not awarded, **SC B1** for 105840 WWW.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Scenario number of letters between As",
+              "guidance_markdown": "Correct outcome/value for 1 identified scenario, accept unsimplified.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "A A [^ ^ ^ ^ ^ ^ ^] | 8! | [ = 40320]\nA ^ A [^ ^ ^ ^ ^ ^] | ^{7}P_{1} × 7! **or** ^{7}C_{1} × 7! | [ = 35280]\nA ^ ^ A [^ ^ ^ ^ ^] | ^{7}P_{2} × 6! **or** ^{7}C_{2} × 2 × 6! | [ = 30240]\nTotal: 8! + ^{7}P_{1} × 7! + ^{7}P_{2} × 6! **or** 8! + ^{7}C_{1} × 7! + ^{7}C_{2} × 2 × 6!",
+              "guidance_markdown": "Add values of 3 correct scenarios, no incorrect/repeated scenarios.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "=105 840",
+              "guidance_markdown": "If M1 not awarded, **SC B1** for 105840 WWW.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Scenario number of letters between As",
+              "guidance_markdown": "Correct outcome/value for 1 identified scenario, accept unsimplified.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "A ^ ^ ^ A [^ ^ ^ ^] | 7! × 5 | [ = 25200]\nA ^ ^ ^ ^ A [^ ^ ^ ] | 7! × 4 | [ = 20160]\nA ^ ^ ^ ^ ^ A [^ ^ ] | 7! × 3 | [ = 15120]\nA ^ ^ ^ ^ ^ ^ A [^ ] | 7! × 2 | [ = 10080]\nA ^ ^ ^ ^ ^ ^ ^ A | 7! [× 1] | [ = 5040]\nTotal = $$\\frac{9!}{2!} - 7! \\times (5 + 4 + 3 + 2 + 1)$$",
+              "guidance_markdown": "*their 2(a)*, or correct, subtract values of 5 correct scenarios, no incorrect/repeated scenarios.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "=105 840",
+              "guidance_markdown": "If M1 not awarded, **SC B1** for 105840 WWW.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Draw up the probability distribution table for \\(X\\).",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find \\(\\operatorname{Var}(X)\\).",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Construct a probability distribution for a discrete random variable defined by a coin/dice experiment",
+              "Compute variance from a probability distribution"
+            ],
+            "methods": [
+              "Enumerate outcomes from the coin and dice rules to obtain P(X=x)",
+              "Use Var(X)=E(X^2)−[E(X)]^2 from the distribution"
+            ],
+            "subtopics": [],
+            "main_topic": "Discrete Random Variables",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.84
+          },
+          "total_marks": 6,
+          "stem_markdown": "A fair coin and an ordinary fair six-sided dice are thrown at the same time. The random variable \\(X\\) is defined as follows.\n\n- If the coin shows a tail, \\(X\\) is twice the score on the dice.\n- If the coin shows a head, \\(X\\) is the score on the dice if the score is even and \\(X\\) is 0 otherwise.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "x | 0 | 2 | 4 | 6 | 8 | 10 | 12\nP(X = x) | $$\\frac{3}{12}$$, $$\\frac{1}{4}$$ 0.25 | $$\\frac{2}{12}$$, $$\\frac{1}{6}$$ 0.167 | $$\\frac{2}{12}$$ | $$\\frac{2}{12}$$ | $$\\frac{1}{12}$$ 0.0833 | $$\\frac{1}{12}$$ | $$\\frac{1}{12}$$",
+              "guidance_markdown": "Table with correct x values and at least 2 correct probabilities. Condone any additional x values if probability stated as 0.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "",
+              "guidance_markdown": "Four more probabilities correctly linked to the correct x value, need not be in table, accept unsimplified.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "7 correct probabilities linked with correct outcomes, may not be in table. Decimals correct to at least 3 SF. **SC B1** 7 or more probabilities summing to 1 placed in a probability distribution table.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "\\[ [E(X)\\; =\\;]\\; [0\\;]\\; +\\; 2\\; \\backslash times\\; \\backslash frac\\{2\\}\\{12\\}\\; +\\; 4\\; \\backslash times\\; \\backslash frac\\{2\\}\\{12\\}\\; +\\; 6\\; \\backslash times\\; \\backslash frac\\{2\\}\\{12\\}\\; +\\; 8\\; \\backslash times\\; \\backslash frac\\{1\\}\\{12\\}\\; +\\; 10\\; \\backslash times\\; \\backslash frac\\{1\\}\\{12\\}\\; +\\; 12\\; \\backslash times\\; \\backslash frac\\{1\\}\\{12\\} \\] \\[ \\backslash left\\{ \\backslash left[0\\;]\\; +\\; \\backslash frac\\{4\\}\\{12\\}\\; +\\; \\backslash frac\\{8\\}\\{12\\}\\; +\\; \\backslash frac\\{12\\}\\{12\\}\\; +\\; \\backslash frac\\{8\\}\\{12\\}\\; +\\; \\backslash frac\\{10\\}\\{12\\}\\; +\\; \\backslash frac\\{12\\}\\{12\\}\\; =\\; \\backslash frac\\{54\\}\\{12\\}\\; =\\; 4.5\\; \\backslash \\backslash \\; \\backslash text]",
+              "guidance_markdown": "Accept unsimplified expression. May be calculated in variance. Accept $\\backslash frac\\{1\\}\\{3\\}\\; +\\; \\backslash frac\\{2\\}\\{3\\}\\; +\\; 1\\; +\\; \\backslash frac\\{2\\}\\{3\\}\\; +\\; \\backslash frac\\{5\\}\\{6\\}\\; +\\; 1$ OE for the M mark FT *their* table with 7 or 8 probabilities summing to $0.999\\; \\backslash leq\\; \\backslash text\\{total\\; \\backslash leq\\; 1\\}$ ($0\\; <\\; p\\; <\\; 1$). FT acceptable at the bold partially evaluated stage.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "\\[ [Var(X)\\; =\\;]\\; \\backslash left\\{ [0\\;]\\; +\\; 2^2\\; \\backslash times\\; \\backslash frac\\{2\\}\\{12\\}\\; +\\; 4^2\\; \\backslash times\\; \\backslash frac\\{2\\}\\{12\\}\\; +\\; 6^2\\; \\backslash times\\; \\backslash frac\\{2\\}\\{12\\}\\; +\\; 8^2\\; \\backslash times\\; \\backslash frac\\{1\\}\\{12\\}\\; +\\; 10^2\\; \\backslash times\\; \\backslash frac\\{1\\}\\{12\\}\\; +\\; 12^2\\; \\backslash times\\; \\backslash frac\\{1\\}\\{12\\}\\; -\\; (\\backslash text\\{their\\; 4.5\\})^2 \\] \\[ \\backslash left\\{ \\backslash left[0\\;]\\; +\\; 2\\; \\backslash times\\; 4\\; +\\; 2\\; \\backslash times\\; 16\\; +\\; 2\\; \\backslash times\\; 36\\; +\\; [1\\; \\backslash times\\; ]\\; 64\\; +\\; [1\\; \\backslash times\\; ]\\; 100\\; +\\; [1\\; \\backslash times\\; ]\\; 144\\; -\\; \\backslash frac\\{81\\}\\{12\\} \\] \\[ \\backslash left\\{ \\backslash left[0\\;]\\; =\\; 35\\; -\\; 4.5^2\\; \\backslash \\backslash \\; \\backslash text]",
+              "guidance_markdown": "Appropriate variance formula using *their* $(E(X))^2$ value. FT *their* table with 6 or more probabilities. $(0\\; <\\; p\\; <\\; 1)$ which need not sum to 1 or with an expression no more evaluated than shown. FT acceptable at the bold partially evaluated stage with *their* probabilities.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "\\[ =\\; 14.75,\\; 14\\backslash frac\\{3\\}\\{4\\} \\]",
+              "guidance_markdown": "CAO Accept $\\backslash frac\\{59\\}\\{4\\}$. If either or both M marks not awarded, **SC B1** for correct answer WWW",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "How many of these trees would you expect to have height less than 18.2 metres?",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The heights, in metres, of red pine trees are normally distributed with mean 23.4 and standard deviation \\(\\sigma\\). It is known that 26% of red pine trees have height greater than 25.5 metres.\n\nFind the value of \\(\\sigma\\).",
+              "source_page_numbers": [
+                6
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Standardise normal variables to find probabilities",
+              "Convert probabilities to expected frequencies",
+              "Solve for an unknown standard deviation using a given tail probability"
+            ],
+            "methods": [
+              "Use Z=(X−μ)/σ and the standard normal CDF",
+              "Expected number = n·P(event)",
+              "Reverse the standardisation to determine σ from a specified upper/lower tail probability"
+            ],
+            "subtopics": [],
+            "main_topic": "The Normal Distribution",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 7,
+          "stem_markdown": "The heights, in metres, of white pine trees are normally distributed with mean 19.8 and standard deviation 2.4.\n\nIn a certain forest there are 450 white pine trees.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$[P(X < 18.2) = P(Z < \\frac{18.2 - 19.8}{2.4})]$$",
+              "guidance_markdown": "Use of $$\\pm$$ standardisation formula with 18.2, 19.8 and 2.4 substituted appropriately, no continuity correction. Condone $$\\sigma^2(2.4^2)$$ or $$\\sqrt{\\sigma}(\\sqrt{2.4})$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$= [\\Phi(-0.6667) = 1 - \\Phi(0.6667)]$$ $$= 1 - 0.7477$$",
+              "guidance_markdown": "Calculating the appropriate probability areas (leading to their final answer, expect $$< 0.5$$). Note: 0.432 is $$z$$-value of 0.667 so is not an appropriate probability area (M0).",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.252(3)$$",
+              "guidance_markdown": "AWRT 0.252 SOI, accept 0.2525. If one or both M marks not awarded, **SC B1** for AWRT 0.252 SOI, accept 0.2525.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$[\\text{Expected number} = 0.2523 \\times 450 = 113.5, ]$$ $$= 113 \\text{ or } 114$$",
+              "guidance_markdown": "Strict FT *their* at least 4 figure probability $$\\times 450$$. (Check with calculator). One integer answer only. No indication of ‘approximation’, e.g. $$\\approx, \\cong, \\text{about}$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$[P(X > 25.5) = 0.26 \\text{ so } P(Z > \\frac{25.5 - 23.4}{\\sigma}) = 0.26]$$ $$\\frac{25.5 - 23.4}{\\sigma} = 0.643$$",
+              "guidance_markdown": "$$0.643 \\leqslant z \\leqslant 0.6435$$ or $$-0.6435 \\leqslant z \\leqslant -0.643$$ seen.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "",
+              "guidance_markdown": "$$\\pm$$ standardisation formula with 25.5, 23.4, $$\\sigma$$ equating to a $$z$$-value, (not $$1 - \\text{their } z$$-value...). Condone continuity correction $$\\pm 0.05$$, not $$\\sigma^2$$, not $$\\sqrt{\\sigma}$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$\\sigma = 3.27$$",
+              "guidance_markdown": "$$3.26 \\leqslant \\sigma \\leqslant 3.27$$. Do not award for improper fractions.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "In how many ways can the group of 7 be chosen?",
+              "source_page_numbers": [
+                7
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "On another occasion a group of 5 will be chosen from the 21 students. The group must contain at least 2 violinists, at least 1 guitarist and at most 1 pianist.\n\nIn how many ways can the group of 5 be chosen?",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Count combinations from distinct categories with specified numbers from each group",
+              "Count combinations subject to multiple inequality constraints on category counts"
+            ],
+            "methods": [
+              "Use the product of binomial coefficients for selecting fixed counts from each instrument type",
+              "Use counting by cases (or complementary counting) to enforce at least/at most conditions"
+            ],
+            "subtopics": [],
+            "main_topic": "Permutations and Combinations",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 6,
+          "stem_markdown": "In a class of 21 students, there are 10 violinists, 6 guitarists and 5 pianists. A group of 7 is to be chosen from these 21 students. The group will consist of 4 violinists, 2 guitarists and 1 pianist.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "^{10}C_{4} × ^{6}C_{2} × ^{5}C_{1}",
+              "guidance_markdown": "^{10}C_{a} × ^{6}C_{b} × ^{5}C_{c}, a + b + c = 7, a,b,c integers. No other terms present but condone × 6 or × 3!.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "[ = 210 × 15 × 5 ] = 15750",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Scenario | V G P\nVVVVG | 4 1 0 | ^{10}C_{4} × ^{6}C_{1} [ × ^{5}C_{0}] | [1260 ]",
+              "guidance_markdown": "One product using 2 or 3 combinations with upper numbers correct and lower numbers summing to 5 and linked to a correct identified scenario. Condone the consistent use of permutations.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "VVVGG | 3 2 0 | ^{10}C_{3} × ^{6}C_{2} [ × ^{5}C_{0}] | [1800 ]",
+              "guidance_markdown": "2 identified outcomes evaluated accurately, accept unsimplified.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "VVGGG | 2 3 0 | ^{10}C_{2} × ^{6}C_{3} [ × ^{5}C_{0}] | [900]\nVVVGP | 3 1 1 | ^{10}C_{3} × ^{6}C_{1} × ^{5}C_{1} | [3600 ]\nVVGGP | 2 2 1 | ^{10}C_{2} × ^{6}C_{2} × ^{5}C_{1} | [3375 ]",
+              "guidance_markdown": "Add values of 5 correct scenarios, no incorrect/repeated scenarios.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Total = 10935",
+              "guidance_markdown": "If either or both Ms not awarded, **SC B1** for 10935 WWW",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Draw a back-to-back stem-and-leaf diagram to represent this information, with the Falcons on the left-hand side.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the median and the interquartile range of the times for the Falcons.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Let \\(x\\) and \\(y\\) denote the times, in minutes, of a runner from the Falcons and a runner from the Kites respectively.\n\nIt is given that\n\\(\\sum x = 792,\\quad \\sum x^2 = 43\\,504,\\quad \\sum y = 783,\\quad \\sum y^2 = 42\\,223.\\)\n\nFind the mean and the standard deviation of the times taken by all 30 runners from the two teams.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Construct a back-to-back stem-and-leaf diagram from two data sets",
+              "Compute median and interquartile range from ordered data",
+              "Compute combined mean and standard deviation from given sums of values and squares"
+            ],
+            "methods": [
+              "Stem-and-leaf representation using consistent stems/leaf ordering for two groups",
+              "Determine median and quartiles to obtain IQR",
+              "Use mean formula x̄=(Σx)/n and standard deviation from Var=(Σx^2)/n − (x̄)^2 (or equivalent) for the combined sample"
+            ],
+            "subtopics": [],
+            "main_topic": "Representation of Data",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.83
+          },
+          "total_marks": 10,
+          "stem_markdown": "Teams of 15 runners took part in a charity run last Saturday. The times taken, in minutes, to complete the course by the runners from the Falcons and the runners from the Kites are shown in the table.\n\n| Falcons | 38 | 39 | 42 | 44 | 46 | 48 | 50 | 51 | 52 | 56 | 58 | 59 | 64 | 69 | 76 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Kites | 32 | 40 | 40 | 45 | 47 | 48 | 52 | 54 | 58 | 59 | 59 | 60 | 61 | 63 | 65 |",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Falcons\n9 8 3 2",
+              "guidance_markdown": "Correct stem, ignore extra values (not in reverse, not split). If a split stem-and-leaf plot is used (i.e. stem values are repeated) the remaining B marks are available.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "8 6 4 2 4 0 0 5 7 8",
+              "guidance_markdown": "Correct Falcons labelled on left, leaves in order from right to left and lined up vertically, no commas or other punctuation.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "9 8 6 2 1 0 5 2 4 8 9 9",
+              "guidance_markdown": "Correct Kites labelled on same diagram, leaves in order and lined up vertically, no commas or other punctuation. Penalise each error only once in question. E.g. commas in both sets of data.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "9 4 6 0 1 3 5 6 7 Key: 1 | 5 | 4 means 51 minutes for Falcons and 54 minutes for Kites",
+              "guidance_markdown": "Correct key, for their diagram, need both teams names and ‘mins’ at least once here, or in leaf headings or title. If 2 separate diagrams drawn max marks **B1** if both stems correct. **B1** if Falcons correct to the left of the stem. **B1** if both keys correct including ‘mins’ and team name.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Median = 51 [minutes]",
+              "guidance_markdown": "Accept **Q2, must** be identified.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "[IQR =] 59 – 44",
+              "guidance_markdown": "58 ≤ UQ ≤ 64 – 42 ≤ LQ ≤ 46. Implied if both quartile values are stated and an appropriate IQR calculated accurately.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "= 15 [minutes]",
+              "guidance_markdown": "WWW",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$\\left[ \\text{mean} = \\frac{792 + 783}{30} = \\frac{1575}{30} = \\right] 52.5, 52\\frac{1}{2}, \\frac{105}{2}$$",
+              "guidance_markdown": "$$\\frac{1575}{30}$$ is not acceptable for this mark.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$\\sum x^2 = 85727$$ $$\\text{sd}^2 = \\left[ \\text{Variance} = \\right] \\left[ \\frac{(43504 + 42223)}{30} - \\left( \\frac{792 + 783}{30} \\right)^2 \\right]$$ $$\\frac{85727}{30} - \\left( \\frac{1575}{30} \\right)^2 \\quad [= 101.3167]$$",
+              "guidance_markdown": "Accept unsimplified variance formula. FT *their* mean. Ignore any square root leading to sd for this mark.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "$$\\sigma = \\left( \\sqrt{101.3167} = \\right) 10.1$$",
+              "guidance_markdown": "AWRT. Must be identified, e.g. sd, s, std d, $$\\sigma$$. Condone ‘short’ square root signs. If M1 not awarded, **SC B1** for, $$\\sigma = \\sqrt{101.3167} \\text{ or } \\sqrt{\\frac{6079}{60}} \\text{oe} = 10.1$$.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find \\(P(X = 5)\\).",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find \\(P(3 \\le X \\le 7)\\).",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find the probability that Leno scores his second goal on or before his 5th attempt.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "d"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "Leno has 75 attempts to score a goal.\n\nUse a suitable approximation to find the probability that Leno scores more than 28 goals but fewer than 35 goals.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Model the number of attempts to achieve first success",
+              "Compute exact geometric probabilities for specific values and for cumulative ranges",
+              "Use an approximation for a distribution of goals to estimate a probability about a count interval"
+            ],
+            "methods": [
+              "Geometric distribution P(X=k)=(1-p)^(k-1)p and cumulative probabilities via summation",
+              "For interval probabilities, sum geometric terms or use cumulative complements",
+              "Approximate the number of successes in a fixed range (via a suitable limiting/normal approximation) to estimate P(a<X<b)"
+            ],
+            "subtopics": [
+              "Probability"
+            ],
+            "main_topic": "The Binomial and Geometric Distributions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.72
+          },
+          "total_marks": 11,
+          "stem_markdown": "In a game, players attempt to score a goal by kicking a ball into a net. The probability that Leno scores a goal is 0.4 on any attempt, independently of all other attempts. The random variable \\(X\\) denotes the number of attempts that it takes Leno to score a goal.",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "$$[(0.6)^4 \\times 0.4] = 0.0518[4], \\frac{162}{3125}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$[P(X \\leq 7) - P(X \\leq 2) =] (1 - 0.6^7) - (1 - 0.6^2)$$",
+              "guidance_markdown": "$$(1 - p^7) - (1 - p^2) \\text{ or } p^2 - p^7 \\text{ seen, } 0 < p < 1.$$",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$[= 0.36 - 0.02799]$$ $$= 0.332[0...], \\frac{25938}{78125}$$",
+              "guidance_markdown": "If M0 awarded **SC B1** 0.3320064 or $$\\frac{25938}{78125}$$ CAO.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$[P(X = 3,4,5,6,7) =]$$ $$0.4 \\times 0.6^2 + 0.4 \\times 0.6^3 + 0.4 \\times 0.6^4 + 0.4 \\times 0.6^5 + 0.4 \\times 0.6^6$$",
+              "guidance_markdown": "$$(1 - p) \\times p^2 + (1 - p) \\times p^3 + (1 - p) \\times p^4 + (1 - p) \\times p^5 + (1 - p) \\times p^6$$ seen, $$0 < p < 1.$$",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$[= 0.144 + 0.0864 + 0.05184 + 0.031104 + 0.0186624]$$ $$= 0.332[0...], \\frac{25938}{78125}$$",
+              "guidance_markdown": "If M0 awarded **SC B1** 0.3320064 or $$\\frac{25938}{78125}$$ CAO.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$[P(X = 3,4,5,6,7) =] \\frac{0.144(1 - 0.6^5)}{1 - 0.6 \\text{ or } 0.4}$$",
+              "guidance_markdown": "$$\\frac{0.144(1 - p^5)}{1 - p} \\text{ seen } 0 < p < 1.$$",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$= 0.332[0...], \\frac{25938}{78125}$$",
+              "guidance_markdown": "If M0 awarded **SC B1** 0.3320064 or $$\\frac{25938}{78125}$$ CAO.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "2nd goal scored on:",
+              "guidance_markdown": "2 correct unsimplified outcomes. Condone not identified but not incorrectly identified.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "2nd attempt | $$(0.4)^2$$ | $$[ = 0.16]$$\n3rd attempt | $$(0.4)^2 (0.6) \\times (2 \\text{ or } ^2C_1)$$ | $$[ = 0.192]$$\n4th attempt | $$(0.4)^2 (0.6)^2 \\times (3 \\text{ or } ^3C_1)$$ | $$[ = 0.1728]$$\n5th attempt | $$(0.4)^2 (0.6)^3 \\times (4 \\text{ or } ^4C_1)$$ | $$[ = 0.13824]$$",
+              "guidance_markdown": "Add values for 4 identified correct scenarios. Condone adding values of 2nd, 3rd and 4th attempts only. No incorrect scenarios.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "$$= 0.663, \\frac{2072}{3125}$$",
+              "guidance_markdown": "If either or both M marks not awarded, **SC B1** for 0.663, $$\\frac{2072}{3125}$$ WWW condone 1 index error.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$^5C_2(0.4)^2(0.6)^3 + ^5C_3(0.4)^3(0.6)^2 + ^5C_4(0.4)^4(0.6)^1 + ^5C_5(0.4)^5$$ $$[0.3456 + 0.2304 + 0.0768 + 0.01024]$$ or $$1 - (^5C_0 (0.6)^5 + ^5C_1(0.4)^1(0.6)^4)$$",
+              "guidance_markdown": "At least 2 correct unsimplified terms.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "",
+              "guidance_markdown": "Add values for 4 terms of the form $$^5C_a(0.4)^a(0.6)^{5-a}$$ or 1 – sum of 2 terms of the form $$^5C_a(0.4)^a(0.6)^{5-a}$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "$$= 0.663, \\frac{2072}{3125}$$",
+              "guidance_markdown": "If either or both M marks not awarded, **SC B1** for 0.663 www condone 1 index error.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "[Mean = 75 × 0.4 =] 30 [Variance = 75 × 0.4 × 0.6 =] 18",
+              "guidance_markdown": "30 and 18 seen, allow unsimplified. May be seen in standardisation formula. ($\\sigma = \\sqrt{18}, 3\\sqrt{2}, 4.2426 \\leqslant \\sigma \\leqslant 4.243$ implies correct variance) Withhold mark if variance clearly identified as standard deviation.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "$P(28 < X < 35) = P(\\frac{28.5 - 30}{\\sqrt{18}} < Z < \\frac{34.5 - 30}{\\sqrt{18}})$",
+              "guidance_markdown": "Substituting *their* $\\mu$ and positive $\\sigma$ into one $\\pm$ standardising formula (any number for 28.5 or 34.5), not $\\sigma^2$, not $\\sqrt{\\sigma}$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "",
+              "guidance_markdown": "Using continuity corrections 27.5 or 28.5 and 34.5 or 35.5 in *their* 2 separate standardisation formula.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "$[= \\Phi(1.0607) + \\Phi(0.3536) - 1]$ $= 0.8556 + 0.6383 - 1$ Or $0.8556 - (1 - 0.6383)$ Or $0.8556 - 0.3617$ Or $(0.8556 - 0.5) + (0.6383 - 0.5)$ Or $0.3556 + 0.1383$",
+              "guidance_markdown": "Appropriate area $\\Phi$, from final process. Must be a probability.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 18,
+              "content_markdown": "$= 0.494$",
+              "guidance_markdown": "AWRT.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_02e2f9cc6d51043c016a79b5624ae4819b8e3ce70a4057d61c",
+      "resp_0a95b1c625eb947c016a79b5af29a0819aa3bf14fca636d33c",
+      "resp_01ebd98ebd13eb4d016a79b5ee0424819b8ddf45453e278142"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

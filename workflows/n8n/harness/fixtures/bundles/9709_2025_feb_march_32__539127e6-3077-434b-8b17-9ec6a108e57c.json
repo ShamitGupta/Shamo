@@ -1,0 +1,1944 @@
+{
+  "paper_key": "9709_2025_feb_march_32",
+  "ingestion_run_id": "539127e6-3077-434b-8b17-9ec6a108e57c",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-08:a_level:9709:2025:feb_march:32",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [],
+    "passed": true,
+    "warning_count": 0,
+    "question_count": 11,
+    "source_total_marks": 75,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 75,
+    "source_question_count": null
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 12,
+      "assets": 2,
+      "issues": 0,
+      "questions": 11,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.04108017
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 16942,
+              "total_tokens": 24514,
+              "output_tokens": 7572,
+              "input_tokens_details": {
+                "cached_tokens": 16256,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 5435
+              }
+            },
+            "response_id": "resp_04401ff98060a86c016a79cc861d588198a59269f791fe7e47",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 16942,
+            "priced_output_tokens": 7572,
+            "reported_total_tokens": 24514
+          },
+          "input_tokens": 16942,
+          "output_tokens": 7572,
+          "actual_cost_usd": 0.0358077,
+          "cached_input_tokens": 16256
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 10284,
+              "total_tokens": 10559,
+              "output_tokens": 275,
+              "input_tokens_details": {
+                "cached_tokens": 9984,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 111
+              }
+            },
+            "response_id": "resp_015016889bb7b1dd016a79cce02f5c8199baabd0ac28a64926",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 10284,
+            "priced_output_tokens": 275,
+            "reported_total_tokens": 10559
+          },
+          "input_tokens": 10284,
+          "output_tokens": 275,
+          "actual_cost_usd": 0.00060343,
+          "cached_input_tokens": 9984
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_question_extraction",
+          "usage_audit": {
+            "usage_raw": [
+              {
+                "input_tokens": 1689,
+                "total_tokens": 3190,
+                "output_tokens": 1501,
+                "input_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0
+                },
+                "output_tokens_details": {
+                  "reasoning_tokens": 281
+                }
+              }
+            ],
+            "response_id": [
+              "resp_08ec73c75cf0cb52016a79cd35d15c819aac7574488537498d"
+            ],
+            "model_reported": "gpt-5.4-nano",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 1689,
+            "priced_output_tokens": 1501,
+            "reported_total_tokens": 3190
+          },
+          "input_tokens": 1689,
+          "output_tokens": 1501,
+          "actual_cost_usd": 0.00221405,
+          "cached_input_tokens": 0
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2419,
+              "total_tokens": 4254,
+              "output_tokens": 1835,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 347
+              }
+            },
+            "response_id": "resp_0c8dc103c192d3e5016a79cd83601481989ad003471193647d",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2419,
+            "priced_output_tokens": 1835,
+            "reported_total_tokens": 4254
+          },
+          "input_tokens": 2419,
+          "output_tokens": 1835,
+          "actual_cost_usd": 0.00245499,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "paid_calls": 4,
+      "input_tokens": 31334,
+      "output_tokens": 11183,
+      "actual_cost_usd": 0.04108017,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 28032
+    },
+    "staged_at": "2026-08-10T13:09:39.023Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 20,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m25_qp_32.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 23,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m25_ms_32.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Transform and solve an equation involving natural logs and exponentials",
+              "Ensure valid domain for logarithms",
+              "Produce numerical solution to a specified precision"
+            ],
+            "methods": [
+              "Rewrite in exponential form",
+              "Solve resulting simple equation",
+              "Check domain and numerical approximation"
+            ],
+            "subtopics": [
+              "Solving logarithmic equations",
+              "Domain restrictions"
+            ],
+            "main_topic": "Exponential and Logarithmic Functions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 3,
+          "stem_markdown": "Solve the equation\n\n\\[\n\\ln(1-e^{-2x})+3=0.\n\\]\n\nGive your final answer correct to 4 decimal places.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "State that $$1 - e^{-2x} = e^{-3}$$",
+              "guidance_markdown": "OE, with ln removed.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Use correct method to solve an equation of the form $$e^{\\pm 2x} = a$$, where $$a > 0$$, and a reasonable attempt at the B1, for $$\\pm 2x \\ln e$$ or $$\\pm x \\ln e$$",
+              "guidance_markdown": "E.g. $$[e^{-2x} = 1 - e^{-3}]$$ $$-2x = \\ln(1 - e^{-3}) \\dots OE$$. Can be numerical $$\\ln(1 - 0.049787) = \\ln 0.9502$$. Evidence of method must be seen.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Obtain answer 0.0255",
+              "guidance_markdown": "CAO Must be 4 decimal places. No working seen scores 0.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "State that $$1 - e^{-2x} = e^{-3}$$",
+              "guidance_markdown": "OE, without ln.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Rearrange to obtain an expression for $$e^x$$ **and** solve an equation of the form $$e^{\\pm x} = a$$, where $$a > 0$$, and a reasonable attempt at the B1, for $$x$$",
+              "guidance_markdown": "E.g. $$\\left[ e^x = \\sqrt{\\frac{1}{1 - e^{-3}}}, e^x = \\sqrt{\\frac{e^3}{e^3 - 1}} \\right],$$ $$x = \\ln \\sqrt{\\frac{1}{1 - e^{-3}}}$$ Can be numerical. Evidence of method must be seen.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain answer 0.0255",
+              "guidance_markdown": "CAO Must be 4 decimal places. No working seen scores 0.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Differentiate implicitly a relation involving ln(x+2y)",
+              "Evaluate dy/dx at x=0 using the given point on the curve"
+            ],
+            "methods": [
+              "Differentiate both sides implicitly",
+              "Substitute x=0 and the corresponding y-value",
+              "Solve for dy/dx"
+            ],
+            "subtopics": [
+              "Implicit differentiation",
+              "Gradients at a point",
+              "Logarithmic differentiation"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 5,
+          "stem_markdown": "The equation of a curve is \\(xy^2+\\ln(x+2y)=1\\).\n\nFind the gradient of the curve at the point where \\(x=0\\).",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "State or imply $$\\frac{1+2\\frac{dy}{dx}}{x+2y}$$ as the derivative of $$\\ln(x+2y)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "State derivative of $$xy^2$$ is $$x^2y\\frac{dy}{dx}+y^2$$",
+              "guidance_markdown": "$$x^2y\\frac{dy}{dx}+y^2$$",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $$y^2+2xy\\frac{dy}{dx}+\\frac{1+2\\frac{dy}{dx}}{x+2y}=0$$",
+              "guidance_markdown": "OE May be implied by correct final answer.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain $$y=\\frac{1}{2}e$$ when $$x=0$$",
+              "guidance_markdown": "OE Allow $$\\frac{1}{2}\\times 2.718$$ or $$1.36$$ or better e.g. $$1.359\\dots$$ May be implied by correct final answer.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$\\frac{dy}{dx}=-\\frac{1}{8}(e^3+4)$$",
+              "guidance_markdown": "OE Accept AWRT –3.01. ISW.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find two inequalities in terms of \\(z\\) that define the shaded region.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the greatest value of \\(|z|\\) for points in this region.",
+              "source_page_numbers": [
+                6
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 13635,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "Argand diagram with axes labelled Re and Im. A circle is centred at \\((-2,1)\\) with radius 3, and the shaded region is the part of the circle below the horizontal line \\(\\operatorname{Im}(z)=-1\\).",
+              "bounding_box": {
+                "top_left_x": 195,
+                "top_left_y": 92,
+                "bottom_right_x": 523,
+                "bottom_right_y": 374
+              },
+              "storage_path": "a_level/9709/2025/feb_march/32/question_paper/q3/page-6-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 6,
+              "mathematical_details": {
+                "equations": [
+                  "|z+2-i|=3",
+                  "\\operatorname{Im}(z)=-1"
+                ],
+                "coordinates": [
+                  "(-2,1)",
+                  "(-5,1)",
+                  "(1,1)",
+                  "(-2,4)",
+                  "(-2,-2)"
+                ],
+                "measurements": [
+                  "Radius = 3"
+                ],
+                "relationships": [
+                  "The circle is centred at (-2,1).",
+                  "The circle has radius 3.",
+                  "The shaded region lies inside the circle.",
+                  "The shaded region lies on or below the line Im(z) = -1."
+                ],
+                "visible_labels": [
+                  "Re",
+                  "Im",
+                  "-6",
+                  "-5",
+                  "-4",
+                  "-3",
+                  "-2",
+                  "-1",
+                  "0",
+                  "1",
+                  "2",
+                  "4i",
+                  "3i",
+                  "2i",
+                  "i",
+                  "-i",
+                  "-2i",
+                  "-3i"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Translate geometric boundaries into inequalities in terms of z",
+              "Work with modulus condition from a circle",
+              "Find maximum |z| subject to inequalities"
+            ],
+            "methods": [
+              "Write circle and line conditions using x=Re(z), y=Im(z)",
+              "Convert to inequalities involving z and/or |z|",
+              "Use boundary intersection/extremum reasoning to maximize |z|"
+            ],
+            "subtopics": [
+              "Argand diagrams",
+              "Inequalities for complex numbers",
+              "Geometric loci (circle and line)"
+            ],
+            "main_topic": "Complex Numbers",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 6,
+          "stem_markdown": "The shaded region on the Argand diagram shows points representing complex numbers \\(z\\) defined by two inequalities. The shaded region is bounded by a circle and a line parallel to the real axis. The boundaries of the region are included in the shaded region.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Obtain $$\\text{Im}(z) \\leqslant -1$$",
+              "guidance_markdown": "Condone strict inequalities throughout **(a)**.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain answer of the form $$ | z - a | \\leqslant b$$",
+              "guidance_markdown": "Accept equation or any inequality sign. $$a = \\pm 2 \\pm i$$ and $$b = 3$$, e.g. $$",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Obtain answer $$ | z + 2 - i | \\leqslant 3$$",
+              "guidance_markdown": "Accept $$",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Identify the coordinates of correct point",
+              "guidance_markdown": "$$(-2 - \\sqrt{5}, -1)$$, if correct. From solving $$(x \\pm 2)^2 + (y \\pm 1)^2 = 3^2$$ (or $$= 3$$) with $$y = -1$$, or attempt to get $$2 + \\sqrt{5}$$ using a right-angled triangle.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Carry out a correct method for finding the greatest value of $$ | z | $$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Obtain answer 4.35 or $$\\sqrt{10 + 4\\sqrt{5}}$$",
+              "guidance_markdown": "AWRT 4.35, e.g. 4.3525...",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Re-express an equation using identities to obtain a quadratic in tan x",
+              "Solve for tan x and hence x within a specified range",
+              "Handle domain/angle constraints for tan and cot"
+            ],
+            "methods": [
+              "Convert cot x to 1/tan x",
+              "Let t=tan x to form a quadratic",
+              "Solve and convert back to angles in 0° to 180°"
+            ],
+            "subtopics": [
+              "Trigonometric identities",
+              "Solving equations in tan",
+              "Angle solving in a given interval"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 6,
+          "stem_markdown": "By first expressing the equation \\(\\tan(x-60^\\circ)=2\\cot x\\) as a quadratic equation in \\(\\tan x\\), solve the equation for \\(0^\\circ\\leqslant x\\leqslant 180^\\circ\\).",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "State $$\\frac{\\tan x - \\sqrt{3}}{1 + \\sqrt{3} \\tan x}$$",
+              "guidance_markdown": "OE Allow decimals throughout.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "2 cot x replaced by $$\\frac{2}{\\tan x}$$",
+              "guidance_markdown": "SOI",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Reduce the equation to $$\\tan^2 x - 3\\sqrt{3} \\tan x - 2 = 0$$, or three-term equivalent",
+              "guidance_markdown": "May be implied by further work.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Solve a three-term quadratic in $$\\tan x$$, for x",
+              "guidance_markdown": "FT *their* 3-term quadratic. Allow $$\\tan^{-1}(..)$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Obtain answer, e.g. 79.8°",
+              "guidance_markdown": "AWRT 79.8.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Obtain the second answer, e.g. 160.2° and no other in the interval",
+              "guidance_markdown": "Allow 160, or AWRT 160.2. Treat answers in radians as a misread. Ignore answers outside the given interval.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Find complex square roots of a given complex number",
+              "Form an equation (quartic) in the real or imaginary part",
+              "Select the correct sign pairs for the square roots"
+            ],
+            "methods": [
+              "Set (x+iy)^2 equal to the given complex number",
+              "Equate real and imaginary parts",
+              "Eliminate one variable to obtain a quartic and solve exactly"
+            ],
+            "subtopics": [
+              "Complex square roots",
+              "Cartesian form (x+iy)",
+              "Solving for real/imag parts"
+            ],
+            "main_topic": "Complex Numbers",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 5,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.88
+          },
+          "total_marks": 5,
+          "stem_markdown": "The square roots of \\(-4+6\\sqrt{5}\\,i\\) can be expressed in the Cartesian form \\(x+iy\\), where \\(x\\) and \\(y\\) are real and exact.\n\nBy first forming a quartic equation in \\(x\\) or \\(y\\), find the square roots of \\(-4+6\\sqrt{5}\\,i\\) in exact Cartesian form.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Square $$x + iy$$ and equate real and imaginary parts to $$-4$$ and $$6\\sqrt{5}$$ respectively",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain equations $$x^2 - y^2 = -4$$ and $$2xy = 6\\sqrt{5}$$ or $$\\sqrt{x^2 + y^2} = \\sqrt{\\sqrt{(-4)^2 + (6\\sqrt{5})^2}}$$",
+              "guidance_markdown": "Or $$x^2 + y^2 = 14$$.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Eliminate one variable and find a horizontal equation in the other",
+              "guidance_markdown": "Allow slips in e.g. signs, powers etc.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain $$x^4 + 4x^2 - 45 = 0$$ or $$y^4 - 4y^2 - 45 = 0$$ or three-term equivalents, or $$2x^2 = 10$$ or $$2y^2 = 18$$",
+              "guidance_markdown": "May be implied by further work.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain answers $$\\pm(\\sqrt{5} + 3i)$$",
+              "guidance_markdown": "Accept e.g. $$x = \\sqrt{5}$$, $$y = 3$$ and $$x = -\\sqrt{5}$$, $$y = -3$$ or $$\\pm(\\sqrt{5}, 3)$$, but must be clearly paired. Can be implied by (e.g.) column working.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Separate variables and integrate both sides",
+              "Apply the initial condition to determine constants",
+              "Obtain x explicitly as a function of θ"
+            ],
+            "methods": [
+              "Separate x and θ terms",
+              "Integrate ∫ dx/(ax+b) type form and ∫ sin^2(2θ) dθ",
+              "Use the initial condition to solve for the constant"
+            ],
+            "subtopics": [
+              "First-order separable differential equations",
+              "Initial conditions",
+              "Integration with trigonometric factors"
+            ],
+            "main_topic": "Differential Equations",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.92
+          },
+          "total_marks": 7,
+          "stem_markdown": "The variables \\(x\\) and \\(\\theta\\) satisfy the differential equation\n\n\\[\n\\frac{dx}{d\\theta}=\\left(\\frac15x+1\\right)\\sin^2 2\\theta,\n\\]\n\nand \\(x=5\\) when \\(\\theta=0\\).\n\nSolve the differential equation and obtain an expression for \\(x\\) in terms of \\(\\theta\\).",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Use correct double angle formula to express $$\\sin^2 2\\theta$$ in terms of $$\\cos 4\\theta$$",
+              "guidance_markdown": "$$\\sin^2 2\\theta = \\frac{1}{2}(1 - \\cos 4\\theta)$$",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Separate variables correctly and reasonable attempt at integration of at least one side",
+              "guidance_markdown": "Position of $$(x+5)$$ or $$(\\frac{1}{2}x+1)$$ and $$\\sin^2 2\\theta$$ sufficient for correct separation.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain term $$5\\ln\\left(\\frac{1}{5}x+1\\right)$$",
+              "guidance_markdown": "OE May see $$5\\ln(x+5)$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain term $$\\frac{1}{2}(\\theta - \\frac{1}{4}\\sin 4\\theta)$$",
+              "guidance_markdown": "Allow $$\\frac{1}{2}\\left(\\pm\\theta \\pm \\frac{1}{4}\\sin 4\\theta\\right)$$ from $$= \\frac{1}{2}(\\pm 1 \\pm \\cos 4\\theta)$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Use $$x=5$$ when $$\\theta=0$$ to evaluate a constant or as limits in a solution containing terms of the form $$\\ln\\left(\\frac{1}{5}x+1\\right)$$, $$\\theta$$ and $$\\sin 4\\theta$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain correct answer in any form",
+              "guidance_markdown": "E.g. $$5\\ln(x+5) = \\frac{1}{2}(\\theta - \\frac{1}{4}\\sin 4\\theta) + 5\\ln 10$$",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "Obtain final answer $$x=10\\exp\\left[\\frac{1}{10}\\left(\\theta - \\frac{1}{4}\\sin 4\\theta\\right)\\right]-5$$ or equivalent with $$\\ln$$ removed",
+              "guidance_markdown": "$$x=10\\exp\\left[\\frac{1}{2}\\left(\\pm\\theta \\pm \\frac{1}{4}\\sin 4\\theta\\right)\\right]-5$$ Must remove $$\\ln$$ from $$\\ln(x+5) = \\frac{1}{2}(\\pm\\theta \\pm \\frac{1}{4}\\sin 4\\theta) + \\alpha\\ln 10$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that \\(p\\) satisfies the equation \\(p=\\frac12\\tan^{-1}\\left(\\frac{3}{2p}\\right)\\).",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Show by calculation that \\(0.5<p<0.7\\).",
+              "source_page_numbers": [
+                11
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Use an iterative formula based on the equation in part (a) to calculate \\(p\\) correct to 3 decimal places. Give the result of each iteration to 5 decimal places.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 5052,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "Graph of the curve \\(y=x^3\\cos 2x\\) on \\(0\\leqslant x\\leqslant \\frac14\\pi\\), with the maximum point labelled \\(M\\) and the x-axis labelled with \\(O\\) at the origin and \\(P\\) on the axis.",
+              "bounding_box": {
+                "top_left_x": 226,
+                "top_left_y": 91,
+                "bottom_right_x": 489,
+                "bottom_right_y": 294
+              },
+              "storage_path": "a_level/9709/2025/feb_march/32/question_paper/q7/page-10-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 10,
+              "mathematical_details": {
+                "equations": [
+                  "y=x^3\\cos 2x"
+                ],
+                "coordinates": [
+                  "O=(0,0)"
+                ],
+                "measurements": [
+                  "0\\leqslant x\\leqslant \\frac14\\pi"
+                ],
+                "relationships": [
+                  "The curve has a maximum point at M.",
+                  "The x-coordinate of M is p."
+                ],
+                "visible_labels": [
+                  "O",
+                  "P",
+                  "M",
+                  "x",
+                  "y"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Differentiate y=x^3 cos(2x) and derive the condition for a stationary point",
+              "Transform the stationary-point equation to the given implicit equation in p",
+              "Perform iterations to approximate p to 3 d.p. from an iterative formula"
+            ],
+            "methods": [
+              "Set derivative dy/dx=0",
+              "Manipulate the resulting equation into the required tan^-1 form",
+              "Use fixed-point iteration based on the given relation and refine bounds"
+            ],
+            "subtopics": [
+              "Maxima/minima of functions",
+              "Differentiation of products with trig functions",
+              "Numerical root finding/iteration"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 5,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 8,
+          "stem_markdown": "The diagram shows the curve \\(y=x^3\\cos 2x\\) for \\(0\\leqslant x\\leqslant \\frac14\\pi\\). The curve has a maximum point at \\(M\\), where \\(x=p\\).",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Use correct product rule",
+              "guidance_markdown": "$$3x^2 \\cos(2x) + x^3 \\left( \\frac{d}{dx} (\\cos 2x) \\right) \\text{OE}$$",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain derivative $$3x^2 \\cos(2x) - 2x^3 \\sin(2x)$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Equate correct derivative to zero and obtain $$p = \\frac{1}{2} \\tan^{-1} \\left( \\frac{3}{2p} \\right)$$ after full and correct working",
+              "guidance_markdown": "AG Must reach $$\\tan 2p = \\dots$$ or $$\\tan 2x = \\dots$$ before given answer.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Calculate the values of a relevant expression or pair of expressions at $$x = 0.5$$ and $$x = 0.7$$ Must have at least 1 of 2 values correct or 3 of 4 values correct",
+              "guidance_markdown": "$$f(p) = p - \\frac{1}{2} \\tan^{-1} \\left( \\frac{3}{2p} \\right)$$ $$f(0.5) = -0.124 \\dots < 0, \\quad f(0.7) = 0.132 \\dots > 0$$ or comparing $$p$$ and $$\\frac{1}{2} \\tan^{-1} \\left( \\frac{3}{2p} \\right)$$. $$0.5 \\frac{1}{2} \\tan^{-1} \\left( \\frac{3}{2p} \\right) = 0.624 \\dots \\quad 0.5 < 0.624 \\dots$$ $$0.7 \\frac{1}{2} \\tan^{-1} \\left( \\frac{3}{2p} \\right) = 0.567 \\dots \\quad 0.7 > 0.567$$",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Complete the argument correctly with correct calculated values",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Use the iterative formula correctly at least twice",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain final answer 0.596",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "Show sufficient iterations to at least 5 decimal places to justify 0.596 to 3 decimal places or show there is a sign change in the interval (0.5955, 0.5965)",
+              "guidance_markdown": "E.g. 0.5, 0.62452, 0.58814, 0.59856, 0.59556, 0.59642 0.6, 0.59514, 0.59654, 0.59614, 0.59626 0.7, 0.56708, 0.60467, 0.59380, 0.59693, 0.59603, 0.59629 Can recover from wrong values.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that the lines are skew.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the obtuse angle between the directions of the two lines.",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Determine whether two parametric lines are skew",
+              "Compute the obtuse angle between two direction vectors"
+            ],
+            "methods": [
+              "Check coplanarity/parallelism via scalar triple product or solving for intersection",
+              "Compute angle using dot product with adjustment to obtuse angle"
+            ],
+            "subtopics": [
+              "Lines in 3D",
+              "Skew lines",
+              "Angle between lines (direction vectors)"
+            ],
+            "main_topic": "Vectors",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.93
+          },
+          "total_marks": 8,
+          "stem_markdown": "Two lines have equations\n\n\\[\n\\mathbf{r}=\\begin{pmatrix}-1\\\\3\\\\-4\\end{pmatrix}+\\lambda\\begin{pmatrix}2\\\\3\\\\-1\\end{pmatrix}\n\\quad\\text{and}\\quad\n\\mathbf{r}=\\begin{pmatrix}2\\\\-3\\\\-1\\end{pmatrix}+\\mu\\begin{pmatrix}-1\\\\-2\\\\1\\end{pmatrix}.\n\\]\n",
+          "question_number": 8,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Express general point of a line in component form, e.g. $$(-1 + 2\\lambda, 3 + 3\\lambda, -4 - \\lambda)$$ or $$(2 - \\mu, -3 - 2\\mu, -1 + \\mu)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Equate at least two pairs of components and solve for $$\\lambda$$ or for $$\\mu$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain correct answer for $$\\lambda$$ or for $$\\mu$$",
+              "guidance_markdown": "Possible answers are 6, 12, 0 for $$\\lambda$$ and $$-9, -21, -3$$ for $$\\mu$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Verify that one component equation is not satisfied Can show by correctly obtaining 2 values of $$\\lambda$$ or 2 values of $$\\mu$$",
+              "guidance_markdown": "E.g. show $$21 \\neq 15$$ for $$(11, 21, -10)$$ and $$(11, 15, -10)$$, or show $$-16 \\neq -22$$ for $$(23, 39, -16)$$ and $$(23, 39, -22)$$, or show $$-1 \\neq 5$$ for $$(-1, 3, -4)$$ and $$(5, 3, -4)$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "**Show** that the lines are not parallel",
+              "guidance_markdown": "E.g. $$\\begin{pmatrix} 2 \\\\ 3 \\\\ -1 \\end{pmatrix} \\neq k \\begin{pmatrix} -1 \\\\ -2 \\\\ 1 \\end{pmatrix}$$ at least 2 components required. Just a statement that direction vectors are not scalar multiple of each other insufficient, if direction vectors have not been clearly identified. Also, told answer is skew.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Carry out correct process for evaluating the scalar product of $$\\begin{pmatrix} 2 \\\\ 3 \\\\ -1 \\end{pmatrix}$$ and $$\\begin{pmatrix} -1 \\\\ -2 \\\\ 1 \\end{pmatrix}$$",
+              "guidance_markdown": "E.g. $$(2 \\times -1) + (3 \\times -2) + (-1 \\times 1)$$ or $$-2 - 6 - 1$$ or $$-9$$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Using the correct process for the moduli, divide the scalar product by the product of the moduli and evaluate the inverse cosine of the result",
+              "guidance_markdown": "Allow for any pair of vectors here but must be consistent between scalar product and magnitudes.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "Obtain answer AWRT 169.1° or 2.95°",
+              "guidance_markdown": "Allow 169°.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the values of \\(a\\) and \\(b\\).",
+              "source_page_numbers": [
+                14
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "When \\(a\\) and \\(b\\) have the values found in part (a), factorise \\(p(x)\\) completely.",
+              "source_page_numbers": [
+                15
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Hence solve the inequality \\(p(x)<0\\).",
+              "source_page_numbers": [
+                15
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use the factor and remainder information to find unknown coefficients",
+              "Factorise the cubic completely",
+              "Solve inequality p(x)<0 using the roots and sign chart reasoning"
+            ],
+            "methods": [
+              "Write p(x)= (x-3)q(x) and use p'(3)–remainder relation or perform division to match coefficients",
+              "Factor the resulting polynomial fully",
+              "Use intervals determined by real roots to solve p(x)<0"
+            ],
+            "subtopics": [
+              "Polynomial division and the factor theorem",
+              "Remainder theorem",
+              "Solving polynomial inequalities",
+              "Factorisation"
+            ],
+            "main_topic": "Algebra",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 10,
+          "stem_markdown": "The polynomial \\(6x^3+ax^2+bx+9\\) is denoted by \\(p(x)\\), where \\(a\\) and \\(b\\) are constants. It is given that \\((x-3)\\) is a factor of \\(p(x)\\), and when the first derivative \\(p'(x)\\) is divided by \\((x-3)\\) the remainder is 72.",
+          "question_number": 9,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Substitute $$x = 3$$ or $$-3$$ into $$p(x)$$ and equate to 0 or into $$p'(x)$$ and equate to 72",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$162 + 9a + 3b + 9 = 0$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $$162 + 6a + b = 72$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Solve simultaneous equations to obtain either $$a$$ or $$b$$ after using $$p(\\pm 3) = 0$$ and $$p'(\\pm 3) = 72$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$a = -11$$ and $$b = -24$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Equate $$(x-3)(6x^2+Ax+B)$$ to $$6x^3-11x^2-24x+9$$ and obtain equations to solve for $$A$$ and $$B$$ or divide $$6x^3-11x^2-24x+9$$ by $$x-3$$ and reach $$6x^2 \\pm 7x$$",
+              "guidance_markdown": "Using *their a* and *their b*. $$A-18=a=-11,\\ B-3A=-b=-24,\\ -3B=9.$$ $$A=7$$ and $$B=-3$$. Or reach $$6x^2 \\pm (\\text{their } a+18)x$$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$(x-3)(6x^2+7x-3)$$",
+              "guidance_markdown": "SOI",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "Obtain $$(x-3)(2x+3)(3x-1)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "",
+              "guidance_markdown": "Special Case: If only $$(x-3)(x+\\frac{3}{2})(x-\\frac{1}{3})$$ or $$(x-3)(2x+3)(3x-1)$$ seen, **SC B1** only (but can gain two marks in **(c)**).",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Obtain one correct region $$x < -\\frac{3}{2}$$ or $$\\frac{1}{3} < x < 3$$",
+              "guidance_markdown": "Must be final answer not in working. FT is on the last two brackets (not $$(x-3)$$).",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 11,
+              "content_markdown": "Obtain both regions $$x < -\\frac{3}{2}, \\ \\frac{1}{3} < x < 3$$",
+              "guidance_markdown": "Allow $$x < -\\frac{3}{2}$$ and $$\\frac{1}{3} < x < 3$$. **SC B1** for $$x \\leq -\\frac{3}{2}, \\ \\frac{1}{3} \\leq x \\leq 3$$. FT is on the last two brackets (not $$(x-3)$$). If incorrect factor or factors in **(b)** but correct regions here, allow **SC B1** only.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            14,
+            15
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Express \\(f(x)\\) in partial fractions.",
+              "source_page_numbers": [
+                16
+              ]
+            },
+            {
+              "marks": 6,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Hence find the exact value of \\(\\int_0^2 f(x)\\,dx\\). Give your answer in the form \\(a\\pi-\\ln b\\), where \\(a\\) and \\(b\\) are constants.",
+              "source_page_numbers": [
+                17
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Decompose a rational function into partial fractions",
+              "Integrate the partial fractions and evaluate a definite integral",
+              "Express the result in the required aπ−ln b form"
+            ],
+            "methods": [
+              "Factor denominators and write f(x) as a sum of simpler fractions",
+              "Integrate term-by-term (including arctan/log terms)",
+              "Apply limits 0 to 2 and simplify"
+            ],
+            "subtopics": [
+              "Partial fraction decomposition",
+              "Rational-function integration",
+              "Definite integrals with logarithms and π terms"
+            ],
+            "main_topic": "Algebra",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.85
+          },
+          "total_marks": 11,
+          "stem_markdown": "Let \\(f(x)=\\frac{-7x^2+2x-6}{(1+x)(4+x^2)}\\).",
+          "question_number": 10,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "State or imply the form $$\\frac{A}{(1+x)} + \\frac{Bx+C}{(4+x^2)}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Use a correct method for finding a constant Even with incorrect PF denominators",
+              "guidance_markdown": "$$A(4+x^2) + (Bx+C)(1+x) + = -7x^2 + 2x - 6$$",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain one of $$A = -3$$, $$B = -4$$ and $$C = 6$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain a second value",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain a third value",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "",
+              "guidance_markdown": "**Special Case 1:** $$\\frac{A}{(1+x)} + \\frac{C}{(4+x^2)} + \\text{Find } A$$, **M1 A1.** Max 2/5. **Special Case 2:** $$\\frac{A}{(1+x)} + \\frac{Bx}{(4+x^2)} + \\text{Find } A$$, **M1 A1.** Max 2/5.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain term $$-3\\ln(1+x)$$",
+              "guidance_markdown": "OE FT $$A\\ln(1+x)$$",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Obtain term $$-2\\ln(4+x^2)$$",
+              "guidance_markdown": "OE FT $$\\frac{B}{2}\\ln(4+x^2)$$",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "Obtain integral of the form $$c\\tan^{-1}dx$$ with $$d\\neq 1$$ following separation into two expressions",
+              "guidance_markdown": "$$d=\\frac{1}{2}$$ or 2 only.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Obtain $$3\\tan^{-1}\\frac{x}{2}$$",
+              "guidance_markdown": "FT $$\\frac{C}{2}\\tan^{-1}\\frac{x}{2}$$",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "Substitute correct limits correctly in an expression (obtained correctly) of the form $$a\\ln(1+x)$$, $$b\\ln(4+x^2)$$, and $$c\\tan^{-1}\\left(\\frac{1}{2}x\\right)$$, where $$a, b, c\\neq 0$$.",
+              "guidance_markdown": "$$a\\ln(3)+b\\ln(8)-b\\ln(4)+c\\left(\\frac{1}{4}\\pi\\right)$$, where $$a, b, c\\neq 0$$. Do not allow slips, and must get to $$c\\left(\\frac{1}{4}\\pi\\right)$$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 12,
+              "content_markdown": "Obtain answer $$\\frac{3}{4}\\pi-\\ln 108$$",
+              "guidance_markdown": "Must be in the form $$a\\pi-\\ln b$$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            16,
+            17
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute a definite integral involving x^2 cos(x/3) exactly",
+              "Use systematic integration by parts (or recursion) to evaluate without approximation"
+            ],
+            "methods": [
+              "Apply integration by parts repeatedly to reduce powers",
+              "Evaluate resulting sine/cosine terms at 0 and π",
+              "Simplify to an exact closed form"
+            ],
+            "subtopics": [
+              "Definite integration",
+              "Integration by parts",
+              "Integrals with trigonometric functions"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 6,
+          "stem_markdown": "Find the exact value of \\(\\int_0^\\pi x^2\\cos\\frac{x}{3}\\,\\mathrm{d}x\\).",
+          "question_number": 11,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Commence integration by parts and reach $$Ax^2 \\sin \\frac{1}{3}x \\pm \\int Bx \\sin \\frac{1}{3}x dx$$",
+              "guidance_markdown": "OE BOD on $$\\pm$$ otherwise scores 0/6.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$3x^2 \\sin \\frac{1}{3}x - \\int 6x \\sin \\frac{1}{3}x dx$$",
+              "guidance_markdown": "OE Allow $$3 \\times 2$$ for 6.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Complete integration by parts and reach $$Ax^2 \\sin \\frac{1}{3}x + Bx \\cos \\frac{1}{3}x + C \\sin \\frac{1}{3}x$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain $$3x^2 \\sin \\frac{1}{3}x + 18x \\cos \\frac{1}{3}x - 54 \\sin \\frac{1}{3}x$$ oe",
+              "guidance_markdown": "OE Allow $$6 \\times 3$$ for 18, $$9 \\times 6$$ for 54 OE.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Substitute limits correctly in an expression of the form $$Ax^2 \\sin \\frac{1}{3}x + Bx \\cos \\frac{1}{3}x + C \\sin \\frac{1}{3}x$$, where $$ABC \\neq 0$$",
+              "guidance_markdown": "Dependent on both previous M1 marks. Need to use $$\\sin \\frac{\\pi}{3} = \\frac{\\sqrt{3}}{2}$$, and $$\\cos \\frac{\\pi}{3} = \\frac{1}{2}$$ to obtain $$A\\pi^2 \\frac{\\sqrt{3}}{2} + \\frac{B\\pi}{2} + \\frac{C\\sqrt{3}}{2}$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Obtain answer $$\\frac{3\\sqrt{3}}{2}\\pi^2 + 9\\pi - 27\\sqrt{3}$$ or exact equivalent ISW",
+              "guidance_markdown": "Allow $$\\frac{\\sqrt{27}}{2}$$ for $$\\frac{3\\sqrt{3}}{2}$$, $$\\frac{18}{2}$$ for 9, $$\\frac{54}{2}$$ for 27, $$\\sqrt{2187}$$ for $$27\\sqrt{3}$$ etc.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "**Alternative Method for first 4 marks:**",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Commence integration by parts and reach $$Ax^2 \\sin \\frac{1}{3}x + Bx \\cos \\frac{1}{3}x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "Obtain $$3x^2 \\sin \\frac{1}{3}x + 18x \\cos \\frac{1}{3}x$$",
+              "guidance_markdown": "OE Allow $$6 \\times 3$$ for 18.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "*DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Complete integration by parts and reach $$Ax^2 \\sin \\frac{1}{3}x + Bx \\cos \\frac{1}{3}x + C \\sin \\frac{1}{3}x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "Obtain $$3x^2 \\sin \\frac{1}{3}x + 18x \\cos \\frac{1}{3}x - 54 \\sin \\frac{1}{3}x$$",
+              "guidance_markdown": "OE Allow 6 × 3 for 18, 9 × 6 for 54, OE.",
+              "source_page_numbers": [
+                23
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            18
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_04401ff98060a86c016a79cc861d588198a59269f791fe7e47",
+      "resp_015016889bb7b1dd016a79cce02f5c8199baabd0ac28a64926",
+      "resp_08ec73c75cf0cb52016a79cd35d15c819aac7574488537498d",
+      "resp_0c8dc103c192d3e5016a79cd83601481989ad003471193647d"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}
