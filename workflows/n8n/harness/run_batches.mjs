@@ -279,9 +279,22 @@ async function main() {
       break;
     }
 
+    // Fire ONLY when nothing is already running or finished for this batch.
+    //
+    // An earlier version read `if (existing && existing.status !== "processing")`
+    // as "already ran, skip" -- which sent a batch that WAS processing down the
+    // else branch and fired a second controller execution on top of the first.
+    // The child's own "paper already has a processing run" guard caught it before
+    // any paid stage, so it cost nothing, but the guard is the backstop and this
+    // condition is the actual fix.
     const existing = await batchRow(n);
-    if (existing && existing.status !== "processing") {
-      console.log(`Already ran (${existing.status}). Skipping the fire, checking it anyway.`);
+    const alreadyRunning = existing?.status === "processing";
+    const alreadyFinished = existing && !["processing", "planned"].includes(existing.status);
+
+    if (alreadyRunning) {
+      console.log(`   ${stamp()} already running -- not firing again, waiting on it`);
+    } else if (alreadyFinished) {
+      console.log(`   ${stamp()} already ran (${existing.status}) -- not firing, checking it anyway`);
     } else {
       console.log(`   ${stamp()} firing controller`);
       // Fire and do not await: the webhook holds the connection for the whole
