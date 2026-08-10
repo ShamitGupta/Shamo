@@ -88,11 +88,15 @@ begin
          updated_at = now()
    where id = v_run_id;
 
+  -- Idempotent: this file is expected to run more than once. Every retry
+  -- attempted while Mistral still returns 402 strands the same run at
+  -- 'processing' again, so the file has to be safely re-runnable rather than
+  -- accumulating a duplicate issue row each time.
   insert into shamo_ingestion_issues (
     ingestion_run_id, severity, issue_code, question_number, part_path,
     message, resolved, resolution_note, resolved_at
   )
-  values (
+  select
     v_run_id,
     'warning',
     'OCR_PROVIDER_PAYMENT_REQUIRED',
@@ -101,9 +105,13 @@ begin
     'Mistral OCR returned HTTP 402 Payment required; the run failed before any paid OpenAI stage.',
     true,
     'Run marked failed by database/shamo_v2_3_clear_stuck_run_after_mistral_402.sql so the '
-    'paper can be retried once the Mistral subscription is restored. Zero cost events existed, '
+    'paper can be retried once Mistral accepts requests again. Zero cost events existed, '
     'so no reservation needed releasing.',
     now()
+  where not exists (
+    select 1 from shamo_ingestion_issues
+    where ingestion_run_id = v_run_id
+      and issue_code = 'OCR_PROVIDER_PAYMENT_REQUIRED'
   );
 
   raise notice 'Run % cleared from processing to failed. Retry once Mistral is restored.', v_run_id;
