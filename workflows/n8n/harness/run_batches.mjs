@@ -255,105 +255,97 @@ function n8nApiKey() {
  * legitimate quiet periods here are long: papers take up to 18 minutes and
  * there is a deliberate 10-minute pause after paper five.
  */
-/** Is anything actually running?
- *
- * n8n's public /executions LIST OMITS RUNNING EXECUTIONS. Proven by probing ids
- * above the newest listed one: execution 825 returned status "running" while the
- * list's newest entry was 824, finished six minutes earlier. There is no
- * status=running filter either -- the enum is success/error/waiting.
- *
- * So scanning the list for stoppedAt === null can NEVER see a healthy in-flight
- * run, and always answers "dead". The first version of this function did exactly
- * that. It happened to be right on two real failures, because a crashed
- * execution DOES appear in the list, and I reported it as "proven twice" on that
- * basis. Then it declared a perfectly healthy batch 9 dead and abandoned it.
- *
- * Being right for the wrong reason is the failure mode to watch for here: the
- * check had no way to return "alive", so every test that expected "dead" passed.
- *
- * Probing forward by id is definitive, so that is what this does.
- */
-async function controllerLiveness() {
-  const key = n8nApiKey();
-  if (!key) return { known: false, alive: null, lastError: null };
-  const base = process.env.N8N_API_URL ?? "http://localhost:5678/api/v1";
-  const headers = { "X-N8N-API-KEY": key };
-  const WATCHED = new Set([CONTROLLER_ID, CHILD_ID]);
+// A batch is alive if it is still DOING something the database can see.
+//
+// WHY THIS IS NOT ASKED OF n8n ANY MORE
+//
+// Two attempts to read liveness from n8n's execution API were both wrong, for
+// three different reasons, and each looked correct until it fired on a healthy
+// batch:
+//
+//   1. The public /executions LIST OMITS RUNNING EXECUTIONS, and there is no
+//      status=running filter (the enum is success/error/waiting). So scanning it
+//      for stoppedAt === null can never return alive.
+//   2. During the deliberate 10-minute pause after paper five the controller's
+//      status is "waiting", not "running".
+//   3. The controller's execution id is LOWER than its children's -- it starts
+//      first -- so probing forward from the newest listed id (a child) never
+//      reaches it. Batch 10's controller was 833 while the newest child was 838.
+//
+// Three surprises in one API is a signal to stop inferring from it. The pipeline
+// writes its own progress: runs start and finish, cost events are inserted per
+// paid stage. That is the ground truth, it needs no knowledge of n8n's internals,
+// and it cannot be wrong about whether work is happening.
+//
+// The stall window has to exceed the longest legitimate quiet period, which is
+// the 10-minute pause plus a slow paper. Observed maximum for a single paper is
+// 17.8 minutes, so 30 covers both with margin. That is slower to notice a death
+// than a liveness flag would be -- roughly 30 minutes rather than one -- and it
+// is the right trade: a false death abandons a working batch, while a slow true
+// detection only costs waiting.
+const STALL_MINUTES = 30;
 
-  try {
-    const listed = await fetch(`${base}/executions?limit=1`, { headers });
-    if (!listed.ok) return { known: false, alive: null, lastError: null };
-    const newest = ((await listed.json()).data ?? [])[0] ?? null;
-    if (!newest) return { known: true, alive: false, lastError: null };
+async function batchActivity(batchNumber) {
+  const runs = await runsFor(batchNumber);
+  if (!runs.length) return { lastActivity: null, anyProcessing: false, runs };
 
-    // The newest listed row may itself be running on some versions.
-    if (
-      (newest.status === "running" || newest.stoppedAt === null) &&
-      WATCHED.has(newest.workflowId)
-    ) {
-      return { known: true, alive: true, lastError: null };
+  const runIds = runs.map((r) => r.id);
+  const events = await select("shamo_api_cost_events", {
+    columns: "ingestion_run_id,created_at",
+    filter: `ingestion_run_id=in.(${runIds.join(",")})`,
+  });
+
+  const stamps = [];
+  for (const run of runs) {
+    for (const value of [run.started_at, run.finished_at]) {
+      if (value) stamps.push(new Date(value).getTime());
     }
-
-    // Then probe ids beyond it, where running executions hide.
-    const from = Number(newest.id);
-    for (let id = from + 1; id <= from + 8; id += 1) {
-      const response = await fetch(`${base}/executions/${id}`, { headers });
-      if (!response.ok) continue; // 404 -- id not allocated
-      const execution = await response.json();
-      if (!WATCHED.has(execution.workflowId)) continue;
-      if (execution.status === "running" || execution.stoppedAt === null) {
-        return { known: true, alive: true, lastError: null };
-      }
-    }
-
-    return {
-      known: true,
-      alive: false,
-      lastError: newest.status === "error" ? newest : null,
-    };
-  } catch {
-    return { known: false, alive: null, lastError: null };
   }
+  for (const event of events) {
+    if (event.created_at) stamps.push(new Date(event.created_at).getTime());
+  }
+
+  return {
+    lastActivity: stamps.length ? Math.max(...stamps) : null,
+    anyProcessing: runs.some((r) => r.status === "processing"),
+    runs,
+  };
 }
 
-/** Ask n8n why the most recent child execution failed, so the report names a cause. */
-async function lastChildError() {
+/** Name the failure, scoped to executions that started after this batch did. */
+async function errorSince(startedAtMs) {
   const key = n8nApiKey();
   if (!key) return null;
   try {
     const base = process.env.N8N_API_URL ?? "http://localhost:5678/api/v1";
-    const list = await fetch(`${base}/executions?status=error&limit=3`, {
-      headers: { "X-N8N-API-KEY": key },
-    });
+    const headers = { "X-N8N-API-KEY": key };
+    const list = await fetch(`${base}/executions?status=error&limit=5`, { headers });
     if (!list.ok) return null;
     const executions = (await list.json()).data ?? [];
-    if (!executions.length) return null;
-    const detail = await fetch(`${base}/executions/${executions[0].id}?includeData=true`, {
-      headers: { "X-N8N-API-KEY": key },
-    });
-    if (!detail.ok) return `execution ${executions[0].id} failed`;
+    // Without this filter the report names a stale error from hours earlier --
+    // batch 10 was blamed on a 15:37 credential fault it never hit.
+    const recent = executions.find((e) => new Date(e.startedAt).getTime() >= startedAtMs);
+    if (!recent) return null;
+    const detail = await fetch(`${base}/executions/${recent.id}?includeData=true`, { headers });
+    if (!detail.ok) return `execution ${recent.id} failed`;
     const data = await detail.json();
     const error = data?.data?.resultData?.error;
     const node = data?.data?.resultData?.lastNodeExecuted;
-    if (!error) return `execution ${executions[0].id} failed`;
-    const httpCode = error.httpCode ? ` (HTTP ${error.httpCode})` : "";
-    return `${node ?? "unknown node"}: ${error.message ?? "unknown error"}${httpCode}`;
+    if (!error) return `execution ${recent.id} failed`;
+    return `${node ?? "unknown node"}: ${error.message ?? "unknown"}${error.httpCode ? ` (HTTP ${error.httpCode})` : ""}`;
   } catch {
     return null;
   }
 }
 
-async function waitForBatch(batchNumber) {
+async function waitForBatch(batchNumber, firedAtMs) {
   const deadline = Date.now() + LIMITS.batchTimeoutMinutes * 60_000;
   let lastReport = "";
-  // Two consecutive dead observations before declaring death, so the gap between
-  // firing the webhook and the execution appearing cannot be misread.
-  let deadObservations = 0;
 
   while (Date.now() < deadline) {
     const row = await batchRow(batchNumber);
-    const runs = await runsFor(batchNumber);
-    const done = runs.filter((r) => r.finished_at).length;
+    const activity = await batchActivity(batchNumber);
+    const done = activity.runs.filter((r) => r.finished_at).length;
     const report = `${row?.status ?? "no batch row"}  ${done}/${row?.planned_papers ?? "?"} papers finished`;
     if (report !== lastReport) {
       console.log(`   ${stamp()} ${report}`);
@@ -361,17 +353,18 @@ async function waitForBatch(batchNumber) {
     }
     if (row && row.status !== "processing" && row.status !== "planned") return row;
 
-    const liveness = await controllerLiveness();
-    if (liveness.known && liveness.alive === false) {
-      deadObservations += 1;
-      if (deadObservations >= 2) {
-        const cause = (await lastChildError()) ?? "cause not available from n8n";
-        console.log(`   ${stamp()} NO LIVE EXECUTION -- the controller has stopped.`);
-        console.log(`   ${stamp()} cause: ${cause}`);
-        return { ...(row ?? {}), status: "died", died_reason: cause };
-      }
-    } else {
-      deadObservations = 0;
+    // Stalled means: nothing in the database has moved for STALL_MINUTES. Not
+    // "n8n says no execution" -- that question turned out to be unanswerable
+    // from the public API without getting it wrong.
+    const since = activity.lastActivity ?? firedAtMs;
+    const quietMinutes = (Date.now() - since) / 60_000;
+    if (quietMinutes >= STALL_MINUTES) {
+      const cause = (await errorSince(firedAtMs)) ?? "no recent failed execution found in n8n";
+      console.log(
+        `   ${stamp()} STALLED -- nothing has moved for ${quietMinutes.toFixed(0)} minutes.`,
+      );
+      console.log(`   ${stamp()} cause: ${cause}`);
+      return { ...(row ?? {}), status: "died", died_reason: cause };
     }
 
     await sleep(LIMITS.pollSeconds * 1000);
@@ -434,27 +427,36 @@ async function main() {
     const existing = await batchRow(n);
     const alreadyFinished = existing && !["processing", "planned"].includes(existing.status);
 
-    // A batch row reading 'processing' does NOT prove anything is running. The
-    // controller updates that row itself, so when it dies the row is frozen
-    // mid-flight -- batch 9 sat at 'processing' for an hour after Mistral's 402
-    // killed it. Trusting the row alone would refuse to resume a dead batch
-    // forever; trusting nothing would fire a second controller onto a live one.
-    // So ask n8n which it is.
-    const liveness = await controllerLiveness();
-    const alreadyRunning = existing?.status === "processing" && liveness.alive !== false;
+    // A batch row reading 'processing' does NOT prove anything is running -- the
+    // controller updates that row itself, so a crash freezes it mid-flight and
+    // batch 9 sat at 'processing' for an hour. But it also does not prove the
+    // opposite. Decide on recent database activity: a batch whose runs or cost
+    // events moved within the stall window is genuinely in flight and must not
+    // be fired onto; one that has been silent longer is stale and can resume.
+    const activity = await batchActivity(n);
+    const quietMinutes = activity.lastActivity
+      ? (Date.now() - activity.lastActivity) / 60_000
+      : Infinity;
+    const alreadyRunning = existing?.status === "processing" && quietMinutes < STALL_MINUTES;
 
-    if (existing?.status === "processing" && liveness.alive === false) {
+    if (existing?.status === "processing" && !alreadyRunning) {
       console.log(
-        `   ${stamp()} batch row says 'processing' but no execution is alive -- stale, re-firing`,
+        `   ${stamp()} batch row says 'processing' but nothing has moved for ` +
+          `${Number.isFinite(quietMinutes) ? quietMinutes.toFixed(0) : "?"} min -- stale, re-firing`,
       );
     }
 
+    let firedAtMs = activity.lastActivity ?? Date.now();
+
     if (alreadyRunning) {
-      console.log(`   ${stamp()} already running -- not firing again, waiting on it`);
+      console.log(
+        `   ${stamp()} already running (activity ${quietMinutes.toFixed(0)} min ago) -- waiting on it`,
+      );
     } else if (alreadyFinished) {
       console.log(`   ${stamp()} already ran (${existing.status}) -- not firing, checking it anyway`);
     } else {
       console.log(`   ${stamp()} firing controller`);
+      firedAtMs = Date.now();
       // Fire and do not await: the webhook holds the connection for the whole
       // ~50-minute run, and the database is the authoritative progress signal.
       post(BATCH_HOOK, { batch_number: n }).catch((error) => {
@@ -463,7 +465,7 @@ async function main() {
       await sleep(15_000);
     }
 
-    const row = await waitForBatch(n);
+    const row = await waitForBatch(n, firedAtMs);
     if (!row) {
       console.log(`STOP: batch ${n} did not finish within ${LIMITS.batchTimeoutMinutes} minutes.`);
       summary.push({ n, outcome: "timed out" });
