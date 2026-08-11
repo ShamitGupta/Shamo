@@ -295,11 +295,22 @@ async function batchActivity(batchNumber) {
     filter: `ingestion_run_id=in.(${runIds.join(",")})`,
   });
 
+  // Deliberately NOT finished_at. The recovery SQL sets finished_at = now() when
+  // it clears a stranded run, so counting it made a cleanup write look like
+  // pipeline progress: batch 14 was reported "already running (activity 1 min
+  // ago)" seconds after the operator ran the clear script, and the runner then
+  // waited on a batch that had never started.
+  //
+  // started_at is only written when a paper genuinely begins, and cost events are
+  // only written by paid stages. Neither is touched by any recovery file, which
+  // is what makes them trustworthy as an activity signal.
+  //
+  // Dropping finished_at loses nothing: the next paper's started_at follows
+  // within seconds, its first cost event within a minute, and when the LAST
+  // paper finishes the batch row leaves 'processing' so the wait returns anyway.
   const stamps = [];
   for (const run of runs) {
-    for (const value of [run.started_at, run.finished_at]) {
-      if (value) stamps.push(new Date(value).getTime());
-    }
+    if (run.started_at) stamps.push(new Date(run.started_at).getTime());
   }
   for (const event of events) {
     if (event.created_at) stamps.push(new Date(event.created_at).getTime());
