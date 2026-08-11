@@ -130,7 +130,22 @@ function stagedMarkSequence(bundle) {
       if (question.total_marks) sequence.push(Number(question.total_marks));
       continue;
     }
-    for (const part of [...parts].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))) {
+    // Do NOT sort by sort_order. It is scoped PER NESTING LEVEL, not globally
+    // within the question, so a flat sort interleaves children with their
+    // siblings and invents a reordering that is not in the data:
+    //
+    //   Q1 parts   (a)  (b)  (b)(i)  (b)(ii)
+    //   sort_order  1    2     1        2
+    //   flat sort: (a) (b)(i) (b) (b)(ii)   <-- wrong
+    //
+    // That produced a REORDERED verdict on 9709/12 O/N 2024 whose staged
+    // sequence is in fact identical to the printed one, position for position.
+    // The bundle already arrives in document order because the extraction walks
+    // the paper top to bottom, so preserving that order is both correct and the
+    // smallest change. A false REORDERED is worse than no check: this is the
+    // report a reviewer is meant to trust for dropped or misplaced parts, and
+    // one spurious flag is enough to teach them to skim it.
+    for (const part of parts) {
       sequence.push(Number(part.marks));
     }
   }

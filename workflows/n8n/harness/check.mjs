@@ -35,6 +35,12 @@ const steps = [
   ["OCR vs PDF text layer (review triage)", path.join(HARNESS, "check_ocr_vs_pdf.mjs"), "report"],
   ["Staged content vs printed paper (review triage)", path.join(HARNESS, "check_content_vs_pdf.mjs"), "report"],
   ["OCR internal consistency (review triage)", path.join(HARNESS, "check_ocr_integrity.mjs"), "report"],
+  // Lost factorials in exponential series. Report-only for the same reason as
+  // the others -- it is a property of the OCR reading, not of any code change --
+  // but it earns its place: it is the only check that saw a corrupted formula in
+  // two papers that had staged completely clean, because marks still reconcile
+  // and prose fidelity cannot judge maths.
+  ["Lost factorials in OCR (review triage)", path.join(HARNESS, "check_lost_factorials.mjs"), "report"],
   // Needs Supabase credentials rather than fixtures, because metadata lives only
   // in the database. Report-only: a topic disagreement is a review item for that
   // paper, never a reason to fail a workflow regression run.
