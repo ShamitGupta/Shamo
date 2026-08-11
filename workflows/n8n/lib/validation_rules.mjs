@@ -360,7 +360,24 @@ function applyExtendedValidationRules({ bundle, state, addIssue }) {
       String(question.stem_markdown ?? ""),
       ...parts.map((part) => String(part.prompt_markdown ?? "")),
     ].join(" ");
-    const asksCandidateToDraw = /\b(?:on a sketch|sketch the|draw the|shade the region|copy the)\b/i.test(allText);
+    // The verb has to be matched as an INSTRUCTION, not as the phrase
+    // "sketch the". Cambridge routinely puts the qualifier between the two:
+    //
+    //   "Sketch, on a single diagram, the graphs of ..."   9709/21 M/J 2025 Q3
+    //   "Sketch on the same diagram the graphs of ..."     9709/22,23 M/J 2025 Q2
+    //
+    // The old pattern required "sketch the" adjacently and so missed all three,
+    // blocking four papers on diagrams the candidate is asked to produce and
+    // that therefore do not exist to be captured. Anchoring on a sentence start
+    // or a part label catches the imperative wherever the qualifier sits.
+    //
+    // Widening this is safe because referencesPrintedDiagram still gates it: a
+    // question that shows a figure AND asks for a sketch keeps blocking, which
+    // is the case that actually needs a human.
+    const asksCandidateToDraw =
+      /(?:^|[.;\n)])\s*(?:sketch|draw|plot|shade|copy)\b|\bon a sketch\b|\bshade the region\b/i.test(
+        allText,
+      );
     const referencesPrintedDiagram = /\bthe diagram\b|\bdiagram shows\b|\bgraph of .{0,30}\bis shown\b/i.test(allText);
     const candidateDrawsIt = asksCandidateToDraw && !referencesPrintedDiagram;
 

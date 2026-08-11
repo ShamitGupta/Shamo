@@ -1025,8 +1025,24 @@ for (const question of questions) {
     partPaths.add(path);
     if (part.marks === null) allPartMarksKnown = false;
     else knownPartMarks += Number(part.marks || 0);
-    if (!(part.prompt_markdown || '').trim()) {
-      addIssue('blocking', 'EMPTY_PART_TEXT', 'A question part has no prompt.', {
+    // A PARENT part legitimately has no prompt of its own. Cambridge prints
+    // (b) as a bare label and puts the text in (b)(i) and (b)(ii) beneath it --
+    // 9709/13 O/N 2025 Q11 is exactly that shape, and blocking on it demands a
+    // human recover text the paper never printed.
+    //
+    // Only a LEAF with no prompt is a real defect, because that is a part a
+    // student would be shown with nothing to answer. Note the contrast with the
+    // sibling case: a parent that DOES carry shared context, like 9709/13 M/J
+    // 2025 Q10(c), keeps its prompt and is unaffected either way.
+    //
+    // (No backticks in this comment: it lives inside a String.raw template.)
+    const hasChildren = (question.parts || []).some((other) => {
+      const own = part.label_path || [];
+      const theirs = other.label_path || [];
+      return theirs.length > own.length && own.every((seg, i) => theirs[i] === seg);
+    });
+    if (!(part.prompt_markdown || '').trim() && !hasChildren) {
+      addIssue('blocking', 'EMPTY_PART_TEXT', 'A leaf question part has no prompt.', {
         question_number: qn,
         part_path: part.label_path || [],
       });

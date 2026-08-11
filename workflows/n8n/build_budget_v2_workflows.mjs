@@ -1295,7 +1295,22 @@ deterministicValidationCode = deterministicValidationCode.replace(
     }
     const printedMarkCode = String(mark.mark_code || '').trim().toUpperCase();
     const upperGuidance = normalizedGuidance.toUpperCase();
-    const guidanceStartsWithMarkCode = printedMarkCode && (
+    // Cambridge legitimately opens guidance with the mark code when it explains
+    // how a multi-mark award splits:
+    //
+    //   A1 for correct LHS.        9709/42 M/J 2025 Q7
+    //   A1 for correct RHS.        9709/42 M/J 2025 Q7
+    //   A1 for two correct x-values or one correct point.   9709/13 M/J 2025 Q10
+    //
+    // That is printed text, not a Marks column bleeding into Guidance, and
+    // blocking on it stopped two papers over correct data. The bleed this rule
+    // exists for leaves a bare code or a code followed by the answer -- never a
+    // grammatical continuation. So a following connective exempts the row.
+    //
+    // (No backticks in this comment: it lives inside a String.raw template.)
+    const afterCode = upperGuidance.slice(printedMarkCode.length).trim();
+    const readsAsProse = /^(?:FOR|EACH|ONLY|IF|AND|OR|WHEN|UNLESS|PER)\b/.test(afterCode);
+    const guidanceStartsWithMarkCode = printedMarkCode && !readsAsProse && (
       upperGuidance === printedMarkCode ||
       upperGuidance.startsWith(printedMarkCode + ' ') ||
       upperGuidance.startsWith(printedMarkCode + '.') ||
