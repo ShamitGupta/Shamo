@@ -5,6 +5,7 @@ Three endpoints, and the shape of them is the point:
   GET  /papers                 what is actually published
   GET  /papers/.../questions/N exact question context, or an explicit 404
   POST /chat                   grounded tutoring, streamed
+  POST /visualize              grounded visual specs, validated and cached
 
 A student can only ask about a question the catalogue offers, and the chat
 endpoint re-retrieves that question server-side rather than trusting anything the
@@ -20,6 +21,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
+from . import manim_renderer
 from .config import Settings, get_settings
 from .models import (
     AssetOut,
@@ -29,9 +31,21 @@ from .models import (
     PartOut,
     QuestionContextOut,
     QuestionRef,
+    TutorMode,
+    VisualArtifactKind,
+    VisualArtifactOut,
+    VisualValidationStatus,
+    VisualizeRequest,
+    VisualizeResponse,
 )
 from .repository import QuestionContext, Repository, RetrievalError
 from .tutor import TutorService, TutorUnavailable
+from .visualize import (
+    VISUAL_PROMPT_VERSION,
+    VISUAL_SPEC_VERSION,
+    VisualizeService,
+    VisualizeUnavailable,
+)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -44,6 +58,7 @@ app = FastAPI(
 
 _repository: Repository | None = None
 _tutor: TutorService | None = None
+_visualizer: VisualizeService | None = None
 
 
 def get_repository(settings: Settings = Depends(get_settings)) -> Repository:
@@ -58,6 +73,13 @@ def get_tutor(settings: Settings = Depends(get_settings)) -> TutorService:
     if _tutor is None:
         _tutor = TutorService(settings)
     return _tutor
+
+
+def get_visualizer(settings: Settings = Depends(get_settings)) -> VisualizeService:
+    global _visualizer
+    if _visualizer is None:
+        _visualizer = VisualizeService(settings)
+    return _visualizer
 
 
 # Added at import, not on startup: Starlette builds its middleware stack when the
@@ -199,6 +221,9 @@ def chat(
     repository: Repository = Depends(get_repository),
     tutor: TutorService = Depends(get_tutor),
 ) -> StreamingResponse:
+    if request.mode is TutorMode.VISUALIZE:
+        raise HTTPException(status_code=400, detail="Use /visualize for Visualize mode.")
+
     # Retrieved here, server-side, from the reference only. The client never
     # supplies question content, so it cannot put words in the tutor's source.
     context = _load_or_404(request.question, repository)
@@ -217,3 +242,155 @@ def chat(
         raise HTTPException(status_code=502, detail=f"Tutor unavailable: {error}") from error
 
     return StreamingResponse(stream, media_type="text/plain; charset=utf-8")
+
+
+def _resign_cached_manim_artifacts(
+    response: VisualizeResponse, repository: Repository
+) -> VisualizeResponse:
+    """A cached artifact's video_storage_path is durable; its video_url is not.
+
+    The signed URL was only ever valid for the request that minted it, so a
+    cache hit re-signs a fresh one from the durable path rather than ever
+    returning whatever URL happened to be embedded in the stored spec. An
+    artifact whose video no longer signs (e.g. the object was deleted) is
+    dropped rather than shown broken; the same drop-and-maybe-fallback
+    behaviour render failures use below.
+    """
+    if not any(a.artifact_kind == VisualArtifactKind.MANIM_TEMPLATE_VIDEO for a in response.artifacts):
+        return response
+
+    kept: list[VisualArtifactOut] = []
+    for artifact in response.artifacts:
+        if artifact.artifact_kind != VisualArtifactKind.MANIM_TEMPLATE_VIDEO:
+            kept.append(artifact)
+            continue
+        signed_url = (
+            repository.resign_visual_video(artifact.video_storage_path)
+            if artifact.video_storage_path
+            else None
+        )
+        if not signed_url:
+            logger.info("Dropping cached manim artifact: could not re-sign its video")
+            continue
+        kept.append(
+            artifact.model_copy(
+                update={
+                    "video_url": signed_url,
+                    "video_url_expires_in_seconds": get_settings().asset_url_ttl_seconds,
+                }
+            )
+        )
+
+    return _with_resolved_artifacts(response, kept)
+
+
+def _render_and_store_manim_artifacts(
+    response: VisualizeResponse, repository: Repository, context: QuestionContext
+) -> VisualizeResponse:
+    """Render every fresh manim_template_video artifact and attach a durable path + signed URL.
+
+    A render or upload failure drops just that artifact rather than failing
+    the whole request: another artifact in the same response (or the
+    fallback text) can still reach the student. validation_status flips to
+    RENDER_FAILED only if nothing usable survives.
+    """
+    if not any(a.artifact_kind == VisualArtifactKind.MANIM_TEMPLATE_VIDEO for a in response.artifacts):
+        return response
+
+    question_id = context.question_id
+    kept: list[VisualArtifactOut] = []
+    for artifact in response.artifacts:
+        if artifact.artifact_kind != VisualArtifactKind.MANIM_TEMPLATE_VIDEO or not artifact.manim:
+            kept.append(artifact)
+            continue
+        if not question_id:
+            logger.warning("Dropping manim artifact: question has no id to key the video on")
+            continue
+
+        output_path = None
+        try:
+            output_path = manim_renderer.render_to_mp4(artifact.manim)
+            stored = repository.store_visual_video(
+                question_id=question_id,
+                manim_spec=artifact.manim.model_dump(mode="json"),
+                video_path=output_path,
+            )
+        except manim_renderer.ManimRenderError as error:
+            logger.warning("Manim render failed, dropping artifact: %s", error)
+            stored = None
+        finally:
+            if output_path is not None:
+                output_path.unlink(missing_ok=True)
+
+        if not stored:
+            continue
+        storage_path, signed_url = stored
+        kept.append(
+            artifact.model_copy(
+                update={
+                    "video_storage_path": storage_path,
+                    "video_url": signed_url,
+                    "video_url_expires_in_seconds": get_settings().asset_url_ttl_seconds,
+                }
+            )
+        )
+
+    return _with_resolved_artifacts(response, kept)
+
+
+def _with_resolved_artifacts(response: VisualizeResponse, kept: list[VisualArtifactOut]) -> VisualizeResponse:
+    if len(kept) == len(response.artifacts):
+        return response.model_copy(update={"artifacts": kept})
+    status = (
+        VisualValidationStatus.RENDER_FAILED
+        if not kept
+        else response.validation_status
+    )
+    return response.model_copy(update={"artifacts": kept, "validation_status": status})
+
+
+@app.post("/visualize", response_model=VisualizeResponse)
+def visualize(
+    request: VisualizeRequest,
+    repository: Repository = Depends(get_repository),
+    visualizer: VisualizeService = Depends(get_visualizer),
+    settings: Settings = Depends(get_settings),
+) -> VisualizeResponse:
+    # Same grounding boundary as /chat: the client sends only the reference, and
+    # the server retrieves the official question before any model call.
+    context = _load_or_404(request.question, repository)
+
+    cached = repository.get_visual_artifact(
+        context=context,
+        student_prompt=request.message,
+        visual_spec_version=VISUAL_SPEC_VERSION,
+    )
+    if cached:
+        response = VisualizeResponse.model_validate(cached)
+        return _resign_cached_manim_artifacts(response, repository)
+
+    try:
+        response = visualizer.create(
+            context=context,
+            ref=request.question,
+            message=request.message,
+            history=request.history,
+        )
+    except VisualizeUnavailable as error:
+        raise HTTPException(status_code=502, detail=f"Visualize unavailable: {error}") from error
+
+    if response.validation_status == VisualValidationStatus.VALIDATED:
+        # Render/upload before caching, not after: the cached spec_jsonb must
+        # carry the durable video_storage_path, or every future cache hit
+        # would find nothing to re-sign a URL from.
+        response = _render_and_store_manim_artifacts(response, repository, context)
+        if response.validation_status == VisualValidationStatus.VALIDATED:
+            repository.store_visual_artifact(
+                context=context,
+                student_prompt=request.message,
+                response_payload=response.model_dump(mode="json"),
+                generator_model=settings.tutor_model,
+                prompt_version=VISUAL_PROMPT_VERSION,
+            )
+
+    return response

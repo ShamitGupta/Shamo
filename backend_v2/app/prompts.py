@@ -15,6 +15,7 @@ phrasing.
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from .models import TutorMode
@@ -51,17 +52,20 @@ MARK AWARENESS
 STYLE
 - Inline maths in single dollars, display maths in double dollars.
 - Short paragraphs, bold for key terms, headers only when the answer is genuinely long.
-- Talk to a student, not about them. No preamble about what you are going to do."""
+- Talk to a student, not about them. Sound calm, friendly, and interested in how they are thinking.
+- When the student gives a value, equation, or bit of working, respond to that specific attempt before moving on. Ask how they got it or what they think the next check should be.
+- No preamble about what you are going to do."""
 
 MODE_RULES: dict[TutorMode, str] = {
     TutorMode.HINT: """MODE: HINT
 
 Give the smallest push that unblocks the student, and stop.
 
+- If the student has given an attempt, briefly acknowledge it and ask them to inspect the key step that produced it. A good shape is: "How did you get those values? Let's check the equation just before that."
 - Name the technique or the first move. Do NOT carry it out.
 - Do NOT state the final answer, and do NOT state the answer to any part.
 - Do NOT work through the algebra. One line of setup is the limit.
-- End by asking them to try that step.
+- End with one short question or invitation, such as asking what they can do next, what equation they should solve, or which line they want to check.
 
 If the student explicitly insists on the full solution, tell them to switch to
 Explain rather than giving it here.""",
@@ -80,10 +84,24 @@ Teach the full method for what the student asked about.
 The student's own working is below. Diagnose it against the mark scheme.
 
 - Say which marks their working WOULD earn, and name them.
+- Use the MARK ATTRIBUTION CHECKLIST below. In your final answer, include a
+  compact mark check with: Mark, student's evidence, condition met?, earned?
 - Before awarding ANY mark, check the student's working against that mark's
   Guidance, not just its Answer. A mark whose stated condition is unmet is not
   earned, however close the attempt looks. Being generous here is not kindness:
   it tells a student they have scored marks they would lose in the exam.
+- A mark whose Guidance requires more than one item ("Both", "All") is earned
+  in full or not at all -- there is no partial credit for showing only one of
+  the required items. If the student showed one of two required cases, terms,
+  or branches, that mark is NOT earned, full stop. Do not describe the one
+  item they did show as "the M1 idea", "the right approach", "using the
+  correct method", or any other phrase that reads as crediting the mark for
+  it -- say plainly "<code> is NOT earned: the Guidance requires both <X> and
+  <Y>; you only showed <X>." A real failure looked exactly like this: the
+  tutor correctly said the student's answer was incomplete, then separately
+  wrote "M1: Yes -- you used the correct probability for RRR", crediting the
+  very mark it had just explained was not earned. Never let the per-mark line
+  contradict the diagnosis above it.
 - Find the first place it goes wrong, if it does, and say why. One clear error is
   more useful than an exhaustive list.
 - Apply follow-through honestly: if a later step is correct given their earlier
@@ -111,6 +129,117 @@ def _format_mark_items(items: list[dict[str, Any]], indent: str = "  ") -> list[
             lines.append(f"{indent}  Answer: {answer}")
         if guidance:
             lines.append(f"{indent}  Guidance: {guidance}")
+    return lines
+
+
+def _part_label(part: dict[str, Any]) -> str:
+    path = part.get("label_path") or []
+    return "".join(f"({p})" for p in path) or "(whole question)"
+
+
+def _mark_condition_notes(answer: str, guidance: str) -> list[str]:
+    """Turn terse examiner guidance into explicit awarding checks.
+
+    This is intentionally small and conservative. It does not try to mark the
+    student's work itself; it makes the condition the model must check harder to
+    skim past, especially for words like "Both" that mean partial evidence is
+    not enough.
+    """
+
+    lower_guidance = guidance.lower()
+    notes: list[str] = []
+
+    def has_word(word: str) -> bool:
+        return bool(re.search(rf"\b{re.escape(word)}\b", lower_guidance))
+
+    if has_word("both"):
+        notes.append(
+            "Both required: the student must include every required term, case, "
+            "branch, value, or statement. One matching item is not enough, and "
+            "showing only one of the two is NOT earned -- there is no partial "
+            "credit here. Do not call the one item they showed 'the right idea' "
+            "or 'the correct method' in the mark line; that phrasing credits the "
+            "mark you are about to say is not earned."
+        )
+        if answer:
+            notes.append(
+                "Compare against the whole Answer line before awarding this mark."
+            )
+    if has_word("all"):
+        notes.append(
+            "All required: partial evidence is not enough for this mark, and no "
+            "single required item earns it alone."
+        )
+    if "must see" in lower_guidance:
+        notes.append("Must see: do not award unless that exact evidence is present.")
+    if has_word("ft"):
+        notes.append(
+            "Follow-through allowed only after the required method evidence is present."
+        )
+    if has_word("cao"):
+        notes.append("CAO: correct answer only; follow-through is not enough.")
+    if has_word("awrt"):
+        notes.append("AWRT: accept answers rounding to the stated value.")
+    if has_word("oe") or "or equivalent" in lower_guidance:
+        notes.append("Equivalent forms are allowed, but the same condition must be met.")
+
+    return notes
+
+
+def build_mark_attribution_checklist(context: QuestionContext) -> str:
+    """Render per-mark conditions for Check mode.
+
+    The normal source block is faithful to the database, but real use showed the
+    tutor can still read a guidance condition like "Both" and award a method
+    mark for one term. This section repeats the same official mark rows as a
+    checklist: no new facts, just a harder-to-skip structure.
+    """
+
+    lines: list[str] = [
+        "MARK ATTRIBUTION CHECKLIST (CHECK MODE ONLY)",
+        "============================================",
+        "Use this checklist before saying a mark is earned.",
+        "- For each mark, identify the student's exact evidence.",
+        "- If the evidence is absent or only partly satisfies the Guidance, the mark is NOT earned.",
+        "- If Guidance says Both or All, list the required items and check every one.",
+        "- Do not award an A mark unless its required method/dependency is earned.",
+        "",
+    ]
+
+    count = 0
+
+    root_items = context.question.get("root_mark_scheme") or []
+    for item in root_items:
+        count += 1
+        lines += _format_mark_check(count, "Question level", item)
+
+    for part in context.parts:
+        location = f"Part {_part_label(part)}"
+        for item in part.get("mark_scheme_items") or []:
+            count += 1
+            lines += _format_mark_check(count, location, item)
+
+    if count == 0:
+        lines.append("No mark rows are recorded for this question.")
+
+    return "\n".join(lines).rstrip()
+
+
+def _format_mark_check(index: int, location: str, item: dict[str, Any]) -> list[str]:
+    code = item.get("mark_code") or "(no mark code)"
+    answer = str(item.get("content_markdown") or "").strip()
+    guidance = str(item.get("guidance_markdown") or "").strip()
+    lines = [f"{index}. {location} -- {code}"]
+    if answer:
+        lines.append(f"   Required answer/evidence: {answer}")
+    if guidance:
+        lines.append(f"   Guidance condition: {guidance}")
+    notes = _mark_condition_notes(answer, guidance)
+    if notes:
+        lines.append("   Explicit awarding checks:")
+        lines += [f"   - {note}" for note in notes]
+    lines.append("   Before awarding: cite the student's evidence, then decide Earned: yes/no.")
+    lines.append("")
     return lines
 
 
@@ -183,13 +312,14 @@ def build_source_block(context: QuestionContext, asset_urls_available: bool) -> 
 def build_system_prompt(
     context: QuestionContext, mode: TutorMode, asset_urls_available: bool
 ) -> str:
-    return "\n\n".join(
-        [
-            BASE_RULES,
-            MODE_RULES[mode],
-            build_source_block(context, asset_urls_available),
-        ]
-    )
+    sections = [
+        BASE_RULES,
+        MODE_RULES[mode],
+        build_source_block(context, asset_urls_available),
+    ]
+    if mode is TutorMode.CHECK:
+        sections.append(build_mark_attribution_checklist(context))
+    return "\n\n".join(sections)
 
 
 def build_user_message(message: str, attempt: str | None, mode: TutorMode) -> str:

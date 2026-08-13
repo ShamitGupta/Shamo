@@ -26,6 +26,7 @@ a model call, and `test_model_is_never_called_without_context` asserts it.
 | `GET /papers` | every published paper and the question numbers it holds |
 | `GET /papers/{year}/{session}/{variant}/questions/{n}` | full question context, or 404 |
 | `POST /chat` | streamed tutoring |
+| `POST /visualize` | validated Desmos/GeoGebra visual explanation specs |
 
 The catalogue exists so the UI can only offer what is published. The legacy
 frontend lists years to 2024 regardless of what is behind them, so a student can
@@ -36,8 +37,8 @@ client never supplies question content and so cannot put words in the source.
 
 ## Modes
 
-Three modes, differing in what they may **reveal**, not in tone. That makes the
-difference testable.
+Four modes. The first three differ in what they may **reveal**, not in tone.
+That makes the difference testable.
 
 - **hint** — name the technique, one line of setup, then stop. Must not state the
   answer to any part.
@@ -45,6 +46,9 @@ difference testable.
   with the printed answer and its required accuracy.
 - **check** — diagnose the student's own working: which marks it earns, where the
   first error is, and whether follow-through still applies.
+- **visualize** — concept-first visual support through `/visualize`, not streamed
+  `/chat`: the model proposes a restricted Desmos/GeoGebra JSON spec, the
+  backend validates it, and the frontend renders the trusted spec inline.
 
 All three see the same mark scheme. Withholding it from hint mode would make it
 guess, which is worse than trusting it to stay quiet.
@@ -136,16 +140,19 @@ grade quality would replace one unaccountable judgement with another.
 
 ## Known limitations
 
-**The tutor awards marks the guidance does not allow, about half the time.**
-Measured over 6 runs of `lenient-m1`: **3 correct, 3 wrongly awarding the M1**.
-Given an attempt containing only `P(RRR)`, the printed guidance reads *"Both, FT
-their tree diagram probabilities"* — both terms are required, so the mark is not
-earned. Prompt rules about reading the Guidance reduced this but did not fix it.
+**Check-mode mark attribution has a structural fix, but still needs live
+evaluator sign-off.** The original measured failure was `lenient-m1`: over 6
+runs, **3 correct and 3 wrongly awarding the M1**. Given an attempt containing
+only `P(RRR)`, the printed guidance reads *"Both, FT their tree diagram
+probabilities"* — both terms are required, so the mark is not earned.
 
-Two things follow. Check mode should not be trusted for mark totals yet. And the
-next fix is probably structural rather than more prompt text — for example
-extracting the guidance condition per mark and having the model answer against
-it explicitly, rather than hoping it reads carefully.
+Check mode now receives a generated `MARK ATTRIBUTION CHECKLIST` that repeats
+each mark row as required evidence, guidance condition, explicit awarding checks
+for terms such as "Both", "All", "must see", "FT", "CAO", "AWRT" and "OE", and
+a required earned yes/no decision. Offline tests assert that this structure is
+present and that the "Both" condition is not allowed to collapse into partial
+credit. Do not treat this as student-ready until `evaluate_tutor.py --case
+lenient-m1` has passed on a Python runtime that can reach Supabase/OpenAI.
 
 **A second bug, now fixed, is worth recording because of its shape.** On
 9709/12 M/J Q10(a) the tutor copied the mark scheme's `-9 = ±5 × dt/dx` but wrote
@@ -161,9 +168,16 @@ answering. Stable across 4 runs since.
 Both share a shape: **a correct-looking final line hiding wrong reasoning.**
 That is why evaluation cannot be a read-through.
 
-**Not built:** authentication, persisted conversations, attempt history,
-similar-question retrieval, rate limiting. Similar-question search deliberately
-stays out until each paper component has enough cross-paper content.
+**Visualize is implemented as a validated-spec path, not arbitrary tool code.**
+`POST /visualize` re-retrieves the question server-side, checks a cache of
+validated visual artifacts when the optional `shamo_visual_artifacts` table is
+present, then asks the model for a restricted `visual-v1` JSON object only on a
+cache miss. Desmos artifacts may contain expressions, sliders, and bounded
+viewports; GeoGebra artifacts may contain only whitelisted construction
+commands. Raw JavaScript, HTML, external URLs, uploads, and opaque saved graph
+states are rejected before the browser sees them. Manim is deliberately not in
+this first release; the artifact model leaves room for later template-rendered
+videos from an isolated worker.
 
 **Not yet built:** authentication, persisted conversations, attempt history,
 similar-question retrieval, and rate limiting. Similar-question search

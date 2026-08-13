@@ -54,6 +54,10 @@ class Settings:
     # leaked URL is worthless.
     asset_url_ttl_seconds: int = 600
     max_history_messages: int = 12
+    # Private bucket for backend-generated media (currently: cached Manim
+    # visual-artifact videos). Distinct from the reviewed past-paper-assets
+    # bucket because nothing here is reviewed official content.
+    generated_media_bucket: str = "shamo-generated-media"
 
     allowed_origins: list[str] = field(default_factory=list)
 
@@ -68,6 +72,7 @@ class Settings:
             tutor_model=os.getenv("SHAMO_TUTOR_MODEL", "gpt-5.4-mini"),
             asset_url_ttl_seconds=int(os.getenv("SHAMO_ASSET_URL_TTL", "600")),
             max_history_messages=int(os.getenv("SHAMO_MAX_HISTORY", "12")),
+            generated_media_bucket=os.getenv("SHAMO_GENERATED_MEDIA_BUCKET", "shamo-generated-media"),
             # No wildcard default. The legacy service allows every origin, which
             # is fine for an unauthenticated prototype and will not be once this
             # one carries student data.

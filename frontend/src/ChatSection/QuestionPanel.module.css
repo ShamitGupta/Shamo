@@ -2,11 +2,13 @@
     margin: 0 auto 1rem;
     max-width: 52rem;
     width: 100%;
-    border: 1px solid rgba(148, 163, 184, 0.28);
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.035);
-    padding: 1rem 1.15rem;
+    border: 1px solid rgba(148, 163, 184, 0.34);
+    border-radius: 12px;
+    background: #18191c;
+    color: #eef2f7;
+    padding: 1.1rem 1.25rem;
     box-sizing: border-box;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
 }
 
 .PanelError {
@@ -26,19 +28,30 @@
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.01em;
+    color: #ffffff;
 }
 
 .Marks {
     display: inline-block;
     margin-top: 0.2rem;
     font-size: 0.78rem;
-    opacity: 0.62;
+    color: #aeb8c7;
 }
 
 .Body {
     margin-top: 0.85rem;
     font-size: 0.92rem;
     line-height: 1.55;
+    color: #e7ebf2;
+}
+
+.Body :global(.katex) {
+    color: #f5f7fb;
+}
+
+.Body :global(.katex-display) {
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .Stem :global(p) {
@@ -48,7 +61,7 @@
 .Part {
     margin-top: 0.75rem;
     padding-left: 0.85rem;
-    border-left: 2px solid rgba(148, 163, 184, 0.28);
+    border-left: 2px solid rgba(139, 164, 249, 0.56);
 }
 
 .PartHeader {
@@ -64,7 +77,7 @@
 
 .PartMarks {
     font-size: 0.78rem;
-    opacity: 0.62;
+    color: #aeb8c7;
     font-weight: 500;
 }
 
@@ -87,7 +100,11 @@
 .Caption {
     margin-top: 0.4rem;
     font-size: 0.78rem;
-    opacity: 0.62;
+    color: #aeb8c7;
+}
+
+.Caption :global(p) {
+    margin: 0;
 }
 
 .DiagramMissing {
@@ -101,7 +118,7 @@
 
 .Muted {
     margin: 0;
-    opacity: 0.62;
+    color: #aeb8c7;
     font-size: 0.88rem;
 }
 
@@ -118,13 +135,13 @@
     cursor: pointer;
     font: inherit;
     font-size: 0.8rem;
-    color: inherit;
-    opacity: 0.68;
+    color: #c8d3e2;
     text-decoration: underline;
     text-underline-offset: 3px;
     white-space: nowrap;
 }
 
-.TextButton:hover {
-    opacity: 1;
+.TextButton:hover,
+.TextButton:focus-visible {
+    color: #ffffff;
 }

@@ -6,10 +6,11 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
 import { sanitizeLatex } from '../utils/sanitizeLatex.js';
-import { fetchQuestion, streamChat, TUTOR_MODES, ApiError } from '../api/tutorApi.js';
+import { createVisualization, fetchQuestion, streamChat, TUTOR_MODES, ApiError } from '../api/tutorApi.js';
 import { usePaperCatalogue } from './usePaperCatalogue.js';
 import MetadataDropdown from './MetadataDropdown';
 import QuestionPanel from './QuestionPanel';
+import VisualArtifactCard from './VisualArtifactCard';
 import AuthActions from '../Auth/AuthActions';
 import AuthOverlay from '../Auth/AuthOverlay';
 
@@ -23,7 +24,10 @@ function ChatSection() {
     // paper cannot be chosen. See usePaperCatalogue.
     const catalogue = usePaperCatalogue();
 
-    const [mode, setMode] = useState('explain');
+    // Multiple modes can be active at once -- see toggleMode. Hint/Explain/Check
+    // stay independent, unmodified requests even when combined (each keeps its
+    // own rules about what it may reveal); Visualize is just another one of them.
+    const [selectedModes, setSelectedModes] = useState(['explain']);
     const [question, setQuestion] = useState(null);
     const [questionStatus, setQuestionStatus] = useState('idle'); // idle | loading | ready | error
     const [questionError, setQuestionError] = useState(null);
@@ -31,10 +35,11 @@ function ChatSection() {
     const dummyRef = useRef();
     const chatContainerRef = useRef();
     const chatSectionRef = useRef();
+    const messageIdRef = useRef(0);
+    const nextMessageId = () => `msg-${messageIdRef.current++}`;
 
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [chatError, setChatError] = useState(null);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [isAuthOverlayOpen, setIsAuthOverlayOpen] = useState(false);
     const [authMode, setAuthMode] = useState('signup');
@@ -77,7 +82,6 @@ function ChatSection() {
     // would let the tutor answer about paper A while grounded in paper B.
     useEffect(() => {
         setMessages([]);
-        setChatError(null);
     }, [referenceKey]);
 
     useEffect(() => {
@@ -120,7 +124,13 @@ function ChatSection() {
         setIsAuthOverlayOpen(false);
     };
 
-    const canSend = Boolean(reference) && questionStatus === 'ready' && !isLoading;
+    const toggleMode = (value) => {
+        setSelectedModes((prev) => (
+            prev.includes(value) ? prev.filter((m) => m !== value) : [...prev, value]
+        ));
+    };
+
+    const canSend = Boolean(reference) && questionStatus === 'ready' && !isLoading && selectedModes.length > 0;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -128,60 +138,109 @@ function ChatSection() {
         const currentPrompt = inputValue.trim();
         if (!currentPrompt || !canSend) return;
 
+        // Snapshot the selection for this turn -- toggling modes mid-flight
+        // should not retroactively change a request that already went out.
+        const modesToRun = [...selectedModes];
+
         const history = messages
             .slice(-MAX_SESSION_MEMORY_MESSAGES)
             .map((message) => ({
                 role: message.sender === 'user' ? 'user' : 'assistant',
-                content: message.title,
+                content: message.title || '',
             }));
 
         setInputValue("");
-        setChatError(null);
-        setMessages(prev => [...prev, { title: currentPrompt, sender: 'user' }]);
+
+        // One response slot per selected mode, created up front so their order
+        // on screen matches selection order regardless of which one resolves
+        // first. Each slot is updated in place by id, not by array position, so
+        // concurrent streaming/visualize calls can't race on "the last message".
+        const responseSlots = modesToRun.map((modeValue) => ({
+            id: nextMessageId(),
+            modeValue,
+        }));
+
+        setMessages((prev) => [
+            ...prev,
+            { id: nextMessageId(), title: currentPrompt, sender: 'user' },
+            ...responseSlots.map(({ id, modeValue }) => ({
+                id,
+                title: '',
+                sender: 'chatbot',
+                respondingMode: modeValue,
+                pending: true,
+            })),
+        ]);
         setIsLoading(true);
 
+        const updateSlot = (id, patch) => {
+            setMessages((prev) => prev.map((message) => (
+                message.id === id ? { ...message, ...patch } : message
+            )));
+        };
+
+        // Each selected mode is its own independent, unmodified request against
+        // its existing pathway -- Hint/Explain/Check are never blended into one
+        // prompt, because they differ in what they may reveal. Combining them
+        // just means the student gets several faithful responses side by side
+        // in one turn instead of having to ask three separate times.
+        const runMode = async ({ id, modeValue }) => {
+            try {
+                // Only a reference to the question travels. The server retrieves
+                // the content itself, so the browser cannot put words in the
+                // tutor's source material.
+                if (modeValue === 'visualize') {
+                    const response = await createVisualization({
+                        question: reference,
+                        message: currentPrompt,
+                        history,
+                    });
+                    updateSlot(id, {
+                        title: response.message_markdown || response.fallback_markdown,
+                        artifacts: response.artifacts || [],
+                        fallbackMarkdown: response.fallback_markdown,
+                        validationStatus: response.validation_status,
+                        pending: false,
+                    });
+                    return;
+                }
+
+                await streamChat(
+                    {
+                        question: reference,
+                        mode: modeValue,
+                        message: currentPrompt,
+                        // In Check mode the student's working IS the message; the
+                        // API keeps them separate so the prompt can label it.
+                        attempt: modeValue === 'check' ? currentPrompt : null,
+                        history,
+                    },
+                    (accumulated) => {
+                        updateSlot(id, { title: accumulated, pending: false });
+                        requestAnimationFrame(() => {
+                            if (chatContainerRef.current) {
+                                chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+                            }
+                        });
+                    },
+                );
+            } catch (error) {
+                // Shown inline on this mode's own slot, not a shared banner --
+                // one mode failing (e.g. Visualize) should not hide another
+                // mode's successful answer (e.g. Hint) from the same turn.
+                updateSlot(id, {
+                    pending: false,
+                    isError: true,
+                    title: error instanceof ApiError
+                        ? error.message
+                        : 'Could not reach the tutor. Is the API running on ' +
+                          (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000') + '?',
+                });
+            }
+        };
+
         try {
-            // Only a reference to the question travels. The server retrieves the
-            // content itself, so the browser cannot put words in the tutor's
-            // source material.
-            let started = false;
-            await streamChat(
-                {
-                    question: reference,
-                    mode,
-                    message: currentPrompt,
-                    // In Check mode the student's working IS the message; the
-                    // API keeps them separate so the prompt can label it.
-                    attempt: mode === 'check' ? currentPrompt : null,
-                    history,
-                },
-                (accumulated) => {
-                    if (!started) {
-                        started = true;
-                        setIsLoading(false);
-                        setMessages(prev => [...prev, { title: "", sender: 'chatbot' }]);
-                    }
-                    setMessages(prev => {
-                        const next = [...prev];
-                        next[next.length - 1] = { ...next[next.length - 1], title: accumulated };
-                        return next;
-                    });
-                    requestAnimationFrame(() => {
-                        if (chatContainerRef.current) {
-                            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-                        }
-                    });
-                },
-            );
-        } catch (error) {
-            // Shown to the student, not just logged. A 404 here carries the
-            // server's explanation of what is published instead.
-            setChatError(
-                error instanceof ApiError
-                    ? error.message
-                    : 'Could not reach the tutor. Is the API running on ' +
-                      (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000') + '?',
-            );
+            await Promise.all(responseSlots.map(runMode));
         } finally {
             setIsLoading(false);
         }
@@ -193,28 +252,36 @@ function ChatSection() {
 
     const placeholder = !reference
         ? 'Pick a paper and question to begin…'
-        : mode === 'check'
-            ? 'Type or paste your working…'
-            : 'Ask anything about this question…';
+        : selectedModes.length === 0
+            ? 'Select at least one mode above…'
+            : selectedModes.includes('check')
+                ? 'Type or paste your working…'
+                : selectedModes.every((m) => m === 'visualize')
+                    ? 'Ask what you want to see visually…'
+                    : 'Ask anything about this question…';
 
     return (
         <div className={styles.ChatSection} ref={chatSectionRef}>
             <div className={styles.TopBar}>
                 <div className={styles.TopBarContent}>
                     <div className={styles.TopBarPrimary}>
-                        <div className={styles.ModeGroup} role="group" aria-label="Tutor mode">
-                            {TUTOR_MODES.map((option) => (
-                                <button
-                                    key={option.value}
-                                    type="button"
-                                    title={option.blurb}
-                                    aria-pressed={mode === option.value}
-                                    className={`${styles.ModeButton} ${mode === option.value ? styles.ModeButtonActive : ''}`}
-                                    onClick={() => setMode(option.value)}
-                                >
-                                    {option.label}
-                                </button>
-                            ))}
+                        <div className={styles.ModeGroup} role="group" aria-label="Tutor modes -- select one or more">
+                            {TUTOR_MODES.map((option) => {
+                                const isActive = selectedModes.includes(option.value);
+                                return (
+                                    <button
+                                        key={option.value}
+                                        type="button"
+                                        title={option.blurb}
+                                        aria-pressed={isActive}
+                                        className={`${styles.ModeButton} ${isActive ? styles.ModeButtonActive : ''}`}
+                                        onClick={() => toggleMode(option.value)}
+                                    >
+                                        <span className={styles.ModeCheckbox} aria-hidden="true">✓</span>
+                                        {option.label}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
 
@@ -240,22 +307,41 @@ function ChatSection() {
                     error={questionError}
                 />
 
-                {messages.map((msg, index) => (
-                    <div key={index} className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
-                        <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                            {sanitizeLatex(msg.title)}
-                        </ReactMarkdown>
+                {messages.map((msg) => (
+                    <div key={msg.id} className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
+                        {msg.sender === 'chatbot' && msg.respondingMode && (
+                            <span className={styles.ModeTag}>
+                                {TUTOR_MODES.find((m) => m.value === msg.respondingMode)?.label || msg.respondingMode}
+                            </span>
+                        )}
+                        {msg.pending && !msg.title ? (
+                            <div className={styles.InlineLoading}>
+                                <span className={styles.SpinnerSmall}></span>
+                                <span>{msg.respondingMode === 'visualize' ? 'Building the visual…' : 'Thinking…'}</span>
+                            </div>
+                        ) : msg.isError ? (
+                            <div className={styles.Notice}>{msg.title}</div>
+                        ) : (
+                            <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                {sanitizeLatex(msg.title)}
+                            </ReactMarkdown>
+                        )}
+                        {msg.artifacts?.map((artifact, artifactIndex) => (
+                            <VisualArtifactCard
+                                key={`${msg.id}-${artifactIndex}`}
+                                artifact={artifact}
+                                fallbackMarkdown={msg.fallbackMarkdown}
+                            />
+                        ))}
+                        {msg.validationStatus === 'render_failed' && !msg.artifacts?.length && msg.fallbackMarkdown && (
+                            <div className={styles.VisualFallbackNote}>
+                                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                    {sanitizeLatex(msg.fallbackMarkdown)}
+                                </ReactMarkdown>
+                            </div>
+                        )}
                     </div>
                 ))}
-
-                {isLoading && (
-                    <div className={styles.LoadingContainer}>
-                        <div className={styles.Spinner}></div>
-                        <p className={styles.LoadingText}>Reading the mark scheme…</p>
-                    </div>
-                )}
-
-                {chatError && <div className={styles.Notice}>{chatError}</div>}
 
                 <div className={styles.Dummy} ref={dummyRef}></div>
             </div>

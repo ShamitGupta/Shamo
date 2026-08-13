@@ -7,6 +7,13 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
+## Shamo API settings
+
+Set `VITE_API_BASE_URL` to the running `backend_v2` service. Visualize mode also
+uses the official Desmos embed script; set `VITE_DESMOS_API_KEY` when you want
+Desmos graphs to render instead of falling back to the backend text explanation.
+GeoGebra loads from its official embed script when a GeoGebra visual is returned.
+
 ## React Compiler
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).

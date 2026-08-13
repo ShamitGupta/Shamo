@@ -87,6 +87,18 @@ export async function streamChat({ question, mode, message, attempt, history }, 
     return full;
 }
 
+/** Build a validated visual explanation for one published question. */
+export async function createVisualization({ question, message, history }, signal) {
+    const response = await fetch(`${BASE_URL}/visualize`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question, message, history }),
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
 export const SESSION_LABELS = {
     feb_march: 'Feb/March',
     may_june: 'May/June',
@@ -97,4 +109,5 @@ export const TUTOR_MODES = [
     { value: 'hint', label: 'Hint', blurb: 'A nudge, not the answer' },
     { value: 'explain', label: 'Explain', blurb: 'Full method, mark by mark' },
     { value: 'check', label: 'Check my work', blurb: 'Diagnose your attempt' },
+    { value: 'visualize', label: 'Visualize', blurb: 'Interactive graph or construction' },
 ];

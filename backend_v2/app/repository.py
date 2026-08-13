@@ -15,7 +15,10 @@ ever returns published content.
 from __future__ import annotations
 
 import logging
+import hashlib
+import json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 from supabase import Client, create_client
@@ -51,6 +54,11 @@ class QuestionContext:
 
     def required_assets(self) -> list[dict[str, Any]]:
         return [a for a in self.assets if a.get("required_to_solve")]
+
+    @property
+    def question_id(self) -> str | None:
+        value = self.question.get("id")
+        return str(value) if value else None
 
 
 class Repository:
@@ -177,6 +185,134 @@ class Repository:
             return signed.get("signedURL") or signed.get("signedUrl")
         return None
 
+    # -- visual artifact cache --------------------------------------------
+
+    def get_visual_artifact(
+        self,
+        *,
+        context: QuestionContext,
+        student_prompt: str,
+        visual_spec_version: str,
+    ) -> dict[str, Any] | None:
+        """Return a previously validated visual spec for this exact prompt.
+
+        The table is additive and may not exist yet in a local database. Cache
+        failure should never block tutoring, so read errors are logged and
+        treated as a miss.
+        """
+
+        question_id = context.question_id
+        if not question_id:
+            return None
+
+        try:
+            response = (
+                self._client.table("shamo_visual_artifacts")
+                .select(
+                    "artifact_kind,visual_spec_version,spec_jsonb,"
+                    "message_markdown,fallback_markdown,accessibility_text,"
+                    "validation_status"
+                )
+                .eq("question_id", question_id)
+                .eq("student_prompt_hash", _hash_text(student_prompt))
+                .eq("visual_spec_version", visual_spec_version)
+                .eq("validation_status", "validated")
+                .order("created_at", desc=True)
+                .limit(1)
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            logger.info("Visual artifact cache read skipped: %s", error)
+            return None
+
+        rows = response.data or []
+        if not rows:
+            return None
+        spec = rows[0].get("spec_jsonb")
+        return spec if isinstance(spec, dict) else None
+
+    def store_visual_artifact(
+        self,
+        *,
+        context: QuestionContext,
+        student_prompt: str,
+        response_payload: dict[str, Any],
+        generator_model: str,
+        prompt_version: str,
+    ) -> None:
+        """Store a validated visual spec for reuse.
+
+        This is best-effort: a missing migration, missing question UUID in the
+        RPC payload, or transient database error should not fail the student's
+        current visualization.
+        """
+
+        question_id = context.question_id
+        artifacts = response_payload.get("artifacts") or []
+        if not question_id or not artifacts:
+            return
+
+        first_kind = str(artifacts[0].get("artifact_kind") or "none")
+        accessibility_text = "\n\n".join(
+            str(artifact.get("accessibility_text") or "").strip()
+            for artifact in artifacts
+            if str(artifact.get("accessibility_text") or "").strip()
+        )
+        try:
+            self._client.table("shamo_visual_artifacts").insert(
+                {
+                    "question_id": question_id,
+                    "artifact_kind": first_kind,
+                    "visual_spec_version": response_payload.get("visual_spec_version"),
+                    "student_prompt_hash": _hash_text(student_prompt),
+                    "spec_hash": _hash_json(response_payload),
+                    "spec_jsonb": response_payload,
+                    "message_markdown": response_payload.get("message_markdown"),
+                    "fallback_markdown": response_payload.get("fallback_markdown"),
+                    "accessibility_text": accessibility_text,
+                    "generator_model": generator_model,
+                    "prompt_version": prompt_version,
+                    "validation_status": response_payload.get("validation_status"),
+                }
+            ).execute()
+        except Exception as error:  # noqa: BLE001
+            logger.info("Visual artifact cache write skipped: %s", error)
+
+    # -- generated video (Manim) --------------------------------------------
+
+    def store_visual_video(
+        self, *, question_id: str, manim_spec: dict[str, Any], video_path: Path
+    ) -> tuple[str, str] | None:
+        """Upload a rendered Manim clip and return (storage_path, signed_url).
+
+        storage_path is content-addressed by the manim spec (not by prompt or
+        question), so two students asking for the same animation reuse the
+        same object instead of rendering and storing it twice. Best-effort
+        like sign_asset: a failed upload should degrade the response to a
+        text fallback, never raise past the caller.
+        """
+        bucket = self._settings.generated_media_bucket
+        spec_hash = _hash_json(manim_spec)
+        storage_path = f"visualize/{question_id}/{spec_hash}.mp4"
+
+        try:
+            data = video_path.read_bytes()
+            self._client.storage.from_(bucket).upload(
+                storage_path, data, {"content-type": "video/mp4", "upsert": "true"}
+            )
+        except Exception as error:  # noqa: BLE001
+            logger.warning("Could not upload generated video %s/%s: %s", bucket, storage_path, error)
+            return None
+
+        signed_url = self.sign_asset(bucket, storage_path)
+        if not signed_url:
+            return None
+        return storage_path, signed_url
+
+    def resign_visual_video(self, storage_path: str) -> str | None:
+        """Re-sign an already-uploaded generated video from a cached artifact."""
+        return self.sign_asset(self._settings.generated_media_bucket, storage_path)
+
     def nearest_available(self, year: int, paper_variant: str) -> str | None:
         """A helpful pointer when a lookup misses.
 
@@ -194,3 +330,12 @@ class Repository:
             variants = sorted({p["paper_variant"] for p in papers})
             return f"Published paper variants: {', '.join(variants)}."
         return None
+
+
+def _hash_text(value: str) -> str:
+    return hashlib.sha256(value.strip().lower().encode("utf-8")).hexdigest()
+
+
+def _hash_json(value: dict[str, Any]) -> str:
+    encoded = json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()

@@ -17,6 +17,7 @@ from __future__ import annotations
 import os
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -31,10 +32,15 @@ from fastapi.testclient import TestClient  # noqa: E402
 
 from app import main  # noqa: E402
 from app.config import get_settings  # noqa: E402
-from app.models import ChatTurn, TutorMode  # noqa: E402
-from app.prompts import build_source_block, build_system_prompt  # noqa: E402
+from app.models import ChatTurn, QuestionRef, TutorMode, VisualValidationStatus, VisualizeResponse  # noqa: E402
+from app.prompts import (  # noqa: E402
+    build_mark_attribution_checklist,
+    build_source_block,
+    build_system_prompt,
+)
 from app.repository import QuestionContext  # noqa: E402
 from app.tutor import TutorService  # noqa: E402
+from app.visualize import VisualizeService, validate_visual_payload  # noqa: E402
 
 # A real published question, trimmed: 9709/51 Oct/Nov 2025 Q4. Chosen because it
 # exercises the awkward cases -- a required diagram, a part whose mark rows carry
@@ -48,6 +54,7 @@ SAMPLE = QuestionContext(
         "qualification": "a_level",
     },
     question={
+        "id": "11111111-1111-1111-1111-111111111111",
         "question_number": 4,
         "total_marks": 5,
         "stem_markdown": "Bag A contains 8 red marbles and 3 blue marbles.",
@@ -74,8 +81,11 @@ SAMPLE = QuestionContext(
                 "mark_scheme_items": [
                     {
                         "mark_code": "M1",
-                        "content_markdown": r"\frac{8}{11} \times \frac{4}{5}",
-                        "guidance_markdown": "FT their tree diagram probabilities.",
+                        "content_markdown": (
+                            r"\frac{8}{11} \times \frac{4}{5} \times \frac{7}{10}"
+                            r" + \frac{3}{11} \times \frac{1}{5} \times \frac{3}{10}"
+                        ),
+                        "guidance_markdown": "Both, FT their tree diagram probabilities.",
                         "is_alternative_method": False,
                         "is_final_answer": False,
                     },
@@ -112,6 +122,8 @@ class FakeRepository:
     def __init__(self, context: QuestionContext | None = SAMPLE) -> None:
         self._context = context
         self.lookups: list[tuple] = []
+        self.cached_visual: dict | None = None
+        self.stored_visuals: list[dict] = []
 
     def list_papers(self):
         return [
@@ -135,6 +147,12 @@ class FakeRepository:
     def nearest_available(self, year, paper_variant):
         return "Paper 51 is published for: 2025."
 
+    def get_visual_artifact(self, **kwargs):
+        return self.cached_visual
+
+    def store_visual_artifact(self, **kwargs):
+        self.stored_visuals.append(kwargs)
+
 
 class RecordingTutor:
     """Captures the prompt instead of calling a provider."""
@@ -147,15 +165,67 @@ class RecordingTutor:
         yield "ok"
 
 
+class RecordingVisualizer:
+    """Captures visualize calls instead of calling a provider."""
+
+    def __init__(self, response: VisualizeResponse | None = None) -> None:
+        self.calls: list[dict] = []
+        self.response = response
+
+    def create(self, **kwargs):
+        self.calls.append(kwargs)
+        return self.response or sample_visual_response()
+
+
 @pytest.fixture
 def client_and_fakes():
     repository = FakeRepository()
     tutor = RecordingTutor()
+    visualizer = RecordingVisualizer()
     main.app.dependency_overrides[main.get_repository] = lambda: repository
     main.app.dependency_overrides[main.get_tutor] = lambda: tutor
+    main.app.dependency_overrides[main.get_visualizer] = lambda: visualizer
     with TestClient(main.app) as client:
-        yield client, repository, tutor
+        yield client, repository, tutor, visualizer
     main.app.dependency_overrides.clear()
+
+
+def sample_visual_response() -> VisualizeResponse:
+    return VisualizeResponse.model_validate(
+        {
+            "visual_spec_version": "visual-v1",
+            "message_markdown": "Here is a graph that shows both probability cases.",
+            "fallback_markdown": "Use the two same-colour branches from the tree.",
+            "source_reference": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "validation_status": "validated",
+            "artifacts": [
+                {
+                    "artifact_kind": "desmos_2d",
+                    "title": "Same-colour branches",
+                    "purpose": "Show the two terms that must both be included.",
+                    "narration_markdown": "Move $p$ to compare the two branch products.",
+                    "accessibility_text": "A graph with a slider p and one plotted line y=p.",
+                    "desmos": {
+                        "calculator": "graphing",
+                        "viewport": {"left": 0, "right": 1, "bottom": 0, "top": 1},
+                        "expressions": [
+                            {
+                                "id": "p",
+                                "latex": "p=0.4",
+                                "sliderBounds": {"min": "0", "max": "1", "step": "0.01"},
+                            },
+                            {"id": "line", "latex": "y=p", "color": "#9DB4FF"},
+                        ],
+                    },
+                }
+            ],
+        }
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -164,7 +234,7 @@ def client_and_fakes():
 
 
 def test_missing_question_returns_404_not_an_answer(client_and_fakes):
-    client, _, tutor = client_and_fakes
+    client, _, tutor, _ = client_and_fakes
     main.app.dependency_overrides[main.get_repository] = lambda: FakeRepository(context=None)
 
     response = client.post(
@@ -190,7 +260,7 @@ def test_missing_question_returns_404_not_an_answer(client_and_fakes):
 
 def test_model_is_never_called_without_context(client_and_fakes):
     """The structural guarantee, asserted directly rather than inferred."""
-    client, _, tutor = client_and_fakes
+    client, _, tutor, _ = client_and_fakes
     main.app.dependency_overrides[main.get_repository] = lambda: FakeRepository(context=None)
 
     for mode in ("hint", "explain", "check"):
@@ -238,14 +308,14 @@ def test_source_block_carries_marks_codes_and_guidance():
     assert "M1" in block and "A1" in block
     # Guidance is a distinct source field and must survive as one; collapsing it
     # into the answer is the defect the extraction pipeline spent a batch fixing.
-    assert "FT their tree diagram probabilities." in block
+    assert "Both, FT their tree diagram probabilities." in block
     # A blank Answer cell with real guidance is legitimate and must not vanish.
     assert "Bag B branches completed correctly." in block
 
 
 def test_client_cannot_inject_question_content(client_and_fakes):
     """Content comes from the lookup, never from the request body."""
-    client, repository, tutor = client_and_fakes
+    client, repository, tutor, _ = client_and_fakes
     response = client.post(
         "/chat",
         json={
@@ -269,7 +339,7 @@ def test_client_cannot_inject_question_content(client_and_fakes):
 
 
 def test_required_diagram_availability_is_reported_to_the_tutor(client_and_fakes):
-    client, _, tutor = client_and_fakes
+    client, _, tutor, _ = client_and_fakes
     client.post(
         "/chat",
         json={
@@ -302,6 +372,8 @@ def test_hint_mode_forbids_the_answer_and_explain_mode_requires_it():
     explain = build_system_prompt(SAMPLE, TutorMode.EXPLAIN, asset_urls_available=True)
 
     assert "Do NOT state the final answer" in hint
+    assert "ask them to inspect the key step" in hint
+    assert "what they can do next" in hint
     assert "Do NOT state the final answer" not in explain
     assert "Finish with the answer as the mark scheme states it" in explain
 
@@ -312,8 +384,29 @@ def test_hint_mode_forbids_the_answer_and_explain_mode_requires_it():
     assert r"\frac{1307}{3025}" in explain
 
 
+def test_check_mode_adds_structured_mark_attribution_checklist():
+    check = build_system_prompt(SAMPLE, TutorMode.CHECK, asset_urls_available=True)
+    explain = build_system_prompt(SAMPLE, TutorMode.EXPLAIN, asset_urls_available=True)
+
+    assert "MARK ATTRIBUTION CHECKLIST (CHECK MODE ONLY)" in check
+    assert "Both required" in check
+    assert "One matching item is not enough" in check
+    assert "Compare against the whole Answer line" in check
+    assert "Follow-through allowed only after the required method evidence is present" in check
+    assert "MARK ATTRIBUTION CHECKLIST (CHECK MODE ONLY)" not in explain
+
+
+def test_mark_attribution_checklist_repeats_each_mark_condition():
+    checklist = build_mark_attribution_checklist(SAMPLE)
+
+    assert "Part (b) -- M1" in checklist
+    assert "Guidance condition: Both, FT their tree diagram probabilities." in checklist
+    assert "Required answer/evidence:" in checklist
+    assert r"\frac{3}{11}" in checklist
+
+
 def test_check_mode_receives_the_student_attempt(client_and_fakes):
-    client, _, tutor = client_and_fakes
+    client, _, tutor, _ = client_and_fakes
     client.post(
         "/chat",
         json={
@@ -339,7 +432,7 @@ def test_check_mode_receives_the_student_attempt(client_and_fakes):
 
 
 def test_catalogue_lists_only_published_papers(client_and_fakes):
-    client, _, _ = client_and_fakes
+    client, _, _, _ = client_and_fakes
     response = client.get("/papers")
     assert response.status_code == 200
     papers = response.json()
@@ -349,7 +442,7 @@ def test_catalogue_lists_only_published_papers(client_and_fakes):
 
 
 def test_question_endpoint_signs_private_diagrams(client_and_fakes):
-    client, _, _ = client_and_fakes
+    client, _, _, _ = client_and_fakes
     response = client.get("/papers/2025/oct_nov/51/questions/4")
     assert response.status_code == 200
     body = response.json()
@@ -362,7 +455,7 @@ def test_question_endpoint_signs_private_diagrams(client_and_fakes):
 
 
 def test_malformed_reference_is_rejected_before_retrieval(client_and_fakes):
-    client, repository, tutor = client_and_fakes
+    client, repository, tutor, _ = client_and_fakes
     response = client.post(
         "/chat",
         json={
@@ -379,3 +472,205 @@ def test_malformed_reference_is_rejected_before_retrieval(client_and_fakes):
     assert response.status_code == 422
     assert repository.lookups == []
     assert tutor.calls == []
+
+
+# ---------------------------------------------------------------------------
+# Visualize: structured visuals are grounded and validated
+# ---------------------------------------------------------------------------
+
+
+def test_chat_endpoint_rejects_visualize_mode(client_and_fakes):
+    client, repository, tutor, visualizer = client_and_fakes
+    response = client.post(
+        "/chat",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "mode": "visualize",
+            "message": "Show me a graph.",
+        },
+    )
+
+    assert response.status_code == 400
+    assert repository.lookups == []
+    assert tutor.calls == []
+    assert visualizer.calls == []
+
+
+def test_visualize_missing_question_returns_404_without_model_call(client_and_fakes):
+    client, _, _, visualizer = client_and_fakes
+    main.app.dependency_overrides[main.get_repository] = lambda: FakeRepository(context=None)
+
+    response = client.post(
+        "/visualize",
+        json={
+            "question": {
+                "year": 2019,
+                "exam_session": "may_june",
+                "paper_variant": "99",
+                "question_number": 3,
+            },
+            "message": "Visualize this.",
+        },
+    )
+
+    assert response.status_code == 404
+    assert visualizer.calls == []
+
+
+def test_visualize_cache_hit_returns_without_model_call(client_and_fakes):
+    client, repository, _, visualizer = client_and_fakes
+    repository.cached_visual = sample_visual_response().model_dump(mode="json")
+
+    response = client.post(
+        "/visualize",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "message": "Visualize the same-colour cases.",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["validation_status"] == VisualValidationStatus.VALIDATED
+    assert visualizer.calls == []
+    assert repository.stored_visuals == []
+
+
+def test_visualize_stores_validated_specs(client_and_fakes):
+    client, repository, _, visualizer = client_and_fakes
+    response = client.post(
+        "/visualize",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "message": "Visualize the same-colour cases.",
+        },
+    )
+
+    assert response.status_code == 200
+    assert visualizer.calls[0]["context"] is SAMPLE
+    assert len(repository.stored_visuals) == 1
+    assert repository.stored_visuals[0]["response_payload"]["artifacts"][0]["artifact_kind"] == "desmos_2d"
+
+
+def test_visual_spec_rejects_raw_javascript():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"][0]["desmos"]["expressions"][1]["latex"] = "y=x; window.alert(1)"
+
+    with pytest.raises(ValueError):
+        validate_visual_payload(
+            payload,
+            ref=payload["source_reference"],
+        )
+
+
+def test_visual_spec_rejects_unlisted_geogebra_commands():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"][0] = {
+        "artifact_kind": "geogebra_geometry",
+        "title": "Unsafe construction",
+        "purpose": "Demonstrate command validation.",
+        "narration_markdown": "This should not pass.",
+        "accessibility_text": "No visual should be shown.",
+        "geogebra": {
+            "appName": "geometry",
+            "commands": ["ExecuteScript(alert(1))"],
+        },
+    }
+
+    with pytest.raises(ValueError):
+        validate_visual_payload(
+            payload,
+            ref=payload["source_reference"],
+        )
+
+
+def test_visual_spec_rejects_unlisted_geogebra_assignment_constructor():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"][0] = {
+        "artifact_kind": "geogebra_geometry",
+        "title": "Unsafe assignment",
+        "purpose": "Demonstrate assignment validation.",
+        "narration_markdown": "This should not pass.",
+        "accessibility_text": "No visual should be shown.",
+        "geogebra": {
+            "appName": "geometry",
+            "commands": ["bad = ExecuteScript(alert(1))"],
+        },
+    }
+
+    with pytest.raises(ValueError):
+        validate_visual_payload(
+            payload,
+            ref=payload["source_reference"],
+        )
+
+
+def test_visual_spec_accepts_safe_geogebra_coordinate_assignments():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"][0] = {
+        "artifact_kind": "geogebra_geometry",
+        "title": "Safe construction",
+        "purpose": "Show a segment between two labelled points.",
+        "narration_markdown": "The construction marks two fixed points and joins them.",
+        "accessibility_text": "Two labelled points A and B joined by a segment.",
+        "geogebra": {
+            "appName": "geometry",
+            "commands": ["A=(0,0)", "B=(3,0)", "Segment(A,B)", "ShowLabel(A,true)"],
+        },
+    }
+
+    response = validate_visual_payload(
+        payload,
+        ref=QuestionRef.model_validate(payload["source_reference"]),
+    )
+
+    assert response.validation_status == VisualValidationStatus.VALIDATED
+    assert response.artifacts[0].artifact_kind == "geogebra_geometry"
+
+
+def test_visualize_service_hides_raw_validation_errors_from_students():
+    class InvalidVisualClient:
+        def __init__(self):
+            self.chat = SimpleNamespace(completions=self)
+
+        def create(self, **_kwargs):
+            return SimpleNamespace(
+                choices=[
+                    SimpleNamespace(
+                        message=SimpleNamespace(
+                            content=(
+                                '{"visual_spec_version":"visual-v1",'
+                                '"message_markdown":"Here is a visual.",'
+                                '"fallback_markdown":"Use the text fallback.",'
+                                '"artifacts":[{"artifact_kind":"desmos_2d","title":"Broken"}]}'
+                            )
+                        )
+                    )
+                ]
+            )
+
+    service = VisualizeService(get_settings(), client=InvalidVisualClient())
+    response = service.create(
+        context=SAMPLE,
+        ref=QuestionRef(year=2025, exam_session="oct_nov", paper_variant="51", question_number=4),
+        message="Visualize it.",
+        history=[],
+    )
+
+    assert response.validation_status == VisualValidationStatus.RENDER_FAILED
+    assert "pydantic.dev" not in response.fallback_markdown
+    assert "Field required" not in response.fallback_markdown

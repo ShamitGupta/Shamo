@@ -40,7 +40,9 @@ function Diagram({ asset }) {
                 onError={() => setFailed(true)}
             />
             {asset.description && (
-                <figcaption className={styles.Caption}>{asset.description}</figcaption>
+                <figcaption className={styles.Caption}>
+                    <Markdown>{asset.description}</Markdown>
+                </figcaption>
             )}
         </figure>
     );
