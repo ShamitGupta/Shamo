@@ -163,6 +163,62 @@ export function stripBold(raw) {
   return text;
 }
 
+// Mistral OCR occasionally spells the LaTeX escape character out as the
+// English word "backslash" instead of emitting `\`, and separately escapes
+// grouping braces that should be plain: `\backslash frac\{1\}\{2\}` for a
+// printed `\frac{1}{2}`. Confirmed present in the raw OCR record itself, not
+// introduced downstream -- verbatim on 9709/31 M/J 2024 mark scheme page 7
+// and 9709/12 O/N 2024 page 21 -- and measured at 79 affected rows across 18
+// already-published papers before backfill. Repaired here so a future batch
+// cannot carry it into the database again.
+//
+// Two passes:
+//   1. `\backslash <command>` collapses to `\<command>` when the following
+//      word is a real LaTeX command that needs the backslash (frac, sqrt,
+//      theta, text, left, ...). The word "backslash" and its one trailing
+//      space are simply deleted; the real backslash already present in the
+//      source survives and now sits directly before the command name.
+//   2. Anything else -- `\backslash i` (the imaginary unit), `\backslash c`
+//      (a bare variable), `\backslash their` (the follow-through word),
+//      `\backslash θ` (a literal Greek letter) -- has no command to keep, so
+//      the whole `\backslash ` span is deleted outright, leaving the
+//      following character as plain text. Confirmed against uncorrupted
+//      sibling rows in the same corpus that write these bare, e.g. published
+//      guidance elsewhere reads plain "...+ i" with no backslash at all.
+//
+// A trailing pass then unescapes any remaining `\{` / `\}` back to plain
+// grouping braces -- except immediately after `\left` / `\right`, where an
+// escaped brace is correct LaTeX for a literal brace DELIMITER and must be
+// left alone. `\left\{ ... \right\}` appears throughout this same corpus as
+// legitimate, uncorrupted notation, so unescaping it unconditionally would
+// trade one corruption for another.
+const BACKSLASH_WORD_COMMANDS = new Set([
+  "frac", "dfrac", "tfrac", "times", "text", "left", "right", "ln", "sqrt",
+  "mu", "theta", "tan", "pm", "div", "pi", "log", "sin", "cos", "leq", "geq",
+  "cdot", "circ", "leqslant", "geqslant", "neq", "approx", "alpha", "beta",
+  "gamma", "lambda", "sigma", "phi", "Phi", "Sigma", "infty", "int", "sum",
+  "Rightarrow",
+]);
+
+export function repairBackslashWordCorruption(raw) {
+  let text = String(raw ?? "");
+  if (!text.includes("backslash") && !text.includes("\\{") && !text.includes("\\}")) {
+    return text;
+  }
+  text = text.replace(/\\backslash ?([A-Za-z]+)/g, (whole, word) =>
+    BACKSLASH_WORD_COMMANDS.has(word) ? `\\${word}` : whole,
+  );
+  text = text.replace(/\\backslash ?/g, "");
+  text = text
+    .replace(/\\left\\\{/g, "LB")
+    .replace(/\\right\\\}/g, "RB")
+    .replace(/\\\{/g, "{")
+    .replace(/\\\}/g, "}")
+    .replace(/LB/g, "\\left\\{")
+    .replace(/RB/g, "\\right\\}");
+  return text;
+}
+
 /** Total mark value of a code cell. `B2,1,0` -> 2, `B1 B1` -> 2, `A1 FT` -> 1. */
 export function markValue(code) {
   if (!code) return 0;
@@ -442,7 +498,7 @@ export function parseMarkSchemePages(pages) {
 
       for (const rawCells of body) {
         let cells = rawCells;
-        let stripped = cells.map(stripBold);
+        let stripped = cells.map((cell) => stripBold(repairBackslashWordCorruption(cell)));
         let marksIndex = resolveMarksIndex(stripped, layout);
 
         // --- Shift repair -------------------------------------------------

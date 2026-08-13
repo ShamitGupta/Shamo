@@ -12,7 +12,12 @@
 //   node workflows/n8n/lib/mark_scheme_parser.test.mjs
 
 import assert from "node:assert/strict";
-import { parseMarkSchemePages, stripBold, markValue } from "./mark_scheme_parser.mjs";
+import {
+  parseMarkSchemePages,
+  stripBold,
+  markValue,
+  repairBackslashWordCorruption,
+} from "./mark_scheme_parser.mjs";
 
 let passed = 0;
 let failed = 0;
@@ -72,6 +77,50 @@ test("an unclosed bold marks cell still parses -- **M1FT", () => {
 
 test("an unclosed bold does NOT eat a lifted guidance code", () => {
   assert.equal(stripBold("**M1** Substitute the limits"), "**M1** Substitute the limits");
+});
+
+// ---------------------------------------------------------------------------
+console.log("\nrepairBackslashWordCorruption -- Mistral spells \\ out as the word 'backslash'");
+// ---------------------------------------------------------------------------
+
+test("a known command collapses '\\backslash frac' to '\\frac', braces unescaped", () => {
+  // Verbatim from 9709/31 M/J 2024 mark scheme page 7 (live, published).
+  assert.equal(
+    repairBackslashWordCorruption(String.raw`State or imply $r\; =\; \backslash frac\{5\}\{2\}$`),
+    String.raw`State or imply $r\; =\; \frac{5}{2}$`,
+  );
+});
+
+test("an unknown following token drops the backslash entirely -- imaginary unit", () => {
+  // Verbatim from 9709/33 O/N 2024 Q6. Uncorrupted sibling rows in the same
+  // corpus write the imaginary unit bare, with no backslash at all.
+  assert.equal(
+    repairBackslashWordCorruption(String.raw`Substitute $z\; =\; x\; +\; \backslash i\; y$`),
+    String.raw`Substitute $z\; =\; x\; +\; i\; y$`,
+  );
+});
+
+test("an unknown following token drops the backslash entirely -- bare variable", () => {
+  assert.equal(repairBackslashWordCorruption(String.raw`Allow $-\backslash c$`), "Allow $-c$");
+});
+
+test("\\left\\{ and \\right\\} survive untouched -- they are correct LaTeX, not corruption", () => {
+  const text = String.raw`$\left\{ \frac{1}{2} \right\}$`;
+  assert.equal(repairBackslashWordCorruption(text), text);
+});
+
+test("a corrupted brace next to a genuine \\left\\{ is fixed without disturbing it", () => {
+  assert.equal(
+    repairBackslashWordCorruption(
+      String.raw`\backslash left\{ \backslash frac\{1\}\{2\} \right\}`,
+    ),
+    String.raw`\left\{ \frac{1}{2} \right\}`,
+  );
+});
+
+test("text with no corruption is returned unchanged", () => {
+  const text = String.raw`$$\frac{1}{2} + \sqrt{3}$$`;
+  assert.equal(repairBackslashWordCorruption(text), text);
 });
 
 // ---------------------------------------------------------------------------

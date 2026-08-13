@@ -41,6 +41,16 @@ const steps = [
   // two papers that had staged completely clean, because marks still reconcile
   // and prose fidelity cannot judge maths.
   ["Lost factorials in OCR (review triage)", path.join(HARNESS, "check_lost_factorials.mjs"), "report"],
+  ["Lost operators in OCR (review triage)", path.join(HARNESS, "check_lost_operators.mjs"), "report"],
+  // The general version of the two checks above: evaluate whatever arithmetic
+  // is stored and compare it against the value Cambridge prints beside it,
+  // rather than looking for one specific corruption shape. Report-only for
+  // the same reason -- it is a property of the source reading, not of any
+  // code change -- but this is the check the operating plan named as the top
+  // priority, because every defect found by hand in August was found exactly
+  // this way and hand-reading does not scale.
+  ["Numeric self-consistency: expression vs printed value (review triage)", path.join(HARNESS, "check_numeric_consistency.mjs"), "report"],
+  ["Promised tables and diagrams are present", path.join(HARNESS, "check_promised_content.mjs"), "gate"],
   // Needs Supabase credentials rather than fixtures, because metadata lives only
   // in the database. Report-only: a topic disagreement is a review item for that
   // paper, never a reason to fail a workflow regression run.

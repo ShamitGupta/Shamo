@@ -2,11 +2,11 @@
   "generated_by": "workflows/n8n/harness/snapshot_fixtures.mjs",
   "source_project": "exjfaggqphjkxniyshfl.supabase.co",
   "counts": {
-    "papers": 82,
-    "ingestion_runs": 101,
-    "runs_with_ocr": 100,
-    "ocr_pages": 3358,
-    "staged_bundles": 75,
+    "papers": 88,
+    "ingestion_runs": 107,
+    "runs_with_ocr": 106,
+    "ocr_pages": 3580,
+    "staged_bundles": 81,
     "published_papers": 25,
     "published_questions": 210,
     "published_mark_rows": 1795

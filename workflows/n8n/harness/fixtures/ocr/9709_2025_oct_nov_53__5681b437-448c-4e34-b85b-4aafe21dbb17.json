@@ -1,0 +1,232 @@
+{
+  "paper_key": "9709_2025_oct_nov_53",
+  "ingestion_run_id": "5681b437-448c-4e34-b85b-4aafe21dbb17",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-14:a_level:9709:2025:oct_nov:53",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_qp_53.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_ms_53.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International AS & A Level\n\nMATHEMATICS\n\nPaper 5 Probability & Statistics 1\n\nMARK SCHEME\n\nMaximum Mark: 50\n\n9709/53\n\nOctober/November 2025\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the October/November 2025 series for most Cambridge IGCSE, Cambridge International A and AS Level components, and some Cambridge O Level components.\n\nThis document consists of 24 printed pages.\n\n© Cambridge University Press & Assessment 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\n|  **GENERIC MARKING PRINCIPLE 1:** Marks must be awarded in line with: - the specific content of the mark scheme or the generic level descriptors for the question - the specific skills defined in the mark scheme or in the generic level descriptors for the question - the standard of response required by a candidate as exemplified by the standardisation scripts.  |\n| --- |\n|  **GENERIC MARKING PRINCIPLE 2:** Marks awarded are always **whole marks** (not half marks, or other fractions).  |\n|  **GENERIC MARKING PRINCIPLE 3:** Marks must be awarded **positively**: - marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate - marks are awarded when candidates clearly demonstrate what they know and can do - marks are not deducted for errors - marks are not deducted for omissions - answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.  |\n|  **GENERIC MARKING PRINCIPLE 4:** Rules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.  |\n|  **GENERIC MARKING PRINCIPLE 5:** Marks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).  |\n|  **GENERIC MARKING PRINCIPLE 6:** Marks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 2 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nOctober/November 2025\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2025\n\nPage 3 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Annotations guidance for centres**\n\nExaminers use a system of annotations as a shorthand for communicating their marking decisions to one another. Examiners are trained during the standardisation process on how and when to use annotations. The purpose of annotations is to inform the standardisation and monitoring processes and guide the supervising examiners when they are checking the work of examiners within their team. The meaning of annotations and how they are used is specific to each component and is understood by all examiners who mark the component.\n\nWe publish annotations in our mark schemes to help centres understand the annotations they may see on copies of scripts. Note that there may not be a direct correlation between the number of annotations on a script and the mark awarded. Similarly, the use of an annotation may not be an indication of the quality of the response.\n\nThe annotations listed below were available to examiners marking this component in this series.\n\n# **Annotations**\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  ^ | More information required  |\n|  A0 | Accuracy mark awarded zero  |\n|  A1 | Accuracy mark awarded one  |\n|  B0 | Independent accuracy mark awarded zero  |\n|  B1 | Independent accuracy mark awarded one  |\n|  B2 | Independent accuracy mark awarded two  |\n|  B0D | Benefit of the doubt  |\n|  BP | Blank Page  |\n|  ✗ | Incorrect  |\n|  Dep | Used to indicate DM0 or DM1  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 4 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  DM1 | Dependent on the previous M1 mark(s)  |\n|  FT | Follow through  |\n|  ~~~ | Indicate working that is right or wrong  |\n|  Highlighter | Highlight a key point in the working  |\n|  ISW | Ignore subsequent work  |\n|  J | Judgement  |\n|  JU | Judgement  |\n|  M0 | Method mark awarded zero  |\n|  Y1 | Method mark awarded one  |\n|  M2 | Method mark awarded two  |\n|  MR | Misread  |\n|  O | Omission or Other solution  |\n|  Off-page comment | Allows comments to be entered at the bottom of the RM marking window and then displayed when the associated question item is navigated to.  |\n|  On-page comment | Allows comments to be entered in speech bubbles on the candidate response.  |\n|  PE | Judgment made by the PE  |\n|  Pre | Premature approximation  |\n|  SC | Special case  |\n|  SEEN | Indicates that work/page has been seen  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 5 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] **PUBLISHED**\n\nOctober/November 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  SF | Error in number of significant figures  |\n|  ✓ | Correct  |\n|  TE | Transcription error  |\n|  XP | Correct answer from incorrect working  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 6 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2025\n\nPage 7 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nOctober/November 2025\n\nAbbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 8 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) | $$[(0.6)^3] = 0.216, \\frac{27}{125}$$ | **B1** | OE.  |\n|   |   | **1** |   |\n|  1(b) | **Method 1** |  |   |\n|   |  $$[P(X < 9) = 1 - P(9, 10, 11) =] 1 - \\{^{11}C_9(0.75)^9(0.25)^2 + ^{11}C_{10}(0.75)^{10}(0.25) + (0.75)^{11}\\}$$ | **M1** | One term of form $$^{11}C_x(p)^x(1-p)^{11-x}$$ with $$0 < p < 1, x \\neq 0$$ or 11.  |\n|   |  $$[= 1 - (0.258104 + 0.154862 + 0.042235)]$$ | **A1** | Correct un-simplified expression, no terms omitted leading to final answer. Condone omission of final bracket ‘}’ If other brackets omitted, allow recovery if $$1 - 0.455$$ (or better) seen. Accept $$\\sum_{9}^{11} C_x(p)^x(1-p)^{11-x}$$ with $$p = 0.75$$.  |\n|   |  $$= 0.545$$ | **B1** | $$0.5445 < p \\leq 0.545$$.  |\n|   |  **Method 2** |  |   |\n|   |  $$[P(X < 9) = P(0,1,2,3,4,5,6,7,8) =] (0.25)^{11} + ^{11}C_1(0.75)(0.25)^{10} + \\dots + ^{11}C_7(0.75)^7(0.25)^4 + ^{11}C_8(0.75)^8(0.25)^3$$ | **M1** | One term of form $$^{11}C_x(p)^x(1-p)^{11-x}$$ with $$0 < p < 1, x \\neq 0$$ or 11.  |\n|   |   | **A1** | Correct un-simplified expression, no more than 6 ‘middle’ terms omitted leading to final answer. Accept $$\\sum_{0}^{8} ^{11} C_x(p)^x(1-p)^{11-x}$$ with $$p = 0.75$$.  |\n|   |  $$= 0.545$$ | **B1** | $$0.5445 < p \\leq 0.545$$.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 9 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n| Question | Answer | Marks | Guidance |\n| --- | --- | --- | --- |\n| 2 | Scenario | S(16) | D(10) |  | **B1** | Expression of the form $$^{16}\\text{C}_x \\times ^{10}\\text{C}_y$$ with $$x+ y = 6$$ linked to a correct identified scenario. |\n| SSSSDD | 4 | 2 | $$^{16}\\text{C}_4 \\times ^{10}\\text{C}_2$$ | [81900] |\n| SSSDDD | 3 | 3 | $$^{16}\\text{C}_3 \\times ^{10}\\text{C}_3$$ | [67200] |\n| SSDDDD | 2 | 4 | $$^{16}\\text{C}_2 \\times ^{10}\\text{C}_4$$ | [25200] |\n|  | **M1** | Two identified outcomes evaluated accurately, accept un-simplified. Identification can be implied by un-simplified expression. Condone consistent use of permutations. |\n| **M1** | Sum of *their* values of 3 correct identified scenarios, no incorrect/repeated scenarios. Identification can be implied by un-simplified expression. |\n| Total = 174 300 | **A1** | If either or both Ms not awarded, **SCB1** for 174 300 WWW. |\n|  | **4** |  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 10 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | **Method 1** Total arrangements with Ds at ends – arrangements with Ds at ends and Fs together |  |   |\n|   |  $$\\frac{7!}{2!} - 6!$$ [= 2520 – 720] | **M1** | $$\\frac{7!}{2!}$$ seen alone, not multiplied or divided in a calculation nor subtracted from another value.  |\n|   |   |  **M1** | $$\\frac{1!}{m!} - 6!$$, $$l = 7$$, 8 or 9, $$m = 1$$ or 2  |\n|   |  = 1800 | **A1** |   |\n|   |  **Method 2** D ^ ^ ^ ^ ^ D, Fs inserted not next to each other |  |   |\n|   |  $$5! \\times \\frac{6 \\times 5}{2}$$ | **M1** | $$5! \\times a$$, $$1 \\leqslant a \\leqslant 30$$ 1 can be implied, $$a$$ is an integer. No other terms added or subtracted.  |\n|   |   |  **M1** | $$b! \\times \\frac{6 \\times 5}{2}$$ or $$b! \\times {}^6C_2$$ or $$b! \\times \\frac{6P2}{2!}$$. Where $$b = 5$$, 6 or 7.  |\n|   |  = 1800 | **A1** |   |\n|   |  | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 11 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(b) | **Method 1** |  |   |\n|   |  [Number of outcomes with 4 letters between Ds (D ^ ^ ^ ^ D ^ ^ ^)] $$\\frac{7!}{2!} \\times 4$$ [= 10080] | **M1** | Accept $$\\frac{7!}{2} \\times 4$$ or 10080 alone or as the numerator or denominator of a fraction.  |\n|   |  [Total number of arrangements =] $$\\frac{9!}{2!2!}$$ [= 90720] seen as denominator in a fraction | **M1** | Accept 90720 as denominator in a fraction.  |\n|   |  [Probability =] $$\\frac{10080}{90720}$$, $$\\frac{1}{9}$$, 0.111 | **A1** | WWW.  |\n|   |  **Method 2** |  |   |\n|   |  [Total number of outcomes with 4 letters between Ds (D₁ ^ ^ ^ ^ D₂ ^ ^)] $$7! \\times 4 \\times 2!$$ [= 40320] | **M1** | Accept 7! × 4 × 2! or 40320 alone or as the numerator or denominator of a fraction.  |\n|   |  [Total number of arrangements of D₁AF₁F₂OD₂ILS =] 9! [=362880] seen as denominator in a fraction. | **M1** | Accept 362880 as denominator in a fraction.  |\n|   |  [Probability =] $$\\frac{40320}{362880}$$, $$\\frac{1}{9}$$, 0.111 | **A1** | WWW.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 12 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(b) | **Method 3** |  |   |\n|   |  [When 2 F’s are not part of the 4 letters between the D’s] $$\\frac{5P4 \\times 4!}{2!} \\text{ or } \\frac{5! \\times 4!}{2!} \\text{ [= 1440]}$$ [When 1F is part of the 4 letters between the D’s] $$^5C_3 \\times 4! \\times 4! \\text{ [=5760]}$$ [When 2F’s are part of the 4 letters between the D’s] $$\\frac{5C2 \\times 4!}{2!} \\times 4! \\text{ [=2880]}$$ $$[1440 + 5760 + 2880] = 10080$$ | **M1** | Accept 10080 alone or as the numerator or denominator of a fraction.  |\n|   |  [Total number of arrangements =] $$\\frac{9!}{2!2!} \\text{ [= 90720]}$$ seen as denominator in a fraction | **M1** | Accept 90720 as denominator in a fraction.  |\n|   |  $$[\\text{Probability} =] \\frac{10080}{90720}, \\frac{1}{9}, 0.111$$ | **A1** | WWW.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 13 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# PUBLISHED\n\n|  Question | Answer |   |   |   |   |   | Marks | Guidance  |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n|  4(a) | *x* | 0 | 1 | 2 | 3 | 4 | **B1** | Table with correct *x* values and one correct probability.  |\n|   |  P(*X* = *x*) | 3/16 | 1/16 | 3/16 | 5/16 | 4/16 | **B1** | 2 more probabilities correct linked to the correct *x* value, need not be in table, accept un-simplified.  |\n|   |   | 0.1875 | 0.0625 | 0.1875 | 0.3125 | 0.25 | **B1** | 5 correct probabilities linked with correct outcomes. **SCB1** 5 non-zero probabilities (not all 1/5) summing to 1 placed in a probability distribution table with correct *x* values if only one of the first two **B** marks are scored.  |\n|   |  Accept | 0.188 | 0.0625 | 0.188 | 0.313 | 0.25  |   |   |\n|   |   |   |   |   |   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 14 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(b) | $$[E(X) = ] [0] + 1 \\times \\frac{1}{16} + 2 \\times \\frac{3}{16} + 3 \\times \\frac{5}{16} + 4 \\times \\frac{4}{16}$$ $$\\left[ = \\frac{[0] + 1 + 6 + 15 + 16}{16} \\right]$$ $$\\left[ = \\frac{38}{16} = \\frac{19}{8} \\right]$$ | **M1FT** | Accept un-simplified or bold expression with probabilities ($$0 < p < 1$$) that add to 1. May be calculated in variance. **FT***their* table with 4 or 5 probabilities adding to 1.  |\n|   |  $$\\text{Var}(X) = \\frac{1 + 3 \\times 2^2 + 5 \\times 3^2 + 4 \\times 4^2}{16} - \\left( \\frac{19}{8} \\right)^2$$ $$\\left[ = \\frac{1 + 3 \\times 4 + 5 \\times 9 + 4 \\times 16}{16} - \\frac{361}{64} \\right]$$ $$\\left[ = \\frac{122}{16} - \\left( \\frac{19}{8} \\right)^2 \\right]$$ | **M1FT** | Appropriate variance formula using *their* ($$E(X)$$)^{2} value. **FT***their* table with 4 or more probabilities ($$0 < p < 1$$) which need not sum to 1 or with an expression no more evaluated than shown.  |\n|   |  $$= \\frac{127}{64}, 1\\frac{63}{64}, 1.98$$ | **A1** | Accept 1.984375 to 3 or more SF. **SCB1** for 1.98 if **M0 M1** scored.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 15 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(c) | **Method 1** |  |   |\n|   |  $$1 - \\left(\\frac{3}{4}\\right)^7$$ | **M1** | $$1 - \\left(\\frac{3}{4}\\right)^n$$ with n = 6, 7, 8.  |\n|   |  = 0.867 | **A1** | = 0.8665 to 4SF.  |\n|   |  **Method 2** |  |   |\n|   |  $$[P(X < 8) =] \\frac{1}{4} + \\left(\\frac{3}{4}\\right)\\left(\\frac{1}{4}\\right) + \\left(\\frac{3}{4}\\right)^2 \\left(\\frac{1}{4}\\right) + \\left(\\frac{3}{4}\\right)^3 \\left(\\frac{1}{4}\\right) + \\left(\\frac{3}{4}\\right)^4 \\left(\\frac{1}{4}\\right) + \\left(\\frac{3}{4}\\right)^5 \\left(\\frac{1}{4}\\right) + \\left(\\frac{3}{4}\\right)^6 \\left(\\frac{1}{4}\\right)$$ | **M1** | Condone extra term $$\\left(\\frac{3}{4}\\right)^7 \\left(\\frac{1}{4}\\right)$$ or the term $$\\left(\\frac{3}{4}\\right)^6 \\left(\\frac{1}{4}\\right)$$ missing.  |\n|   |  = 0.867 | **A1** |   |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 16 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) |  | **B1** | Correct tree diagram structure. (3 tiers).  |\n|   |   |  **B1** | Counter and first marble probabilities correct with outcomes labelled.  |\n|   |   |  **B1** | Second marble probabilities correct with outcomes labelled.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 17 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# PUBLISHED\n\n|  Question | Answer |   |   |   | Marks | Guidance  |\n| --- | --- | --- | --- | --- | --- | --- |\n|  5(b) | P(WRB) | $$\\frac{3}{5} \\times \\frac{4}{7} \\times \\frac{3}{6}$$ | $$\\left[ \\frac{6}{35} \\right]$$ | 0.171(4) | **M1** | At least 2 correct 3-term products linked to correct scenarios. May be clearly identified on tree diagram. **FT** from a 3-tier tree.  |\n|   |  P(WBR) | $$\\frac{3}{5} \\times \\frac{3}{7} \\times \\frac{4}{6}$$ | $$\\left[ \\frac{6}{35} \\right]$$ | 0.171(4)  |   |   |\n|   |  P(YRB) | $$\\frac{2}{5} \\times \\frac{5}{8} \\times \\frac{3}{7}$$ | $$\\left[ \\frac{3}{28} \\right]$$ | 0.107(1)  |   |   |\n|   |  P(YBR) | $$\\frac{2}{5} \\times \\frac{3}{8} \\times \\frac{5}{7}$$ | $$\\left[ \\frac{3}{28} \\right]$$ | 0.107(1)  |   |   |\n|   |   | [Total | $$\\frac{39}{70}$$] | 0.557  |   |   |\n|   |  $$= \\frac{39}{70}, 0.557$$ |   |   |   | **A1** | **SCB1** for $$\\frac{39}{70}$$ if one or both **M** marks not scored WWW.  |\n|   |  |   |   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 18 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# PUBLISHED\n\n| Question | Answer | Marks | Guidance |\n| --- | --- | --- | --- |\n| 5(c) | $$P(\\text{White} | (b)) = \\frac{\\frac{3}{5} \\times \\frac{4}{7} \\times \\frac{3}{6} + \\frac{3}{5} \\times \\frac{3}{7} \\times \\frac{4}{6}}{\\text{their } \\frac{39}{70}} = \\left[ \\frac{\\frac{36}{210} + \\frac{36}{210}}{\\text{their } \\frac{39}{70}} \\right]$$ | **M1** | Correct formula for conditional probability using *their* probabilities from 3-tier tree with *their* (b) < 1 or correct in denominator. $$\\text{Condone } \\frac{\\frac{12}{35} \\text{ or their } P(WRB) + P(WBR) \\text{ from part } b}{\\text{their } \\frac{39}{70} \\text{ or unsimplified expression}}$$ |\n| $$= \\frac{8}{13}, 0.615$$ | **A1** |  |\n|  | **2** |  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 19 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nOctober/November 2025\n\n| Question | Answer | Marks | Guidance |\n| --- | --- | --- | --- |\n| 6(a) | Linnets | Puffins | B1 | Correct stem, ignore extra values (not in reverse, not split) If a split stem-and-leaf plot is used (i.e. stem values are repeated) the remaining **B** marks are available. |\n| 8 4 5 9 9 7 4 1 5 1 5 5 8 9 8 5 4 4 0 6 2 4 4 0 7 4 | B1 | Correct Linnets labelled on left, leaves in order from right to left and lined up vertically, no commas or other punctuation. |\n| Key: 4|5|5 means 54 minutes for Linnets and 55 minutes for Puffins | B1 | Correct Puffins labelled on same diagram, leaves in order and lined up vertically, no commas or other punctuation. Penalise each error only once in question (apart from omission of data) e.g. commas in both sets of data. |\n|  | B1 | Correct non-symmetrical key, for their diagram, need both team names and ‘mins’ at least once here or in leaf headings (or title). If 2 separate diagrams drawn, max marks **B1** if both stems correct, **B1** if Linnets correct to the left of the stem, **B1** if both keys correct including ‘mins’ and team name. |\n|  | 4 |  |\n| 6(b) | [IQR =] 65 – 54 | M1 | 64 ≤ UQ ≤ 68–51 ≤ LQ ≤ 57 Implied if both quartile values are stated and an appropriate IQR calculated accurately. Condone 54 and 65 clearly identified in the table or their stem and leaf diagram. |\n| = 11 | A1 |  |\n|  | 2 |  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 20 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 21,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer |   |   |   |   |   | Marks | Guidance  |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n|  6(c) | ![img-0.jpeg](img-0.jpeg) | B1 | Single linear scale from 45 to 75, at least 3 equally spaces values marked, using a scale of \\( 2\\mathrm{\\;{cm}} = {10} \\) or 20 minutes only.Label to include time and minutes/min/m.SCB1for 2 labelled box plots correct relative to each other and no scale is present. No further marks can be gained.  |   |   |   |   |   |\n|   |   |   |   |   |   |   |  B1FT | Correct plot labelled ‘Linnets’ with 5 key values using their linear scale.Daylight rule applied.Whiskers not at top/bottom of box or through box (penalise only once).Condone missing vertical lines on max/min values.LQ and UQ correct orFTtheirvalues from 6(b).  |\n|   |   |   |   |   |   |   |  B1 | Correct plot labelled ‘Puffins’ with 5 key values using the same linear scale as Linnets.Whiskers not at top/bottom of box or through box (penalise only once).Condone missing vertical lines on max/min values.SCB1for neither plot identified assuming Linnets at top of grid and both correct.SCB1for only one unidentified plot – mark as Linnets.  |\n|   |   |   |   |   |   |   |  3 |   |\n|   |  |   |   |   |   |   |   |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 21 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 22,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(d) | Acceptable comment about spread/central tendency e.g. the times taken by the Puffins are more spread out/less consistent than those of the Linnets, the times taken by the Linnets are less varied/more consistent than for the Puffins, Linnets are slower [on average], Linnets have slower times Puffins are faster [on average], Puffins have faster times | **B1** | Not just a comment comparing median or range. Ignore extra comment(s) if not contradicting a correct statement.  |\n|   |   | **1** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | $$[P(X > 15.6) = P(Z > \\frac{15.6 - 14.8}{1.5})]$$ | **M1** | Use of $$\\pm$$ standardisation formula with 15.6, 14.8 and 1.5 substituted, condone $$\\sigma^2$$, condone $$\\sqrt{\\sigma}$$, condone continuity correction of $$\\pm 0.05$$.  |\n|   |  $$[= 1 - \\Phi(0.5333)]$$ $$= 1 - 0.7029$$ | **M1** | Calculating the appropriate probability area (leading to their final answer, expect $$< 0.5$$).  |\n|   |  $$= 0.297$$ | **A1** | AWRT 0.297. If one or both **M** marks not awarded, **SCB1** for AWRT 0.297 WWW.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 22 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 23,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(b) | $$[P(X > 15.6) = P(Z >)] [P(Z > \\frac{t-14.8}{1.5}) = 0.9]$$ $$\\frac{t-14.8}{1.5} = -1.282$$ | **B1** | $$-1.282$$ or $$1.282$$ seen, CAO – critical value.  |\n|   |   |  **M1** | Using $$\\pm$$ standardisation formula with 14.8, 1.5 and $$t$$ equating to a $$z$$-value (not 0.8159, 0.1841, 0.9, 0.1, 0.5398, 0.4602 ...) not $$\\sigma^2$$, not $$\\sqrt{\\sigma}$$, no continuity correction.  |\n|   |  $$t = 12.9$$ | **A1** | AWRT 12.9.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 23 of 24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 24,
+          "raw_markdown": "9709/53\n\nCambridge International AS & A Level – Mark Scheme\n\nOctober/November 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(c) | [P(X > 13.8) = P(Z >)] (13.8 - 14.8 / 1.5) and/or [P(X < 15.8) = P(Z <)] (15.8 - 14.8 / 1.5) Or [P(Z) >] (-1 / 1.5) and/or [P(Z) <] (1 / 1.5) | **M1** | Substituting 14.8 and 1.5 and either 13.8 or 15.8 appropriately into one ±standardising formula, not σ² or √σ, no continuity correction. **SCM1** – Condone substituting 14.8 and 1.5 and either 14.3 or 15.3 appropriately into one ±standardising formula, not σ² or √σ, no continuity correction.  |\n|   |  [= 2 Φ(0.6667) - 1] = 2 × 0.7477 - 1 Or 2 × (0.7477 - 0.5) Or 0.7477 - (1 - 0.7477) Or 0.7477 - 0.2523 | **M1** | Calculating the appropriate probability area (leading to their final answer, expect < 0.5) from their Z-values.  |\n|   |  = 0.495(4) | **A1** | AWRT 0.495. If one or both **M** marks not awarded, **SCB1** for AWRT 0.495 SOI.  |\n|   |  [Expected number of days =] 0.4954 × 5 × 45 = 111.465, so 111 days | **B1FT** | Strict **FT***their* at least 4 figure probability × 225 (Check with calculator). One integer answer, expect 111 or 112. No indication of ‘approximation’, e.g. ≈, ≅, *about*, 3SF.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 24 of 24",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0000800000001 *\n\nDFD\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\nMATHEMATICS\n\n9709/53\n\nPaper 5 Probability & Statistics 1\n\nOctober/November 2025\n\n1 hour 15 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 50.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 16 pages. Any blank pages are indicated.\n\nDC (DE) 344349/2\n© UCLES 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0000800000002 *\n\nDFD\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\nBLANK PAGE\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "* 0000800000003 *\n\nDFD\n\n![img-4.jpeg](img-4.jpeg)\n\n3\n\n1 There are a large number of students at Greenfield college. Each student travels to college by car, by bus or on foot, independently of any other student. The probability that any student travels by car is 0.4. The probability that any student travels by bus is 0.35.\n\n(a) 3 students from Greenfield college are selected at random.\n\nFind the probability that none of these 3 students travel to college by car. [1]\n\n...\n...\n...\n...\n...\n...\n\n(b) 11 students from Greenfield college are selected at random.\n\nFind the probability that fewer than 9 of these 11 students travel to college by car or by bus. [3]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2025\n\n9709/53/O/N/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "* 0000800000004 *\n\nDFD\n\n![img-5.jpeg](img-5.jpeg)\n\n4\n\n2 The Splash Club has 26 members, of whom 16 are swimmers and 10 are divers. No member is both a swimmer and a diver. The club committee consists of 6 of these 26 members.\n\nIn how many ways can the club committee be selected if it must include at least 2 swimmers and at least 2 divers? [4]\n\n...\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "* 0000800000005 *\n\nDFD\n\n![img-6.jpeg](img-6.jpeg)\n\n5\n\n3 (a) Find the number of different arrangements of the 9 letters in the word DAFFODILS in which there is a D at each end and the two Fs are not next to each other. [3]\n\n(b) Find the probability that a randomly chosen arrangement of the 9 letters in the word DAFFODILS has exactly 4 letters between the two Ds. [3]\n\n© UCLES 2025\n\n9709/53/O/N/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0000800000006 *\n\nDFD\n\n![img-7.jpeg](img-7.jpeg)\n\n6\n\n4 A fair red spinner has 4 sides, numbered 1, 2, 3, 4. A fair blue spinner has 4 sides, numbered 0, 1, 2, 3. When a spinner is spun, the score is the number on the side on which it lands. The two spinners are spun at the same time.\n\nThe random variable X denotes the higher of the two scores obtained. If the two scores are equal, then the value of X is 0.\n\n(a) Draw up the probability distribution table for X.\n\n[3]\n\n...\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "* 0000800000007 *\n\nDFD\n\n![img-8.jpeg](img-8.jpeg)\n\n7\n\n(b) Find Var(X).\n\n[3]\n\nThe red spinner, with sides numbered 1, 2, 3, 4, is spun repeatedly.\n\n(c) Find the probability that it lands on 4 for the first time before the 8th spin.\n\n[2]\n\n© UCLES 2025\n\n9709/53/O/N/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "\\* 0000800000008 \\*\n\nDFD\n\n![img-9.jpeg](img-9.jpeg)\n\n8\n\n5 Chen has three boxes. Box $A$ contains 5 counters, of which 3 are white and 2 are yellow. Box $W$ contains 4 red marbles and 3 blue marbles. Box $Y$ contains 5 red marbles and 3 blue marbles.\n\nChen chooses one counter at random from box $A$. If the counter is white, he chooses two marbles from box $W$, at random and without replacement. If the counter is yellow, he chooses two marbles from box $Y$, at random and without replacement.\n\n(a) Draw a fully labelled tree diagram to illustrate this information, including all the probabilities. [3]\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "* 0000800000009 *\n\nDFD\n\n![img-10.jpeg](img-10.jpeg)\n\n9\n\n(b) Find the probability that one red marble and one blue marble are obtained.\n\n[3]\n\n(c) Find the probability that a white counter is chosen from box A, given that one red marble and one blue marble are obtained. [2]\n\n© UCLES 2025\n\n9709/53/O/N/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0000800000010 *\n\nDFD\n\n![img-11.jpeg](img-11.jpeg)\n\n10\n\n6 Last Saturday, a cycling competition for teams of 11 cyclists took place. For each cyclist, the time taken to complete the course was recorded to the nearest minute. The times taken by the cyclists from two teams, the Linnets and the Puffins, are shown in the following table.\n\n|  Linnets | 48 | 51 | 54 | 57 | 59 | 60 | 64 | 64 | 65 | 68 | 70  |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n|  Puffins | 45 | 49 | 51 | 55 | 55 | 58 | 59 | 62 | 64 | 64 | 74  |\n\n(a) Draw a back-to-back stem-and-leaf diagram to represent this information, with Linnets on the left-hand side. [4]\n\n(b) Find the interquartile range of the times taken by the Linnets. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "* 0000800000011 *\n\nDFD\n\n![img-12.jpeg](img-12.jpeg)\n\n11\n\n(c) On the grid below, draw a box-and-whisker plot to represent the information for the Linnets and the Puffins. [3]\n\n![img-13.jpeg](img-13.jpeg)\n\n(d) Make one comparison between the times taken by the Linnets and the times taken by the Puffins. [1]\n\n© UCLES 2025\n\n9709/53/O/N/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0000800000012 *\n\nDFD\n\n![img-14.jpeg](img-14.jpeg)\n\n12\n\n7 The times taken by Obi to walk to work each morning are normally distributed with mean 14.8 minutes and standard deviation 1.5 minutes.\n\n(a) Find the probability that, on a randomly chosen day, Obi takes more than 15.6 minutes to walk to work. [3]\n\n(b) On 90% of days, Obi takes more than t minutes to walk to work.\n\nFind the value of t.\n\n[3]\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "* 0000800000013 *\n\nDFD\n\n![img-15.jpeg](img-15.jpeg)\n\n13\n\nObi walks to work 5 days a week for 45 weeks in a year.\n\n(c) On how many days in a year would you expect Obi to take within one minute of the mean time to walk to work? [4]\n\n...\n\n© UCLES 2025\n\n9709/53/O/N/25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "* 0000800000014 *\n\nDFD\n\n![img-16.jpeg](img-16.jpeg)\n\n14\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\n...\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "* 0000800000015 *\n\nDFD\n\n![img-17.jpeg](img-17.jpeg)\n\n15\n\nBLANK PAGE\n\n© UCLES 2025\n\n9709/53/O/N/25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "* 0000800000016 *\n\nDFD\n\n16\n\n# BLANK PAGE\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2025\n\n9709/53/O/N/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

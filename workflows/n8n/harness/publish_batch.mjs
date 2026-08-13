@@ -80,19 +80,26 @@ function expectedFromBundle(bundle) {
   const questions = bundle?.questions ?? [];
   let parts = 0;
   let markRows = 0;
+  let assets = 0;
   for (const question of questions) {
     const questionParts = question.parts ?? [];
     parts += questionParts.length;
-    markRows += (question.root_mark_scheme ?? []).length;
+    // Question-level mark rows live in `mark_scheme_items`, not
+    // `root_mark_scheme` -- that field never exists in a staged bundle, so
+    // this silently counted zero question-level mark rows on every paper.
+    markRows += (question.mark_scheme_items ?? []).length;
     for (const part of questionParts) {
       markRows += (part.mark_scheme_items ?? []).length;
     }
+    // Assets are nested per question, never at the bundle's top level.
+    // `bundle.assets` is always undefined, so this always counted zero.
+    assets += (question.assets ?? []).length;
   }
   return {
     questions: questions.length,
     parts,
     mark_rows: markRows,
-    assets: (bundle?.assets ?? []).length,
+    assets,
   };
 }
 
@@ -206,16 +213,18 @@ async function main() {
       return 1;
     }
 
+    // Field names confirmed against a real successful response (n8n execution
+    // 885, node "Reviewed Publication Result") rather than guessed. The old
+    // guesses (question_count, mark_scheme_item_count, asset_count, ...) never
+    // matched anything the publisher actually returns, so every prior call to
+    // this script silently verified nothing and reported "no counts to
+    // verify" -- a false "ok" on every paper it ever published.
     const publication = result?.publication ?? {};
     const actual = {
-      questions: pickCount(publication, ["question_count", "published_questions", "questions"]),
-      parts: pickCount(publication, ["question_part_count", "published_parts", "parts"]),
-      mark_rows: pickCount(publication, [
-        "mark_scheme_item_count",
-        "published_mark_scheme_items",
-        "mark_rows",
-      ]),
-      assets: pickCount(publication, ["asset_count", "published_assets", "assets"]),
+      questions: pickCount(publication, ["questions_inserted"]),
+      parts: pickCount(publication, ["parts_inserted"]),
+      mark_rows: pickCount(publication, ["mark_scheme_items_inserted"]),
+      assets: pickCount(publication, ["assets_inserted"]),
     };
 
     const mismatches = [];

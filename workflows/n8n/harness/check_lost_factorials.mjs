@@ -37,8 +37,26 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+// TWO SOURCES, AND THE DISTINCTION IS THE POINT.
+//
+// The OCR pages are where the corruption ORIGINATES, and they are a historical
+// record -- they are never rewritten, because what the provider returned is
+// evidence. The staged bundle is what would actually be PUBLISHED, so it is the
+// only thing that can block.
+//
+// Reporting only the OCR side would make this check permanent noise: once a
+// paper is corrected the OCR still reads `/3` forever, the check keeps firing,
+// and a reviewer learns to skim it. That is exactly how the spurious REORDERED
+// verdict nearly cost this harness its credibility. So findings are split:
+// OUTSTANDING (present in the staged bundle) versus CORRECTED DOWNSTREAM
+// (present in OCR, already fixed in the bundle).
+//
+// Note the staged fixtures are a snapshot. After applying a correction, re-run
+//     node workflows/n8n/harness/export_staged.mjs --batch v2.3-batch-NN
+// or this check will keep reading the pre-correction bundle.
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const OCR = path.join(HERE, "fixtures", "ocr");
+const STAGED = path.join(HERE, "fixtures", "staged");
 
 // \frac{ <base> ^ <n> }{ <n> }   with optional braces around either exponent.
 const FRAC_POWER = /\\frac\{([^{}]{1,16}?)\^\{?(\d)\}?\}\{(\d)\}/g;
@@ -60,78 +78,150 @@ const CONTEXT_WINDOW = 160;
 
 const verbose = process.argv.includes("--verbose");
 
-const findings = [];
-for (const file of fs.readdirSync(OCR).filter((f) => f.endsWith(".json"))) {
-  const data = JSON.parse(fs.readFileSync(path.join(OCR, file), "utf8"));
-  for (const document of data.documents ?? []) {
-    for (const page of document.pages ?? []) {
-      const text = page.raw_markdown ?? page.markdown ?? "";
-      for (const re of [FRAC_POWER, INLINE_POWER]) {
-        re.lastIndex = 0;
-        for (const match of text.matchAll(re)) {
-          const power = Number(match[2]);
-          const denominator = Number(match[3]);
-          if (power < 3 || power !== denominator) continue;
-
-          // Must sit inside an exponential series, or it is an antiderivative.
-          const from = Math.max(0, match.index - CONTEXT_WINDOW);
-          const window = text.slice(from, match.index + match[0].length + CONTEXT_WINDOW);
-          if (!SERIES_CONTEXT.test(window)) continue;
-
-          // A symbolic base cannot be checked numerically and is far more
-          // likely to be algebra than a series term.
-          if (!Number.isFinite(Number(match[1]))) continue;
-          findings.push({
-            paper: data.paper_key,
-            run: data.ingestion_run_id,
-            document: document.document_type,
-            page: page.page_number,
-            expression: match[0],
-            base: match[1],
-            power,
-            // What the term should evaluate to, so the reviewer can compare it
-            // against any decimal printed in the same cell.
-            asWritten: Number(match[1]) ** power / denominator,
-            withFactorial: Number(match[1]) ** power / factorial(power),
-          });
-        }
-      }
-    }
-  }
-}
-
 function factorial(n) {
   let out = 1;
   for (let i = 2; i <= n; i += 1) out *= i;
   return out;
 }
 
-console.log("\nLost factorials in OCR -- x^n / n where n >= 3, offline, no cost\n");
+// Scan one blob of text and return every lost-factorial candidate in it.
+function scan(text, where) {
+  const out = [];
+  for (const re of [FRAC_POWER, INLINE_POWER]) {
+    re.lastIndex = 0;
+    for (const match of text.matchAll(re)) {
+      const power = Number(match[2]);
+      const denominator = Number(match[3]);
+      if (power < 3 || power !== denominator) continue;
 
-if (!findings.length) {
-  console.log("None found across the OCR corpus.\n");
-  process.exitCode = 0;
-} else {
+      // Must sit inside an exponential series, or it is an antiderivative.
+      const from = Math.max(0, match.index - CONTEXT_WINDOW);
+      const window = text.slice(from, match.index + match[0].length + CONTEXT_WINDOW);
+      if (!SERIES_CONTEXT.test(window)) continue;
+
+      // A symbolic base cannot be checked numerically and is far more likely to
+      // be algebra than a series term.
+      if (!Number.isFinite(Number(match[1]))) continue;
+
+      out.push({
+        ...where,
+        expression: match[0],
+        power,
+        // What the term should evaluate to, so the reviewer can compare it
+        // against any decimal printed in the same cell.
+        asWritten: Number(match[1]) ** power / denominator,
+        withFactorial: Number(match[1]) ** power / factorial(power),
+      });
+    }
+  }
+  return out;
+}
+
+function readJson(dir, file) {
+  return JSON.parse(fs.readFileSync(path.join(dir, file), "utf8"));
+}
+
+// ---- staged bundles: the publication gate -------------------------------
+const staged = [];
+for (const file of fs.readdirSync(STAGED).filter((f) => f.endsWith(".json"))) {
+  const data = readJson(STAGED, file);
+  const bundle = data.paper_bundle ?? {};
+  for (const question of bundle.questions ?? []) {
+    const rows = [
+      ...(question.mark_scheme_items ?? []).map((m) => ["", m]),
+      ...(question.parts ?? []).flatMap((p) =>
+        (p.mark_scheme_items ?? []).map((m) => [`(${(p.label_path ?? []).join(")(")})`, m]),
+      ),
+    ];
+    for (const [label, row] of rows) {
+      for (const field of ["content_markdown", "guidance_markdown"]) {
+        staged.push(
+          ...scan(String(row[field] ?? ""), {
+            paper: data.paper_key,
+            run: data.run_id,
+            locus: `Q${question.question_number}${label} ${field.replace("_markdown", "")}`,
+          }),
+        );
+      }
+    }
+  }
+}
+
+// ---- OCR pages: provenance ----------------------------------------------
+const ocr = [];
+for (const file of fs.readdirSync(OCR).filter((f) => f.endsWith(".json"))) {
+  const data = readJson(OCR, file);
+  for (const document of data.documents ?? []) {
+    for (const page of document.pages ?? []) {
+      ocr.push(
+        ...scan(String(page.raw_markdown ?? page.markdown ?? ""), {
+          paper: data.paper_key,
+          run: data.ingestion_run_id,
+          locus: `${document.document_type} p${page.page_number}`,
+        }),
+      );
+    }
+  }
+}
+
+function group(list) {
   const byPaper = new Map();
-  for (const f of findings) {
+  for (const f of list) {
     if (!byPaper.has(f.paper)) byPaper.set(f.paper, []);
     byPaper.get(f.paper).push(f);
   }
-  for (const [paper, list] of [...byPaper].sort()) {
-    console.log(`  ${paper}  (${list.length})`);
-    for (const f of list) {
-      console.log(`      ${f.document} p${f.page}: ${f.expression}`);
+  return [...byPaper].sort();
+}
+
+function print(list) {
+  for (const [paper, items] of group(list)) {
+    console.log(`  ${paper}  (${items.length})`);
+    for (const f of items) {
+      console.log(`      ${f.locus}: ${f.expression}`);
       console.log(
         `         as written = ${f.asWritten.toFixed(4)}   with ${f.power}! = ${f.withFactorial.toFixed(4)}`,
       );
       if (verbose) console.log(`         run ${f.run}`);
     }
   }
-  console.log(
-    `\n${findings.length} occurrence(s) across ${byPaper.size} paper(s).\n\n` +
-      "Each is a CANDIDATE. Confirm against the printed page: compare the two\n" +
-      "values above with any decimal the same cell prints as an alternative.\n" +
-      "No other check sees this -- marks still reconcile and prose still matches.\n",
-  );
-  process.exitCode = 1;
 }
+
+console.log("\nLost factorials -- x^n / n where n >= 3 inside e^-lambda(...), offline, no cost\n");
+
+console.log("STAGED BUNDLES -- what would be published\n");
+if (!staged.length) {
+  console.log("  Clean. No lost factorial reaches publishable content.\n");
+} else {
+  print(staged);
+  console.log(
+    `\n  ${staged.length} OUTSTANDING occurrence(s) across ${group(staged).length} paper(s).\n` +
+      "  Confirm against the printed page: compare the two values above with any\n" +
+      "  decimal the same cell prints as an alternative. No other check sees this --\n" +
+      "  marks still reconcile and prose still matches.\n",
+  );
+}
+
+// Papers whose OCR carries the defect but whose bundle no longer does. Reported
+// so the OCR record stays visible without being mistaken for outstanding work.
+const stagedPapers = new Set(staged.map((f) => f.paper));
+const correctedPapers = group(ocr)
+  .map(([paper, items]) => [paper, items])
+  .filter(([paper]) => !stagedPapers.has(paper));
+
+console.log("OCR PAGES -- provenance, never rewritten\n");
+if (!ocr.length) {
+  console.log("  Clean across the OCR corpus.\n");
+} else {
+  print(ocr);
+  if (correctedPapers.length) {
+    console.log(
+      `\n  Of these, ${correctedPapers.length} paper(s) are CORRECTED DOWNSTREAM -- the\n` +
+        "  defect is in the OCR record but not in the staged bundle, so nothing is\n" +
+        `  publishable from it: ${correctedPapers.map(([p]) => p).join(", ")}\n`,
+    );
+  }
+  console.log("");
+}
+
+// Only publishable content can fail this check.
+process.exitCode = staged.length ? 1 : 0;
