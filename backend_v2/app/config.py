@@ -75,10 +75,14 @@ class Settings:
             generated_media_bucket=os.getenv("SHAMO_GENERATED_MEDIA_BUCKET", "shamo-generated-media"),
             # No wildcard default. The legacy service allows every origin, which
             # is fine for an unauthenticated prototype and will not be once this
-            # one carries student data.
+            # one carries student data. Both 5173 and 5174 are listed because
+            # Vite silently falls back to 5174 whenever something else already
+            # holds 5173, and a developer hitting that fallback should not also
+            # have to debug a CORS rejection to notice it.
             allowed_origins=_csv(
                 "SHAMO_ALLOWED_ORIGINS",
-                "http://localhost:5173,http://127.0.0.1:5173",
+                "http://localhost:5173,http://127.0.0.1:5173,"
+                "http://localhost:5174,http://127.0.0.1:5174",
             ),
         )
 

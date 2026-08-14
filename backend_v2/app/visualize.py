@@ -220,12 +220,13 @@ def _validate_geogebra(spec: GeoGebraSpec) -> None:
 def _validate_manim(spec: ManimSpec) -> None:
     """The real safety boundary for Manim: every expression must be plain,
     bounded x-arithmetic before it is allowed anywhere near the renderer
-    subprocess. models.ManimRegionSweepParams already applied a coarse
+    subprocess. models.ManimBoundedRegionParams already applied a coarse
     charset/length check; this is the one that actually matters, because it
     is the same node-whitelist walk the renderer itself uses to decide what
-    it will evaluate.
+    it will evaluate. Both templates share this params shape (see
+    ManimBoundedRegionParams), so one check covers both.
     """
-    params = spec.region_sweep
+    params = spec.region_sweep or spec.volume_of_revolution
     if params is None:
         return
     try:
@@ -267,10 +268,11 @@ Allowed artifact kinds:
 - geogebra_geometry for geometry, loci, vectors, Argand constructions.
 - geogebra_3d for 3D constructions.
 - manim_template_video for an ANIMATED sweep of the region between two curves/lines over an
-  interval, when the motion of the region filling in is itself the teaching point (e.g. "what
-  area do I get if I integrate just this one curve"). This is the ONLY thing manim_template_video
-  can do right now -- do not use it for anything else, and prefer desmos_2d/geogebra whenever a
-  static (non-animated) picture already teaches the idea, because Manim is slower to render.
+  interval (template "region_sweep"), or that same region spinning about the x-axis into a 3D
+  solid (template "volume_of_revolution", for "find the volume when this region is rotated
+  about the x-axis" questions). Use one of these two templates ONLY -- do not use
+  manim_template_video for anything else, and prefer desmos_2d/geogebra whenever a static
+  (non-animated) picture already teaches the idea, because Manim is slower to render.
 - none when no trustworthy visual is appropriate.
 
 Rules:
@@ -286,13 +288,20 @@ Rules:
 - If the source is not enough to make a trustworthy visual, return artifacts: [] and explain the fallback.
 
 The manim object (only for manim_template_video):
-- "template" must be exactly "region_sweep".
-- "region_sweep" takes: lower_expr and optional upper_expr (plain arithmetic in x only -- digits,
-  + - * / ^ ( ) and the functions sin/cos/tan/sqrt/exp/log/abs and the constants pi/e; NOTHING
-  else, no other syntax of any kind), x_min, x_max, and optional lower_label/upper_label/region_color.
-- If upper_expr is omitted, the region is between lower_expr and the x-axis.
+- "template" must be exactly "region_sweep" or "volume_of_revolution".
+- Use the matching key for whichever template you chose ("region_sweep" or
+  "volume_of_revolution") -- never both, and never the other key.
+- Both take the SAME parameters: lower_expr and optional upper_expr (plain arithmetic in x
+  only -- digits, + - * / ^ ( ) and the functions sin/cos/tan/sqrt/exp/log/abs and the
+  constants pi/e; NOTHING else, no other syntax of any kind), x_min, x_max, and optional
+  lower_label/upper_label/region_color.
+- If upper_expr is omitted, the region is between lower_expr and the x-axis (for
+  volume_of_revolution this makes a solid disk shape rather than a hollow washer).
 - Write "^" for powers (e.g. "x^2"), not "**", and write fractions as plain division (e.g.
   "0.5*x + 4/x"), never LaTeX \\frac.
+- Use volume_of_revolution specifically when the question asks for a volume formed by rotating
+  a region about the x-axis. Do not use it just because a region happens to be shaded -- that
+  is region_sweep's job.
 
 Shading a bounded region in Desmos:
 - Whenever the artifact's purpose involves an area, a region between curves/lines, or the
@@ -358,6 +367,25 @@ JSON shape:
           "x_min": 1,
           "x_max": 8,
           "lower_label": "y = 0.5x + 4/x",
+          "region_color": "#F5C453"
+        }}
+      }}
+    }},
+    {{
+      "artifact_kind": "manim_template_video",
+      "title": "Rotating the region about the x-axis",
+      "purpose": "Show the shaded region spinning into the 3D solid whose volume the question asks for.",
+      "narration_markdown": "Watch the region between the curve and the line sweep through a full turn about the $x$-axis, forming the solid.",
+      "accessibility_text": "An animation of a region between a curve and a line rotating about the x-axis to form a 3D solid.",
+      "manim": {{
+        "template": "volume_of_revolution",
+        "volume_of_revolution": {{
+          "lower_expr": "0.5*x + 4/x",
+          "upper_expr": "4.5",
+          "x_min": 1,
+          "x_max": 8,
+          "lower_label": "y = 0.5x + 4/x",
+          "upper_label": "y = 4.5",
           "region_color": "#F5C453"
         }}
       }}

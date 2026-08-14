@@ -51,6 +51,7 @@ class ManimTemplate(str, Enum):
     """
 
     REGION_SWEEP = "region_sweep"
+    VOLUME_OF_REVOLUTION = "volume_of_revolution"
 
 
 class VisualValidationStatus(str, Enum):
@@ -156,8 +157,14 @@ class GeoGebraSpec(BaseModel):
     visibleObjects: list[str] = Field(default_factory=list, max_length=24)
 
 
-class ManimRegionSweepParams(BaseModel):
-    """Bounded numeric parameters for the region_sweep scene.
+class ManimBoundedRegionParams(BaseModel):
+    """Bounded numeric parameters describing a region between one or two
+    curves over an x-interval -- shared by both region_sweep (animates the
+    flat region filling in) and volume_of_revolution (additionally spins
+    that same region about the x-axis into a solid). The two templates
+    render the region identically in their shared first act; only what
+    happens to it afterward differs, so one params shape covers both rather
+    than duplicating an identical model under two names.
 
     Expressions are checked structurally here (length, a coarse charset) and
     then walked node-by-node against a whitelist by safe_math before any
@@ -182,7 +189,7 @@ class ManimRegionSweepParams(BaseModel):
         return value
 
     @model_validator(mode="after")
-    def _bounds(self) -> "ManimRegionSweepParams":
+    def _bounds(self) -> "ManimBoundedRegionParams":
         if self.x_max - self.x_min < 0.1:
             raise ValueError("x_max must be meaningfully larger than x_min")
         return self
@@ -190,12 +197,17 @@ class ManimRegionSweepParams(BaseModel):
 
 class ManimSpec(BaseModel):
     template: ManimTemplate
-    region_sweep: ManimRegionSweepParams | None = None
+    region_sweep: ManimBoundedRegionParams | None = None
+    volume_of_revolution: ManimBoundedRegionParams | None = None
 
     @model_validator(mode="after")
     def _matches_template(self) -> "ManimSpec":
-        if self.template == ManimTemplate.REGION_SWEEP and self.region_sweep is None:
-            raise ValueError("region_sweep template requires region_sweep params")
+        if self.template == ManimTemplate.REGION_SWEEP:
+            if self.region_sweep is None or self.volume_of_revolution is not None:
+                raise ValueError("region_sweep template requires only region_sweep params")
+        elif self.template == ManimTemplate.VOLUME_OF_REVOLUTION:
+            if self.volume_of_revolution is None or self.region_sweep is not None:
+                raise ValueError("volume_of_revolution template requires only volume_of_revolution params")
         return self
 
 

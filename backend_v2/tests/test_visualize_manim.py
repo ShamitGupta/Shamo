@@ -112,3 +112,56 @@ def test_x_max_not_greater_than_x_min_is_rejected():
     }
     with pytest.raises(Exception):
         validate_visual_payload(_payload(manim), REF)
+
+
+VALID_VOLUME_OF_REVOLUTION = {
+    "template": "volume_of_revolution",
+    "volume_of_revolution": {
+        "lower_expr": "0.5*x + 4/x",
+        "upper_expr": "4.5",
+        "x_min": 1,
+        "x_max": 8,
+        "lower_label": "y = 0.5x + 4/x",
+        "upper_label": "y = 4.5",
+    },
+}
+
+
+def test_valid_volume_of_revolution_is_accepted():
+    response = validate_visual_payload(_payload(VALID_VOLUME_OF_REVOLUTION), REF)
+    assert response.validation_status.value == "validated"
+    assert response.artifacts[0].manim.volume_of_revolution.upper_expr == "4.5"
+
+
+def test_volume_of_revolution_without_upper_expr_is_accepted():
+    # The disk case: rotating the region between one curve and the x-axis.
+    manim = {
+        "template": "volume_of_revolution",
+        "volume_of_revolution": {"lower_expr": "4*sqrt(x)-x", "x_min": 4, "x_max": 16},
+    }
+    response = validate_visual_payload(_payload(manim), REF)
+    assert response.validation_status.value == "validated"
+    assert response.artifacts[0].manim.volume_of_revolution.upper_expr is None
+
+
+def test_volume_of_revolution_cannot_also_carry_region_sweep_params():
+    payload = _payload(VALID_VOLUME_OF_REVOLUTION)
+    payload["artifacts"][0]["manim"]["region_sweep"] = VALID_REGION_SWEEP["region_sweep"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_region_sweep_template_cannot_carry_volume_of_revolution_params():
+    payload = _payload(VALID_REGION_SWEEP)
+    payload["artifacts"][0]["manim"]["volume_of_revolution"] = VALID_VOLUME_OF_REVOLUTION["volume_of_revolution"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_code_execution_attempt_in_volume_of_revolution_expression_is_rejected():
+    manim = {
+        "template": "volume_of_revolution",
+        "volume_of_revolution": {"lower_expr": "__import__('os').system('echo pwned')", "x_min": 1, "x_max": 8},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)

@@ -26,6 +26,18 @@ digit via MathTex internally, so add_numbers() shells out to a `latex`
 binary that does not exist here and the whole render fails. Bound labels are
 therefore built as plain Text ("x = 1") placed directly under the axis at
 the two x-values that matter, not as axis tick numbers.
+
+Colors come from app.manim_theme rather than manim's named WHITE/GRAY, so
+the rendered video shares a palette with the card it plays inside
+(frontend/src/ChatSection/VisualArtifactCard.module.css) instead of reading
+as a generic Manim tutorial. This pass is visual-fixes-only for this file --
+it does not attempt to show WHY integration works (no Riemann-sum/thin-strip
+treatment), only that it accurately does. A future pass could give this file
+the same kind of method-visualizing sequence volume_of_revolution.py gained
+(see that file's Act 1.5): pick a representative x, show one thin vertical
+strip of width dx and height (upper_fn - lower_fn), then stack a handful of
+them before the continuous sweep, the same way a disc/washer slice now
+precedes that file's continuous solid.
 """
 
 from __future__ import annotations
@@ -40,6 +52,7 @@ from pathlib import Path
 # path so `app.safe_math` resolves the same way it does inside the API process.
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+from app.manim_theme import BACKGROUND, GUIDE, INK, REGION_DEFAULT  # noqa: E402
 from app.safe_math import make_evaluator  # noqa: E402
 
 from manim import (  # noqa: E402
@@ -50,12 +63,10 @@ from manim import (  # noqa: E402
     Create,
     DashedLine,
     FadeIn,
-    GRAY,
     Scene,
     Text,
     VGroup,
     ValueTracker,
-    WHITE,
     always_redraw,
     config,
     linear,
@@ -78,13 +89,14 @@ def _load_params() -> dict:
 
 class RegionSweepScene(Scene):
     def construct(self) -> None:
+        self.camera.background_color = BACKGROUND
         params = _load_params()
         x_min = float(params["x_min"])
         x_max = float(params["x_max"])
         lower_fn = make_evaluator(params["lower_expr"])
         upper_expr = params.get("upper_expr")
         upper_fn = make_evaluator(upper_expr) if upper_expr else (lambda _x: 0.0)
-        region_color = params.get("region_color") or "#F5C453"
+        region_color = params.get("region_color") or REGION_DEFAULT
 
         sample_count = 100
         y_values = []
@@ -119,7 +131,7 @@ class RegionSweepScene(Scene):
             y_range=[axis_y_min, axis_y_max, y_step],
             tips=False,
         )
-        lower_graph = axes.plot(lower_fn, x_range=[x_min, x_max], color=WHITE)
+        lower_graph = axes.plot(lower_fn, x_range=[x_min, x_max], color=INK)
         upper_graph = axes.plot(upper_fn, x_range=[x_min, x_max], color=region_color)
 
         # Plain Text, not axis tick numbers: this is the fix for the biggest
@@ -130,7 +142,7 @@ class RegionSweepScene(Scene):
         # the boundaries are no longer just "the edges of the picture."
         bound_labels = VGroup(
             *(
-                Text(f"x = {value:g}", font_size=20, color=WHITE).next_to(
+                Text(f"x = {value:g}", font_size=20, color=INK).next_to(
                     axes.c2p(value, 0), DOWN, buff=0.2
                 )
                 for value in (x_min, x_max)
@@ -140,13 +152,14 @@ class RegionSweepScene(Scene):
         # top at each boundary, so the labelled boundary reads as "this
         # vertical line is where the region starts/stops" rather than a
         # label floating near the axis with nothing tying it to the curve.
+        # Stroke width bumped from 1.5 to 2.0 for legibility at 720p.
         boundary_guides = VGroup(
             *(
                 DashedLine(
                     axes.c2p(value, 0),
                     axes.c2p(value, max(lower_fn(value), upper_fn(value))),
-                    color=GRAY,
-                    stroke_width=1.5,
+                    color=GUIDE,
+                    stroke_width=2.0,
                     dash_length=0.08,
                 )
                 for value in (x_min, x_max)
@@ -154,7 +167,7 @@ class RegionSweepScene(Scene):
         )
         origin_label = VGroup()
         if x_min > 1e-9 or y_data_min > 1e-9:
-            origin_label.add(Text("0", font_size=18, color=GRAY).next_to(axes.c2p(0, 0), DOWN + LEFT, buff=0.12))
+            origin_label.add(Text("0", font_size=18, color=GUIDE).next_to(axes.c2p(0, 0), DOWN + LEFT, buff=0.12))
 
         self.play(Create(axes), FadeIn(origin_label))
         self.play(Create(lower_graph), Create(upper_graph))
@@ -164,7 +177,7 @@ class RegionSweepScene(Scene):
         lower_label = params.get("lower_label")
         upper_label = params.get("upper_label")
         if lower_label:
-            labels.add(Text(str(lower_label), font_size=24, color=WHITE).to_edge(DOWN))
+            labels.add(Text(str(lower_label), font_size=24, color=INK).to_edge(DOWN))
         if upper_label:
             labels.add(Text(str(upper_label), font_size=24, color=region_color).to_edge(UP))
         if labels:

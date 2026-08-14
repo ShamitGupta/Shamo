@@ -27,14 +27,19 @@ logger = logging.getLogger(__name__)
 
 TEMPLATES_DIR = Path(__file__).parent / "manim_templates"
 
-# -ql (480p15) renders in a few seconds for a scene this simple, which is what
-# makes a synchronous request/response cycle viable at all. -qm/-qh are for
-# reviewed, offline content only and are not wired up here.
-RENDER_QUALITY_FLAG = "-ql"
+# -qm (720p30) -- raised from -ql (480p15) because low resolution was a
+# named factor in these videos reading as low-effort; -qm is still a
+# synchronous-request-viable quality, just a real notch up. Target budget is
+# ~35-40s per render, well under RENDER_TIMEOUT_SECONDS below -- that 60s
+# figure is a hard safety ceiling for the subprocess, not the design target,
+# and should not be raised to accommodate a slow scene; tune the scene
+# instead (see the fallback levers documented in each template's docstring).
+RENDER_QUALITY_FLAG = "-qm"
 RENDER_TIMEOUT_SECONDS = 60
 
 _SCENE_BY_TEMPLATE: dict[str, tuple[str, str]] = {
     "region_sweep": ("region_sweep.py", "RegionSweepScene"),
+    "volume_of_revolution": ("volume_of_revolution.py", "VolumeOfRevolutionScene"),
 }
 
 
@@ -63,7 +68,8 @@ def render_to_mp4(spec: ManimSpec) -> Path:
     if not scene_path.exists():
         raise ManimRenderError(f"template scene file is missing: {scene_file}")
 
-    params = spec.region_sweep.model_dump() if spec.region_sweep else {}
+    region_params = spec.region_sweep or spec.volume_of_revolution
+    params = region_params.model_dump() if region_params else {}
 
     with tempfile.TemporaryDirectory(prefix="shamo-manim-") as tmp:
         tmp_path = Path(tmp)

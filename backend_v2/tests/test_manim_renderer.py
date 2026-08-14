@@ -26,11 +26,16 @@ os.environ.setdefault("SUPABASE_SERVICE_ROLE_KEY", "test-service-role-key")
 os.environ.setdefault("OPENAI_API_KEY", "test-openai-key")
 
 from app import manim_renderer  # noqa: E402
-from app.models import ManimRegionSweepParams, ManimSpec, ManimTemplate  # noqa: E402
+from app.models import ManimBoundedRegionParams, ManimSpec, ManimTemplate  # noqa: E402
 
 VALID_SPEC = ManimSpec(
     template=ManimTemplate.REGION_SWEEP,
-    region_sweep=ManimRegionSweepParams(lower_expr="x", x_min=1, x_max=5),
+    region_sweep=ManimBoundedRegionParams(lower_expr="x", x_min=1, x_max=5),
+)
+
+VALID_VOLUME_SPEC = ManimSpec(
+    template=ManimTemplate.VOLUME_OF_REVOLUTION,
+    volume_of_revolution=ManimBoundedRegionParams(lower_expr="x", x_min=1, x_max=5),
 )
 
 
@@ -43,7 +48,7 @@ def test_successful_render_copies_mp4_out_of_the_temp_dir(monkeypatch, tmp_path)
         # Mimic manim: by the time it "succeeds", the mp4 exists under --media_dir.
         media_dir = Path(command[command.index("--media_dir") + 1])
         scene_class = command[-1]
-        output_dir = media_dir / "videos" / "region_sweep" / "480p15"
+        output_dir = media_dir / "videos" / "region_sweep" / "720p30"
         output_dir.mkdir(parents=True, exist_ok=True)
         (output_dir / f"{scene_class}.mp4").write_bytes(b"fake-mp4-bytes")
         return _fake_completed_process(0)
@@ -64,7 +69,7 @@ def test_partial_movie_files_are_never_mistaken_for_the_final_output(monkeypatch
         scene_class = command[-1]
         # A stray partial_movie_files/*.mp4 that happens to share the scene's
         # class name in its path must not be picked up as the final render.
-        partial_dir = media_dir / "videos" / "region_sweep" / "480p15" / "partial_movie_files" / scene_class
+        partial_dir = media_dir / "videos" / "region_sweep" / "720p30" / "partial_movie_files" / scene_class
         partial_dir.mkdir(parents=True, exist_ok=True)
         (partial_dir / f"{scene_class}.mp4").write_bytes(b"partial")
         return _fake_completed_process(0)
@@ -101,3 +106,26 @@ def test_subprocess_is_never_invoked_for_a_nonexistent_scene_file(monkeypatch):
     with pytest.raises(manim_renderer.ManimRenderError, match="missing"):
         manim_renderer.render_to_mp4(VALID_SPEC)
     assert calls == []
+
+
+def test_volume_of_revolution_resolves_to_its_own_scene_file(monkeypatch):
+    seen_commands = []
+
+    def fake_run(command, cwd, env, capture_output, text, timeout, check):
+        seen_commands.append(command)
+        media_dir = Path(command[command.index("--media_dir") + 1])
+        scene_class = command[-1]
+        output_dir = media_dir / "videos" / "volume_of_revolution" / "720p30"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        (output_dir / f"{scene_class}.mp4").write_bytes(b"fake-mp4-bytes")
+        return _fake_completed_process(0)
+
+    monkeypatch.setattr(manim_renderer.subprocess, "run", fake_run)
+
+    output_path = manim_renderer.render_to_mp4(VALID_VOLUME_SPEC)
+    try:
+        assert output_path.read_bytes() == b"fake-mp4-bytes"
+        assert any("volume_of_revolution.py" in str(part) for part in seen_commands[0])
+        assert seen_commands[0][-1] == "VolumeOfRevolutionScene"
+    finally:
+        output_path.unlink(missing_ok=True)
