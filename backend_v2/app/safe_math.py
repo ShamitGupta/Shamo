@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import ast
 import math
+import re
 from typing import Callable
 
 _ALLOWED_FUNCS: dict[str, Callable[..., float]] = {
@@ -41,16 +42,16 @@ class UnsafeExpressionError(ValueError):
     """The expression contains something outside the allowed grammar."""
 
 
-def _check_node(node: ast.AST) -> None:
+def _check_node(node: ast.AST, var_name: str) -> None:
     if isinstance(node, ast.Expression):
-        _check_node(node.body)
+        _check_node(node.body, var_name)
         return
     if isinstance(node, ast.BinOp) and isinstance(node.op, _ALLOWED_BINOPS):
-        _check_node(node.left)
-        _check_node(node.right)
+        _check_node(node.left, var_name)
+        _check_node(node.right, var_name)
         return
     if isinstance(node, ast.UnaryOp) and isinstance(node.op, _ALLOWED_UNARYOPS):
-        _check_node(node.operand)
+        _check_node(node.operand, var_name)
         return
     if isinstance(node, ast.Call):
         if (
@@ -60,10 +61,10 @@ def _check_node(node: ast.AST) -> None:
         ):
             raise UnsafeExpressionError("only plain calls to a fixed set of math functions are allowed")
         for arg in node.args:
-            _check_node(arg)
+            _check_node(arg, var_name)
         return
     if isinstance(node, ast.Name):
-        if node.id != "x" and node.id not in _ALLOWED_NAMES:
+        if node.id != var_name and node.id not in _ALLOWED_NAMES:
             raise UnsafeExpressionError(f"name is not allowed: {node.id}")
         return
     if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)) and not isinstance(node.value, bool):
@@ -79,36 +80,48 @@ def _normalize(expr: str) -> str:
     return expr.replace("^", "**")
 
 
-def _parse(expr: str) -> ast.Expression:
+def _parse(expr: str, var_name: str = "x") -> ast.Expression:
+    # var_name is only ever a fixed literal a scene template hardcodes in
+    # its own call (e.g. "t" for kinematics_motion) -- never model-supplied
+    # -- but it is asserted sane anyway as a guard against a future caller
+    # passing something careless, not because it is untrusted input.
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", var_name) or var_name in _ALLOWED_NAMES:
+        raise ValueError(f"var_name is not usable as a bare expression variable: {var_name!r}")
     if not expr or len(expr) > MAX_EXPRESSION_LENGTH:
         raise UnsafeExpressionError("expression is empty or too long")
     try:
         tree = ast.parse(_normalize(expr), mode="eval")
     except SyntaxError as error:
         raise UnsafeExpressionError(f"could not parse expression: {error}") from error
-    _check_node(tree)
+    _check_node(tree, var_name)
     return tree
 
 
-def validate_expression(expr: str) -> None:
-    """Raise UnsafeExpressionError if expr is anything but bounded x-arithmetic."""
+def validate_expression(expr: str, var_name: str = "x") -> None:
+    """Raise UnsafeExpressionError if expr is anything but bounded arithmetic
+    in the single variable var_name (default "x")."""
 
-    _parse(expr)
+    _parse(expr, var_name)
 
 
-def make_evaluator(expr: str) -> Callable[[float], float]:
-    """Validate expr, then return a fast f(x) closure over it.
+def make_evaluator(expr: str, var_name: str = "x") -> Callable[[float], float]:
+    """Validate expr, then return a fast f(var_name) closure over it.
 
     Re-validates even if the caller already did, because a closure that
     outlives the validation call site is exactly the kind of thing that gets
     reused somewhere the check was skipped.
+
+    var_name defaults to "x" so every existing call site is unaffected; a
+    template describing a different free variable (e.g. kinematics_motion's
+    "t") passes it explicitly. The whitelist grammar itself never changes --
+    only which single bare identifier counts as the free variable does.
     """
 
-    tree = _parse(expr)
+    tree = _parse(expr, var_name)
     compiled = compile(tree, "<safe-expr>", "eval")
     namespace = {**_ALLOWED_FUNCS, **_ALLOWED_NAMES}
 
-    def _evaluate(x: float) -> float:
-        return float(eval(compiled, {"__builtins__": {}}, {**namespace, "x": x}))  # noqa: S307
+    def _evaluate(value: float) -> float:
+        return float(eval(compiled, {"__builtins__": {}}, {**namespace, var_name: value}))  # noqa: S307
 
     return _evaluate

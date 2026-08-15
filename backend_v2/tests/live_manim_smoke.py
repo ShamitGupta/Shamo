@@ -24,7 +24,16 @@ os.environ.setdefault("SUPABASE_SERVICE_ROLE_KEY", "test-service-role-key")
 os.environ.setdefault("OPENAI_API_KEY", "test-openai-key")
 
 from app.manim_renderer import ManimRenderError, render_to_mp4  # noqa: E402
-from app.models import ManimBoundedRegionParams, ManimSpec, ManimTemplate  # noqa: E402
+from app.models import (  # noqa: E402
+    ManimBoundedRegionParams,
+    ManimCobwebDiagramParams,
+    ManimComplexTransformParams,
+    ManimForceResultantParams,
+    ManimKinematicsParams,
+    ManimSpec,
+    ManimTangentLineParams,
+    ManimTemplate,
+)
 
 CASES = {
     "region_sweep": ManimSpec(
@@ -57,6 +66,84 @@ CASES = {
             x_max=16,
             lower_label="y = 4sqrt(x) - x",
             region_color="#9DB4FF",
+        ),
+    ),
+    "tangent_line": ManimSpec(
+        template=ManimTemplate.TANGENT_LINE,
+        tangent_line=ManimTangentLineParams(
+            expr="x^2 - 3*x + 1",
+            x_min=-2,
+            x_max=5,
+            point_of_interest_x=2,
+            curve_label="y = x^2 - 3x + 1",
+        ),
+    ),
+    "cobweb_diagram": ManimSpec(
+        template=ManimTemplate.COBWEB_DIAGRAM,
+        cobweb_diagram=ManimCobwebDiagramParams(
+            g_expr="sqrt(4/(5-2*x))",
+            x0=1.2,
+            iterations=6,
+            x_min=0.5,
+            x_max=2.0,
+            g_label="g(x) = sqrt(4/(5-2x))",
+        ),
+    ),
+    "complex_transform (multiply)": ManimSpec(
+        template=ManimTemplate.COMPLEX_TRANSFORM,
+        complex_transform=ManimComplexTransformParams(
+            start_modulus=3,
+            start_argument=0.7853981634,
+            factor_modulus=1.5,
+            factor_argument=0.5235987756,
+            operation="multiply",
+            start_label="z1",
+            factor_label="z2",
+            result_label="z1 z2",
+        ),
+    ),
+    "complex_transform (divide)": ManimSpec(
+        template=ManimTemplate.COMPLEX_TRANSFORM,
+        complex_transform=ManimComplexTransformParams(
+            start_modulus=3,
+            start_argument=0.7853981634,
+            factor_modulus=1.5,
+            factor_argument=0.5235987756,
+            operation="divide",
+            start_label="z1",
+            factor_label="z2",
+            result_label="z1 / z2",
+        ),
+    ),
+    "kinematics_motion (s given)": ManimSpec(
+        template=ManimTemplate.KINEMATICS_MOTION,
+        kinematics_motion=ManimKinematicsParams(
+            expr="3*t^1.5 - 6*t",
+            quantity="s",
+            t_min=0,
+            t_max=6,
+            time_of_interest_t=4,
+            curve_label="s = 3t^1.5 - 6t",
+        ),
+    ),
+    "kinematics_motion (v given)": ManimSpec(
+        template=ManimTemplate.KINEMATICS_MOTION,
+        kinematics_motion=ManimKinematicsParams(
+            expr="(2*t+1)^1.5 - 2*t^2",
+            quantity="v",
+            t_min=0,
+            t_max=3,
+            time_of_interest_t=1.5,
+            s_at_t_min=0,
+            curve_label="v = (2t+1)^1.5 - 2t^2",
+        ),
+    ),
+    "force_resultant": ManimSpec(
+        template=ManimTemplate.FORCE_RESULTANT,
+        force_resultant=ManimForceResultantParams(
+            magnitudes=[45, 28, 72, 35],
+            angles_degrees=[90, 35, -50, 240],
+            resultant_label="R",
         ),
     ),
 }

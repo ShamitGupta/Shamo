@@ -30,14 +30,24 @@ the two x-values that matter, not as axis tick numbers.
 Colors come from app.manim_theme rather than manim's named WHITE/GRAY, so
 the rendered video shares a palette with the card it plays inside
 (frontend/src/ChatSection/VisualArtifactCard.module.css) instead of reading
-as a generic Manim tutorial. This pass is visual-fixes-only for this file --
-it does not attempt to show WHY integration works (no Riemann-sum/thin-strip
-treatment), only that it accurately does. A future pass could give this file
-the same kind of method-visualizing sequence volume_of_revolution.py gained
-(see that file's Act 1.5): pick a representative x, show one thin vertical
-strip of width dx and height (upper_fn - lower_fn), then stack a handful of
-them before the continuous sweep, the same way a disc/washer slice now
-precedes that file's continuous solid.
+as a generic Manim tutorial.
+
+A Riemann-rectangle lead-in was added after installing the manimce-best-
+practices skill and reading its graphing.md, which pointed at
+Axes.get_riemann_rectangles -- a built-in that handles the bounded_graph
+two-curve case, left/right/center sampling, and the below-axis sign flip
+without any hand-rolled geometry. This closes the "shows the answer, not the
+method" gap this file's docstring used to flag as deferred future work, the
+same gap volume_of_revolution.py's Act 1.5 closes for the solid-of-revolution
+case -- but here the built-in primitive replaced what would otherwise have
+been the same class of hand-built-surface bugs that Act 1.5 needed several
+rounds of real frame extraction to catch (a degenerate ring, a degenerate
+zero-area slice at the interval's own endpoints). `show_signed_area=False` is
+passed deliberately: the default inverts a rectangle's color when the sample
+point falls below the base curve, which is meant for x-axis-signed-area
+teaching and would read as an unexplained color glitch here, where the fill
+is one flat brand color and the two curves are simply "the region between
+them," not a signed integral.
 """
 
 from __future__ import annotations
@@ -63,8 +73,11 @@ from manim import (  # noqa: E402
     Create,
     DashedLine,
     FadeIn,
+    FadeOut,
+    LaggedStart,
     Scene,
     Text,
+    Transform,
     VGroup,
     ValueTracker,
     always_redraw,
@@ -182,6 +195,55 @@ class RegionSweepScene(Scene):
             labels.add(Text(str(upper_label), font_size=24, color=region_color).to_edge(UP))
         if labels:
             self.play(FadeIn(labels))
+
+        # Temporarily hide the boundary-function labels before the Riemann
+        # caption below -- both anchor to .to_edge(DOWN), and a real rendered
+        # frame (not just a source read) showed them stacked illegibly on top
+        # of each other. Restored right before the continuous sweep, where
+        # they were already always present.
+        if labels:
+            self.play(FadeOut(labels), run_time=0.4)
+
+        # Riemann-rectangle lead-in (see module docstring): a coarse set of
+        # rectangles refining into a finer set, showing the sum-of-strips
+        # origin of the area before the continuous sweep shows its limit.
+        # graph=lower_graph, bounded_graph=upper_graph matches the same
+        # pairing already used below for axes.get_area -- get_riemann_rectangles
+        # only cares which curve supplies the sampled height point and which
+        # supplies the base, not which one is visually "on top", so this is
+        # consistent regardless of which curve happens to be higher at a
+        # given x.
+        coarse_dx = max(x_span / 6, 1e-3)
+        fine_dx = max(x_span / 24, 1e-3)
+        riemann_kwargs = dict(
+            x_range=[x_min, x_max],
+            color=region_color,
+            fill_opacity=0.65,
+            stroke_width=1.0,
+            stroke_color=BACKGROUND,
+            show_signed_area=False,
+        )
+        coarse_rects = axes.get_riemann_rectangles(
+            lower_graph, bounded_graph=upper_graph, dx=coarse_dx, **riemann_kwargs
+        )
+        fine_rects = axes.get_riemann_rectangles(
+            lower_graph, bounded_graph=upper_graph, dx=fine_dx, **riemann_kwargs
+        )
+        riemann_caption = Text(
+            "Approximate with thin rectangles, then shrink their width",
+            font_size=22,
+            color=INK,
+        ).to_edge(DOWN)
+
+        self.play(FadeIn(riemann_caption))
+        self.play(LaggedStart(*(FadeIn(r) for r in coarse_rects), lag_ratio=0.06, run_time=1.4))
+        self.wait(0.3)
+        self.play(Transform(coarse_rects, fine_rects), run_time=1.2)
+        self.wait(0.3)
+        self.play(FadeOut(coarse_rects), FadeOut(riemann_caption), run_time=0.5)
+
+        if labels:
+            self.play(FadeIn(labels), run_time=0.4)
 
         # The actual sweep: sweep_x grows from x_min to x_max and the region
         # is redrawn on every frame to cover only [x_min, sweep_x], so the

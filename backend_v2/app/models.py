@@ -7,6 +7,7 @@ missing paper.
 
 from __future__ import annotations
 
+import math
 import re
 from enum import Enum
 from typing import Any, Literal
@@ -52,6 +53,11 @@ class ManimTemplate(str, Enum):
 
     REGION_SWEEP = "region_sweep"
     VOLUME_OF_REVOLUTION = "volume_of_revolution"
+    TANGENT_LINE = "tangent_line"
+    COBWEB_DIAGRAM = "cobweb_diagram"
+    COMPLEX_TRANSFORM = "complex_transform"
+    KINEMATICS_MOTION = "kinematics_motion"
+    FORCE_RESULTANT = "force_resultant"
 
 
 class VisualValidationStatus(str, Enum):
@@ -195,19 +201,274 @@ class ManimBoundedRegionParams(BaseModel):
         return self
 
 
+class ManimTangentLineParams(BaseModel):
+    """Bounded numeric parameters for sweeping a point (and its tangent line)
+    along a curve, for differentiation/gradient questions.
+
+    A separate shape from ManimBoundedRegionParams rather than a reuse of it:
+    that one describes a region bounded by one or two curves over an
+    interval, while this one describes a single curve plus one specific
+    x-value the sweep must settle on (point_of_interest_x) -- a genuinely
+    different question shape, not a cosmetic rename of the same fields.
+
+    The tangent line's slope is never computed symbolically. safe_math's
+    evaluator only computes f(x), and teaching it to also differentiate
+    expressions would be new AST-whitelist surface for a template that does
+    not need it -- the scene itself takes a central finite difference of the
+    already-validated f(x) evaluator instead (see tangent_line.py).
+    """
+
+    expr: str = Field(min_length=1, max_length=80)
+    x_min: float = Field(ge=-1000, le=1000)
+    x_max: float = Field(ge=-1000, le=1000)
+    point_of_interest_x: float = Field(ge=-1000, le=1000)
+    curve_label: str | None = Field(default=None, max_length=60)
+    curve_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+
+    @field_validator("expr")
+    @classmethod
+    def _coarse_charset(cls, value: str) -> str:
+        if not re.fullmatch(r"[0-9A-Za-z\.\+\-\*/\^\(\)\s,]+", value):
+            raise ValueError("expression contains characters outside plain arithmetic")
+        return value
+
+    @model_validator(mode="after")
+    def _bounds(self) -> "ManimTangentLineParams":
+        span = self.x_max - self.x_min
+        if span < 1.0:
+            raise ValueError("x_max must be meaningfully larger than x_min for a tangent-line sweep")
+        margin = max(span * 0.08, 0.05)
+        if not (self.x_min + margin <= self.point_of_interest_x <= self.x_max - margin):
+            raise ValueError(
+                "point_of_interest_x must sit inside x_min/x_max with room to spare for the sweep"
+            )
+        return self
+
+
+class ManimCobwebDiagramParams(BaseModel):
+    """Bounded numeric parameters for a cobweb (staircase) diagram: an
+    iterative formula x_{n+1} = g(x_n) stepping between the curve y=g(x) and
+    the line y=x, for "show that this iteration converges" / "use the
+    iterative formula to find the root" numerical-methods questions.
+
+    g_expr is deliberately named for the REARRANGED iteration formula, not
+    the original equation f(x)=0 -- the scene only ever evaluates g, and
+    naming the field g_expr keeps that distinction visible to whatever
+    builds this spec, rather than risking the original f(x) being supplied
+    by mistake.
+
+    Like ManimTangentLineParams, the sequence is never analyzed
+    symbolically: safe_math's evaluator only computes g(x), and the scene
+    (and the validation check in visualize.py) simply iterate it forward a
+    bounded number of times.
+    """
+
+    g_expr: str = Field(min_length=1, max_length=80)
+    x0: float = Field(ge=-1000, le=1000)
+    iterations: int = Field(ge=2, le=10)
+    x_min: float = Field(ge=-1000, le=1000)
+    x_max: float = Field(ge=-1000, le=1000)
+    g_label: str | None = Field(default=None, max_length=60)
+    curve_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+
+    @field_validator("g_expr")
+    @classmethod
+    def _coarse_charset(cls, value: str) -> str:
+        if not re.fullmatch(r"[0-9A-Za-z\.\+\-\*/\^\(\)\s,]+", value):
+            raise ValueError("expression contains characters outside plain arithmetic")
+        return value
+
+    @model_validator(mode="after")
+    def _bounds(self) -> "ManimCobwebDiagramParams":
+        span = self.x_max - self.x_min
+        if span < 0.5:
+            raise ValueError("x_max must be meaningfully larger than x_min for a cobweb diagram")
+        margin = max(span * 0.08, 0.05)
+        if not (self.x_min + margin <= self.x0 <= self.x_max - margin):
+            raise ValueError("x0 must sit inside x_min/x_max with room to spare for the staircase")
+        return self
+
+
+class ManimComplexTransformParams(BaseModel):
+    """Bounded numeric parameters for animating a complex number being
+    multiplied or divided by a second one, shown as a vector rotating by
+    the factor's argument and scaling by its modulus -- for "find the
+    product/quotient in exponential form" or "show why multiplying adds
+    arguments" complex-number questions.
+
+    Unlike every other Manim params model, this one has no expression
+    string at all and so no involvement from safe_math whatsoever: there is
+    nothing here for a student-facing formula to hide inside, only bounded
+    numeric moduli/arguments, so ordinary Field bounds plus the one
+    cross-field bound below (see _bounds) are the complete safety surface.
+    Moduli and arguments are given directly as floats (radians for
+    arguments), never as strings, since there is no arithmetic to parse.
+    """
+
+    start_modulus: float = Field(gt=0, le=50)
+    start_argument: float = Field(ge=-12.6, le=12.6)
+    factor_modulus: float = Field(gt=0, le=50)
+    factor_argument: float = Field(ge=-12.6, le=12.6)
+    operation: Literal["multiply", "divide"] = "multiply"
+    start_label: str | None = Field(default=None, max_length=30)
+    factor_label: str | None = Field(default=None, max_length=30)
+    result_label: str | None = Field(default=None, max_length=30)
+    vector_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+
+    @model_validator(mode="after")
+    def _bounds(self) -> "ManimComplexTransformParams":
+        result_modulus = (
+            self.start_modulus * self.factor_modulus
+            if self.operation == "multiply"
+            else self.start_modulus / self.factor_modulus
+        )
+        if not (0.05 <= result_modulus <= 50):
+            raise ValueError(
+                "the resulting modulus is out of a sane plotting range -- check start_modulus/factor_modulus"
+            )
+        return self
+
+
+class ManimKinematicsParams(BaseModel):
+    """Bounded numeric parameters for showing a particle's physical motion
+    (a dot on a real number line) alongside its displacement/velocity-time
+    graph, for 9709 Mechanics kinematics questions that give an explicit
+    formula in one variable t.
+
+    This is NOT 2D projectile motion -- 9709 Mechanics at this level is 1D
+    straight-line motion described via s/v/a as functions of t, never a
+    parametric (x(t), y(t)) trajectory, so a single expr in t is the whole
+    shape needed.
+
+    expr is evaluated with safe_math's variable name generalized to "t"
+    (see safe_math.make_evaluator's var_name parameter) rather than "x" --
+    the grammar itself is identical, only the free variable's name differs.
+
+    quantity says what expr represents. When it is "v" (velocity), the
+    scene must recover position by numerically integrating expr once (a
+    one-time cumulative trapezoidal pass, the same "precompute once, not
+    every frame" convention every sibling template already uses for its own
+    axis-range sampling) -- s_at_t_min is the one integration constant that
+    needs, matching the common "starts from a point O" phrasing. A third
+    quantity, "a" (acceleration), is deliberately NOT supported in this
+    version: it would need a second integration constant and a double
+    integration, and no real corpus question needed acceleration as the
+    PRIMARY given quantity for this kind of scene. Piecewise formulas (a
+    different expr valid after some breakpoint) are also deliberately out of
+    scope for the same reason every sibling template started with exactly
+    one continuous expression before anything more elaborate.
+    """
+
+    expr: str = Field(min_length=1, max_length=80)
+    quantity: Literal["s", "v"] = "s"
+    t_min: float = Field(ge=0, le=1000)
+    t_max: float = Field(ge=0, le=1000)
+    time_of_interest_t: float = Field(ge=0, le=1000)
+    s_at_t_min: float = Field(default=0.0, ge=-1000, le=1000)
+    curve_label: str | None = Field(default=None, max_length=60)
+    curve_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+
+    @field_validator("expr")
+    @classmethod
+    def _coarse_charset(cls, value: str) -> str:
+        if not re.fullmatch(r"[0-9A-Za-z\.\+\-\*/\^\(\)\s,]+", value):
+            raise ValueError("expression contains characters outside plain arithmetic")
+        return value
+
+    @model_validator(mode="after")
+    def _bounds(self) -> "ManimKinematicsParams":
+        span = self.t_max - self.t_min
+        if span < 1.0:
+            raise ValueError("t_max must be meaningfully larger than t_min for a kinematics sweep")
+        margin = max(span * 0.08, 0.05)
+        if not (self.t_min + margin <= self.time_of_interest_t <= self.t_max - margin):
+            raise ValueError(
+                "time_of_interest_t must sit inside t_min/t_max with room to spare for the sweep"
+            )
+        return self
+
+
+class ManimForceResultantParams(BaseModel):
+    """Bounded numeric parameters for animating several coplanar force
+    vectors -- given as magnitude/direction pairs, all acting at one point --
+    resolved into horizontal/vertical components which are then summed along
+    each axis and combined into the resultant, for "find the magnitude and
+    direction of the resultant force" statics questions. This mirrors the
+    actual method Cambridge's own mark schemes use (resolve horizontally,
+    resolve vertically, then Pythagoras/inverse-tan), rather than a
+    geometric tip-to-tail polygon of the original angled forces.
+
+    Like ManimComplexTransformParams, there is no expression string here and
+    so no involvement from safe_math at all: magnitudes and angles are given
+    directly as floats (angles_degrees using the ordinary mathematical
+    convention -- degrees measured anticlockwise from the positive
+    x-direction), never as strings. Translating whatever direction
+    convention the source diagram actually uses (a bearing, an angle from a
+    named force, etc.) into this convention is expected to happen before
+    this params object is built, not inside the scene.
+
+    The one cross-field check that matters is that the forces are not
+    already in (near) equilibrium: this template exists to show a genuine
+    resultant forming, and a near-zero resultant has no meaningful direction
+    to animate toward. An "in equilibrium, find the missing force" question
+    is a different shape and does not belong to this template.
+    """
+
+    magnitudes: list[float] = Field(min_length=2, max_length=6)
+    angles_degrees: list[float] = Field(min_length=2, max_length=6)
+    resultant_label: str | None = Field(default=None, max_length=30)
+    vector_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+    resultant_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+    horizontal_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+    vertical_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+
+    @model_validator(mode="after")
+    def _bounds(self) -> "ManimForceResultantParams":
+        if len(self.magnitudes) != len(self.angles_degrees):
+            raise ValueError("magnitudes and angles_degrees must be the same length")
+        if any(not (0 < m <= 500) for m in self.magnitudes):
+            raise ValueError("each force magnitude must be a sane positive value in (0, 500]")
+        if any(not (-360 <= a <= 360) for a in self.angles_degrees):
+            raise ValueError("each angle must be within [-360, 360] degrees")
+        x = sum(m * math.cos(math.radians(a)) for m, a in zip(self.magnitudes, self.angles_degrees))
+        y = sum(m * math.sin(math.radians(a)) for m, a in zip(self.magnitudes, self.angles_degrees))
+        resultant_magnitude = math.hypot(x, y)
+        if resultant_magnitude < 0.5:
+            raise ValueError(
+                "the forces are too close to equilibrium to draw a meaningful resultant -- "
+                "this template is for a genuine non-zero resultant, not an equilibrium question"
+            )
+        if resultant_magnitude > 2000:
+            raise ValueError("the resultant magnitude is out of a sane plotting range")
+        return self
+
+
 class ManimSpec(BaseModel):
     template: ManimTemplate
     region_sweep: ManimBoundedRegionParams | None = None
     volume_of_revolution: ManimBoundedRegionParams | None = None
+    tangent_line: ManimTangentLineParams | None = None
+    cobweb_diagram: ManimCobwebDiagramParams | None = None
+    complex_transform: ManimComplexTransformParams | None = None
+    kinematics_motion: ManimKinematicsParams | None = None
+    force_resultant: ManimForceResultantParams | None = None
 
     @model_validator(mode="after")
     def _matches_template(self) -> "ManimSpec":
-        if self.template == ManimTemplate.REGION_SWEEP:
-            if self.region_sweep is None or self.volume_of_revolution is not None:
-                raise ValueError("region_sweep template requires only region_sweep params")
-        elif self.template == ManimTemplate.VOLUME_OF_REVOLUTION:
-            if self.volume_of_revolution is None or self.region_sweep is not None:
-                raise ValueError("volume_of_revolution template requires only volume_of_revolution params")
+        # Every ManimTemplate member must have a same-named field on this
+        # model (region_sweep, volume_of_revolution, ...). Derived from the
+        # enum itself rather than a hand-maintained "these are the other
+        # fields" tuple per template: that shape needs updating in every
+        # existing entry each time a template is added, and a forgotten
+        # update would silently let two templates' params coexist on one
+        # spec. Deriving "the others" from ManimTemplate's own members
+        # removes the chance of that omission for this template and any
+        # future one.
+        fields = {member: getattr(self, member.value) for member in ManimTemplate}
+        own = fields[self.template]
+        others = [value for member, value in fields.items() if member != self.template]
+        if own is None or any(value is not None for value in others):
+            raise ValueError(f"{self.template.value} template requires only {self.template.value} params")
         return self
 
 
