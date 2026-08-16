@@ -332,16 +332,18 @@ def _validate_manim(spec: ManimSpec) -> None:
     about safety, but about not wasting a render attempt on a domain that
     was never going to plot.
 
-    ManimComplexTransformParams and ManimForceResultantParams are deliberately
-    absent from the isinstance branches below -- not an oversight. Neither
-    carries an expression string, so there is nothing for safe_math to walk;
-    every invariant either needs (bounded moduli/arguments and a bounded
-    resulting modulus for one, bounded magnitudes/angles and a bounded
-    non-degenerate resultant for the other) is already enforced by their own
-    Pydantic Field bounds and model_validator. They are the lowest-risk
-    templates for exactly that reason -- `params` below never resolves to
-    either one, since they are not included in the OR-chain, so this function
-    is a no-op for both by construction, not by an empty branch.
+    ManimComplexTransformParams, ManimForceResultantParams, and
+    ManimVectorLine3DParams are deliberately absent from the isinstance
+    branches below -- not an oversight. None carries an expression string,
+    so there is nothing for safe_math to walk; every invariant each needs
+    (bounded moduli/arguments and a bounded resulting modulus for the first,
+    bounded magnitudes/angles and a bounded non-degenerate resultant for the
+    second, bounded coordinates and a non-parallel-directions check for the
+    third) is already enforced by their own Pydantic Field bounds and
+    model_validator. They are the lowest-risk templates for exactly that
+    reason -- `params` below never resolves to any of the three, since none
+    is included in the OR-chain, so this function is a no-op for all three
+    by construction, not by an empty branch.
     """
     params = (
         spec.region_sweep
@@ -431,8 +433,13 @@ Allowed artifact kinds:
   Mechanics at this level never uses a parametric (x(t),y(t)) trajectory), or several coplanar
   force vectors acting at one point resolved into horizontal/vertical components that are summed
   and combined into their resultant (template "force_resultant", for "find the magnitude and
-  direction of the resultant force" statics questions). Use one of these seven templates ONLY --
-  do not use manim_template_video for
+  direction of the resultant force" statics questions), or one or two lines in 3D swept out from
+  a point and a direction vector, showing whether two such lines genuinely intersect or are skew,
+  plus the angle between their directions, or the foot of the perpendicular from a named point to
+  a single line (template "vector_line_3d", for 9709 Paper 3 vector questions -- "find a vector
+  equation for l", "find the position vector of the point of intersection", "show that the lines
+  are skew", "find the foot of the perpendicular from A to l"). Use one of these eight templates
+  ONLY -- do not use manim_template_video for
   anything else, and prefer desmos_2d/geogebra whenever a static (non-animated) picture already
   teaches the idea, because Manim is slower to render.
 - none when no trustworthy visual is appropriate.
@@ -451,10 +458,11 @@ Rules:
 
 The manim object (only for manim_template_video):
 - "template" must be exactly "region_sweep", "volume_of_revolution", "tangent_line",
-  "cobweb_diagram", "complex_transform", "kinematics_motion", or "force_resultant".
+  "cobweb_diagram", "complex_transform", "kinematics_motion", "force_resultant", or
+  "vector_line_3d".
 - Use the matching key for whichever template you chose -- never more than one of
   region_sweep/volume_of_revolution/tangent_line/cobweb_diagram/complex_transform/
-  kinematics_motion/force_resultant in the same manim object.
+  kinematics_motion/force_resultant/vector_line_3d in the same manim object.
 - region_sweep and volume_of_revolution take the SAME parameters: lower_expr and optional
   upper_expr (plain arithmetic in x only -- digits, + - * / ^ ( ) and the functions
   sin/cos/tan/sqrt/exp/log/abs and the constants pi/e; NOTHING else, no other syntax of any
@@ -524,6 +532,35 @@ The manim object (only for manim_template_video):
   force/value" question -- there the resultant is by definition zero, which this template will
   reject, and the question has nothing meaningful to animate toward; a static
   desmos_2d/geogebra_geometry diagram or text is the right fallback there.
+- vector_line_3d takes NO expression at all -- only plain numbers: points (a list of 1 or 2
+  points, each EXACTLY 3 numbers [x, y, z] -- the position vector each line passes through) and
+  directions (the matching list, SAME LENGTH and SAME ORDER as points, each a 3-number direction
+  vector for that line -- e.g. a line with vector equation r = (5, -1, 2) + mu*(3, -1, 3) means
+  points=[[5,-1,2]], directions=[[3,-1,3]]). Also optional: t_min/t_max (a shared parameter range
+  the sweep covers either side of each line's own point -- default -4 to 4 is usually fine; widen
+  it only if the question's own numbers land outside that), external_point (a single [x,y,z] --
+  ONLY valid together with exactly ONE line, never two -- for a "foot of the perpendicular from A
+  to l" or "reflection of A in l" question, where A is external_point), labels (per-line names
+  such as ["l1","l2"]), line_colors, external_point_label, external_point_color.
+- Use vector_line_3d for 9709 Paper 3 vector questions that give a line (or two lines) as a point
+  plus a direction. With ONE line and no external_point: it shows the position vector, the
+  direction vector, and the line itself sweeping out -- use this for "find/state a vector
+  equation for l" on its own. With TWO lines: it additionally shows their REAL relationship
+  (worked out from the actual numbers, not asserted) -- either the point where they genuinely
+  intersect, or, if they do not, the closest approach between them as visual proof they are
+  skew -- plus the acute angle between their directions via the scalar product; use this for
+  "find the position vector of the point of intersection" or "show that the lines are skew" or
+  "find the angle between the directions of l and m". With ONE line PLUS external_point: it
+  shows the foot of the perpendicular dropped from that point onto the line; use this for "find
+  the position vector of the foot of the perpendicular from A to l" (for a reflection question,
+  still supply external_point for A -- the reflection is 2*foot - A, and the narration can name
+  that final step in text even though the animation itself stops at the foot). Do NOT use this
+  template for an angle at a vertex of a shape computed from three named points (e.g. "angle ABC"
+  or "the angle between the diagonals of OABC") -- that needs three points, not a point+direction
+  pair, and has no template here; use a static desmos_3d/geogebra_3d picture or text instead.
+- The two lines given to vector_line_3d must have genuinely different (non-parallel) directions
+  -- this template is for showing whether two such lines meet or are skew, not for parallel
+  lines, which it will reject.
 - Write "^" for powers (e.g. "x^2"), not "**", and write fractions as plain division (e.g.
   "0.5*x + 4/x"), never LaTeX \\frac.
 - Choose x_min and x_max so the expression is DEFINED AND FINITE across the WHOLE domain
@@ -735,16 +772,31 @@ JSON shape:
     }},
     {{
       "artifact_kind": "manim_template_video",
-      "title": "Adding the forces tip-to-tail",
-      "purpose": "Show why joining the four forces tip-to-tail gives this particular resultant.",
-      "narration_markdown": "Watch each force join on to the last, tip-to-tail -- the resultant is the single vector that closes the chain, straight back to the start.",
-      "accessibility_text": "An animation of four force vectors joined tip-to-tail, with the resultant vector drawn from the start to the final tip.",
+      "title": "Resolving the forces into components",
+      "purpose": "Show why resolving each force horizontally and vertically, then combining the totals, gives this particular resultant.",
+      "narration_markdown": "Watch each force resolve into a horizontal and a vertical component, the components sum along each axis, and the two totals combine into the resultant.",
+      "accessibility_text": "An animation of four force vectors resolving into horizontal and vertical components, which sum separately and then combine into the resultant vector.",
       "manim": {{
         "template": "force_resultant",
         "force_resultant": {{
           "magnitudes": [45, 28, 72, 35],
           "angles_degrees": [90, 35, -50, 240],
           "resultant_label": "R"
+        }}
+      }}
+    }},
+    {{
+      "artifact_kind": "manim_template_video",
+      "title": "Do the lines actually meet?",
+      "purpose": "Show whether l1 and l2 genuinely intersect or are skew, worked out from their real equations.",
+      "narration_markdown": "Watch both lines sweep out from their given points, then see whether they truly meet or only pass close by.",
+      "accessibility_text": "An animation of two lines in 3D swept out from a point and direction, then showing their point of intersection or, if they are skew, the closest approach between them.",
+      "manim": {{
+        "template": "vector_line_3d",
+        "vector_line_3d": {{
+          "points": [[-1, 3, -4], [2, -3, -1]],
+          "directions": [[2, 3, -1], [-1, -2, 1]],
+          "labels": ["l1", "l2"]
         }}
       }}
     }}

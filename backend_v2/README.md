@@ -26,7 +26,8 @@ a model call, and `test_model_is_never_called_without_context` asserts it.
 | `GET /papers` | every published paper and the question numbers it holds |
 | `GET /papers/{year}/{session}/{variant}/questions/{n}` | full question context, or 404 |
 | `POST /chat` | streamed tutoring |
-| `POST /visualize` | validated Desmos/GeoGebra visual explanation specs |
+| `POST /visualize` | validated Desmos/GeoGebra/Manim visual explanation specs |
+| `POST /respond` | coordinated multi-mode response for one student turn |
 
 The catalogue exists so the UI can only offer what is published. The legacy
 frontend lists years to 2024 regardless of what is behind them, so a student can
@@ -34,6 +35,9 @@ pick a paper that does not exist — removed here by construction.
 
 `/chat` re-retrieves the question server-side from the reference alone. The
 client never supplies question content and so cannot put words in the source.
+`/respond` does the same retrieval once for a multi-mode turn, then coordinates
+the selected text and Visualize handlers so one mode does not contradict another
+in the same UI turn.
 
 ## Modes
 
@@ -47,8 +51,9 @@ That makes the difference testable.
 - **check** — diagnose the student's own working: which marks it earns, where the
   first error is, and whether follow-through still applies.
 - **visualize** — concept-first visual support through `/visualize`, not streamed
-  `/chat`: the model proposes a restricted Desmos/GeoGebra JSON spec, the
-  backend validates it, and the frontend renders the trusted spec inline.
+  `/chat`: the model proposes a restricted Desmos/GeoGebra/Manim JSON spec, the
+  backend validates it, and the frontend renders the trusted spec inline or
+  plays the rendered Manim video.
 
 All three see the same mark scheme. Withholding it from hint mode would make it
 guess, which is worse than trusting it to stay quiet.
@@ -102,8 +107,10 @@ $env:PYTHONIOENCODING = "utf-8"; fastapi dev app/main.py --port 8000
 cd backend_v2 && python -m pytest tests/ -q
 ```
 
-Twelve tests, offline and free — the repository and the model client are both
-fakes. They cover refusal, grounding, mode permissions, and diagram signing.
+Offline and free: the repository, model client, and Manim render paths are faked
+where needed. The suite covers refusal, grounding, mode permissions, diagram
+signing, Visualize validation, Manim template safety, render branching, and
+multi-mode orchestration.
 
 ```bash
 python backend_v2/tests/live_smoke.py

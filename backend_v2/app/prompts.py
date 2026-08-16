@@ -77,6 +77,15 @@ Teach the full method for what the student asked about.
 - Attach each step to its mark, so the student can see where the marks live.
 - Where the mark scheme prints an alternative method, mention that it exists and
   that it earns the same marks.
+- Do not turn separate mark rows from the same method into separate options. If
+  consecutive rows in the same method represent components of one calculation
+  (for example a large volume and a smaller volume), combine them exactly as the
+  mark scheme implies; do not present those components as alternative methods.
+- For volumes of revolution, first identify the actual shaded region and axis.
+  Use \(V = \pi \int y^2 dx\) only when the rotated region is between a curve
+  and the x-axis. If the region is between two curves or a curve and a line, use
+  the washer difference \(V = \pi \int (R^2-r^2) dx\), unless the mark scheme
+  explicitly uses a different valid method.
 - Finish with the answer as the mark scheme states it, including the accuracy it
   requires.""",
     TutorMode.CHECK: """MODE: CHECK THE STUDENT'S ATTEMPT
@@ -112,7 +121,7 @@ The student's own working is below. Diagnose it against the mark scheme.
 }
 
 
-def _format_mark_items(items: list[dict[str, Any]], indent: str = "  ") -> list[str]:
+def _format_mark_item_rows(items: list[dict[str, Any]], indent: str) -> list[str]:
     lines: list[str] = []
     for item in items:
         code = item.get("mark_code") or "(no mark code)"
@@ -130,6 +139,19 @@ def _format_mark_items(items: list[dict[str, Any]], indent: str = "  ") -> list[
         if guidance:
             lines.append(f"{indent}  Guidance: {guidance}")
     return lines
+
+
+def _format_mark_items(items: list[dict[str, Any]], indent: str = "  ") -> list[str]:
+    main_items = [item for item in items if not item.get("is_alternative_method")]
+    alternative_items = [item for item in items if item.get("is_alternative_method")]
+    if main_items and alternative_items:
+        return [
+            f"{indent}Main method rows (combine these rows as one method; they are not alternatives):",
+            *_format_mark_item_rows(main_items, indent=f"{indent}  "),
+            f"{indent}Alternative method rows (separate valid route):",
+            *_format_mark_item_rows(alternative_items, indent=f"{indent}  "),
+        ]
+    return _format_mark_item_rows(items, indent=indent)
 
 
 def _part_label(part: dict[str, Any]) -> str:
@@ -310,16 +332,67 @@ def build_source_block(context: QuestionContext, asset_urls_available: bool) -> 
 
 
 def build_system_prompt(
-    context: QuestionContext, mode: TutorMode, asset_urls_available: bool
+    context: QuestionContext,
+    mode: TutorMode,
+    asset_urls_available: bool,
+    selected_modes: list[TutorMode] | None = None,
 ) -> str:
+    selected_modes = selected_modes or [mode]
     sections = [
         BASE_RULES,
         MODE_RULES[mode],
+        _coordination_rules(mode, selected_modes),
         build_source_block(context, asset_urls_available),
     ]
     if mode is TutorMode.CHECK:
         sections.append(build_mark_attribution_checklist(context))
-    return "\n\n".join(sections)
+    return "\n\n".join(section for section in sections if section)
+
+
+def _coordination_rules(mode: TutorMode, selected_modes: list[TutorMode]) -> str:
+    """Tell one mode what the rest of this coordinated turn is doing.
+
+    Multi-select mode calls used to be completely independent. That let Explain
+    answer an "animate this" request by saying it could not animate, while
+    Visualize -- running in the same UI turn -- successfully rendered the
+    animation. This block keeps each mode's reveal rules intact, but prevents
+    text modes from denying a capability that another selected mode is handling.
+    """
+
+    unique_modes = list(dict.fromkeys(selected_modes))
+    if len(unique_modes) <= 1:
+        return ""
+
+    labels = ", ".join(mode.value for mode in unique_modes)
+    other_modes = [m for m in unique_modes if m is not mode]
+    other_labels = ", ".join(m.value for m in other_modes)
+    lines = [
+        "COORDINATED MULTI-MODE TURN",
+        f"The student selected these modes for this one turn: {labels}.",
+        f"You are writing ONLY the {mode.value} response. Other selected modes: {other_labels}.",
+        "- Do not try to satisfy another mode's job inside this response.",
+        "- Do not contradict or deny a capability another selected mode is handling.",
+    ]
+    if TutorMode.VISUALIZE in unique_modes and mode is not TutorMode.VISUALIZE:
+        lines.append(
+            "- Visualize is handling any graph, construction, or animation request. "
+            "Do not say you cannot make a graph or animation; instead, explain the "
+            "mathematics while the visual response handles the visual. Write as a "
+            "companion to that visual: name what the student should look for in the "
+            "visual, connect those visible features to the method, and avoid offering "
+            "to help them picture it later."
+        )
+    if mode is TutorMode.HINT and TutorMode.EXPLAIN in unique_modes:
+        lines.append(
+            "- Explain may give the full solution elsewhere in this turn. Your Hint "
+            "response must still obey Hint rules and withhold the final answer."
+        )
+    if mode is TutorMode.EXPLAIN and TutorMode.HINT in unique_modes:
+        lines.append(
+            "- Hint may provide a small nudge elsewhere in this turn. Your Explain "
+            "response should still provide the full method requested by Explain mode."
+        )
+    return "\n".join(lines)
 
 
 def build_user_message(message: str, attempt: str | None, mode: TutorMode) -> str:

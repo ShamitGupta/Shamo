@@ -26,6 +26,9 @@ from .config import Settings, get_settings
 from .models import (
     AssetOut,
     ChatRequest,
+    ModeResponseOut,
+    MultiModeRequest,
+    MultiModeResponse,
     NotFoundOut,
     PaperSummary,
     PartOut,
@@ -349,17 +352,14 @@ def _with_resolved_artifacts(response: VisualizeResponse, kept: list[VisualArtif
     return response.model_copy(update={"artifacts": kept, "validation_status": status})
 
 
-@app.post("/visualize", response_model=VisualizeResponse)
-def visualize(
+def _create_visualize_response(
+    *,
     request: VisualizeRequest,
-    repository: Repository = Depends(get_repository),
-    visualizer: VisualizeService = Depends(get_visualizer),
-    settings: Settings = Depends(get_settings),
+    context: QuestionContext,
+    repository: Repository,
+    visualizer: VisualizeService,
+    settings: Settings,
 ) -> VisualizeResponse:
-    # Same grounding boundary as /chat: the client sends only the reference, and
-    # the server retrieves the official question before any model call.
-    context = _load_or_404(request.question, repository)
-
     cached = repository.get_visual_artifact(
         context=context,
         student_prompt=request.message,
@@ -369,15 +369,12 @@ def visualize(
         response = VisualizeResponse.model_validate(cached)
         return _resign_cached_manim_artifacts(response, repository)
 
-    try:
-        response = visualizer.create(
-            context=context,
-            ref=request.question,
-            message=request.message,
-            history=request.history,
-        )
-    except VisualizeUnavailable as error:
-        raise HTTPException(status_code=502, detail=f"Visualize unavailable: {error}") from error
+    response = visualizer.create(
+        context=context,
+        ref=request.question,
+        message=request.message,
+        history=request.history,
+    )
 
     if response.validation_status == VisualValidationStatus.VALIDATED:
         # Render/upload before caching, not after: the cached spec_jsonb must
@@ -394,3 +391,101 @@ def visualize(
             )
 
     return response
+
+
+@app.post("/visualize", response_model=VisualizeResponse)
+def visualize(
+    request: VisualizeRequest,
+    repository: Repository = Depends(get_repository),
+    visualizer: VisualizeService = Depends(get_visualizer),
+    settings: Settings = Depends(get_settings),
+) -> VisualizeResponse:
+    # Same grounding boundary as /chat: the client sends only the reference, and
+    # the server retrieves the official question before any model call.
+    context = _load_or_404(request.question, repository)
+
+    try:
+        return _create_visualize_response(
+            request=request,
+            context=context,
+            repository=repository,
+            visualizer=visualizer,
+            settings=settings,
+        )
+    except VisualizeUnavailable as error:
+        raise HTTPException(status_code=502, detail=f"Visualize unavailable: {error}") from error
+
+
+@app.post("/respond", response_model=MultiModeResponse)
+def respond(
+    request: MultiModeRequest,
+    repository: Repository = Depends(get_repository),
+    tutor: TutorService = Depends(get_tutor),
+    visualizer: VisualizeService = Depends(get_visualizer),
+    settings: Settings = Depends(get_settings),
+) -> MultiModeResponse:
+    """Coordinate one student turn across the selected modes.
+
+    The older UI fired one independent request per selected mode. That preserved
+    each mode's rules, but it also let modes contradict each other because the
+    text response did not know Visualize was handling the graph/animation. This
+    endpoint keeps the per-mode handlers separate while sharing retrieval,
+    selected-mode awareness, and one response envelope for the current turn.
+    """
+
+    context = _load_or_404(request.question, repository)
+    _, assets_available = _render_context(context, repository)
+
+    responses: list[ModeResponseOut] = []
+    for mode in request.modes:
+        if mode is TutorMode.VISUALIZE:
+            visual_request = VisualizeRequest(
+                question=request.question,
+                message=request.message,
+                history=request.history,
+            )
+            try:
+                visual_response = _create_visualize_response(
+                    request=visual_request,
+                    context=context,
+                    repository=repository,
+                    visualizer=visualizer,
+                    settings=settings,
+                )
+                responses.append(
+                    ModeResponseOut(
+                        mode=mode,
+                        message_markdown=visual_response.message_markdown,
+                        artifacts=visual_response.artifacts,
+                        fallback_markdown=visual_response.fallback_markdown,
+                        validation_status=visual_response.validation_status,
+                    )
+                )
+            except VisualizeUnavailable as error:
+                responses.append(
+                    ModeResponseOut(
+                        mode=mode,
+                        error=f"Visualize unavailable: {error}",
+                    )
+                )
+            continue
+
+        try:
+            text = "".join(
+                tutor.stream(
+                    context=context,
+                    mode=mode,
+                    message=request.message,
+                    attempt=request.attempt if mode is TutorMode.CHECK else None,
+                    history=request.history,
+                    asset_urls_available=assets_available,
+                    selected_modes=request.modes,
+                )
+            )
+            responses.append(ModeResponseOut(mode=mode, message_markdown=text))
+        except TutorUnavailable as error:
+            responses.append(
+                ModeResponseOut(mode=mode, error=f"Tutor unavailable: {error}")
+            )
+
+    return MultiModeResponse(source_reference=request.question, responses=responses)

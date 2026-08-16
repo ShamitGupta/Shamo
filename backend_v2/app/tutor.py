@@ -39,11 +39,14 @@ class TutorService:
         attempt: str | None,
         history: list[ChatTurn],
         asset_urls_available: bool,
+        selected_modes: list[TutorMode] | None = None,
     ) -> Iterator[str]:
         if context is None:  # pragma: no cover - defended by the type, kept as a tripwire
             raise ValueError("Refusing to call the model without question context.")
 
-        system_prompt = build_system_prompt(context, mode, asset_urls_available)
+        system_prompt = build_system_prompt(
+            context, mode, asset_urls_available, selected_modes=selected_modes
+        )
 
         # History is trimmed to the most recent turns. Older turns are about the
         # same question by construction -- the frontend starts a new thread when

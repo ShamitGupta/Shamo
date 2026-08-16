@@ -857,3 +857,226 @@ def test_kinematics_template_cannot_carry_force_resultant_params():
     payload["artifacts"][0]["manim"]["force_resultant"] = VALID_FORCE_RESULTANT["force_resultant"]
     with pytest.raises(Exception):
         validate_visual_payload(payload, REF)
+
+
+# Real worked example: 9709/32 Feb/March 2025 Q8a -- "show that the lines are
+# skew". l1 passes through (-1,3,-4) direction (2,3,-1); l2 passes through
+# (2,-3,-1) direction (-1,-2,1). Hand-verified: solving the two of the three
+# component equations that are consistent gives t=12, s=-21, which the third
+# equation (-12 vs 3) contradicts -- confirming skew, matching the source
+# question's own premise.
+VALID_VECTOR_LINE_3D_SKEW = {
+    "template": "vector_line_3d",
+    "vector_line_3d": {
+        "points": [[-1, 3, -4], [2, -3, -1]],
+        "directions": [[2, 3, -1], [-1, -2, 1]],
+        "labels": ["l1", "l2"],
+    },
+}
+
+# Real worked example: 9709/31 Oct/Nov 2025 Q11 -- line m through A(1,5,3)
+# and B(0,4,1) (direction B-A = (-1,-1,-2)); the line through C(1,-3,1) and
+# D(3,-5,4) (direction D-C = (2,-2,3)). The source question asks for their
+# point of intersection, so these two genuinely meet.
+VALID_VECTOR_LINE_3D_INTERSECT = {
+    "template": "vector_line_3d",
+    "vector_line_3d": {
+        "points": [[1, 5, 3], [1, -3, 1]],
+        "directions": [[-1, -1, -2], [2, -2, 3]],
+        "labels": ["m", "n"],
+    },
+}
+
+# Real worked example: 9709/33 May/June 2025 Q9 -- line l through B(1,3,-2)
+# and C(2,-1,3) (direction C-B = (1,-4,5)); external point A(1,2,0). The
+# source question asks for the foot of the perpendicular from A to l.
+VALID_VECTOR_LINE_3D_FOOT = {
+    "template": "vector_line_3d",
+    "vector_line_3d": {
+        "points": [[1, 3, -2]],
+        "directions": [[1, -4, 5]],
+        "labels": ["l"],
+        "external_point": [1, 2, 0],
+        "external_point_label": "A",
+    },
+}
+
+
+def test_valid_vector_line_3d_skew_is_accepted():
+    response = validate_visual_payload(_payload(VALID_VECTOR_LINE_3D_SKEW), REF)
+    assert response.validation_status.value == "validated"
+    assert response.artifacts[0].manim.vector_line_3d.points == [[-1, 3, -4], [2, -3, -1]]
+
+
+def test_valid_vector_line_3d_intersect_is_accepted():
+    response = validate_visual_payload(_payload(VALID_VECTOR_LINE_3D_INTERSECT), REF)
+    assert response.validation_status.value == "validated"
+
+
+def test_valid_vector_line_3d_single_line_is_accepted():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[8, -5, 6]], "directions": [[2, 1, 4]], "labels": ["l"]},
+    }
+    response = validate_visual_payload(_payload(manim), REF)
+    assert response.validation_status.value == "validated"
+
+
+def test_valid_vector_line_3d_foot_of_perpendicular_is_accepted():
+    response = validate_visual_payload(_payload(VALID_VECTOR_LINE_3D_FOOT), REF)
+    assert response.validation_status.value == "validated"
+    assert response.artifacts[0].manim.vector_line_3d.external_point == [1, 2, 0]
+
+
+def test_vector_line_3d_points_directions_length_mismatch_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[0, 0, 0], [1, 1, 1]], "directions": [[1, 0, 0]]},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_wrong_component_count_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[0, 0]], "directions": [[1, 0, 0]]},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_coordinate_out_of_bounds_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[100, 0, 0]], "directions": [[1, 0, 0]]},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_zero_direction_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[0, 0, 0]], "directions": [[0, 0, 0]]},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_t_range_too_narrow_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[0, 0, 0]], "directions": [[1, 0, 0]], "t_min": 0, "t_max": 0.5},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_t_range_too_wide_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[0, 0, 0]], "directions": [[1, 0, 0]], "t_min": -15, "t_max": 15},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_parallel_directions_are_rejected():
+    # Same shape as the source corpus never asks for: two lines with the
+    # same (or opposite) direction have no genuine intersect-or-skew
+    # relationship to show -- this template requires two real directions.
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {
+            "points": [[0, 0, 0], [1, 1, 1]],
+            "directions": [[2, 4, -2], [-1, -2, 1]],
+        },
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_external_point_with_two_lines_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {
+            "points": [[-1, 3, -4], [2, -3, -1]],
+            "directions": [[2, 3, -1], [-1, -2, 1]],
+            "external_point": [0, 0, 0],
+        },
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_external_point_wrong_component_count_is_rejected():
+    manim = {
+        "template": "vector_line_3d",
+        "vector_line_3d": {"points": [[0, 0, 0]], "directions": [[1, 0, 0]], "external_point": [1, 2]},
+    }
+    with pytest.raises(Exception):
+        validate_visual_payload(_payload(manim), REF)
+
+
+def test_vector_line_3d_cannot_also_carry_region_sweep_params():
+    payload = _payload(VALID_VECTOR_LINE_3D_SKEW)
+    payload["artifacts"][0]["manim"]["region_sweep"] = VALID_REGION_SWEEP["region_sweep"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_region_sweep_template_cannot_carry_vector_line_3d_params():
+    payload = _payload(VALID_REGION_SWEEP)
+    payload["artifacts"][0]["manim"]["vector_line_3d"] = VALID_VECTOR_LINE_3D_SKEW["vector_line_3d"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_volume_of_revolution_template_cannot_carry_vector_line_3d_params():
+    payload = _payload(VALID_VOLUME_OF_REVOLUTION)
+    payload["artifacts"][0]["manim"]["vector_line_3d"] = VALID_VECTOR_LINE_3D_SKEW["vector_line_3d"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_tangent_line_template_cannot_carry_vector_line_3d_params():
+    payload = _payload(VALID_TANGENT_LINE)
+    payload["artifacts"][0]["manim"]["vector_line_3d"] = VALID_VECTOR_LINE_3D_SKEW["vector_line_3d"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_cobweb_diagram_template_cannot_carry_vector_line_3d_params():
+    payload = _payload(VALID_COBWEB_DIAGRAM)
+    payload["artifacts"][0]["manim"]["vector_line_3d"] = VALID_VECTOR_LINE_3D_SKEW["vector_line_3d"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_complex_transform_template_cannot_carry_vector_line_3d_params():
+    payload = _payload(VALID_COMPLEX_TRANSFORM)
+    payload["artifacts"][0]["manim"]["vector_line_3d"] = VALID_VECTOR_LINE_3D_SKEW["vector_line_3d"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_kinematics_template_cannot_carry_vector_line_3d_params():
+    payload = _payload(VALID_KINEMATICS_S)
+    payload["artifacts"][0]["manim"]["vector_line_3d"] = VALID_VECTOR_LINE_3D_SKEW["vector_line_3d"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_force_resultant_template_cannot_carry_vector_line_3d_params():
+    payload = _payload(VALID_FORCE_RESULTANT)
+    payload["artifacts"][0]["manim"]["vector_line_3d"] = VALID_VECTOR_LINE_3D_SKEW["vector_line_3d"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)
+
+
+def test_vector_line_3d_template_cannot_carry_force_resultant_params():
+    payload = _payload(VALID_VECTOR_LINE_3D_SKEW)
+    payload["artifacts"][0]["manim"]["force_resultant"] = VALID_FORCE_RESULTANT["force_resultant"]
+    with pytest.raises(Exception):
+        validate_visual_payload(payload, REF)

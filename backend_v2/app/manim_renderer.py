@@ -54,6 +54,7 @@ _SCENE_BY_TEMPLATE: dict[str, tuple[str, str]] = {
     "complex_transform": ("complex_transform.py", "ComplexTransformScene"),
     "kinematics_motion": ("kinematics_motion.py", "KinematicsMotionScene"),
     "force_resultant": ("force_resultant.py", "ForceResultantScene"),
+    "vector_line_3d": ("vector_line_3d.py", "VectorLine3DScene"),
 }
 
 
@@ -90,6 +91,7 @@ def render_to_mp4(spec: ManimSpec) -> Path:
         or spec.complex_transform
         or spec.kinematics_motion
         or spec.force_resultant
+        or spec.vector_line_3d
     )
     params = template_params.model_dump() if template_params else {}
 

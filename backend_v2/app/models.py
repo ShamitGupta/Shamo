@@ -58,6 +58,7 @@ class ManimTemplate(str, Enum):
     COMPLEX_TRANSFORM = "complex_transform"
     KINEMATICS_MOTION = "kinematics_motion"
     FORCE_RESULTANT = "force_resultant"
+    VECTOR_LINE_3D = "vector_line_3d"
 
 
 class VisualValidationStatus(str, Enum):
@@ -99,6 +100,23 @@ class VisualizeRequest(BaseModel):
     question: QuestionRef
     message: str = Field(min_length=1, max_length=4000)
     history: list[ChatTurn] = Field(default_factory=list)
+
+
+class MultiModeRequest(BaseModel):
+    """One coordinated student turn across one or more tutor modes."""
+
+    question: QuestionRef
+    modes: list[TutorMode] = Field(min_length=1, max_length=4)
+    message: str = Field(min_length=1, max_length=4000)
+    attempt: str | None = Field(default=None, max_length=8000)
+    history: list[ChatTurn] = Field(default_factory=list)
+
+    @field_validator("modes")
+    @classmethod
+    def _unique_modes(cls, value: list[TutorMode]) -> list[TutorMode]:
+        if len(set(value)) != len(value):
+            raise ValueError("modes must be unique")
+        return value
 
 
 class SliderBounds(BaseModel):
@@ -443,6 +461,103 @@ class ManimForceResultantParams(BaseModel):
         return self
 
 
+class ManimVectorLine3DParams(BaseModel):
+    """Bounded numeric parameters for one or two lines in 3D, each given as a
+    point and a direction (r = point + t*direction), for 9709 Paper 3 vector
+    questions ("find a vector equation for l", "find the position vector of
+    the point of intersection", "show that the lines are skew").
+
+    Like ManimComplexTransformParams and ManimForceResultantParams, there is
+    no expression string here at all and so no involvement from safe_math
+    whatsoever -- only bounded coordinate/direction numbers, so ordinary
+    Field bounds plus the cross-field checks below (see _bounds) are the
+    complete safety surface. This is if anything the LOWEST-risk template of
+    the seven: no arithmetic grammar is evaluated at all, only fixed linear
+    algebra (a parametric line, a least-squares line-intersection solve, a
+    perpendicular-projection formula) applied to plain numbers.
+
+    With two lines, the scene works out their REAL relationship from the
+    given points/directions -- intersecting (and where) or skew -- rather
+    than trusting a model-supplied claim about it, the same "recompute,
+    never trust the model's own arithmetic" discipline every sibling
+    template already applies. The two lines' directions must not be
+    (near-)parallel: that is a materially different, less interesting
+    question shape than anything found in the source corpus for this
+    template, so it is rejected here rather than given a rendering branch
+    nothing exercises.
+
+    external_point is the OTHER supported shape: a single named point plus
+    exactly one line, for "find the position vector of the foot of the
+    perpendicular from A to l" (and the closely related "find the position
+    vector of the reflection of A in l") questions. It is mutually exclusive
+    with a second line, because no question in the source corpus pairs
+    "two lines" with "a foot of perpendicular from an external point" in the
+    same part.
+
+    Deliberately deferred (not this template's job, and documented here
+    rather than silently missing): the angle-at-a-vertex-of-a-shape variant
+    ("angle ABC" / "angle between the diagonals of OABC"), which needs three
+    named points rather than a point+direction pair -- a materially
+    different input shape, not a trivial extension of this one.
+    """
+
+    points: list[list[float]] = Field(min_length=1, max_length=2)
+    directions: list[list[float]] = Field(min_length=1, max_length=2)
+    t_min: float = -4.0
+    t_max: float = 4.0
+    external_point: list[float] | None = None
+    labels: list[str] | None = None
+    line_colors: list[str] | None = None
+    external_point_label: str | None = Field(default=None, max_length=30)
+    external_point_color: str | None = Field(default=None, pattern=r"^#[0-9A-Fa-f]{6}$")
+
+    @model_validator(mode="after")
+    def _bounds(self) -> "ManimVectorLine3DParams":
+        if len(self.points) != len(self.directions):
+            raise ValueError("points and directions must have the same length")
+        if self.labels is not None and len(self.labels) != len(self.points):
+            raise ValueError("labels must match the number of lines")
+        if self.line_colors is not None and len(self.line_colors) != len(self.points):
+            raise ValueError("line_colors must match the number of lines")
+        for coord_lists, field_name in ((self.points, "points"), (self.directions, "directions")):
+            for vector in coord_lists:
+                if len(vector) != 3:
+                    raise ValueError(f"each entry in {field_name} must have exactly 3 components")
+                if any(abs(component) > 30 for component in vector):
+                    raise ValueError(f"{field_name} components must stay within [-30, 30]")
+        for direction in self.directions:
+            magnitude = math.sqrt(sum(component**2 for component in direction))
+            if magnitude < 1e-6:
+                raise ValueError("a direction vector must not be zero")
+        if self.t_max - self.t_min < 1.0:
+            raise ValueError("t_max - t_min must be at least 1.0 so the swept line is visible")
+        if self.t_max - self.t_min > 20.0:
+            raise ValueError("t_max - t_min must not exceed 20")
+        if self.external_point is not None:
+            if len(self.points) != 1:
+                raise ValueError("external_point is only supported alongside exactly one line")
+            if len(self.external_point) != 3:
+                raise ValueError("external_point must have exactly 3 components")
+            if any(abs(component) > 30 for component in self.external_point):
+                raise ValueError("external_point components must stay within [-30, 30]")
+        if len(self.points) == 2:
+            d1, d2 = self.directions
+            cross = (
+                d1[1] * d2[2] - d1[2] * d2[1],
+                d1[2] * d2[0] - d1[0] * d2[2],
+                d1[0] * d2[1] - d1[1] * d2[0],
+            )
+            cross_norm = math.sqrt(sum(component**2 for component in cross))
+            mag1 = math.sqrt(sum(component**2 for component in d1))
+            mag2 = math.sqrt(sum(component**2 for component in d2))
+            if cross_norm < 1e-6 * mag1 * mag2:
+                raise ValueError(
+                    "the two lines' directions are (near-)parallel -- this template is for two "
+                    "genuinely different directions (intersecting or skew), not parallel lines"
+                )
+        return self
+
+
 class ManimSpec(BaseModel):
     template: ManimTemplate
     region_sweep: ManimBoundedRegionParams | None = None
@@ -452,6 +567,7 @@ class ManimSpec(BaseModel):
     complex_transform: ManimComplexTransformParams | None = None
     kinematics_motion: ManimKinematicsParams | None = None
     force_resultant: ManimForceResultantParams | None = None
+    vector_line_3d: ManimVectorLine3DParams | None = None
 
     @model_validator(mode="after")
     def _matches_template(self) -> "ManimSpec":
@@ -537,6 +653,20 @@ class VisualizeResponse(BaseModel):
     fallback_markdown: str = Field(min_length=1, max_length=1600)
     source_reference: QuestionRef
     validation_status: VisualValidationStatus
+
+
+class ModeResponseOut(BaseModel):
+    mode: TutorMode
+    message_markdown: str | None = None
+    artifacts: list[VisualArtifactOut] = Field(default_factory=list, max_length=2)
+    fallback_markdown: str | None = None
+    validation_status: VisualValidationStatus | None = None
+    error: str | None = None
+
+
+class MultiModeResponse(BaseModel):
+    source_reference: QuestionRef
+    responses: list[ModeResponseOut]
 
 
 class PaperSummary(BaseModel):

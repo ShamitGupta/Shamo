@@ -18,6 +18,7 @@ tmp/
 # not the contents.
 .agents/skills/
 .claude/skills/
+.claude/settings.local.json
 
 # Python
 __pycache__/

@@ -35,6 +35,7 @@ from app.models import (  # noqa: E402
     ManimSpec,
     ManimTangentLineParams,
     ManimTemplate,
+    ManimVectorLine3DParams,
 )
 
 VALID_SPEC = ManimSpec(
@@ -77,6 +78,13 @@ VALID_FORCE_RESULTANT_SPEC = ManimSpec(
     template=ManimTemplate.FORCE_RESULTANT,
     force_resultant=ManimForceResultantParams(
         magnitudes=[45, 28, 72, 35], angles_degrees=[90, 35, -50, 240], resultant_label="R"
+    ),
+)
+
+VALID_VECTOR_LINE_3D_SPEC = ManimSpec(
+    template=ManimTemplate.VECTOR_LINE_3D,
+    vector_line_3d=ManimVectorLine3DParams(
+        points=[[-1, 3, -4], [2, -3, -1]], directions=[[2, 3, -1], [-1, -2, 1]], labels=["l1", "l2"]
     ),
 )
 
@@ -268,5 +276,18 @@ def test_force_resultant_resolves_to_its_own_scene_file(monkeypatch):
         assert output_path.read_bytes() == b"fake-mp4-bytes"
         assert any("force_resultant.py" in str(part) for part in seen_commands[0])
         assert seen_commands[0][-1] == "ForceResultantScene"
+    finally:
+        output_path.unlink(missing_ok=True)
+
+
+def test_vector_line_3d_resolves_to_its_own_scene_file(monkeypatch):
+    fake_run, seen_commands = _fake_run_factory("vector_line_3d")
+    monkeypatch.setattr(manim_renderer.subprocess, "run", fake_run)
+
+    output_path = manim_renderer.render_to_mp4(VALID_VECTOR_LINE_3D_SPEC)
+    try:
+        assert output_path.read_bytes() == b"fake-mp4-bytes"
+        assert any("vector_line_3d.py" in str(part) for part in seen_commands[0])
+        assert seen_commands[0][-1] == "VectorLine3DScene"
     finally:
         output_path.unlink(missing_ok=True)

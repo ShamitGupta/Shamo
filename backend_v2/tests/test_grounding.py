@@ -313,6 +313,49 @@ def test_source_block_carries_marks_codes_and_guidance():
     assert "Bag B branches completed correctly." in block
 
 
+def test_source_block_groups_main_and_alternative_method_rows():
+    context = QuestionContext(
+        paper=SAMPLE.paper,
+        question={
+            **SAMPLE.question,
+            "root_mark_scheme": [
+                {
+                    "mark_code": "A1",
+                    "content_markdown": r"\pi \times 4.5^2 \times 7",
+                    "guidance_markdown": "Outer cylinder component.",
+                    "is_alternative_method": False,
+                    "is_final_answer": False,
+                },
+                {
+                    "mark_code": "M1",
+                    "content_markdown": r"\pi \int y^2 dx",
+                    "guidance_markdown": "Inner curve component.",
+                    "is_alternative_method": False,
+                    "is_final_answer": False,
+                },
+                {
+                    "mark_code": "M1",
+                    "content_markdown": r"\pi \int (R^2-r^2) dx",
+                    "guidance_markdown": "Washer route.",
+                    "is_alternative_method": True,
+                    "is_final_answer": False,
+                },
+            ],
+            "parts": [],
+            "assets": [],
+        },
+        documents=[],
+    )
+
+    block = build_source_block(context, asset_urls_available=True)
+
+    assert "Main method rows (combine these rows as one method; they are not alternatives)" in block
+    assert "Alternative method rows (separate valid route)" in block
+    assert "Outer cylinder component" in block
+    assert "Inner curve component" in block
+    assert "[alternative method]" in block
+
+
 def test_client_cannot_inject_question_content(client_and_fakes):
     """Content comes from the lookup, never from the request body."""
     client, repository, tutor, _ = client_and_fakes
@@ -394,6 +437,31 @@ def test_check_mode_adds_structured_mark_attribution_checklist():
     assert "Compare against the whole Answer line" in check
     assert "Follow-through allowed only after the required method evidence is present" in check
     assert "MARK ATTRIBUTION CHECKLIST (CHECK MODE ONLY)" not in explain
+
+
+def test_multi_mode_prompt_tells_explain_that_visualize_is_handling_animation():
+    prompt = build_system_prompt(
+        SAMPLE,
+        TutorMode.EXPLAIN,
+        asset_urls_available=True,
+        selected_modes=[TutorMode.EXPLAIN, TutorMode.VISUALIZE],
+    )
+
+    assert "COORDINATED MULTI-MODE TURN" in prompt
+    assert "You are writing ONLY the explain response" in prompt
+    assert "Visualize is handling any graph, construction, or animation request" in prompt
+    assert "Do not say you cannot make a graph or animation" in prompt
+    assert "Write as a companion to that visual" in prompt
+    assert "avoid offering to help them picture it later" in prompt
+
+
+def test_explain_prompt_guards_volume_of_revolution_region_choice():
+    prompt = build_system_prompt(SAMPLE, TutorMode.EXPLAIN, asset_urls_available=True)
+
+    assert "Do not turn separate mark rows from the same method into separate options" in prompt
+    assert "For volumes of revolution, first identify the actual shaded region and axis" in prompt
+    assert "Use \\(V = \\pi \\int y^2 dx\\) only when the rotated region is between a curve" in prompt
+    assert "washer difference \\(V = \\pi \\int (R^2-r^2) dx\\)" in prompt
 
 
 def test_mark_attribution_checklist_repeats_each_mark_condition():
@@ -564,6 +632,61 @@ def test_visualize_stores_validated_specs(client_and_fakes):
     assert visualizer.calls[0]["context"] is SAMPLE
     assert len(repository.stored_visuals) == 1
     assert repository.stored_visuals[0]["response_payload"]["artifacts"][0]["artifact_kind"] == "desmos_2d"
+
+
+def test_respond_coordinates_text_and_visualize_with_one_lookup(client_and_fakes):
+    client, repository, tutor, visualizer = client_and_fakes
+
+    response = client.post(
+        "/respond",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "modes": ["explain", "visualize"],
+            "message": "Animate this and explain what is happening.",
+            "history": [],
+        },
+    )
+
+    assert response.status_code == 200
+    assert repository.lookups == [(2025, "oct_nov", "51", 4)]
+    assert len(tutor.calls) == 1
+    assert tutor.calls[0]["mode"] is TutorMode.EXPLAIN
+    assert tutor.calls[0]["selected_modes"] == [TutorMode.EXPLAIN, TutorMode.VISUALIZE]
+    assert len(visualizer.calls) == 1
+
+    body = response.json()
+    assert [item["mode"] for item in body["responses"]] == ["explain", "visualize"]
+    assert body["responses"][0]["message_markdown"] == "ok"
+    assert body["responses"][1]["validation_status"] == "validated"
+    assert body["responses"][1]["artifacts"][0]["artifact_kind"] == "desmos_2d"
+
+
+def test_respond_missing_question_returns_404_without_any_model_call(client_and_fakes):
+    client, _, tutor, visualizer = client_and_fakes
+    main.app.dependency_overrides[main.get_repository] = lambda: FakeRepository(context=None)
+
+    response = client.post(
+        "/respond",
+        json={
+            "question": {
+                "year": 2019,
+                "exam_session": "may_june",
+                "paper_variant": "99",
+                "question_number": 3,
+            },
+            "modes": ["explain", "visualize"],
+            "message": "Animate this and explain it.",
+        },
+    )
+
+    assert response.status_code == 404
+    assert tutor.calls == []
+    assert visualizer.calls == []
 
 
 def test_visual_spec_rejects_raw_javascript():

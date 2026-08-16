@@ -6,7 +6,7 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
 import { sanitizeLatex } from '../utils/sanitizeLatex.js';
-import { createVisualization, fetchQuestion, streamChat, TUTOR_MODES, ApiError } from '../api/tutorApi.js';
+import { createCoordinatedResponse, createVisualization, fetchQuestion, streamChat, TUTOR_MODES, ApiError } from '../api/tutorApi.js';
 import { usePaperCatalogue } from './usePaperCatalogue.js';
 import MetadataDropdown from './MetadataDropdown';
 import QuestionPanel from './QuestionPanel';
@@ -24,9 +24,9 @@ function ChatSection() {
     // paper cannot be chosen. See usePaperCatalogue.
     const catalogue = usePaperCatalogue();
 
-    // Multiple modes can be active at once -- see toggleMode. Hint/Explain/Check
-    // stay independent, unmodified requests even when combined (each keeps its
-    // own rules about what it may reveal); Visualize is just another one of them.
+    // Multiple modes can be active at once -- see toggleMode. Multi-mode turns
+    // now go through /respond so the backend can coordinate the selected modes
+    // while still rendering each response in its own labelled slot.
     const [selectedModes, setSelectedModes] = useState(['explain']);
     const [question, setQuestion] = useState(null);
     const [questionStatus, setQuestionStatus] = useState('idle'); // idle | loading | ready | error
@@ -179,11 +179,36 @@ function ChatSection() {
             )));
         };
 
-        // Each selected mode is its own independent, unmodified request against
-        // its existing pathway -- Hint/Explain/Check are never blended into one
-        // prompt, because they differ in what they may reveal. Combining them
-        // just means the student gets several faithful responses side by side
-        // in one turn instead of having to ask three separate times.
+        const applyModeResponse = (id, response) => {
+            if (!response) {
+                updateSlot(id, {
+                    pending: false,
+                    isError: true,
+                    title: 'The tutor did not return this mode.',
+                });
+                return;
+            }
+            if (response.error) {
+                updateSlot(id, {
+                    pending: false,
+                    isError: true,
+                    title: response.error,
+                });
+                return;
+            }
+            updateSlot(id, {
+                title: response.message_markdown || response.fallback_markdown || '',
+                artifacts: response.artifacts || [],
+                fallbackMarkdown: response.fallback_markdown,
+                validationStatus: response.validation_status,
+                pending: false,
+            });
+        };
+
+        // Single-mode text turns keep the streaming path. Multi-mode turns go
+        // through /respond so the backend can coordinate selected modes instead
+        // of letting, for example, Explain deny an animation that Visualize is
+        // rendering in the same turn.
         const runMode = async ({ id, modeValue }) => {
             try {
                 // Only a reference to the question travels. The server retrieves
@@ -240,7 +265,21 @@ function ChatSection() {
         };
 
         try {
-            await Promise.all(responseSlots.map(runMode));
+            if (modesToRun.length > 1) {
+                const response = await createCoordinatedResponse({
+                    question: reference,
+                    modes: modesToRun,
+                    message: currentPrompt,
+                    attempt: modesToRun.includes('check') ? currentPrompt : null,
+                    history,
+                });
+                const responseByMode = new Map((response.responses || []).map((item) => [item.mode, item]));
+                responseSlots.forEach(({ id, modeValue }) => {
+                    applyModeResponse(id, responseByMode.get(modeValue));
+                });
+            } else {
+                await Promise.all(responseSlots.map(runMode));
+            }
         } finally {
             setIsLoading(false);
         }

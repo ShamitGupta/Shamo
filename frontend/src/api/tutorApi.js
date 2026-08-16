@@ -99,6 +99,18 @@ export async function createVisualization({ question, message, history }, signal
     return response.json();
 }
 
+/** Coordinate one student turn across multiple selected modes. */
+export async function createCoordinatedResponse({ question, modes, message, attempt, history }, signal) {
+    const response = await fetch(`${BASE_URL}/respond`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question, modes, message, attempt: attempt || null, history }),
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
 export const SESSION_LABELS = {
     feb_march: 'Feb/March',
     may_june: 'May/June',

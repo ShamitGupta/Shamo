@@ -33,6 +33,7 @@ from app.models import (  # noqa: E402
     ManimSpec,
     ManimTangentLineParams,
     ManimTemplate,
+    ManimVectorLine3DParams,
 )
 
 CASES = {
@@ -144,6 +145,32 @@ CASES = {
             magnitudes=[45, 28, 72, 35],
             angles_degrees=[90, 35, -50, 240],
             resultant_label="R",
+        ),
+    ),
+    "vector_line_3d (skew)": ManimSpec(
+        template=ManimTemplate.VECTOR_LINE_3D,
+        vector_line_3d=ManimVectorLine3DParams(
+            points=[[-1, 3, -4], [2, -3, -1]],
+            directions=[[2, 3, -1], [-1, -2, 1]],
+            labels=["l1", "l2"],
+        ),
+    ),
+    "vector_line_3d (intersecting)": ManimSpec(
+        template=ManimTemplate.VECTOR_LINE_3D,
+        vector_line_3d=ManimVectorLine3DParams(
+            points=[[1, 5, 3], [1, -3, 1]],
+            directions=[[-1, -1, -2], [2, -2, 3]],
+            labels=["m", "n"],
+        ),
+    ),
+    "vector_line_3d (foot of perpendicular)": ManimSpec(
+        template=ManimTemplate.VECTOR_LINE_3D,
+        vector_line_3d=ManimVectorLine3DParams(
+            points=[[1, 3, -2]],
+            directions=[[1, -4, 5]],
+            labels=["l"],
+            external_point=[1, 2, 0],
+            external_point_label="A",
         ),
     ),
 }
