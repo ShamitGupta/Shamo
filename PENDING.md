@@ -120,7 +120,12 @@ P1-4 and P1-5 are shipped. P1-6 below is the remaining item, and the largest.
 
 ### P1-6 · Teacher and class view
 
-**This is the artefact a school is actually buying.** None of it exists.
+**This is the artefact a school is actually buying.** None of it exists — but
+what it would aggregate now does. `shamo_attempts` and
+`shamo_get_topic_weakness` (15 September) already compute per-topic performance
+for one student; a class view is largely the same query grouped by cohort
+instead, plus the entities and roles below. That makes this meaningfully less
+than an L-from-scratch, though still the largest item here.
 
 **Missing, all of it:**
 
@@ -182,9 +187,17 @@ and memory-heavy; under a 200-student site licence this needs bounding before
 signature, not after.
 
 **One thing that is deliberately free:** similar-question retrieval (shipped
-above) makes no model call — it reads stored embeddings. It adds database load,
-not provider spend, so exclude it when modelling cost-per-active-student or the
+above) makes no model call — it reads stored embeddings. Weak topics and
+practice sets are the same: both are pure SQL. They add database load, not
+provider spend, so exclude them when modelling cost-per-active-student or the
 figure will be pessimistic.
+
+**One thing that got slightly more expensive, 15 September:** every Check
+submission now makes a *second* model call — a small `gpt-5.4-nano` pass that
+reads the tutor's finished reply and records which marks it attributed. It is a
+fraction of the tutoring call it follows, but it is per-submission and it is
+real, so fold it into the per-student figure rather than counting one call per
+turn.
 
 **Acceptance:** a per-tier request ceiling is enforced, and a monthly
 cost-per-active-user figure can be read from stored data.
@@ -333,6 +346,8 @@ contradicted by a claim in the deck.
 | Corpus depth is two years (2024–2025) | Complete and clean for those years; 9709 and 0606 only | Present further years as funded capacity, not existing coverage |
 | 71 open blocking ingestion issue records | **Re-checked 15 Sep: all 71 sit on superseded or abandoned runs. Zero open blocking issues sit on any ingestion run that is actually published.** | Better than previously stated. You may say every published paper carries no unresolved blocking issue — but not that the project has never had one |
 | Leaked-password protection unavailable | Requires a Supabase Pro plan; confirmed rejected on Free, 18 Aug | Mention only if security is raised |
+| Marking record drops out when the tutor names an unknown mark code | Measured 15 Sep: a reply citing a code the mark scheme does not contain records **nothing** rather than dropping just that code. Two prompt revisions did not shift it | Safe direction — it never stores an invented mark. But do not present a missing outcome as proof a student was not assessed |
+| "Weak" is defined as mark ratio, validated only against seeded numbers | The aggregation, ordering and evidence threshold are verified exactly; whether mark ratio is the right *pedagogical* definition is not | Say the evidence is stored beside every figure so a teacher can disagree with it — that is the honest and the stronger claim |
 
 ---
 
