@@ -13,7 +13,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { ApiError, fetchWeakTopics } from '../api/tutorApi.js';
+import { ApiError, fetchPracticeSet, fetchWeakTopics, SESSION_LABELS } from '../api/tutorApi.js';
 import { useAuth } from '../Auth/authContext.js';
 import styles from './WeakTopics.module.css';
 
@@ -37,7 +37,12 @@ function whenText(iso) {
     return when.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
-function WeakTopics({ refreshToken }) {
+function referenceLabel(reference) {
+    const session = SESSION_LABELS[reference.exam_session] || reference.exam_session;
+    return `${reference.syllabus_code}/${reference.paper_variant} ${session} ${reference.year} — Q${reference.question_number}`;
+}
+
+function WeakTopics({ refreshToken, onNavigate }) {
     const { accessToken, isAuthenticated } = useAuth();
     // No "loading" state is stored, and nothing is cleared when a session ends.
     // Both would mean calling setState synchronously inside the effect, which
@@ -50,6 +55,11 @@ function WeakTopics({ refreshToken }) {
     const [loadedFor, setLoadedFor] = useState(null);
     const [error, setError] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
+    // Which topic's practice set is open, and what it holds. Only one at a
+    // time: a student picking what to do next does not need five lists.
+    const [practiceTopic, setPracticeTopic] = useState(null);
+    const [practice, setPractice] = useState(null);
+    const [practiceError, setPracticeError] = useState(null);
 
     useEffect(() => {
         if (!isAuthenticated || !accessToken) return undefined;
@@ -74,6 +84,30 @@ function WeakTopics({ refreshToken }) {
         // refreshToken lets the chat say a new attempt was marked, so the panel
         // re-reads without polling.
     }, [isAuthenticated, accessToken, refreshToken]);
+
+    const openPractice = async (topic) => {
+        if (practiceTopic === topic.main_topic) {
+            setPracticeTopic(null);
+            return;
+        }
+        setPracticeTopic(topic.main_topic);
+        setPractice(null);
+        setPracticeError(null);
+        try {
+            const body = await fetchPracticeSet({
+                topic: topic.main_topic,
+                // A topic name can span syllabuses; practise within the one the
+                // student has actually been working in.
+                syllabusCode: topic.syllabus_codes?.length === 1 ? topic.syllabus_codes[0] : undefined,
+                accessToken,
+            });
+            setPractice(body.questions || []);
+        } catch (err) {
+            setPracticeError(
+                err instanceof ApiError ? err.message : 'Could not build a practice set.',
+            );
+        }
+    };
 
     if (!isAuthenticated) return null;
     // Still loading, or the data belongs to a previous session. Either way there
@@ -133,6 +167,54 @@ function WeakTopics({ refreshToken }) {
                                                 ? ` · last ${whenText(topic.last_attempted_at)}`
                                                 : ''}
                                         </p>
+                                        <button
+                                            type="button"
+                                            className={styles.Practise}
+                                            onClick={() => openPractice(topic)}
+                                            aria-expanded={practiceTopic === topic.main_topic}
+                                        >
+                                            {practiceTopic === topic.main_topic
+                                                ? 'Hide practice'
+                                                : 'Practise this'}
+                                        </button>
+
+                                        {practiceTopic === topic.main_topic && (
+                                            <div className={styles.Practice}>
+                                                {practiceError && (
+                                                    <p className={styles.Error}>{practiceError}</p>
+                                                )}
+                                                {!practiceError && practice === null && (
+                                                    <p className={styles.Note}>Finding questions…</p>
+                                                )}
+                                                {practice?.length === 0 && (
+                                                    <p className={styles.Note}>
+                                                        You have already worked through every
+                                                        published question on this topic.
+                                                    </p>
+                                                )}
+                                                {practice?.map((item) => (
+                                                    <button
+                                                        key={referenceLabel(item.reference)}
+                                                        type="button"
+                                                        className={styles.PracticeItem}
+                                                        onClick={() => onNavigate?.(item.reference)}
+                                                    >
+                                                        <span className={styles.PracticeRef}>
+                                                            {referenceLabel(item.reference)}
+                                                            {item.total_marks
+                                                                ? ` · ${item.total_marks} marks`
+                                                                : ''}
+                                                        </span>
+                                                        {/* The reason comes from stored metadata,
+                                                            never from a model, so it cannot be
+                                                            fluent and wrong. */}
+                                                        <span className={styles.PracticeWhy}>
+                                                            {item.selection_reason}
+                                                        </span>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
                                     </li>
                                 );
                             })}

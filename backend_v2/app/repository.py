@@ -702,6 +702,29 @@ class Repository:
             raise RetrievalError(f"Could not read topic performance: {error}") from error
         return response.data or []
 
+    def get_practice_set(
+        self,
+        user_id: str,
+        *,
+        main_topic: str,
+        syllabus_code: str | None = None,
+        limit: int = 5,
+    ) -> list[dict[str, Any]]:
+        """Unattempted questions on one topic, chosen for this student."""
+        try:
+            response = self._client.rpc(
+                "shamo_get_practice_set",
+                {
+                    "p_user_id": user_id,
+                    "p_main_topic": main_topic,
+                    "p_syllabus_code": syllabus_code,
+                    "p_limit": limit,
+                },
+            ).execute()
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not build a practice set: {error}") from error
+        return response.data or []
+
     def record_attempt(
         self,
         *,

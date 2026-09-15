@@ -839,6 +839,29 @@ class TopicWeaknessResponse(BaseModel):
     needs_more_evidence: list[TopicWeaknessOut] = Field(default_factory=list)
 
 
+class PracticeQuestionOut(BaseModel):
+    """One question chosen for a student to work on next.
+
+    `selection_reason` is built from stored metadata, never written by a model,
+    so a recommendation cannot be justified with an invented reason -- the same
+    rule the similar-question panel follows.
+    """
+
+    reference: QuestionRef
+    main_topic: str | None = None
+    difficulty_level: int | None = None
+    total_marks: int | None = None
+    stem_snippet: str = Field(default="", max_length=240)
+    selection_reason: str = Field(default="", max_length=160)
+
+
+class PracticeSetResponse(BaseModel):
+    main_topic: str
+    # Empty is a normal outcome, not an error: a student who has worked through
+    # every published question on a topic has nothing left to be given.
+    questions: list[PracticeQuestionOut] = Field(default_factory=list, max_length=20)
+
+
 class ConversationOut(BaseModel):
     """One thread in the student's list, without its messages.
 

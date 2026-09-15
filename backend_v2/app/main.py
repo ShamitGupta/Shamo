@@ -44,6 +44,8 @@ from .models import (
     NotFoundOut,
     PaperSummary,
     PartOut,
+    PracticeQuestionOut,
+    PracticeSetResponse,
     QuestionContextOut,
     QuestionRef,
     RenameConversationRequest,
@@ -816,6 +818,52 @@ def weak_topics(
         ranked=[t for t in topics if t.has_enough_evidence],
         needs_more_evidence=[t for t in topics if not t.has_enough_evidence],
     )
+
+
+@app.get("/me/practice-set", response_model=PracticeSetResponse)
+def practice_set(
+    topic: str,
+    syllabus_code: str | None = None,
+    limit: int = 5,
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> PracticeSetResponse:
+    """Questions to work on next for one topic, excluding what is already done.
+
+    Deliberately separate from the similar-question endpoint: that one selects
+    questions like a QUESTION, this one selects for a STUDENT.
+    """
+    limit = max(1, min(limit, 20))
+    topic = topic.strip()
+    if not topic:
+        raise HTTPException(status_code=422, detail="A topic is required.")
+
+    try:
+        rows = repository.get_practice_set(
+            current_user.user_id,
+            main_topic=topic,
+            syllabus_code=syllabus_code,
+            limit=limit,
+        )
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    questions: list[PracticeQuestionOut] = []
+    for row in rows:
+        reference = _question_ref_from_row(row)
+        if reference is None:
+            continue
+        questions.append(
+            PracticeQuestionOut(
+                reference=reference,
+                main_topic=row.get("main_topic"),
+                difficulty_level=row.get("difficulty_level"),
+                total_marks=row.get("total_marks"),
+                stem_snippet=str(row.get("stem_snippet") or "")[:240],
+                selection_reason=str(row.get("selection_reason") or "")[:160],
+            )
+        )
+    return PracticeSetResponse(main_topic=topic, questions=questions)
 
 
 @app.get("/conversations", response_model=list[ConversationOut])

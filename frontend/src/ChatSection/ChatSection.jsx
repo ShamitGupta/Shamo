@@ -652,7 +652,10 @@ function ChatSection({ onOpenAuth }) {
                     here rather than in the sidebar because the evidence lines
                     need the width, and because this is where they are looking
                     after getting their working marked. */}
-                <WeakTopics refreshToken={weakTopicsToken} />
+                <WeakTopics
+                    refreshToken={weakTopicsToken}
+                    onNavigate={handleSimilarNavigate}
+                />
 
                 {messages.map((msg, index) => (
                     <Fragment key={msg.id}>

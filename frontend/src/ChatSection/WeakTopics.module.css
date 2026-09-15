@@ -161,3 +161,54 @@
     color: #ff8a80;
     font-size: 0.82rem;
 }
+
+.Practise {
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    color: #cfcfcf;
+    font: inherit;
+    font-size: 0.76rem;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.Practise:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.Practice {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.PracticeItem {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.PracticeItem:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.PracticeRef {
+    color: #ededed;
+    font-size: 0.82rem;
+}
+
+.PracticeWhy {
+    color: #8a8a8a;
+    font-size: 0.75rem;
+}

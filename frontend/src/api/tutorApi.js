@@ -256,6 +256,25 @@ export async function fetchWeakTopics(accessToken, signal) {
     return response.json();
 }
 
+/**
+ * Questions to work on next for one topic, excluding what the student has done.
+ *
+ * Not the same as fetchSimilarQuestions: that answers "questions like THIS
+ * question", this answers "what should I work on next". An empty list is a
+ * normal answer -- it means they have worked through what is published.
+ */
+export async function fetchPracticeSet({ topic, syllabusCode, limit, accessToken }, signal) {
+    const params = new URLSearchParams({ topic });
+    if (syllabusCode) params.set('syllabus_code', syllabusCode);
+    if (limit) params.set('limit', String(limit));
+    const response = await fetch(`${BASE_URL}/me/practice-set?${params}`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
 export const SESSION_LABELS = {
     feb_march: 'Feb/March',
     may_june: 'May/June',

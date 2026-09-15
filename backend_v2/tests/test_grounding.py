@@ -211,6 +211,7 @@ class FakeRepository:
         self.turns: list[dict] = []
         self.attempts: list[dict] = []
         self.topic_rows: list[dict] = []
+        self.practice_rows: list[dict] = []
         self.cached_visual: dict | None = None
         self.stored_visuals: list[dict] = []
         self.profile: dict | None = {
@@ -318,6 +319,12 @@ class FakeRepository:
             return False
         self.conversations.remove(row)
         return True
+
+    def get_practice_set(self, user_id, *, main_topic, syllabus_code=None, limit=5):
+        rows = [r for r in self.practice_rows if r["main_topic"] == main_topic]
+        if syllabus_code:
+            rows = [r for r in rows if r["syllabus_code"] == syllabus_code]
+        return rows[:limit]
 
     def get_topic_weakness(self, user_id, *, min_attempts=3, limit=20):
         return [
@@ -2253,3 +2260,90 @@ def test_min_attempts_is_clamped_to_a_sane_range(client_and_fakes):
     # An absurd threshold must not 500, and must not let everything through.
     assert client.get("/me/weak-topics?min_attempts=100000").json()["min_attempts"] == 50
     assert client.get("/me/weak-topics?min_attempts=-5").json()["min_attempts"] == 1
+
+
+# -- practice sets (stage 4) -------------------------------------------------
+
+
+def _practice_row(number, *, topic="Calculus", difficulty=3, syllabus="9709"):
+    return {
+        "question_id": f"q-{number}",
+        "qualification": "a_level",
+        "syllabus_code": syllabus,
+        "year": 2025,
+        "exam_session": "oct_nov",
+        "paper_variant": "12",
+        "question_number": number,
+        "main_topic": topic,
+        "difficulty_level": difficulty,
+        "total_marks": 6,
+        "stem_snippet": "Differentiate with respect to x.",
+        "selection_reason": "Same topic, a typical question at this level",
+    }
+
+
+def test_practice_set_returns_questions_with_a_stated_reason(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+    repository.practice_rows = [_practice_row(1), _practice_row(2)]
+
+    body = client.get("/me/practice-set?topic=Calculus").json()
+    assert body["main_topic"] == "Calculus"
+    assert len(body["questions"]) == 2
+    first = body["questions"][0]
+    # A ready-to-use reference, so the client never reassembles one -- that is
+    # exactly where an IGCSE variant gets mistaken for the 9709 one.
+    assert first["reference"]["question_number"] == 1
+    assert first["reference"]["syllabus_code"] == "9709"
+    # And a reason drawn from metadata, not written by a model.
+    assert first["selection_reason"]
+
+
+def test_an_empty_practice_set_is_a_normal_response(client_and_fakes):
+    """A student who has worked through every published question on a topic has
+    nothing left to be given. That is not an error."""
+    client, repository, _, _ = client_and_fakes
+    repository.practice_rows = []
+
+    response = client.get("/me/practice-set?topic=Calculus")
+    assert response.status_code == 200
+    assert response.json()["questions"] == []
+
+
+def test_practice_set_requires_a_topic(client_and_fakes):
+    client, _, _, _ = client_and_fakes
+    assert client.get("/me/practice-set").status_code == 422
+    assert client.get("/me/practice-set?topic=%20%20").status_code == 422
+
+
+def test_practice_set_limit_is_clamped(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+    repository.practice_rows = [_practice_row(n) for n in range(1, 40)]
+
+    assert len(client.get("/me/practice-set?topic=Calculus&limit=10000").json()["questions"]) == 20
+    assert len(client.get("/me/practice-set?topic=Calculus&limit=0").json()["questions"]) == 1
+
+
+def test_practice_set_can_be_narrowed_to_one_syllabus(client_and_fakes):
+    """A topic name can span syllabuses -- an IGCSE student should not be handed
+    A-level questions to practise."""
+    client, repository, _, _ = client_and_fakes
+    repository.practice_rows = [
+        _practice_row(1, syllabus="9709"),
+        _practice_row(2, syllabus="0606"),
+    ]
+
+    body = client.get("/me/practice-set?topic=Calculus&syllabus_code=0606").json()
+    assert [q["reference"]["syllabus_code"] for q in body["questions"]] == ["0606"]
+
+
+def test_practice_set_requires_a_verified_session():
+    repository = FakeRepository()
+    unverified = AuthenticatedUser(
+        user_id="user-1", email="ada@example.com", email_confirmed=False
+    )
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService(user=unverified)
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.get("/me/practice-set?topic=Calculus")
+    main.app.dependency_overrides.clear()
+    assert response.status_code == 403
