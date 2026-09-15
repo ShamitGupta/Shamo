@@ -3,6 +3,13 @@
 .env
 .env.*
 !.env.example
+!*.env.example
+!.env.*.example
+
+# The deployed backend's secrets file. Does NOT match the .env patterns above
+# because of the leading "api", which is exactly the kind of near-miss that
+# gets a service_role key committed.
+deploy/api.env
 
 # Agent operating guides. Deliberately local-only: they carry the detailed
 # extraction methodology, prompts and operational state.
@@ -40,3 +47,13 @@ desktop.ini
 # Live-workflow backups written by sync_live_workflow.mjs before each write.
 # Recovery artifacts, not source.
 workflows/n8n/harness/backup_*.json
+
+# Archived WordPress site content. The SQL dump carries user accounts,
+# password hashes and commenter email addresses, and wp-content/uploads is
+# typically hundreds of MB of media -- neither belongs in this repository.
+# The compose file and README in that directory ARE tracked.
+archive/wordpress-local/restore.sql
+archive/wordpress-local/wp-content/
+archive/wordpress-local/*.zip
+archive/wordpress-local/*.tar.gz
+archive/wordpress-local/wp-config.php
