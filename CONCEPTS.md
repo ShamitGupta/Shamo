@@ -1925,3 +1925,314 @@ Alternative method rows (separate valid route)
 ```
 
 So the model should be less likely to call the cylinder volume and curve volume "two equivalent ways".
+
+## 18. Why Did We Configure Supabase Auth, Redirect URLs, Callback URLs, And Google Cloud?
+
+**Question.** What was the point of enabling password auth and Google auth in Supabase, and why did we also need redirect URLs, callback URLs, and Google Cloud Console?
+
+**Short answer.** We were teaching three systems to trust each other:
+
+```text
+Shamo frontend
+<-> Supabase Auth
+<-> Google
+```
+
+Supabase is the account system for Shamo. Google is only one optional way for a user to prove who they are. The redirect/callback URLs are the allowed handoff addresses that keep the login flow from being hijacked.
+
+### The Core Job Of Auth
+
+Before auth, anyone who opened the app was just an anonymous browser.
+
+After auth, the app can say:
+
+```text
+This browser belongs to Supabase user abc-123.
+The user has verified their email.
+The user's current Shamo tier is free, premium, or shamo_student.
+```
+
+That matters because tutoring actions are no longer purely public. The app now lets visitors browse papers/questions, but requires a signed-in account before Hint, Explain, Check, or Visualize.
+
+### What Supabase Does
+
+Supabase Auth is Shamo's identity manager.
+
+It handles:
+
+- creating users,
+- storing hashed passwords,
+- sending confirmation emails,
+- accepting Google sign-ins,
+- issuing access tokens,
+- telling the backend which user is signed in.
+
+In Shamo, the frontend signs in through Supabase and receives a Supabase access token. Then, when the user asks the tutor something, the frontend sends:
+
+```text
+Authorization: Bearer <Supabase access token>
+```
+
+The backend checks that token with Supabase before it allows `/chat`, `/visualize`, or `/respond`.
+
+### Password Auth Versus Google Auth
+
+Email/password is simple:
+
+```text
+User enters email/password
+-> Supabase verifies it
+-> Supabase returns a session token
+-> Shamo uses that token
+```
+
+Google auth has one extra participant:
+
+```text
+User clicks "Continue with Google"
+-> Supabase sends the browser to Google
+-> Google asks the user to approve
+-> Google sends the browser back to Supabase
+-> Supabase creates/updates the user and returns a Shamo session token
+```
+
+The important detail: Shamo does not use a Google token as its main app session. Shamo uses the Supabase session. Google is just the identity proof step.
+
+### Regular Email/Password Login In More Detail
+
+When a user signs up with email/password, Supabase creates a user row in its private Auth schema. When the user signs in later, Supabase compares the submitted password with the stored password hash. If it matches, Supabase creates a session.
+
+That session contains two important pieces:
+
+```text
+access token  -> short-lived JWT used on API requests
+refresh token -> longer-lived token used to get a new access token
+```
+
+The frontend sends the access token to Shamo's backend like this:
+
+```text
+Authorization: Bearer <Supabase access token>
+```
+
+The backend checks that token with Supabase before allowing tutoring actions.
+
+### How Long The JWT Lasts
+
+Supabase's normal/recommended access-token lifetime is 1 hour, unless the project setting is changed in Auth session settings.
+
+The tokens are not permanent tokens created once at signup. A session starts when Supabase actually logs the user in: after password sign-in, after Google OAuth completes, or after an email-confirmation flow returns a valid session. For Shamo's email/password signup flow, a new user may first see "check your email" rather than receiving immediate tutor access.
+
+When the access token expires, the user does not usually get kicked out immediately. The Supabase browser client uses the refresh token to request a fresh access token. So the normal experience is:
+
+```text
+access token expires
+-> Supabase client refreshes the session
+-> new access token is stored
+-> user keeps using the app
+```
+
+The user is usually asked to log in again only if the refresh token/session is no longer valid, the user signed out, the account changed in a security-sensitive way, or the session lifetime/inactivity rules say the session should end.
+
+### Are The Tokens Always The Same?
+
+No. Access tokens and refresh tokens change over time.
+
+A JWT is not a fixed badge permanently assigned to a user. It is a signed message with claims such as:
+
+```text
+user id
+session id
+issued-at time
+expiry time
+role/claims
+signature
+```
+
+The signing secret/key may stay the same, but Supabase can keep issuing new JWTs with new timestamps and expiry values. The signature proves the token came from Supabase and was not edited by the browser.
+
+The refresh token exists so the user does not need to type their password every hour. It is a separate, random, long-lived credential tied to the session. Supabase uses it to issue a fresh short-lived JWT.
+
+Simplified:
+
+```text
+password proves identity at login time
+refresh token keeps the session alive
+access-token JWT proves identity on each API request
+```
+
+On sign-out, Supabase removes the session from the browser and revokes refresh tokens so they cannot keep minting new access tokens. An already-issued access-token JWT can still be valid until its short expiry time unless the backend adds an extra live-session check. That is why access tokens are deliberately short-lived.
+
+### Where Passwords Are Stored
+
+Supabase does not store the plain password.
+
+It stores a password hash in:
+
+```text
+auth.users.encrypted_password
+```
+
+The column name says "encrypted", but the important concept is hashing:
+
+```text
+password -> one-way hash
+```
+
+Supabase's documented password hashing function is bcrypt. A hash can be checked, but it is not supposed to be reversed back into the original password. That means Shamo should never know or display a user's real password.
+
+The browser cannot directly read this Auth table. Normal Shamo application data belongs in public tables such as `shamo_profiles`; authentication internals belong in Supabase's `auth` schema.
+
+As Admin, you can usually inspect Auth users in the Supabase Dashboard. Supabase also documents that the Auth schema can be viewed in the Table Editor. Treat it as a sensitive internal table: useful for admin/debugging, not something Shamo's frontend should query directly.
+
+### OAuth Client Relationship
+
+For Google login, the Google Cloud OAuth client represents the Shamo application, but Supabase is the service that handles the server-side OAuth exchange.
+
+That is why the setup looks slightly indirect:
+
+```text
+Google Cloud OAuth client
+-> configured with Supabase callback URL
+-> client ID/secret copied into Supabase
+-> Shamo frontend calls Supabase
+```
+
+The Google Client ID tells Google which app is asking for login. The Google Client Secret lets Supabase securely exchange Google's temporary login code for Google-side proof of identity. That secret must stay in Supabase or another trusted backend, never in Shamo's browser code.
+
+### Why Google Cloud Console Is Needed
+
+Google will not let any random website show a "Sign in with Google" flow.
+
+In Google Cloud Console, we registered Shamo as an app and told Google:
+
+```text
+This app is called Shamo.
+These browser origins are allowed to start Google login.
+This Supabase callback URL is allowed to receive Google's login result.
+Here are the client ID and client secret for this app.
+```
+
+The Google Client ID is public-ish; it identifies the app. The Google Client Secret is private; it proves to Google/Supabase that this OAuth client setup is legitimate. The secret goes into Supabase, not into the frontend.
+
+### What Is A Callback URL?
+
+A callback URL is where an external provider sends the browser after it finishes its part of the login.
+
+For Google login through Supabase, Google's callback target is Supabase:
+
+```text
+https://exjfaggqphjkxniyshfl.supabase.co/auth/v1/callback
+```
+
+So the flow is:
+
+```text
+1. User clicks Google login in Shamo.
+2. Supabase redirects the browser to Google.
+3. User signs in with Google.
+4. Google redirects back to Supabase's callback URL.
+5. Supabase validates the result and creates a Supabase session.
+6. Supabase redirects the browser back to Shamo.
+```
+
+That callback URL is not the Shamo page. It is Supabase's OAuth receiver.
+
+### What Is A Redirect URL?
+
+A redirect URL is where Supabase is allowed to send the user after auth finishes.
+
+For local Shamo development, examples are:
+
+```text
+http://127.0.0.1:5173/chatbot/
+http://localhost:5173/chatbot/
+```
+
+Supabase needs this allow-list because redirecting after login is security-sensitive. Without an allow-list, an attacker could try to trick Supabase into sending a logged-in user or token-related response to a malicious site.
+
+So:
+
+```text
+Callback URL = where Google returns to Supabase.
+Redirect URL = where Supabase returns to Shamo.
+```
+
+### Why Authorized JavaScript Origins Exist
+
+In Google Cloud, the Authorized JavaScript origins are the browser origins allowed to start the OAuth request.
+
+For local development:
+
+```text
+http://127.0.0.1:5173
+http://localhost:5173
+```
+
+An origin is just:
+
+```text
+protocol + host + port
+```
+
+It does not include the path. That is why Google gets:
+
+```text
+http://127.0.0.1:5173
+```
+
+while Supabase redirect URLs can include:
+
+```text
+http://127.0.0.1:5173/chatbot/
+```
+
+### Why This Protects The App
+
+These settings prevent several bad handoffs:
+
+- a fake app pretending to be Shamo,
+- Google sending login results to the wrong receiver,
+- Supabase redirecting users to an untrusted website,
+- the frontend getting a service-level secret,
+- the backend accepting unauthenticated tutor requests.
+
+The browser only gets a publishable Supabase key and a user session token. It never gets the Supabase service-role key or Google Client Secret.
+
+### How This Connects To Shamo Tiers
+
+Authentication answers:
+
+```text
+Who is this user?
+```
+
+Authorization answers:
+
+```text
+What is this user allowed to access?
+```
+
+For Shamo:
+
+- signed-in, email-verified user -> Free tier,
+- active future Stripe entitlement -> Premium tier,
+- active manual Admin entitlement -> Shamo Student tier.
+
+Those tier decisions live in Shamo's database tables, not in Google and not in user-editable profile metadata.
+
+### Simple Mental Model
+
+Think of the whole setup like a checked relay race:
+
+```text
+Shamo asks Supabase: please sign this user in.
+Supabase asks Google: can you prove this Google user is real?
+Google answers Supabase at the callback URL.
+Supabase creates a Shamo session.
+Supabase redirects the browser back to Shamo.
+Shamo sends that Supabase token to the backend.
+The backend verifies the token before tutoring.
+```
+
+So the point of the setup was not just to make buttons work. It created a trusted login chain that lets Shamo safely know who the student is and later decide which features their tier should unlock.

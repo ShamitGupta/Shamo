@@ -1,0 +1,60 @@
+# Run the archived shamoclasses.com WordPress site locally, from the backup
+# taken before the AWS migration.
+#
+#   cd archive/wordpress-local
+#   docker compose up -d
+#   open http://localhost:8080
+#
+# This exists so the site is never lost, not so it stays online. Everything
+# here is local-only: the database port is not published, and the credentials
+# below are deliberately throwaway because nothing in this stack is reachable
+# from outside this machine.
+#
+# RESTORE ORDER MATTERS -- see README.md in this directory. Import the SQL
+# dump BEFORE visiting the site, or WordPress will see an empty database and
+# offer to run a fresh install over the top of your archive.
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: local-only-not-a-secret
+      MYSQL_ROOT_PASSWORD: local-only-not-a-secret
+    volumes:
+      - db_data:/var/lib/mysql
+      # Any .sql file dropped here is imported automatically on FIRST start,
+      # when the data volume is still empty. Put the Hostinger dump here as
+      # restore.sql before the first `up`.
+      - ./restore.sql:/docker-entrypoint-initdb.d/restore.sql:ro
+    # No `ports:` on purpose -- only the wordpress service needs to reach it.
+
+  wordpress:
+    image: wordpress:php8.2-apache
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: local-only-not-a-secret
+      # The archived database still holds the live site's URLs. These two
+      # constants override siteurl/home at runtime without editing the dump,
+      # which is what stops WordPress redirecting you to the real domain the
+      # moment you open it.
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://localhost:8080');
+        define('WP_SITEURL', 'http://localhost:8080');
+    volumes:
+      # Unpack the Hostinger files backup into ./wp-content (themes, plugins,
+      # uploads). Core WordPress files come from the image and are not worth
+      # archiving -- they are identical for any given version.
+      - ./wp-content:/var/www/html/wp-content
+
+volumes:
+  db_data:

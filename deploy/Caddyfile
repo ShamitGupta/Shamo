@@ -1,0 +1,32 @@
+# Caddy terminates TLS for the tutor API and proxies to the FastAPI container.
+#
+# Caddy provisions and renews the Let's Encrypt certificate automatically; the
+# only prerequisites are that api.shamoclasses.com already resolves to this
+# instance and that ports 80 and 443 are open. Port 80 must stay open even
+# though nothing is served on it -- the ACME HTTP challenge uses it, and a
+# closed port 80 is the usual cause of "certificate could not be obtained".
+
+api.shamoclasses.com {
+	# POST /chat streams tokens as they are generated. Caddy does not buffer
+	# proxied responses by default, but stating flush_interval explicitly means
+	# a later config change cannot silently reintroduce buffering and turn the
+	# streamed reply into one delayed block of text.
+	reverse_proxy api:8000 {
+		flush_interval -1
+
+		# A Manim render is a synchronous 35-60s request and manim_renderer
+		# caps its own subprocess at 60s. 180s leaves room for the render plus
+		# the model call ahead of it without ever being the thing that fails.
+		transport http {
+			response_header_timeout 180s
+			read_timeout 180s
+		}
+	}
+
+	log {
+		output file /var/log/caddy/api.log {
+			roll_size 10MiB
+			roll_keep 5
+		}
+	}
+}

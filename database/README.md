@@ -48,6 +48,16 @@ The setup is designed for the Supabase Free Plan and leaves the existing
   guarded retrieval functions that compare only within the same paper component
   and return no recommendations unless at least two same-component papers and
   five cross-paper candidate questions are embedded.
+- `shamo_v2_6_similarity_by_question_patch.sql`: adds one service-role-only
+  function that takes a seed QUESTION ID instead of an embedding, resolves that
+  embedding internally (whole-question row, else the first part), delegates
+  matching to the v2.1 guarded function, enriches results with reviewed topic
+  and marks metadata, and applies a measured 0.60 similarity floor. This is
+  what the tutor API calls.
+- `shamo_v2_6_similarity_by_question_verification.sql`: read-only checks for
+  the above, including the stemless-question fallback, enrichment
+  completeness, the three empty-state shapes, and two report-only measurements
+  of corpus coverage and topic agreement.
 - `shamo_v2_metadata_and_budget_patch.sql`: adds mathematical topic/skill
   metadata, batch/campaign API-cost tracking, atomic budget reservations, and
   publication of a paper plus its metadata in one transaction.
