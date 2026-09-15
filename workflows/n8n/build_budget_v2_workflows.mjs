@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import { inlineModule } from "./lib/inline_module.mjs";
-import { TOPICS_BY_DOMAIN } from "./lib/validation_rules.mjs";
+import { TOPICS_BY_DOMAIN, PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT } from "./lib/validation_rules.mjs";
+import { resolveCampaign } from "./lib/campaigns.mjs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
@@ -10,8 +11,16 @@ const readJson = (name) =>
   JSON.parse(fs.readFileSync(path.join(here, name), "utf8"));
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
-const v1Child = readJson("shamo_budget_stage_one_math_paper.json");
-const v1Controller = readJson("shamo_budget_test2_six_paper_controller.json");
+// Select which campaign's v1 output to patch into v2.1. Defaults to the
+// original 9709 pilot so `node build_budget_v2_workflows.mjs` with no
+// arguments reproduces this generator's existing output. Run
+// `node build_budget_batch_workflows.mjs <campaign>` first for any campaign
+// other than the default -- this script only patches v1 output, it does not
+// regenerate it. See lib/campaigns.mjs for the full campaign configuration.
+const campaign = resolveCampaign(process.argv.slice(2));
+
+const v1Child = readJson(campaign.outputChildFilename);
+const v1Controller = readJson(campaign.outputControllerFilename);
 const pilot = readJson("shamo_pilot_extract_and_stage.json");
 
 const findNode = (workflow, name) => {
@@ -155,10 +164,29 @@ repairSchema.properties.corrected_questions.items.properties
 // sync" comment, which is a drift hazard written down as a instruction: the
 // schema the model is given and the vocabulary the validator enforces must be
 // the same list or a paper can pass one and fail the other.
+//
+// UNION OF EVERY DOMAIN, not just the 9709 three. This generator is shared
+// across campaigns (see lib/campaigns.mjs); when the IGCSE 0606 domain
+// ("Additional Mathematics (IGCSE)") was added to TOPICS_BY_DOMAIN, this list
+// was never widened to match, so the OpenAI structured-output schema's
+// main_topic enum stayed 9709-only. The four IGCSE-only topics (Quadratic
+// Functions, Factors and Remainder Theorem, Indices and Surds, Simultaneous
+// Equations) were therefore not just unlikely -- they were STRUCTURALLY
+// IMPOSSIBLE for the model to return, since OpenAI's strict JSON schema
+// rejects any value outside the enum. Confirmed as the root cause of a
+// repeating "Forces and Equilibrium"/"Numerical Methods" misclassification on
+// plain algebra/factor-theorem IGCSE questions during source review (20
+// August 2026, see CLAUDE.md Development history): denied its real answer,
+// the model substituted the nearest-sounding label that WAS in the enum. The
+// per-request prompt text below already correctly narrows the model to the
+// current paper's own domain (`allowedTopics`, built from the same
+// PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT map) -- that was never the gap. The
+// hard schema constraint was. Building this as a union of every exported
+// domain, rather than naming the three 9709 ones explicitly, means a future
+// campaign's new domain is automatically included the moment it is added to
+// TOPICS_BY_DOMAIN, with no second place to remember to update.
 const MAIN_TOPIC_VOCABULARY = [
-  ...TOPICS_BY_DOMAIN["Pure Mathematics"],
-  ...TOPICS_BY_DOMAIN.Mechanics,
-  ...TOPICS_BY_DOMAIN["Probability and Statistics"],
+  ...new Set(Object.values(TOPICS_BY_DOMAIN).flat()),
 ];
 
 const pageMapSchema = {
@@ -291,7 +319,23 @@ for (const document of pair.documents) {
   }
 }
 const paperType = String(pair.paper_variant || '').charAt(0);
-const expectedTotalMarks = ['1', '3'].includes(paperType) ? 75 : 50;
+// Expected paper totals are a property of the syllabus, not a universal
+// constant -- 9709 splits Papers 1/3 (75 marks) from Papers 4-6 (50 marks),
+// while IGCSE 0606's two papers are BOTH 80 marks. Keying explicitly on
+// syllabus_code and throwing on anything unrecognised means a future third
+// syllabus cannot silently inherit the wrong numbers from whichever branch
+// happens to run first -- it has to be added here on purpose.
+let expectedTotalMarks;
+if (pair.syllabus_code === '9709') {
+  expectedTotalMarks = ['1', '3'].includes(paperType) ? 75 : 50;
+} else if (pair.syllabus_code === '0606') {
+  if (!['1', '2'].includes(paperType)) {
+    throw new Error('Unrecognized 0606 paper variant: ' + pair.paper_variant);
+  }
+  expectedTotalMarks = 80;
+} else {
+  throw new Error('No expected-marks rule is defined for syllabus_code ' + pair.syllabus_code + '.');
+}
 const sourceKey = [
   pair.qualification,
   pair.syllabus_code,
@@ -987,16 +1031,16 @@ if (!reservation?.cost_event_id) throw new Error('Metadata budget reservation wa
 // Narrowing the prompt is what makes MAIN_TOPIC_OUTSIDE_PAPER_DOMAIN satisfiable
 // rather than a rule the model is set up to fail.
 // (No backticks in comments here -- this block sits inside a template literal.)
+//
+// Baked from lib/validation_rules.mjs's own exports rather than a second,
+// hand-maintained copy of the same map -- the two used to drift because
+// nothing forced them to agree, and the domain a question is validated
+// against must be the same domain the model was told about.
 const TOPICS_BY_DOMAIN = ${JSON.stringify(TOPICS_BY_DOMAIN)};
-const DOMAIN_BY_COMPONENT = ${JSON.stringify({
-  1: "Pure Mathematics",
-  2: "Pure Mathematics",
-  3: "Pure Mathematics",
-  4: "Mechanics",
-  5: "Probability and Statistics",
-  6: "Probability and Statistics",
-})};
-const paperDomain = DOMAIN_BY_COMPONENT[Number(String(state.pair.paper_variant || '').charAt(0))] || null;
+const PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT = ${JSON.stringify(PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT)};
+const paperDomain = (PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT[String(state.pair.syllabus_code || '').trim()] || {})[
+  Number(String(state.pair.paper_variant || '').charAt(0))
+] || null;
 const allowedTopics = paperDomain
   ? TOPICS_BY_DOMAIN[paperDomain]
   : Object.keys(TOPICS_BY_DOMAIN).reduce((all, key) => all.concat(TOPICS_BY_DOMAIN[key]), []);
@@ -1080,7 +1124,7 @@ const questions = state.paper_bundle.questions.map((question) => {
     metadata: {
       ...metadata,
       metadata_model: state.config.metadata_model,
-      taxonomy_version: 'cambridge-maths-v1',
+      taxonomy_version: '${campaign.taxonomyVersion}',
     },
   };
 });
@@ -1569,7 +1613,7 @@ buildRepairRequestCode = buildRepairRequestCode
   .replace("reasoning: { effort: 'high' }", "reasoning: { effort: 'medium' }")
   .replace(
     "max_output_tokens: 30000",
-    "max_output_tokens: 22000"
+    `max_output_tokens: ${campaign.repairMaxOutputTokens}`
   )
   .replace(
     "name: 'shamo_targeted_question_repairs'",
@@ -2023,10 +2067,17 @@ connect("Has Validation Issues", "Store Validation Issues", 0);
 connect("Has Validation Issues", "Paper Staging Result", 1);
 connect("Store Validation Issues", "Paper Staging Result");
 
+// The v2.1 child mints fresh random ids for every node introduced below via
+// `fresh()`/`codeNode()`/etc (see the top of this file), so unlike the v1
+// generator -- which derives every id deterministically from the node's name
+// -- re-running this script never reproduces the same bytes twice, for any
+// campaign, including the original 9709 one. That non-determinism predates
+// this campaign refactor; it is called out here rather than silently relied
+// on.
 const child = {
   ...clone(v1Child),
-  name: "Shamo Budget v2.1 - Structured Maths Paper Staging",
-  versionId: "85b559c4-3a0e-448c-82f1-bc54bca7d059",
+  name: campaign.v2ChildWorkflowName,
+  versionId: campaign.v2ChildVersionId,
   nodes: childNodes,
   connections: childConnections,
   pinData: {},
@@ -2039,18 +2090,26 @@ findNode(child, "Child workflow note").parameters.content =
   "## Budget v2.1 structured extraction\nQuestion paper → mark-scheme page map → one request per question → metadata → deterministic validation → optional targeted repair.\n\nLegitimate blank-Answer rows with Marks and Guidance are preserved. Encoding corruption and duplicated Answer/Guidance are checked. Every paid stage is reserved and finalized in Supabase.";
 
 const controller = clone(v1Controller);
-controller.name = "Shamo Budget v2.1 - Test 2 Six Paper Calibration";
-controller.versionId = "037475a2-20e9-460f-872d-9df4e8447926";
+controller.name = campaign.v2ControllerWorkflowName;
+controller.versionId = campaign.v2ControllerVersionId;
 findNode(controller, "First six only").parameters.content =
-  "## Budget-v2.1 calibration\nDefaults to batch 2 so the already-staged first six papers are not reprocessed. Select **Shamo Budget v2.1 - Structured Maths Paper Staging** in the sub-workflow node.";
+  campaign.nextBatchNumber > 1
+    ? "## Budget-v2.1 calibration\nDefaults to batch " +
+      campaign.nextBatchNumber +
+      " so the already-staged first six papers are not reprocessed. Select **" +
+      campaign.v2ChildWorkflowName +
+      "** in the sub-workflow node."
+    : "## Budget-v2.1 calibration\nFirst batch for this campaign -- nothing has been staged yet. Select **" +
+      campaign.v2ChildWorkflowName +
+      "** in the sub-workflow node.";
 let configurationCode =
   findNode(controller, "Budget Configuration").parameters.jsCode;
 configurationCode = configurationCode
   .replace(
-    "campaign_key: 'a-level-9709-test2-pilot-v1',",
-    "campaign_key: 'a-level-9709-test2-pilot-v1',\n  workflow_version: 'v2.1',"
+    `campaign_key: '${campaign.campaignKey}',`,
+    `campaign_key: '${campaign.campaignKey}',\n  workflow_version: 'v2.1',`
   )
-  .replace("batch_number: 1,", "batch_number: 2,")
+  .replace("batch_number: 1,", `batch_number: ${campaign.nextBatchNumber},`)
   .replace(
     "openai_reservation_usd: 0.25,",
     String.raw`stage_reservations_usd: {
@@ -2093,12 +2152,12 @@ findNode(controller, "Guarded Batch Result").parameters.jsCode =
   );
 
 fs.writeFileSync(
-  path.join(here, "shamo_budget_v2_1_stage_one_math_paper.json"),
+  path.join(here, campaign.outputV2ChildFilename),
   JSON.stringify(child, null, 2) + "\n"
 );
 fs.writeFileSync(
-  path.join(here, "shamo_budget_v2_1_test2_six_paper_controller.json"),
+  path.join(here, campaign.outputV2ControllerFilename),
   JSON.stringify(controller, null, 2) + "\n"
 );
 
-console.log("Generated Shamo budget v2.1 workflows.");
+console.log(`Generated Shamo budget v2.1 workflows for campaign "${campaign.id}".`);

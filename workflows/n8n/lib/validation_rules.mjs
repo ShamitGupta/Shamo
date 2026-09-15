@@ -30,8 +30,9 @@
 // `Mechanics` for all seven questions. Values drifted because the field was
 // unconstrained free text.
 /**
- * Which paper family a component belongs to. Deterministic from the component
- * digit, so it never needs a model and can never disagree with itself.
+ * Which paper family a component belongs to, keyed first by syllabus code and
+ * then by the component digit. Deterministic from data already on the pair, so
+ * it never needs a model and can never disagree with itself.
  *
  * This exists because `main_topic` was carrying two different levels of meaning
  * at once. Across the first 99 rows, component 4 was labelled `Mechanics` 14
@@ -39,31 +40,54 @@
  * paper families, not content topics, and they sat in the same field as
  * `Calculus` and `Complex Numbers`. Any filter or analytic over that field was
  * comparing unlike things.
+ *
+ * Keyed by syllabus code as well as component digit since adding IGCSE 0606
+ * (August 2026) made the component digit ambiguous on its own: 0606 papers 1
+ * and 2 share the digits 9709 already uses for Pure Mathematics papers 1-3, but
+ * mean a different paper entirely.
  */
-export const PAPER_DOMAIN_BY_COMPONENT = {
-  1: "Pure Mathematics",
-  2: "Pure Mathematics",
-  3: "Pure Mathematics",
-  4: "Mechanics",
-  5: "Probability and Statistics",
-  6: "Probability and Statistics",
+export const PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT = {
+  "9709": {
+    1: "Pure Mathematics",
+    2: "Pure Mathematics",
+    3: "Pure Mathematics",
+    4: "Mechanics",
+    5: "Probability and Statistics",
+    6: "Probability and Statistics",
+  },
+  // IGCSE 0606 (Additional Mathematics) has exactly two paper types, both
+  // drawing on the same single syllabus content area -- there is no paper
+  // family split the way 9709 splits Pure/Mechanics/Statistics across
+  // components, so both components map to the one IGCSE domain below.
+  "0606": {
+    1: "Additional Mathematics (IGCSE)",
+    2: "Additional Mathematics (IGCSE)",
+  },
 };
 
-export function paperDomainFor(paperVariant) {
+/** @deprecated kept only as the historical 9709-only view of the map above. */
+export const PAPER_DOMAIN_BY_COMPONENT = PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT["9709"];
+
+export function paperDomainFor(syllabusCode, paperVariant) {
   const component = Number(String(paperVariant ?? "").trim().charAt(0));
-  return PAPER_DOMAIN_BY_COMPONENT[component] ?? null;
+  const bySyllabus = PAPER_DOMAIN_BY_SYLLABUS_AND_COMPONENT[String(syllabusCode ?? "").trim()];
+  return bySyllabus ? bySyllabus[component] ?? null : null;
 }
 
 /**
- * Controlled content-topic vocabulary, aligned to the published 9709 syllabus
+ * Controlled content-topic vocabulary, aligned to the published syllabuses
  * rather than invented. A paper family must never appear here -- that is what
  * `paper_domain` is for.
  *
  * Changing this list invalidates stored rows, so it is versioned: bump
  * TAXONOMY_VERSION and record the migration whenever a value is added, removed
- * or renamed.
+ * or renamed. TAXONOMY_VERSION covers the original 9709 vocabulary only;
+ * IGCSE_TAXONOMY_VERSION below covers the IGCSE 0606 addition, so a
+ * corpus-wide query can tell which vocabulary revision produced a given row
+ * without conflating the two syllabuses' review history.
  */
 export const TAXONOMY_VERSION = "9709-v3";
+export const IGCSE_TAXONOMY_VERSION = "cambridge-igcse-0606-v1";
 
 const PURE_TOPICS = [
   "Algebra",
@@ -106,14 +130,62 @@ const STATISTICS_TOPICS = [
   "Hypothesis Tests",
 ];
 
+// IGCSE 0606 (Additional Mathematics) topic vocabulary, added August 2026
+// alongside the 2024-2025 IGCSE ingestion campaign.
+//
+// Split into two lists so "shared with 9709" and "IGCSE-only" is unambiguous
+// in code, not just implied by which array they end up concatenated into:
+//
+//   IGCSE_SHARED_TOPICS   -- the same concept as an existing 9709 Pure
+//                            Mathematics topic, reusing that exact name so a
+//                            shared idea keeps one label across syllabuses.
+//                            Includes Kinematics and Permutations and
+//                            Combinations, which are legitimate 0606 topics
+//                            that happened to be locked to 9709's
+//                            Mechanics/Statistics-only domains before this
+//                            change -- an 0606 paper could never have used
+//                            them without tripping MAIN_TOPIC_OUTSIDE_PAPER_DOMAIN.
+//   IGCSE_ONLY_TOPICS     -- genuinely new to this vocabulary. 0606 assesses
+//                            these directly and 9709 does not print a
+//                            question that is only this.
+const IGCSE_SHARED_TOPICS = [
+  "Algebra",
+  "Functions",
+  "Coordinate Geometry",
+  "Circular Measure",
+  "Trigonometry",
+  "Series",
+  "Calculus",
+  "Exponential and Logarithmic Functions",
+  "Vectors",
+  "Kinematics",
+  "Permutations and Combinations",
+];
+
+const IGCSE_ONLY_TOPICS = [
+  "Quadratic Functions",
+  "Factors and Remainder Theorem",
+  "Indices and Surds",
+  "Simultaneous Equations",
+];
+
+const IGCSE_ADD_MATHS_TOPICS = [...IGCSE_SHARED_TOPICS, ...IGCSE_ONLY_TOPICS];
+
 /** Topics permitted within each paper family. */
 export const TOPICS_BY_DOMAIN = {
   "Pure Mathematics": PURE_TOPICS,
   Mechanics: MECHANICS_TOPICS,
   "Probability and Statistics": STATISTICS_TOPICS,
+  "Additional Mathematics (IGCSE)": IGCSE_ADD_MATHS_TOPICS,
 };
 
-const MAIN_TOPIC_VOCABULARY = [...PURE_TOPICS, ...MECHANICS_TOPICS, ...STATISTICS_TOPICS];
+// De-duplicated: Kinematics and Permutations and Combinations legitimately
+// appear in two domains' lists above (their 9709 home and the IGCSE list),
+// and a Set keeps MAIN_TOPIC_NOT_IN_VOCABULARY's message from repeating a
+// value twice.
+const MAIN_TOPIC_VOCABULARY = [
+  ...new Set([...PURE_TOPICS, ...MECHANICS_TOPICS, ...STATISTICS_TOPICS, ...IGCSE_ADD_MATHS_TOPICS]),
+];
 
 /** Marks awarded by a code cell. `B2,1,0` -> 2, `B1 B1` -> 2, `A1 FT` -> 1. */
 function ruleMarkValue(code) {
@@ -486,7 +558,7 @@ function applyExtendedValidationRules({ bundle, state, addIssue }) {
     // Membership of the global list is not enough. A Mechanics paper carrying
     // `The Normal Distribution` is in-vocabulary and still wrong, and the
     // component digit says so deterministically without asking a model.
-    const paperDomain = paperDomainFor(state?.pair?.paper_variant);
+    const paperDomain = paperDomainFor(state?.pair?.syllabus_code, state?.pair?.paper_variant);
     const allowedForDomain = paperDomain ? TOPICS_BY_DOMAIN[paperDomain] || [] : [];
     if (metadata.main_topic && allowedForDomain.length && !allowedForDomain.includes(metadata.main_topic)) {
       addIssue(

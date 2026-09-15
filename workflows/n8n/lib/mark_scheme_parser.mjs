@@ -70,6 +70,18 @@ const QUESTION_CELL = /^(\d{1,2})((?:\s*\([A-Za-z0-9]{1,3}\))*)$/;
 // primary method, not an alternative.
 const ALT_HEADER = /^(?:alternative\s+(?:method|solution)|method\s*(\d+))\b/i;
 
+// A bare alternative header, with no "Method"/"Solution" qualifier: `Alternative`,
+// `Alternative 1`, `Alternative 2`, `Alternative version`. Confirmed printed
+// verbatim across several IGCSE 0606 2024-2025 mark schemes (source review,
+// 20 August 2026) -- ALT_HEADER above requires "method" or "solution" right
+// after the word, so this shorter form fell through to ordinary content and
+// got appended onto the PRECEDING row's `content_markdown` by the multi-line
+// continuation step, corrupting it (e.g. a correct final answer ending in the
+// literal text "\nAlternative"). Anchored to the WHOLE cell (not just a
+// prefix) so genuine prose that happens to start with the word "alternative"
+// is never mistaken for a header.
+const BARE_ALT_HEADER = /^alternative(?:\s+version)?\s*\d{0,2}\s*:?$/i;
+
 // A qualifier limiting how far the alternative block reaches:
 //
 //   Alternative Method 2 for first 4 marks of Question 6(b)
@@ -433,6 +445,7 @@ export function parseMarkSchemePages(pages) {
     shared_answer_row_count: 0,
     table_block_count: 0,
     skipped_block_count: 0,
+    merged_mark_value_recovered_count: 0,
   };
   // Per-question diagnostics matter as much as the totals: the fallback
   // decision is made per question, and attributing a paper-wide count to every
@@ -449,6 +462,7 @@ export function parseMarkSchemePages(pages) {
         table_debris_row_count: 0,
         alternative_block_capped_count: 0,
         shared_answer_row_count: 0,
+        merged_mark_value_recovered_count: 0,
       });
     }
     perQuestion.get(questionNumber)[field] += 1;
@@ -581,7 +595,9 @@ export function parseMarkSchemePages(pages) {
           continue;
         }
 
-        const altMatch = headerCandidate.match(ALT_HEADER);
+        const altMatch =
+          headerCandidate.match(ALT_HEADER) ||
+          (BARE_ALT_HEADER.test(headerCandidate) ? [headerCandidate, undefined] : null);
         if (altMatch && marksIndex === null) {
           // `Method 1` is the primary method and closes alternative mode.
           scMode = false;
@@ -694,6 +710,57 @@ export function parseMarkSchemePages(pages) {
             guidanceText = guidanceText.slice(lifted[0].length).trim();
             diagnostics.lifted_mark_code_count += 1;
             bump(question, "lifted_mark_code_count");
+          }
+
+          // --- 4b. Bundled multi-mark row -----------------------------------
+          // Cambridge sometimes merges several marks into one printed row,
+          // showing a bare, unparenthesised number (e.g. "2") in the Marks
+          // column while the row's own Answer/Guidance cells are non-empty --
+          // so this never reaches step 3's clean-subtotal handling (that
+          // requires every earlier cell to be blank) and marksIndex resolves
+          // to null instead. The letter-code breakdown then lives only in
+          // prose ("M1 for X", or unbolded so LIFT above cannot even see it).
+          // Left alone, at most one embedded code is recovered at its OWN
+          // face value and the rest of the printed total silently vanishes
+          // from every downstream reconciliation. Confirmed on at least six
+          // IGCSE 0606 2024-2025 papers during source review (20 August
+          // 2026), always a lost mark, never a fabrication -- so this step
+          // only ever RAISES a row's value to match what Cambridge printed,
+          // never invents a code where none was found at all. Guarded to
+          // marksIndex === null (this row matched none of resolveMarksIndex's
+          // rules) so a genuine multi-column data table -- where an unrelated
+          // bare number sits in the layout's Marks position while the real
+          // code was already found in a different cell -- is never touched.
+          if (marksIndex === null && layout && answerCells.length <= 2) {
+            const layoutCell = stripped[layout.marksIndex];
+            const declaredValue =
+              layoutCell && SUBTOTAL.test(codeBodyOf(layoutCell))
+                ? Number(codeBodyOf(layoutCell))
+                : null;
+            // Capped at 4: every confirmed real instance (source review, 20
+            // August 2026) merged 2-4 marks into one row. A larger bare number
+            // in the layout's Marks position is far more likely to be
+            // unrelated embedded data (paper 51's ragged frequency-table rows
+            // print class widths and frequencies up to 20+ in that same
+            // column) than a genuine bundled award, and answerCells.length<=2
+            // additionally rules those rows out on their own: a real merged
+            // mark's Answer cell is one phrase, never a run of bare numbers.
+            if (declaredValue && declaredValue >= 2 && declaredValue <= 4) {
+              if (markCode === null) {
+                const unboldedHint = guidanceText.match(new RegExp(`\\b(${ONE_CODE})\\b`, "i"));
+                if (unboldedHint) {
+                  markCode = normalizeCode(unboldedHint[1]);
+                  diagnostics.lifted_mark_code_count += 1;
+                  bump(question, "lifted_mark_code_count");
+                }
+              }
+              if (markCode !== null && markValue(markCode) < declaredValue) {
+                markCode = markCode.replace(/\d+/, String(declaredValue));
+                diagnostics.merged_mark_value_recovered_count =
+                  (diagnostics.merged_mark_value_recovered_count ?? 0) + 1;
+                bump(question, "merged_mark_value_recovered_count");
+              }
+            }
           }
         }
 
@@ -887,6 +954,7 @@ export function buildMarkSchemeResults(pages, questionNumbers) {
         table_debris_row_count: perQuestion.table_debris_row_count ?? 0,
         alternative_block_capped_count: perQuestion.alternative_block_capped_count ?? 0,
         shared_answer_row_count: perQuestion.shared_answer_row_count ?? 0,
+        merged_mark_value_recovered_count: perQuestion.merged_mark_value_recovered_count ?? 0,
         printed_part_totals: totals,
         alternative_groups: alternativeGroups.filter((g) => g.question_number === questionNumber),
         special_case_groups: specialCaseGroups.filter((g) => g.question_number === questionNumber),

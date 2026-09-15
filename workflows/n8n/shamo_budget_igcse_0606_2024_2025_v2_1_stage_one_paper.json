@@ -1,5 +1,5 @@
 {
-  "name": "Shamo Budget v2.1 - Structured Maths Paper Staging",
+  "name": "Shamo Budget v2.1 - IGCSE 0606 2024-2025 Paper Staging",
   "nodes": [
     {
       "parameters": {
@@ -391,7 +391,7 @@
         2680,
         80
       ],
-      "id": "92d5b39f-4642-40b5-9b5f-1e695338b111",
+      "id": "4793d217-f21e-41b4-9b6d-8ad71f492154",
       "name": "Prepare Question Paper Reservation"
     },
     {
@@ -422,7 +422,7 @@
         2920,
         80
       ],
-      "id": "1a6a296a-4083-47ab-8767-99665f619bc8",
+      "id": "91786dca-673a-4402-91e7-8a8a7e8fe7a9",
       "name": "Reserve Question Paper Budget",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -446,7 +446,7 @@
         3160,
         80
       ],
-      "id": "84148856-5857-4777-bd75-9ff0ad372d7a",
+      "id": "ef1f488c-15d9-4d5f-844b-e4ff491722ec",
       "name": "Build Question Paper Request"
     },
     {
@@ -482,7 +482,7 @@
         3400,
         80
       ],
-      "id": "b892a634-bcef-4b45-baac-e145cf819207",
+      "id": "b79f5dab-83fa-4910-8311-d976c6f4db2a",
       "name": "OpenAI Question Paper",
       "retryOnFail": true,
       "maxTries": 5,
@@ -505,7 +505,7 @@
         3640,
         80
       ],
-      "id": "9bfc2cda-5e53-4c2b-a500-9776792efd2d",
+      "id": "6e3e1014-0ca5-43da-9983-42ed92c98421",
       "name": "Parse Question Paper"
     },
     {
@@ -536,7 +536,7 @@
         3880,
         80
       ],
-      "id": "a71ce0b0-6dad-45de-906c-07cab8d027b5",
+      "id": "d637181f-e01e-42b8-ac96-d73ca69bdf50",
       "name": "Finalize Question Paper Cost",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -560,7 +560,7 @@
         4120,
         80
       ],
-      "id": "b6d61eb2-0b07-47b8-97e5-aa6ec875ee90",
+      "id": "0941744a-87eb-4822-8285-82ec03d40c2e",
       "name": "Restore Question Paper State"
     },
     {
@@ -574,7 +574,7 @@
         4360,
         80
       ],
-      "id": "41a4e618-5996-4ad4-a2e9-e6101ddc8896",
+      "id": "2f049603-75f0-435f-a3c7-03fa56155fa5",
       "name": "Prepare Page Map Reservation"
     },
     {
@@ -605,7 +605,7 @@
         4600,
         80
       ],
-      "id": "e4e570fb-8eef-42ea-a565-72b5d13e75ca",
+      "id": "f3009929-7730-4fab-a26b-b8e7942e078f",
       "name": "Reserve Page Map Budget",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -629,7 +629,7 @@
         4840,
         80
       ],
-      "id": "4c574fe0-75ef-4cfa-a5ed-81c795fbde15",
+      "id": "56a90418-47d6-4cb6-9188-8ef9e6e4d724",
       "name": "Build Page Map Request"
     },
     {
@@ -665,7 +665,7 @@
         5080,
         80
       ],
-      "id": "3e53cf8c-6b4f-4a36-ac8a-79fa25754295",
+      "id": "37144033-e87d-42a6-b5ab-92183296851b",
       "name": "OpenAI Mark Scheme Page Map",
       "retryOnFail": true,
       "maxTries": 5,
@@ -688,7 +688,7 @@
         5320,
         80
       ],
-      "id": "487949ef-9eae-430b-b3e6-f3d02800e14a",
+      "id": "5345520a-1358-496f-98c8-4d0edd3a1959",
       "name": "Parse Page Map"
     },
     {
@@ -719,7 +719,7 @@
         5560,
         80
       ],
-      "id": "ffcef7e6-22d1-49fd-9dcb-127611f8c81a",
+      "id": "023f5cb9-972f-42f5-a97d-2428cbb014dc",
       "name": "Finalize Page Map Cost",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -743,7 +743,7 @@
         5800,
         80
       ],
-      "id": "0770b9b7-f03c-4ccc-adb9-9434a82ecc5c",
+      "id": "8ee9699c-f9d1-4fe1-a225-82c40ca72661",
       "name": "Restore Page Map State"
     },
     {
@@ -757,7 +757,7 @@
         5920,
         80
       ],
-      "id": "e1fbb633-fa5e-4ada-a45e-d023db9661c4",
+      "id": "aa3a8e0e-443d-4d2c-9a97-02faeb88db8b",
       "name": "Parse Mark Scheme Tables"
     },
     {
@@ -771,7 +771,7 @@
           },
           "conditions": [
             {
-              "id": "48922a47-ff22-437a-a58a-eccbff25fb79",
+              "id": "81ffbc5c-8612-4106-9ebb-36f296cf67f0",
               "leftValue": "={{ $json.mark_scheme_fallback_needed }}",
               "rightValue": true,
               "operator": {
@@ -791,7 +791,7 @@
         5980,
         80
       ],
-      "id": "6c04b22b-16d2-49cc-8a7f-9747a0404300",
+      "id": "66de7db5-3652-4531-bdcf-725046b16a5d",
       "name": "Mark Scheme Fallback Needed"
     },
     {
@@ -805,7 +805,7 @@
         6040,
         80
       ],
-      "id": "798eea20-cd3a-49a0-a194-536289377d4b",
+      "id": "0fe89c4a-66ac-4f1b-b145-b09dc27e7aaf",
       "name": "Prepare Mark Scheme Reservation"
     },
     {
@@ -836,7 +836,7 @@
         6280,
         80
       ],
-      "id": "b6864723-d535-43f2-b586-eb75a60fc424",
+      "id": "a05cada3-0e59-4924-8295-d49e714202f5",
       "name": "Reserve Mark Scheme Budget",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -860,7 +860,7 @@
         6520,
         80
       ],
-      "id": "bfa29256-29a6-4d25-bf03-e10f69467904",
+      "id": "1d785861-5945-4e5a-8754-265e914944dd",
       "name": "Build Mark Scheme Requests"
     },
     {
@@ -902,7 +902,7 @@
         6760,
         80
       ],
-      "id": "6140cb75-2cb0-4078-b452-0cdd54c9762f",
+      "id": "88be34c7-0feb-4831-b782-104ca7f40ba3",
       "name": "OpenAI Mark Scheme Questions",
       "retryOnFail": true,
       "maxTries": 5,
@@ -925,7 +925,7 @@
         7000,
         80
       ],
-      "id": "6598f8a7-9d4a-4978-84e2-9e2865175daf",
+      "id": "000fb678-9b96-4f99-9521-ebad8c76bae9",
       "name": "Parse Mark Scheme Responses"
     },
     {
@@ -956,7 +956,7 @@
         7240,
         80
       ],
-      "id": "145b6265-011c-4f6c-b1b1-32049e25c745",
+      "id": "402c465f-08bf-480c-9245-45de44a95bed",
       "name": "Finalize Mark Scheme Cost",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -980,7 +980,7 @@
         7480,
         80
       ],
-      "id": "e383e98b-cf4e-486a-ab4d-44c8aeb23a3b",
+      "id": "0cd9e170-f0ce-4071-a1af-02a891e4ac67",
       "name": "Restore Mark Scheme State"
     },
     {
@@ -994,7 +994,7 @@
         7720,
         80
       ],
-      "id": "f30813e5-ae02-4c65-b33d-1ba205d79875",
+      "id": "d00350c3-5d61-43a4-9688-cfecb1e59f3b",
       "name": "Merge Paper Bundle"
     },
     {
@@ -1008,7 +1008,7 @@
         7960,
         80
       ],
-      "id": "f3c903ab-9228-4b86-a960-3abfdd297721",
+      "id": "a59bb32f-0823-4ef0-8a8c-fe43de2b87b0",
       "name": "Prepare Metadata Reservation"
     },
     {
@@ -1039,7 +1039,7 @@
         8200,
         80
       ],
-      "id": "4714057b-ea28-44a7-a0f7-eab86bfe9306",
+      "id": "1703800b-e80d-4f7d-a8b6-e9c19fd94684",
       "name": "Reserve Metadata Budget",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -1063,7 +1063,7 @@
         8440,
         80
       ],
-      "id": "44151628-8b53-4ef5-8867-0f17bc711332",
+      "id": "6c8be668-9193-486c-b789-8cef34da103c",
       "name": "Build Metadata Request"
     },
     {
@@ -1099,7 +1099,7 @@
         8680,
         80
       ],
-      "id": "de4ddde4-9607-42b5-a6fa-2782c9aaacc4",
+      "id": "f713c17a-1b74-4b0a-b9ef-ab93825c172e",
       "name": "OpenAI Question Metadata",
       "retryOnFail": true,
       "maxTries": 5,
@@ -1114,7 +1114,7 @@
     {
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "\nconst response = $input.first().json;\nconst state = $('Build Metadata Request').first().json;\nif (response.status === 'incomplete') throw new Error('Metadata classification was incomplete.');\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nconst outputText = (message?.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText?.text) throw new Error('Metadata classification returned no structured text.');\nconst extracted = JSON.parse(outputText.text);\nconst metadataByNumber = new Map((extracted.questions || []).map((item) => [Number(item.question_number), item]));\nif (metadataByNumber.size !== state.paper_bundle.questions.length) {\n  throw new Error('Metadata response did not contain exactly one row per question.');\n}\nconst questions = state.paper_bundle.questions.map((question) => {\n  const item = metadataByNumber.get(Number(question.question_number));\n  if (!item) throw new Error('Metadata omitted question ' + question.question_number + '.');\n  const { question_number, ...metadata } = item;\n  return {\n    ...question,\n    metadata: {\n      ...metadata,\n      metadata_model: state.config.metadata_model,\n      taxonomy_version: 'cambridge-maths-v1',\n    },\n  };\n});\nconst model = state.config.metadata_model;\n\nconst usage = response.usage || {};\nconst inputTokens = Number(usage.input_tokens || 0);\nconst cachedInputTokens = Number(usage.input_tokens_details?.cached_tokens || 0);\nconst outputTokens = Number(usage.output_tokens || 0);\nconst reportedTotalTokens = Number(usage.total_tokens || 0);\n// Any token the provider counts but we do not price is unbilled in our ledger.\nconst unaccountedTokens = reportedTotalTokens > 0\n  ? Math.max(0, reportedTotalTokens - inputTokens - outputTokens)\n  : 0;\nconst prices = state.config.openai_prices_per_million[model];\nif (!prices) throw new Error('No price configuration exists for ' + model + '.');\nconst actualCostUsd =\n  Math.max(0, inputTokens - cachedInputTokens) * Number(prices.input) / 1000000 +\n  cachedInputTokens * Number(prices.cached_input) / 1000000 +\n  outputTokens * Number(prices.output) / 1000000;\nconst usageAudit = {\n  usage_raw: usage,\n  reported_total_tokens: reportedTotalTokens,\n  unaccounted_tokens: unaccountedTokens,\n  priced_input_tokens: inputTokens,\n  priced_output_tokens: outputTokens,\n  response_id: response.id || null,\n  model_reported: response.model || null,\n};\nreturn [{\n  json: {\n    ...state,\n    paper_bundle: { ...state.paper_bundle, questions },\n    extraction_response_ids: [...(state.extraction_response_ids || []), response.id || null],\n    api_events: [...(state.api_events || []), {\n      operation: 'question_metadata',\n      model,\n      input_tokens: inputTokens,\n      cached_input_tokens: cachedInputTokens,\n      output_tokens: outputTokens,\n      actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n      usage_audit: usageAudit,\n    }],\n    finalize_cost_body: {\n      requested_cost_event_id: state.cost_event_id,\n      requested_input_tokens: inputTokens,\n      requested_cached_input_tokens: cachedInputTokens,\n      requested_output_tokens: outputTokens,\n      requested_actual_usd: Number(actualCostUsd.toFixed(8)),\n      requested_provider_request_id: response.id || null,\n    },\n  },\n}];"
+        "jsCode": "\nconst response = $input.first().json;\nconst state = $('Build Metadata Request').first().json;\nif (response.status === 'incomplete') throw new Error('Metadata classification was incomplete.');\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nconst outputText = (message?.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText?.text) throw new Error('Metadata classification returned no structured text.');\nconst extracted = JSON.parse(outputText.text);\nconst metadataByNumber = new Map((extracted.questions || []).map((item) => [Number(item.question_number), item]));\nif (metadataByNumber.size !== state.paper_bundle.questions.length) {\n  throw new Error('Metadata response did not contain exactly one row per question.');\n}\nconst questions = state.paper_bundle.questions.map((question) => {\n  const item = metadataByNumber.get(Number(question.question_number));\n  if (!item) throw new Error('Metadata omitted question ' + question.question_number + '.');\n  const { question_number, ...metadata } = item;\n  return {\n    ...question,\n    metadata: {\n      ...metadata,\n      metadata_model: state.config.metadata_model,\n      taxonomy_version: 'cambridge-igcse-0606-v1',\n    },\n  };\n});\nconst model = state.config.metadata_model;\n\nconst usage = response.usage || {};\nconst inputTokens = Number(usage.input_tokens || 0);\nconst cachedInputTokens = Number(usage.input_tokens_details?.cached_tokens || 0);\nconst outputTokens = Number(usage.output_tokens || 0);\nconst reportedTotalTokens = Number(usage.total_tokens || 0);\n// Any token the provider counts but we do not price is unbilled in our ledger.\nconst unaccountedTokens = reportedTotalTokens > 0\n  ? Math.max(0, reportedTotalTokens - inputTokens - outputTokens)\n  : 0;\nconst prices = state.config.openai_prices_per_million[model];\nif (!prices) throw new Error('No price configuration exists for ' + model + '.');\nconst actualCostUsd =\n  Math.max(0, inputTokens - cachedInputTokens) * Number(prices.input) / 1000000 +\n  cachedInputTokens * Number(prices.cached_input) / 1000000 +\n  outputTokens * Number(prices.output) / 1000000;\nconst usageAudit = {\n  usage_raw: usage,\n  reported_total_tokens: reportedTotalTokens,\n  unaccounted_tokens: unaccountedTokens,\n  priced_input_tokens: inputTokens,\n  priced_output_tokens: outputTokens,\n  response_id: response.id || null,\n  model_reported: response.model || null,\n};\nreturn [{\n  json: {\n    ...state,\n    paper_bundle: { ...state.paper_bundle, questions },\n    extraction_response_ids: [...(state.extraction_response_ids || []), response.id || null],\n    api_events: [...(state.api_events || []), {\n      operation: 'question_metadata',\n      model,\n      input_tokens: inputTokens,\n      cached_input_tokens: cachedInputTokens,\n      output_tokens: outputTokens,\n      actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n      usage_audit: usageAudit,\n    }],\n    finalize_cost_body: {\n      requested_cost_event_id: state.cost_event_id,\n      requested_input_tokens: inputTokens,\n      requested_cached_input_tokens: cachedInputTokens,\n      requested_output_tokens: outputTokens,\n      requested_actual_usd: Number(actualCostUsd.toFixed(8)),\n      requested_provider_request_id: response.id || null,\n    },\n  },\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1122,7 +1122,7 @@
         8920,
         80
       ],
-      "id": "17ed4eff-f794-4237-a242-ee322e23b5ea",
+      "id": "8294b70a-0f2d-4c13-9d16-cd3b4545e4db",
       "name": "Parse Metadata"
     },
     {
@@ -1153,7 +1153,7 @@
         9160,
         80
       ],
-      "id": "c36224f4-f0b1-4538-9d95-5d682ebad5b7",
+      "id": "3479d204-72b0-4885-bbef-439e9109b5df",
       "name": "Finalize Metadata Cost",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -1177,7 +1177,7 @@
         9400,
         80
       ],
-      "id": "bba0775a-4be0-4b42-a18d-90388eafa61e",
+      "id": "df7dfaa0-31f1-4197-963b-1ee108b17f0b",
       "name": "Restore Metadata State"
     },
     {
@@ -1191,13 +1191,13 @@
         9640,
         80
       ],
-      "id": "0d6c8c47-d02b-4492-8d36-596a29bcf39f",
+      "id": "b9c6eff1-b281-4c06-95ba-07940b4db156",
       "name": "Deterministic Validation Before Repair"
     },
     {
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "const state = $input.first().json;\nconst blockingIssues = [\n  ...(state.validation_report?.issues || []),\n  ...(state.verifier_report?.issues || []),\n].filter((issue) => issue.severity === 'blocking');\n\nconst initialState = {\n  ...state,\n  initial_validation_report: state.validation_report,\n  initial_verifier_report: state.verifier_report,\n  initial_verifier_response_id: state.verifier_response_id || null,\n};\n\nif (!blockingIssues.length) {\n  return [{\n    json: {\n      ...initialState,\n      repair_needed: false,\n      repair_question_numbers: [],\n      repair_response_id: null,\n    },\n  }];\n}\n\nconst allQuestionNumbers = state.paper_bundle.questions.map(\n  (question) => question.question_number\n);\nconst issueQuestionNumbers = blockingIssues\n  .map((issue) => issue.question_number)\n  .filter((value) => Number.isInteger(value));\nconst repairQuestionNumbers =\n  issueQuestionNumbers.length === blockingIssues.length\n    ? [...new Set(issueQuestionNumbers)].sort((a, b) => a - b)\n    : allQuestionNumbers;\n\nconst qp = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'question_paper'\n);\nconst ms = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'mark_scheme'\n);\nconst affectedQuestions = state.paper_bundle.questions.filter(\n  (question) => repairQuestionNumbers.includes(question.question_number)\n);\n\nconst prompt = [\n  'Repair only the listed questions in an extracted Cambridge past-paper bundle.',\n  'Use both official PDFs as the source of truth and independently confirm every reported issue.',\n  'Return exactly one complete corrected question for every requested question number and no other questions.',\n  'Do not remove correct mark-scheme rows, alternatives, examiner guidance, page references or instructional assets.',\n  'A part exists only if its label is visibly printed. For an unparted question use parts=[] and mark-scheme part_path=[].',\n  'Never repeat an unparted instruction in both stem_markdown and a synthetic part.',\n  'The Marks column alone determines mark_code. Preserve leading dependency asterisks exactly.',\n  'For a source row with blank Answer and Marks but non-empty Guidance, use content_markdown=\"\", mark_code=null and is_final_answer=false. A source row may also have blank Answer but nonblank Marks and Guidance: preserve content_markdown=\"\", keep the printed mark_code, and preserve Guidance exactly. Never invent Answer text, copy Guidance into content_markdown, or repeat a Marks code at the start of guidance_markdown. Do not emit standalone part-total numbers from the bottom of the Marks column. A non-null mark_code must be plain text without Markdown bold wrappers and must begin with M, DM, A or B and its printed number; preserve FT suffixes such as A1FT and B1FT. Preserve every algebraic and combinatorial variable exactly, and verify that subscripts and stated ranges use the same placeholder. For multiple printed methods, Method 1 is primary and later methods are alternatives; never mark every method as alternative. A leading dependency star such as *M1 does not by itself make a row an alternative method. An SC mark is a special-case award and must not be counted as an additional primary mark.',\n  'Preserve every factor, sign, bracket, exponent, angle symbol and examiner condition.',\n  'Use semantic LaTeX such as \\\\angle OAB for an angle; never use an overbar for a printed angle symbol.',\n  'Correct the data, not the issue report. Do not merely copy suggested wording without checking the PDFs.',\n].join('\\n');\n\nreturn [{\n  json: {\n    ...initialState,\n    repair_needed: true,\n    repair_question_numbers: repairQuestionNumbers,\n    repair_request: {\n      model: state.config.repair_model,\n      reasoning: { effort: 'medium' },\n      store: false,\n      max_output_tokens: 22000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: JSON.stringify({\n                requested_question_numbers: repairQuestionNumbers,\n                blocking_issues: blockingIssues,\n                questions_to_repair: affectedQuestions,\n              }),\n            },\n            { type: 'input_file', file_url: qp.source_url },\n            { type: 'input_file', file_url: ms.source_url },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_v2_targeted_question_repairs',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"corrected_questions\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"stem_markdown\":{\"type\":\"string\"},\"total_marks\":{\"type\":\"integer\",\"minimum\":0},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"label_path\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"prompt_markdown\":{\"type\":\"string\"},\"marks\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"sort_order\":{\"type\":\"integer\",\"minimum\":0}},\"required\":[\"label_path\",\"prompt_markdown\",\"marks\",\"source_page_numbers\",\"sort_order\"],\"additionalProperties\":false}},\"mark_scheme_items\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"sequence_number\":{\"type\":\"integer\",\"minimum\":1},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"mark_code\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}]},\"content_markdown\":{\"type\":\"string\"},\"guidance_markdown\":{\"type\":\"string\"},\"is_final_answer\":{\"type\":\"boolean\"},\"is_alternative_method\":{\"type\":\"boolean\"},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}}},\"required\":[\"sequence_number\",\"part_path\",\"mark_code\",\"content_markdown\",\"guidance_markdown\",\"is_final_answer\",\"is_alternative_method\",\"source_page_numbers\"],\"additionalProperties\":false}},\"assets\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"document_type\":{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},\"source_page_number\":{\"type\":\"integer\",\"minimum\":1},\"source_image_index\":{\"type\":\"integer\",\"minimum\":0},\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"other_instructional\"]},\"bounding_box\":{\"anyOf\":[{\"type\":\"object\",\"properties\":{\"top_left_x\":{\"type\":\"number\"},\"top_left_y\":{\"type\":\"number\"},\"bottom_right_x\":{\"type\":\"number\"},\"bottom_right_y\":{\"type\":\"number\"}},\"required\":[\"top_left_x\",\"top_left_y\",\"bottom_right_x\",\"bottom_right_y\"],\"additionalProperties\":false},{\"type\":\"null\"}]},\"description\":{\"type\":\"string\"},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false},\"required_to_solve\":{\"type\":\"boolean\"}},\"required\":[\"part_path\",\"document_type\",\"source_page_number\",\"source_image_index\",\"asset_type\",\"bounding_box\",\"description\",\"mathematical_details\",\"required_to_solve\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"stem_markdown\",\"total_marks\",\"source_page_numbers\",\"parts\",\"mark_scheme_items\",\"assets\"],\"additionalProperties\":false}}},\"required\":[\"corrected_questions\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+        "jsCode": "const state = $input.first().json;\nconst blockingIssues = [\n  ...(state.validation_report?.issues || []),\n  ...(state.verifier_report?.issues || []),\n].filter((issue) => issue.severity === 'blocking');\n\nconst initialState = {\n  ...state,\n  initial_validation_report: state.validation_report,\n  initial_verifier_report: state.verifier_report,\n  initial_verifier_response_id: state.verifier_response_id || null,\n};\n\nif (!blockingIssues.length) {\n  return [{\n    json: {\n      ...initialState,\n      repair_needed: false,\n      repair_question_numbers: [],\n      repair_response_id: null,\n    },\n  }];\n}\n\nconst allQuestionNumbers = state.paper_bundle.questions.map(\n  (question) => question.question_number\n);\nconst issueQuestionNumbers = blockingIssues\n  .map((issue) => issue.question_number)\n  .filter((value) => Number.isInteger(value));\nconst repairQuestionNumbers =\n  issueQuestionNumbers.length === blockingIssues.length\n    ? [...new Set(issueQuestionNumbers)].sort((a, b) => a - b)\n    : allQuestionNumbers;\n\nconst qp = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'question_paper'\n);\nconst ms = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'mark_scheme'\n);\nconst affectedQuestions = state.paper_bundle.questions.filter(\n  (question) => repairQuestionNumbers.includes(question.question_number)\n);\n\nconst prompt = [\n  'Repair only the listed questions in an extracted Cambridge past-paper bundle.',\n  'Use both official PDFs as the source of truth and independently confirm every reported issue.',\n  'Return exactly one complete corrected question for every requested question number and no other questions.',\n  'Do not remove correct mark-scheme rows, alternatives, examiner guidance, page references or instructional assets.',\n  'A part exists only if its label is visibly printed. For an unparted question use parts=[] and mark-scheme part_path=[].',\n  'Never repeat an unparted instruction in both stem_markdown and a synthetic part.',\n  'The Marks column alone determines mark_code. Preserve leading dependency asterisks exactly.',\n  'For a source row with blank Answer and Marks but non-empty Guidance, use content_markdown=\"\", mark_code=null and is_final_answer=false. A source row may also have blank Answer but nonblank Marks and Guidance: preserve content_markdown=\"\", keep the printed mark_code, and preserve Guidance exactly. Never invent Answer text, copy Guidance into content_markdown, or repeat a Marks code at the start of guidance_markdown. Do not emit standalone part-total numbers from the bottom of the Marks column. A non-null mark_code must be plain text without Markdown bold wrappers and must begin with M, DM, A or B and its printed number; preserve FT suffixes such as A1FT and B1FT. Preserve every algebraic and combinatorial variable exactly, and verify that subscripts and stated ranges use the same placeholder. For multiple printed methods, Method 1 is primary and later methods are alternatives; never mark every method as alternative. A leading dependency star such as *M1 does not by itself make a row an alternative method. An SC mark is a special-case award and must not be counted as an additional primary mark.',\n  'Preserve every factor, sign, bracket, exponent, angle symbol and examiner condition.',\n  'Use semantic LaTeX such as \\\\angle OAB for an angle; never use an overbar for a printed angle symbol.',\n  'Correct the data, not the issue report. Do not merely copy suggested wording without checking the PDFs.',\n].join('\\n');\n\nreturn [{\n  json: {\n    ...initialState,\n    repair_needed: true,\n    repair_question_numbers: repairQuestionNumbers,\n    repair_request: {\n      model: state.config.repair_model,\n      reasoning: { effort: 'medium' },\n      store: false,\n      max_output_tokens: 80000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: JSON.stringify({\n                requested_question_numbers: repairQuestionNumbers,\n                blocking_issues: blockingIssues,\n                questions_to_repair: affectedQuestions,\n              }),\n            },\n            { type: 'input_file', file_url: qp.source_url },\n            { type: 'input_file', file_url: ms.source_url },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_v2_targeted_question_repairs',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"corrected_questions\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"stem_markdown\":{\"type\":\"string\"},\"total_marks\":{\"type\":\"integer\",\"minimum\":0},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"label_path\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"prompt_markdown\":{\"type\":\"string\"},\"marks\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"sort_order\":{\"type\":\"integer\",\"minimum\":0}},\"required\":[\"label_path\",\"prompt_markdown\",\"marks\",\"source_page_numbers\",\"sort_order\"],\"additionalProperties\":false}},\"mark_scheme_items\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"sequence_number\":{\"type\":\"integer\",\"minimum\":1},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"mark_code\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}]},\"content_markdown\":{\"type\":\"string\"},\"guidance_markdown\":{\"type\":\"string\"},\"is_final_answer\":{\"type\":\"boolean\"},\"is_alternative_method\":{\"type\":\"boolean\"},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}}},\"required\":[\"sequence_number\",\"part_path\",\"mark_code\",\"content_markdown\",\"guidance_markdown\",\"is_final_answer\",\"is_alternative_method\",\"source_page_numbers\"],\"additionalProperties\":false}},\"assets\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"document_type\":{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},\"source_page_number\":{\"type\":\"integer\",\"minimum\":1},\"source_image_index\":{\"type\":\"integer\",\"minimum\":0},\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"other_instructional\"]},\"bounding_box\":{\"anyOf\":[{\"type\":\"object\",\"properties\":{\"top_left_x\":{\"type\":\"number\"},\"top_left_y\":{\"type\":\"number\"},\"bottom_right_x\":{\"type\":\"number\"},\"bottom_right_y\":{\"type\":\"number\"}},\"required\":[\"top_left_x\",\"top_left_y\",\"bottom_right_x\",\"bottom_right_y\"],\"additionalProperties\":false},{\"type\":\"null\"}]},\"description\":{\"type\":\"string\"},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false},\"required_to_solve\":{\"type\":\"boolean\"}},\"required\":[\"part_path\",\"document_type\",\"source_page_number\",\"source_image_index\",\"asset_type\",\"bounding_box\",\"description\",\"mathematical_details\",\"required_to_solve\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"stem_markdown\",\"total_marks\",\"source_page_numbers\",\"parts\",\"mark_scheme_items\",\"assets\"],\"additionalProperties\":false}}},\"required\":[\"corrected_questions\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1205,7 +1205,7 @@
         9880,
         80
       ],
-      "id": "1a19bc56-6a4d-4a80-a768-ccc2a04ad68d",
+      "id": "5b97fc46-fb47-446a-b04f-984b27d2a71b",
       "name": "Build Targeted Repair Request"
     },
     {
@@ -1219,7 +1219,7 @@
           },
           "conditions": [
             {
-              "id": "d6fc2a23-0df6-4e61-acf2-f069738ce99e",
+              "id": "e456c8e2-82e7-4149-9c23-68761d2aef31",
               "leftValue": "={{ $json.repair_needed }}",
               "rightValue": true,
               "operator": {
@@ -1239,7 +1239,7 @@
         10120,
         80
       ],
-      "id": "499ae18c-104d-440d-bff4-e26e272f938a",
+      "id": "4ef9675a-a84b-4018-b682-cb5b94690dc4",
       "name": "Repair Needed"
     },
     {
@@ -1253,7 +1253,7 @@
         10360,
         -80
       ],
-      "id": "6d6fec02-67bb-4ed7-9a28-9ad718da287b",
+      "id": "97232749-19de-41f1-80c7-835cb146d1d2",
       "name": "Prepare Repair Reservation"
     },
     {
@@ -1284,7 +1284,7 @@
         10600,
         -80
       ],
-      "id": "eb40e17d-4441-489d-89e0-50d77389e67b",
+      "id": "c93648d2-6c1d-41f3-aa1d-7027cfabcd9f",
       "name": "Reserve Repair Budget",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -1308,7 +1308,7 @@
         10840,
         -80
       ],
-      "id": "e55e075c-4f1c-452f-a527-2813f8ecbfbc",
+      "id": "fa598859-50ba-45b1-9a4a-7b905bfa1fcd",
       "name": "Attach Repair Reservation"
     },
     {
@@ -1344,7 +1344,7 @@
         11080,
         -80
       ],
-      "id": "0409c156-5d78-4a34-8773-7cca6c775d4c",
+      "id": "73489a1c-6205-4148-87dd-79328239149b",
       "name": "OpenAI Targeted Repair",
       "retryOnFail": true,
       "maxTries": 5,
@@ -1367,7 +1367,7 @@
         11320,
         -80
       ],
-      "id": "f2ac3dcd-75a4-44a0-90b5-6bb8625eaee2",
+      "id": "9df3eac9-d100-4825-a89a-76b7cf434ceb",
       "name": "Parse Targeted Repair"
     },
     {
@@ -1398,7 +1398,7 @@
         11560,
         -80
       ],
-      "id": "ee245037-c3ab-4ea8-a8f9-382cd0773a61",
+      "id": "f7aaa589-bdc2-48f2-a53a-755ded6e3126",
       "name": "Finalize Repair Cost",
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -1422,7 +1422,7 @@
         11800,
         -80
       ],
-      "id": "41bebcb0-ad42-4f03-8153-7ebb0d489a5f",
+      "id": "00e3695b-78c6-43a4-8efd-760115690d4a",
       "name": "Restore Repaired State"
     },
     {
@@ -1436,7 +1436,7 @@
         12040,
         80
       ],
-      "id": "3af73032-c74c-42e0-91b8-6dc48137cba7",
+      "id": "07065213-5810-425a-aeea-c330814ee130",
       "name": "Deterministic Validation"
     },
     {
@@ -2500,7 +2500,7 @@
     "saveDataErrorExecution": "all",
     "saveDataSuccessExecution": "all"
   },
-  "versionId": "85b559c4-3a0e-448c-82f1-bc54bca7d059",
+  "versionId": "6a1f0d3e-6c2b-4b8a-9d7e-3f2c1a9b4e6d",
   "meta": {
     "templateCredsSetupCompleted": true
   },

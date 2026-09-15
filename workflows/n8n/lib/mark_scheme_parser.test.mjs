@@ -607,5 +607,116 @@ Marks must be awarded positively.`;
 });
 
 // ---------------------------------------------------------------------------
+console.log("\nA bare \"Alternative\" header, with no Method/Solution qualifier");
+// ---------------------------------------------------------------------------
+
+test("a bare 'Alternative' header opens a block instead of bleeding into the prior row", () => {
+  // IGCSE 0606 s25 P12 Q11, verbatim shape from source review (20 August
+  // 2026): the printed header is the single word "Alternative", which
+  // ALT_HEADER's "alternative method|solution" pattern does not match. Before
+  // the fix, the header text was appended onto the PRECEDING row's own
+  // content_markdown by the multi-line continuation step, corrupting a
+  // correct final answer into "...OR=... \nAlternative".
+  const bareHeader = `| Question | Answer | Marks | Guidance |
+| --- | --- | --- | --- |
+| 11 | Main-method final answer | **A1** |  |
+|  | Alternative |  |  |
+|  | Alt-method step | **M1** |  |
+|  | Alt-method final answer | **A1** |  |`;
+  const { items } = parseMarkSchemePages([page(9, bareHeader)]);
+  const rows = items.filter((i) => i._question_number === 11);
+  assert.equal(rows.length, 3);
+  assert.equal(rows[0].content_markdown, "Main-method final answer");
+  assert.equal(rows[0].is_alternative_method, false);
+  assert.deepEqual(
+    rows.slice(1).map((r) => r.is_alternative_method),
+    [true, true],
+  );
+});
+
+test("a numbered bare header ('Alternative 2') and 'Alternative version' both open a block", () => {
+  const numbered = `| Question | Answer | Marks | Guidance |
+| --- | --- | --- | --- |
+| 6 | Primary step | **B1** |  |
+|  | Alternative 2 |  |  |
+|  | Alt step | **M1** |  |`;
+  const { items: numberedItems } = parseMarkSchemePages([page(3, numbered)]);
+  assert.equal(numberedItems.filter((i) => i.is_alternative_method).length, 1);
+
+  const versioned = `| Question | Answer | Marks | Guidance |
+| --- | --- | --- | --- |
+| 2 | Primary step | **B1** |  |
+|  | Alternative version |  |  |
+|  | Alt step | **M1** |  |`;
+  const { items: versionedItems } = parseMarkSchemePages([page(4, versioned)]);
+  assert.equal(versionedItems.filter((i) => i.is_alternative_method).length, 1);
+});
+
+test("prose that merely starts with the word 'alternative' is not mistaken for a header", () => {
+  const prose = `| Question | Answer | Marks | Guidance |
+| --- | --- | --- | --- |
+| 3 | Alternative forms of the answer are accepted, oe | **A1** |  |`;
+  const { items } = parseMarkSchemePages([page(5, prose)]);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].content_markdown, "Alternative forms of the answer are accepted, oe");
+});
+
+// ---------------------------------------------------------------------------
+console.log("\nA bundled multi-mark row printed as one bare number");
+// ---------------------------------------------------------------------------
+
+test("a merged 2-mark row with a bolded embedded code recovers the full value, not just 1", () => {
+  // IGCSE 0606 m24 P22, verbatim shape from source review (20 August 2026):
+  // Cambridge prints one row worth 2 marks in the Marks column, with the
+  // breakdown only in prose ("M1 for ..."). Before the fix, LIFT recovered
+  // the bolded M1 at its own face value (1) and the printed "2" was never
+  // consulted at all -- 2 questions' Q1/Q3/Q4/Q5 all lost a mark this way.
+  const merged = `| Question | Answer | Marks | Guidance |
+| --- | --- | --- | --- |
+| 1 | Critical values 2.5 and 1 | **2** | **M1** for factorises or solves a 3-term quadratic |`;
+  const { items } = parseMarkSchemePages([page(6, merged)]);
+  const rows = items.filter((i) => i._question_number === 1);
+  assert.equal(rows.length, 1);
+  assert.equal(markValue(rows[0].mark_code), 2);
+});
+
+test("a merged row with an UNBOLDED embedded code still recovers the full value", () => {
+  // Same defect class, but LIFT cannot even see the code because Mistral did
+  // not bold it this time -- confirmed on a separate paper in the same
+  // review. The value must still be recovered, not silently dropped to 0.
+  const unbolded = `| Question | Answer | Marks | Guidance |
+| --- | --- | --- | --- |
+| 5 | y = 1/2 ln(4/3) oe, y = 1/2 ln2 oe | **2** | B1 for one correct solution B1 for both solutions and no extra solution |`;
+  const { items } = parseMarkSchemePages([page(9, unbolded)]);
+  const rows = items.filter((i) => i._question_number === 5);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].mark_code, "B2");
+  assert.equal(markValue(rows[0].mark_code), 2);
+});
+
+test("an unrelated large bare number in a ragged embedded-data row is never treated as a bundled mark", () => {
+  // Regression guard for the 9709/51 frequency-table shape above: a bare "20"
+  // sitting in the layout's Marks column there is class-width DATA, not a
+  // merged mark value, and must never bump a correctly-lifted M1 into "M20".
+  const { items } = parseMarkSchemePages([page(7, PAPER_51_PAGE_7)]);
+  const partA = items.filter((i) => i.part_path[0] === "a");
+  assert.deepEqual(codesOf(partA).filter(Boolean), ["M1", "A1", "B1", "B1"]);
+});
+
+test("a genuine printed subtotal on its own blank row is still untouched by the merge step", () => {
+  // The clean case (step 3) must not regress: a bare subtotal with nothing
+  // else on its row is still pure reconciliation ground truth, not a row.
+  const clean = `| Question | Answer | Marks | Guidance |
+| --- | --- | --- | --- |
+| 9 | Step one | **M1** |  |
+| 9 | Step two | **A1** |  |
+|  |  | **2** |  |`;
+  const { items, printedPartTotals } = parseMarkSchemePages([page(3, clean)]);
+  const rows = items.filter((i) => i._question_number === 9);
+  assert.equal(rows.length, 2);
+  assert.equal(printedPartTotals["9|"], 2);
+});
+
+// ---------------------------------------------------------------------------
 console.log(`\n${passed} passed, ${failed} failed\n`);
 if (failed > 0) process.exitCode = 1;
