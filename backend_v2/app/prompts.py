@@ -18,7 +18,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from .models import TutorMode
+from .models import ChatTurn, TutorMode
 from .repository import QuestionContext
 
 # Shared across every mode. Written as constraints rather than encouragement,
@@ -68,7 +68,14 @@ Give the smallest push that unblocks the student, and stop.
 - End with one short question or invitation, such as asking what they can do next, what equation they should solve, or which line they want to check.
 
 If the student explicitly insists on the full solution, tell them to switch to
-Explain rather than giving it here.""",
+Explain rather than giving it here.
+
+This withholding rule applies even if the final answer already appears
+earlier in this same conversation, for example from an Explain or Check turn
+before the student switched to Hint. Do not restate it, confirm a guess
+against it, or write a hint precise enough to make it trivially inferable.
+Treat this Hint response the same way you would if that earlier content did
+not exist.""",
     TutorMode.EXPLAIN: """MODE: EXPLAIN
 
 Teach the full method for what the student asked about.
@@ -336,12 +343,14 @@ def build_system_prompt(
     mode: TutorMode,
     asset_urls_available: bool,
     selected_modes: list[TutorMode] | None = None,
+    history: list[ChatTurn] | None = None,
 ) -> str:
     selected_modes = selected_modes or [mode]
     sections = [
         BASE_RULES,
         MODE_RULES[mode],
         _coordination_rules(mode, selected_modes),
+        _history_mode_context(mode, history or []),
         build_source_block(context, asset_urls_available),
     ]
     if mode is TutorMode.CHECK:
@@ -391,6 +400,49 @@ def _coordination_rules(mode: TutorMode, selected_modes: list[TutorMode]) -> str
         lines.append(
             "- Hint may provide a small nudge elsewhere in this turn. Your Explain "
             "response should still provide the full method requested by Explain mode."
+        )
+    return "\n".join(lines)
+
+
+def _history_mode_context(mode: TutorMode, history: list[ChatTurn]) -> str:
+    """Tell the current mode what mode(s) produced earlier turns in history.
+
+    A student can switch modes turn to turn (Hint, then later Check) while the
+    conversation itself keeps flowing -- so an earlier assistant turn in this
+    same history can carry a different mode's rules, most importantly an
+    Explain or Check turn that already stated the final answer. Without this,
+    a later Hint turn has no signal that content sitting earlier in its own
+    history came from a mode allowed to reveal what Hint must withhold.
+
+    Silent (returns "") when no history turn has a KNOWN mode different from
+    the current one -- unmodeled history (older clients, or role="user" turns)
+    should not trigger a warning that has nothing to point at.
+    """
+
+    prior_modes: list[TutorMode] = []
+    for turn in history:
+        if turn.role != "assistant" or not turn.modes:
+            continue
+        for turn_mode in turn.modes:
+            if turn_mode is not mode and turn_mode not in prior_modes:
+                prior_modes.append(turn_mode)
+
+    if not prior_modes:
+        return ""
+
+    labels = ", ".join(m.value for m in prior_modes)
+    lines = [
+        "PRIOR-TURN MODE CONTEXT",
+        f"Earlier in this conversation, the tutor answered under a different "
+        f"mode: {labels}. You are now answering in {mode.value} mode.",
+        f"- Keep following {mode.value} mode's rules regardless of what an "
+        "earlier, differently-moded turn already said.",
+    ]
+    if mode is TutorMode.HINT:
+        lines.append(
+            "- In particular: do not restate, confirm, or make it easy to infer "
+            "the final answer just because it may already appear earlier in "
+            "this history from a different mode."
         )
     return "\n".join(lines)
 

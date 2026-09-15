@@ -42,12 +42,6 @@ class Settings:
     supabase_service_role_key: str
     openai_api_key: str
 
-    # Qualification and syllabus are pinned rather than accepted from the
-    # request. The corpus holds exactly one syllabus, and letting a caller vary
-    # them would invite lookups for content that cannot exist.
-    qualification: str = "a_level"
-    syllabus_code: str = "9709"
-
     tutor_model: str = "gpt-5.4-mini"
     # Diagrams live in a private bucket. Links are signed per request and expire;
     # ten minutes is long enough to read a question and short enough that a
@@ -67,8 +61,6 @@ class Settings:
             supabase_url=_required("SUPABASE_URL"),
             supabase_service_role_key=_required("SUPABASE_SERVICE_ROLE_KEY"),
             openai_api_key=_required("OPENAI_API_KEY"),
-            qualification=os.getenv("SHAMO_QUALIFICATION", "a_level"),
-            syllabus_code=os.getenv("SHAMO_SYLLABUS_CODE", "9709"),
             tutor_model=os.getenv("SHAMO_TUTOR_MODEL", "gpt-5.4-mini"),
             asset_url_ttl_seconds=int(os.getenv("SHAMO_ASSET_URL_TTL", "600")),
             max_history_messages=int(os.getenv("SHAMO_MAX_HISTORY", "12")),

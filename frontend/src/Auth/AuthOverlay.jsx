@@ -2,8 +2,21 @@ import { useEffect } from 'react';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import styles from './AuthOverlay.module.css';
+import { useAuth } from './authContext.js';
 
 function AuthOverlay({ isOpen, mode, onClose }) {
+    const {
+        isConfigured,
+        isAuthenticated,
+        actionStatus,
+        authError,
+        authNotice,
+        signInWithPassword,
+        signUpWithPassword,
+        signInWithGoogle,
+        clearAuthMessages,
+    } = useAuth();
+
     useEffect(() => {
         if (!isOpen) {
             return undefined;
@@ -21,6 +34,18 @@ function AuthOverlay({ isOpen, mode, onClose }) {
             document.removeEventListener('keydown', handleEscape);
         };
     }, [isOpen, onClose]);
+
+    useEffect(() => {
+        if (isOpen) {
+            clearAuthMessages();
+        }
+    }, [isOpen, mode, clearAuthMessages]);
+
+    useEffect(() => {
+        if (isOpen && isAuthenticated && mode === 'login') {
+            onClose();
+        }
+    }, [isOpen, isAuthenticated, mode, onClose]);
 
     if (!isOpen) {
         return null;
@@ -55,7 +80,29 @@ function AuthOverlay({ isOpen, mode, onClose }) {
                         </p>
                     </div>
 
-                    {isSignUp ? <SignUpForm /> : <LoginForm />}
+                    {!isConfigured && (
+                        <div className={styles.ConfigNotice}>
+                            Supabase auth is not configured for this frontend build.
+                        </div>
+                    )}
+
+                    {isSignUp ? (
+                        <SignUpForm
+                            onSignUp={signUpWithPassword}
+                            onGoogle={signInWithGoogle}
+                            isLoading={actionStatus === 'loading' || !isConfigured}
+                            error={authError}
+                            notice={authNotice}
+                        />
+                    ) : (
+                        <LoginForm
+                            onLogin={signInWithPassword}
+                            onGoogle={signInWithGoogle}
+                            isLoading={actionStatus === 'loading' || !isConfigured}
+                            error={authError}
+                            notice={authNotice}
+                        />
+                    )}
                 </div>
             </div>
         </div>

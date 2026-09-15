@@ -2,8 +2,16 @@ import styles from './Sidebar.module.css'
 import logo from '../assets/ShamoLogo.png'
 import { useEffect, useState } from 'react'
 
-function Sidebar(){
+import AuthActions from '../Auth/AuthActions'
+import { useAuth } from '../Auth/authContext.js'
+
+function Sidebar({ onOpenAuth }){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // Log In / Sign Up moved here from the chat top bar, so the account lives
+    // at the bottom of the sidebar rather than in the corner above the
+    // conversation. The overlay itself is owned by App.
+    const { user, profile, tier, actionStatus, signOut } = useAuth();
 
     const handleRefresh = () => {
         location.reload();
@@ -85,9 +93,21 @@ function Sidebar(){
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>Report an Issue</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>Contact Us</button>
                 </div>
+
+                <div className={styles.SidebarFooter}>
+                    <AuthActions
+                        user={user}
+                        profile={profile}
+                        tier={tier}
+                        isLoading={actionStatus === 'loading'}
+                        onOpenSignUp={() => { handleMenuClose(); onOpenAuth('signup'); }}
+                        onOpenLogIn={() => { handleMenuClose(); onOpenAuth('login'); }}
+                        onSignOut={signOut}
+                    />
+                </div>
             </div>
         </>
-        
+
     )
 }
 

@@ -31,6 +31,12 @@ class TutorMode(str, Enum):
     VISUALIZE = "visualize"
 
 
+class UserTier(str, Enum):
+    FREE = "free"
+    PREMIUM = "premium"
+    SHAMO_STUDENT = "shamo_student"
+
+
 class VisualArtifactKind(str, Enum):
     DESMOS_2D = "desmos_2d"
     DESMOS_3D = "desmos_3d"
@@ -67,6 +73,11 @@ class VisualValidationStatus(str, Enum):
     PENDING_REVIEW = "pending_review"
     APPROVED = "approved"
     REJECTED = "rejected"
+    # A validated response with deliberately zero artifacts, because the
+    # model was explaining a visual already shown rather than failing to
+    # produce one. Distinct from RENDER_FAILED so the frontend's fallback
+    # note (meant for a genuine failure) doesn't fire for a successful reply.
+    EXPLAINED = "explained"
 
 
 class QuestionRef(BaseModel):
@@ -74,8 +85,18 @@ class QuestionRef(BaseModel):
     exam_session: Literal["feb_march", "may_june", "oct_nov"]
     paper_variant: str = Field(min_length=1, max_length=4)
     question_number: int = Field(ge=1, le=99)
+    # Defaulted rather than required: the corpus used to hold exactly one
+    # syllabus, and every existing caller (older frontend builds, the offline
+    # test fixtures, evaluate_tutor.py) omits these fields entirely. Once a
+    # second syllabus (IGCSE 0606) was published, paper_variant stopped being
+    # globally unique -- e.g. "2025 Oct/Nov paper 12" exists in both 9709 and
+    # 0606 -- so these two fields are what actually disambiguates the lookup;
+    # the default just preserves the pre-existing single-syllabus behaviour
+    # for any caller that doesn't yet know to send them.
+    qualification: str = Field(default="a_level", min_length=1, max_length=20)
+    syllabus_code: str = Field(default="9709", min_length=1, max_length=20)
 
-    @field_validator("paper_variant")
+    @field_validator("paper_variant", "qualification", "syllabus_code")
     @classmethod
     def _strip(cls, value: str) -> str:
         return value.strip()
@@ -94,6 +115,14 @@ class ChatRequest(BaseModel):
 class ChatTurn(BaseModel):
     role: Literal["user", "assistant"]
     content: str = Field(max_length=8000)
+    # Which mode(s) produced this turn, when known. Optional and backward
+    # compatible -- older callers omitting it are treated as unknown
+    # provenance, not as "same mode as now".
+    modes: list[TutorMode] | None = Field(default=None)
+    # Visuals this turn already rendered, when known. Lets a later Visualize
+    # turn recognize "explain the one you already made" instead of treating
+    # every call as a request for a brand new artifact.
+    visual_artifacts: list["VisualArtifactSummary"] | None = Field(default=None)
 
 
 class VisualizeRequest(BaseModel):
@@ -117,6 +146,14 @@ class MultiModeRequest(BaseModel):
         if len(set(value)) != len(value):
             raise ValueError("modes must be unique")
         return value
+
+
+class AssistRequest(BaseModel):
+    """One natural student turn that Shamo routes to the right tutor mode(s)."""
+
+    question: QuestionRef
+    message: str = Field(min_length=1, max_length=4000)
+    history: list[ChatTurn] = Field(default_factory=list)
 
 
 class SliderBounds(BaseModel):
@@ -588,12 +625,34 @@ class ManimSpec(BaseModel):
         return self
 
 
+class VisualArtifactSummary(BaseModel):
+    """A compact, human-readable record of a visual already shown this
+    conversation -- carried on a history `ChatTurn`, not the API boundary.
+
+    Deliberately excludes the full desmos/geogebra/manim spec and any video
+    URL: this only needs to remind the model what it already made, not hand
+    back an executable spec to copy or a stale signed link.
+    """
+
+    artifact_kind: VisualArtifactKind
+    title: str = Field(max_length=120)
+    purpose: str = Field(max_length=240)
+    part_label: str | None = Field(default=None, max_length=40)
+    manim_template: ManimTemplate | None = None
+
+
+class VisualTeachingStep(BaseModel):
+    label: str = Field(min_length=1, max_length=80)
+    explanation_markdown: str = Field(min_length=1, max_length=500)
+
+
 class VisualArtifactOut(BaseModel):
     artifact_kind: VisualArtifactKind
     title: str = Field(min_length=1, max_length=120)
     purpose: str = Field(min_length=1, max_length=240)
     narration_markdown: str = Field(min_length=1, max_length=1200)
     accessibility_text: str = Field(min_length=1, max_length=1200)
+    teaching_steps: list[VisualTeachingStep] = Field(default_factory=list, max_length=5)
     part_label: str | None = Field(default=None, max_length=40)
     desmos: DesmosSpec | None = None
     geogebra: GeoGebraSpec | None = None
@@ -664,9 +723,40 @@ class ModeResponseOut(BaseModel):
     error: str | None = None
 
 
+class SuggestedActionOut(BaseModel):
+    label: str = Field(min_length=1, max_length=80)
+    kind: Literal["send", "prefill"] = "send"
+    message: str | None = Field(default=None, max_length=4000)
+    mode: TutorMode | None = None
+
+
 class MultiModeResponse(BaseModel):
     source_reference: QuestionRef
     responses: list[ModeResponseOut]
+
+
+class AssistResponse(BaseModel):
+    source_reference: QuestionRef
+    routed_modes: list[TutorMode]
+    route_label: str
+    responses: list[ModeResponseOut]
+    suggested_actions: list[SuggestedActionOut] = Field(default_factory=list)
+
+
+class ProfileOut(BaseModel):
+    user_id: str
+    display_name: str | None = None
+    grade: str | None = None
+    created_at: str | None = None
+    updated_at: str | None = None
+
+
+class CurrentUserOut(BaseModel):
+    user_id: str
+    email: str | None = None
+    email_confirmed: bool
+    tier: UserTier
+    profile: ProfileOut | None = None
 
 
 class PaperSummary(BaseModel):
@@ -676,6 +766,11 @@ class PaperSummary(BaseModel):
     paper_component: str
     question_count: int
     question_numbers: list[int]
+    # Defaulted for the same reason as QuestionRef above: existing fakes/tests
+    # build this from a plain dict that predates multi-syllabus support.
+    qualification: str = "a_level"
+    syllabus_code: str = "9709"
+    subject: str | None = None
 
 
 class AssetOut(BaseModel):
@@ -705,6 +800,83 @@ class QuestionContextOut(BaseModel):
     root_mark_scheme: list[dict[str, Any]]
     assets: list[AssetOut]
     source_documents: list[dict[str, Any]]
+    # Echoed back so the frontend can label the question correctly instead of
+    # assuming the corpus's original single syllabus (9709).
+    qualification: str = "a_level"
+    syllabus_code: str = "9709"
+    subject: str | None = None
+
+
+class SimilarQuestionsStatus(str, Enum):
+    """Why a similarity request returned what it returned.
+
+    Zero matches has four different meanings and a student-facing UI has to
+    tell them apart: "that question is not published", "this component has too
+    few papers to compare against yet", "the seed has no embedding", and "we
+    looked and nothing was close enough". Only the last is a normal outcome,
+    and on the current corpus it is the common one -- roughly one question in
+    ten has no match above the quality floor.
+
+    These values mirror the SQL function's result_status exactly. Adding one
+    there without adding it here raises a validation error on every affected
+    response, which is deliberate: the contract stays in sync.
+    """
+
+    OK = "ok"
+    SEED_NOT_PUBLISHED = "seed_not_published_or_not_found"
+    SEED_EMBEDDING_MISSING = "seed_embedding_missing"
+    NOT_ENOUGH_SAME_COMPONENT_PAPERS = "not_enough_same_component_papers"
+    NOT_ENOUGH_CROSS_PAPER_QUESTIONS = "not_enough_cross_paper_questions"
+    NO_MATCHES_ABOVE_THRESHOLD = "no_matches_above_threshold"
+    READINESS_UNAVAILABLE = "readiness_unavailable"
+    # Set by the API, not the database: the RPC returned nothing at all, or the
+    # published question carries no id to search from.
+    UNAVAILABLE = "unavailable"
+
+
+class SimilarQuestionOut(BaseModel):
+    """One recommended question, with the evidence for recommending it.
+
+    The explanation is entirely metadata the corpus already stores and has
+    reviewed -- the shared topic, the marks, the paper it came from. No model
+    writes a rationale here, so a recommendation cannot be justified with an
+    invented reason.
+    """
+
+    question_id: str = Field(min_length=1, max_length=64)
+    # A ready-made reference the client can send straight to /chat or
+    # /visualize, rather than reassembling one from loose fields. That
+    # reassembly is exactly where an IGCSE variant gets mistaken for the 9709
+    # variant of the same number -- 2025 Oct/Nov paper 12 exists in both.
+    reference: QuestionRef
+    subject: str | None = Field(default=None, max_length=120)
+    paper_component: str = Field(default="", max_length=1)
+    main_topic: str | None = Field(default=None, max_length=120)
+    shares_main_topic: bool = False
+    total_marks: int | None = None
+    # Plain-text preview. The SQL truncates at 240 characters and can cut a
+    # LaTeX token in half, so this is not safe to render as mathematics.
+    stem_snippet: str = Field(default="", max_length=240)
+    similarity: float
+    # True when the closest-matching search row was a PART of the question
+    # rather than the whole thing. Measured at ~40% of matches, because the
+    # similarity floor is applied per row before collapsing to one row per
+    # question. The card still links to the whole question; this is surfaced
+    # so the effect stays measurable rather than invisible.
+    matched_on_part: bool = False
+
+
+class SimilarQuestionsResponse(BaseModel):
+    source_reference: QuestionRef
+    status: SimilarQuestionsStatus
+    seed_main_topic: str | None = Field(default=None, max_length=120)
+    seed_total_marks: int | None = None
+    is_ready: bool = False
+    readiness_status: str | None = Field(default=None, max_length=60)
+    same_component_paper_count: int = 0
+    same_component_cross_paper_question_count: int = 0
+    min_similarity: float = 0.60
+    matches: list[SimilarQuestionOut] = Field(default_factory=list)
 
 
 class NotFoundOut(BaseModel):
@@ -721,3 +893,4 @@ class NotFoundOut(BaseModel):
 
 
 ChatRequest.model_rebuild()
+AssistRequest.model_rebuild()

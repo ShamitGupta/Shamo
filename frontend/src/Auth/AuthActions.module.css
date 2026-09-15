@@ -1,12 +1,56 @@
+/* Unchanged from the original, except that the two containers below now align
+   to the start rather than the end: this block moved out of the top bar's
+   right-hand corner and into the bottom-left of the sidebar, so right-aligning
+   it would push the buttons against the sidebar's divider. */
+/* Stacked, and stretched to the sidebar's width. Two pills of different
+   intrinsic widths (Log In was 80px, Sign Up 91px) would sit ragged against
+   the left edge once stacked, so they match each other instead. */
 .Actions {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
     width: 100%;
 }
 
+.Account {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+}
+
+.AccountText {
+    display: grid;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+    text-align: left;
+}
+
+.AccountName,
+.AccountTier {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.AccountName {
+    color: #f5f7fb;
+    font-size: 0.92rem;
+    font-weight: 650;
+}
+
+.AccountTier {
+    color: #9aa6c2;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
 .PrimaryButton,
+.LoginButton,
 .SecondaryButton {
     min-height: 2.75rem;
     padding: 0 18px;
@@ -18,10 +62,30 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
+.PrimaryButton:disabled,
+.LoginButton:disabled,
+.SecondaryButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
 .PrimaryButton {
     background: linear-gradient(135deg, #8ba4f9, #6879be);
     color: #101216;
     box-shadow: 0 14px 28px rgba(104, 121, 190, 0.28);
+}
+
+/* Log In takes the orange from the logo's disc (#ff7f27), which until now
+   appeared nowhere in the interface. Paired with the periwinkle Sign Up above
+   it, the two buttons are the logo's own two colours -- the disc and the
+   letterform -- rather than one accent doing both jobs.
+   Kept separate from .SecondaryButton because Sign out shares that class, and
+   Sign out should not be the loudest thing in the sidebar. */
+.LoginButton {
+    background: linear-gradient(135deg, #ff8f43, #e2661a);
+    color: #1a0d03;
+    box-shadow: 0 14px 28px rgba(226, 102, 26, 0.26);
 }
 
 .SecondaryButton {
@@ -32,6 +96,8 @@
 
 .PrimaryButton:hover,
 .PrimaryButton:focus,
+.LoginButton:hover,
+.LoginButton:focus,
 .SecondaryButton:hover,
 .SecondaryButton:focus {
     transform: translateY(-1px);
@@ -41,6 +107,11 @@
 .PrimaryButton:hover,
 .PrimaryButton:focus {
     box-shadow: 0 16px 34px rgba(104, 121, 190, 0.36);
+}
+
+.LoginButton:hover,
+.LoginButton:focus {
+    box-shadow: 0 16px 34px rgba(226, 102, 26, 0.34);
 }
 
 .SecondaryButton:hover,
@@ -55,7 +126,12 @@
         gap: 8px;
     }
 
+    .Account {
+        gap: 8px;
+    }
+
     .PrimaryButton,
+    .LoginButton,
     .SecondaryButton {
         min-height: 2.5rem;
         padding-inline: 14px;

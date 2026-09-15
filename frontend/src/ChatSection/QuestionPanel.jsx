@@ -79,8 +79,11 @@ function QuestionPanel({ question, isLoading, error, onDismiss }) {
     if (!question) return null;
 
     const sessionLabel = SESSION_LABELS[question.exam_session] || question.exam_session;
+    // syllabus_code is echoed back by the API rather than assumed, since the
+    // corpus now holds more than one syllabus (9709 A-level, 0606 IGCSE).
+    const syllabusCode = question.syllabus_code || '9709';
     const title =
-        `9709/${question.paper_variant} ${sessionLabel} ${question.year} — ` +
+        `${syllabusCode}/${question.paper_variant} ${sessionLabel} ${question.year} — ` +
         `Question ${question.question_number}`;
 
     return (

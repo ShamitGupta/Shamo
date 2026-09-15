@@ -18,6 +18,12 @@ export class ApiError extends Error {
     }
 }
 
+function authHeaders(accessToken) {
+    return accessToken
+        ? { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` }
+        : { 'Content-Type': 'application/json' };
+}
+
 async function readError(response) {
     let detail = null;
     try {
@@ -52,9 +58,55 @@ export async function fetchPapers() {
 }
 
 /** Full context for one question: stem, parts, mark scheme, signed diagram URLs. */
-export async function fetchQuestion({ year, exam_session, paper_variant, question_number }) {
+export async function fetchQuestion({ year, exam_session, paper_variant, question_number, qualification, syllabus_code }) {
     const path = `/papers/${year}/${exam_session}/${paper_variant}/questions/${question_number}`;
-    const response = await fetch(`${BASE_URL}${path}`);
+    // qualification/syllabus_code are query params, not path segments, and the
+    // backend defaults them to the corpus's original syllabus (9709) when
+    // absent -- so omitting them here still resolves correctly, it just can't
+    // disambiguate a variant number shared with another syllabus (e.g. IGCSE).
+    const params = new URLSearchParams();
+    if (qualification) params.set('qualification', qualification);
+    if (syllabus_code) params.set('syllabus_code', syllabus_code);
+    const query = params.toString();
+    const response = await fetch(`${BASE_URL}${path}${query ? `?${query}` : ''}`);
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/**
+ * Published questions that test the same method as this one.
+ *
+ * Authenticated, unlike fetchQuestion above: the similarity index is not
+ * public. 401 when signed out, 403 when the email is unverified.
+ *
+ * An empty `matches` list is a NORMAL outcome, not a failure. Only matches
+ * above a measured quality floor are returned, so roughly one question in ten
+ * legitimately has nothing close enough -- the caller is expected to say so
+ * plainly rather than render an error.
+ */
+export async function fetchSimilarQuestions(
+    { year, exam_session, paper_variant, question_number, qualification, syllabus_code, limit, accessToken },
+    signal,
+) {
+    const path = `/papers/${year}/${exam_session}/${paper_variant}/questions/${question_number}/similar`;
+    const params = new URLSearchParams();
+    if (qualification) params.set('qualification', qualification);
+    if (syllabus_code) params.set('syllabus_code', syllabus_code);
+    if (limit) params.set('limit', String(limit));
+    const query = params.toString();
+    const response = await fetch(`${BASE_URL}${path}${query ? `?${query}` : ''}`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/** Current signed-in account, profile, and effective Shamo tier. */
+export async function getCurrentUser(accessToken) {
+    const response = await fetch(`${BASE_URL}/me`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+    });
     if (!response.ok) throw await readError(response);
     return response.json();
 }
@@ -65,10 +117,10 @@ export async function fetchQuestion({ year, exam_session, paper_variant, questio
  * The request carries only a REFERENCE to the question. The server re-retrieves
  * the content itself, so the browser cannot substitute its own source material.
  */
-export async function streamChat({ question, mode, message, attempt, history }, onChunk, signal) {
+export async function streamChat({ question, mode, message, attempt, history, accessToken }, onChunk, signal) {
     const response = await fetch(`${BASE_URL}/chat`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: authHeaders(accessToken),
         body: JSON.stringify({ question, mode, message, attempt: attempt || null, history }),
         signal,
     });
@@ -88,10 +140,10 @@ export async function streamChat({ question, mode, message, attempt, history }, 
 }
 
 /** Build a validated visual explanation for one published question. */
-export async function createVisualization({ question, message, history }, signal) {
+export async function createVisualization({ question, message, history, accessToken }, signal) {
     const response = await fetch(`${BASE_URL}/visualize`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: authHeaders(accessToken),
         body: JSON.stringify({ question, message, history }),
         signal,
     });
@@ -100,11 +152,23 @@ export async function createVisualization({ question, message, history }, signal
 }
 
 /** Coordinate one student turn across multiple selected modes. */
-export async function createCoordinatedResponse({ question, modes, message, attempt, history }, signal) {
+export async function createCoordinatedResponse({ question, modes, message, attempt, history, accessToken }, signal) {
     const response = await fetch(`${BASE_URL}/respond`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: authHeaders(accessToken),
         body: JSON.stringify({ question, modes, message, attempt: attempt || null, history }),
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/** Let Shamo route one natural student turn to the right tutor mode(s). */
+export async function createAssistedResponse({ question, message, history, accessToken }, signal) {
+    const response = await fetch(`${BASE_URL}/assist`, {
+        method: 'POST',
+        headers: authHeaders(accessToken),
+        body: JSON.stringify({ question, message, history }),
         signal,
     });
     if (!response.ok) throw await readError(response);
@@ -118,8 +182,8 @@ export const SESSION_LABELS = {
 };
 
 export const TUTOR_MODES = [
-    { value: 'hint', label: 'Hint', blurb: 'A nudge, not the answer' },
-    { value: 'explain', label: 'Explain', blurb: 'Full method, mark by mark' },
-    { value: 'check', label: 'Check my work', blurb: 'Diagnose your attempt' },
-    { value: 'visualize', label: 'Visualize', blurb: 'Interactive graph or construction' },
+    { value: 'hint', label: 'Hint', blurb: 'Get a small nudge without revealing the full solution.' },
+    { value: 'explain', label: 'Explain', blurb: 'Walk through the method step by step.' },
+    { value: 'check', label: 'Check my work', blurb: 'Paste your working and get feedback.' },
+    { value: 'visualize', label: 'Visualize', blurb: 'See the idea with a graph, diagram, or animation.' },
 ];

@@ -104,8 +104,8 @@
     overflow-y: hidden;
 }
 
-.ResponseBubble h1, 
-.ResponseBubble h2, 
+.ResponseBubble h1,
+.ResponseBubble h2,
 .ResponseBubble h3 {
     margin-top: 1.5rem;
     margin-bottom: 0.8rem;
@@ -117,7 +117,7 @@
     margin-bottom: 1.2rem;
 }
 
-.ResponseBubble ol, 
+.ResponseBubble ol,
 .ResponseBubble ul {
     margin-bottom: 1.2rem;
     padding-left: 1.5rem;
@@ -348,6 +348,7 @@
 .ModeTag {
     display: inline-block;
     margin-bottom: 0.4rem;
+    margin-right: 0.35rem;
     padding: 0.14rem 0.6rem;
     border-radius: 999px;
     background: rgba(157, 180, 255, 0.16);
@@ -356,6 +357,50 @@
     font-weight: 650;
     letter-spacing: 0.03em;
     text-transform: uppercase;
+}
+
+.RouteTag {
+    display: inline-block;
+    margin-bottom: 0.4rem;
+    padding: 0.14rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #c7cedd;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.SuggestedActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.75rem;
+}
+
+.SuggestedAction {
+    border: 1px solid rgba(157, 180, 255, 0.3);
+    border-radius: 999px;
+    background: rgba(157, 180, 255, 0.1);
+    color: #dce5ff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.7rem;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.SuggestedAction:hover,
+.SuggestedAction:focus-visible {
+    background: rgba(157, 180, 255, 0.18);
+    border-color: rgba(157, 180, 255, 0.48);
+    color: #ffffff;
+    outline: none;
+}
+
+.SuggestedAction:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
 }
 
 .Dummy{
@@ -426,6 +471,15 @@
         min-width: 0;
     }
 
+    .ModeDropdown,
+    .ModeSelectBtn {
+        width: 100%;
+    }
+
+    .ModeMenuWrapper {
+        width: calc(100vw - 32px);
+    }
+
     .ChatBubble,
     .ResponseBubble,
     .LoadingContainer{
@@ -454,6 +508,10 @@
 @media (max-width: 560px) {
     .TopBar{
         padding-inline: 12px;
+    }
+
+    .ModeMenuWrapper {
+        width: calc(100vw - 24px);
     }
 
     .Chat{
@@ -515,50 +573,129 @@
 }
 
 /* --- Tutor mode selector -------------------------------------------------
-   Hint, Explain, Check and Visualize can each be toggled on independently --
-   a checkbox square inside every pill signals "pick any combination" rather
-   than the single-slot look of a segmented control. Selecting several fires
-   one independent request per mode (see handleSubmit in ChatSection.jsx),
-   each still following its own existing rules about what it may reveal. */
-.ModeGroup {
-    display: inline-flex;
-    gap: 0.25rem;
-    padding: 0.2rem;
-    border: 1px solid rgba(148, 163, 184, 0.46);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 10px 24px rgba(0, 0, 0, 0.22);
+   Compact by default: one dropdown shows the active mode and contains the
+   explicit mode choices plus the Combine modes toggle. */
+.ModeDropdown {
+    position: relative;
+    display: inline-block;
+    max-width: min(100%, 26rem);
 }
 
-.ModeButton {
+.ModeSelectBtn {
+    min-height: 2.75rem;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    border: 1px solid transparent;
-    background: transparent;
+    border: 1px solid rgba(148, 163, 184, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f2f6ff;
     cursor: pointer;
     font: inherit;
-    font-size: 0.82rem;
-    color: #d7deea;
-    padding: 0.34rem 0.95rem;
-    border-radius: 999px;
-    white-space: nowrap;
-    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    padding: 0.48rem 1rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 10px 24px rgba(0, 0, 0, 0.22);
+    transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.ModeButton:hover,
-.ModeButton:focus-visible {
-    background: rgba(255, 255, 255, 0.08);
+.ModeSelectBtn::after {
+    content: "";
+    width: 0;
+    height: 0;
+    margin-left: 0.2rem;
+    border-left: 0.32rem solid transparent;
+    border-right: 0.32rem solid transparent;
+    border-top: 0.38rem solid #c7d2fe;
+}
+
+.ModeSelectBtn:hover,
+.ModeSelectBtn:focus-visible,
+.ModeSelectBtnOpen {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(157, 180, 255, 0.56);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 14px 30px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(157, 180, 255, 0.1);
+    outline: none;
+}
+
+.ModeSelectPrefix {
+    color: #aeb8cc;
+    font-size: 0.83rem;
+    font-weight: 600;
+}
+
+.ModeSelectValue {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.ModeMenuWrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 35;
+    width: min(23rem, calc(100vw - min(var(--sidebar-width), 28vw) - 48px));
+    padding-top: 8px;
+}
+
+.ModeMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.55rem;
+    border-radius: 18px;
+    background: rgba(22, 22, 25, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(16px);
+}
+
+.ModeOption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: #d7d7d9;
+    cursor: pointer;
+    font: inherit;
+    padding: 0.7rem 0.75rem;
+    text-align: left;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.ModeOption:hover,
+.ModeOption:focus-visible {
+    background: rgba(139, 164, 249, 0.14);
     color: #ffffff;
     outline: none;
 }
 
-.ModeButtonActive {
-    font-weight: 600;
-    color: #111827;
-    background: #9db4ff;
-    border-color: rgba(255, 255, 255, 0.28);
-    box-shadow: 0 8px 18px rgba(91, 119, 214, 0.32);
+.ModeOptionActive {
+    background: rgba(157, 180, 255, 0.18);
+    border-color: rgba(157, 180, 255, 0.28);
+    color: #ffffff;
+}
+
+.ModeOptionHeader {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.ModeOptionDescription {
+    display: block;
+    color: #aeb8cc;
+    font-size: 0.78rem;
+    line-height: 1.4;
 }
 
 .ModeCheckbox {
@@ -576,10 +713,89 @@
     transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 
-.ModeButtonActive .ModeCheckbox {
+.ModeOptionActive .ModeCheckbox {
     background: #111827;
     border-color: #111827;
     color: #9db4ff;
+}
+
+.ModeMenuDivider {
+    height: 1px;
+    margin: 0.15rem 0;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.CombineMenuToggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: #d7d7d9;
+    cursor: pointer;
+    font: inherit;
+    padding: 0.7rem 0.75rem;
+    text-align: left;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.CombineMenuToggle:hover,
+.CombineMenuToggle:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    outline: none;
+}
+
+.CombineMenuTitle,
+.CombineMenuDescription {
+    display: block;
+}
+
+.CombineMenuTitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.CombineMenuDescription {
+    margin-top: 0.2rem;
+    color: #aeb8cc;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.CombineSwitch {
+    position: relative;
+    flex: 0 0 auto;
+    width: 2.35rem;
+    height: 1.28rem;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.38);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.CombineSwitchThumb {
+    position: absolute;
+    top: 50%;
+    left: 0.15rem;
+    width: 0.86rem;
+    height: 0.86rem;
+    border-radius: 50%;
+    background: #f8fafc;
+    transform: translateY(-50%);
+    transition: left 0.18s ease;
+}
+
+.CombineSwitchOn {
+    background: #9db4ff;
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.CombineSwitchOn .CombineSwitchThumb {
+    left: 1.25rem;
 }
 
 /* --- Notices -------------------------------------------------------------
@@ -627,4 +843,21 @@
 .ChatBox:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+@media (max-width: 720px) {
+    .ModeDropdown,
+    .ModeSelectBtn {
+        width: 100%;
+    }
+
+    .ModeMenuWrapper {
+        width: calc(100vw - 32px);
+    }
+}
+
+@media (max-width: 560px) {
+    .ModeMenuWrapper {
+        width: calc(100vw - 24px);
+    }
 }

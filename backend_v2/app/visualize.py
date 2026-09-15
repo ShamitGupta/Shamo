@@ -28,6 +28,7 @@ from .models import (
     QuestionRef,
     VisualArtifactKind,
     VisualArtifactOut,
+    VisualArtifactSummary,
     VisualValidationStatus,
     VisualizeResponse,
 )
@@ -120,6 +121,10 @@ class GeneratedVisualResponse(BaseModel):
     message_markdown: str = Field(min_length=1, max_length=3000)
     artifacts: list[VisualArtifactOut] = Field(default_factory=list, max_length=2)
     fallback_markdown: str = Field(min_length=1, max_length=1600)
+    # True only when artifacts is empty because the model chose to explain a
+    # visual already shown this conversation, not because the source material
+    # couldn't support one. Drives EXPLAINED vs RENDER_FAILED below.
+    answered_as_explanation: bool = False
 
     @field_validator("visual_spec_version")
     @classmethod
@@ -161,17 +166,19 @@ def validate_visual_payload(payload: dict[str, Any], ref: QuestionRef) -> Visual
         artifacts.append(artifact)
 
     usable = [a for a in artifacts if a.artifact_kind != VisualArtifactKind.NONE]
+    if usable:
+        status = VisualValidationStatus.VALIDATED
+    elif generated.answered_as_explanation:
+        status = VisualValidationStatus.EXPLAINED
+    else:
+        status = VisualValidationStatus.RENDER_FAILED
     return VisualizeResponse(
         visual_spec_version=VISUAL_SPEC_VERSION,
         message_markdown=generated.message_markdown,
         artifacts=usable,
         fallback_markdown=generated.fallback_markdown,
         source_reference=ref,
-        validation_status=(
-            VisualValidationStatus.VALIDATED
-            if usable
-            else VisualValidationStatus.RENDER_FAILED
-        ),
+        validation_status=status,
     )
 
 
@@ -193,6 +200,9 @@ def fallback_response(ref: QuestionRef, reason: str) -> VisualizeResponse:
 def _validate_artifact_text(artifact: VisualArtifactOut) -> None:
     for field_name in ("title", "purpose", "narration_markdown", "accessibility_text"):
         _reject_forbidden_text(str(getattr(artifact, field_name)), field_name)
+    for step in artifact.teaching_steps:
+        _reject_forbidden_text(step.label, "teaching step label")
+        _reject_forbidden_text(step.explanation_markdown, "teaching step explanation")
     if artifact.desmos:
         for expression in artifact.desmos.expressions:
             _reject_forbidden_text(expression.latex, "desmos expression")
@@ -402,7 +412,42 @@ def _part_summaries(context: QuestionContext) -> str:
     return "\n".join(lines) or "- No separate parts."
 
 
-def build_visual_system_prompt(context: QuestionContext) -> str:
+def _prior_visuals_section(history: list[ChatTurn]) -> str:
+    """List visuals already shown this conversation, if any.
+
+    Silent (returns "") when nothing qualifies -- an empty first-turn history,
+    or history from an older caller that never tagged its turns with
+    `visual_artifacts`. Without this, a follow-up like "explain that" has no
+    concrete "that" to point at, and the model falls back to making another
+    new visual every single call.
+    """
+
+    summaries: list[VisualArtifactSummary] = []
+    for turn in history:
+        if turn.role != "assistant" or not turn.visual_artifacts:
+            continue
+        summaries.extend(turn.visual_artifacts)
+
+    if not summaries:
+        return ""
+
+    lines = ["PRIOR VISUALS ALREADY SHOWN IN THIS CONVERSATION", "=" * 48]
+    for index, artifact in enumerate(summaries, start=1):
+        kind = artifact.manim_template.value if artifact.manim_template else artifact.artifact_kind.value
+        part = f" ({artifact.part_label})" if artifact.part_label else ""
+        lines.append(f'{index}. [{kind}]{part} "{artifact.title}" -- {artifact.purpose}')
+    lines.append("")
+    lines.append(
+        "If the student's new message is asking about one of these -- explain, "
+        "clarify, or interpret it -- rather than requesting a new or "
+        "meaningfully different visual, do not create another artifact; see "
+        "the optional-artifact rule above."
+    )
+    return "\n".join(lines)
+
+
+def build_visual_system_prompt(context: QuestionContext, history: list[ChatTurn] | None = None) -> str:
+    prior_visuals_block = _prior_visuals_section(history or [])
     return f"""You create safe, source-grounded interactive math visuals for Shamo.
 
 Return ONLY one JSON object matching visual_spec_version "{VISUAL_SPEC_VERSION}".
@@ -447,14 +492,27 @@ Allowed artifact kinds:
 Rules:
 - Use only the SOURCE MATERIAL below.
 - Do not reveal a full mark-by-mark solution; Visualize is concept-first.
+- Choose the clearest teaching format, not the most animated one. Prefer desmos_2d,
+  geogebra_graphing, geogebra_geometry, or geogebra_3d when a static labelled picture can
+  show the region, radius, boundary, locus, graph feature, vector relationship, or construction
+  more directly than a video.
+- Use manim_template_video only when motion or accumulation is genuinely the idea the student
+  needs to see. An animation that merely looks impressive but does not identify the key
+  mathematical choice is a worse visual than a clear static diagram.
 - Prefer one artifact. Use at most two.
-- Every visual must have title, purpose, narration_markdown, accessibility_text.
+- Every visual must have title, purpose, narration_markdown, accessibility_text, and
+  2-4 teaching_steps. Each teaching step should name one thing to notice, such as the
+  shaded region, the bounds, the radius, the inner/outer radius, the moving point, or the
+  relationship being preserved.
 - Desmos specs may contain only expressions, optional sliderBounds/domain, colors, labels, and a bounded viewport.
 - GeoGebra specs may contain only short English evalCommand strings from ordinary geometry/graphing commands.
 - GeoGebra specs must put appName inside the geogebra object, and may use at most 18 commands even though the hard cap is 24.
 - For GeoGebra points, prefer simple coordinate assignments such as "A=(0,0)" followed by whitelisted commands such as "Segment(A,B)".
 - No JavaScript, HTML, URLs, uploads, arbitrary saved calculator state, or executable code.
 - If the source is not enough to make a trustworthy visual, return artifacts: [] and explain the fallback.
+- Creating a NEW artifact is OPTIONAL on every call, not a default requirement -- check PRIOR VISUALS ALREADY SHOWN below (if present) before deciding.
+- If the student's new message is asking you to explain, interpret, or clarify a visual already listed there -- rather than requesting a new or meaningfully different visual -- do not create a new artifact. Return artifacts: [], set answered_as_explanation to true, and use message_markdown to explain the concept the existing visual shows (still concept-first: no full mark-by-mark solution).
+- Only create a NEW artifact when the student is asking for a new visual, a different aspect of the question, or nothing has been shown yet this conversation.
 
 The manim object (only for manim_template_video):
 - "template" must be exactly "region_sweep", "volume_of_revolution", "tangent_line",
@@ -472,6 +530,12 @@ The manim object (only for manim_template_video):
 - Use volume_of_revolution specifically when the question asks for a volume formed by rotating
   a region about the x-axis. Do not use it just because a region happens to be shaded -- that
   is region_sweep's job.
+- For a volume-of-revolution question, the primary teaching value is usually the 2D setup:
+  the shaded region, x-bounds, rotation axis, radius (disk) or outer/inner radii (washer), and
+  why the integral squares that radius. Prefer a static shaded Desmos/GeoGebra visual for this
+  first. Add a volume_of_revolution Manim artifact only if the student's wording specifically
+  asks to see the spinning/solid, or if a second artifact would clearly help after the static
+  setup.
 - tangent_line takes: expr (the same plain x-arithmetic grammar as above), x_min, x_max,
   point_of_interest_x (the specific x-value the question is actually about -- e.g. "find the
   gradient of the curve at the point where x = 2" means point_of_interest_x = 2), and optional
@@ -639,6 +703,10 @@ JSON shape:
       "purpose": "Show how the parameter changes the curve.",
       "narration_markdown": "Drag $a$ and watch the turning point move.",
       "accessibility_text": "A coordinate graph with a slider a controlling the curve.",
+      "teaching_steps": [
+        {{"label": "Parameter", "explanation_markdown": "$a$ controls how steep the curve is."}},
+        {{"label": "Turning point", "explanation_markdown": "The lowest point stays fixed while the arms narrow or widen."}}
+      ],
       "part_label": "(a)",
       "desmos": {{
         "calculator": "graphing",
@@ -803,6 +871,8 @@ JSON shape:
   ]
 }}
 
+{prior_visuals_block}
+
 SOURCE MATERIAL
 ===============
 {build_source_block(context, asset_urls_available=True)}
@@ -830,7 +900,9 @@ class VisualizeService:
             raise ValueError("Refusing to visualize without question context.")
 
         trimmed = history[-self._settings.max_history_messages :]
-        messages = [{"role": "system", "content": build_visual_system_prompt(context)}]
+        messages = [
+            {"role": "system", "content": build_visual_system_prompt(context, history=trimmed)}
+        ]
         messages += [{"role": turn.role, "content": turn.content} for turn in trimmed]
         messages.append({"role": "user", "content": message})
 

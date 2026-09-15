@@ -39,6 +39,26 @@
     background: rgba(255, 255, 255, 0.05);
 }
 
+.Error,
+.Notice {
+    border-radius: 16px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.Error {
+    border: 1px solid rgba(255, 114, 114, 0.28);
+    background: rgba(255, 114, 114, 0.08);
+    color: #ffc6c6;
+}
+
+.Notice {
+    border: 1px solid rgba(139, 164, 249, 0.25);
+    background: rgba(139, 164, 249, 0.08);
+    color: #dbe4ff;
+}
+
 .SubmitButton,
 .GoogleButton {
     min-height: 3.15rem;
@@ -47,6 +67,13 @@
     cursor: pointer;
     font-weight: 600;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.SubmitButton:disabled,
+.GoogleButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.62;
+    transform: none;
 }
 
 .SubmitButton {

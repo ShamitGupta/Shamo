@@ -63,6 +63,15 @@
     padding-left: 24px;
 }
 
+/* Log In / Sign Up. The buttons container above is flex: 1, so this block sits
+   at the bottom of the sidebar. */
+.SidebarFooter{
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 16px 6px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 .MobileBar,
 .MobileOverlay{
     display: none;

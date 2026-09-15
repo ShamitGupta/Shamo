@@ -24,6 +24,7 @@ os.environ.setdefault("OPENAI_API_KEY", "test-openai-key")
 from fastapi.testclient import TestClient  # noqa: E402
 
 from app import main  # noqa: E402
+from app.auth import AuthenticatedUser  # noqa: E402
 from app.manim_renderer import ManimRenderError  # noqa: E402
 from app.repository import QuestionContext  # noqa: E402
 from app.visualize import VisualizeResponse  # noqa: E402
@@ -76,14 +77,24 @@ class FakeRepository:
     def list_papers(self):
         return []
 
-    def get_question_context(self, year, exam_session, paper_variant, question_number):
+    def get_question_context(
+        self, year, exam_session, paper_variant, question_number, *, qualification="a_level", syllabus_code="9709"
+    ):
         return self._context
 
     def sign_asset(self, bucket, path):
         return f"https://signed.example/{bucket}/{path}"
 
-    def nearest_available(self, year, paper_variant):
+    def nearest_available(self, year, paper_variant, *, qualification="a_level", syllabus_code="9709"):
         return None
+
+    def get_similar_questions(
+        self, seed_question_id, *, qualification="a_level", syllabus_code="9709", limit=5
+    ):
+        # Not reached by this module's tests, but keeps the two fakes
+        # interchangeable. [] is also the degenerate "the RPC returned nothing
+        # at all" shape the endpoint has to tolerate.
+        return []
 
     def get_visual_artifact(self, **kwargs):
         return self.cached_visual
@@ -112,6 +123,15 @@ class RecordingVisualizer:
         return self.response
 
 
+class FakeAuthService:
+    def get_user(self, _access_token: str) -> AuthenticatedUser:
+        return AuthenticatedUser(
+            user_id="user-1",
+            email="ada@example.com",
+            email_confirmed=True,
+        )
+
+
 @pytest.fixture
 def repository():
     return FakeRepository()
@@ -123,7 +143,8 @@ def client(repository):
     visualizer = RecordingVisualizer(response)
     main.app.dependency_overrides[main.get_repository] = lambda: repository
     main.app.dependency_overrides[main.get_visualizer] = lambda: visualizer
-    with TestClient(main.app) as test_client:
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as test_client:
         yield test_client
     main.app.dependency_overrides.clear()
 

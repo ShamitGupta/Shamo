@@ -258,6 +258,19 @@ function VisualArtifactCard({ artifact, fallbackMarkdown }) {
                 <Markdown>{artifact.narration_markdown}</Markdown>
             </div>
 
+            {artifact.teaching_steps?.length > 0 && (
+                <div className={styles.TeachingSteps}>
+                    {artifact.teaching_steps.map((step, index) => (
+                        <div key={`${artifact.title}-step-${index}`} className={styles.TeachingStep}>
+                            <span className={styles.TeachingLabel}>{step.label}</span>
+                            <div className={styles.TeachingText}>
+                                <Markdown>{step.explanation_markdown}</Markdown>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
             {renderError ? (
                 <div className={styles.Fallback}>
                     <strong>Visual unavailable.</strong>

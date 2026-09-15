@@ -20,6 +20,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
+from pydantic import ValidationError
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -31,16 +32,33 @@ os.environ.setdefault("OPENAI_API_KEY", "test-openai-key")
 from fastapi.testclient import TestClient  # noqa: E402
 
 from app import main  # noqa: E402
+from app.auth import AuthenticatedUser, AuthError  # noqa: E402
 from app.config import get_settings  # noqa: E402
-from app.models import ChatTurn, QuestionRef, TutorMode, VisualValidationStatus, VisualizeResponse  # noqa: E402
+from app.models import (  # noqa: E402
+    ChatTurn,
+    ManimTemplate,
+    QuestionRef,
+    SimilarQuestionOut,
+    TutorMode,
+    VisualArtifactKind,
+    VisualArtifactSummary,
+    VisualValidationStatus,
+    VisualizeResponse,
+    UserTier,
+)
 from app.prompts import (  # noqa: E402
     build_mark_attribution_checklist,
     build_source_block,
     build_system_prompt,
 )
-from app.repository import QuestionContext  # noqa: E402
+from app.repository import QuestionContext, Repository, RetrievalError  # noqa: E402
 from app.tutor import TutorService  # noqa: E402
-from app.visualize import VisualizeService, validate_visual_payload  # noqa: E402
+from app.visualize import (  # noqa: E402
+    GeneratedVisualResponse,
+    VisualizeService,
+    build_visual_system_prompt,
+    validate_visual_payload,
+)
 
 # A real published question, trimmed: 9709/51 Oct/Nov 2025 Q4. Chosen because it
 # exercises the awkward cases -- a required diagram, a part whose mark rows carry
@@ -116,6 +134,71 @@ SAMPLE = QuestionContext(
 )
 
 
+# One row as shamo_match_similar_questions_for_question returns it. Every
+# column is present because the endpoint reads its status off the head row,
+# which is the same row shape whether or not there is a match on it.
+SIMILAR_MATCH_ROW = {
+    "result_status": "ok",
+    "seed_question_id": "11111111-1111-1111-1111-111111111111",
+    "seed_main_topic": "Probability",
+    "seed_total_marks": 5,
+    "is_ready": True,
+    "readiness_status": "ready",
+    "same_component_paper_count": 6,
+    "same_component_cross_paper_question_count": 41,
+    "applied_min_similarity": 0.6,
+    "match_rank": 1,
+    "question_id": "33333333-3333-3333-3333-333333333333",
+    "question_part_id": None,
+    "matched_on_part": False,
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "may_june",
+    "paper_variant": "52",
+    "question_number": 6,
+    "paper_component": "5",
+    "main_topic": "Probability",
+    "shares_main_topic": True,
+    "total_marks": 6,
+    "stem_snippet": "A bag contains 5 red and 4 green counters.",
+    "similarity": 0.71,
+}
+
+
+def similar_sentinel_row(result_status: str, *, is_ready: bool) -> dict:
+    """The single row the RPC returns when there is nothing to recommend.
+
+    Every match column is null; only the status columns carry meaning.
+    """
+    row = dict(SIMILAR_MATCH_ROW)
+    row.update(
+        {
+            "result_status": result_status,
+            "is_ready": is_ready,
+            "match_rank": None,
+            "question_id": None,
+            "question_part_id": None,
+            "matched_on_part": None,
+            "qualification": None,
+            "syllabus_code": None,
+            "subject": None,
+            "year": None,
+            "exam_session": None,
+            "paper_variant": None,
+            "question_number": None,
+            "paper_component": None,
+            "main_topic": None,
+            "shares_main_topic": None,
+            "total_marks": None,
+            "stem_snippet": None,
+            "similarity": None,
+        }
+    )
+    return row
+
+
 class FakeRepository:
     """Stands in for Supabase. Records what was asked for."""
 
@@ -124,6 +207,16 @@ class FakeRepository:
         self.lookups: list[tuple] = []
         self.cached_visual: dict | None = None
         self.stored_visuals: list[dict] = []
+        self.profile: dict | None = {
+            "user_id": "user-1",
+            "display_name": "Ada",
+            "grade": "A-levels",
+            "created_at": "2026-08-16T00:00:00+00:00",
+            "updated_at": "2026-08-16T00:00:00+00:00",
+        }
+        self.tier = UserTier.FREE
+        self.similar_lookups: list[tuple] = []
+        self.similar_rows: list[dict] = [SIMILAR_MATCH_ROW]
 
     def list_papers(self):
         return [
@@ -137,14 +230,16 @@ class FakeRepository:
             }
         ]
 
-    def get_question_context(self, year, exam_session, paper_variant, question_number):
-        self.lookups.append((year, exam_session, paper_variant, question_number))
+    def get_question_context(
+        self, year, exam_session, paper_variant, question_number, *, qualification="a_level", syllabus_code="9709"
+    ):
+        self.lookups.append((year, exam_session, paper_variant, question_number, qualification, syllabus_code))
         return self._context
 
     def sign_asset(self, bucket, path):
         return f"https://signed.example/{bucket}/{path}?token=abc"
 
-    def nearest_available(self, year, paper_variant):
+    def nearest_available(self, year, paper_variant, *, qualification="a_level", syllabus_code="9709"):
         return "Paper 51 is published for: 2025."
 
     def get_visual_artifact(self, **kwargs):
@@ -152,6 +247,18 @@ class FakeRepository:
 
     def store_visual_artifact(self, **kwargs):
         self.stored_visuals.append(kwargs)
+
+    def get_profile(self, user_id):
+        return self.profile if user_id == "user-1" else None
+
+    def get_effective_tier(self, user_id):
+        return self.tier
+
+    def get_similar_questions(
+        self, seed_question_id, *, qualification="a_level", syllabus_code="9709", limit=5
+    ):
+        self.similar_lookups.append((seed_question_id, qualification, syllabus_code, limit))
+        return self.similar_rows
 
 
 class RecordingTutor:
@@ -177,15 +284,58 @@ class RecordingVisualizer:
         return self.response or sample_visual_response()
 
 
+class FakeTableQuery:
+    def __init__(self, rows: list[dict]) -> None:
+        self.rows = rows
+
+    def select(self, *_args, **_kwargs):
+        return self
+
+    def eq(self, field, value):
+        self.rows = [row for row in self.rows if row.get(field) == value]
+        return self
+
+    def execute(self):
+        return SimpleNamespace(data=self.rows)
+
+
+class EntitlementClient:
+    def __init__(self, rows: list[dict]) -> None:
+        self.rows = rows
+
+    def table(self, name):
+        assert name == "shamo_user_entitlements"
+        return FakeTableQuery(list(self.rows))
+
+
+class FakeAuthService:
+    def __init__(self, user: AuthenticatedUser | None = None, *, fail: bool = False) -> None:
+        self.user = user or AuthenticatedUser(
+            user_id="user-1",
+            email="ada@example.com",
+            email_confirmed=True,
+        )
+        self.fail = fail
+        self.tokens: list[str] = []
+
+    def get_user(self, access_token: str) -> AuthenticatedUser:
+        self.tokens.append(access_token)
+        if self.fail:
+            raise AuthError("Invalid or expired session.")
+        return self.user
+
+
 @pytest.fixture
 def client_and_fakes():
     repository = FakeRepository()
     tutor = RecordingTutor()
     visualizer = RecordingVisualizer()
+    auth_service = FakeAuthService()
     main.app.dependency_overrides[main.get_repository] = lambda: repository
     main.app.dependency_overrides[main.get_tutor] = lambda: tutor
     main.app.dependency_overrides[main.get_visualizer] = lambda: visualizer
-    with TestClient(main.app) as client:
+    main.app.dependency_overrides[main.get_auth_service] = lambda: auth_service
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
         yield client, repository, tutor, visualizer
     main.app.dependency_overrides.clear()
 
@@ -231,6 +381,203 @@ def sample_visual_response() -> VisualizeResponse:
 # ---------------------------------------------------------------------------
 # Refusal: the defect this service exists to prevent
 # ---------------------------------------------------------------------------
+
+
+def test_public_catalogue_and_question_context_do_not_require_auth():
+    repository = FakeRepository()
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    with TestClient(main.app) as client:
+        papers = client.get("/papers")
+        question = client.get("/papers/2025/oct_nov/51/questions/4")
+    main.app.dependency_overrides.clear()
+
+    assert papers.status_code == 200
+    assert question.status_code == 200
+    assert repository.lookups == [(2025, "oct_nov", "51", 4, "a_level", "9709")]
+
+
+def test_chat_requires_a_session_before_retrieval_or_model_call():
+    repository = FakeRepository()
+    tutor = RecordingTutor()
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_tutor] = lambda: tutor
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+
+    with TestClient(main.app) as client:
+        response = client.post(
+            "/chat",
+            json={
+                "question": {
+                    "year": 2025,
+                    "exam_session": "oct_nov",
+                    "paper_variant": "51",
+                    "question_number": 4,
+                },
+                "mode": "explain",
+                "message": "Explain this.",
+            },
+        )
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 401
+    assert repository.lookups == []
+    assert tutor.calls == []
+
+
+def test_visualize_rejects_invalid_session_before_retrieval_or_model_call():
+    repository = FakeRepository()
+    visualizer = RecordingVisualizer()
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_visualizer] = lambda: visualizer
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService(fail=True)
+
+    with TestClient(main.app, headers={"Authorization": "Bearer bad-token"}) as client:
+        response = client.post(
+            "/visualize",
+            json={
+                "question": {
+                    "year": 2025,
+                    "exam_session": "oct_nov",
+                    "paper_variant": "51",
+                    "question_number": 4,
+                },
+                "message": "Visualize this.",
+            },
+        )
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 401
+    assert repository.lookups == []
+    assert visualizer.calls == []
+
+
+def test_assist_requires_verified_email_before_retrieval_or_model_call():
+    repository = FakeRepository()
+    tutor = RecordingTutor()
+    visualizer = RecordingVisualizer()
+    unverified = AuthenticatedUser(
+        user_id="user-1",
+        email="ada@example.com",
+        email_confirmed=False,
+    )
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_tutor] = lambda: tutor
+    main.app.dependency_overrides[main.get_visualizer] = lambda: visualizer
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService(user=unverified)
+
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.post(
+            "/assist",
+            json={
+                "question": {
+                    "year": 2025,
+                    "exam_session": "oct_nov",
+                    "paper_variant": "51",
+                    "question_number": 4,
+                },
+                "message": "I'm stuck.",
+            },
+        )
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 403
+    assert repository.lookups == []
+    assert tutor.calls == []
+    assert visualizer.calls == []
+
+
+def test_respond_requires_verified_email_before_retrieval_or_model_call():
+    repository = FakeRepository()
+    tutor = RecordingTutor()
+    visualizer = RecordingVisualizer()
+    unverified = AuthenticatedUser(
+        user_id="user-1",
+        email="ada@example.com",
+        email_confirmed=False,
+    )
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_tutor] = lambda: tutor
+    main.app.dependency_overrides[main.get_visualizer] = lambda: visualizer
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService(user=unverified)
+
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.post(
+            "/respond",
+            json={
+                "question": {
+                    "year": 2025,
+                    "exam_session": "oct_nov",
+                    "paper_variant": "51",
+                    "question_number": 4,
+                },
+                "modes": ["explain", "visualize"],
+                "message": "Explain and visualize.",
+            },
+        )
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 403
+    assert repository.lookups == []
+    assert tutor.calls == []
+    assert visualizer.calls == []
+
+
+def test_me_returns_profile_and_free_tier_by_default():
+    repository = FakeRepository()
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.get("/me")
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["user_id"] == "user-1"
+    assert body["email"] == "ada@example.com"
+    assert body["email_confirmed"] is True
+    assert body["tier"] == "free"
+    assert body["profile"]["display_name"] == "Ada"
+
+
+def test_me_prefers_shamo_student_over_future_premium():
+    repository = FakeRepository()
+    repository.tier = UserTier.SHAMO_STUDENT
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.get("/me")
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.json()["tier"] == "shamo_student"
+
+
+def test_repository_tier_resolver_prefers_shamo_student_over_premium():
+    repository = Repository(
+        get_settings(),
+        client=EntitlementClient(
+            [
+                {
+                    "user_id": "user-1",
+                    "entitlement_type": "premium",
+                    "status": "active",
+                    "starts_at": "2026-08-15T00:00:00+00:00",
+                    "ends_at": None,
+                },
+                {
+                    "user_id": "user-1",
+                    "entitlement_type": "shamo_student",
+                    "status": "active",
+                    "starts_at": "2026-08-15T00:00:00+00:00",
+                    "ends_at": None,
+                },
+            ]
+        ),
+    )
+
+    assert repository.get_effective_tier("user-1") is UserTier.SHAMO_STUDENT
 
 
 def test_missing_question_returns_404_not_an_answer(client_and_fakes):
@@ -376,7 +723,7 @@ def test_client_cannot_inject_question_content(client_and_fakes):
         },
     )
     assert response.status_code == 200
-    assert repository.lookups == [(2025, "oct_nov", "51", 4)]
+    assert repository.lookups == [(2025, "oct_nov", "51", 4, "a_level", "9709")]
     prompt = tutor.calls[0]["context"]
     assert prompt.question["stem_markdown"].startswith("Bag A contains")
 
@@ -455,6 +802,97 @@ def test_multi_mode_prompt_tells_explain_that_visualize_is_handling_animation():
     assert "avoid offering to help them picture it later" in prompt
 
 
+def test_assist_router_maps_student_intents_to_mode_sets():
+    assert main.route_assist_modes("I'm stuck on part b", [])[0] == [TutorMode.HINT]
+    assert main.route_assist_modes("Explain the full solution", [])[0] == [TutorMode.EXPLAIN]
+    assert main.route_assist_modes("Can you check my working?", [])[0] == [TutorMode.CHECK]
+    assert main.route_assist_modes("Show me visually with a graph", [])[0] == [
+        TutorMode.EXPLAIN,
+        TutorMode.VISUALIZE,
+    ]
+    assert main.route_assist_modes("8/11 * 4/5 = 32/55", [])[0] == [TutorMode.CHECK]
+    assert main.route_assist_modes("help", [])[0] == [TutorMode.HINT]
+
+
+def test_assist_router_sends_prior_visual_followups_to_visualize_only():
+    history = [
+        ChatTurn(
+            role="assistant",
+            content="Here is a graph.",
+            modes=[TutorMode.VISUALIZE],
+            visual_artifacts=[
+                VisualArtifactSummary(
+                    artifact_kind=VisualArtifactKind.DESMOS_2D,
+                    title="Same-colour branches",
+                    purpose="Show both branch products.",
+                )
+            ],
+        )
+    ]
+
+    modes, label = main.route_assist_modes("I don't understand that visual", history)
+
+    assert modes == [TutorMode.VISUALIZE]
+    assert label == "Explaining the visual"
+
+
+def test_chat_turn_modes_field_is_optional_and_defaults_to_none():
+    turn = ChatTurn(role="assistant", content="A hint reply.")
+    assert turn.modes is None
+
+    tagged = ChatTurn(role="assistant", content="An explain reply.", modes=[TutorMode.EXPLAIN])
+    assert tagged.modes == [TutorMode.EXPLAIN]
+
+
+def test_history_mode_context_is_silent_without_a_known_differing_mode():
+    # No history at all.
+    prompt = build_system_prompt(SAMPLE, TutorMode.HINT, asset_urls_available=True, history=[])
+    assert "PRIOR-TURN MODE CONTEXT" not in prompt
+
+    # Untagged history (older clients, or plain user turns) -- nothing to warn about.
+    untagged_history = [
+        ChatTurn(role="user", content="Can you give me a hint?"),
+        ChatTurn(role="assistant", content="Think about the first branch."),
+    ]
+    prompt = build_system_prompt(
+        SAMPLE, TutorMode.HINT, asset_urls_available=True, history=untagged_history
+    )
+    assert "PRIOR-TURN MODE CONTEXT" not in prompt
+
+    # History tagged with the SAME mode as now -- nothing differs, stay silent.
+    same_mode_history = [
+        ChatTurn(role="assistant", content="Think about the first branch.", modes=[TutorMode.HINT]),
+    ]
+    prompt = build_system_prompt(
+        SAMPLE, TutorMode.HINT, asset_urls_available=True, history=same_mode_history
+    )
+    assert "PRIOR-TURN MODE CONTEXT" not in prompt
+
+
+def test_hint_prompt_warns_against_leaking_answer_from_earlier_explain_turn():
+    history = [
+        ChatTurn(role="user", content="Can you explain this fully?"),
+        ChatTurn(
+            role="assistant",
+            content="The probability is 1307/3025.",
+            modes=[TutorMode.EXPLAIN],
+        ),
+        ChatTurn(role="user", content="Actually just give me a hint now."),
+    ]
+    prompt = build_system_prompt(
+        SAMPLE, TutorMode.HINT, asset_urls_available=True, history=history
+    )
+
+    # The prior-mode context section fires, naming the earlier mode...
+    assert "PRIOR-TURN MODE CONTEXT" in prompt
+    assert "explain" in prompt
+    assert "do not restate, confirm, or make it easy to infer" in prompt
+    # ...and Hint's own withholding rule -- including its history-aware
+    # hardening -- is still fully present alongside it.
+    assert "Do NOT state the final answer" in prompt
+    assert "even if the final answer already appears" in prompt
+
+
 def test_explain_prompt_guards_volume_of_revolution_region_choice():
     prompt = build_system_prompt(SAMPLE, TutorMode.EXPLAIN, asset_urls_available=True)
 
@@ -462,6 +900,16 @@ def test_explain_prompt_guards_volume_of_revolution_region_choice():
     assert "For volumes of revolution, first identify the actual shaded region and axis" in prompt
     assert "Use \\(V = \\pi \\int y^2 dx\\) only when the rotated region is between a curve" in prompt
     assert "washer difference \\(V = \\pi \\int (R^2-r^2) dx\\)" in prompt
+
+
+def test_visualize_prompt_prefers_teaching_clarity_over_animation():
+    prompt = build_visual_system_prompt(SAMPLE)
+
+    assert "Choose the clearest teaching format, not the most animated one" in prompt
+    assert "Use manim_template_video only when motion or accumulation is genuinely the idea" in prompt
+    assert "Every visual must have title, purpose, narration_markdown, accessibility_text, and" in prompt
+    assert "For a volume-of-revolution question, the primary teaching value is usually the 2D setup" in prompt
+    assert "Add a volume_of_revolution Manim artifact only if the student's wording specifically" in prompt
 
 
 def test_mark_attribution_checklist_repeats_each_mark_condition():
@@ -634,6 +1082,159 @@ def test_visualize_stores_validated_specs(client_and_fakes):
     assert repository.stored_visuals[0]["response_payload"]["artifacts"][0]["artifact_kind"] == "desmos_2d"
 
 
+def test_visualize_skips_cache_lookup_when_history_present(client_and_fakes):
+    # A response can now depend on conversation history (the prior-visuals
+    # section), so a cached reply from a DIFFERENT conversation must never be
+    # served once this request carries any history of its own.
+    client, repository, _, visualizer = client_and_fakes
+    repository.cached_visual = sample_visual_response().model_dump(mode="json")
+
+    response = client.post(
+        "/visualize",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "message": "I don't understand that, please explain it.",
+            "history": [
+                {"role": "user", "content": "Can you visualize part b?"},
+                {"role": "assistant", "content": "Here is a graph.", "modes": ["visualize"]},
+            ],
+        },
+    )
+
+    assert response.status_code == 200
+    assert len(visualizer.calls) == 1
+    assert repository.stored_visuals == []
+
+
+def test_visualize_skips_cache_write_when_history_present(client_and_fakes):
+    client, repository, _, visualizer = client_and_fakes
+
+    response = client.post(
+        "/visualize",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "message": "I don't understand that, please explain it.",
+            "history": [
+                {"role": "assistant", "content": "Here is a graph.", "modes": ["visualize"]},
+            ],
+        },
+    )
+
+    assert response.status_code == 200
+    # RecordingVisualizer's default sample_visual_response() is VALIDATED,
+    # which would normally trigger a cache write -- proving the guard, not
+    # just an incidental absence of anything to store.
+    assert response.json()["validation_status"] == VisualValidationStatus.VALIDATED
+    assert repository.stored_visuals == []
+
+
+def test_assist_routes_stuck_student_to_hint(client_and_fakes):
+    client, repository, tutor, visualizer = client_and_fakes
+
+    response = client.post(
+        "/assist",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "message": "I'm stuck. What should I do next?",
+            "history": [],
+        },
+    )
+
+    assert response.status_code == 200
+    assert repository.lookups == [(2025, "oct_nov", "51", 4, "a_level", "9709")]
+    assert len(tutor.calls) == 1
+    assert tutor.calls[0]["mode"] is TutorMode.HINT
+    assert tutor.calls[0]["selected_modes"] == [TutorMode.HINT]
+    assert visualizer.calls == []
+    body = response.json()
+    assert body["routed_modes"] == ["hint"]
+    assert body["route_label"] == "Giving a hint"
+    assert body["responses"][0]["message_markdown"] == "ok"
+    assert any(action["label"] == "Show me visually" for action in body["suggested_actions"])
+
+
+def test_assist_routes_visual_request_to_explain_and_visualize(client_and_fakes):
+    client, repository, tutor, visualizer = client_and_fakes
+
+    response = client.post(
+        "/assist",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "message": "Show me visually why both branches matter.",
+            "history": [],
+        },
+    )
+
+    assert response.status_code == 200
+    assert repository.lookups == [(2025, "oct_nov", "51", 4, "a_level", "9709")]
+    assert len(tutor.calls) == 1
+    assert tutor.calls[0]["mode"] is TutorMode.EXPLAIN
+    assert tutor.calls[0]["selected_modes"] == [TutorMode.EXPLAIN, TutorMode.VISUALIZE]
+    assert len(visualizer.calls) == 1
+    body = response.json()
+    assert body["routed_modes"] == ["explain", "visualize"]
+    assert [item["mode"] for item in body["responses"]] == ["explain", "visualize"]
+
+
+def test_assist_prior_visual_followup_preserves_history_for_visualizer(client_and_fakes):
+    client, _, tutor, visualizer = client_and_fakes
+
+    response = client.post(
+        "/assist",
+        json={
+            "question": {
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "51",
+                "question_number": 4,
+            },
+            "message": "I don't understand that visual.",
+            "history": [
+                {
+                    "role": "assistant",
+                    "content": "Here is the graph.",
+                    "modes": ["visualize"],
+                    "visual_artifacts": [
+                        {
+                            "artifact_kind": "desmos_2d",
+                            "title": "Same-colour branches",
+                            "purpose": "Show both branch products.",
+                        }
+                    ],
+                }
+            ],
+        },
+    )
+
+    assert response.status_code == 200
+    assert tutor.calls == []
+    assert len(visualizer.calls) == 1
+    assert visualizer.calls[0]["history"][0].visual_artifacts[0].title == "Same-colour branches"
+    body = response.json()
+    assert body["routed_modes"] == ["visualize"]
+    assert body["route_label"] == "Explaining the visual"
+
+
 def test_respond_coordinates_text_and_visualize_with_one_lookup(client_and_fakes):
     client, repository, tutor, visualizer = client_and_fakes
 
@@ -653,7 +1254,7 @@ def test_respond_coordinates_text_and_visualize_with_one_lookup(client_and_fakes
     )
 
     assert response.status_code == 200
-    assert repository.lookups == [(2025, "oct_nov", "51", 4)]
+    assert repository.lookups == [(2025, "oct_nov", "51", 4, "a_level", "9709")]
     assert len(tutor.calls) == 1
     assert tutor.calls[0]["mode"] is TutorMode.EXPLAIN
     assert tutor.calls[0]["selected_modes"] == [TutorMode.EXPLAIN, TutorMode.VISUALIZE]
@@ -664,6 +1265,28 @@ def test_respond_coordinates_text_and_visualize_with_one_lookup(client_and_fakes
     assert body["responses"][0]["message_markdown"] == "ok"
     assert body["responses"][1]["validation_status"] == "validated"
     assert body["responses"][1]["artifacts"][0]["artifact_kind"] == "desmos_2d"
+
+
+def test_assist_missing_question_returns_404_without_any_model_call(client_and_fakes):
+    client, _, tutor, visualizer = client_and_fakes
+    main.app.dependency_overrides[main.get_repository] = lambda: FakeRepository(context=None)
+
+    response = client.post(
+        "/assist",
+        json={
+            "question": {
+                "year": 2019,
+                "exam_session": "may_june",
+                "paper_variant": "99",
+                "question_number": 3,
+            },
+            "message": "I'm stuck.",
+        },
+    )
+
+    assert response.status_code == 404
+    assert tutor.calls == []
+    assert visualizer.calls == []
 
 
 def test_respond_missing_question_returns_404_without_any_model_call(client_and_fakes):
@@ -698,6 +1321,28 @@ def test_visual_spec_rejects_raw_javascript():
             payload,
             ref=payload["source_reference"],
         )
+
+
+def test_visual_spec_accepts_teaching_steps():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"][0]["teaching_steps"] = [
+        {"label": "First branch", "explanation_markdown": "This term is the red-red-red route."},
+        {"label": "Second branch", "explanation_markdown": "This term is the blue-blue-blue route."},
+    ]
+
+    response = validate_visual_payload(payload, ref=QuestionRef(**payload["source_reference"]))
+
+    assert response.artifacts[0].teaching_steps[0].label == "First branch"
+
+
+def test_visual_spec_rejects_executable_teaching_step_text():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"][0]["teaching_steps"] = [
+        {"label": "Radius", "explanation_markdown": "Use javascript:alert(1) here."},
+    ]
+
+    with pytest.raises(ValueError):
+        validate_visual_payload(payload, ref=QuestionRef(**payload["source_reference"]))
 
 
 def test_visual_spec_rejects_unlisted_geogebra_commands():
@@ -797,3 +1442,265 @@ def test_visualize_service_hides_raw_validation_errors_from_students():
     assert response.validation_status == VisualValidationStatus.RENDER_FAILED
     assert "pydantic.dev" not in response.fallback_markdown
     assert "Field required" not in response.fallback_markdown
+
+
+# ---------------------------------------------------------------------------
+# Visualize: creating a new artifact is optional, not a default requirement
+# ---------------------------------------------------------------------------
+
+
+def _prior_visual_turn() -> ChatTurn:
+    return ChatTurn(
+        role="assistant",
+        content="Here is the tangent line animation for part (b).",
+        modes=[TutorMode.VISUALIZE],
+        visual_artifacts=[
+            VisualArtifactSummary(
+                artifact_kind=VisualArtifactKind.MANIM_TEMPLATE_VIDEO,
+                title="Gradient at x=2",
+                purpose="Show the tangent line and live gradient at the point of interest.",
+                part_label="(b)",
+                manim_template=ManimTemplate.TANGENT_LINE,
+            )
+        ],
+    )
+
+
+def test_visual_prompt_lists_prior_artifacts_and_offers_explain_option():
+    prompt = build_visual_system_prompt(SAMPLE, history=[_prior_visual_turn()])
+
+    assert "PRIOR VISUALS ALREADY SHOWN IN THIS CONVERSATION" in prompt
+    assert "Gradient at x=2" in prompt
+    assert "tangent_line" in prompt
+    assert "(b)" in prompt
+    assert "do not create another artifact" in prompt
+    # The general optional-artifact rule is present regardless of history.
+    assert "Creating a NEW artifact is OPTIONAL on every call" in prompt
+
+
+def test_visual_prompt_silent_about_prior_visuals_when_none_exist():
+    empty_history = build_visual_system_prompt(SAMPLE, history=[])
+    no_history = build_visual_system_prompt(SAMPLE)
+    untagged_history = build_visual_system_prompt(
+        SAMPLE,
+        history=[ChatTurn(role="assistant", content="Here is a graph.")],
+    )
+
+    for prompt in (empty_history, no_history, untagged_history):
+        # The rule bullet mentions this phrase in passing; only the actual
+        # rendered section (with "IN THIS CONVERSATION") means one exists.
+        assert "PRIOR VISUALS ALREADY SHOWN IN THIS CONVERSATION" not in prompt
+        # Still present -- the rule isn't conditional on history existing.
+        assert "Creating a NEW artifact is OPTIONAL on every call" in prompt
+
+
+def test_visualize_service_forwards_history_into_prompt():
+    class RecordingClient:
+        def __init__(self):
+            self.chat = SimpleNamespace(completions=self)
+            self.captured_messages = None
+
+        def create(self, **kwargs):
+            self.captured_messages = kwargs["messages"]
+            return SimpleNamespace(
+                choices=[
+                    SimpleNamespace(message=SimpleNamespace(content=sample_visual_response().model_dump_json()))
+                ]
+            )
+
+    client = RecordingClient()
+    service = VisualizeService(get_settings(), client=client)
+    service.create(
+        context=SAMPLE,
+        ref=QuestionRef(year=2025, exam_session="oct_nov", paper_variant="51", question_number=4),
+        message="I don't understand that, please explain it.",
+        history=[_prior_visual_turn()],
+    )
+
+    system_message = client.captured_messages[0]["content"]
+    assert "PRIOR VISUALS ALREADY SHOWN IN THIS CONVERSATION" in system_message
+    assert "Gradient at x=2" in system_message
+
+
+def test_generated_visual_response_explanation_status():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"] = []
+    payload["answered_as_explanation"] = True
+
+    response = validate_visual_payload(payload, ref=QuestionRef.model_validate(payload["source_reference"]))
+
+    assert response.validation_status == VisualValidationStatus.EXPLAINED
+    assert response.artifacts == []
+
+
+def test_generated_visual_response_insufficient_source_status_unchanged():
+    payload = sample_visual_response().model_dump(mode="json")
+    payload["artifacts"] = []
+    # answered_as_explanation omitted -- must default to False and keep the
+    # pre-existing "insufficient source" behavior unchanged.
+
+    response = validate_visual_payload(payload, ref=QuestionRef.model_validate(payload["source_reference"]))
+
+    assert response.validation_status == VisualValidationStatus.RENDER_FAILED
+
+
+# ---------------------------------------------------------------------------
+# Similar questions: gated, grounded, and honest about an empty result
+# ---------------------------------------------------------------------------
+
+SIMILAR_URL = "/papers/2025/oct_nov/51/questions/4/similar"
+
+
+def test_similar_questions_require_a_session_before_any_lookup():
+    repository = FakeRepository()
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+
+    with TestClient(main.app) as client:
+        response = client.get(SIMILAR_URL)
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 401
+    # Unlike the question endpoint sharing this path prefix, nothing is read
+    # before the gate -- not the question, and not the similarity index.
+    assert repository.lookups == []
+    assert repository.similar_lookups == []
+
+
+def test_similar_questions_require_a_verified_email_before_any_lookup():
+    repository = FakeRepository()
+    unverified = AuthenticatedUser(user_id="user-1", email="ada@example.com", email_confirmed=False)
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService(user=unverified)
+
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.get(SIMILAR_URL)
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 403
+    assert repository.lookups == []
+    assert repository.similar_lookups == []
+
+
+def test_similar_questions_return_metadata_grounded_matches(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+
+    response = client.get(SIMILAR_URL)
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "ok"
+    assert body["is_ready"] is True
+    assert body["source_reference"]["question_number"] == 4
+
+    assert len(body["matches"]) == 1
+    match = body["matches"][0]
+    # The explanation is metadata the corpus already stores, not prose a model
+    # wrote: a shared topic, real marks, and a real paper identity.
+    assert match["main_topic"] == "Probability"
+    assert match["shares_main_topic"] is True
+    assert match["total_marks"] == 6
+    assert len(match["stem_snippet"]) <= 240
+    # The nested reference is directly usable as a QuestionRef, which is what
+    # stops the client reassembling one and picking the wrong syllabus.
+    assert QuestionRef.model_validate(match["reference"]).syllabus_code == "9709"
+
+    # The seed UUID came from the server-side context, never from the client:
+    # the request named only year/session/variant/number.
+    assert repository.similar_lookups == [
+        ("11111111-1111-1111-1111-111111111111", "a_level", "9709", 5)
+    ]
+
+
+def test_similar_questions_report_a_component_that_is_not_ready(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+    repository.similar_rows = [
+        similar_sentinel_row("not_enough_same_component_papers", is_ready=False)
+    ]
+
+    response = client.get(SIMILAR_URL)
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["matches"] == []
+    assert body["status"] == "not_enough_same_component_papers"
+    assert body["is_ready"] is False
+    assert body["same_component_paper_count"] == 6
+
+
+def test_similar_questions_distinguish_ready_but_nothing_similar_enough(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+    repository.similar_rows = [similar_sentinel_row("no_matches_above_threshold", is_ready=True)]
+
+    response = client.get(SIMILAR_URL)
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["matches"] == []
+    # This is the distinction the status column exists for. "We cannot do this
+    # yet" and "we looked and nothing was close enough" are different answers,
+    # and on the current corpus the second is the common one -- roughly one
+    # question in ten. Collapsing them would make a normal outcome look broken.
+    assert body["status"] == "no_matches_above_threshold"
+    assert body["is_ready"] is True
+
+
+def test_similar_questions_for_an_unpublished_question_404_without_a_similarity_lookup():
+    repository = FakeRepository(context=None)
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.get(SIMILAR_URL)
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 404
+    assert "not in the published corpus" in response.json()["detail"]["detail"]
+    assert repository.similar_lookups == []
+
+
+def test_similar_questions_surface_a_retrieval_failure_as_503():
+    class FailingRepository(FakeRepository):
+        def get_similar_questions(self, *args, **kwargs):
+            raise RetrievalError("Similar-question lookup failed: connection reset")
+
+    main.app.dependency_overrides[main.get_repository] = lambda: FailingRepository()
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.get(SIMILAR_URL)
+    main.app.dependency_overrides.clear()
+
+    assert response.status_code == 503
+
+
+def test_similar_questions_pass_the_requested_syllabus_through(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+
+    response = client.get(f"{SIMILAR_URL}?qualification=igcse&syllabus_code=0606")
+
+    assert response.status_code == 200
+    # paper_variant is not unique across syllabuses -- 2025 Oct/Nov paper 12
+    # exists in both 9709 and 0606 -- so dropping these would silently search
+    # the wrong corpus.
+    assert repository.similar_lookups == [
+        ("11111111-1111-1111-1111-111111111111", "igcse", "0606", 5)
+    ]
+
+
+def test_similar_question_snippet_is_bounded():
+    base = {
+        "question_id": "33333333-3333-3333-3333-333333333333",
+        "reference": {
+            "year": 2024,
+            "exam_session": "may_june",
+            "paper_variant": "52",
+            "question_number": 6,
+        },
+        "similarity": 0.71,
+    }
+    # The SQL truncates to 240 characters; the model declares the same bound so
+    # that guarantee is enforced rather than assumed.
+    SimilarQuestionOut.model_validate({**base, "stem_snippet": "x" * 240})
+    with pytest.raises(ValidationError):
+        SimilarQuestionOut.model_validate({**base, "stem_snippet": "x" * 241})

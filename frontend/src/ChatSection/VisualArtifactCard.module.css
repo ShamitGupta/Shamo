@@ -50,6 +50,40 @@
     margin: 0.45rem 0 0;
 }
 
+.TeachingSteps {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0 1rem 0.85rem;
+}
+
+.TeachingStep {
+    display: grid;
+    grid-template-columns: minmax(6rem, 9rem) 1fr;
+    gap: 0.7rem;
+    align-items: start;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid rgba(157, 180, 255, 0.18);
+    border-radius: 8px;
+    background: rgba(157, 180, 255, 0.07);
+}
+
+.TeachingLabel {
+    color: #9db4ff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.TeachingText {
+    color: #dfe6f3;
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+.TeachingText :global(p) {
+    margin: 0;
+}
+
 .VisualShell {
     position: relative;
     height: 360px;
@@ -111,6 +145,11 @@
     .Header {
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    .TeachingStep {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
     }
 
     .VisualShell {

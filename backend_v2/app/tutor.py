@@ -44,15 +44,21 @@ class TutorService:
         if context is None:  # pragma: no cover - defended by the type, kept as a tripwire
             raise ValueError("Refusing to call the model without question context.")
 
-        system_prompt = build_system_prompt(
-            context, mode, asset_urls_available, selected_modes=selected_modes
-        )
-
         # History is trimmed to the most recent turns. Older turns are about the
         # same question by construction -- the frontend starts a new thread when
         # the question changes -- so dropping them loses conversational texture,
-        # not grounding.
+        # not grounding. Trimmed before the prompt is built so the prompt's own
+        # prior-mode context matches exactly what the model will actually see.
         trimmed = history[-self._settings.max_history_messages :]
+
+        system_prompt = build_system_prompt(
+            context,
+            mode,
+            asset_urls_available,
+            selected_modes=selected_modes,
+            history=trimmed,
+        )
+
         messages = [{"role": "system", "content": system_prompt}]
         messages += [{"role": turn.role, "content": turn.content} for turn in trimmed]
         messages.append(
