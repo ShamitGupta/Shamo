@@ -1,0 +1,163 @@
+.Panel {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.Header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.Title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ededed;
+}
+
+.Toggle {
+    background: transparent;
+    border: none;
+    color: #8a8a8a;
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 2px 4px;
+}
+
+.Toggle:hover {
+    color: #ffffff;
+}
+
+.List {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.RowTop {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.Topic {
+    color: #ededed;
+    font-size: 0.9rem;
+}
+
+.Band {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.BarTrack {
+    margin-top: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.BarFill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+/* Tones are shared by the band pill and the bar, so the two never disagree. */
+.low {
+    color: #ffb4a8;
+}
+
+.BarFill.low {
+    background-color: #c2543f;
+}
+
+.Band.low {
+    background-color: rgba(194, 84, 63, 0.18);
+}
+
+.mid {
+    color: #ffd9a0;
+}
+
+.BarFill.mid {
+    background-color: #b58234;
+}
+
+.Band.mid {
+    background-color: rgba(181, 130, 52, 0.18);
+}
+
+.high {
+    color: #a8e6bd;
+}
+
+.BarFill.high {
+    background-color: #3f8a5c;
+}
+
+.Band.high {
+    background-color: rgba(63, 138, 92, 0.18);
+}
+
+.unknown {
+    color: #a0a0a0;
+}
+
+.Band.unknown {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* The evidence line. Never omit it: the band alone is not checkable. */
+.Evidence {
+    margin: 6px 0 0;
+    color: #9a9a9a;
+    font-size: 0.78rem;
+}
+
+.Note {
+    margin: 12px 0 0;
+    color: #9a9a9a;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.Pending {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.PendingHeading {
+    margin: 0;
+    color: #8a8a8a;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.PendingList {
+    margin: 6px 0 0;
+    color: #9a9a9a;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.Error {
+    margin: 0;
+    color: #ff8a80;
+    font-size: 0.82rem;
+}

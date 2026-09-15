@@ -11,6 +11,7 @@ import { usePaperCatalogue } from './usePaperCatalogue.js';
 import MetadataDropdown from './MetadataDropdown';
 import QuestionPanel from './QuestionPanel';
 import SimilarQuestions from './SimilarQuestions';
+import WeakTopics from './WeakTopics';
 import VisualArtifactCard from './VisualArtifactCard';
 import { useAuth } from '../Auth/authContext.js';
 import { useConversations } from '../Conversations/conversationContext.js';
@@ -118,6 +119,10 @@ function ChatSection({ onOpenAuth }) {
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);
+    // Bumped after a Check turn so the topic panel re-reads. Cheaper and
+    // clearer than polling, and it only fires when something could have
+    // changed.
+    const [weakTopicsToken, setWeakTopicsToken] = useState(0);
 
     const reference = catalogue.reference;
     const referenceKey = reference ? JSON.stringify(reference) : null;
@@ -504,6 +509,10 @@ function ChatSection({ onOpenAuth }) {
             // The thread's name, subtitle and position in the list all move
             // with its latest turn.
             if (conversationId) void refreshConversations();
+            // A Check turn may have produced a new marking record.
+            if (modesToRun.includes('check') || isTutorStrategy) {
+                setWeakTopicsToken((token) => token + 1);
+            }
         }
     };
 
@@ -638,6 +647,12 @@ function ChatSection({ onOpenAuth }) {
                     onNavigate={handleSimilarNavigate}
                     onOpenAuth={onOpenAuth}
                 />
+
+                {/* Not question-specific: this is about the student. It sits
+                    here rather than in the sidebar because the evidence lines
+                    need the width, and because this is where they are looking
+                    after getting their working marked. */}
+                <WeakTopics refreshToken={weakTopicsToken} />
 
                 {messages.map((msg, index) => (
                     <Fragment key={msg.id}>

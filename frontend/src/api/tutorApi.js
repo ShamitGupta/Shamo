@@ -239,6 +239,23 @@ export async function deleteConversation(conversationId, accessToken, signal) {
     if (!response.ok) throw await readError(response);
 }
 
+/**
+ * How this student is scoring by topic, weakest first.
+ *
+ * Returns two lists, deliberately: `ranked` are topics with enough attempts to
+ * judge, `needs_more_evidence` are topics that have been attempted but not
+ * enough times to call a weakness. Showing only the first would make a thin
+ * history look like a complete picture.
+ */
+export async function fetchWeakTopics(accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/me/weak-topics`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
 export const SESSION_LABELS = {
     feb_march: 'Feb/March',
     may_june: 'May/June',

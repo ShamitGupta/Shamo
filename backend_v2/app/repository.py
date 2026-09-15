@@ -680,6 +680,28 @@ class Repository:
             raise RetrievalError(f"Could not delete the conversation: {error}") from error
         return bool(response.data)
 
+    def get_topic_weakness(
+        self, user_id: str, *, min_attempts: int = 3, limit: int = 20
+    ) -> list[dict[str, Any]]:
+        """Per-topic scoring for one student, weakest first.
+
+        All the judgement (the evidence threshold, the ordering, which attempts
+        count) lives in the SQL function so there is exactly one definition of
+        it. This is a thin call, not a second implementation.
+        """
+        try:
+            response = self._client.rpc(
+                "shamo_get_topic_weakness",
+                {
+                    "p_user_id": user_id,
+                    "p_min_attempts": min_attempts,
+                    "p_limit": limit,
+                },
+            ).execute()
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read topic performance: {error}") from error
+        return response.data or []
+
     def record_attempt(
         self,
         *,

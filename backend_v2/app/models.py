@@ -796,6 +796,49 @@ class AttemptOutcome(BaseModel):
         return self
 
 
+class TopicEvidenceOut(BaseModel):
+    """One attempt behind a topic's figure, so the number can be checked."""
+
+    reference: QuestionRef
+    marks_earned: int | None = None
+    marks_available: int | None = None
+    attempted_at: str | None = None
+
+
+class TopicWeaknessOut(BaseModel):
+    """How a student is scoring on one topic, with the evidence for it.
+
+    Deliberately not reducible to a single number. `mark_ratio` alone would tell
+    a student nothing they can act on and a teacher nothing they can check, so
+    every row carries the attempts behind it, the raw marks, the recency, and a
+    handful of the actual questions.
+    """
+
+    main_topic: str
+    syllabus_codes: list[str] = Field(default_factory=list)
+    attempts: int = 0
+    scored_attempts: int = 0
+    marks_earned: int = 0
+    marks_available: int = 0
+    # None when nothing has been scored yet. Deliberately not 0.0: "no data" and
+    # "scored nothing" are different claims, and a zero would sort to the top of
+    # a weakness ranking as though it were the worst topic.
+    mark_ratio: float | None = None
+    # False means "not enough attempts to call this a weakness yet", not
+    # "fine". The row is still returned so the UI can say which it is.
+    has_enough_evidence: bool = False
+    last_attempted_at: str | None = None
+    examples: list[TopicEvidenceOut] = Field(default_factory=list, max_length=5)
+
+
+class TopicWeaknessResponse(BaseModel):
+    min_attempts: int
+    # Split so the client never has to decide what counts as enough evidence --
+    # that rule lives in one place, in SQL.
+    ranked: list[TopicWeaknessOut] = Field(default_factory=list)
+    needs_more_evidence: list[TopicWeaknessOut] = Field(default_factory=list)
+
+
 class ConversationOut(BaseModel):
     """One thread in the student's list, without its messages.
 

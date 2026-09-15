@@ -210,6 +210,7 @@ class FakeRepository:
         self.conversations: list[dict] = []
         self.turns: list[dict] = []
         self.attempts: list[dict] = []
+        self.topic_rows: list[dict] = []
         self.cached_visual: dict | None = None
         self.stored_visuals: list[dict] = []
         self.profile: dict | None = {
@@ -317,6 +318,12 @@ class FakeRepository:
             return False
         self.conversations.remove(row)
         return True
+
+    def get_topic_weakness(self, user_id, *, min_attempts=3, limit=20):
+        return [
+            {**row, "has_enough_evidence": row["scored_attempts"] >= min_attempts}
+            for row in self.topic_rows
+        ][:limit]
 
     def record_attempt(self, **kwargs):
         row = dict(kwargs)
@@ -2151,3 +2158,98 @@ def test_browser_preflight_allows_the_conversation_verbs(client_and_fakes):
         assert response.status_code == 200, f"{method} preflight rejected"
         allowed = response.headers.get("access-control-allow-methods", "")
         assert method in allowed, f"{method} missing from {allowed!r}"
+
+
+# -- weak topics (stage 3) ---------------------------------------------------
+
+
+def _topic_row(topic, *, scored, earned, available, syllabus="9709"):
+    return {
+        "main_topic": topic,
+        "syllabus_codes": [syllabus],
+        "attempts": scored,
+        "scored_attempts": scored,
+        "marks_earned": earned,
+        "marks_available": available,
+        "mark_ratio": (earned / available) if available else None,
+        "last_attempted_at": "2026-09-15T00:00:00+00:00",
+        "example_questions": [
+            {
+                "qualification": "a_level",
+                "syllabus_code": syllabus,
+                "year": 2025,
+                "exam_session": "oct_nov",
+                "paper_variant": "12",
+                "question_number": 4,
+                "marks_earned": earned,
+                "marks_available": available,
+                "attempted_at": "2026-09-15T00:00:00+00:00",
+            }
+        ],
+    }
+
+
+def test_weak_topics_separates_ranked_from_not_enough_evidence(client_and_fakes):
+    """A topic with one bad attempt must not be presented as a weakness.
+
+    It is still returned, in its own list, so the UI can say "not enough yet"
+    rather than silently dropping it and making a thin history look complete.
+    """
+    client, repository, _, _ = client_and_fakes
+    repository.topic_rows = [
+        _topic_row("Calculus", scored=5, earned=5, available=25),
+        _topic_row("Complex Numbers", scored=1, earned=0, available=5),
+    ]
+
+    body = client.get("/me/weak-topics").json()
+    assert [t["main_topic"] for t in body["ranked"]] == ["Calculus"]
+    assert [t["main_topic"] for t in body["needs_more_evidence"]] == ["Complex Numbers"]
+    assert body["min_attempts"] == 3
+
+
+def test_weak_topics_always_carry_their_evidence(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+    repository.topic_rows = [_topic_row("Calculus", scored=5, earned=5, available=25)]
+
+    topic = client.get("/me/weak-topics").json()["ranked"][0]
+    assert topic["mark_ratio"] == 0.2
+    # The ratio is never the only thing returned.
+    assert topic["scored_attempts"] == 5
+    assert (topic["marks_earned"], topic["marks_available"]) == (5, 25)
+    assert topic["last_attempted_at"]
+    assert topic["examples"][0]["reference"]["question_number"] == 4
+
+
+def test_a_topic_with_nothing_scored_has_no_ratio_rather_than_zero(client_and_fakes):
+    """Zero would sort to the top of a weakness ranking as if it were the worst
+    topic, when it actually means "we have not marked anything yet"."""
+    client, repository, _, _ = client_and_fakes
+    repository.topic_rows = [_topic_row("Kinematics", scored=0, earned=0, available=0)]
+
+    body = client.get("/me/weak-topics").json()
+    topic = body["needs_more_evidence"][0]
+    assert topic["mark_ratio"] is None
+
+
+def test_weak_topics_requires_a_verified_session():
+    """Attempt history is student data, so it sits behind the same verified
+    session as the tutoring itself."""
+    repository = FakeRepository()
+    unverified = AuthenticatedUser(
+        user_id="user-1", email="ada@example.com", email_confirmed=False
+    )
+    main.app.dependency_overrides[main.get_repository] = lambda: repository
+    main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService(user=unverified)
+    with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
+        response = client.get("/me/weak-topics")
+    main.app.dependency_overrides.clear()
+    assert response.status_code == 403
+
+
+def test_min_attempts_is_clamped_to_a_sane_range(client_and_fakes):
+    client, repository, _, _ = client_and_fakes
+    repository.topic_rows = [_topic_row("Calculus", scored=5, earned=5, available=25)]
+
+    # An absurd threshold must not 500, and must not let everything through.
+    assert client.get("/me/weak-topics?min_attempts=100000").json()["min_attempts"] == 50
+    assert client.get("/me/weak-topics?min_attempts=-5").json()["min_attempts"] == 1

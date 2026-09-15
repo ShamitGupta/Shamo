@@ -51,6 +51,9 @@ from .models import (
     SimilarQuestionsResponse,
     SimilarQuestionsStatus,
     SuggestedActionOut,
+    TopicEvidenceOut,
+    TopicWeaknessOut,
+    TopicWeaknessResponse,
     TutorMode,
     VisualArtifactKind,
     VisualArtifactOut,
@@ -752,6 +755,67 @@ def _record_attempt_if_any(
         )
     except Exception as error:  # noqa: BLE001
         logger.warning("Could not record an attempt for %s: %s", user.user_id, error)
+
+
+def _topic_row_to_out(row: dict[str, Any]) -> TopicWeaknessOut:
+    examples: list[TopicEvidenceOut] = []
+    for entry in row.get("example_questions") or []:
+        reference = _question_ref_from_row(entry)
+        if reference is None:
+            continue
+        examples.append(
+            TopicEvidenceOut(
+                reference=reference,
+                marks_earned=entry.get("marks_earned"),
+                marks_available=entry.get("marks_available"),
+                attempted_at=str(entry.get("attempted_at")) if entry.get("attempted_at") else None,
+            )
+        )
+    ratio = row.get("mark_ratio")
+    return TopicWeaknessOut(
+        main_topic=str(row.get("main_topic")),
+        syllabus_codes=list(row.get("syllabus_codes") or []),
+        attempts=int(row.get("attempts") or 0),
+        scored_attempts=int(row.get("scored_attempts") or 0),
+        marks_earned=int(row.get("marks_earned") or 0),
+        marks_available=int(row.get("marks_available") or 0),
+        mark_ratio=float(ratio) if ratio is not None else None,
+        has_enough_evidence=bool(row.get("has_enough_evidence")),
+        last_attempted_at=(
+            str(row.get("last_attempted_at")) if row.get("last_attempted_at") else None
+        ),
+        examples=examples,
+    )
+
+
+@app.get("/me/weak-topics", response_model=TopicWeaknessResponse)
+def weak_topics(
+    min_attempts: int = 3,
+    limit: int = 20,
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> TopicWeaknessResponse:
+    """How this student is scoring by topic, weakest first, with the evidence.
+
+    Topics without enough attempts to judge are returned separately rather than
+    hidden: "we do not know yet" is a real answer, and dropping them silently
+    would make a thin history look like a complete one.
+    """
+    min_attempts = max(1, min(min_attempts, 50))
+    limit = max(1, min(limit, 100))
+    try:
+        rows = repository.get_topic_weakness(
+            current_user.user_id, min_attempts=min_attempts, limit=limit
+        )
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    topics = [_topic_row_to_out(row) for row in rows]
+    return TopicWeaknessResponse(
+        min_attempts=min_attempts,
+        ranked=[t for t in topics if t.has_enough_evidence],
+        needs_more_evidence=[t for t in topics if not t.has_enough_evidence],
+    )
 
 
 @app.get("/conversations", response_model=list[ConversationOut])
