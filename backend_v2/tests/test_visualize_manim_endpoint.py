@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import os
 import sys
+import uuid
 from pathlib import Path
 
 import pytest
@@ -67,6 +68,9 @@ MANIM_RESPONSE_PAYLOAD = {
 
 class FakeRepository:
     def __init__(self, context: QuestionContext | None = SAMPLE_CONTEXT) -> None:
+        self.conversations: list[dict] = []
+        self.turns: list[dict] = []
+        self.attempts: list[dict] = []
         self._context = context
         self.cached_visual: dict | None = None
         self.stored_visuals: list[dict] = []
@@ -102,6 +106,70 @@ class FakeRepository:
     def store_visual_artifact(self, **kwargs):
         self.stored_visuals.append(kwargs)
 
+
+    # -- conversations and attempts (stage 1) -----------------------------
+    # Mirrors the real Repository so the endpoints exercise the same calls.
+
+    def create_conversation(self, user_id, title=None):
+        row = {
+            "id": str(uuid.uuid4()),
+            "user_id": user_id,
+            "title": title,
+            "created_at": "2026-09-15T00:00:00+00:00",
+            "updated_at": "2026-09-15T00:00:00+00:00",
+            "last_active_at": "2026-09-15T00:00:00+00:00",
+            "turn_count": 0,
+            "last_question": None,
+        }
+        self.conversations.append(row)
+        return row
+
+    def list_conversations(self, user_id, limit=50):
+        return [c for c in self.conversations if c["user_id"] == user_id]
+
+    def get_conversation(self, user_id, conversation_id):
+        for row in self.conversations:
+            if row["id"] == conversation_id and row["user_id"] == user_id:
+                return row
+        return None
+
+    def get_conversation_turns(self, user_id, conversation_id, limit=200):
+        return [
+            t for t in self.turns
+            if t["conversation_id"] == conversation_id and t["user_id"] == user_id
+        ]
+
+    def append_turn(self, **kwargs):
+        row = dict(kwargs)
+        question = row.pop("question", None) or {}
+        row.update(question)
+        row["id"] = str(uuid.uuid4())
+        row["sort_order"] = len(
+            [t for t in self.turns if t["conversation_id"] == kwargs["conversation_id"]]
+        )
+        row["created_at"] = "2026-09-15T00:00:00+00:00"
+        self.turns.append(row)
+        return row
+
+    def rename_conversation(self, user_id, conversation_id, title):
+        row = self.get_conversation(user_id, conversation_id)
+        if row is None:
+            return None
+        row["title"] = title
+        return row
+
+    def delete_conversation(self, user_id, conversation_id):
+        row = self.get_conversation(user_id, conversation_id)
+        if row is None:
+            return False
+        self.conversations.remove(row)
+        return True
+
+    def record_attempt(self, **kwargs):
+        row = dict(kwargs)
+        row["id"] = str(uuid.uuid4())
+        self.attempts.append(row)
+        return row
     def store_visual_video(self, *, question_id, manim_spec, video_path):
         self.stored_videos.append({"question_id": question_id, "manim_spec": manim_spec})
         if self.upload_should_fail:

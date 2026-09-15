@@ -11,6 +11,7 @@ import math
 import re
 from enum import Enum
 from typing import Any, Literal
+from uuid import UUID
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -110,6 +111,10 @@ class ChatRequest(BaseModel):
     # mode, and the tutor is told to diagnose it rather than replace it.
     attempt: str | None = Field(default=None, max_length=8000)
     history: list["ChatTurn"] = Field(default_factory=list)
+    # The thread this turn belongs to. When present the server loads history
+    # from the database and IGNORES `history` above -- see _resolve_history in
+    # main.py for why.
+    conversation_id: UUID | None = Field(default=None)
 
 
 class ChatTurn(BaseModel):
@@ -123,12 +128,20 @@ class ChatTurn(BaseModel):
     # turn recognize "explain the one you already made" instead of treating
     # every call as a request for a brand new artifact.
     visual_artifacts: list["VisualArtifactSummary"] | None = Field(default=None)
+    # Which question this turn was about, when known. A thread may span several
+    # questions, so without this the tutor would read turns about question 4
+    # while holding question 7's mark scheme and have no way to tell them
+    # apart. Optional and defaulted for the same backward-compatibility reason
+    # as `modes` above; prompts.py treats an unlabelled turn as "same question",
+    # which is what it always was before threads could span questions.
+    question: QuestionRef | None = Field(default=None)
 
 
 class VisualizeRequest(BaseModel):
     question: QuestionRef
     message: str = Field(min_length=1, max_length=4000)
     history: list[ChatTurn] = Field(default_factory=list)
+    conversation_id: UUID | None = Field(default=None)
 
 
 class MultiModeRequest(BaseModel):
@@ -139,6 +152,7 @@ class MultiModeRequest(BaseModel):
     message: str = Field(min_length=1, max_length=4000)
     attempt: str | None = Field(default=None, max_length=8000)
     history: list[ChatTurn] = Field(default_factory=list)
+    conversation_id: UUID | None = Field(default=None)
 
     @field_validator("modes")
     @classmethod
@@ -154,6 +168,7 @@ class AssistRequest(BaseModel):
     question: QuestionRef
     message: str = Field(min_length=1, max_length=4000)
     history: list[ChatTurn] = Field(default_factory=list)
+    conversation_id: UUID | None = Field(default=None)
 
 
 class SliderBounds(BaseModel):
@@ -757,6 +772,64 @@ class CurrentUserOut(BaseModel):
     email_confirmed: bool
     tier: UserTier
     profile: ProfileOut | None = None
+
+
+class ConversationOut(BaseModel):
+    """One thread in the student's list, without its messages.
+
+    `last_question` is what the client shows as a subtitle. A thread may span
+    several questions, so it is the most recent one rather than "the" question.
+    """
+
+    id: str
+    title: str | None = None
+    created_at: str | None = None
+    updated_at: str | None = None
+    last_active_at: str | None = None
+    turn_count: int = 0
+    last_question: QuestionRef | None = None
+
+
+class ConversationTurnOut(BaseModel):
+    id: str
+    role: Literal["user", "assistant"]
+    content: str = ""
+    modes: list[TutorMode] = Field(default_factory=list)
+    visual_artifacts: list[VisualArtifactSummary] = Field(default_factory=list)
+    question: QuestionRef | None = None
+    sort_order: int = 0
+    created_at: str | None = None
+
+
+class ConversationDetailOut(BaseModel):
+    conversation: ConversationOut
+    turns: list[ConversationTurnOut] = Field(default_factory=list)
+
+
+class CreateConversationRequest(BaseModel):
+    title: str | None = Field(default=None, max_length=120)
+
+    @field_validator("title")
+    @classmethod
+    def _blank_is_unnamed(cls, value: str | None) -> str | None:
+        # A blank title and no title mean the same thing to a student, but the
+        # database rejects a blank one. Normalize here rather than 500 later.
+        if value is None:
+            return None
+        stripped = value.strip()
+        return stripped or None
+
+
+class RenameConversationRequest(BaseModel):
+    title: str | None = Field(default=None, max_length=120)
+
+    @field_validator("title")
+    @classmethod
+    def _blank_is_unnamed(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        stripped = value.strip()
+        return stripped or None
 
 
 class PaperSummary(BaseModel):

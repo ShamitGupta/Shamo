@@ -351,6 +351,7 @@ def build_system_prompt(
         MODE_RULES[mode],
         _coordination_rules(mode, selected_modes),
         _history_mode_context(mode, history or []),
+        _history_question_context(context, history or []),
         build_source_block(context, asset_urls_available),
     ]
     if mode is TutorMode.CHECK:
@@ -445,6 +446,92 @@ def _history_mode_context(mode: TutorMode, history: list[ChatTurn]) -> str:
             "this history from a different mode."
         )
     return "\n".join(lines)
+
+
+def _history_question_context(
+    context: QuestionContext, history: list[ChatTurn]
+) -> str:
+    """Warn when this thread also contains turns about a DIFFERENT question.
+
+    A conversation may span several questions -- a student works through a set
+    and refers back ("I'm stuck the same way I was on the last one"). That is
+    worth supporting, but it creates a failure mode that did not exist while a
+    thread was pinned to one question: the model reads earlier turns discussing
+    question 4 while holding question 7's mark scheme, and nothing in the
+    transcript distinguishes them. Crediting one question's marks against
+    another is exactly the kind of fluent, confident wrongness this project
+    exists to prevent.
+
+    Silent (returns "") when every history turn is about the current question
+    or carries no question label at all. An unlabelled turn is treated as the
+    current question, which is what it always was before threads could span
+    questions -- so older clients and the evaluation harness see no change.
+    """
+
+    current = _reference_label(
+        qualification=str(context.paper.get("qualification") or "a_level"),
+        syllabus_code=str(context.paper.get("syllabus_code") or "9709"),
+        year=context.paper.get("year"),
+        exam_session=str(context.paper.get("exam_session") or ""),
+        paper_variant=str(context.paper.get("paper_variant") or ""),
+        question_number=context.question.get("question_number"),
+    )
+
+    others: list[str] = []
+    for turn in history:
+        if turn.question is None:
+            continue
+        label = _reference_label(
+            qualification=turn.question.qualification,
+            syllabus_code=turn.question.syllabus_code,
+            year=turn.question.year,
+            exam_session=turn.question.exam_session,
+            paper_variant=turn.question.paper_variant,
+            question_number=turn.question.question_number,
+        )
+        if label != current and label not in others:
+            others.append(label)
+
+    if not others:
+        return ""
+
+    listed = "; ".join(others)
+    return "\n".join(
+        [
+            "OTHER QUESTIONS IN THIS CONVERSATION",
+            f"This conversation also covers: {listed}. You are answering about "
+            f"{current}, and the SOURCE MATERIAL below is {current} only.",
+            "- Treat those earlier turns as conversational context only -- what "
+            "the student has already worked on and how they got on.",
+            "- Never apply another question's mark scheme, marks, numbers, or "
+            "final answer to this one. If earlier working looks relevant, say "
+            "why the method transfers; do not carry its values across.",
+            "- If the student's message is actually about one of those other "
+            "questions, say so and ask them to open it, rather than answering "
+            "from memory of the earlier turns.",
+        ]
+    )
+
+
+def _reference_label(
+    *,
+    qualification: str,
+    syllabus_code: str,
+    year: object,
+    exam_session: str,
+    paper_variant: str,
+    question_number: object,
+) -> str:
+    """One stable, human-readable name for a question reference.
+
+    Comparison happens on this string rather than on field tuples so that a
+    turn stored as year=2025 (int) and a context carrying "2025" (str) are not
+    mistaken for two different questions -- which would raise this warning on
+    every single turn and teach the model to ignore it.
+    """
+    del qualification
+    session = exam_session.replace("_", "/")
+    return f"{syllabus_code}/{paper_variant} {session} {year} Q{question_number}"
 
 
 def build_user_message(message: str, attempt: str | None, mode: TutorMode) -> str:

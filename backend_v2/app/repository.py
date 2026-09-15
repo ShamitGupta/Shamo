@@ -440,6 +440,298 @@ class Repository:
             return UserTier.PREMIUM
         return UserTier.FREE
 
+    # -- conversations and attempts ---------------------------------------
+    #
+    # Every method here takes user_id and filters on it. That filter IS the
+    # access control: this client holds the service role key and so bypasses
+    # RLS entirely, exactly as it does for published content. The own-row
+    # policies on these tables are defence in depth for a future direct-access
+    # path, not what protects a student's work today.
+
+    _CONVERSATION_COLUMNS = (
+        "id,title,created_at,updated_at,last_active_at,turn_count,last_question"
+    )
+    _TURN_COLUMNS = (
+        "id,role,content,modes,visual_artifacts,sort_order,created_at,"
+        "qualification,syllabus_code,year,exam_session,paper_variant,question_number"
+    )
+
+    def create_conversation(self, user_id: str, title: str | None = None) -> dict[str, Any]:
+        try:
+            response = (
+                self._client.table("shamo_conversations")
+                .insert({"user_id": user_id, "title": title})
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not start a conversation: {error}") from error
+
+        rows = response.data or []
+        if not rows:
+            raise RetrievalError("Could not start a conversation: nothing was created.")
+        return rows[0]
+
+    def list_conversations(self, user_id: str, limit: int = 50) -> list[dict[str, Any]]:
+        try:
+            response = (
+                self._client.table("shamo_conversations")
+                .select(self._CONVERSATION_COLUMNS)
+                .eq("user_id", user_id)
+                .is_("deleted_at", "null")
+                .order("last_active_at", desc=True)
+                .limit(max(1, min(limit, 200)))
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not list conversations: {error}") from error
+        return response.data or []
+
+    def get_conversation(self, user_id: str, conversation_id: str) -> dict[str, Any] | None:
+        """One conversation, or None when it is missing, deleted, or not theirs.
+
+        The three cases are deliberately indistinguishable to the caller:
+        telling a signed-in user that someone else's conversation exists is
+        itself a small leak.
+        """
+        try:
+            response = (
+                self._client.table("shamo_conversations")
+                .select(self._CONVERSATION_COLUMNS)
+                .eq("id", conversation_id)
+                .eq("user_id", user_id)
+                .is_("deleted_at", "null")
+                .limit(1)
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read the conversation: {error}") from error
+
+        rows = response.data or []
+        return rows[0] if rows else None
+
+    def get_conversation_turns(
+        self, user_id: str, conversation_id: str, limit: int = 200
+    ) -> list[dict[str, Any]]:
+        try:
+            response = (
+                self._client.table("shamo_conversation_turns")
+                .select(self._TURN_COLUMNS)
+                .eq("conversation_id", conversation_id)
+                .eq("user_id", user_id)
+                .order("sort_order")
+                .limit(max(1, min(limit, 500)))
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read the conversation: {error}") from error
+        return response.data or []
+
+    def append_turn(
+        self,
+        *,
+        user_id: str,
+        conversation_id: str,
+        role: str,
+        content: str,
+        modes: list[str] | None = None,
+        visual_artifacts: list[dict[str, Any]] | None = None,
+        question: dict[str, Any] | None = None,
+        question_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Add one message to a thread and refresh its display fields.
+
+        sort_order is derived from the current maximum rather than held in a
+        counter, so two turns racing for the same position collide on the
+        table's unique constraint instead of silently overwriting each other.
+        The retry below exists for exactly that collision.
+        """
+        payload: dict[str, Any] = {
+            "conversation_id": conversation_id,
+            "user_id": user_id,
+            "role": role,
+            "content": content,
+            "modes": modes or [],
+            "visual_artifacts": visual_artifacts,
+            "question_id": question_id,
+        }
+        if question:
+            payload.update(
+                {
+                    "qualification": question.get("qualification"),
+                    "syllabus_code": question.get("syllabus_code"),
+                    "year": question.get("year"),
+                    "exam_session": question.get("exam_session"),
+                    "paper_variant": question.get("paper_variant"),
+                    "question_number": question.get("question_number"),
+                }
+            )
+
+        last_error: Exception | None = None
+        for _ in range(3):
+            try:
+                existing = (
+                    self._client.table("shamo_conversation_turns")
+                    .select("sort_order")
+                    .eq("conversation_id", conversation_id)
+                    .order("sort_order", desc=True)
+                    .limit(1)
+                    .execute()
+                )
+                rows = existing.data or []
+                payload["sort_order"] = (rows[0]["sort_order"] + 1) if rows else 0
+                response = (
+                    self._client.table("shamo_conversation_turns")
+                    .insert(payload)
+                    .execute()
+                )
+                created = (response.data or [None])[0]
+                if created is None:
+                    raise RetrievalError("the turn was not stored")
+                self._touch_conversation(
+                    user_id=user_id,
+                    conversation_id=conversation_id,
+                    turn_count=payload["sort_order"] + 1,
+                    question=question,
+                )
+                return created
+            except Exception as error:  # noqa: BLE001
+                last_error = error
+        raise RetrievalError(f"Could not save the message: {last_error}")
+
+    def _touch_conversation(
+        self,
+        *,
+        user_id: str,
+        conversation_id: str,
+        turn_count: int,
+        question: dict[str, Any] | None,
+    ) -> None:
+        """Refresh a thread's display fields after an append.
+
+        Deliberately best-effort: these fields drive the thread list only, and
+        the turn itself is already safely stored by the time this runs. Failing
+        a student's request because a subtitle did not update is the wrong
+        trade.
+        """
+        now = _now_iso()
+        updates: dict[str, Any] = {
+            "updated_at": now,
+            "last_active_at": now,
+            "turn_count": turn_count,
+        }
+        if question:
+            updates["last_question"] = question
+        try:
+            (
+                self._client.table("shamo_conversations")
+                .update(updates)
+                .eq("id", conversation_id)
+                .eq("user_id", user_id)
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            logger.warning("Could not refresh conversation %s: %s", conversation_id, error)
+
+    def rename_conversation(
+        self, user_id: str, conversation_id: str, title: str | None
+    ) -> dict[str, Any] | None:
+        try:
+            response = (
+                self._client.table("shamo_conversations")
+                .update({"title": title, "updated_at": _now_iso()})
+                .eq("id", conversation_id)
+                .eq("user_id", user_id)
+                .is_("deleted_at", "null")
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not rename the conversation: {error}") from error
+
+        rows = response.data or []
+        return rows[0] if rows else None
+
+    def delete_conversation(self, user_id: str, conversation_id: str) -> bool:
+        """Delete a thread and its messages for real. Marks survive.
+
+        Deliberately a hard delete rather than a soft one. A student pressing
+        delete means the conversation is gone, and keeping a hidden copy of
+        their own written working after they asked for it to go is the wrong
+        trade -- particularly for a school pilot involving minors. The turns
+        cascade away with the thread.
+
+        What survives is shamo_attempts: the marks earned, with their
+        conversation_turn_id nulled by the foreign key. That is learning
+        evidence rather than conversation, it is what every later weak-topic
+        figure is computed from, and it is deleted through its own path rather
+        than as a side effect of tidying up a chat.
+
+        The deleted_at column stays in the schema for an operator-side archive
+        action; the read filters honour it, nothing in the student path sets it.
+        """
+        try:
+            response = (
+                self._client.table("shamo_conversations")
+                .delete()
+                .eq("id", conversation_id)
+                .eq("user_id", user_id)
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not delete the conversation: {error}") from error
+        return bool(response.data)
+
+    def record_attempt(
+        self,
+        *,
+        user_id: str,
+        question: dict[str, Any],
+        attempt_text: str,
+        mode: str,
+        question_id: str | None = None,
+        part_label: str | None = None,
+        conversation_turn_id: str | None = None,
+        outcome: dict[str, Any] | None = None,
+    ) -> dict[str, Any] | None:
+        """Store one submitted attempt, with its marking outcome when there is one.
+
+        Returns None rather than raising when the write fails: an attempt record
+        is bookkeeping, and losing it must never cost the student the tutoring
+        they have already received.
+        """
+        payload: dict[str, Any] = {
+            "user_id": user_id,
+            "question_id": question_id,
+            "qualification": question.get("qualification"),
+            "syllabus_code": question.get("syllabus_code"),
+            "year": question.get("year"),
+            "exam_session": question.get("exam_session"),
+            "paper_variant": question.get("paper_variant"),
+            "question_number": question.get("question_number"),
+            "part_label": part_label,
+            "conversation_turn_id": conversation_turn_id,
+            "attempt_text": attempt_text,
+            "mode": mode,
+            "outcome_source": "unavailable",
+        }
+        if outcome:
+            payload.update(
+                {
+                    "outcome_source": "extractor",
+                    "marks_earned": outcome.get("marks_earned"),
+                    "marks_available": outcome.get("marks_available"),
+                    "earned_codes": outcome.get("earned_codes") or [],
+                    "missed_codes": outcome.get("missed_codes") or [],
+                    "extractor_model": outcome.get("model"),
+                    "extractor_confidence": outcome.get("confidence"),
+                }
+            )
+        try:
+            response = self._client.table("shamo_attempts").insert(payload).execute()
+        except Exception as error:  # noqa: BLE001
+            logger.warning("Could not record attempt for user %s: %s", user_id, error)
+            return None
+        return (response.data or [None])[0]
+
     def nearest_available(
         self,
         year: int,
@@ -472,6 +764,11 @@ class Repository:
             variants = sorted({p["paper_variant"] for p in in_syllabus})
             return f"Published paper variants: {', '.join(variants)}."
         return None
+
+
+def _now_iso() -> str:
+    """UTC timestamp in the form PostgREST accepts for a timestamptz column."""
+    return datetime.now(timezone.utc).isoformat()
 
 
 def _hash_text(value: str) -> str:

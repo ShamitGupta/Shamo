@@ -31,6 +31,11 @@ from .models import (
     AssistResponse,
     AssetOut,
     ChatRequest,
+    ChatTurn,
+    ConversationDetailOut,
+    ConversationOut,
+    ConversationTurnOut,
+    CreateConversationRequest,
     CurrentUserOut,
     ModeResponseOut,
     MultiModeRequest,
@@ -40,6 +45,7 @@ from .models import (
     PartOut,
     QuestionContextOut,
     QuestionRef,
+    RenameConversationRequest,
     SimilarQuestionOut,
     SimilarQuestionsResponse,
     SimilarQuestionsStatus,
@@ -47,6 +53,7 @@ from .models import (
     TutorMode,
     VisualArtifactKind,
     VisualArtifactOut,
+    VisualArtifactSummary,
     VisualValidationStatus,
     VisualizeRequest,
     VisualizeResponse,
@@ -507,6 +514,343 @@ def get_similar_questions(
     return _build_similar_response(ref, rows)
 
 
+# -- conversations ----------------------------------------------------------
+#
+# Persistence is deliberately additive to the tutoring path. A request with no
+# conversation_id behaves exactly as it did before this existed, which is what
+# keeps evaluate_tutor.py and any older client working unchanged.
+
+
+def _question_ref_from_row(row: dict[str, Any] | None) -> QuestionRef | None:
+    """Rebuild a reference from stored columns, or None if it is not complete.
+
+    A partial reference is treated as absent rather than guessed at. The table
+    forbids storing one, so reaching the None branch means the row predates that
+    constraint or came from somewhere unexpected -- either way, inventing the
+    missing half would be worse than omitting it.
+    """
+    if not row:
+        return None
+    required = ("year", "exam_session", "paper_variant", "question_number")
+    if any(row.get(field) in (None, "") for field in required):
+        return None
+    try:
+        return QuestionRef(
+            year=int(row["year"]),
+            exam_session=str(row["exam_session"]),
+            paper_variant=str(row["paper_variant"]),
+            question_number=int(row["question_number"]),
+            qualification=str(row.get("qualification") or "a_level"),
+            syllabus_code=str(row.get("syllabus_code") or "9709"),
+        )
+    except (ValueError, TypeError):
+        return None
+
+
+def _conversation_out(row: dict[str, Any]) -> ConversationOut:
+    return ConversationOut(
+        id=str(row.get("id")),
+        title=row.get("title"),
+        created_at=str(row.get("created_at")) if row.get("created_at") else None,
+        updated_at=str(row.get("updated_at")) if row.get("updated_at") else None,
+        last_active_at=str(row.get("last_active_at")) if row.get("last_active_at") else None,
+        turn_count=int(row.get("turn_count") or 0),
+        last_question=_question_ref_from_row(row.get("last_question")),
+    )
+
+
+def _visual_summaries(raw: Any) -> list[VisualArtifactSummary]:
+    """Stored visual summaries, skipping any that no longer validate.
+
+    A summary shape can change between versions; one unreadable entry should
+    cost that entry, not the whole conversation.
+    """
+    summaries: list[VisualArtifactSummary] = []
+    for entry in raw or []:
+        try:
+            summaries.append(VisualArtifactSummary(**entry))
+        except Exception:  # noqa: BLE001
+            continue
+    return summaries
+
+
+def _turn_out(row: dict[str, Any]) -> ConversationTurnOut:
+    modes: list[TutorMode] = []
+    for value in row.get("modes") or []:
+        try:
+            modes.append(TutorMode(value))
+        except ValueError:
+            continue
+    return ConversationTurnOut(
+        id=str(row.get("id")),
+        role=row.get("role") or "user",
+        content=str(row.get("content") or ""),
+        modes=modes,
+        visual_artifacts=_visual_summaries(row.get("visual_artifacts")),
+        question=_question_ref_from_row(row),
+        sort_order=int(row.get("sort_order") or 0),
+        created_at=str(row.get("created_at")) if row.get("created_at") else None,
+    )
+
+
+def _chat_turn(row: dict[str, Any]) -> ChatTurn:
+    out = _turn_out(row)
+    return ChatTurn(
+        role=out.role,
+        content=out.content,
+        modes=out.modes or None,
+        visual_artifacts=out.visual_artifacts or None,
+        question=out.question,
+    )
+
+
+def _conversation_or_404(
+    conversation_id: Any, user: AuthenticatedUser, repository: Repository
+) -> dict[str, Any]:
+    try:
+        conversation = repository.get_conversation(user.user_id, str(conversation_id))
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    if conversation is None:
+        raise HTTPException(status_code=404, detail="Conversation not found.")
+    return conversation
+
+
+def _resolve_history(
+    *,
+    request: Any,
+    user: AuthenticatedUser,
+    repository: Repository,
+) -> tuple[list[ChatTurn], dict[str, Any] | None]:
+    """Decide what the tutor is allowed to treat as this conversation's past.
+
+    When the request names a conversation, history comes from the database and
+    the client-supplied `history` is ignored entirely. That mirrors the rule
+    already applied to question content: the server re-retrieves rather than
+    trusting what the browser sends, so a client cannot invent a past in which
+    the tutor already said something it did not say.
+
+    With no conversation_id the client's own history is used, exactly as before
+    -- that is what keeps older callers and the evaluation harness working.
+    """
+    conversation_id = getattr(request, "conversation_id", None)
+    if conversation_id is None:
+        return list(request.history), None
+
+    conversation = _conversation_or_404(conversation_id, user, repository)
+    try:
+        rows = repository.get_conversation_turns(user.user_id, str(conversation_id))
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    return [_chat_turn(row) for row in rows], conversation
+
+
+def _save_turn(
+    *,
+    repository: Repository,
+    user: AuthenticatedUser,
+    conversation: dict[str, Any] | None,
+    role: str,
+    content: str,
+    question: QuestionRef,
+    modes: list[TutorMode] | None = None,
+    visual_artifacts: list[VisualArtifactSummary] | None = None,
+    question_id: str | None = None,
+) -> str | None:
+    """Append one turn, or do nothing when the request is not in a conversation.
+
+    Never raises. A failure to save is logged and the student still gets their
+    answer -- losing the transcript is bad, but failing the tutoring because the
+    transcript could not be written would be worse.
+    """
+    if conversation is None:
+        return None
+    try:
+        row = repository.append_turn(
+            user_id=user.user_id,
+            conversation_id=str(conversation["id"]),
+            role=role,
+            content=content,
+            modes=[mode.value for mode in modes or []],
+            visual_artifacts=(
+                [summary.model_dump(mode="json") for summary in visual_artifacts]
+                if visual_artifacts
+                else None
+            ),
+            question=question.model_dump(mode="json"),
+            question_id=question_id,
+        )
+        return str(row.get("id")) if row else None
+    except Exception as error:  # noqa: BLE001
+        logger.warning("Could not append a %s turn: %s", role, error)
+        return None
+
+
+def _record_attempt_if_any(
+    *,
+    repository: Repository,
+    user: AuthenticatedUser,
+    context: QuestionContext,
+    question: QuestionRef,
+    attempt: str | None,
+    mode: TutorMode,
+    turn_id: str | None,
+) -> None:
+    """Record a submitted attempt. Stage 2 attaches the marking outcome.
+
+    Wrapped because this is bookkeeping running alongside a student's answer.
+    The stated guarantee is that a failure to record an attempt never costs
+    anyone their tutoring, and an unhandled exception here would break exactly
+    that -- the reply has usually already been generated by this point.
+    """
+    if not attempt or not attempt.strip():
+        return
+    try:
+        repository.record_attempt(
+            user_id=user.user_id,
+            question=question.model_dump(mode="json"),
+            question_id=context.question_id,
+            attempt_text=attempt,
+            mode=mode.value,
+            conversation_turn_id=turn_id,
+        )
+    except Exception as error:  # noqa: BLE001
+        logger.warning("Could not record an attempt for %s: %s", user.user_id, error)
+
+
+@app.get("/conversations", response_model=list[ConversationOut])
+def list_conversations(
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> list[ConversationOut]:
+    try:
+        rows = repository.list_conversations(current_user.user_id)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    return [_conversation_out(row) for row in rows]
+
+
+@app.post("/conversations", response_model=ConversationOut, status_code=201)
+def create_conversation(
+    request: CreateConversationRequest,
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> ConversationOut:
+    try:
+        row = repository.create_conversation(current_user.user_id, request.title)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    return _conversation_out(row)
+
+
+@app.get("/conversations/{conversation_id}", response_model=ConversationDetailOut)
+def get_conversation(
+    conversation_id: str,
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> ConversationDetailOut:
+    conversation = _conversation_or_404(conversation_id, current_user, repository)
+    try:
+        rows = repository.get_conversation_turns(current_user.user_id, conversation_id)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    return ConversationDetailOut(
+        conversation=_conversation_out(conversation),
+        turns=[_turn_out(row) for row in rows],
+    )
+
+
+@app.patch("/conversations/{conversation_id}", response_model=ConversationOut)
+def rename_conversation(
+    conversation_id: str,
+    request: RenameConversationRequest,
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> ConversationOut:
+    try:
+        row = repository.rename_conversation(
+            current_user.user_id, conversation_id, request.title
+        )
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    if row is None:
+        raise HTTPException(status_code=404, detail="Conversation not found.")
+    return _conversation_out(row)
+
+
+@app.delete("/conversations/{conversation_id}", status_code=204)
+def delete_conversation(
+    conversation_id: str,
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> None:
+    try:
+        deleted = repository.delete_conversation(current_user.user_id, conversation_id)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Conversation not found.")
+
+
+def _summarize_artifacts(
+    artifacts: list[VisualArtifactOut],
+) -> list[VisualArtifactSummary]:
+    """Compact records of what a turn rendered, for storage and later history.
+
+    Deliberately drops the full spec and the signed video URL: the summary only
+    needs to remind a later turn what already exists, and a stored signed URL
+    would be expired by the time anyone read it back.
+    """
+    return [
+        VisualArtifactSummary(
+            artifact_kind=artifact.artifact_kind,
+            title=artifact.title,
+            purpose=artifact.purpose,
+            part_label=artifact.part_label,
+            manim_template=artifact.manim.template if artifact.manim else None,
+        )
+        for artifact in artifacts
+    ]
+
+
+def _persisting_stream(
+    *,
+    stream: Any,
+    repository: Repository,
+    user: AuthenticatedUser,
+    conversation: dict[str, Any] | None,
+    question: QuestionRef,
+    mode: TutorMode,
+    question_id: str | None,
+) -> Any:
+    """Yield the tutor's answer, then store what the student actually saw.
+
+    A streamed answer only exists in full once the stream ends, so the assistant
+    turn cannot be written up front. The finally clause also covers the student
+    closing the tab mid-answer: whatever had already been sent is stored,
+    because that is exactly what they saw. Storing nothing in that case would
+    leave their question in the transcript with no reply beneath it.
+    """
+    chunks: list[str] = []
+    try:
+        for chunk in stream:
+            chunks.append(chunk)
+            yield chunk
+    finally:
+        text = "".join(chunks)
+        if text.strip():
+            _save_turn(
+                repository=repository,
+                user=user,
+                conversation=conversation,
+                role="assistant",
+                content=text,
+                question=question,
+                modes=[mode],
+                question_id=question_id,
+            )
+
+
 @app.post("/chat")
 def chat(
     request: ChatRequest,
@@ -514,9 +858,12 @@ def chat(
     repository: Repository = Depends(get_repository),
     tutor: TutorService = Depends(get_tutor),
 ) -> StreamingResponse:
-    _ = current_user
     if request.mode is TutorMode.VISUALIZE:
         raise HTTPException(status_code=400, detail="Use /visualize for Visualize mode.")
+
+    history, conversation = _resolve_history(
+        request=request, user=current_user, repository=repository
+    )
 
     # Retrieved here, server-side, from the reference only. The client never
     # supplies question content, so it cannot put words in the tutor's source.
@@ -529,13 +876,45 @@ def chat(
             mode=request.mode,
             message=request.message,
             attempt=request.attempt,
-            history=request.history,
+            history=history,
             asset_urls_available=assets_available,
         )
     except TutorUnavailable as error:
         raise HTTPException(status_code=502, detail=f"Tutor unavailable: {error}") from error
 
-    return StreamingResponse(stream, media_type="text/plain; charset=utf-8")
+    # Saved only after the tutor accepted the request, so a 502 does not leave a
+    # student turn stranded with no possible reply.
+    turn_id = _save_turn(
+        repository=repository,
+        user=current_user,
+        conversation=conversation,
+        role="user",
+        content=request.message,
+        question=request.question,
+        question_id=context.question_id,
+    )
+    _record_attempt_if_any(
+        repository=repository,
+        user=current_user,
+        context=context,
+        question=request.question,
+        attempt=request.attempt,
+        mode=request.mode,
+        turn_id=turn_id,
+    )
+
+    return StreamingResponse(
+        _persisting_stream(
+            stream=stream,
+            repository=repository,
+            user=current_user,
+            conversation=conversation,
+            question=request.question,
+            mode=request.mode,
+            question_id=context.question_id,
+        ),
+        media_type="text/plain; charset=utf-8",
+    )
 
 
 def _resign_cached_manim_artifacts(
@@ -704,14 +1083,16 @@ def visualize(
     visualizer: VisualizeService = Depends(get_visualizer),
     settings: Settings = Depends(get_settings),
 ) -> VisualizeResponse:
-    _ = current_user
+    history, conversation = _resolve_history(
+        request=request, user=current_user, repository=repository
+    )
     # Same grounding boundary as /chat: the client sends only the reference, and
     # the server retrieves the official question before any model call.
     context = _load_or_404(request.question, repository)
 
     try:
-        return _create_visualize_response(
-            request=request,
+        response = _create_visualize_response(
+            request=request.model_copy(update={"history": history}),
             context=context,
             repository=repository,
             visualizer=visualizer,
@@ -719,6 +1100,28 @@ def visualize(
         )
     except VisualizeUnavailable as error:
         raise HTTPException(status_code=502, detail=f"Visualize unavailable: {error}") from error
+
+    _save_turn(
+        repository=repository,
+        user=current_user,
+        conversation=conversation,
+        role="user",
+        content=request.message,
+        question=request.question,
+        question_id=context.question_id,
+    )
+    _save_turn(
+        repository=repository,
+        user=current_user,
+        conversation=conversation,
+        role="assistant",
+        content=response.message_markdown,
+        question=request.question,
+        modes=[TutorMode.VISUALIZE],
+        visual_artifacts=_summarize_artifacts(response.artifacts),
+        question_id=context.question_id,
+    )
+    return response
 
 
 def _create_mode_responses(
@@ -785,6 +1188,61 @@ def _create_mode_responses(
     return responses
 
 
+def _persist_multimode_turn(
+    *,
+    repository: Repository,
+    user: AuthenticatedUser,
+    conversation: dict[str, Any] | None,
+    question: QuestionRef,
+    message: str,
+    attempt: str | None,
+    responses: list[ModeResponseOut],
+    context: QuestionContext,
+) -> None:
+    """Store one coordinated turn: the student's message, then each mode's reply.
+
+    One assistant turn per mode rather than a merged one, because that is how
+    the UI renders them and how ChatTurn.modes was designed to be read -- a
+    merged turn would make a later Hint unable to tell which part of the reply
+    came from Explain.
+    """
+    if conversation is None and not attempt:
+        return
+    turn_id = _save_turn(
+        repository=repository,
+        user=user,
+        conversation=conversation,
+        role="user",
+        content=message,
+        question=question,
+        question_id=context.question_id,
+    )
+    for response in responses:
+        if not response.message_markdown:
+            continue
+        _save_turn(
+            repository=repository,
+            user=user,
+            conversation=conversation,
+            role="assistant",
+            content=response.message_markdown,
+            question=question,
+            modes=[response.mode],
+            visual_artifacts=_summarize_artifacts(response.artifacts),
+            question_id=context.question_id,
+        )
+    if attempt and any(r.mode is TutorMode.CHECK for r in responses):
+        _record_attempt_if_any(
+            repository=repository,
+            user=user,
+            context=context,
+            question=question,
+            attempt=attempt,
+            mode=TutorMode.CHECK,
+            turn_id=turn_id,
+        )
+
+
 @app.post("/assist", response_model=AssistResponse)
 def assist(
     request: AssistRequest,
@@ -796,14 +1254,16 @@ def assist(
 ) -> AssistResponse:
     """Route one natural student turn to the most useful tutor mode(s)."""
 
-    _ = current_user
-    modes, route_label = route_assist_modes(request.message, request.history)
+    history, conversation = _resolve_history(
+        request=request, user=current_user, repository=repository
+    )
+    modes, route_label = route_assist_modes(request.message, history)
     multimode_request = MultiModeRequest(
         question=request.question,
         modes=modes,
         message=request.message,
         attempt=request.message if TutorMode.CHECK in modes else None,
-        history=request.history,
+        history=history,
     )
     context = _load_or_404(request.question, repository)
     _, assets_available = _render_context(context, repository)
@@ -815,6 +1275,16 @@ def assist(
         tutor=tutor,
         visualizer=visualizer,
         settings=settings,
+    )
+    _persist_multimode_turn(
+        repository=repository,
+        user=current_user,
+        conversation=conversation,
+        question=request.question,
+        message=request.message,
+        attempt=multimode_request.attempt,
+        responses=responses,
+        context=context,
     )
     return AssistResponse(
         source_reference=request.question,
@@ -843,17 +1313,29 @@ def respond(
     selected-mode awareness, and one response envelope for the current turn.
     """
 
-    _ = current_user
+    history, conversation = _resolve_history(
+        request=request, user=current_user, repository=repository
+    )
     context = _load_or_404(request.question, repository)
     _, assets_available = _render_context(context, repository)
     responses = _create_mode_responses(
-        request=request,
+        request=request.model_copy(update={"history": history}),
         context=context,
         assets_available=assets_available,
         repository=repository,
         tutor=tutor,
         visualizer=visualizer,
         settings=settings,
+    )
+    _persist_multimode_turn(
+        repository=repository,
+        user=current_user,
+        conversation=conversation,
+        question=request.question,
+        message=request.message,
+        attempt=request.attempt,
+        responses=responses,
+        context=context,
     )
 
     return MultiModeResponse(source_reference=request.question, responses=responses)
