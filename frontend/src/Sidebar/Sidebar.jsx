@@ -3,6 +3,8 @@ import logo from '../assets/ShamoLogo.png'
 import { useEffect, useState } from 'react'
 
 import AuthActions from '../Auth/AuthActions'
+import ConversationList from '../Conversations/ConversationList'
+import { useConversations } from '../Conversations/conversationContext.js'
 import { useAuth } from '../Auth/authContext.js'
 
 function Sidebar({ onOpenAuth }){
@@ -12,9 +14,15 @@ function Sidebar({ onOpenAuth }){
     // at the bottom of the sidebar rather than in the corner above the
     // conversation. The overlay itself is owned by App.
     const { user, profile, tier, actionStatus, signOut } = useAuth();
+    const { startNewConversation } = useConversations();
 
-    const handleRefresh = () => {
-        location.reload();
+    // Was location.reload(), back when a conversation only existed in memory and
+    // throwing the page away was the only way to clear it. Threads are saved
+    // now, so this starts a fresh one and leaves the previous conversation in
+    // the list rather than destroying it.
+    const handleNewChat = () => {
+        startNewConversation();
+        handleMenuClose();
     }
 
     useEffect(() => {
@@ -88,11 +96,13 @@ function Sidebar({ onOpenAuth }){
                 </div>
 
                 <div className = {styles.SidebarButtonsContainer}>
-                    <button className = {styles.SidebarButtons} onClick={handleRefresh}>New Chat</button>
+                    <button className = {styles.SidebarButtons} onClick={handleNewChat}>New Chat</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>About Us</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>Report an Issue</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>Contact Us</button>
                 </div>
+
+                {user && <ConversationList onNavigate={handleMenuClose} />}
 
                 <div className={styles.SidebarFooter}>
                     <AuthActions

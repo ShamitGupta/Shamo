@@ -117,11 +117,11 @@ export async function getCurrentUser(accessToken) {
  * The request carries only a REFERENCE to the question. The server re-retrieves
  * the content itself, so the browser cannot substitute its own source material.
  */
-export async function streamChat({ question, mode, message, attempt, history, accessToken }, onChunk, signal) {
+export async function streamChat({ question, mode, message, attempt, history, conversationId, accessToken }, onChunk, signal) {
     const response = await fetch(`${BASE_URL}/chat`, {
         method: 'POST',
         headers: authHeaders(accessToken),
-        body: JSON.stringify({ question, mode, message, attempt: attempt || null, history }),
+        body: JSON.stringify({ question, mode, message, attempt: attempt || null, history, conversation_id: conversationId ?? null }),
         signal,
     });
     if (!response.ok) throw await readError(response);
@@ -140,11 +140,11 @@ export async function streamChat({ question, mode, message, attempt, history, ac
 }
 
 /** Build a validated visual explanation for one published question. */
-export async function createVisualization({ question, message, history, accessToken }, signal) {
+export async function createVisualization({ question, message, history, conversationId, accessToken }, signal) {
     const response = await fetch(`${BASE_URL}/visualize`, {
         method: 'POST',
         headers: authHeaders(accessToken),
-        body: JSON.stringify({ question, message, history }),
+        body: JSON.stringify({ question, message, history, conversation_id: conversationId ?? null }),
         signal,
     });
     if (!response.ok) throw await readError(response);
@@ -152,11 +152,11 @@ export async function createVisualization({ question, message, history, accessTo
 }
 
 /** Coordinate one student turn across multiple selected modes. */
-export async function createCoordinatedResponse({ question, modes, message, attempt, history, accessToken }, signal) {
+export async function createCoordinatedResponse({ question, modes, message, attempt, history, conversationId, accessToken }, signal) {
     const response = await fetch(`${BASE_URL}/respond`, {
         method: 'POST',
         headers: authHeaders(accessToken),
-        body: JSON.stringify({ question, modes, message, attempt: attempt || null, history }),
+        body: JSON.stringify({ question, modes, message, attempt: attempt || null, history, conversation_id: conversationId ?? null }),
         signal,
     });
     if (!response.ok) throw await readError(response);
@@ -164,15 +164,79 @@ export async function createCoordinatedResponse({ question, modes, message, atte
 }
 
 /** Let Shamo route one natural student turn to the right tutor mode(s). */
-export async function createAssistedResponse({ question, message, history, accessToken }, signal) {
+export async function createAssistedResponse({ question, message, history, conversationId, accessToken }, signal) {
     const response = await fetch(`${BASE_URL}/assist`, {
         method: 'POST',
         headers: authHeaders(accessToken),
-        body: JSON.stringify({ question, message, history }),
+        body: JSON.stringify({ question, message, history, conversation_id: conversationId ?? null }),
         signal,
     });
     if (!response.ok) throw await readError(response);
     return response.json();
+}
+
+/**
+ * The student's saved threads, most recently active first.
+ *
+ * A thread may span several questions, so it is named and dated rather than
+ * labelled with one question. `last_question` is only a subtitle hint.
+ */
+export async function fetchConversations(accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/conversations`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/** One thread with all of its messages, for restoring it after a refresh. */
+export async function fetchConversation(conversationId, accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/conversations/${conversationId}`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/** Start a new thread. An omitted or blank title means "unnamed". */
+export async function createConversation(title, accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/conversations`, {
+        method: 'POST',
+        headers: authHeaders(accessToken),
+        body: JSON.stringify({ title: title ?? null }),
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/** Rename a thread. Passing null clears the name back to the dated label. */
+export async function renameConversation(conversationId, title, accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/conversations/${conversationId}`, {
+        method: 'PATCH',
+        headers: authHeaders(accessToken),
+        body: JSON.stringify({ title: title ?? null }),
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/**
+ * Delete a thread and its messages permanently.
+ *
+ * Marks recorded from attempts in this thread are deliberately kept -- they are
+ * learning evidence rather than conversation, and have their own deletion path.
+ */
+export async function deleteConversation(conversationId, accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/conversations/${conversationId}`, {
+        method: 'DELETE',
+        headers: authHeaders(accessToken),
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
 }
 
 export const SESSION_LABELS = {

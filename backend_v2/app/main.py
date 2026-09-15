@@ -171,7 +171,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=get_settings().allowed_origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
+    # PATCH and DELETE are here for the conversation endpoints. A missing method
+    # does not fail the offline tests -- TestClient does not enforce CORS -- it
+    # fails only in a real browser, as a 400 on the preflight and an opaque
+    # network error on the request itself.
+    allow_methods=["GET", "POST", "PATCH", "DELETE"],
     allow_headers=["Content-Type", "Authorization"],
 )
 

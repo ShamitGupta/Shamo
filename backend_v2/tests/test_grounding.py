@@ -2097,3 +2097,28 @@ def test_failing_to_record_an_attempt_never_costs_the_student_their_answer(
     )
     assert response.status_code == 200
     assert response.text
+
+
+def test_browser_preflight_allows_the_conversation_verbs(client_and_fakes):
+    """PATCH and DELETE must survive a real browser's CORS preflight.
+
+    Found the hard way: the conversation endpoints shipped while the CORS
+    middleware still allowed only GET and POST. Every offline test passed --
+    TestClient does not enforce CORS -- and rename/delete failed only in a
+    browser, as a 400 on the OPTIONS preflight and an opaque network error on
+    the request itself.
+    """
+    client, _, _, _ = client_and_fakes
+    origin = "http://localhost:5173"
+
+    for method in ("GET", "POST", "PATCH", "DELETE"):
+        response = client.options(
+            "/conversations/00000000-0000-0000-0000-000000000000",
+            headers={
+                "Origin": origin,
+                "Access-Control-Request-Method": method,
+            },
+        )
+        assert response.status_code == 200, f"{method} preflight rejected"
+        allowed = response.headers.get("access-control-allow-methods", "")
+        assert method in allowed, f"{method} missing from {allowed!r}"

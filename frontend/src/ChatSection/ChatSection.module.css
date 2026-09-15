@@ -861,3 +861,40 @@
         width: calc(100vw - 24px);
     }
 }
+
+/* A conversation can move between questions. Without a marker, a restored
+   thread reads as one continuous discussion of whichever question is selected
+   now, which is exactly the confusion the stored per-turn question prevents on
+   the tutor's side. */
+.QuestionDivider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0 6px;
+    color: #8a8a8a;
+    font-size: 0.78rem;
+}
+
+.QuestionDivider::before,
+.QuestionDivider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.QuestionDivider span {
+    white-space: nowrap;
+}
+
+/* Restored turns keep their text but not their rendered visual: only a summary
+   of each artifact is stored, never the spec. Say so rather than let the turn
+   look like the visual failed to load. */
+.RestoredVisualNote {
+    margin-top: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    color: #9a9a9a;
+    font-size: 0.82rem;
+}

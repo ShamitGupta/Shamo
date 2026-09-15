@@ -1,18 +1,19 @@
 import styles from './ChatSection.module.css'
-import { useState, useEffect, useRef } from 'react'
+import { Fragment, useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
 import { sanitizeLatex } from '../utils/sanitizeLatex.js';
-import { createAssistedResponse, createCoordinatedResponse, createVisualization, fetchQuestion, streamChat, TUTOR_MODES, ApiError } from '../api/tutorApi.js';
+import { createAssistedResponse, createCoordinatedResponse, createVisualization, fetchQuestion, streamChat, TUTOR_MODES, SESSION_LABELS, ApiError } from '../api/tutorApi.js';
 import { usePaperCatalogue } from './usePaperCatalogue.js';
 import MetadataDropdown from './MetadataDropdown';
 import QuestionPanel from './QuestionPanel';
 import SimilarQuestions from './SimilarQuestions';
 import VisualArtifactCard from './VisualArtifactCard';
 import { useAuth } from '../Auth/authContext.js';
+import { useConversations } from '../Conversations/conversationContext.js';
 
 const MAX_SESSION_MEMORY_MESSAGES = 10;
 const TUTOR_STRATEGY = {
@@ -26,11 +27,69 @@ function modeLabel(value) {
     return MODE_OPTIONS.find((m) => m.value === value)?.label || value;
 }
 
+
+/** "9709/12 Oct/Nov 2025 Q4", used for the divider between questions. */
+function questionHeading(reference) {
+    if (!reference) return '';
+    const session = SESSION_LABELS[reference.exam_session] || reference.exam_session;
+    return `${reference.syllabus_code}/${reference.paper_variant} ${session} ${reference.year} Q${reference.question_number}`;
+}
+
+function sameQuestion(a, b) {
+    if (!a || !b) return a === b;
+    return questionHeading(a) === questionHeading(b);
+}
+
+/**
+ * Turn a stored conversation turn back into a rendered message.
+ *
+ * One thing does not survive the round trip: a Visualize turn's full artifact
+ * spec. Only a short summary of each visual is stored -- deliberately, since a
+ * stored spec would carry an expired signed video URL and a copy of something
+ * the server can rebuild. A restored turn therefore shows its text plus a note
+ * naming the visual, rather than silently looking like the visual failed.
+ */
+function turnToMessage(turn) {
+    const base = {
+        id: turn.id,
+        title: turn.content || '',
+        question: turn.question || null,
+        restored: true,
+    };
+    if (turn.role === 'user') {
+        return { ...base, sender: 'user' };
+    }
+    const priorVisuals = turn.visual_artifacts || [];
+    return {
+        ...base,
+        sender: 'chatbot',
+        respondingMode: (turn.modes && turn.modes[0]) || 'tutor',
+        artifacts: [],
+        restoredVisuals: priorVisuals,
+    };
+}
+
 function ChatSection({ onOpenAuth }) {
     const {
         accessToken,
         isAuthenticated,
     } = useAuth();
+
+    // Threads are saved server-side and may span several questions. See
+    // ConversationContext; the divider below marks where the question changed.
+    const {
+        activeId: activeConversationId,
+        loadedTurns,
+        turnsStatus,
+        ensureConversationId,
+        refresh: refreshConversations,
+    } = useConversations();
+
+    // Which thread is currently ON SCREEN. Without this, the sync effect below
+    // re-applies the server's turns on every change to loadedTurns -- including
+    // the empty list set when a thread is created on the first message, which
+    // wiped the message the student had just sent.
+    const appliedConversationRef = useRef(undefined);
 
     const [inputValue, setInputValue] = useState("");
 
@@ -94,11 +153,44 @@ function ChatSection({ onOpenAuth }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [referenceKey]);
 
-    // A new question is a new conversation. Carrying history across questions
-    // would let the tutor answer about paper A while grounded in paper B.
+    // A conversation may now span several questions, so changing question no
+    // longer throws the thread away. What used to make that unsafe -- the tutor
+    // reading turns about paper A while grounded in paper B -- is handled by
+    // tagging every turn with its own question, both in storage and in the
+    // prompt (see _history_question_context in prompts.py).
+    //
+    // Messages come from whichever thread is open. A thread that has not been
+    // created yet (the student has not sent anything) shows an empty chat.
     useEffect(() => {
-        setMessages([]);
-    }, [referenceKey]);
+        // Already showing this thread: leave the live messages alone. This is
+        // the guard that keeps a turn in flight from being replaced by a stale
+        // server copy of the same thread.
+        if (appliedConversationRef.current === activeConversationId) return;
+
+        if (!activeConversationId) {
+            appliedConversationRef.current = null;
+            setMessages([]);
+            return;
+        }
+        // Mid-switch. Clear rather than leave the previous thread's messages
+        // sitting under the new thread's name.
+        if (turnsStatus === 'loading') {
+            setMessages([]);
+            return;
+        }
+        if (turnsStatus === 'ready' && loadedTurns) {
+            appliedConversationRef.current = activeConversationId;
+            setMessages(loadedTurns.map(turnToMessage));
+
+            // Reopening a thread should put the student back where they were,
+            // question and all. Restoring the messages alone leaves them
+            // looking at their own conversation with the selectors empty and
+            // the input disabled -- the thread is back but unusable.
+            const lastWithQuestion = [...loadedTurns].reverse().find((turn) => turn.question);
+            if (lastWithQuestion) catalogue.selectReference(lastWithQuestion.question);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeConversationId, loadedTurns, turnsStatus]);
 
     useEffect(() => {
         const handlePointerDown = (event) => {
@@ -182,11 +274,14 @@ function ChatSection({ onOpenAuth }) {
         });
     };
 
+    // Only used when the request carries no conversation_id -- with one, the
+    // server loads history from the database and ignores whatever is sent here.
     const buildHistory = () => messages
         .slice(-MAX_SESSION_MEMORY_MESSAGES)
         .map((message) => ({
             role: message.sender === 'user' ? 'user' : 'assistant',
             content: message.title || '',
+            ...(message.question ? { question: message.question } : {}),
             ...(message.sender === 'chatbot' && TUTOR_MODES.some((mode) => mode.value === message.respondingMode)
                 ? { modes: [message.respondingMode] }
                 : {}),
@@ -273,6 +368,21 @@ function ChatSection({ onOpenAuth }) {
         const isTutorStrategy = modesToRun.length === 1 && modesToRun[0] === 'tutor';
         const history = buildHistory();
 
+        // The thread row is created on the first message rather than when the
+        // student clicks "New Chat", so an opened-and-abandoned chat never
+        // clutters their list. A failure here must not block the tutoring, so
+        // the turn simply goes unsaved.
+        let conversationId = activeConversationId;
+        try {
+            conversationId = await ensureConversationId();
+            // A thread created right here is already what is on screen, so the
+            // sync effect must not then "restore" it to the empty list the
+            // provider just set.
+            appliedConversationRef.current = conversationId;
+        } catch {
+            conversationId = null;
+        }
+
         setInputValue("");
 
         const responseSlots = (isTutorStrategy ? ['tutor'] : modesToRun).map((modeValue) => ({
@@ -282,12 +392,13 @@ function ChatSection({ onOpenAuth }) {
 
         setMessages((prev) => [
             ...prev,
-            { id: nextMessageId(), title: currentPrompt, sender: 'user' },
+            { id: nextMessageId(), title: currentPrompt, sender: 'user', question: reference },
             ...responseSlots.map(({ id, modeValue }) => ({
                 id,
                 title: '',
                 sender: 'chatbot',
                 respondingMode: modeValue,
+                question: reference,
                 pending: true,
             })),
         ]);
@@ -300,6 +411,7 @@ function ChatSection({ onOpenAuth }) {
                         question: reference,
                         message: currentPrompt,
                         history,
+                        conversationId,
                         accessToken,
                     });
                     applyModeResponse(id, modeValue, response);
@@ -313,6 +425,7 @@ function ChatSection({ onOpenAuth }) {
                         message: currentPrompt,
                         attempt: modeValue === 'check' ? currentPrompt : null,
                         history,
+                        conversationId,
                         accessToken,
                     },
                     (accumulated) => {
@@ -342,6 +455,7 @@ function ChatSection({ onOpenAuth }) {
                     question: reference,
                     message: currentPrompt,
                     history,
+                    conversationId,
                     accessToken,
                 });
                 const responses = response.responses || [];
@@ -364,6 +478,7 @@ function ChatSection({ onOpenAuth }) {
                     message: currentPrompt,
                     attempt: modesToRun.includes('check') ? currentPrompt : null,
                     history,
+                    conversationId,
                     accessToken,
                 });
                 const responseByMode = new Map((response.responses || []).map((item) => [item.mode, item]));
@@ -386,6 +501,9 @@ function ChatSection({ onOpenAuth }) {
             }
         } finally {
             setIsLoading(false);
+            // The thread's name, subtitle and position in the list all move
+            // with its latest turn.
+            if (conversationId) void refreshConversations();
         }
     };
 
@@ -517,13 +635,22 @@ function ChatSection({ onOpenAuth }) {
                     reference={reference}
                     referenceKey={referenceKey}
                     questionStatus={questionStatus}
-                    hasConversation={messages.length > 0}
                     onNavigate={handleSimilarNavigate}
                     onOpenAuth={onOpenAuth}
                 />
 
-                {messages.map((msg) => (
-                    <div key={msg.id} className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
+                {messages.map((msg, index) => (
+                    <Fragment key={msg.id}>
+                    {/* A thread can move between questions, so mark where it
+                        did. Without this a restored conversation reads as one
+                        continuous discussion of whatever question happens to be
+                        selected now. */}
+                    {index > 0 && msg.question && !sameQuestion(msg.question, messages[index - 1].question) && (
+                        <div className={styles.QuestionDivider}>
+                            <span>{questionHeading(msg.question)}</span>
+                        </div>
+                    )}
+                    <div className={msg.sender === 'user' ? styles.ChatBubble : styles.ResponseBubble}>
                         {msg.sender === 'chatbot' && msg.respondingMode && (
                             <span className={styles.ModeTag}>
                                 {modeLabel(msg.respondingMode)}
@@ -557,6 +684,18 @@ function ChatSection({ onOpenAuth }) {
                                 fallbackMarkdown={msg.fallbackMarkdown}
                             />
                         ))}
+                        {/* Only a summary of each visual is stored, never the
+                            spec itself -- a stored spec would carry an expired
+                            signed video URL. Say what was shown rather than let
+                            a restored turn look like the visual broke. */}
+                        {msg.restoredVisuals?.length > 0 && (
+                            <div className={styles.RestoredVisualNote}>
+                                {msg.restoredVisuals.length === 1
+                                    ? `This reply included a visual: ${msg.restoredVisuals[0].title}.`
+                                    : `This reply included ${msg.restoredVisuals.length} visuals.`}
+                                {' '}Ask again to see it.
+                            </div>
+                        )}
                         {msg.validationStatus === 'render_failed' && !msg.artifacts?.length && msg.fallbackMarkdown && (
                             <div className={styles.VisualFallbackNote}>
                                 <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
@@ -566,9 +705,9 @@ function ChatSection({ onOpenAuth }) {
                         )}
                         {msg.suggestedActions?.length > 0 && (
                             <div className={styles.SuggestedActions} aria-label="Suggested next steps">
-                                {msg.suggestedActions.map((action, index) => (
+                                {msg.suggestedActions.map((action, actionIndex) => (
                                     <button
-                                        key={`${msg.id}-action-${index}`}
+                                        key={`${msg.id}-action-${actionIndex}`}
                                         type="button"
                                         className={styles.SuggestedAction}
                                         onClick={() => handleSuggestedAction(action)}
@@ -580,6 +719,7 @@ function ChatSection({ onOpenAuth }) {
                             </div>
                         )}
                     </div>
+                    </Fragment>
                 ))}
 
                 <div className={styles.Dummy} ref={dummyRef}></div>

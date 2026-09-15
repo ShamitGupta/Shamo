@@ -7,12 +7,13 @@
 //    so roughly one question in ten legitimately has nothing close enough.
 //    Padding the list with weak suggestions would be worse than saying so.
 //
-// 2. Opening a suggestion clears the current conversation, because ChatSection
-//    treats a new question as a new conversation. That loss is silent and has
-//    no undo, so a confirmation is shown whenever a conversation is in
-//    progress -- and skipped entirely when there is nothing to lose.
+// 2. Opening a suggestion used to clear the conversation, so this panel asked
+//    for confirmation first. Threads now span several questions and are saved,
+//    so moving to a suggestion keeps the conversation and simply continues it
+//    under the new question. There is nothing left to warn about, and asking
+//    anyway would train students to click through a meaningless dialog.
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -80,7 +81,6 @@ function SimilarQuestions({
     reference,
     referenceKey,
     questionStatus,
-    hasConversation,
     onNavigate,
     onOpenAuth,
 }) {
@@ -90,15 +90,10 @@ function SimilarQuestions({
     const [matches, setMatches] = useState([]);
     const [error, setError] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
-    const [pending, setPending] = useState(null);
     const [navError, setNavError] = useState(null);
     const [retryToken, setRetryToken] = useState(0);
-    const confirmRef = useRef(null);
 
     useEffect(() => {
-        // A confirmation left open while the student changes question by other
-        // means must not survive and then navigate somewhere unexpected.
-        setPending(null);
         setNavError(null);
 
         if (!referenceKey || questionStatus !== 'ready' || !isAuthenticated || !accessToken) {
@@ -143,24 +138,15 @@ function SimilarQuestions({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [referenceKey, questionStatus, isAuthenticated, accessToken, retryToken]);
 
-    useEffect(() => {
-        if (pending) confirmRef.current?.focus();
-    }, [pending]);
-
     if (!reference || questionStatus !== 'ready') return null;
 
     const navigate = (match) => {
         const ok = onNavigate(match.reference);
-        setPending(null);
         setNavError(ok ? null : 'That paper is not in the published catalogue yet.');
     };
 
     const handleSelect = (match) => {
         setNavError(null);
-        if (hasConversation) {
-            setPending(match);
-            return;
-        }
         navigate(match);
     };
 
@@ -272,36 +258,7 @@ function SimilarQuestions({
 
             {navError && <p className={styles.ErrorText}>{navError}</p>}
 
-            {pending && (
-                <div
-                    className={styles.Confirm}
-                    role="alertdialog"
-                    aria-labelledby="similar-confirm-title"
-                    onKeyDown={(event) => {
-                        if (event.key === 'Escape') setPending(null);
-                    }}
-                >
-                    <p id="similar-confirm-title" className={styles.ConfirmText}>
-                        Opening <strong>{paperLabel(pending.reference)}</strong> starts a new
-                        conversation. The messages in this one will be cleared.
-                    </p>
-                    <div className={styles.ConfirmActions}>
-                        <button
-                            type="button"
-                            ref={confirmRef}
-                            className={styles.ConfirmPrimary}
-                            onClick={() => navigate(pending)}
-                        >
-                            Open question
-                        </button>
-                        <button type="button" className={styles.TextButton} onClick={() => setPending(null)}>
-                            Stay here
-                        </button>
-                    </div>
-                </div>
-            )}
-
-            {!collapsed && !pending && (
+            {!collapsed && (
                 <ul className={styles.Results} id="similar-questions-body">
                     {matches.map((match) => {
                         const band = similarityBand(match.similarity);
