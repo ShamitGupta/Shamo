@@ -1,6 +1,6 @@
 # Shamo — Pending Work for a Grant-Ready Prototype
 
-> Created: 15 September 2026 · Last updated: 15 September 2026 (P0-1 and P3-11 shipped)
+> Created: 15 September 2026 · Last updated: 15 September 2026 (P0-1, P3-11, P0-2, P0-3, P1-4 and P1-5 shipped)
 > Scope: everything still missing before the prototype can demonstrate the claims
 > the grant application makes. **Hosting and deployment are explicitly excluded** —
 > the founder is handling those.
@@ -42,6 +42,55 @@ writes a rationale, so a recommendation cannot be justified with an invented
 reason — which is the version of "explainable" a Head of Department can actually
 check.
 
+**P0-2 · Persist conversations — DONE, 15 September 2026.** Three new tables
+(`shamo_v2_7`), five conversation endpoints, and a thread list with create /
+rename / delete. Refreshing restores the thread **and the question**, so the
+student can carry straight on. Acceptance met.
+
+Two decisions worth knowing: a thread may span several questions (a student
+works through a set and refers back), which required tagging every stored turn
+with the question it was about and telling the model so — otherwise it reads
+turns about question 4 while holding question 7's mark scheme. And deleting a
+conversation is a **real** delete; keeping a hidden copy of a student's own
+working after they asked for it to go is the wrong trade for a school pilot.
+Recorded marks survive, by design.
+
+**P0-3 · Record student attempts — DONE, same day.** Every Check submission
+stores the working, the question, and the marks the tutor attributed. The
+numbers come from a separate cheap model call that reads the finished reply
+(option A) rather than re-marking it, so the record can never disagree with the
+feedback the student saw, and the hardened Check prompt was not touched. Every
+mark code is validated against that question's own mark scheme; a fabricated one
+is discarded.
+
+**P1-4 · Topic-weakness signal — DONE, same day.** `shamo_v2_8` ranks topics by
+mark ratio, never shown alone: each row carries attempts, raw marks, recency and
+example questions. A topic needs a minimum number of scored attempts before it
+counts as a weakness — a single 0/5 would otherwise sort straight to the top —
+and under-evidenced topics are shown separately rather than hidden.
+
+**P1-5 · Practice sets — DONE, same day.** `shamo_v2_9` returns unattempted
+questions on a topic, spread across papers, gentlest first, each with a reason
+drawn from stored metadata rather than written by a model.
+
+**Four defects found only by running the real thing**, none of which the 280
+offline tests could have caught:
+
+- **CORS allowed only GET and POST.** Every rename and delete failed on the
+  preflight. `TestClient` does not enforce CORS, so the suite was green while
+  the feature was broken in every browser.
+- **The marking denominator was the whole question.** A tutor marking "1 out of
+  2" for part (a) was recorded as 1 out of 5 — and the weak-topic ranking *is*
+  the mark ratio, so it understated the student by more than half.
+- **Mark-code matching accepted only the plain `A1` shape.** The corpus uses
+  `B2,1,0`, `B1 FT`, `*M1`, `DM1` and `B1 B1`. On the first real submission the
+  tutor correctly cited `B2`, the whitelist did not contain it, and the whole
+  record was discarded as fabricated.
+- **Weak topics were grouped by (topic, syllabus).** "Trigonometry" exists in
+  both 9709 and 0606, so four attempts became a 3-attempt row and a 1-attempt
+  row, pushing the smaller below the threshold. The verification script's own
+  lookup hid it until a uniqueness check was added.
+
 **Two latent defects found and fixed while building it**, both confirmed live
 rather than theoretical:
 
@@ -62,81 +111,12 @@ longer gates the suggested order.
 
 ## P0 — Without these, the central pitch claims are not demonstrable
 
-### P0-2 · Persist conversations
-
-A tutor that forgets everything on refresh is not a tutor, and a demo that loses
-its thread mid-review is worse than no demo at all.
-
-**Already exists:** `ChatTurn` in `models.py` already models a turn including its
-mode and any visual artifacts; history is already sent to and used by the prompts.
-
-**Missing:** a user-scoped `shamo_conversations` / `shamo_conversation_turns`
-pair with RLS restricting rows to their owner, plus save-on-write and
-load-on-open in `/chat`, `/respond` and `/visualize`.
-
-**Acceptance:** refreshing the browser restores the open thread; returning to a
-question later shows the previous conversation about it.
-
-**Size: M.**
-
----
-
-### P0-3 · Record student attempts
-
-The prerequisite for every personalisation claim in the deck. Nothing downstream
-(P1-4, P1-5, P1-6) is possible without it.
-
-**Already exists:** Check mode already receives the student's own working as a
-structured `attempt` field — it is used for diagnosis and then discarded.
-
-**Missing:** a `shamo_attempts` table keyed to `(user, question, part)` storing
-the submitted working, the mode, the diagnosis outcome, marks attributed where
-available, and a timestamp. User-scoped RLS.
-
-**Acceptance:** every Check submission writes a durable row tied to the exact
-question identity, retrievable per user.
-
-**Size: M.**
-
----
+**All P0 items are now shipped** (P0-1 similar questions, P0-2 persistence,
+P0-3 attempt recording). See the shipped section above.
 
 ## P1 — Without these, the B2B pitch is not credible
 
-### P1-4 · Derive a topic-weakness signal
-
-**Already exists:** metadata is effectively complete — 947 records carrying
-`main_topic` (30 distinct topics), `subtopics` (921), plus `methods`, `skills`
-and `difficulty_level` (947 each). Attempts only need aggregating against it.
-
-**Missing:** aggregation logic and an endpoint exposing ranked weak topics with
-the evidence behind each — attempt counts, accuracy, recency.
-
-**Acceptance:** a student with attempt history sees their weakest topics ranked,
-with the number of attempts supporting each. Do not reduce this to one opaque
-score; preserve the evidence.
-
-**Size: S–M.** Depends on P0-3.
-
----
-
-### P1-5 · Generate practice sets
-
-Turns "here are similar questions" (a search feature) into "here is what you
-should work on next" (the tutoring claim).
-
-**Missing:** set assembly — select N questions for a weak topic, exclude what the
-student has already attempted, spread across papers and years, order by
-difficulty.
-
-**Acceptance:** "practise my weakest topic" returns a ranked set of unattempted
-questions with a stated reason for the selection.
-
-**Size: M.** Depends on P0-3 and P1-4. ~~P0-1~~ is done, and the retrieval half
-of this — "questions like this one, from other papers" — is already working and
-reusable; what is missing is selecting *for a student* rather than *for a
-question*.
-
----
+P1-4 and P1-5 are shipped. P1-6 below is the remaining item, and the largest.
 
 ### P1-6 · Teacher and class view
 
@@ -380,41 +360,46 @@ the work needs subject judgement**.
 
 | Item | Owner | Why |
 | --- | --- | --- |
-| P0-2 Conversation persistence | **Contractor** | Well-specified application work: schema, RLS, save and load |
-| P0-3 Attempt recording | **Contractor** | Same — the diagnosis already exists, it only needs storing |
+| ~~P0-2 Conversation persistence~~ (done) | **Contractor** | Well-specified application work: schema, RLS, save and load |
+| ~~P0-3 Attempt recording~~ (done) | **Contractor** | Same — the diagnosis already exists, it only needs storing |
 | P1-6 Teacher and class view | **Contractor** | Largest separable block; entities, roles, aggregate views |
 | P2-7 Billing | **Contractor** | Standard webhook-to-entitlement work |
 | P2-8 Rate limiting and metering | **Contractor** | Infrastructure, not pedagogy |
 | P2-9 Analytics | **Contractor** | Instrumentation |
 | P3-15 Deduplicate pilot rows | **Either** | Needs care with asserted targets, not subject knowledge |
-| P1-4 Topic weakness signal | **Founder** | What counts as "weak" is a teaching judgement |
-| P1-5 Practice sets | **Founder** | Sequencing and difficulty ordering is the tutoring itself |
+| ~~P1-4 Topic weakness signal~~ (done) | **Founder** | What counts as "weak" is a teaching judgement |
+| ~~P1-5 Practice sets~~ (done) | **Founder** | Sequencing and difficulty ordering is the tutoring itself |
 | P3-10 Hybrid retrieval | **Founder** | Requires knowing which topic and method distinctions actually matter |
 | P3-12 Relevance benchmark | **Founder + hired teachers** | The automated proxy exists; only expert rating can validate it |
 | P3-13 Publication gate | **Founder** | A policy decision, not a feature |
 | P3-14 Metadata review | **Hired teachers** | Volume review work, the genuine bottleneck |
 | P3-16 Licensing position | **Founder + legal advice** | Not engineering |
 
-A contractor can start on P0-2, P0-3 and P1-6 from this document alone without
-blocking on any founder work.
+P0-2, P0-3, P1-4 and P1-5 are done. A contractor can start on P1-6 from this
+document alone without blocking on any founder work; the attempt and
+conversation tables it aggregates already exist.
 
 ## Suggested order
 
-~~P0-1~~ and ~~P3-11~~ are done. Remaining, in order:
+~~P0-1~~, ~~P3-11~~, ~~P0-2~~, ~~P0-3~~, ~~P1-4~~ and ~~P1-5~~ are done.
+Remaining, in order:
 
-1. **P0-2, P0-3** — the foundation everything personalised stands on, and now the
-   single largest gap between the product and the pitch. A reviewer who refreshes
-   the page currently loses the thread.
-2. **P3-10** — recovers the 7–8% of questions that return no neighbours. Cheap,
-   and it removes the one visibly thin spot in the feature that was just shipped.
-3. **P1-4, P1-5** — turns retrieval into tutoring.
-4. **P2-7, P2-8** — revenue and cost safety, together.
-5. **P1-6** — the school product. Largest, and worth starting only once the pilot
-   cohort is generating data.
-6. **P3-12 … P3-16** — before the first serious procurement conversation. P3-12
-   in particular needs booked teacher time, so start arranging it earlier than you
-   intend to do the work.
+1. **P3-10** — recovers the 7–8% of questions that return no neighbours. Cheap,
+   and it removes the one visibly thin spot in similar-question retrieval.
+2. **P2-8, P2-7** — cost safety first, then revenue. P2-8 matters more than it
+   did a day ago: every Check submission now also makes a second (small) model
+   call to record the marks, so an uncapped free tier costs slightly more per
+   student than it did.
+3. **P1-6** — the school product. Largest, and worth starting once a pilot
+   cohort is generating data. The attempt table it would aggregate now exists.
+4. **P2-9** — analytics.
+5. **P3-12 … P3-16** — before the first serious procurement conversation. P3-12
+   needs booked teacher time, so start arranging it earlier than you intend to
+   do the work.
 
-If only one item ships before submission, make it **P0-2** — persistence. It is
-now the most visible gap in a live demo: the tutor forgets everything on refresh,
-and a reviewer will find that within a minute of clicking.
+**The open question that matters most now is not engineering.** The weak-topic
+ranking works, but whether *mark ratio* is the right definition of "weak" for a
+real student is a teaching judgement, and it has only been checked against
+seeded numbers. The first cohort of real attempt data is what settles it — and
+the evidence is deliberately stored alongside every figure so it can be argued
+with rather than taken on trust.
