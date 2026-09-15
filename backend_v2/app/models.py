@@ -774,6 +774,28 @@ class CurrentUserOut(BaseModel):
     profile: ProfileOut | None = None
 
 
+class AttemptOutcome(BaseModel):
+    """What a Check reply said the student earned, in countable form.
+
+    Every code here has already been checked against the question own mark
+    scheme (see attempt_outcome.py) -- this model carries validated data, it
+    does not validate it.
+    """
+
+    marks_earned: int = Field(ge=0)
+    marks_available: int = Field(gt=0)
+    earned_codes: list[str] = Field(default_factory=list, max_length=40)
+    missed_codes: list[str] = Field(default_factory=list, max_length=40)
+    confidence: float | None = Field(default=None, ge=0, le=1)
+    model: str | None = None
+
+    @model_validator(mode="after")
+    def _marks_within_total(self) -> "AttemptOutcome":
+        if self.marks_earned > self.marks_available:
+            raise ValueError("marks_earned cannot exceed marks_available")
+        return self
+
+
 class ConversationOut(BaseModel):
     """One thread in the student's list, without its messages.
 

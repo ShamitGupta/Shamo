@@ -36,6 +36,7 @@ from app import main  # noqa: E402
 from app.auth import AuthenticatedUser, AuthError  # noqa: E402
 from app.config import get_settings  # noqa: E402
 from app.models import (  # noqa: E402
+    AttemptOutcome,
     ChatTurn,
     ManimTemplate,
     QuestionRef,
@@ -393,16 +394,43 @@ class FakeAuthService:
         return self.user
 
 
+
+class RecordingExtractor:
+    """Stands in for the marking extractor.
+
+    Exists mainly so the offline suite never reaches a provider: without it,
+    every Check-mode test makes a real network call that merely happens to fail.
+    """
+
+    def __init__(self, outcome: AttemptOutcome | None = None) -> None:
+        self.outcome = outcome
+        self.calls: list[dict] = []
+
+    def extract(self, *, context, transcript, attempt, part_label=None):
+        self.calls.append(
+            {
+                "context": context,
+                "transcript": transcript,
+                "attempt": attempt,
+                "part_label": part_label,
+            }
+        )
+        return self.outcome
+
+
 @pytest.fixture
 def client_and_fakes():
     repository = FakeRepository()
     tutor = RecordingTutor()
     visualizer = RecordingVisualizer()
     auth_service = FakeAuthService()
+    extractor = RecordingExtractor()
     main.app.dependency_overrides[main.get_repository] = lambda: repository
     main.app.dependency_overrides[main.get_tutor] = lambda: tutor
     main.app.dependency_overrides[main.get_visualizer] = lambda: visualizer
     main.app.dependency_overrides[main.get_auth_service] = lambda: auth_service
+    main.app.dependency_overrides[main.get_outcome_extractor] = lambda: extractor
+    repository.extractor = extractor
     with TestClient(main.app, headers={"Authorization": "Bearer valid-token"}) as client:
         yield client, repository, tutor, visualizer
     main.app.dependency_overrides.clear()
@@ -470,6 +498,7 @@ def test_chat_requires_a_session_before_retrieval_or_model_call():
     main.app.dependency_overrides[main.get_repository] = lambda: repository
     main.app.dependency_overrides[main.get_tutor] = lambda: tutor
     main.app.dependency_overrides[main.get_auth_service] = lambda: FakeAuthService()
+    main.app.dependency_overrides[main.get_outcome_extractor] = lambda: RecordingExtractor()
 
     with TestClient(main.app) as client:
         response = client.post(

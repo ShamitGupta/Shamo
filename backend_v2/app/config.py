@@ -43,6 +43,10 @@ class Settings:
     openai_api_key: str
 
     tutor_model: str = "gpt-5.4-mini"
+    # Reads a finished Check reply and records the marks it attributed. A small
+    # model is right for this: it reports what the tutor said rather than
+    # forming its own view of the mathematics.
+    attempt_outcome_model: str = "gpt-5.4-nano"
     # Diagrams live in a private bucket. Links are signed per request and expire;
     # ten minutes is long enough to read a question and short enough that a
     # leaked URL is worthless.
@@ -62,6 +66,7 @@ class Settings:
             supabase_service_role_key=_required("SUPABASE_SERVICE_ROLE_KEY"),
             openai_api_key=_required("OPENAI_API_KEY"),
             tutor_model=os.getenv("SHAMO_TUTOR_MODEL", "gpt-5.4-mini"),
+            attempt_outcome_model=os.getenv("SHAMO_ATTEMPT_OUTCOME_MODEL", "gpt-5.4-nano"),
             asset_url_ttl_seconds=int(os.getenv("SHAMO_ASSET_URL_TTL", "600")),
             max_history_messages=int(os.getenv("SHAMO_MAX_HISTORY", "12")),
             generated_media_bucket=os.getenv("SHAMO_GENERATED_MEDIA_BUCKET", "shamo-generated-media"),
