@@ -49,6 +49,32 @@
     scroll-behavior: smooth;
 }
 
+/* Shown whenever a thread has no messages. .Chat is align-items: flex-end, so
+   the width/max-width/margin trio is what keeps this centred like the panels
+   above it rather than pinned to the right edge. */
+.EmptyThread {
+    width: 100%;
+    max-width: 52rem;
+    margin: 1.4rem auto 0;
+    box-sizing: border-box;
+    padding: 1rem 0;
+}
+
+.EmptyThreadTitle {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #d9dee8;
+}
+
+.EmptyThreadHint {
+    margin: 0.35rem 0 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: #8f97a5;
+    max-width: 34rem;
+}
+
 .Chat::-webkit-scrollbar {
     width: 8px;
 }

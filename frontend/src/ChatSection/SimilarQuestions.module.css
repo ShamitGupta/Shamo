@@ -1,9 +1,64 @@
-.Panel {
-    /* These four are load-bearing. .Chat is align-items: flex-end, so without
-       all of them this panel hugs the right edge while the QuestionPanel above
-       it stays correctly centred. */
+/* These four are load-bearing. .Chat is align-items: flex-end, so without all
+   of them this block hugs the right edge while the QuestionPanel above it stays
+   correctly centred. */
+.Wrapper {
     margin: 0 auto 1rem;
     max-width: 52rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* The closed state: one quiet line, not a panel. Suggestions are an offer, and
+   an offer should not outweigh the question it is made about. */
+.Toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.4rem 0.75rem 0.4rem 0.55rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.07);
+    color: #c3cbd8;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.Toggle:hover {
+    background: rgba(157, 180, 255, 0.12);
+    border-color: rgba(157, 180, 255, 0.4);
+    color: #f1f5fb;
+}
+
+.ToggleOpen {
+    color: #f1f5fb;
+    border-color: rgba(157, 180, 255, 0.4);
+    background: rgba(157, 180, 255, 0.12);
+}
+
+.Chevron {
+    flex-shrink: 0;
+    transition: transform 0.18s ease;
+}
+
+.ToggleOpen .Chevron {
+    transform: rotate(90deg);
+}
+
+.Count {
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(157, 180, 255, 0.22);
+    color: #dfe6ff;
+}
+
+.Panel {
+    margin: 0.6rem 0 0;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid rgba(148, 163, 184, 0.32);
@@ -13,32 +68,17 @@
     padding: 1rem 1.15rem;
 }
 
-.PanelError {
-    border-color: rgba(248, 113, 113, 0.45);
-    background: rgba(248, 113, 113, 0.08);
-}
-
-.Header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-}
-
-.Title {
-    margin: 0;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #f8fafc;
-    letter-spacing: 0.01em;
-}
-
 .Results {
     list-style: none;
-    margin: 0.85rem 0 0;
+    margin: 0;
     padding: 0;
     display: grid;
     gap: 0.55rem;
+}
+
+/* Only when the skeleton list follows the "Finding…" note. */
+.EmptyNote + .Results {
+    margin-top: 0.7rem;
 }
 
 .ResultItem {
@@ -153,7 +193,7 @@
 /* Deliberately muted, never error styling. Having no close match is a normal
    outcome for roughly one question in ten, not a failure. */
 .EmptyNote {
-    margin: 0.7rem 0 0;
+    margin: 0;
     color: #aeb8c7;
     font-size: 0.84rem;
     line-height: 1.55;
@@ -165,7 +205,6 @@
     justify-content: space-between;
     gap: 0.75rem;
     flex-wrap: wrap;
-    margin-top: 0.6rem;
 }
 
 .SignInButton,

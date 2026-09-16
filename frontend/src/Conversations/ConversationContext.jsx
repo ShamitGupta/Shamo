@@ -42,6 +42,9 @@ export function ConversationProvider({ children }) {
     const [loadedTurns, setLoadedTurns] = useState(null);
     const [turnsStatus, setTurnsStatus] = useState('idle'); // idle | loading | ready | error
     const [error, setError] = useState(null);
+    // Incremented by startNewConversation, so "give me a blank chat" is an
+    // event the chat can respond to rather than a state it might already be in.
+    const [newChatToken, setNewChatToken] = useState(0);
 
     // Guards a lazily-created thread against a double-click sending two
     // requests and quietly creating two conversations for one student turn.
@@ -118,6 +121,11 @@ export function ConversationProvider({ children }) {
         writeStoredActiveId(null);
         setLoadedTurns(null);
         setTurnsStatus('idle');
+        // Clearing the id is not enough on its own. The chat only reacts to the
+        // id CHANGING, so asking for a new chat while already on an unsaved one
+        // -- the most common case, and the reason this button looked broken --
+        // moved nothing. The token changes on every click, so it always does.
+        setNewChatToken((token) => token + 1);
     }, []);
 
     const ensureConversationId = useCallback(async () => {
@@ -157,6 +165,7 @@ export function ConversationProvider({ children }) {
     const value = useMemo(() => ({
         conversations,
         activeId,
+        newChatToken,
         loadedTurns,
         turnsStatus,
         error,
@@ -167,7 +176,7 @@ export function ConversationProvider({ children }) {
         rename,
         remove,
     }), [
-        conversations, activeId, loadedTurns, turnsStatus, error,
+        conversations, activeId, newChatToken, loadedTurns, turnsStatus, error,
         refresh, openConversation, startNewConversation, ensureConversationId, rename, remove,
     ]);
 

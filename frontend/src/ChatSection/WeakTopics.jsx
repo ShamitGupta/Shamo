@@ -10,6 +10,12 @@
 // 2. Topics with too few attempts are shown separately rather than hidden. A
 //    single bad question is not a weakness, but silently dropping it would make
 //    a thin history look like a complete picture of the student.
+//
+// 3. It lives in the SIDEBAR, permanently. In the chat it sat above the
+//    conversation, so it scrolled out of sight the moment a student started
+//    working -- which is exactly when knowing what to practise next matters.
+//    `variant="sidebar"` only tightens the spacing; nothing is dropped, least
+//    of all the evidence.
 
 import { useEffect, useState } from 'react';
 
@@ -42,7 +48,7 @@ function referenceLabel(reference) {
     return `${reference.syllabus_code}/${reference.paper_variant} ${session} ${reference.year} — Q${reference.question_number}`;
 }
 
-function WeakTopics({ refreshToken, onNavigate }) {
+function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
     const { accessToken, isAuthenticated } = useAuth();
     // No "loading" state is stored, and nothing is cleared when a session ends.
     // Both would mean calling setState synchronously inside the effect, which
@@ -109,20 +115,40 @@ function WeakTopics({ refreshToken, onNavigate }) {
         }
     };
 
+    const panelClass = variant === 'sidebar'
+        ? `${styles.Panel} ${styles.Compact}`
+        : styles.Panel;
+
     if (!isAuthenticated) return null;
     // Still loading, or the data belongs to a previous session. Either way there
     // is nothing safe to show yet.
     if (loadedFor !== accessToken) return null;
     if (error) {
-        return <section className={styles.Panel}><p className={styles.Error}>{error}</p></section>;
+        return <section className={panelClass}><p className={styles.Error}>{error}</p></section>;
     }
 
     const ranked = data?.ranked || [];
     const pending = data?.needs_more_evidence || [];
-    if (!ranked.length && !pending.length) return null;
+    // In the chat this panel simply disappeared when there was nothing to show.
+    // Fixed in the sidebar, disappearing looks broken, so say what would fill
+    // it -- a student with no attempts is the one who most needs telling.
+    if (!ranked.length && !pending.length) {
+        if (variant !== 'sidebar') return null;
+        return (
+            <section className={panelClass} aria-label="Your topics">
+                <header className={styles.Header}>
+                    <h3 className={styles.Title}>Where you are struggling</h3>
+                </header>
+                <p className={styles.Note}>
+                    Nothing yet. Submit your working in Check mode and the topics you are
+                    losing marks on will show up here.
+                </p>
+            </section>
+        );
+    }
 
     return (
-        <section className={styles.Panel} aria-label="Your topics">
+        <section className={panelClass} aria-label="Your topics">
             <header className={styles.Header}>
                 <h3 className={styles.Title}>Where you are struggling</h3>
                 <button

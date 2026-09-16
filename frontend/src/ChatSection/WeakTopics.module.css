@@ -212,3 +212,64 @@
     color: #8a8a8a;
     font-size: 0.75rem;
 }
+
+/* Sidebar variant. Only spacing and type size change -- every row keeps its
+   band, its bar and its evidence line, because a narrower column is not a
+   reason to make a claim about a student less checkable. */
+.Compact {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin-top: 0;
+    background-color: transparent;
+}
+
+.Compact .Title {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6f6f6f;
+    font-weight: 500;
+}
+
+.Compact .Header {
+    padding: 0 2px;
+}
+
+.Compact .Toggle {
+    font-size: 0.72rem;
+}
+
+.Compact .List {
+    margin-top: 10px;
+    gap: 12px;
+}
+
+.Compact .Topic {
+    font-size: 0.85rem;
+}
+
+.Compact .Band {
+    font-size: 0.68rem;
+    padding: 1px 6px;
+}
+
+.Compact .Evidence,
+.Compact .Note,
+.Compact .PendingList {
+    font-size: 0.74rem;
+    line-height: 1.45;
+}
+
+.Compact .PracticeRef {
+    font-size: 0.76rem;
+}
+
+.Compact .PracticeWhy {
+    font-size: 0.7rem;
+}
+
+.Compact .Pending {
+    margin-top: 12px;
+    padding-top: 10px;
+}

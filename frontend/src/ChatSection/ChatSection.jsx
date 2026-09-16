@@ -7,14 +7,13 @@ import 'katex/dist/katex.min.css';
 
 import { sanitizeLatex } from '../utils/sanitizeLatex.js';
 import { createAssistedResponse, createCoordinatedResponse, createVisualization, fetchQuestion, streamChat, TUTOR_MODES, SESSION_LABELS, ApiError } from '../api/tutorApi.js';
-import { usePaperCatalogue } from './usePaperCatalogue.js';
 import MetadataDropdown from './MetadataDropdown';
 import QuestionPanel from './QuestionPanel';
 import SimilarQuestions from './SimilarQuestions';
-import WeakTopics from './WeakTopics';
 import VisualArtifactCard from './VisualArtifactCard';
 import { useAuth } from '../Auth/authContext.js';
 import { useConversations } from '../Conversations/conversationContext.js';
+import { useWorkspace } from '../Workspace/workspaceContext.js';
 
 const MAX_SESSION_MEMORY_MESSAGES = 10;
 const TUTOR_STRATEGY = {
@@ -80,6 +79,7 @@ function ChatSection({ onOpenAuth }) {
     // ConversationContext; the divider below marks where the question changed.
     const {
         activeId: activeConversationId,
+        newChatToken,
         loadedTurns,
         turnsStatus,
         ensureConversationId,
@@ -95,8 +95,9 @@ function ChatSection({ onOpenAuth }) {
     const [inputValue, setInputValue] = useState("");
 
     // Every selector option comes from the published corpus, so an unavailable
-    // paper cannot be chosen. See usePaperCatalogue.
-    const catalogue = usePaperCatalogue();
+    // paper cannot be chosen. It lives in WorkspaceProvider rather than here
+    // because the sidebar's topic panel also navigates -- see workspaceContext.
+    const { catalogue, notifyAttemptRecorded } = useWorkspace();
 
     // Single-select by default -- clicking a pill switches to it directly, no
     // need to uncheck the old one first. "Combine modes" is an explicit opt-in
@@ -119,10 +120,6 @@ function ChatSection({ onOpenAuth }) {
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);
-    // Bumped after a Check turn so the topic panel re-reads. Cheaper and
-    // clearer than polling, and it only fires when something could have
-    // changed.
-    const [weakTopicsToken, setWeakTopicsToken] = useState(0);
 
     const reference = catalogue.reference;
     const referenceKey = reference ? JSON.stringify(reference) : null;
@@ -196,6 +193,17 @@ function ChatSection({ onOpenAuth }) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeConversationId, loadedTurns, turnsStatus]);
+
+    // "New chat" while already on an unsaved thread changes no id, so the sync
+    // effect above sees nothing and the half-typed conversation stays on
+    // screen. This is what made the button look like it did nothing.
+    useEffect(() => {
+        if (newChatToken === 0) return;
+        appliedConversationRef.current = null;
+        setMessages([]);
+        setInputValue('');
+        setOpenDropdown(null);
+    }, [newChatToken]);
 
     useEffect(() => {
         const handlePointerDown = (event) => {
@@ -511,7 +519,7 @@ function ChatSection({ onOpenAuth }) {
             if (conversationId) void refreshConversations();
             // A Check turn may have produced a new marking record.
             if (modesToRun.includes('check') || isTutorStrategy) {
-                setWeakTopicsToken((token) => token + 1);
+                notifyAttemptRecorded();
             }
         }
     };
@@ -648,14 +656,19 @@ function ChatSection({ onOpenAuth }) {
                     onOpenAuth={onOpenAuth}
                 />
 
-                {/* Not question-specific: this is about the student. It sits
-                    here rather than in the sidebar because the evidence lines
-                    need the width, and because this is where they are looking
-                    after getting their working marked. */}
-                <WeakTopics
-                    refreshToken={weakTopicsToken}
-                    onNavigate={handleSimilarNavigate}
-                />
+                {/* Without this, "New chat" empties a thread into an area that
+                    still shows the question, the suggestions and the input --
+                    a change so quiet it reads as the button not working. */}
+                {messages.length === 0 && (
+                    <div className={styles.EmptyThread}>
+                        <p className={styles.EmptyThreadTitle}>New chat</p>
+                        <p className={styles.EmptyThreadHint}>
+                            {reference
+                                ? 'Pick a mode and ask about the question above. Everything you send is saved, so you can come back to it.'
+                                : 'Choose a paper and question below, then ask away.'}
+                        </p>
+                    </div>
+                )}
 
                 {messages.map((msg, index) => (
                     <Fragment key={msg.id}>

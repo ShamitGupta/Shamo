@@ -76,15 +76,30 @@
     white-space: nowrap;
 }
 
+/* Icon-only, and only once the row is hovered or active -- a column of six
+   pencils and six bins down the sidebar reads as clutter, not as options. They
+   stay visible on focus so keyboard users never lose them. */
 .Action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
     background: transparent;
     border: none;
     color: #6f6f6f;
     cursor: pointer;
-    font-size: 0.75rem;
-    padding: 6px;
+    padding: 0;
     border-radius: 6px;
     flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.Row:hover .Action,
+.RowActive .Action,
+.Action:focus-visible {
+    opacity: 1;
 }
 
 .Action:hover {
@@ -92,8 +107,32 @@
     background-color: #2c2c2c;
 }
 
+.ConfirmAction {
+    background: transparent;
+    border: none;
+    color: #a0a0a0;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.75rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.ConfirmAction:hover {
+    color: #ffffff;
+    background-color: #2c2c2c;
+}
+
 .Danger:hover {
     color: #ff8a80;
+}
+
+/* Touch devices have no hover, so the actions would never appear. */
+@media (hover: none) {
+    .Action {
+        opacity: 1;
+    }
 }
 
 .RenameInput {

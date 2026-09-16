@@ -4,12 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './Auth/AuthContext.jsx'
 import { ConversationProvider } from './Conversations/ConversationContext.jsx'
+import { WorkspaceProvider } from './Workspace/WorkspaceProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <ConversationProvider>
-        <App />
+        <WorkspaceProvider>
+          <App />
+        </WorkspaceProvider>
       </ConversationProvider>
     </AuthProvider>
   </StrictMode>,

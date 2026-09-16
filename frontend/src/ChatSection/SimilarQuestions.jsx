@@ -12,6 +12,11 @@
 //    so moving to a suggestion keeps the conversation and simply continues it
 //    under the new question. There is nothing left to warn about, and asking
 //    anyway would train students to click through a meaningless dialog.
+//
+// 3. It is CLOSED until asked for. Five suggestions unfurling above a question
+//    the student has not read yet pushes the actual work off screen, and it
+//    answers a question nobody asked. Nothing is fetched until it is opened,
+//    so an unopened panel costs a request as well as the space.
 
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
@@ -89,14 +94,21 @@ function SimilarQuestions({
     const [status, setStatus] = useState('idle'); // idle|loading|ready|empty|notReady|error
     const [matches, setMatches] = useState([]);
     const [error, setError] = useState(null);
-    const [collapsed, setCollapsed] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [navError, setNavError] = useState(null);
     const [retryToken, setRetryToken] = useState(0);
+
+    // Closed again whenever the question changes: the list below belongs to the
+    // question that was on screen when it was opened, and silently swapping its
+    // contents under an open panel is worse than asking again.
+    useEffect(() => {
+        setIsOpen(false);
+    }, [referenceKey]);
 
     useEffect(() => {
         setNavError(null);
 
-        if (!referenceKey || questionStatus !== 'ready' || !isAuthenticated || !accessToken) {
+        if (!isOpen || !referenceKey || questionStatus !== 'ready' || !isAuthenticated || !accessToken) {
             setMatches([]);
             setStatus('idle');
             setError(null);
@@ -136,7 +148,7 @@ function SimilarQuestions({
         return () => controller.abort();
         // referenceKey rather than reference: the object is rebuilt every render.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [referenceKey, questionStatus, isAuthenticated, accessToken, retryToken]);
+    }, [isOpen, referenceKey, questionStatus, isAuthenticated, accessToken, retryToken]);
 
     if (!reference || questionStatus !== 'ready') return null;
 
@@ -150,27 +162,13 @@ function SimilarQuestions({
         navigate(match);
     };
 
-    const header = (
-        <div className={styles.Header}>
-            <h3 className={styles.Title}>Similar questions</h3>
-            {status === 'ready' && (
-                <button
-                    type="button"
-                    className={styles.TextButton}
-                    onClick={() => setCollapsed((value) => !value)}
-                    aria-expanded={!collapsed}
-                    aria-controls="similar-questions-body"
-                >
-                    {collapsed ? `Show ${matches.length}` : 'Hide'}
-                </button>
-            )}
-        </div>
-    );
-
-    if (!isAuthenticated) {
-        return (
-            <section className={styles.Panel}>
-                {header}
+    // What sits inside the panel once it is open. Each branch is a genuinely
+    // different answer -- "not signed in", "nothing published to compare
+    // against", "nothing close enough" and "the request failed" must not all
+    // collapse into one empty list.
+    const body = () => {
+        if (!isAuthenticated) {
+            return (
                 <div className={styles.SignedOut}>
                     <p className={styles.EmptyNote}>
                         Sign in to see past-paper questions that test the same method as this one.
@@ -179,87 +177,69 @@ function SimilarQuestions({
                         Sign in
                     </button>
                 </div>
-            </section>
-        );
-    }
+            );
+        }
 
-    if (status === 'loading') {
-        return (
-            <section className={styles.Panel} aria-busy="true">
-                {header}
-                <p className={styles.EmptyNote}>Finding similar questions…</p>
-                <div className={styles.Results} aria-hidden="true">
-                    <div className={styles.Skeleton} />
-                    <div className={styles.Skeleton} />
-                    <div className={styles.Skeleton} />
-                </div>
-            </section>
-        );
-    }
-
-    if (status === 'error') {
-        // 403 means signed in but unverified. Opening the login overlay at
-        // someone who is already signed in would just be baffling.
-        if (error?.status === 403) {
+        if (status === 'loading' || status === 'idle') {
             return (
-                <section className={styles.Panel}>
-                    {header}
+                <>
+                    <p className={styles.EmptyNote}>Finding similar questions…</p>
+                    <div className={styles.Results} aria-hidden="true">
+                        <div className={styles.Skeleton} />
+                        <div className={styles.Skeleton} />
+                        <div className={styles.Skeleton} />
+                    </div>
+                </>
+            );
+        }
+
+        if (status === 'error') {
+            // 403 means signed in but unverified. Opening the login overlay at
+            // someone who is already signed in would just be baffling.
+            if (error?.status === 403) {
+                return (
                     <p className={styles.EmptyNote}>
                         Verify your email address to see similar questions.
                     </p>
-                </section>
+                );
+            }
+            return (
+                <>
+                    <p className={styles.ErrorText}>{error?.message || 'Could not load similar questions.'}</p>
+                    <button
+                        type="button"
+                        className={styles.TextButton}
+                        onClick={() => setRetryToken((value) => value + 1)}
+                    >
+                        Try again
+                    </button>
+                </>
             );
         }
-        return (
-            <section className={`${styles.Panel} ${styles.PanelError}`}>
-                {header}
-                <p className={styles.ErrorText}>{error?.message || 'Could not load similar questions.'}</p>
-                <button
-                    type="button"
-                    className={styles.TextButton}
-                    onClick={() => setRetryToken((value) => value + 1)}
-                >
-                    Try again
-                </button>
-            </section>
-        );
-    }
 
-    if (status === 'notReady') {
-        return (
-            <section className={styles.Panel}>
-                {header}
+        if (status === 'notReady') {
+            return (
                 <p className={styles.EmptyNote}>
                     Similar questions aren’t available for this paper yet — there aren’t enough
                     published papers in this component to compare against.
                 </p>
-            </section>
-        );
-    }
+            );
+        }
 
-    if (status === 'empty') {
-        return (
-            <section className={styles.Panel}>
-                {header}
+        if (status === 'empty') {
+            return (
                 <p className={styles.EmptyNote}>
                     No close matches in this paper component. Shamo only suggests questions that
                     genuinely test the same method, and about one question in ten has no close
                     counterpart in the published papers.
                 </p>
-            </section>
-        );
-    }
+            );
+        }
 
-    if (status !== 'ready') return null;
-
-    return (
-        <section className={styles.Panel}>
-            {header}
-
-            {navError && <p className={styles.ErrorText}>{navError}</p>}
-
-            {!collapsed && (
-                <ul className={styles.Results} id="similar-questions-body">
+        return (
+            <>
+                {navError && <p className={styles.ErrorText}>{navError}</p>}
+                <ul className={styles.Results}>
                     {matches.map((match) => {
                         const band = similarityBand(match.similarity);
                         const label = paperLabel(match.reference);
@@ -302,8 +282,34 @@ function SimilarQuestions({
                         );
                     })}
                 </ul>
+            </>
+        );
+    };
+
+    return (
+        <div className={styles.Wrapper}>
+            <button
+                type="button"
+                className={`${styles.Toggle} ${isOpen ? styles.ToggleOpen : ''}`}
+                aria-expanded={isOpen}
+                aria-controls="similar-questions-body"
+                onClick={() => setIsOpen((value) => !value)}
+            >
+                <svg className={styles.Chevron} viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                    <path d="M5.5 3.5 L10.5 8 L5.5 12.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className={styles.ToggleLabel}>Similar questions</span>
+                {isOpen && status === 'ready' && (
+                    <span className={styles.Count}>{matches.length}</span>
+                )}
+            </button>
+
+            {isOpen && (
+                <section className={styles.Panel} id="similar-questions-body" aria-busy={status === 'loading'}>
+                    {body()}
+                </section>
             )}
-        </section>
+        </div>
     );
 }
 
