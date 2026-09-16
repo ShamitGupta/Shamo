@@ -38,6 +38,18 @@ class UserTier(str, Enum):
     SHAMO_STUDENT = "shamo_student"
 
 
+class UserRole(str, Enum):
+    """Which surface an account belongs to.
+
+    Deliberately separate from UserTier: a tier says how much of the product an
+    account has paid for, a role says whose data it may read. Conflating them
+    would make "upgrade" and "can see other people's children" the same field.
+    """
+
+    STUDENT = "student"
+    STAFF = "staff"
+
+
 class VisualArtifactKind(str, Enum):
     DESMOS_2D = "desmos_2d"
     DESMOS_3D = "desmos_3d"
@@ -771,7 +783,17 @@ class CurrentUserOut(BaseModel):
     email: str | None = None
     email_confirmed: bool
     tier: UserTier
+    # The browser routes on this, which is why the SERVER decides it. A client
+    # that flips this to "staff" gets a differently-shaped page and a 403 from
+    # every staff endpoint behind it, because each one re-resolves the role.
+    role: UserRole = UserRole.STUDENT
     profile: ProfileOut | None = None
+
+
+class ClaimStaffRoleRequest(BaseModel):
+    """The one way to become staff: present the shared invite code."""
+
+    invite_code: str = Field(min_length=1, max_length=200)
 
 
 class AttemptOutcome(BaseModel):
@@ -860,6 +882,66 @@ class PracticeSetResponse(BaseModel):
     # Empty is a normal outcome, not an error: a student who has worked through
     # every published question on a topic has nothing left to be given.
     questions: list[PracticeQuestionOut] = Field(default_factory=list, max_length=20)
+
+
+# -- what a teacher may see -------------------------------------------------
+#
+# These three models are the privacy boundary written down as types. A teacher
+# reads what a student PRACTISED and what they SUBMITTED for marking; they do
+# not read the conversation around it. Deliberately absent, and absent for a
+# reason rather than by oversight:
+#
+#   * shamo_conversation_turns.content -- the student's questions and the
+#     tutor's replies. Asking for help is not work handed in.
+#   * shamo_conversations.title -- student-authored free text, so a thread named
+#     "i have no idea what im doing" would leak straight into a roster.
+#
+# Neither field appears here, and neither is selected by the queries that feed
+# these models. The exclusion lives at the query, not in the interface, so a new
+# screen cannot accidentally surface it.
+
+
+class StudentSummaryOut(BaseModel):
+    """One row of the class roster."""
+
+    user_id: str
+    display_name: str | None = None
+    email: str | None = None
+    # Demonstration accounts seeded for the dashboard. Every surface that names
+    # a student must label these -- invented rows shown to a reviewer must never
+    # read as real children.
+    is_sample: bool = False
+    conversations: int = 0
+    turns: int = 0
+    attempts: int = 0
+    scored_attempts: int = 0
+    # None when nothing has been scored. Not 0.0 -- "no data" and "scored
+    # nothing" are different claims, and a zero sorts like the worst student.
+    mark_ratio: float | None = None
+    weakest_topic: str | None = None
+    last_active_at: str | None = None
+
+
+class StudentAttemptOut(BaseModel):
+    """One piece of work a student submitted, and what it earned."""
+
+    reference: QuestionRef
+    part_label: str | None = None
+    attempt_text: str = ""
+    marks_earned: int | None = None
+    marks_available: int | None = None
+    earned_codes: list[str] = Field(default_factory=list)
+    missed_codes: list[str] = Field(default_factory=list)
+    # 'extractor' or 'unavailable'. Surfaced rather than hidden: an attempt with
+    # no outcome is evidence the student worked, and silently showing it as
+    # zero marks would misrepresent them to their teacher.
+    outcome_source: str = "unavailable"
+    created_at: str | None = None
+
+
+class StudentDetailOut(BaseModel):
+    student: StudentSummaryOut
+    attempts: list[StudentAttemptOut] = Field(default_factory=list)
 
 
 class ConversationOut(BaseModel):

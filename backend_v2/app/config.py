@@ -57,6 +57,13 @@ class Settings:
     # bucket because nothing here is reviewed official content.
     generated_media_bucket: str = "shamo-generated-media"
 
+    # The shared secret a teacher types to claim a staff role. Optional on
+    # purpose, and the absence is the SAFE state: with no code configured,
+    # POST /me/claim-staff-role refuses everyone, so a deployment that forgets
+    # to set it cannot accidentally hand out access to student data. Rotating
+    # it is an env change and a restart -- no code, no migration.
+    teacher_invite_code: str | None = None
+
     allowed_origins: list[str] = field(default_factory=list)
 
     @classmethod
@@ -70,6 +77,7 @@ class Settings:
             asset_url_ttl_seconds=int(os.getenv("SHAMO_ASSET_URL_TTL", "600")),
             max_history_messages=int(os.getenv("SHAMO_MAX_HISTORY", "12")),
             generated_media_bucket=os.getenv("SHAMO_GENERATED_MEDIA_BUCKET", "shamo-generated-media"),
+            teacher_invite_code=(os.getenv("SHAMO_TEACHER_INVITE_CODE", "").strip() or None),
             # No wildcard default. The legacy service allows every origin, which
             # is fine for an unauthenticated prototype and will not be once this
             # one carries student data. Both 5173 and 5174 are listed because

@@ -275,6 +275,66 @@ export async function fetchPracticeSet({ topic, syllabusCode, limit, accessToken
     return response.json();
 }
 
+/**
+ * Become a teacher by presenting the shared invite code.
+ *
+ * The code is checked on the SERVER against a value the browser never sees, so
+ * this call is the only way to obtain a staff role. Returns the refreshed /me
+ * payload on success; a wrong code is a 403 with a plain message.
+ */
+export async function claimStaffRole(inviteCode, accessToken) {
+    const response = await fetch(`${BASE_URL}/me/claim-staff-role`, {
+        method: 'POST',
+        headers: authHeaders(accessToken),
+        body: JSON.stringify({ invite_code: inviteCode }),
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+// -- staff ------------------------------------------------------------------
+//
+// These three are the only calls in this file that read someone else's data.
+// They 403 for anyone without a staff role, which is resolved server-side on
+// every request -- there is nothing the browser can set to grant itself access.
+
+/** The class roster: usage, attempts and weakest topic per student. */
+export async function fetchStudents(accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/staff/students`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/**
+ * One student's usage and the work they submitted for marking.
+ *
+ * Deliberately does not and cannot return their conversations with the tutor.
+ */
+export async function fetchStudent(userId, accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/staff/students/${encodeURIComponent(userId)}`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/** The same topic ranking the student sees, for one student. */
+export async function fetchStudentWeakTopics(userId, accessToken, signal) {
+    const response = await fetch(
+        `${BASE_URL}/staff/students/${encodeURIComponent(userId)}/weak-topics`,
+        {
+            headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+            signal,
+        },
+    );
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
 export const SESSION_LABELS = {
     feb_march: 'Feb/March',
     may_june: 'May/June',

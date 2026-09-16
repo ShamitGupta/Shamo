@@ -25,7 +25,7 @@ from typing import Any
 from supabase import Client, create_client
 
 from .config import Settings
-from .models import UserTier
+from .models import UserRole, UserTier
 
 logger = logging.getLogger(__name__)
 
@@ -440,6 +440,100 @@ class Repository:
             return UserTier.PREMIUM
         return UserTier.FREE
 
+    # -- roles -------------------------------------------------------------
+
+    def get_user_role(self, user_id: str) -> UserRole:
+        """Which surface this account belongs to.
+
+        Absence of a row means student, so a signup that failed halfway cannot
+        leave a half-teacher. A read failure also answers student: refusing
+        access when the role cannot be established is the safe direction, and
+        this is the only question in the codebase whose wrong answer hands one
+        user another's data.
+        """
+        try:
+            response = (
+                self._client.table("shamo_user_roles")
+                .select("role")
+                .eq("user_id", user_id)
+                .limit(1)
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read the account role: {error}") from error
+
+        rows = response.data or []
+        if rows and rows[0].get("role") == UserRole.STAFF.value:
+            return UserRole.STAFF
+        return UserRole.STUDENT
+
+    def grant_staff_role(self, user_id: str, *, granted_by: str = "invite_code") -> None:
+        """Promote one account to staff. Called only after the invite code matched."""
+        try:
+            (
+                self._client.table("shamo_user_roles")
+                .upsert(
+                    {
+                        "user_id": user_id,
+                        "role": UserRole.STAFF.value,
+                        "granted_by": granted_by,
+                    },
+                    on_conflict="user_id",
+                )
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not grant the staff role: {error}") from error
+
+    # -- what a staff account may read -------------------------------------
+    #
+    # These two methods are the ONLY place in this file where one user reads
+    # another's rows, and they are the reason the note below says "almost
+    # every". Callers must be behind require_staff_user; nothing here re-checks
+    # it, because a repository that authorizes as well as retrieves is a
+    # repository with two places to get authorization wrong.
+    #
+    # Neither method selects shamo_conversation_turns.content or
+    # shamo_conversations.title. That exclusion is a policy, not an oversight --
+    # see the header of database/shamo_v2_11_staff_class_view_patch.sql.
+
+    _STUDENT_ATTEMPT_COLUMNS = (
+        "qualification,syllabus_code,year,exam_session,paper_variant,question_number,"
+        "part_label,attempt_text,marks_earned,marks_available,earned_codes,missed_codes,"
+        "outcome_source,created_at"
+    )
+
+    def get_student_roster(self, limit: int = 200) -> list[dict[str, Any]]:
+        """Every student, with usage and scoring. School scoping does not exist yet."""
+        try:
+            response = self._client.rpc(
+                "shamo_get_student_roster", {"p_limit": limit}
+            ).execute()
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read the class roster: {error}") from error
+        return response.data or []
+
+    def get_student_attempts(self, user_id: str, limit: int = 100) -> list[dict[str, Any]]:
+        """One student's submitted work, newest first.
+
+        attempt_text is included deliberately: work handed in for marking is
+        what a teacher is entitled to see, and the marks alone would not let
+        them tell a misconception from a slip.
+        """
+        try:
+            response = (
+                self._client.table("shamo_attempts")
+                .select(self._STUDENT_ATTEMPT_COLUMNS)
+                .eq("user_id", user_id)
+                .is_("deleted_at", "null")
+                .order("created_at", desc=True)
+                .limit(max(1, min(limit, 500)))
+                .execute()
+            )
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read the student's attempts: {error}") from error
+        return response.data or []
+
     # -- conversations and attempts ---------------------------------------
     #
     # Every method here takes user_id and filters on it. That filter IS the
@@ -447,6 +541,9 @@ class Repository:
     # RLS entirely, exactly as it does for published content. The own-row
     # policies on these tables are defence in depth for a future direct-access
     # path, not what protects a student's work today.
+    #
+    # The two staff methods above are the single exception in this file, and
+    # they are guarded at the route instead.
 
     _CONVERSATION_COLUMNS = (
         "id,title,created_at,updated_at,last_active_at,turn_count,last_question"

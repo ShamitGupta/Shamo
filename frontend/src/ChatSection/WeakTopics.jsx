@@ -48,7 +48,13 @@ function referenceLabel(reference) {
     return `${reference.syllabus_code}/${reference.paper_variant} ${session} ${reference.year} — Q${reference.question_number}`;
 }
 
-function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
+// `topics` is the escape hatch that lets the teacher dashboard reuse this
+// renderer for SOMEONE ELSE'S ranking: pass a /staff/students/{id}/weak-topics
+// body and the component renders it instead of fetching its own. Reusing the
+// component matters more than it sounds -- the bands, the bar and the evidence
+// line are how this project promises never to show a bare score, and a second
+// copy of that renderer would be free to drift away from the promise.
+function WeakTopics({ refreshToken, onNavigate, variant = 'panel', topics = null, heading }) {
     const { accessToken, isAuthenticated } = useAuth();
     // No "loading" state is stored, and nothing is cleared when a session ends.
     // Both would mean calling setState synchronously inside the effect, which
@@ -68,6 +74,9 @@ function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
     const [practiceError, setPracticeError] = useState(null);
 
     useEffect(() => {
+        // Supplied data means someone else's ranking, already fetched by the
+        // caller. Fetching here would quietly replace it with the viewer's own.
+        if (topics) return undefined;
         if (!isAuthenticated || !accessToken) return undefined;
 
         const controller = new AbortController();
@@ -89,7 +98,7 @@ function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
         return () => controller.abort();
         // refreshToken lets the chat say a new attempt was marked, so the panel
         // re-reads without polling.
-    }, [isAuthenticated, accessToken, refreshToken]);
+    }, [isAuthenticated, accessToken, refreshToken, topics]);
 
     const openPractice = async (topic) => {
         if (practiceTopic === topic.main_topic) {
@@ -122,26 +131,37 @@ function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
     if (!isAuthenticated) return null;
     // Still loading, or the data belongs to a previous session. Either way there
     // is nothing safe to show yet.
-    if (loadedFor !== accessToken) return null;
-    if (error) {
+    if (!topics && loadedFor !== accessToken) return null;
+    if (!topics && error) {
         return <section className={panelClass}><p className={styles.Error}>{error}</p></section>;
     }
 
-    const ranked = data?.ranked || [];
-    const pending = data?.needs_more_evidence || [];
+    const source = topics || data;
+    const ranked = source?.ranked || [];
+    const pending = source?.needs_more_evidence || [];
+    const title = heading || 'Where you are struggling';
+    // A teacher looking at a student must not be handed a "practise this"
+    // button: the practice-set endpoint builds a set for whoever is signed in,
+    // so the questions would be the TEACHER'S, presented as the student's.
+    const canPractise = !topics;
     // In the chat this panel simply disappeared when there was nothing to show.
     // Fixed in the sidebar, disappearing looks broken, so say what would fill
     // it -- a student with no attempts is the one who most needs telling.
     if (!ranked.length && !pending.length) {
-        if (variant !== 'sidebar') return null;
+        // Disappearing is only acceptable in the chat, where this panel is one
+        // of several. Fixed in the sidebar -- or standing in for a named
+        // student on the dashboard -- an empty box that vanishes reads as
+        // broken, so say what would fill it.
+        if (variant !== 'sidebar' && !topics) return null;
         return (
             <section className={panelClass} aria-label="Your topics">
                 <header className={styles.Header}>
-                    <h3 className={styles.Title}>Where you are struggling</h3>
+                    <h3 className={styles.Title}>{title}</h3>
                 </header>
                 <p className={styles.Note}>
-                    Nothing yet. Submit your working in Check mode and the topics you are
-                    losing marks on will show up here.
+                    {topics
+                        ? 'No marked attempts yet, so there is nothing to rank.'
+                        : 'Nothing yet. Submit your working in Check mode and the topics you are losing marks on will show up here.'}
                 </p>
             </section>
         );
@@ -150,7 +170,7 @@ function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
     return (
         <section className={panelClass} aria-label="Your topics">
             <header className={styles.Header}>
-                <h3 className={styles.Title}>Where you are struggling</h3>
+                <h3 className={styles.Title}>{title}</h3>
                 <button
                     type="button"
                     className={styles.Toggle}
@@ -193,6 +213,7 @@ function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
                                                 ? ` · last ${whenText(topic.last_attempted_at)}`
                                                 : ''}
                                         </p>
+                                        {canPractise && (
                                         <button
                                             type="button"
                                             className={styles.Practise}
@@ -203,8 +224,9 @@ function WeakTopics({ refreshToken, onNavigate, variant = 'panel' }) {
                                                 ? 'Hide practice'
                                                 : 'Practise this'}
                                         </button>
+                                        )}
 
-                                        {practiceTopic === topic.main_topic && (
+                                        {canPractise && practiceTopic === topic.main_topic && (
                                             <div className={styles.Practice}>
                                                 {practiceError && (
                                                     <p className={styles.Error}>{practiceError}</p>

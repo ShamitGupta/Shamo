@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import logging
 import re
+import secrets
 from typing import Any
 
 from fastapi import Depends, FastAPI, Header, HTTPException
@@ -33,6 +34,7 @@ from .models import (
     AssetOut,
     ChatRequest,
     ChatTurn,
+    ClaimStaffRoleRequest,
     ConversationDetailOut,
     ConversationOut,
     ConversationTurnOut,
@@ -52,11 +54,15 @@ from .models import (
     SimilarQuestionOut,
     SimilarQuestionsResponse,
     SimilarQuestionsStatus,
+    StudentAttemptOut,
+    StudentDetailOut,
+    StudentSummaryOut,
     SuggestedActionOut,
     TopicEvidenceOut,
     TopicWeaknessOut,
     TopicWeaknessResponse,
     TutorMode,
+    UserRole,
     VisualArtifactKind,
     VisualArtifactOut,
     VisualArtifactSummary,
@@ -175,6 +181,33 @@ def require_verified_user(
     return current_user
 
 
+def require_staff_user(
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> AuthenticatedUser:
+    """The gate on every route that reads another person's data.
+
+    The role is resolved from the database on EVERY request rather than read
+    from the token or trusted from the client. A Supabase JWT is issued at sign
+    in and lives for an hour; a role revoked in that window has to stop working
+    immediately, not at the next refresh. The cost is one indexed primary-key
+    lookup.
+
+    A failed role read is a 503, never a pass. When the answer is unknown, the
+    safe answer is no.
+    """
+    try:
+        role = repository.get_user_role(current_user.user_id)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    if role is not UserRole.STAFF:
+        # Deliberately the same refusal a non-existent route would give in
+        # spirit: it says nothing about whether the requested student exists.
+        raise HTTPException(status_code=403, detail="This area is for staff accounts.")
+    return current_user
+
+
 # Added at import, not on startup: Starlette builds its middleware stack when the
 # app starts, so a later add_middleware raises. Settings validate loudly at
 # import too, which means a missing credential fails immediately rather than on
@@ -209,6 +242,7 @@ def me(
     try:
         profile = repository.get_profile(current_user.user_id)
         tier = repository.get_effective_tier(current_user.user_id)
+        role = repository.get_user_role(current_user.user_id)
     except RetrievalError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
 
@@ -217,6 +251,60 @@ def me(
         email=current_user.email,
         email_confirmed=current_user.email_confirmed,
         tier=tier,
+        role=role,
+        profile=profile,
+    )
+
+
+@app.post("/me/claim-staff-role", response_model=CurrentUserOut)
+def claim_staff_role(
+    request: ClaimStaffRoleRequest,
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+    settings: Settings = Depends(get_settings),
+) -> CurrentUserOut:
+    """Become a teacher by presenting the shared invite code.
+
+    This is the ONLY way to obtain a staff role, and it is deliberately here
+    rather than in the signup trigger. Signup metadata is written by the
+    browser, so a role that rode in on it could be self-assigned and the code
+    would be decorative. Here the code is checked server-side against a value
+    the browser never sees.
+
+    Three things this refuses:
+      * a wrong code -- 403, and nothing is written;
+      * ANY code when none is configured -- an unconfigured deployment hands
+        out no access rather than all of it;
+      * an unverified email -- inherited from require_verified_user, because a
+        staff account reads other people's work.
+    """
+    expected = settings.teacher_invite_code
+    submitted = request.invite_code.strip()
+
+    # compare_digest rather than ==: the comparison is against a shared secret,
+    # and a short-circuiting compare leaks its length and prefix by timing.
+    if not expected or not secrets.compare_digest(submitted, expected):
+        logger.warning(
+            "Rejected staff-role claim for user %s (invite code %s)",
+            current_user.user_id,
+            "not configured" if not expected else "incorrect",
+        )
+        raise HTTPException(status_code=403, detail="That invite code is not valid.")
+
+    try:
+        repository.grant_staff_role(current_user.user_id, granted_by="invite_code")
+        profile = repository.get_profile(current_user.user_id)
+        tier = repository.get_effective_tier(current_user.user_id)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    logger.info("Granted staff role to user %s", current_user.user_id)
+    return CurrentUserOut(
+        user_id=current_user.user_id,
+        email=current_user.email,
+        email_confirmed=current_user.email_confirmed,
+        tier=tier,
+        role=UserRole.STAFF,
         profile=profile,
     )
 
@@ -864,6 +952,142 @@ def practice_set(
             )
         )
     return PracticeSetResponse(main_topic=topic, questions=questions)
+
+
+# -- staff -------------------------------------------------------------------
+#
+# The first routes in this service where one account reads another's data.
+# Everything else filters by current_user.user_id and is safe by construction;
+# these are safe only because require_staff_user stands in front of them and
+# because the queries behind them never select a conversation's content or
+# title. Both halves are asserted in tests/test_staff_access.py -- a student
+# token must be refused on every route here, and no response body may carry
+# either field.
+#
+# INTERIM: any staff account sees every student. School scoping is not built.
+
+
+def _student_summary_out(row: dict[str, Any]) -> StudentSummaryOut:
+    ratio = row.get("mark_ratio")
+    return StudentSummaryOut(
+        user_id=str(row.get("user_id")),
+        display_name=row.get("display_name"),
+        email=row.get("email"),
+        is_sample=bool(row.get("is_sample")),
+        conversations=int(row.get("conversations") or 0),
+        turns=int(row.get("turns") or 0),
+        attempts=int(row.get("attempts") or 0),
+        scored_attempts=int(row.get("scored_attempts") or 0),
+        mark_ratio=float(ratio) if ratio is not None else None,
+        weakest_topic=row.get("weakest_topic"),
+        last_active_at=(
+            str(row.get("last_active_at")) if row.get("last_active_at") else None
+        ),
+    )
+
+
+def _student_attempt_out(row: dict[str, Any]) -> StudentAttemptOut | None:
+    reference = _question_ref_from_row(row)
+    if reference is None:
+        return None
+    return StudentAttemptOut(
+        reference=reference,
+        part_label=row.get("part_label"),
+        attempt_text=str(row.get("attempt_text") or ""),
+        marks_earned=row.get("marks_earned"),
+        marks_available=row.get("marks_available"),
+        earned_codes=list(row.get("earned_codes") or []),
+        missed_codes=list(row.get("missed_codes") or []),
+        outcome_source=str(row.get("outcome_source") or "unavailable"),
+        created_at=str(row.get("created_at")) if row.get("created_at") else None,
+    )
+
+
+@app.get("/staff/students", response_model=list[StudentSummaryOut])
+def staff_list_students(
+    limit: int = 200,
+    _staff: AuthenticatedUser = Depends(require_staff_user),
+    repository: Repository = Depends(get_repository),
+) -> list[StudentSummaryOut]:
+    """The class roster: who has been working, how much, and how it is going."""
+    limit = max(1, min(limit, 500))
+    try:
+        rows = repository.get_student_roster(limit=limit)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    return [_student_summary_out(row) for row in rows]
+
+
+def _roster_row_or_404(repository: Repository, user_id: str) -> dict[str, Any]:
+    """Find one student in the roster, or 404.
+
+    Resolved through the roster rather than by reading the profile directly, so
+    a single rule decides who counts as a student. A staff account looked up by
+    id is simply not found -- staff are not in the roster, and this route is for
+    students.
+    """
+    try:
+        rows = repository.get_student_roster(limit=500)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    for row in rows:
+        if str(row.get("user_id")) == user_id:
+            return row
+    raise HTTPException(status_code=404, detail="No such student.")
+
+
+@app.get("/staff/students/{user_id}", response_model=StudentDetailOut)
+def staff_get_student(
+    user_id: str,
+    limit: int = 100,
+    _staff: AuthenticatedUser = Depends(require_staff_user),
+    repository: Repository = Depends(get_repository),
+) -> StudentDetailOut:
+    """One student: their usage, and the work they submitted for marking.
+
+    Their conversations with the tutor are not here and are not reachable from
+    here. Asking for help is not work handed in.
+    """
+    row = _roster_row_or_404(repository, user_id)
+    try:
+        attempt_rows = repository.get_student_attempts(user_id, limit=max(1, min(limit, 500)))
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    attempts = [out for out in (_student_attempt_out(r) for r in attempt_rows) if out]
+    return StudentDetailOut(student=_student_summary_out(row), attempts=attempts)
+
+
+@app.get("/staff/students/{user_id}/weak-topics", response_model=TopicWeaknessResponse)
+def staff_student_weak_topics(
+    user_id: str,
+    min_attempts: int = 3,
+    limit: int = 20,
+    _staff: AuthenticatedUser = Depends(require_staff_user),
+    repository: Repository = Depends(get_repository),
+) -> TopicWeaknessResponse:
+    """The same ranking the student sees, for one student.
+
+    Deliberately the same repository call and the same SQL function as
+    GET /me/weak-topics. A teacher and their student disagreeing about how that
+    student is doing would be worse than either of them being slightly wrong.
+    """
+    min_attempts = max(1, min(min_attempts, 50))
+    limit = max(1, min(limit, 100))
+    _roster_row_or_404(repository, user_id)
+
+    try:
+        rows = repository.get_topic_weakness(user_id, min_attempts=min_attempts, limit=limit)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    topics = [_topic_row_to_out(row) for row in rows]
+    return TopicWeaknessResponse(
+        min_attempts=min_attempts,
+        ranked=[t for t in topics if t.has_enough_evidence],
+        needs_more_evidence=[t for t in topics if not t.has_enough_evidence],
+    )
 
 
 @app.get("/conversations", response_model=list[ConversationOut])

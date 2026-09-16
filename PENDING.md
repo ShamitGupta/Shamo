@@ -1,7 +1,7 @@
 # Shamo — Pending Work for a Grant-Ready Prototype
 
-> Created: 15 September 2026 · Last updated: 16 September 2026 (UI pass on the
-> shipped work; no new P-item closed or opened)
+> Created: 15 September 2026 · Last updated: 16 September 2026 (P1-6 shipped in
+> its pilot shape: teacher accounts and the class dashboard)
 > Scope: everything still missing before the prototype can demonstrate the claims
 > the grant application makes. **Hosting and deployment are explicitly excluded** —
 > the founder is handling those.
@@ -136,31 +136,60 @@ P0-3 attempt recording). See the shipped section above.
 
 ## P1 — Without these, the B2B pitch is not credible
 
-P1-4 and P1-5 are shipped. P1-6 below is the remaining item, and the largest.
+P1-4 and P1-5 are shipped. P1-6 shipped in its pilot shape on 16 September; what
+remains of it is three named successors, below, and the first two of them gate a
+real school pilot.
 
-### P1-6 · Teacher and class view
+### P1-6 · Teacher and class view — SHIPPED IN ITS PILOT SHAPE, 16 September 2026
 
-**This is the artefact a school is actually buying.** None of it exists — but
-what it would aggregate now does. `shamo_attempts` and
-`shamo_get_topic_weakness` (15 September) already compute per-topic performance
-for one student; a class view is largely the same query grouped by cohort
-instead, plus the entities and roles below. That makes this meaningfully less
-than an L-from-scratch, though still the largest item here.
+A teacher signs up at `/teacher` with a shared invite code, lands on
+`/dashboard`, and sees every student's usage, attempts and weakest topic, with a
+per-student page carrying the same topic ranking the student sees and the work
+they submitted for marking. Their conversations with the tutor are not shown and
+are not reachable. Full account in `CLAUDE.md`, Development history, 16
+September (teacher sprint).
 
-**Missing, all of it:**
+**What shipped:** `shamo_user_roles` (v2.10, a server-side role the browser
+cannot write), `shamo_get_student_roster` (v2.11), `POST /me/claim-staff-role`,
+three `/staff/*` endpoints behind a `require_staff_user` gate, a routed teacher
+surface reached from a link in the sidebar footer (Google sign-in as well as
+email/password), and a labelled six-student sample cohort to demonstrate on.
 
-- An organisation/school entity and class membership. Confirmed absent: there are
-  no `school`, `organi*`, `class` or `subscription` tables in the database.
-- A staff role distinct from student, with its own RLS policies.
-- Seat allocation and bulk provisioning.
-- A per-class topic view: where this cohort is weak, who needs intervention.
+**Acceptance met:** a staff account sees per-topic attempt and accuracy figures
+across the class, under an explicit read policy — usage, questions practised and
+submitted working are visible; `shamo_conversation_turns.content` and
+`shamo_conversations.title` are not, enforced at the query rather than in the
+interface.
 
-**Acceptance:** a staff account sees per-topic attempt and accuracy figures across
-their class, under an explicit policy on how much individual student content staff
-may read.
+**Three named successors, none of them optional before a real school:**
 
-**Size: L.** The largest item here, and the one that most directly gates a
-departmental sale.
+**(a) Admin-verified schools, and teachers scoped to their own.** The shipped
+model is deliberately flat: **any account holding the invite code can read every
+student in the database.** That is contained today by the code being handed out
+by hand and by there being no real cohort — it stops being contained the moment
+a pilot starts. What is needed: a school entity, students mapped to a school at
+signup, staff verified by an admin rather than by a shared secret, and the
+roster filtered to the caller's own school. The filter belongs in
+`shamo_get_student_roster`; its header says so. **Size: M.**
+
+**(b) The student-facing transparency notice. Deferred deliberately, and
+required before a real cohort.** Students are not currently told that a teacher
+can see their practice activity, attempts and topic performance. For minors'
+data that is the wrong default, and it is a few lines of UI, not a feature.
+**Size: S.**
+
+**(c) Remove the sample cohort.** Six invented students
+(`shamo-demo-student-*@example.com`, `shamo_profiles.is_sample = true`) live in
+the production database so the dashboard is demonstrable on short notice. They
+are labelled everywhere they appear. **They must be gone before a real cohort
+joins** — a teacher scanning a roster should not have to tell invented children
+from real ones:
+
+```powershell
+python backend_v2/tests/demo_cohort.py teardown
+```
+
+Every usage figure quoted from this database must exclude them until then.
 
 ---
 
@@ -397,7 +426,7 @@ the work needs subject judgement**.
 | --- | --- | --- |
 | ~~P0-2 Conversation persistence~~ (done) | **Contractor** | Well-specified application work: schema, RLS, save and load |
 | ~~P0-3 Attempt recording~~ (done) | **Contractor** | Same — the diagnosis already exists, it only needs storing |
-| P1-6 Teacher and class view | **Contractor** | Largest separable block; entities, roles, aggregate views |
+| ~~P1-6 Teacher and class view~~ (pilot shape done) | **Contractor** | Successors (a)-(c) remain: school scoping, transparency notice, sample-cohort removal |
 | P2-7 Billing | **Contractor** | Standard webhook-to-entitlement work |
 | P2-8 Rate limiting and metering | **Contractor** | Infrastructure, not pedagogy |
 | P2-9 Analytics | **Contractor** | Instrumentation |
@@ -410,13 +439,15 @@ the work needs subject judgement**.
 | P3-14 Metadata review | **Hired teachers** | Volume review work, the genuine bottleneck |
 | P3-16 Licensing position | **Founder + legal advice** | Not engineering |
 
-P0-2, P0-3, P1-4 and P1-5 are done. A contractor can start on P1-6 from this
-document alone without blocking on any founder work; the attempt and
-conversation tables it aggregates already exist.
+P0-2, P0-3, P1-4, P1-5 and the pilot shape of P1-6 are done. A contractor can
+pick up P1-6's successors — school scoping in particular — from this document
+alone; the roles table, the roster function and the staff gate they extend
+already exist.
 
 ## Suggested order
 
-~~P0-1~~, ~~P3-11~~, ~~P0-2~~, ~~P0-3~~, ~~P1-4~~ and ~~P1-5~~ are done.
+~~P0-1~~, ~~P3-11~~, ~~P0-2~~, ~~P0-3~~, ~~P1-4~~, ~~P1-5~~ and the pilot
+shape of ~~P1-6~~ are done.
 Remaining, in order:
 
 1. **P3-10** — recovers the 7–8% of questions that return no neighbours. Cheap,
@@ -425,8 +456,9 @@ Remaining, in order:
    did a day ago: every Check submission now also makes a second (small) model
    call to record the marks, so an uncapped free tier costs slightly more per
    student than it did.
-3. **P1-6** — the school product. Largest, and worth starting once a pilot
-   cohort is generating data. The attempt table it would aggregate now exists.
+3. **P1-6 (a) and (b)** — school scoping and the transparency notice. Both are
+   prerequisites for letting real students and real teachers into the same
+   database, and (b) is a few lines. The dashboard itself already exists.
 4. **P2-9** — analytics.
 5. **P3-12 … P3-16** — before the first serious procurement conversation. P3-12
    needs booked teacher time, so start arranging it earlier than you intend to

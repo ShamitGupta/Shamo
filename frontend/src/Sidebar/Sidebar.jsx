@@ -1,6 +1,7 @@
 import styles from './Sidebar.module.css'
 import logo from '../assets/ShamoLogo.png'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import AuthActions from '../Auth/AuthActions'
 import ConversationList from '../Conversations/ConversationList'
@@ -15,7 +16,7 @@ function Sidebar({ onOpenAuth }){
     // Log In / Sign Up moved here from the chat top bar, so the account lives
     // at the bottom of the sidebar rather than in the corner above the
     // conversation. The overlay itself is owned by App.
-    const { user, profile, tier, actionStatus, signOut } = useAuth();
+    const { user, profile, tier, actionStatus, signOut, isStaff } = useAuth();
     const { startNewConversation } = useConversations();
     // The topic panel hands the student a question to practise, and clicking
     // one has to move the selection the chat is grounded in. That selection
@@ -118,6 +119,15 @@ function Sidebar({ onOpenAuth }){
                     New chat
                 </button>
 
+                {/* A teacher can use the tutor themselves -- seeing what you are
+                    setting is the point -- so the way back to the dashboard has
+                    to be permanently on screen rather than a browser Back away. */}
+                {isStaff && (
+                    <Link className={styles.StaffLink} to="/dashboard" onClick={handleMenuClose}>
+                        Teacher dashboard
+                    </Link>
+                )}
+
                 <div className = {styles.SidebarButtonsContainer}>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>About Us</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>Report an Issue</button>
@@ -140,6 +150,21 @@ function Sidebar({ onOpenAuth }){
                 )}
 
                 <div className={styles.SidebarFooter}>
+                    {/* The teacher door. Deliberately quiet -- it is for the one
+                        adult in a room of students, not a second call to action --
+                        but it has to EXIST somewhere: a separate signup page with
+                        no link to it is reachable only by someone who already
+                        knows the URL, which is nobody. Hidden once the account is
+                        already staff, since the dashboard link above covers it. */}
+                    {!isStaff && (
+                        <Link
+                            className={styles.TeacherLink}
+                            to="/teacher"
+                            onClick={handleMenuClose}
+                        >
+                            Teacher? Set up school access
+                        </Link>
+                    )}
                     <AuthActions
                         user={user}
                         profile={profile}

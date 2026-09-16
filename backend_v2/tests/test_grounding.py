@@ -46,6 +46,7 @@ from app.models import (  # noqa: E402
     VisualArtifactSummary,
     VisualValidationStatus,
     VisualizeResponse,
+    UserRole,
     UserTier,
 )
 from app.prompts import (  # noqa: E402
@@ -260,6 +261,11 @@ class FakeRepository:
 
     def get_effective_tier(self, user_id):
         return self.tier
+
+    def get_user_role(self, user_id):
+        # Student unless a test says otherwise. The fake defaults the same way
+        # the real table does -- absence of a row means student.
+        return getattr(self, "role", UserRole.STUDENT)
 
 
     # -- conversations and attempts (stage 1) -----------------------------

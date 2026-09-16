@@ -1,0 +1,444 @@
+/* The teacher surface.
+ *
+ * Full-width rather than the student shell's sidebar-plus-chat: a teacher is
+ * scanning a table, not holding a conversation, and the sidebar's thread list
+ * has nothing to say to them. Band colours deliberately match
+ * WeakTopics.module.css -- "struggling" must look the same to a teacher as it
+ * does to the student, or the two of them are reading different instruments.
+ */
+
+.Page {
+    min-height: 100vh;
+    background-color: var(--page-bg);
+    color: #ededed;
+    padding: 32px clamp(16px, 4vw, 48px) 64px;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.PageHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 18px 0 8px;
+}
+
+.Title {
+    margin: 0;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.SectionTitle {
+    margin: 32px 0 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.Blurb {
+    margin: 8px 0 0;
+    color: #9a9a9a;
+    font-size: 0.88rem;
+    max-width: 62ch;
+    line-height: 1.5;
+}
+
+.Error {
+    margin: 16px 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background-color: rgba(194, 84, 63, 0.14);
+    border: 1px solid rgba(194, 84, 63, 0.4);
+    color: #ffb4a8;
+    font-size: 0.88rem;
+}
+
+.Notice {
+    margin: 12px 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background-color: rgba(139, 164, 249, 0.12);
+    border: 1px solid rgba(139, 164, 249, 0.32);
+    color: #cdd9ff;
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+/* Sample data ------------------------------------------------------------ */
+
+.SampleBadge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffd9a0;
+    background-color: rgba(181, 130, 52, 0.18);
+    border: 1px solid rgba(181, 130, 52, 0.4);
+    vertical-align: middle;
+}
+
+.SampleNotice {
+    margin: 18px 0 0;
+    color: #9a9a9a;
+    font-size: 0.82rem;
+}
+
+/* Roster ----------------------------------------------------------------- */
+
+.TableWrap {
+    margin-top: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow-x: auto;
+}
+
+.Table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    min-width: 720px;
+}
+
+.Table th,
+.Table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    vertical-align: top;
+}
+
+.Table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.Table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.025);
+}
+
+.Numeric {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.SortButton {
+    background: transparent;
+    border: none;
+    color: #8a8a8a;
+    font: inherit;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0;
+}
+
+.SortButton:hover {
+    color: #ffffff;
+}
+
+.StudentLink {
+    color: #ededed;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.StudentLink:hover {
+    text-decoration: underline;
+}
+
+.Email {
+    display: block;
+    margin-top: 2px;
+    color: #7c7c7c;
+    font-size: 0.76rem;
+}
+
+.Sub {
+    display: block;
+    color: #7c7c7c;
+    font-size: 0.76rem;
+}
+
+.Ratio {
+    display: block;
+    margin-top: 3px;
+    color: #c4c4c4;
+    font-size: 0.8rem;
+}
+
+.Band {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+/* Kept identical to the student's panel on purpose. */
+.low { color: #ffb4a8; }
+.Band.low { background-color: rgba(194, 84, 63, 0.18); }
+.mid { color: #ffd9a0; }
+.Band.mid { background-color: rgba(181, 130, 52, 0.18); }
+.high { color: #a8e6bd; }
+.Band.high { background-color: rgba(63, 138, 92, 0.18); }
+.unknown { color: #a0a0a0; }
+.Band.unknown { background-color: rgba(255, 255, 255, 0.06); }
+
+/* Student detail --------------------------------------------------------- */
+
+.Stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.Stat {
+    flex: 1 1 140px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.StatValue {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.StatLabel {
+    display: block;
+    margin-top: 4px;
+    color: #8a8a8a;
+    font-size: 0.78rem;
+}
+
+.PrivacyNote {
+    margin: 16px 0 0;
+    padding: 10px 14px;
+    border-left: 2px solid rgba(139, 164, 249, 0.5);
+    color: #9a9a9a;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    max-width: 68ch;
+}
+
+.TopicsRegion {
+    max-width: 620px;
+}
+
+.Attempts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.Attempt {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.AttemptTop {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.AttemptRef {
+    font-size: 0.85rem;
+    color: #c4c4c4;
+}
+
+.AttemptMarks {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.AttemptText {
+    margin: 10px 0 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+.Codes {
+    margin: 10px 0 0;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+}
+
+.Earned { color: #a8e6bd; }
+.Missed { color: #ffb4a8; }
+
+.AttemptWhen {
+    margin: 8px 0 0;
+    color: #7c7c7c;
+    font-size: 0.75rem;
+}
+
+/* Teacher signup --------------------------------------------------------- */
+
+.AuthPage {
+    min-height: 100vh;
+    background-color: var(--page-bg);
+    color: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.AuthCard {
+    width: 100%;
+    max-width: 440px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 28px;
+    background-color: rgba(255, 255, 255, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.AuthTitle {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.AuthBlurb {
+    margin: 0;
+    color: #9a9a9a;
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.Field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #9a9a9a;
+}
+
+.Field input {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #ededed;
+    font-size: 0.9rem;
+}
+
+.Field input:focus {
+    outline: 2px solid rgba(139, 164, 249, 0.5);
+    outline-offset: 1px;
+}
+
+.Primary {
+    margin-top: 4px;
+    padding: 11px 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4c6ef5;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.Primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.Secondary {
+    background: transparent;
+    border: none;
+    color: #8ba4f9;
+    font: inherit;
+    font-size: 0.83rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.PrimaryLink {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background-color: #4c6ef5;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.88rem;
+    align-self: flex-start;
+}
+
+.QuietLink {
+    color: #8a8a8a;
+    font-size: 0.82rem;
+    text-decoration: none;
+}
+
+.QuietLink:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.Empty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 12vh;
+}
+
+@media (max-width: 720px) {
+    .Page {
+        padding: 24px 16px 48px;
+    }
+}
+
+.Google {
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ededed;
+    font: inherit;
+    cursor: pointer;
+}
+
+.Google:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+.Google:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.Divider {
+    color: #6f6f6f;
+    font-size: 0.76rem;
+    text-align: center;
+}

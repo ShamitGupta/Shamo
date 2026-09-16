@@ -209,3 +209,34 @@
         padding: 7px 12px;
     }
 }
+
+.StaffLink {
+    display: block;
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(139, 164, 249, 0.35);
+    background-color: rgba(139, 164, 249, 0.1);
+    color: #cdd9ff;
+    font-size: 0.82rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.StaffLink:hover {
+    background-color: rgba(139, 164, 249, 0.18);
+}
+
+.TeacherLink {
+    display: block;
+    margin-bottom: 10px;
+    color: #7c7c7c;
+    font-size: 0.78rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.TeacherLink:hover {
+    color: #cdd9ff;
+    text-decoration: underline;
+}
