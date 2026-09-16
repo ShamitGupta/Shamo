@@ -1,6 +1,7 @@
 # Shamo — Pending Work for a Grant-Ready Prototype
 
-> Created: 15 September 2026 · Last updated: 15 September 2026 (P0-1, P3-11, P0-2, P0-3, P1-4 and P1-5 shipped)
+> Created: 15 September 2026 · Last updated: 16 September 2026 (UI pass on the
+> shipped work; no new P-item closed or opened)
 > Scope: everything still missing before the prototype can demonstrate the claims
 > the grant application makes. **Hosting and deployment are explicitly excluded** —
 > the founder is handling those.
@@ -30,7 +31,9 @@ developer already familiar with this codebase.
 The network claim is now clickable. `shamo_match_similar_questions_for_question`
 (a new additive RPC taking a seed question id rather than an embedding) →
 `GET /papers/.../questions/{n}/similar`, gated by a verified session →
-a `SimilarQuestions` panel under the question. Costs nothing per call: it reuses
+a `SimilarQuestions` panel under the question — **collapsed behind a single line
+until asked for, as of 16 September**, so it no longer pushes the question a
+reviewer is reading off the screen. Costs nothing per call: it reuses
 stored embeddings and makes no model call. Acceptance met — **83% (9709) / 76%
 (0606) of published questions return three or more neighbours**, each labelled
 with paper, year, topic and marks, each clickable. Full account in `CLAUDE.md`,
@@ -102,6 +105,23 @@ rather than theoretical:
   qualifies if any of its parts clears the bar. Measured at **39.8% of matches**.
   Kept deliberately — it is what keeps the 155 stemless questions servable — but
   now surfaced as a `matched_on_part` flag so it stays visible.
+
+**UI pass, 16 September 2026 — no P-item opened or closed, but it changes what a
+reviewer actually sees.** Five user-reported changes. The one that matters for
+this document's own standard: **"Where you are struggling" now lives in the
+sidebar, permanently.** It previously sat above the conversation, so it scrolled
+out of sight the moment anyone started typing — a reviewer could click through
+the whole demo and never see the personalisation claim the deck leads with. It
+now also says what would fill it when a student has no attempts yet, instead of
+rendering nothing.
+
+The rest: "New chat" now visibly clears (it did clear before, but nothing on
+screen moved, and clicking it while already on an unsaved thread genuinely did
+nothing); the sidebar's secondary links shrank so the saved-thread list has room
+to grow; rename and delete became icons; and similar questions became opt-in as
+noted above. Frontend only — no schema, endpoint or prompt changed, so nothing
+measured above is affected. Full account in `CLAUDE.md`, Development history,
+16 September.
 
 **What this changes elsewhere in this file:** P3-12 now has a real automated
 baseline (below), P3-10 is re-scoped rather than eliminated (below), and P0-1 no
