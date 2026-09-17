@@ -487,13 +487,19 @@ class Repository:
 
     # -- what a staff account may read -------------------------------------
     #
-    # These two methods are the ONLY place in this file where one user reads
+    # These methods are the ONLY place in this file where one user reads
     # another's rows, and they are the reason the note below says "almost
     # every". Callers must be behind require_staff_user; nothing here re-checks
     # it, because a repository that authorizes as well as retrieves is a
     # repository with two places to get authorization wrong.
     #
-    # Neither method selects shamo_conversation_turns.content or
+    # get_mark_code_profile and get_activity_by_week are the two exceptions to
+    # THAT: passed no id they answer about the class, which is staff-only, but
+    # passed the caller's own id they answer about the caller, which is not.
+    # /me/mark-codes uses the second form. The id a route passes is the
+    # authorization decision, and it is made at the route.
+    #
+    # No method here selects shamo_conversation_turns.content or
     # shamo_conversations.title. That exclusion is a policy, not an oversight --
     # see the header of database/shamo_v2_11_staff_class_view_patch.sql.
 
@@ -534,6 +540,59 @@ class Repository:
             raise RetrievalError(f"Could not read the student's attempts: {error}") from error
         return response.data or []
 
+    def get_class_topic_summary(
+        self, *, min_attempts: int = 3, limit: int = 20
+    ) -> list[dict[str, Any]]:
+        """How the whole class is scoring, topic by topic, weakest first.
+
+        The SQL calls shamo_get_topic_weakness once per student rather than
+        re-aggregating the attempts, so "weak" keeps exactly one definition
+        across the teacher's screen and the student's own. This is a thin call,
+        not a second implementation.
+        """
+        try:
+            response = self._client.rpc(
+                "shamo_get_class_topic_summary",
+                {"p_min_attempts": min_attempts, "p_limit": limit},
+            ).execute()
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read class performance: {error}") from error
+        return response.data or []
+
+    def get_mark_code_profile(self, user_id: str | None = None) -> list[dict[str, Any]]:
+        """Marks earned and missed, split by what each mark is for.
+
+        `None` means the whole class; a user id means that one student. Both
+        callers exist: a teacher asks about their class and about one student,
+        and a student asks about themselves through /me/mark-codes. Passing an
+        id here is NOT an authorization decision -- the routes decide whose id
+        may be passed.
+        """
+        try:
+            response = self._client.rpc(
+                "shamo_get_mark_code_profile", {"p_user_id": user_id}
+            ).execute()
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read the mark breakdown: {error}") from error
+        return response.data or []
+
+    def get_activity_by_week(
+        self, user_id: str | None = None, *, weeks: int = 8
+    ) -> list[dict[str, Any]]:
+        """Attempts per week, for the class (None) or one student.
+
+        Empty weeks come back as zero rows rather than being omitted, because
+        noticing that someone stopped working is the whole point.
+        """
+        try:
+            response = self._client.rpc(
+                "shamo_get_activity_by_week",
+                {"p_user_id": user_id, "p_weeks": weeks},
+            ).execute()
+        except Exception as error:  # noqa: BLE001
+            raise RetrievalError(f"Could not read activity: {error}") from error
+        return response.data or []
+
     # -- conversations and attempts ---------------------------------------
     #
     # Every method here takes user_id and filters on it. That filter IS the
@@ -542,8 +601,8 @@ class Repository:
     # policies on these tables are defence in depth for a future direct-access
     # path, not what protects a student's work today.
     #
-    # The two staff methods above are the single exception in this file, and
-    # they are guarded at the route instead.
+    # The staff methods above are the single exception in this file, and they
+    # are guarded at the route instead.
 
     _CONVERSATION_COLUMNS = (
         "id,title,created_at,updated_at,last_active_at,turn_count,last_question"

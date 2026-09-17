@@ -54,6 +54,7 @@ STUDENT_ID = "student-1"
 # exact mistake this file exists to catch, so the last test asserts the list is
 # complete rather than trusting anyone to remember.
 STAFF_ROUTES = (
+    "/staff/class/overview",
     "/staff/students",
     f"/staff/students/{STUDENT_ID}",
     f"/staff/students/{STUDENT_ID}/weak-topics",
@@ -68,6 +69,9 @@ class FakeStaffRepository:
         self.role_error = role_error
         self.role_lookups = 0
         self.granted: list[tuple[str, str]] = []
+        # Which user id each mark-code lookup was scoped to. None means the
+        # whole class, and a None arriving from /me would be a real leak.
+        self.mark_code_scopes: list[str | None] = []
         self.roster = [
             {
                 "user_id": STUDENT_ID,
@@ -132,6 +136,73 @@ class FakeStaffRepository:
                 "last_attempted_at": "2026-09-15T10:00:00+00:00",
                 "example_questions": [],
             }
+        ]
+
+    def get_class_topic_summary(self, *, min_attempts=3, limit=20):
+        return [
+            {
+                "main_topic": "Vectors",
+                "students_attempting": 3,
+                "students_with_evidence": 2,
+                "students_struggling": 2,
+                "attempts": 9,
+                "scored_attempts": 8,
+                "marks_earned": 10,
+                "marks_available": 40,
+                "class_mark_ratio": 0.25,
+                "has_enough_evidence": True,
+                "last_attempted_at": "2026-09-15T10:00:00+00:00",
+            },
+            {
+                "main_topic": "Series",
+                "students_attempting": 1,
+                "students_with_evidence": 1,
+                "students_struggling": 0,
+                "attempts": 3,
+                "scored_attempts": 3,
+                "marks_earned": 9,
+                "marks_available": 12,
+                "class_mark_ratio": 0.75,
+                "has_enough_evidence": False,
+                "last_attempted_at": "2026-09-10T10:00:00+00:00",
+            },
+        ]
+
+    def get_mark_code_profile(self, user_id=None):
+        self.mark_code_scopes.append(user_id)
+        return [
+            {
+                "code_class": "M",
+                "earned": 18,
+                "missed": 4,
+                "total": 22,
+                "earned_ratio": 0.8182,
+                "students": 1 if user_id else 3,
+            },
+            {
+                "code_class": "A",
+                "earned": 5,
+                "missed": 14,
+                "total": 19,
+                "earned_ratio": 0.2632,
+                "students": 1 if user_id else 3,
+            },
+        ]
+
+    def get_activity_by_week(self, user_id=None, *, weeks=8):
+        return [
+            {
+                "week_start": "2026-09-07T00:00:00+00:00",
+                "attempts": 0,
+                "scored_attempts": 0,
+                "students_active": 0,
+            },
+            {
+                "week_start": "2026-09-14T00:00:00+00:00",
+                "attempts": 4,
+                "scored_attempts": 3,
+                "students_active": 1 if user_id else 2,
+            },
         ]
 
     # /me reads these two as well.
@@ -324,6 +395,130 @@ def test_me_reports_the_role_so_the_browser_can_route_on_it():
         assert client.get("/me").json()["role"] == "student"
 
 
+# -- class insights ---------------------------------------------------------
+
+
+def test_my_mark_codes_is_scoped_to_the_caller_and_never_the_class():
+    """The one route that can ask about everyone, asked about one person.
+
+    `get_mark_code_profile(None)` returns the whole class. /me must never reach
+    that form, and the check is on the ARGUMENT rather than on the response,
+    because the fake returns plausible-looking rows either way -- which is
+    exactly how this would ship unnoticed.
+    """
+    repository = FakeStaffRepository(role=UserRole.STUDENT)
+    with _client(repository) as client:
+        response = client.get("/me/mark-codes")
+
+    assert response.status_code == 200
+    assert repository.mark_code_scopes == ["user-1"]
+    assert None not in repository.mark_code_scopes
+
+
+def test_a_student_can_read_their_own_mark_split():
+    """No staff role required. A student is entitled to know this about
+    themselves, and a teacher knowing it while they do not would be worse."""
+    repository = FakeStaffRepository(role=UserRole.STUDENT)
+    with _client(repository) as client:
+        body = client.get("/me/mark-codes").json()
+
+    assert [group["code_class"] for group in body["groups"]] == ["M", "A"]
+    assert body["groups"][0]["earned"] == 18
+
+
+def test_the_mark_headline_names_the_pattern_without_diagnosing_it():
+    repository = FakeStaffRepository(role=UserRole.STUDENT)
+    with _client(repository) as client:
+        headline = client.get("/me/mark-codes").json()["headline"]
+
+    # 82% of method marks earned against 26% of accuracy marks.
+    assert "82%" in headline and "26%" in headline
+    # Hedged on purpose: the M/A distinction is Cambridge's and exact, the
+    # reading of it is not.
+    assert "usually" in headline
+
+
+def test_the_mark_headline_stays_silent_on_thin_evidence():
+    """Below the minimum there is no honest comparison to make, so none is made."""
+    repository = FakeStaffRepository(role=UserRole.STUDENT)
+    repository.get_mark_code_profile = lambda user_id=None: [
+        {"code_class": "M", "earned": 2, "missed": 0, "total": 2,
+         "earned_ratio": 1.0, "students": 1},
+        {"code_class": "A", "earned": 0, "missed": 2, "total": 2,
+         "earned_ratio": 0.0, "students": 1},
+    ]
+    with _client(repository) as client:
+        body = client.get("/me/mark-codes").json()
+
+    assert body["headline"] is None
+    # The counts are still shown. Silence is about the interpretation, not the
+    # evidence -- hiding the rows would tell the student less, not more.
+    assert len(body["groups"]) == 2
+
+
+def test_class_overview_separates_topics_it_cannot_yet_judge():
+    """One student struggling is a conversation, not a lesson plan."""
+    repository = FakeStaffRepository(role=UserRole.STAFF)
+    with _client(repository) as client:
+        body = client.get("/staff/class/overview").json()
+
+    assert [t["main_topic"] for t in body["topics"]] == ["Vectors"]
+    assert [t["main_topic"] for t in body["needs_more_evidence"]] == ["Series"]
+    # The headcount rides with the ratio everywhere, so a share can never be
+    # rendered without the number of students behind it.
+    vectors = body["topics"][0]
+    assert vectors["students_struggling"] == 2
+    assert vectors["students_with_evidence"] == 2
+    assert vectors["class_mark_ratio"] == 0.25
+
+
+def test_class_overview_keeps_empty_weeks():
+    """A gap has to draw as a zero bar. Omitting it hides the thing being looked for."""
+    repository = FakeStaffRepository(role=UserRole.STAFF)
+    with _client(repository) as client:
+        activity = client.get("/staff/class/overview").json()["activity"]
+
+    assert [week["attempts"] for week in activity] == [0, 4]
+
+
+def test_a_student_page_carries_the_same_two_views_as_the_class():
+    repository = FakeStaffRepository(role=UserRole.STAFF)
+    with _client(repository) as client:
+        body = client.get(f"/staff/students/{STUDENT_ID}").json()
+
+    assert body["mark_codes"]["groups"][0]["code_class"] == "M"
+    assert len(body["activity"]) == 2
+    # Scoped to the student, not to the class -- the last lookup was by id.
+    assert repository.mark_code_scopes[-1] == STUDENT_ID
+
+
+def test_the_student_page_needs_one_request_not_two():
+    """The ranking rides on the detail response.
+
+    Two parallel requests from one page is the shape that trips this service's
+    shared Supabase client -- reproduced live as intermittent 401s and 503s
+    against /me alone. The standalone route still exists and still agrees.
+    """
+    repository = FakeStaffRepository(role=UserRole.STAFF)
+    with _client(repository) as client:
+        detail = client.get(f"/staff/students/{STUDENT_ID}").json()
+        standalone = client.get(f"/staff/students/{STUDENT_ID}/weak-topics").json()
+
+    assert detail["topics"] is not None
+    assert detail["topics"] == standalone
+
+
+def test_staff_and_student_see_the_same_mark_split():
+    """Same reading of the same rows, whoever is looking."""
+    repository = FakeStaffRepository(role=UserRole.STAFF)
+    with _client(repository) as client:
+        staff_view = client.get(f"/staff/students/{STUDENT_ID}").json()["mark_codes"]
+        repository.role = UserRole.STUDENT
+        own_view = client.get("/me/mark-codes").json()
+
+    assert staff_view == own_view
+
+
 # -- the list above must stay complete --------------------------------------
 
 
@@ -339,7 +534,12 @@ def test_every_staff_route_is_covered_by_this_file():
         for route in main.app.routes
         if getattr(route, "path", "").startswith("/staff")
     }
-    covered = {"/staff/students", "/staff/students/{user_id}", "/staff/students/{user_id}/weak-topics"}
+    covered = {
+        "/staff/class/overview",
+        "/staff/students",
+        "/staff/students/{user_id}",
+        "/staff/students/{user_id}/weak-topics",
+    }
     assert registered == covered, (
         "A /staff route was added or removed. Add it to STAFF_ROUTES above so "
         "the refusal and privacy tests cover it too."

@@ -17,8 +17,9 @@ import { Link } from 'react-router-dom';
 
 import { ApiError, fetchStudents } from '../api/tutorApi.js';
 import { useAuth } from '../Auth/authContext.js';
+import ClassOverview from './ClassOverview.jsx';
 import SampleBadge from './SampleBadge.jsx';
-import { band, studentName, whenText } from './format.js';
+import { band, isQuiet, studentName, whenText } from './format.js';
 import styles from './Teacher.module.css';
 
 const COLUMNS = [
@@ -123,6 +124,10 @@ function TeacherDashboard() {
                 </p>
             )}
 
+            <ClassOverview accessToken={accessToken} isStaff={isStaff} />
+
+            <h2 className={styles.SectionTitle}>Every student</h2>
+
             {error && <p className={styles.Error}>{error}</p>}
             {!error && students === null && <p className={styles.Blurb}>Loading your class…</p>}
             {!error && students?.length === 0 && (
@@ -193,7 +198,15 @@ function TeacherDashboard() {
                                                 <span className={styles.Sub}>not enough attempts yet</span>
                                             )}
                                         </td>
-                                        <td>{whenText(student.last_active_at)}</td>
+                                        <td>
+                                            {whenText(student.last_active_at)}
+                                            {/* Named rather than left as a date to
+                                                convert in your head -- a date nobody
+                                                converts is a date nobody notices. */}
+                                            {isQuiet(student.last_active_at) && (
+                                                <span className={styles.Quiet}>gone quiet</span>
+                                            )}
+                                        </td>
                                     </tr>
                                 );
                             })}

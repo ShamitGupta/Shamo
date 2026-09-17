@@ -886,7 +886,7 @@ class PracticeSetResponse(BaseModel):
 
 # -- what a teacher may see -------------------------------------------------
 #
-# These three models are the privacy boundary written down as types. A teacher
+# These models are the privacy boundary written down as types. A teacher
 # reads what a student PRACTISED and what they SUBMITTED for marking; they do
 # not read the conversation around it. Deliberately absent, and absent for a
 # reason rather than by oversight:
@@ -939,9 +939,112 @@ class StudentAttemptOut(BaseModel):
     created_at: str | None = None
 
 
+class MarkCodeGroupOut(BaseModel):
+    """Marks earned and missed in one class of mark code.
+
+    Cambridge awards M marks for the METHOD, A marks for ACCURACY once the
+    method is there, and B marks independently. Losing one rather than another
+    is a different teaching problem, which is the whole reason this is split out
+    instead of rolled into a single percentage.
+
+    `earned` and `missed` are both here so no share is ever shown without the
+    count behind it -- 0 of 2 and 0 of 40 are not the same finding.
+    """
+
+    # 'M', 'A', 'B', or 'other' for a code shape the classifier did not
+    # recognise. 'other' surfacing at all is worth looking into rather than
+    # rounding away, so it is deliberately not merged into the three.
+    code_class: str
+    earned: int = 0
+    missed: int = 0
+    total: int = 0
+    earned_ratio: float | None = None
+    # How many students this rests on. Always 1 when scoped to one student.
+    students: int = 0
+
+
+class MarkCodeProfileOut(BaseModel):
+    """The M/A/B split, for a class or for one person.
+
+    `headline` is the one-line reading of it, and it is deliberately hedged: the
+    split is a real Cambridge distinction, but "losing accuracy marks means
+    slips" is an observation about a pattern, not a diagnosis of a student. None
+    when there is too little to say anything honest about.
+    """
+
+    groups: list[MarkCodeGroupOut] = Field(default_factory=list)
+    headline: str | None = None
+
+
+class ActivityWeekOut(BaseModel):
+    """One week of submitted work.
+
+    A week with nothing in it is returned as a zero row rather than omitted.
+    Dropping it would draw a gap as a continuous line and hide exactly the thing
+    a teacher is looking for.
+    """
+
+    week_start: str
+    attempts: int = 0
+    scored_attempts: int = 0
+    # Always 0 or 1 when scoped to one student.
+    students_active: int = 0
+
+
 class StudentDetailOut(BaseModel):
     student: StudentSummaryOut
     attempts: list[StudentAttemptOut] = Field(default_factory=list)
+    # Everything the student's page shows, in one response.
+    #
+    # Not only for tidiness: this service shares ONE Supabase client across a
+    # threadpool, and two requests arriving together can come back as a spurious
+    # 401 or 503 (reproduced against /me alone, so it predates these routes).
+    # The page used to fire its detail and its ranking in parallel, which is
+    # exactly the shape that triggers it. One request cannot race itself.
+    mark_codes: MarkCodeProfileOut = Field(default_factory=MarkCodeProfileOut)
+    activity: list[ActivityWeekOut] = Field(default_factory=list)
+    # The same ranking GET /staff/students/{id}/weak-topics returns, from the
+    # same repository call. That route stays -- it is a legitimate thing to ask
+    # for on its own -- but the page no longer needs a second round trip to
+    # render, nor a second full roster lookup to resolve the same student twice.
+    topics: TopicWeaknessResponse | None = None
+
+
+class ClassTopicOut(BaseModel):
+    """How a whole class is scoring on one topic.
+
+    The HEADCOUNT is the finding, not `class_mark_ratio`. Pooling every
+    student's marks lets whoever practised most define the class's apparent
+    weakness, so `students_struggling` out of `students_with_evidence` is what a
+    teacher should read first and what the ordering is built on. The pooled
+    ratio is here too, because withholding it would be its own kind of dishonesty.
+    """
+
+    main_topic: str
+    students_attempting: int = 0
+    students_with_evidence: int = 0
+    students_struggling: int = 0
+    attempts: int = 0
+    scored_attempts: int = 0
+    marks_earned: int = 0
+    marks_available: int = 0
+    class_mark_ratio: float | None = None
+    # False means fewer than two students have enough attempts behind them. One
+    # student struggling is a conversation with that student, not a lesson plan.
+    has_enough_evidence: bool = False
+    last_attempted_at: str | None = None
+
+
+class ClassOverviewResponse(BaseModel):
+    """Everything the dashboard header needs, in one request."""
+
+    min_attempts: int
+    # Split by the same rule the student's own panel uses, so the client never
+    # has to decide what counts as enough evidence.
+    topics: list[ClassTopicOut] = Field(default_factory=list)
+    needs_more_evidence: list[ClassTopicOut] = Field(default_factory=list)
+    mark_codes: MarkCodeProfileOut = Field(default_factory=MarkCodeProfileOut)
+    activity: list[ActivityWeekOut] = Field(default_factory=list)
 
 
 class ConversationOut(BaseModel):

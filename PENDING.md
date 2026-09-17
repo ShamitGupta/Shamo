@@ -1,7 +1,7 @@
 # Shamo — Pending Work for a Grant-Ready Prototype
 
-> Created: 15 September 2026 · Last updated: 16 September 2026 (P1-6 shipped in
-> its pilot shape: teacher accounts and the class dashboard)
+> Created: 15 September 2026 · Last updated: 17 September 2026 (P4-17 recorded:
+> class-driven practice papers, planned but not grant-gating)
 > Scope: everything still missing before the prototype can demonstrate the claims
 > the grant application makes. **Hosting and deployment are explicitly excluded** —
 > the founder is handling those.
@@ -161,6 +161,17 @@ submitted working are visible; `shamo_conversation_turns.content` and
 `shamo_conversations.title` are not, enforced at the query rather than in the
 interface.
 
+**Extended, 16 September 2026 (same day, second pass).** The dashboard now
+answers *"what do I teach on Monday?"* as well as *"how is this student doing?"*:
+a class-level topic ranking led by the **headcount** struggling rather than a
+pooled percentage, a **method-vs-accuracy** split of the marks being lost, and
+**weekly activity** with a "gone quiet" flag on the roster. `shamo_v2_12` (three
+additive service-role functions), `GET /staff/class/overview`, and
+`GET /me/mark-codes` — the student sees the same mark split about themselves,
+because a teacher knowing something about a student that the student cannot see
+would have widened (b) below for the sake of one endpoint. Full account in
+`CLAUDE.md`, Development history, 16 September (class insights).
+
 **Three named successors, none of them optional before a real school:**
 
 **(a) Admin-verified schools, and teachers scoped to their own.** The shipped
@@ -176,6 +187,9 @@ roster filtered to the caller's own school. The filter belongs in
 required before a real cohort.** Students are not currently told that a teacher
 can see their practice activity, attempts and topic performance. For minors'
 data that is the wrong default, and it is a few lines of UI, not a feature.
+**More pressing after the 16 September class-insights pass**, which gave a
+teacher a better-organised view of the same data — a student is now more
+legible to their teacher than before, while still not being told so.
 **Size: S.**
 
 **(c) Remove the sample cohort.** Six invented students
@@ -188,6 +202,13 @@ from real ones:
 ```powershell
 python backend_v2/tests/demo_cohort.py teardown
 ```
+
+Their mark codes were re-seeded from the real mark schemes on 16 September
+(`demo_cohort.py recode`). Before that every seeded attempt earned `M1` and
+missed `A1`, which would have shown anyone being demoed a perfect 100% method /
+0% accuracy split — a finding about the seeder, not about any student. Sample
+data has to be plausible as well as labelled, or it misleads the person being
+shown it.
 
 Every usage figure quoted from this database must exclude them until then.
 
@@ -383,6 +404,147 @@ first time in front of a customer.
 
 ---
 
+## P4 — Planned capability, not required for grant-readiness
+
+Added 17 September 2026 at the founder's direction. It sits below every P3 item
+on this document's own standard: **nothing in the deck currently depends on it,
+and a reviewer cannot click it.** Recorded here rather than under "out of scope"
+because it is intended to be built, and because working out what it needs
+surfaced a missing prerequisite that is probably worth more than the feature.
+
+### P4-17 · Class-driven practice papers
+
+A teacher sees the questions their class is collectively struggling with, and
+turns that set into a practice paper with its mark scheme — every question and
+every mark row taken from real past papers, nothing generated.
+
+**Why it is on-thesis rather than a bolt-on:** it is *compilation*, not
+generation. Most AI edtech would invent questions here; this product does not
+have to, and refusing to is the stronger claim. It also closes the loop the rest
+of the system already builds — attempt → mark-code diagnosis → class weakness →
+targeted paper → back to practice — and it makes a **printable artifact**, which
+is the first thing in the product a department can hold.
+
+It costs almost nothing per use: attempts, mark codes, mark schemes, diagrams and
+embeddings are all stored, and none of this needs a model call.
+
+**Split into two halves, because they are not equally ready.**
+
+**(a) Question-level class weakness.** The class view already ranks *topics* by
+the headcount struggling (`shamo_get_class_topic_summary`, v2.12). Ranking
+individual *questions* the same way is a small extension of work that exists.
+
+**The problem is the data, not the query.** Students currently choose their own
+questions. The chance that twenty students in a class independently attempt the
+same question is near zero, so "the questions the class is struggling with" has
+almost no overlap to aggregate. **This feature is blocked on a prerequisite that
+is not yet scoped anywhere in this document: a teacher assigning a question set
+to a class.**
+
+That prerequisite may be the more valuable feature. Assignment turns a teacher
+from an observer of a dashboard into a user of a workflow, and it is what makes
+(a), (b) and the existing class insights all read from the same shared set of
+work. **Size: S** once assignment exists; **M** including it.
+
+**(b) Compiled practice papers.** Buildable today, if it is driven by *topic*
+weakness — which is shipped and real — rather than by question-level overlap,
+which is not. Take the class's weakest topics, draw unattempted questions from
+`shamo_get_practice_set`, and render the questions with their diagrams plus a
+separate mark-scheme document.
+
+The new engineering is rendering, not selection: KaTeX/LaTeX to a printable
+document, with signed diagram assets resolved at build time. **Size: M.**
+
+**Acceptance:** a teacher can produce a practice paper and its mark scheme for
+their class, in which every question and every mark-scheme row traces to a
+published paper, and no text is model-generated.
+
+**Three honest cautions before this is promised to anyone.**
+
+1. **It sharpens P3-16 from "should" to "must".** Tutoring a student on a
+   question they already own is one thing; compiling official Cambridge questions
+   into a redistributable document handed to a school is materially closer to
+   what the board licenses commercially. **Do not ship (b) before the licensing
+   position exists.**
+2. **A competitor already does the worksheet half.** Teebloc (a VIP@SoC alumnus
+   and an operating Singapore company) builds custom worksheets from past-year
+   questions. The novelty here is not the worksheet — it is *why these
+   questions*: mark-code diagnosis of the class's own attempts. Lead with the
+   diagnosis or this reads as a rebuild of something that already exists.
+3. **It competes for founder time with P2-8**, which gates the free pilot. This
+   is a post-pilot feature; the pilot is what would generate the attempt volume
+   (a) needs in the first place.
+
+### P4-18 · School-uploaded materials as a second grounding layer
+
+Added 17 September 2026 at the founder's direction, and now referenced in the
+grant application, which is the only reason it is written up before it is built.
+
+**Status changed the same day, and it matters: this is now a committed months
+10–12 milestone in the submitted application**, not a roadmap aspiration. It is
+therefore no longer honestly "P4, not grant-gating" — failing to ship it is a
+missed milestone on a funded grant. It stays in P4 because nothing in the pitch
+*demonstrates* it, but it should now be planned and sequenced as if it were P2.
+Two consequences: the dependency below (P1-6 (a)) is on the critical path and is
+correctly scheduled in months 1–3 of the same application; and an **L**-sized
+item now sits in the final quarter alongside converting pilots to paid contracts,
+for a part-time founder. If something has to give, this is the milestone to
+renegotiate — not the paid contracts, and not the pilot.
+
+A school uploads its own material — homework sheets, internal exam papers,
+worksheets — and Shamo grounds tutoring on that too. **Official past papers stay
+the base layer; the school's own content is an additional layer on top of it.**
+
+**Why it is commercially the strongest item in P4.** It converts a subscription
+into a deposit. A department that has put three years of its own exams into Shamo
+does not casually switch, and it answers the standing objection — *"a student can
+just upload the paper to ChatGPT"* — at the institutional level, where an upload
+per session is not a substitute for a department's material being permanently
+searchable alongside 958 cross-linked official questions. It is also the clearest
+reason a school renews in year two.
+
+**The engineering boundary, which must be stated before this is promised.**
+
+1. **It cannot use the ingestion pipeline as built.** That pipeline is Cambridge-
+   specific in four places (mark-code grammar, taxonomies named `9709-v3` and
+   `cambridge-igcse-0606-v1`, the paper-domain map keyed on Cambridge component
+   digits, and the expected-total-marks rule). A school's homework sheet has no
+   mark codes, usually no mark scheme at all, and no syllabus component. This is
+   a **second, separate path** — OCR, chunk, embed, retrieve — which is easier
+   engineering but far less distinctive.
+2. **The "cannot invent an answer" guarantee does not transfer, and this is the
+   real risk.** That property holds because the tutor retrieves a complete
+   question, its parts, its diagrams and its official mark scheme. Material with
+   no mark scheme cannot support mark-level explanation or Check-mode marking.
+   **There are therefore two tiers of grounding, and the interface has to show
+   which tier a question sits on** — otherwise the weaker tier silently dilutes
+   the guarantee across the whole product, which is the one claim this project
+   cannot afford to blur.
+3. **It is hard-blocked on P1-6 (a), school scoping.** Uploaded material is
+   third-party content owned by that school. Storing it in a database where any
+   invite-code holder can reach it is not a shortcut, it is a breach. It also
+   needs retention and deletion terms, and the `past-paper-assets` bucket still
+   has no MIME-type restriction or per-file size limit.
+
+**Size: L.** Ingestion path, per-school isolation, tier labelling in the UI, and
+a storage/cost model that nothing in section 6 of `FUNDING.md` currently covers.
+
+**Acceptance:** a teacher uploads a worksheet; a student is tutored on a question
+from it; and the interface states plainly that the question carries no official
+mark scheme, with Check-mode marking unavailable or explicitly caveated on it.
+
+**Two cautions.**
+
+1. **Do not pitch it as "the same tutor, on your own material."** It is a weaker
+   grounding tier wearing the same interface. Say "your material becomes
+   searchable and teachable alongside the official corpus" — true, and still the
+   strongest sentence available to a school.
+2. **It changes unit economics per school**, in storage and in inference over a
+   larger retrieval set. Nothing in the pricing model accounts for it, and the
+   pilot will not measure it unless the pilot includes an upload.
+
+---
+
 ## Known defects — disclose rather than necessarily fix
 
 All real and documented. None blocks a grant application, but none should be
@@ -396,6 +558,7 @@ contradicted by a claim in the deck.
 | 71 open blocking ingestion issue records | **Re-checked 15 Sep: all 71 sit on superseded or abandoned runs. Zero open blocking issues sit on any ingestion run that is actually published.** | Better than previously stated. You may say every published paper carries no unresolved blocking issue — but not that the project has never had one |
 | Leaked-password protection unavailable | Requires a Supabase Pro plan; confirmed rejected on Free, 18 Aug | Mention only if security is raised |
 | Marking record drops out when the tutor names an unknown mark code | Measured 15 Sep: a reply citing a code the mark scheme does not contain records **nothing** rather than dropping just that code. Two prompt revisions did not shift it | Safe direction — it never stores an invented mark. But do not present a missing outcome as proof a student was not assessed |
+| **Two concurrent API requests can come back 401 or 503** | Found 16 Sep. `backend_v2` shares ONE Supabase client across FastAPI's threadpool; two requests landing together intermittently fail. Reproduced against `/me` alone, ~1 in 4 paired calls, so it predates every recent feature. In the browser a spurious 401 reads as being signed out | Not user-visible on any page today — the one page that fetched two things in parallel was changed to fetch one. Fix before any real concurrent load: give each request its own client, or pool per thread |
 | "Weak" is defined as mark ratio, validated only against seeded numbers | The aggregation, ordering and evidence threshold are verified exactly; whether mark ratio is the right *pedagogical* definition is not | Say the evidence is stored beside every figure so a teacher can disagree with it — that is the honest and the stronger claim |
 
 ---
@@ -418,31 +581,47 @@ honest and demonstrable.
 
 ## Who should build what
 
-Relevant because the grant disallows founder salary but can fund a contracted
-developer — see `FUNDING.md`. The split is not by difficulty, it is by **whether
-the work needs subject judgement**.
+**Superseded 17 September 2026: the founder builds everything.** External hiring
+was ruled out and both contracted-people lines were removed from the grant
+allocation (`FUNDING.md`, section 2, "no external hiring"). Founder time is not
+grant-fundable, so the grant now buys only what the work runs on, and every row
+below is founder work regardless of what it says.
+
+The table is kept because the **reason** for the split still holds and still
+orders the work: items needing subject judgement cannot be delegated even in
+principle, while the rest could be handed over the moment that decision changes.
+Read "Contractor" as *delegable if ever wanted*, not as *planned*.
 
 | Item | Owner | Why |
 | --- | --- | --- |
-| ~~P0-2 Conversation persistence~~ (done) | **Contractor** | Well-specified application work: schema, RLS, save and load |
-| ~~P0-3 Attempt recording~~ (done) | **Contractor** | Same — the diagnosis already exists, it only needs storing |
-| ~~P1-6 Teacher and class view~~ (pilot shape done) | **Contractor** | Successors (a)-(c) remain: school scoping, transparency notice, sample-cohort removal |
-| P2-7 Billing | **Contractor** | Standard webhook-to-entitlement work |
-| P2-8 Rate limiting and metering | **Contractor** | Infrastructure, not pedagogy |
-| P2-9 Analytics | **Contractor** | Instrumentation |
+| ~~P0-2 Conversation persistence~~ (done) | Delegable — **built by the founder** | Well-specified application work: schema, RLS, save and load |
+| ~~P0-3 Attempt recording~~ (done) | Delegable — **built by the founder** | Same — the diagnosis already exists, it only needs storing |
+| ~~P1-6 Teacher and class view~~ (pilot shape done) | **Founder** (delegable) | Successors (a)-(c) remain: school scoping, transparency notice, sample-cohort removal |
+| P2-7 Billing | **Founder** (delegable) | Standard webhook-to-entitlement work |
+| P2-8 Rate limiting and metering | **Founder** (delegable) | Infrastructure, not pedagogy |
+| P2-9 Analytics | **Founder** (delegable) | Instrumentation |
 | P3-15 Deduplicate pilot rows | **Either** | Needs care with asserted targets, not subject knowledge |
 | ~~P1-4 Topic weakness signal~~ (done) | **Founder** | What counts as "weak" is a teaching judgement |
 | ~~P1-5 Practice sets~~ (done) | **Founder** | Sequencing and difficulty ordering is the tutoring itself |
 | P3-10 Hybrid retrieval | **Founder** | Requires knowing which topic and method distinctions actually matter |
-| P3-12 Relevance benchmark | **Founder + hired teachers** | The automated proxy exists; only expert rating can validate it |
+| P3-12 Relevance benchmark | **Founder** | The automated proxy exists; only expert rating can validate it, and that rating is now founder-supplied |
 | P3-13 Publication gate | **Founder** | A policy decision, not a feature |
-| P3-14 Metadata review | **Hired teachers** | Volume review work, the genuine bottleneck |
+| P3-14 Metadata review | **Founder** | Volume review work, the genuine bottleneck — and no longer buyable, so it bounds corpus growth directly |
 | P3-16 Licensing position | **Founder + legal advice** | Not engineering |
+| P4-17 Class-driven practice papers | **Founder** | Question selection is the tutoring judgement; rendering is delegable |
+| P4-18 School-uploaded materials | **Founder** | The grounding-tier boundary is a product judgement; the upload path itself is delegable |
 
-P0-2, P0-3, P1-4, P1-5 and the pilot shape of P1-6 are done. A contractor can
-pick up P1-6's successors — school scoping in particular — from this document
-alone; the roles table, the roster function and the staff gate they extend
-already exist.
+P0-2, P0-3, P1-4, P1-5 and the pilot shape of P1-6 are done. The remaining items
+are well-specified enough that someone could pick up P1-6's successors — school
+scoping in particular — from this document alone; the roles table, the roster
+function and the staff gate they extend already exist. That remains true and
+worth preserving, even though nobody is being hired to do it.
+
+**The consequence of the 17 September decision, stated plainly:** every unbuilt
+item is now serialised behind one person, in parallel with running a pilot. The
+two review items (P3-12, P3-14) are the ones that suffer most, because they are
+the only ones that could previously have been parallelised by paying people, and
+they are what governs how fast the corpus grows. Sequence accordingly.
 
 ## Suggested order
 
@@ -463,6 +642,13 @@ Remaining, in order:
 5. **P3-12 … P3-16** — before the first serious procurement conversation. P3-12
    needs booked teacher time, so start arranging it earlier than you intend to
    do the work.
+6. **P4-17** — after the pilot, and after P3-16. It needs attempt volume that
+   does not exist yet, and its second half should not ship without the licensing
+   position.
+7. **P4-18** — after P1-6 (a), never before it. It is the strongest renewal
+   argument in this document and the easiest one to damage by shipping early:
+   without school scoping it is a data breach, and without visible grounding
+   tiers it weakens the claim the whole product rests on.
 
 **The open question that matters most now is not engineering.** The weak-topic
 ranking works, but whether *mark ratio* is the right definition of "weak" for a

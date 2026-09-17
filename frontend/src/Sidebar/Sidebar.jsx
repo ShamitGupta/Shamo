@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import AuthActions from '../Auth/AuthActions'
 import ConversationList from '../Conversations/ConversationList'
 import WeakTopics from '../ChatSection/WeakTopics'
+import MyMarkCodes from '../ChatSection/MyMarkCodes'
 import { useConversations } from '../Conversations/conversationContext.js'
 import { useAuth } from '../Auth/authContext.js'
 import { useWorkspace } from '../Workspace/workspaceContext.js'
@@ -146,6 +147,11 @@ function Sidebar({ onOpenAuth }){
                             onNavigate={handlePractiseNavigate}
                             variant="sidebar"
                         />
+                        {/* WHICH topics, then WHY the marks go. The second is
+                            useless without the first, so it sits beneath and
+                            renders nothing at all until something has been
+                            marked. */}
+                        <MyMarkCodes refreshToken={progressToken} />
                     </div>
                 )}
 

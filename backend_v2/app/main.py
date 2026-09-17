@@ -29,17 +29,22 @@ from .attempt_outcome import AttemptOutcomeExtractor
 from .auth import AuthenticatedUser, AuthError, AuthService
 from .config import Settings, get_settings
 from .models import (
+    ActivityWeekOut,
     AssistRequest,
     AssistResponse,
     AssetOut,
     ChatRequest,
     ChatTurn,
     ClaimStaffRoleRequest,
+    ClassOverviewResponse,
+    ClassTopicOut,
     ConversationDetailOut,
     ConversationOut,
     ConversationTurnOut,
     CreateConversationRequest,
     CurrentUserOut,
+    MarkCodeGroupOut,
+    MarkCodeProfileOut,
     ModeResponseOut,
     MultiModeRequest,
     MultiModeResponse,
@@ -878,6 +883,116 @@ def _topic_row_to_out(row: dict[str, Any]) -> TopicWeaknessOut:
     )
 
 
+# -- the mark-code split, shared by a student and their teacher ---------------
+#
+# Deliberately one implementation. /me/mark-codes and the two staff views are
+# the same reading of the same rows, and a student being told something
+# different about their own work than their teacher is told would be worse than
+# either of them being slightly wrong -- the same rule that makes
+# /staff/students/{id}/weak-topics call the student's own SQL function.
+
+# Below this many recorded marks, any comparison between method and accuracy is
+# noise. Chosen rather than derived: at six marks a two-thirds/one-third split
+# is three marks against one, which is still thin, and anything less is one bad
+# afternoon. The panel still renders the counts -- it just does not editorialise.
+_MARK_HEADLINE_MINIMUM = 6
+# How far apart the two rates must be before the difference is worth naming.
+_MARK_HEADLINE_GAP = 0.15
+
+
+def _mark_code_headline(groups: list[MarkCodeGroupOut]) -> str | None:
+    """One line of reading, or None when there is too little to say honestly.
+
+    The M/A/B distinction is Cambridge's and is exact. The INTERPRETATION here
+    is not: losing accuracy marks usually means slips rather than
+    misunderstanding, and usually is not always. So this is worded as an
+    observation about a pattern, never as a diagnosis, and it stays silent
+    rather than guessing when the evidence is thin.
+    """
+    by_class = {group.code_class: group for group in groups}
+    method = by_class.get("M")
+    accuracy = by_class.get("A")
+    if method is None or accuracy is None:
+        return None
+    if method.total < _MARK_HEADLINE_MINIMUM or accuracy.total < _MARK_HEADLINE_MINIMUM:
+        return None
+    if method.earned_ratio is None or accuracy.earned_ratio is None:
+        return None
+
+    method_pct = round(method.earned_ratio * 100)
+    accuracy_pct = round(accuracy.earned_ratio * 100)
+    gap = method.earned_ratio - accuracy.earned_ratio
+
+    if gap >= _MARK_HEADLINE_GAP:
+        return (
+            f"Method marks are mostly landing ({method_pct}% earned) while accuracy "
+            f"marks are not ({accuracy_pct}%). That pattern usually points at "
+            "arithmetic and notation rather than at the approach."
+        )
+    if gap <= -_MARK_HEADLINE_GAP:
+        return (
+            f"Accuracy marks are landing ({accuracy_pct}% earned) more often than "
+            f"method marks ({method_pct}%). Marks are being lost setting the "
+            "question up rather than finishing it."
+        )
+    return (
+        f"Method and accuracy marks are being earned at a similar rate "
+        f"({method_pct}% and {accuracy_pct}%), so nothing here singles one out."
+    )
+
+
+def _mark_code_profile_out(rows: list[dict[str, Any]]) -> MarkCodeProfileOut:
+    groups = [
+        MarkCodeGroupOut(
+            code_class=str(row.get("code_class") or "other"),
+            earned=int(row.get("earned") or 0),
+            missed=int(row.get("missed") or 0),
+            total=int(row.get("total") or 0),
+            earned_ratio=(
+                float(row["earned_ratio"]) if row.get("earned_ratio") is not None else None
+            ),
+            students=int(row.get("students") or 0),
+        )
+        for row in rows
+    ]
+    return MarkCodeProfileOut(groups=groups, headline=_mark_code_headline(groups))
+
+
+def _activity_out(rows: list[dict[str, Any]]) -> list[ActivityWeekOut]:
+    return [
+        ActivityWeekOut(
+            week_start=str(row.get("week_start")),
+            attempts=int(row.get("attempts") or 0),
+            scored_attempts=int(row.get("scored_attempts") or 0),
+            students_active=int(row.get("students_active") or 0),
+        )
+        for row in rows
+    ]
+
+
+@app.get("/me/mark-codes", response_model=MarkCodeProfileOut)
+def my_mark_codes(
+    current_user: AuthenticatedUser = Depends(require_verified_user),
+    repository: Repository = Depends(get_repository),
+) -> MarkCodeProfileOut:
+    """Whether THIS student is losing method marks or accuracy marks.
+
+    Scoped to the caller's own id, which is passed here and nowhere taken from
+    the request -- there is no argument to this endpoint that could make it
+    answer about anyone else.
+
+    It exists because the answer is more useful to the learner than to the
+    teacher: "you know the method, you are dropping the arithmetic" changes what
+    to practise tonight. Shipping the teacher's view without this one would also
+    mean a teacher knowing something about a student that the student cannot see.
+    """
+    try:
+        rows = repository.get_mark_code_profile(current_user.user_id)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    return _mark_code_profile_out(rows)
+
+
 @app.get("/me/weak-topics", response_model=TopicWeaknessResponse)
 def weak_topics(
     min_attempts: int = 3,
@@ -1003,6 +1118,68 @@ def _student_attempt_out(row: dict[str, Any]) -> StudentAttemptOut | None:
     )
 
 
+def _class_topic_out(row: dict[str, Any]) -> ClassTopicOut:
+    ratio = row.get("class_mark_ratio")
+    return ClassTopicOut(
+        main_topic=str(row.get("main_topic")),
+        students_attempting=int(row.get("students_attempting") or 0),
+        students_with_evidence=int(row.get("students_with_evidence") or 0),
+        students_struggling=int(row.get("students_struggling") or 0),
+        attempts=int(row.get("attempts") or 0),
+        scored_attempts=int(row.get("scored_attempts") or 0),
+        marks_earned=int(row.get("marks_earned") or 0),
+        marks_available=int(row.get("marks_available") or 0),
+        class_mark_ratio=float(ratio) if ratio is not None else None,
+        has_enough_evidence=bool(row.get("has_enough_evidence")),
+        last_attempted_at=(
+            str(row.get("last_attempted_at")) if row.get("last_attempted_at") else None
+        ),
+    )
+
+
+@app.get("/staff/class/overview", response_model=ClassOverviewResponse)
+def staff_class_overview(
+    min_attempts: int = 3,
+    limit: int = 20,
+    weeks: int = 8,
+    _staff: AuthenticatedUser = Depends(require_staff_user),
+    repository: Repository = Depends(get_repository),
+) -> ClassOverviewResponse:
+    """What the class as a whole needs, rather than one student at a time.
+
+    Three answers in one response because they are read together and the page
+    should not flicker in three stages: which topics the class is losing marks
+    on, whether those are method or accuracy marks, and whether anyone is still
+    working.
+
+    Topics too thin to judge come back separately rather than hidden, the same
+    way a student's own ranking treats them. "We do not know yet" is a real
+    answer, and dropping it quietly would make a thin class look like a
+    well-understood one.
+    """
+    min_attempts = max(1, min(min_attempts, 50))
+    limit = max(1, min(limit, 100))
+    weeks = max(1, min(weeks, 26))
+
+    try:
+        topic_rows = repository.get_class_topic_summary(
+            min_attempts=min_attempts, limit=limit
+        )
+        code_rows = repository.get_mark_code_profile(None)
+        activity_rows = repository.get_activity_by_week(None, weeks=weeks)
+    except RetrievalError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+    topics = [_class_topic_out(row) for row in topic_rows]
+    return ClassOverviewResponse(
+        min_attempts=min_attempts,
+        topics=[t for t in topics if t.has_enough_evidence],
+        needs_more_evidence=[t for t in topics if not t.has_enough_evidence],
+        mark_codes=_mark_code_profile_out(code_rows),
+        activity=_activity_out(activity_rows),
+    )
+
+
 @app.get("/staff/students", response_model=list[StudentSummaryOut])
 def staff_list_students(
     limit: int = 200,
@@ -1041,6 +1218,7 @@ def _roster_row_or_404(repository: Repository, user_id: str) -> dict[str, Any]:
 def staff_get_student(
     user_id: str,
     limit: int = 100,
+    weeks: int = 8,
     _staff: AuthenticatedUser = Depends(require_staff_user),
     repository: Repository = Depends(get_repository),
 ) -> StudentDetailOut:
@@ -1048,15 +1226,41 @@ def staff_get_student(
 
     Their conversations with the tutor are not here and are not reachable from
     here. Asking for help is not work handed in.
+
+    Everything that page shows comes back here, including the topic ranking the
+    standalone weak-topics route also serves. That is not only tidiness: this
+    service shares one Supabase client across a threadpool, and two requests
+    arriving together can come back as a spurious 401 or 503 -- reproduced
+    against /me on its own, so it predates these routes, but a page that fetches
+    two things in parallel is exactly the shape that triggers it. It also stops
+    the same student being resolved through a full roster lookup twice.
     """
     row = _roster_row_or_404(repository, user_id)
+    weeks = max(1, min(weeks, 26))
+    min_attempts = 3
     try:
         attempt_rows = repository.get_student_attempts(user_id, limit=max(1, min(limit, 500)))
+        code_rows = repository.get_mark_code_profile(user_id)
+        activity_rows = repository.get_activity_by_week(user_id, weeks=weeks)
+        topic_rows = repository.get_topic_weakness(
+            user_id, min_attempts=min_attempts, limit=20
+        )
     except RetrievalError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
 
     attempts = [out for out in (_student_attempt_out(r) for r in attempt_rows) if out]
-    return StudentDetailOut(student=_student_summary_out(row), attempts=attempts)
+    topics = [_topic_row_to_out(topic_row) for topic_row in topic_rows]
+    return StudentDetailOut(
+        student=_student_summary_out(row),
+        attempts=attempts,
+        mark_codes=_mark_code_profile_out(code_rows),
+        activity=_activity_out(activity_rows),
+        topics=TopicWeaknessResponse(
+            min_attempts=min_attempts,
+            ranked=[t for t in topics if t.has_enough_evidence],
+            needs_more_evidence=[t for t in topics if not t.has_enough_evidence],
+        ),
+    )
 
 
 @app.get("/staff/students/{user_id}/weak-topics", response_model=TopicWeaknessResponse)

@@ -13,9 +13,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { ApiError, fetchStudent, fetchStudentWeakTopics, SESSION_LABELS } from '../api/tutorApi.js';
+import { ApiError, fetchStudent, SESSION_LABELS } from '../api/tutorApi.js';
 import { useAuth } from '../Auth/authContext.js';
 import WeakTopics from '../ChatSection/WeakTopics.jsx';
+import ActivityChart from './ActivityChart.jsx';
+import MarkCodeSplit from './MarkCodeSplit.jsx';
 import SampleBadge from './SampleBadge.jsx';
 import { studentName, whenText } from './format.js';
 import styles from './Teacher.module.css';
@@ -30,21 +32,21 @@ function StudentDetail() {
     const { userId } = useParams();
     const { accessToken, isStaff } = useAuth();
     const [detail, setDetail] = useState(null);
-    const [topics, setTopics] = useState(null);
     const [error, setError] = useState('');
 
+    // ONE request, deliberately. This used to fetch the detail and the ranking
+    // in parallel, and the backend shares a single Supabase client across a
+    // threadpool -- two requests landing together intermittently came back 401
+    // or 503, which in the browser reads as being signed out. The ranking now
+    // rides on the detail response. See staff_get_student in main.py.
     useEffect(() => {
         if (!accessToken || !isStaff || !userId) return undefined;
         const controller = new AbortController();
 
-        Promise.all([
-            fetchStudent(userId, accessToken, controller.signal),
-            fetchStudentWeakTopics(userId, accessToken, controller.signal),
-        ])
-            .then(([studentBody, topicBody]) => {
+        fetchStudent(userId, accessToken, controller.signal)
+            .then((studentBody) => {
                 if (controller.signal.aborted) return;
                 setDetail(studentBody);
-                setTopics(topicBody);
                 setError('');
             })
             .catch((err) => {
@@ -75,6 +77,7 @@ function StudentDetail() {
 
     const student = detail.student;
     const attempts = detail.attempts || [];
+    const topics = detail.topics || null;
 
     return (
         <main className={styles.Page}>
@@ -118,6 +121,17 @@ function StudentDetail() {
 
             <div className={styles.TopicsRegion}>
                 <WeakTopics topics={topics} heading={`Where ${studentName(student)} is struggling`} />
+            </div>
+
+            {/* The same two readings the class gets, narrowed to this student --
+                and the same components, so a class and one of its students can
+                never be described in two different vocabularies. */}
+            <div className={styles.Overview}>
+                <MarkCodeSplit
+                    profile={detail.mark_codes}
+                    heading={`Where ${studentName(student)} loses marks`}
+                />
+                <ActivityChart weeks={detail.activity} heading="Work handed in" />
             </div>
 
             <section aria-label="Submitted work">

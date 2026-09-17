@@ -299,6 +299,36 @@ export async function claimStaffRole(inviteCode, accessToken) {
 // every request -- there is nothing the browser can set to grant itself access.
 
 /** The class roster: usage, attempts and weakest topic per student. */
+/**
+ * Whether the signed-in student is losing method marks or accuracy marks.
+ *
+ * Scoped server-side to the caller. There is no user id to pass, deliberately:
+ * the endpoint has no argument that could make it answer about anyone else.
+ */
+export async function fetchMyMarkCodes(accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/me/mark-codes`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
+/**
+ * The teaching brief: class topics, the method/accuracy split, weekly activity.
+ *
+ * One request rather than three, because the dashboard shows them together and
+ * three would only give it three ways to half-load.
+ */
+export async function fetchClassOverview(accessToken, signal) {
+    const response = await fetch(`${BASE_URL}/staff/class/overview`, {
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+        signal,
+    });
+    if (!response.ok) throw await readError(response);
+    return response.json();
+}
+
 export async function fetchStudents(accessToken, signal) {
     const response = await fetch(`${BASE_URL}/staff/students`, {
         headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
@@ -322,7 +352,14 @@ export async function fetchStudent(userId, accessToken, signal) {
     return response.json();
 }
 
-/** The same topic ranking the student sees, for one student. */
+/**
+ * The same topic ranking the student sees, for one student.
+ *
+ * Not used by the dashboard any more -- fetchStudent returns the ranking on its
+ * own response, so the student page makes one request instead of racing two.
+ * Kept because the route is a legitimate thing to ask for on its own and
+ * removing the client for it would only mean writing it again.
+ */
 export async function fetchStudentWeakTopics(userId, accessToken, signal) {
     const response = await fetch(
         `${BASE_URL}/staff/students/${encodeURIComponent(userId)}/weak-topics`,

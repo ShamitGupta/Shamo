@@ -28,6 +28,24 @@ export function whenText(iso) {
     return when.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
+// A fortnight. Long enough that a half-term week or a busy stretch does not
+// trip it, short enough that a teacher can still do something about it.
+const QUIET_DAYS = 14;
+
+/**
+ * Has this student gone quiet?
+ *
+ * Deliberately separate from whenText: a date a teacher has to convert in their
+ * head is a date they will not notice. `null` -- never active at all -- counts,
+ * because an account that has never been used is the loudest version of this.
+ */
+export function isQuiet(iso) {
+    if (!iso) return true;
+    const when = new Date(iso);
+    if (Number.isNaN(when.getTime())) return true;
+    return (Date.now() - when.getTime()) / 86400000 >= QUIET_DAYS;
+}
+
 /** Never blank: an unnamed account still has to be clickable in a roster. */
 export function studentName(student) {
     return student.display_name || student.email || 'Unnamed student';
