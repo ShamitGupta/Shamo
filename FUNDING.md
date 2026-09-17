@@ -262,14 +262,14 @@ prevent overspend at the *batch* level, but under-record it at the *event* level
 
 | Allocation | What it buys, specifically | Amount | Share | Maps to |
 | --- | --- | ---: | ---: | --- |
-| **Pilot delivery** | Tutoring inference and animation rendering for schools using Shamo **free of charge** during the pilot | $3,800 | 38% | — |
-| Feature expansion | Third-party services behind new capability — speech-to-text and text-to-speech for voice mode, inference and translation for additional languages, any paid SDK or licence | $500 | 5% | Roadmap, not `PENDING.md` |
-| Reserve | Held against overrun in the lines above, released only into a named one | $1,400 | 14% | — |
-| Corpus expansion — API compute | Staging the remaining back-catalogue of both syllabuses and further syllabuses, at measured cost | $1,700 | 17% | — |
-| Infrastructure and services, 12 months | Supabase Pro, monitoring and error tracking, email, anything beyond what the founder covers directly | $1,000 | 10% | P2-9 (the tooling itself) |
-| Marketing and school outreach | Sales materials, demo video, a case study from the pilot, outreach tooling | $1,000 | 10% | — |
-| Legal and licensing advice | A written position on past-paper use, before procurement asks | $600 | 6% | P3-16 |
-| **Total** | | **$10,000** | **100%** | |
+| **Pilot delivery** | Tutoring inference and animation rendering for schools using Shamo **free of charge** during the pilot | S$3,800 | 38% | — |
+| Feature expansion | Third-party services behind new capability — speech-to-text and text-to-speech for voice mode, inference and translation for additional languages, any paid SDK or licence | S$500 | 5% | Roadmap, not `PENDING.md` |
+| Reserve | Held against overrun in the lines above, released only into a named one | S$1,400 | 14% | — |
+| Corpus expansion — API compute | Staging the remaining back-catalogue of both syllabuses and further syllabuses, at measured cost | S$1,700 | 17% | — |
+| Infrastructure and services, 12 months | Supabase Pro, monitoring and error tracking, email, anything beyond what the founder covers directly | S$1,000 | 10% | P2-9 (the tooling itself) |
+| Marketing and school outreach | Sales materials, demo video, a case study from the pilot, outreach tooling | S$1,000 | 10% | — |
+| Legal and licensing advice | A written position on past-paper use, before procurement asks | S$600 | 6% | P3-16 |
+| **Total** | | **S$10,000** | **100%** | |
 
 **Every row is now a supplier invoice.** No line pays a person, because the
 founder does all the work and his time is not fundable. Read the table as *what
@@ -817,6 +817,37 @@ the class-level panels, so no sample-student names or badges appear; and the
 prototype gets its own slide, because the benchmark deck's equivalent slide proposes
 a proof-of-concept that does not exist yet, and the contrast is the strongest single
 move available.
+
+### 18 September 2026 — the award is Singapore dollars; allocation relabelled 1:1
+
+Resolves the currency question raised the previous day. **The award is S$10,000, not
+US$10,000**, as the winning deck supplied by the founder shows on its own budget
+table. The founder's instruction: **map the allocation one-to-one** — every line
+keeps its number and its share, now denominated in SGD. The allocation table in this
+section has been restated accordingly and still reconciles to S$10,000 / 100%.
+
+**What this actually costs, stated plainly rather than absorbed.** S$10,000 is
+roughly US$7,400. Every supplier behind the compute lines — OpenAI, Mistral,
+Supabase — bills in USD. So the grant buys about a quarter less than the old figures
+implied, and **any arithmetic in this section that derived a quantity from a USD
+figure is now optimistic.** Specifically:
+
+- **Corpus expansion S$1,700 ≈ US$1,300 ≈ about 1,950 staged papers** at the measured
+  US$0.66, not the ~2,575 the USD figure implied. Still far beyond the ~200-paper
+  known backlog, so the argument is unchanged: compute buys inventory, and review
+  — unfunded founder time — sets the publication rate.
+- **Pilot delivery S$3,800 ≈ US$2,900** of real inference and rendering. The pilot
+  sizing model earlier in this section was computed in USD; re-check it against this
+  figure before quoting a cohort size externally.
+- **Infrastructure S$1,000 ≈ US$765** comfortably covers Supabase Pro at US$25/month
+  plus monitoring, so this line is unaffected in substance.
+
+**Three figures must NOT be relabelled, because they are measured costs actually
+paid in USD, not budget lines:** total ingestion spend to date (**~US$70**), cost
+per paper (**US$0.66**), and cost per question (**~US$0.07**). Converting those to
+SGD by relabelling would be false. If a deck or answer needs one currency
+throughout, convert honestly — US$0.66 is about **S$0.90** — and never present the
+converted number as the measured one.
 
 ### Open positioning question
 

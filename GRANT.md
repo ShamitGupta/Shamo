@@ -174,3 +174,43 @@ Two differences are worth stating. The chatbot reads a database the company alre
 - Not yet used anywhere, and available if a later question needs it: query volume at the
   F&B company ("at scale" is currently unquantified), whether other engineers are being
   led on the chatbot, and which vector database it uses.
+
+---
+
+## Pitch deck — guardrails
+
+Seven slides, planned 17–18 September 2026 against a previous winner's deck
+(UnpackAI, supplied by the founder). **These are settled positioning decisions that
+drafts keep re-breaking. Check a draft against this list before showing it.**
+
+| Rule | Why |
+| --- | --- |
+| **The corpus and its connections are the spine.** Questions linked by topic, difficulty and similarity; a student's mistakes identify weak topics and pull practice from across the library | Settled 17 Sep (`FUNDING.md` §7). Two rejected alternatives: "cannot invent an answer" (a negative, reads as ordinary RAG) and mark-code diagnosis (too close to a past winner) |
+| **"Cannot invent an answer" appears only on slide 4, as support for the moat.** Never in the title, never as slide 2's callout | Same entry. It is the reason the data can be trusted, not the reason to want it |
+| **Never claim general AI tools answer exam maths wrongly.** They answer one uploaded question reasonably well. The limit is scale: a session cannot hold hundreds of papers, so it can never connect today's mistake to the same mistake in other papers | Settled 15 Sep. A reviewer disproves the wrong version in thirty seconds, taking the rest of the slide with it |
+| **"Official mark schemes", never "answers"** | "Answers" describes an answer bank, which is what teachers dislike and what every past-paper site sells. It is also the separation from MathGPT.ai, which aligns to textbooks |
+| **Market sizing is bottom-up from Cambridge's published data.** No tutoring TAM | The TAM reports found on 17 Sep contradict each other (Malaysian K-12 online tutoring $5.04bn vs *all* APAC private tutoring $13.56bn) |
+| **Competitors: MathGPT.ai, "rubber-duck" Socratic tutors, general AI solvers.** Never Teebloc or Evalumate | Both are past winners of this programme. No upside in explaining to a panel why you beat something they funded |
+| **Teacher dashboard screenshots are cropped to class-level panels** | The only populated data is six labelled sample students |
+| **Difficulty is the weakest of the three connection dimensions** | Model-assigned, no ground truth in this corpus, self-consistency checks only. State it; build no further argument on it |
+| Every claims-discipline rule in `FUNDING.md` §8 applies to every slide | Especially: the September demo is one teacher and one meeting; no throughput figure; no voice or school uploads in a tense implying they exist |
+
+### Currency — resolved 18 September 2026
+
+**The award is S$10,000.** The allocation is mapped one-to-one at the founder's
+instruction: every line keeps its number and share, denominated in SGD. Slide 7
+reads S$ throughout.
+
+**One trap this creates.** Three figures are measured costs actually paid in USD and
+must never be relabelled: total ingestion spend (**~US$70**), cost per paper
+(**US$0.66**), cost per question (**~US$0.07**). Slide 4 quotes the per-paper cost
+beside a slide 7 budget in SGD, so **convert it honestly to about S$0.90** for one
+currency across the deck — and never present the converted figure as the measured
+one. See `FUNDING.md` §7, 18 September, for what the real purchasing power is.
+
+### Still open
+
+- **Corpus split.** Pilot S$3,800 / corpus S$1,700 as instructed, or pilot S$4,000 /
+  corpus S$1,500 — the latter is more defensible, since review throttles publication
+  and review is unfunded founder time.
+- **Founder photograph** for slide 6. Space reserved; image to be supplied.
