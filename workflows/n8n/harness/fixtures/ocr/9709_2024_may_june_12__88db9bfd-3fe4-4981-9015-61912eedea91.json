@@ -1,0 +1,257 @@
+{
+  "paper_key": "9709_2024_may_june_12",
+  "ingestion_run_id": "88db9bfd-3fe4-4981-9015-61912eedea91",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.2-batch-03:a_level:9709:2024:may_june:12",
+  "run_status": "complete",
+  "paper_status": "published",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_12.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_12.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International AS & A Level\n\nMATHEMATICS\n\nPaper 1 Pure Mathematics 1\n\nMARK SCHEME\n\nMaximum Mark: 75\n\n9709/12\n\nMay/June 2024\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level and Cambridge Pre-U components, and some Cambridge O Level components.\n\nThis document consists of 25 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\n|  **GENERIC MARKING PRINCIPLE 1:** Marks must be awarded in line with: - the specific content of the mark scheme or the generic level descriptors for the question - the specific skills defined in the mark scheme or in the generic level descriptors for the question - the standard of response required by a candidate as exemplified by the standardisation scripts.  |\n| --- |\n|  **GENERIC MARKING PRINCIPLE 2:** Marks awarded are always **whole marks** (not half marks, or other fractions).  |\n|  **GENERIC MARKING PRINCIPLE 3:** Marks must be awarded **positively**: - marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate - marks are awarded when candidates clearly demonstrate what they know and can do - marks are not deducted for errors - marks are not deducted for omissions - answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.  |\n|  **GENERIC MARKING PRINCIPLE 4:** Rules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.  |\n|  **GENERIC MARKING PRINCIPLE 5:** Marks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).  |\n|  **GENERIC MARKING PRINCIPLE 6:** Marks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\n# Mathematics Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate’s intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n**PUBLISHED**\n\n# **Abbreviations**\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1 | $$240\\left[x^2\\right]$$ or $$80a^2\\left[x^2\\right]$$ | **B1** | May be seen in an expansion.  |\n|   |  $$240 = 12 \\times 80a^2$$ | **M1** | *Their 240* equated to $$12 \\times \\text{their } 80a^2$$ which must contain $$a^2$$.  |\n|   |  0.5 | **A1** | OE Condone $$\\pm 0.5$$  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | Stretch **factor** 4 in y-direction/parallel to the y axis/vertically. | **B1** | Allow use of SF in place of factor. Allow in/on/along the y axis or ‘the x axis is invariant.’  |\n|   |  Translation $$\\begin{pmatrix} 3 \\\\ 0 \\end{pmatrix}$$ or 3 parallel to the x axis or in the x direction, allow horizontally. $$\\begin{pmatrix} 0 \\\\ -8 \\end{pmatrix}$$ or -8 parallel to the y axis or in the y direction, allow vertically. | **B2** | Condone ‘Shift’. These translations can be combined as $$\\begin{pmatrix} 3 \\\\ -8 \\end{pmatrix}$$, this counts as 2 elements. Give priority to a correct vector over any incorrect wording. B2 for all 3 B1 for 2 out of 3  |\n|   |  Two translations, one in each direction, and a stretch only. | **M1** | Condone inaccurate terminology, such as up, down, left and right, if the intention is clear.  |\n|   |  Correct order of operations. The stretch which must be in the y direction must come before the translation in the y direction. | **A1** | Condone inaccurate terminology if the intention is clear but numerical values must be correct.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | **Alternative Method for Question 2**  |   |   |\n|   |  Translation $$\\begin{pmatrix} 3 \\\\ 0 \\end{pmatrix}$$ or 3 parallel to the $$x$$ axis or in the $$x$$ direction, allow horizontally. $$\\begin{pmatrix} 0 \\\\ -2 \\end{pmatrix}$$ or $$-2$$ parallel to the $$y$$ axis or in the $$y$$ direction, allow vertically. | **(B2)** | Condone ‘Shift’. These translations can be combined as $$\\begin{pmatrix} 3 \\\\ -2 \\end{pmatrix}$$, this counts as 2 elements. Give priority to a correct vector over any incorrect wording. B2 for all 3. B1 for 2 out of 3.  |\n|   |  Stretch **factor** 4 in $$y$$-direction/parallel to the $$y$$ axis/vertically. | **(B1)** | Allow use of SF in place of factor. Allow in/on/along the $$y$$ axis or “the $$x$$ axis is invariant.”  |\n|   |  Two translations, one in each direction, and a stretch only. | **(M1)** | Condone inaccurate terminology, such as transform, move, up, down, left and right, if the intention is clear.  |\n|   |  Correct order of operations. The stretch which must be in the $$y$$ direction must come after the translation in the $$y$$ direction. | **(A1)** | Condone inaccurate terminology if the intention is clear but numerical values must be correct.  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | $$7 \\frac{\\sin \\theta}{\\cos \\theta} \\div \\cos \\theta + 12 [= 0] \\left[ \\text{leading to } 7 \\frac{\\sin \\theta}{\\cos \\theta} + 12 \\cos \\theta = 0 \\right]$$ | **M1*** | OE Use of $$\\tan \\theta = \\frac{\\sin \\theta}{\\cos \\theta}$$.  |\n|   |  $$7 \\sin \\theta + 12 (1 - \\sin^2 \\theta) [= 0]$$ | **DM1** | Use of $$s^2 + c^2 = 1$$.  |\n|   |  $$\\Rightarrow 12 \\sin^2 \\theta - 7 \\sin \\theta - 12 = 0$$ | **A1** | AG, WWW Condone use of s, c and t and/or omission of $$\\theta$$ throughout working but the A1 is for cao.  |\n|   |   | **3** |   |\n|  3(b) | $$12 \\sin^2 \\theta - 7 \\sin \\theta - 12 = 0 \\text{ leading to } (3 \\sin \\theta - 4)$$ | **M1** |   |\n|   |  $$\\sin \\theta = -\\frac{3}{4} \\left[ \\text{or } \\frac{4}{3} \\right]$$ | **B1** | OE, WWW Can be implied by a correct value for $$\\sin^{-1} \\left( -\\frac{3}{4} \\right)$$ e.g. $$-48.6^\\circ$$.  |\n|   |  $$[\\theta =] 228.6^\\circ, 311.4^\\circ$$ | **B1** | AWRT, WWW No others in the range $$0^\\circ \\leq \\theta \\leq 360^\\circ$$. Ignore any answers outside this range. Condone $$229^\\circ, 311^\\circ$$.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(a) | $$f^{-1}(x)=^2$$ | **B1** | ISW Condone ‘y =’.  |\n|   |   | **1** |   |\n|  4(b) | $$0 < g(x) \\leq \\frac{1}{2}$$ or $$g(x) > 0$$ and $$g(x) \\leq \\frac{1}{2}$$ or $$\\left(0, \\frac{1}{2}\\right]$$ | **B1** | Do not allow $$g(x) > 0, g(x) \\leq \\frac{1}{2}$$. Do not allow $$g(x) > 0$$ or $$g(x) \\leq \\frac{1}{2}$$. Condone $$g$$ or $$y$$ in place of $$g(x)$$.  |\n|   |  $$g^{-1}$$ does not exist because it is one to many or $$g^{-1}$$ does not exist because it is not one to one. Or $$g^{-1}$$ does not exist because $$g$$ is not one to one or $$g^{-1}$$ does not exist because $$g$$ is many to one or $$g^{-1}$$ does not exist because $$g$$ fails the horizontal line test. | **B1** | $$g^{-1}$$ can be replaced by ‘It’ throughout. A correct statement followed by any further incorrect explanation can be awarded B1.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(c) | $$f\\left(\\frac{25}{16}\\right)=\\frac{1}{4}$$ | **B1** | SOI  |\n|   |  $$\\frac{1}{\\left(\\sqrt{x}-1\\right)^2+2}=\\frac{1}{4}$$ | **M1** | Equating $$\\frac{1}{\\left(\\sqrt{x}-1\\right)^2+2}$$, or *their* ‘simplified’ version, to *their* $$f\\left(\\frac{25}{16}\\right)$$.  |\n|   |  $$\\left[\\left(\\sqrt{x}-1\\right)^2+2=4 \\text{ leading to }\\right]$$ Or $$\\left[x-2\\sqrt{x}+1+2=4 \\text{ leading to }\\right]$$ Or $$\\left[x-1=2\\sqrt{x} \\text{ leading to }\\right]$$ | $$\\sqrt{x}-1=\\sqrt{2} \\text{ leading to } x=(1\\pm\\sqrt{2})^2$$ $$x-2\\sqrt{x}-1=0 \\text{ leading to } x=(1\\pm\\sqrt{2})^2$$ $$x^2-6x+1=0 \\text{ leading to } x=\\frac{6\\pm\\sqrt{36-4}}{2}$$ | **A1** Simplification as far as $$x=\\dots$$ Allow just $$+$$ in the results because $$-$$ can be disregarded at this stage. Can be implied by the final answer. Note: $$x=1\\pm\\sqrt{2}$$ scores A0.  |\n|   |  $$3+2\\sqrt{2}$$ | **A1** | Must discount the solution $$3-2\\sqrt{2}$$.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | $$[d =]\\sin \\theta - \\tan \\theta$$ | **M1** | For subtraction of *their* first term from *their* second term. Condone incorrect evaluation before subtraction.  |\n|   |  $$[d =]\\frac{\\sqrt{2}}{2} - 1$$ | **A1** | OE Sight of $$-0.29$$ AWRT can be awarded M1A1.  |\n|   |  $$[S_{40} =]\\frac{40}{2}(2 \\times \\tan \\theta + 39(\\sin \\theta - \\tan \\theta))$$ | **M1** | Use of a correct formula for $$S_{40}$$. Condone use of *their*, clearly identified, incorrect values for $$a$$ and $$d$$ for this mark.  |\n|   |  $$390\\sqrt{2} - 740$$ or $$\\frac{780}{\\sqrt{2}} - 740$$ | **A1** | ISW If A0 then sight of $$-188$$ AWRT, $$-188.5$$ or $$-189$$ should be awarded M1A1M1A0.  |\n|   |   | **4** |   |\n|  5(b)(i) | $$r = \\frac{\\sin \\theta}{\\tan \\theta} \\quad [= \\cos \\theta]$$ | **B1** | Condone omission of $$\\theta$$.  |\n|   |  $$S_{\\infty} = \\frac{\\tan \\theta}{1 - \\cos \\theta}$$ or $$\\frac{\\sin \\theta}{\\cos \\theta - \\cos^2 \\theta}$$ or $$\\frac{\\tan^2 \\theta}{\\tan \\theta - \\sin \\theta}$$ | **B1** | ISW Do not allow fractions within fractions nor omission of $$\\theta$$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b)(ii) | $$a = \\sqrt{3}(1.73..)$$ and $$r = \\frac{1}{2}$$ | **B1** | OE, SOI.  |\n|   |  $$[S_{10} =]\\sqrt{3}\\left(\\frac{1-\\left(\\frac{1}{2}\\right)^{10}}{1-\\frac{1}{2}}\\right)$$ | **M1** | This mark can be awarded for a correct formula with *their* values for $$a$$ and $$r$$ or $$a = \\tan \\theta$$ and $$r = \\frac{\\sin \\theta}{\\tan \\theta}$$ or $$\\cos \\theta$$. Condone $$\\frac{1}{2}^{10}$$.  |\n|   |  $$= 3.46$$ | **A1** | AWRT Condone $$\\frac{1023\\sqrt{3}}{512}$$.  |\n|   |   | **3** | Note: $$S_9$$ gives the same answer but scores B1M0A0.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 13 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | $$\\frac{dy}{dx}=2-\\frac{1}{2}\\times 8x^{-\\frac{1}{2}}$$ | **B1** |   |\n|   |  $$2-4x^{-\\frac{1}{2}}=0$$ | **M1** | Equating *their* two term $$\\frac{dy}{dx}$$, with at least one term correct, to 0.  |\n|   |  [A is] (4, -8) or $$x=4, y=-8$$ | **A1** |   |\n|   |  [B is] (16, 0) or $$x=16, y=0$$ | **B1** |   |\n|   |   | **4** | Note: Correct answers without use of $$\\frac{dy}{dx}$$ can be awarded 4/4.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 14 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(b) | $$[\\pm] \\frac{2x^2}{2} - \\frac{8}{3} x^{\\frac{3}{2}} [+C]$$ | **B1** | Seen correct in unsimplified form or better.  |\n|   |  $$[\\pm] \\frac{x^2 - 32x}{3} \\text{ or } \\frac{(2x - 32)^2}{12} [+C]$$ | **B1** | Seen correct in unsimplified form or better.  |\n|   |  Attempt to integrate, defined by at least one correct power in each expression, and then subtract. | **M1** | Multiplying by 3 before integration scores M0.  |\n|   |  $$\\left\\{ \\left( 16^2 - \\frac{8}{3} \\cdot 16^{\\frac{3}{2}} \\right) - \\left( 4^2 - \\frac{8}{3} \\cdot 4^{\\frac{3}{2}} \\right) \\right\\} [-] \\left\\{ \\left( \\frac{16^2 - 32 \\times 16}{3} \\right) - \\left( \\frac{4^2 - 32 \\times 4}{3} \\right) \\right\\}$$ | **M1** | Use of *their x* values, > 0, from **(a)** as limits in *their* integrated expressions. Allow, for correct limits, sight of $$\\pm \\left\\{ \\left\\{ \\left( -\\frac{256}{3} \\right) - \\left( -\\frac{80}{3} \\right) \\right\\} [-] \\left\\{ \\left( -\\frac{256}{3} \\right) - \\left( -\\frac{112}{3} \\right) \\right\\} \\right\\}$$. If incorrect limits are used, then clear substitution must be seen.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 15 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(b) | **Alternative Method 1 for first 4 marks of Question 6(b)** |  |   |\n|   |  $$\\left[ \\pm \\right] \\int 2x - 8x^{\\frac{1}{2}} dx = \\left[ x^2 - \\frac{8}{\\frac{3}{2}} x^{\\frac{3}{2}} + C \\right]$$ | **(B1)** | Seen correct in unsimplified form or better.  |\n|   |  [Area of triangle =] 48 | **(B1)** |   |\n|   |  Attempt to integrate, defined by at least one correct power, and then subtract *their* triangle area. | **(M1)** |   |\n|   |  $$\\left\\{ \\left( 16^2 - \\frac{8}{\\frac{3}{2}} \\cdot 16^{\\frac{3}{2}} \\right) - \\left( 4^2 - \\frac{8}{\\frac{3}{2}} \\cdot 4^{\\frac{3}{2}} \\right) \\right\\}$$ | **(M1)** | Use of *their* x values, > 0, from **(a)** as limits in *their* integrated expression. Allow sight of $$\\pm \\left( \\left\\{ \\left( -\\frac{256}{3} \\right) - \\left( -\\frac{80}{3} \\right) \\right\\} \\right)$$. If incorrect limits are used, then clear substitution must be seen.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 16 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(b) | **Alternative Method 2 for first 4 marks of Question 6(b)**  |   |   |\n|   |  Subtract and then integrate, defined by at least two correct powers. Condone functions being the wrong way round. | **(M1)** | If terms in $x$ have not been combined use the first scheme.  |\n|   |  $$[\\pm] \\left( \\frac{4}{3 \\times 2} x^2 - \\frac{8}{3} x^{\\frac{3}{2}} + \\frac{32x}{3} \\right)$$ | **(B2,1,0)** | B2 for 3 correct terms, B1 for any 2 correct terms.  |\n|   |  $$[\\pm] \\left( \\left( \\frac{4}{3 \\times 2} \\times 16^2 - \\frac{8}{3} \\times 16^{\\frac{3}{2}} + \\frac{32 \\times 16}{3} \\right) - \\left( \\frac{4}{3 \\times 2} \\times 4^2 - \\frac{8}{3} \\times 4^{\\frac{3}{2}} + \\frac{32 \\times 4}{3} \\right) \\right)$$ | **(M1)** | Use of *their* $x$ values, $>0$, from **(a)** as limits in *their* integrated expression. Allow sight of $\\pm \\left( 0 - \\frac{32}{3} \\right)$. If incorrect limits are used, then clear substitution must be seen.  |\n|   |  $$\\frac{32}{3}, 10\\frac{2}{3}$$ or 10.7 | **(B1)** | AWRT Allow $-\\frac{32}{3}$ or $-\\frac{32}{3}$ changed to $+\\frac{32}{3}$ for this mark.  |\n|   |   | **(5)** | Condone the inclusion of $\\pi$ for the first 4 marks but use of $\\int y^2$ scores a maximum of B1 for the triangle.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 17 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | $$(x-6)^2 + (2a - x + a)^2 = 18$$ | **M1*** | Replacing $$y$$ with $$2a - x$$ in the circle equation, condone incorrect expansion before substitution.  |\n|   |  $$2x^2 - 12x - 6ax + 9a^2 + 36 - 18[= 0]$$ | **A1** | All terms collected on one side of the equation. May be implied by the discriminant.  |\n|   |  $$(12 + 6a)^2 - 4 \\times 2 \\times (9a^2 + 18)[= 0]$$ | **DM1** | Correct use of “$$b^2 - 4ac$$” from *their* 3 term quadratic equation in $$x$$, with an $$x$$ term of the form $$(m + na)x$$ with both $$m$$ and $$n \\neq 0$$.  |\n|   |  $$-36a^2 + 144a[+0 = 0]$$ | **A1** |   |\n|   |  $$a = 0, a = 4$$ | **A1** |   |\n|   |   | **5** |   |\n|  7(b) | [Centre is] (6, -4) or [Point of intersection is] (9, -1) | **B1** |   |\n|   |  [Gradient of diameter] = 1 | **B1** |   |\n|   |  $$y + 4 = x - 6$$ or $$y + 1 = x - 9$$ [leading to $$y = x - 10$$] | **B1FT** | FT on *their* point of intersection or *their* centre with an $$x$$ co-ordinate of $$\\pm 6$$ and gradient = 1.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 18 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(a)(i) | $$\\begin{aligned} C & \\backslash x \\backslash text\\{C\\}\\{X\\} & E = \\frac{\\pi}{6} \\\\ C \\hat{E} X & = \\frac{\\pi}{3} \\end{aligned}$$ |  |   |\n|   |  $$\\frac{XE}{0.4} = \\sin \\frac{\\pi}{6} \\text{ or } \\frac{XE}{0.4} = \\cos \\frac{\\pi}{3} \\quad [XE = 0.2]$$ | **M1** | A correct trig expression involving $$XE$$. Do not condone a mixture of degrees and radians.  |\n|   |  Length $$EF = 2 + 2 \\times 0.2 = 2.4$$ | **A1** | AG  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 19 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(a)(ii) | $$[CX =]0.4\\cos\\frac{\\pi}{6}$$ or $$0.4\\sin\\frac{\\pi}{3}$$ or $$\\sqrt{0.4^2 - 0.2^2}$$ | **B1** | OE, SOI Expect $$\\frac{\\sqrt{3}}{5}$$ or 0.3464.  |\n|   |  $$[Sector =]\\frac{1}{2} \\times (0.4)^2 \\times \\frac{\\pi}{3}$$ | **B1** | SOI Expect 0.0838 or $$\\frac{2\\pi}{75}$$. Allow use of $$\\frac{60}{360}\\pi(0.4)^2$$.  |\n|   |  Either Area of *their* (rectangle + two triangles + two sectors) Or Area of *their* (trapezium + two sectors) | **M1** | Either implied by a correct answer or areas clearly labelled. Expect $$0.6928 + 0.06928 + 0.1676$$ or $$\\frac{2\\sqrt{3}}{5} + \\frac{\\sqrt{3}}{25} + \\frac{4\\pi}{75}$$. Or $$0.7621 + 0.1676$$ or $$\\frac{11\\sqrt{3}}{25} + \\frac{4\\pi}{75}$$.  |\n|   |  0.930 | **A1** | AWRT Condone $$\\frac{11\\sqrt{3}}{25} + \\frac{4\\pi}{75}$$.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 20 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 21,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(b) | [Length $$AD =$$] $$2 + 2r$$ | **B1** | Must be seen alone or part of a list and not part of a product.  |\n|   |  [Arc length =] $$r \\times \\frac{\\pi}{3}$$ | **B1** | May be implied by $$r \\times \\frac{\\pi}{3} \\times 2$$. Must be seen alone or part of a list.  |\n|   |  [EF =] $$2 + 2r \\sin \\frac{\\pi}{6}$$ or $$2 + 2r \\cos \\frac{\\pi}{3}$$ or $$2 + r$$ | **B1** | Must be seen alone or part of a list and not part of a product.  |\n|   |  [$$4 + 3r + \\frac{2\\pi r}{3} = 6$$ leading to ] 0.393 | **B1** | AWRT Condone $$\\frac{6}{2\\pi + 9}$$. NB: Using $$EF = 2.4$$ gives 0.391.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 21 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 22,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(a) | $$6(2x-3)^2 - 6x < 0$$ or $$= 0$$ | **B1*** | Condone $$\\leq 0$$. If $$6(2x-3)^2$$ only or $$6(2x-3)^2 - 6$$ is used, do not treat as a MR.  |\n|   |  $$24x^2 - 78x + 54$$ or $$4x^2 - 13x + 9$$ or $$(x-1)(4x-9)$$ OR $$6(2x-3)^2 < 6x$$ leading to $$(2x-3) < \\sqrt{x}$$ leading to $$2x - \\sqrt{x} - 3$$ | **M1** | Expanding brackets and collecting terms to arrive at a three term quadratic, only condone sign errors.  |\n|   |  $$[x=]1, \\frac{9}{4}$$ | **B1** |   |\n|   |  $$1 < x < \\frac{9}{4}$$ or $$x > 1$$ and $$x < \\frac{9}{4}$$ or $$\\left(1, \\frac{9}{4}\\right)$$ | **DB1FT** | OE Condone consistent use of $$\\leq$$ and $$\\geq$$ or [ ]. Do not allow $$x > 1$$ or $$x < \\frac{9}{4}$$ nor $$x > 1, x < \\frac{9}{4}$$. FT on *their* values coming from a correct initial statement.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 22 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 23,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(b) | $$[f(x)=]\\left\\{\\frac{6}{3\\times2}(2x-3)^3\\right\\}\\left\\{-\\frac{6}{2}x^2\\right\\} \\quad [+C]$$ | **B1 B1** | B1 for each {Correct integral}.  |\n|   |  $$-1=(-1)^3-3\\times1^2+C$$ | **M1** | $$f(x)=-1$$ equated to *their* integrated expression, defined by two terms with at least one correct power $$+C$$, with $$x=1$$.  |\n|   |  $$[f(x)=](2x-3)^3-3x^2+3$$ | **A1** | CAO Only condone $$C=3$$ as final answer if coefficients have been simplified earlier. Do not ISW if the result is of the form $$y=mx+c$$.  |\n|   |  **Alternative method for Question 9(b)**  |   |   |\n|   |  $$[f'(x)=24x^2-78x+54 \\text{ leading to}] [f(x)=]8x^3-39x^2+54x[+C]$$ | **(B2,1,0)** | B2 completely correct, B1 any two correct terms.  |\n|   |  $$-1=8-39+54+C$$ | **(M1)** | $$f(x)=-1$$ equated to *their* integrated expression, defined by three terms with at least one correct power $$+C$$, with $$x=1$$.  |\n|   |  $$[f(x)=]8x^3-39x^2+54x-24$$ | **(A1)** | Only condone $$C=-24$$ as final answer if coefficients have been simplified earlier. Do not ISW if the result is of the form $$y=mx+c$$.  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 23 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 24,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(a) | $$[x = ] - 2$$ | **B1** |   |\n|   |  $$\\frac{dy}{dx} = k(5 - 2x)^{\\frac{1}{2}} \\left[ = -2 \\times \\frac{3}{2}(5 - 2x)^{\\frac{1}{2}} \\right]$$ | **M1*** | OE Differentiating to get $$k(5 - 2x)^{\\frac{1}{2}}$$ only.  |\n|   |  $$\\left[ \\frac{dy}{dx} = \\frac{dy}{dt} \\times \\frac{dt}{dx} \\text{ leading to} \\right] - 9 = \\pm 5 \\times \\frac{dt}{dx}$$ | **DM1** | Correct statement linking *their* numerical expression for $$\\frac{dy}{dx}$$ with $$\\frac{dt}{dx}$$ and $$\\pm 5$$.  |\n|   |  $$\\frac{5}{9}$$ or $$0.556 =$$ | **A1** | AWRT  |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 24 of 25",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 25,
+          "raw_markdown": "9709/12\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(b) | $$k(5-2x)^{\\frac{1}{2}}=-3$$ | **M1** | Equating *their* $$\\frac{dy}{dx}$$ of the form $$k(5-2x)^{\\frac{1}{2}}$$ to $$-3$$.  |\n|   |  $$[B \\text{ is}] \\quad (2,6)$$ | **A1** |   |\n|   |  Gradient $$AB = m_1 = \\frac{32-6}{-2-2}$$, gradient of perpendicular $$= -\\frac{1}{m_1} = \\frac{4}{26}$$ | **M1*** | For $$A, y$$ must be 32. Clear use of $$\\frac{\\text{difference in y co-ordinates}}{\\text{difference in x co-ordinates}}$$ for points $$A$$ and $$B$$, condone inconsistent order, and using $$m_1 m_2 = -1$$. If incorrect values or another complete method used, then working must be clear.  |\n|   |  Mid point is $$\\left(\\frac{2-2}{2}, \\frac{6+32}{2}\\right) = (0,19)$$ | **M1*** | Finding the midpoint of $$AB$$ using $$A$$ and $$B$$. If incorrect values used then all working must be clear. For $$A, y$$ must be 32.  |\n|   |  $$y-19 = \\frac{2}{13}(x-0)$$ | **DM1** | Finding the equation of the perpendicular bisector using *their* midpoint and *their* perpendicular gradient.  |\n|   |  $$2x-13y+247=0$$ or $$\\pm$$ integer multiples of this. | **A1** |   |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 25 of 25",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "Cambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-0.jpeg](img-0.jpeg)\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\n## MATHEMATICS\n\n9709/12\n\nPaper 1 Pure Mathematics 1\n\nMay/June 2024\n\n1 hour 50 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\n## INSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\n## INFORMATION\n\n- The total mark for this paper is 75.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 20 pages. Any blank pages are indicated.\n\nDC (KS/SG) 331708/4\n\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "2\n\n# BLANK PAGE\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "3\n\n1 The coefficient of $x^2$ in the expansion of $(1 - 4x)^6$ is 12 times the coefficient of $x^2$ in the expansion of $(2 + ax)^5$.\n\nFind the value of the positive constant $a$.\n\n[3]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "4\n\n2 The curve $y = x^2$ is transformed to the curve $y = 4(x-3)^2 - 8$.\n\nDescribe fully a sequence of transformations that have been combined, making clear the order in which the transformations have been applied. [5]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "5\n\n3 (a) Show that the equation $$\\frac{7\\tan\\theta}{\\cos\\theta} + 12 = 0$$ can be expressed as\n\n$$12\\sin^2\\theta - 7\\sin\\theta - 12 = 0.$$\n\n[3]\n\n(b) Hence solve the equation $$\\frac{7\\tan\\theta}{\\cos\\theta} + 12 = 0$$ for $$0^\\circ \\leqslant \\theta \\leqslant 360^\\circ$$.\n\n[3]\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "6\n\n4 The function $f$ is defined as follows:\n\n$$f(x) = \\sqrt{x} - 1 \\text{ for } x > 1.$$\n\n(a) Find an expression for $f^{-1}(x)$. [1]\n\n![img-3.jpeg](img-3.jpeg)\n\nThe diagram shows the graph of $y = g(x)$ where $g(x) = \\frac{1}{x^2 + 2}$ for $x \\in \\mathbb{R}$.\n\n(b) State the range of $g$ and explain whether $g^{-1}$ exists. [2]\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "7\n\nThe function $h$ is defined by $h(x) = \\frac{1}{x^2 + 2}$ for $x \\geq 0$.\n\n(c) Solve the equation $hf(x) = f\\left(\\frac{25}{16}\\right)$. Give your answer in the form $a + b\\sqrt{c}$, where $a$, $b$ and $c$ are integers. [4]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "8\n\n5 The first and second terms of an arithmetic progression are tan θ and sin θ respectively, where 0 < θ < 1/2 π.\n\n(a) Given that θ = 1/4 π, find the exact sum of the first 40 terms of the progression. [4]\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9\n\nThe first and second terms of a geometric progression are $\\tan\\theta$ and $\\sin\\theta$ respectively, where $0 < \\theta < \\frac{1}{2}\\pi$.\n\n(b) (i) Find the sum to infinity of the progression in terms of $\\theta$. [2]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n(ii) Given that $\\theta = \\frac{1}{3}\\pi$, find the sum of the first 10 terms of the progression. Give your answer correct to 3 significant figures. [3]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "10\n\n6 The curve with equation $y = 2x - 8x^{\\frac{1}{2}}$ has a minimum point at $A$ and intersects the positive $x$-axis at $B$.\n\n(a) Find the coordinates of $A$ and $B$.\n\n[4]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "11\n\n(b)\n\n![img-4.jpeg](img-4.jpeg)\n\nThe diagram shows the curve with equation $$y = 2x - 8x^{\\frac{1}{2}}$$ and the line $$AB$$. It is given that the equation of $$AB$$ is $$y = \\frac{2x - 32}{3}$$.\n\nFind the area of the shaded region between the curve and the line. [5]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "12\n\n7 The equation of a circle is $(x-6)^2 + (y+a)^2 = 18$. The line with equation $y = 2a - x$ is a tangent to the circle.\n\n(a) Find the two possible values of the constant $a$.\n\n[5]\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "13\n\n(b) For the greater value of $a$, find the equation of the diameter which is perpendicular to the given tangent. [3]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "14\n\n8\n\n![img-5.jpeg](img-5.jpeg)\n\nThe diagram shows a symmetrical plate $ABCDEF$. The line $ABCD$ is straight and the length of $BC$ is 2 cm. Each of the two sectors $ABF$ and $DCE$ is of radius $r$ cm and each of the angles $ABF$ and $DCE$ is equal to $\\frac{1}{3}\\pi$ radians.\n\n(a) It is given that $r = 0.4$ cm.\n\n(i) Show that the length $EF = 2.4$ cm. [2]\n\n...\n...\n...\n...\n...\n\n(ii) Find the area of the plate. Give your answer correct to 3 significant figures. [4]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "15\n\n...\n...\n...\n...\n...\n...\n...\n\n(b) It is given instead that the perimeter of the plate is 6 cm.\n\nFind the value of r. Give your answer correct to 3 significant figures.\n\n[4]\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "16\n\n9 A function f is such that f'(x) = 6(2x - 3)² - 6x for x ∈ ℝ.\n\n(a) Determine the set of values of x for which f(x) is decreasing.\n\n[4]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "17\n\n(b) Given that $f(1) = -1$, find $f(x)$.\n\n[4]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "18\n\n10 The equation of a curve is $y = (5 - 2x)^{\\frac{3}{2}} + 5$ for $x < \\frac{5}{2}$.\n\n(a) A point $P$ is moving along the curve in such a way that the $y$-coordinate of point $P$ is decreasing at 5 units per second.\n\nFind the rate at which the $x$-coordinate of point $P$ is increasing when $y = 32$. [4]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "19\n\n(b) Point $A$ on the curve has $y$-coordinate 32. Point $B$ on the curve is such that the gradient of the curve at $B$ is $-3$.\n\nFind the equation of the perpendicular bisector of $AB$. Give your answer in the form $ax + by + c = 0$, where $a$, $b$ and $c$ are integers. [6]\n\n...\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "20\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/12/M/J/24",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

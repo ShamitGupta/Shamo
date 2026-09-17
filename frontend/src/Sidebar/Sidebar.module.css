@@ -8,20 +8,24 @@
     inset: 0 auto 0 0;
     display: flex;
     flex-direction: column;
-    padding: 32px 18px 24px;
+    /* Nothing here may overflow the viewport: the thread list and the topic
+       panel each scroll inside their own box. */
+    overflow: hidden;
+    padding: 20px 14px 18px;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     z-index: 30;
 }
 
 .BotName{
     color: #ffffff;
-    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-size: clamp(1.15rem, 1.4vw, 1.4rem);
     font-weight: 600;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 14px;
-    padding: 8px 12px 0;
+    gap: 10px;
+    padding: 0 10px;
+    flex: 0 0 auto;
 }
 
 .Label{
@@ -29,38 +33,88 @@
 }
 
 .Logo{
-    width: clamp(44px, 4vw, 60px);
+    width: clamp(32px, 2.6vw, 40px);
     height: auto;
     flex-shrink: 0;
     cursor: pointer;
 }
 
-.SidebarButtonsContainer{
-    flex: 1;
+/* The one action worth a button. */
+.NewChatButton{
+    flex: 0 0 auto;
     width: 100%;
-    margin-top: 36px;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    background-color: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #e8e8e8;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.NewChatButton:hover{
+    background-color: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Secondary navigation. These were 15px-tall 1rem buttons with 12px gaps,
+   which cost roughly a third of the sidebar for links a student presses once.
+   The space they gave back goes to the thread list below. */
+.SidebarButtonsContainer{
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
 }
 
 .SidebarButtons{
-    padding: 15px 18px;
+    padding: 6px 12px;
     background-color: transparent;
     border: none;
-    border-radius: 14px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
     font-weight: 500;
     cursor: pointer;
-    color: #a0a0a0;
+    color: #7c7c7c;
     text-align: left;
-    transition: all 0.2s ease-in-out;
+    transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .SidebarButtons:hover{
-    background-color: #212121;
-    color: #ffffff;
-    padding-left: 24px;
+    background-color: #1c1c1c;
+    color: #d8d8d8;
+}
+
+/* Fixed share of the sidebar, with its own scroll: the topic panel must stay
+   visible without ever squeezing the thread list down to nothing. */
+.TopicsRegion{
+    flex: 0 1 auto;
+    width: 100%;
+    max-height: 38vh;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Log In / Sign Up. The thread list above is the only flex: 1 element, so it
+   takes the slack and this block stays pinned to the bottom. */
+.SidebarFooter{
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 6px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .MobileBar,
@@ -151,7 +205,38 @@
     }
 
     .SidebarButtons{
-        font-size: 0.96rem;
-        padding: 14px 16px;
+        font-size: 0.85rem;
+        padding: 7px 12px;
     }
+}
+
+.StaffLink {
+    display: block;
+    margin-top: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(139, 164, 249, 0.35);
+    background-color: rgba(139, 164, 249, 0.1);
+    color: #cdd9ff;
+    font-size: 0.82rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.StaffLink:hover {
+    background-color: rgba(139, 164, 249, 0.18);
+}
+
+.TeacherLink {
+    display: block;
+    margin-bottom: 10px;
+    color: #7c7c7c;
+    font-size: 0.78rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.TeacherLink:hover {
+    color: #cdd9ff;
+    text-decoration: underline;
 }

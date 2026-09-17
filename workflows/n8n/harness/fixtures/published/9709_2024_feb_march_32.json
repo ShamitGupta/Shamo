@@ -1,0 +1,1639 @@
+{
+  "paper_key": "9709_2024_feb_march_32",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "feb_march",
+    "paper_variant": "32",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "460f3b25-6a00-49e2-ac35-c37cfd9c6a1b",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_qp_32.pdf",
+      "page_count": 20,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_ms_32.pdf",
+      "page_count": 18,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "Find the quotient and remainder when $x^4 - 3x^3 + 9x^2 - 12x + 27$ is divided by $x^2 + 5$. [3]",
+      "total_marks": 3,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Commence division and reach partial quotient of the form $$x^2 \\pm 3x$$ or $$x^4 - 3x^3 + 9x^2 - 12x + 27 = (x^2 + 5)(Ax^2 + Bx + C) + Dx + E$$ or $$Ax^4 + Bx^3 + (5A + C)x^2 + 5Bx + 5C$$ and reach $$A = 1$$ and $$B = \\pm 3$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain quotient $$x^2 - 3x + 4$$",
+          "guidance_markdown": "$$A = 1, B = -3$$ $$[5A + C = 9 \\text{ so } C = 4; 5B + D = -12 \\text{ so } D = 3; 5C + E = 27 \\text{ so } E = 7]$$. A pair of incorrect statements ‘remainder $$x^2 - 3x + 4$$’ and ‘quotient $$3x + 7$$’ score **M1 A1 A0**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain remainder $$3x + 7$$\n$$x^2 + 5$$ $$x^2 - 3x + 4$$ $$x^4 - 3x^3 + 9x^2 - 12x + 27$$ $$x^4 + 5x^2$$ $$- 3x^3 + 4x^2$$ $$- 3x^3 - 15x$$ $$+ 4x^2 + 3x$$ $$+ 4x^2 + 20$$ $$+ 3x + 7$$ | 3",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Polynomial division",
+          "Remainder theorem"
+        ],
+        "skills": [
+          "Perform polynomial long division",
+          "Identify quotient and remainder"
+        ],
+        "methods": [
+          "Divide by quadratic using long division",
+          "Express result in quotient-plus-remainder form"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 1,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.95,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "",
+      "total_marks": 5,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the coefficient of $x^2$ in the expansion of $(2x-5)\\sqrt{4-x}$.",
+          "marks": 4,
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "State the set of values of $x$ for which the expansion in part (a) is valid.",
+          "marks": 1,
+          "source_page_numbers": [
+            4
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "State unsimplified term in $x$, or its coefficient, in the expansion of $(4-x)^{\\frac{1}{2}}$",
+          "guidance_markdown": "$4^{\\frac{1}{2}} \\times \\frac{1}{2} \\times \\left( \\frac{-x}{4} \\right) = \\frac{-x}{4}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "State unsimplified term in $x^2$, or its coefficient, in the expansion of $(4-x)^{\\frac{1}{2}}$",
+          "guidance_markdown": "$4^{\\frac{1}{2}} \\times \\frac{\\frac{1}{2} \\times \\frac{-1}{2}}{2} \\times \\left( \\frac{-x}{4} \\right)^2 = \\frac{-x^2}{64}$. Allow $\\left( \\frac{x}{4} \\right)^2$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Multiply by $(2x-5)$ and obtain 2 terms in $x^2$, allow even if errors in $4^{\\frac{1}{2}}$, signs, etc.",
+          "guidance_markdown": "Allow unsimplified $2x$. $4^{\\frac{1}{2}} \\times \\frac{1}{2} \\times \\left( \\frac{-x}{4} \\right) - 5$. $4^{\\frac{1}{2}} \\times \\frac{\\frac{1}{2} \\times \\frac{-1}{2}}{2} \\times \\left( \\frac{-x}{4} \\right)^2$. Allow $\\left( \\frac{x}{4} \\right)^2$. $2x \\times \\left( \\frac{-x}{4} \\right)(-5) \\times \\frac{-x^2}{64}$ or $2 \\times \\left( \\frac{-1}{4} \\right)(-5) \\times \\left( \\frac{-1}{64} \\right)$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $-\\frac{27}{64}$ or $-0.421875$ or $-\\frac{54}{128}$",
+          "guidance_markdown": "Allow in a full expansion up to $x^2$, ignore extra terms even if they contain errors.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "$ | x | < 4$",
+          "guidance_markdown": "or $-4 < x < 4$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Series",
+        "subtopics": [
+          "Binomial/Taylor expansion",
+          "Square root expansion",
+          "Valid range for series"
+        ],
+        "skills": [
+          "Expand a product involving a square root",
+          "Extract a specific coefficient",
+          "Determine the interval of validity"
+        ],
+        "methods": [
+          "Rewrite sqrt(4-x) in a form suitable for binomial expansion",
+          "Use series expansion to identify the x^2 coefficient",
+          "State convergence/domain conditions from the underlying series"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.72,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "It is given that $z = -\\sqrt{3} + i$.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Express $z^2$ in the form $re^{i\\theta}$, where $r > 0$ and $-\\pi < \\theta \\leqslant \\pi$.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "The complex number $\\omega$ is such that $z^2\\omega$ is real and $\\left|\\frac{z^2}{\\omega}\\right| = 12$.\n\nFind the two possible values of $\\omega$, giving your answers in the form $Re^{i\\alpha}$, where $R > 0$ and $-\\pi < \\alpha \\leqslant \\pi$.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $r=4$",
+          "guidance_markdown": "$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Correct method for the argument",
+          "guidance_markdown": "$\\theta = 2 \\tan^{-1} \\left( \\frac{-\\sqrt{3}}{1} \\right)$ or $2 \\times \\frac{5\\pi}{6}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\theta = -\\frac{\\pi}{3}$",
+          "guidance_markdown": "Arg with no working **B1** instead of **M1 A1**. **A0** if decimals. Allow separate mod and arg to gain full marks",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "$z^2 = 2 - 2\\sqrt{3}$ i so $r = \\sqrt{2^2 + (-2\\sqrt{3})^2} = 4$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Correct method for the argument",
+          "guidance_markdown": "$\\arg z^2 = \\tan^{-1} \\frac{-2\\sqrt{3}}{2}$",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\theta = -\\frac{\\pi}{3}$",
+          "guidance_markdown": "Arg with no working **B1** instead of **M1 A1**. **A0** if decimals. Allow separate mod and arg to gain full marks",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Use of $\\alpha + \\text{their } \\theta = 0$ or $\\alpha + \\text{their } \\theta = -\\pi$ or $\\alpha + \\text{their } \\theta = \\pi$",
+          "guidance_markdown": "Seen or implied. Using their $\\theta$ or new value calculated in **(b)**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "Use of $R = \\frac{\\text{their } r}{12}$",
+          "guidance_markdown": "Seen or implied.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\frac{1}{3}e^{-\\frac{2\\pi}{3}}$ and $\\frac{1}{3}e^{\\frac{1\\pi}{3}}$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Complex Numbers",
+        "subtopics": [
+          "Argument and modulus",
+          "De Moivre form",
+          "Solving magnitude/realness conditions"
+        ],
+        "skills": [
+          "Convert between algebraic and polar/exponential forms",
+          "Apply conditions for product to be real and given modulus",
+          "Determine possible arguments"
+        ],
+        "methods": [
+          "Compute z^2 and write in re^{iθ} form",
+          "Use 'z^2ω real' to constrain ω's argument relative to z^2",
+          "Use |z^2/ω|=12 to fix ω's modulus and hence its polar form"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "The positive numbers $p$ and $q$ are such that\n\n$\\ln\\left(\\frac{p}{q}\\right)=a \\quad \\text{and} \\quad \\ln\\left(q^2p\\right)=b$.\n\nExpress $\\ln(p^7q)$ in terms of $a$ and $b$.",
+      "total_marks": 4,
+      "source_page_numbers": [
+        6
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $$\\ln p - \\ln q = a$$",
+          "guidance_markdown": "$$\\frac{p}{q} = e^a$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $$\\ln p + 2\\ln q = b$$",
+          "guidance_markdown": "$$pq^2 = e^b$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Completed method to obtain $$\\ln(p^7q)$$",
+          "guidance_markdown": "E.g. $$\\ln q = \\frac{b-a}{3}$$, $$\\ln p = \\frac{2a+b}{3}$$ and attempt $$7\\ln p + \\ln q$$. All exponentials must be removed to obtain **M1**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{13a+8b}{3}$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "State $$p^7q = \\left(\\frac{p}{q}\\right)^x (q^2p)^y$$",
+          "guidance_markdown": "Or $$\\ln p^7q = x\\ln\\frac{p}{q} + y\\ln q^2p$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "Equate indices to form simultaneous equations in $$x$$ and $$y$$, can have errors",
+          "guidance_markdown": "$$x + y = 7$$ and $$-x + 2y = 1$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$7 = x + y$$ and $$1 = 2y - x$$",
+          "guidance_markdown": "Leading to $$x = \\frac{13}{3}$$, $$y = \\frac{8}{3}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Evaluate $$x \\times a + y \\times b$$ to obtain $$\\frac{13a+8b}{3}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Exponential and Logarithmic Functions",
+        "subtopics": [
+          "Logarithm laws",
+          "Combining logarithms"
+        ],
+        "skills": [
+          "Manipulate logarithmic equations",
+          "Express a new logarithm in terms of given parameters"
+        ],
+        "methods": [
+          "Use ln(p/q)=a and ln(q^2p)=b to form ln(p^7q) as a linear combination of a and b",
+          "Apply log rules (product/quotient/power) to simplify"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 2,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.95,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "",
+      "total_marks": 6,
+      "source_page_numbers": [
+        7
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "On a sketch of an Argand diagram, shade the region whose points represent complex numbers $z$ satisfying the inequalities $|z-4-2i|\\leqslant 3$ and $|z|\\geqslant |10-z|$.",
+          "marks": 4,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the greatest value of $\\arg z$ for points in this region.",
+          "marks": 2,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Show a circle with centre $4+2i$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "Show a circle with radius $3$ and centre not at the origin",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "Show the straight line $\\Re(z)=5$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "Shade the correct region",
+          "guidance_markdown": "Allow even if radius 3 mark not gained or shown incorrectly.\nIf 4 and 6 seen on diagram and line is at mid point, but 5 not marked, allow final two B1 marks.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Carry out a complete method for finding the greatest value of $\\arg z$",
+          "guidance_markdown": "e.g. $\\tan^{-1}\\frac{2+2\\sqrt{2}}{5}$. Allow $2\\sqrt{2}$ as $\\sqrt{(3^2-1^2)}$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain answer $0.768$ radians or $44.0^\\circ$",
+          "guidance_markdown": "SC B1 $\\tan^{-1}(2/4)+\\sin^{-1}(3/\\sqrt{(4^2+2^2)})=26.565^\\circ+42.130^\\circ=68.695^\\circ$; $68.7^\\circ$ or $[1.19896]$ $1.20$ radians.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Complex Numbers",
+        "subtopics": [
+          "Argand diagram inequalities",
+          "Circle region and half-plane constraints",
+          "Argument maximisation"
+        ],
+        "skills": [
+          "Translate modulus inequalities into geometric regions on an Argand diagram",
+          "Combine region conditions",
+          "Find greatest possible argument value within a region"
+        ],
+        "methods": [
+          "Represent |z-(4+2i)|≤3 as the disk with centre 4+2i radius 3",
+          "Represent |z|≥|10-z| as the locus inequality describing points closer to one point than another (half-plane/perpendicular bisector)",
+          "Determine intersection region boundaries and compute maximum arg z from boundary points"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.88,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "The equation of a curve is $2y^2 + 3xy + x = x^2$.",
+      "total_marks": 7,
+      "source_page_numbers": [
+        8,
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that $\\frac{dy}{dx} = \\frac{2x - 3y - 1}{4y + 3x}$.",
+          "marks": 4,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Hence show that the curve does not have a tangent that is parallel to the $x$-axis.",
+          "marks": 3,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $$4y\\frac{dy}{dx}$$ as the derivative of $$2y^2$$",
+          "guidance_markdown": "**SC** If $$\\frac{dy}{dx}$$ introduced instead of $$\\frac{d}{dx}$$ then allow **B1** for both, followed by correct method **M1** Max 2.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $$3y + 3x\\frac{dy}{dx}$$ as the derivative of $$3xy$$",
+          "guidance_markdown": "Allow extra $$\\frac{dy}{dx}$$ = correct expression to collect all marks if correct.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Complete the differentiation, all 4 terms, isolate $$2\\frac{dy}{dx}$$ terms on LHS or bracket $$\\frac{dy}{dx}$$ terms and solve for $$\\frac{dy}{dx}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{dy}{dx} = \\frac{2x - 3y - 1}{4y + 3x}$$",
+          "guidance_markdown": "Answer Given – need to have seen $$4y\\frac{dy}{dx} + 3x\\frac{dy}{dx} = 2x - 3y - 1$$ or $$(4y + 3x)\\frac{dy}{dx} - 2x + 3y = -1$$. Need to see $$= 2x$$ or $$= 0$$ consistently throughout otherwise **M1 A0**. No recovery allowed. When all terms are included then must be an equation.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": null,
+          "content_markdown": "4",
+          "guidance_markdown": "Allow all marks if using $$dx$$ and $$dy$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1*",
+          "content_markdown": "Equate numerator to zero, obtaining $$2x = 3y + 1$$ or $$3y = 2x - 1$$ and form equation in $$x$$ only or $$y$$ only from $$2y^2 + 3xy + x = x^2$$",
+          "guidance_markdown": "e.g. $$\\frac{2}{9}(2x - 1)^2 + x(2x - 1) + x = x^2$$ or $$2y^2 + \\frac{3}{2}(1 + 3y)y + \\frac{1}{2}(1 + 3y) = \\frac{1}{4}(1 + 3y)^2$$. Allow errors.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "DM1",
+          "content_markdown": "Obtain $$\\frac{2}{9}(2x - 1)^2 = -x^2$$ or a 3 term quadratic in one unknown and try to solve. If errors in quadratic formulation allow solution, applying usual rules for solution of quadratic equation, and allow **M1**",
+          "guidance_markdown": "e.g. $$17x^2 - 8x + 2 = 0$$ ($$b^2 - 4ac = -72$$) or $$17y^2 + 6y + 1 = 0$$ ($$b^2 - 4ac = -32$$). $$x = 4/17 \\pm (3\\sqrt{2}/17)i$$, $$y = -3/17 \\pm (2\\sqrt{2}/17)i$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Conclude that the equation has no [real] roots",
+          "guidance_markdown": "Given Answer. CWO",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Implicit differentiation",
+          "Tangent conditions",
+          "Rational expression simplification"
+        ],
+        "skills": [
+          "Differentiate an implicit curve equation",
+          "Derive dy/dx in terms of x and y",
+          "Use dy/dx to rule out tangents with specified slope"
+        ],
+        "methods": [
+          "Differentiate both sides w.r.t. x and solve for dy/dx",
+          "Analyse dy/dx=0 and show impossibility using the curve equation"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "The diagram shows the curve $y = xe^{2x} - 5x$ and its minimum point $M$, where $x = \\alpha$.",
+      "total_marks": 8,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that $\\alpha$ satisfies the equation $\\alpha = \\frac{1}{2}\\ln\\left(\\frac{5}{1+2\\alpha}\\right)$.",
+          "marks": 3,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Verify by calculation that $\\alpha$ lies between 0.4 and 0.5.",
+          "marks": 2,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Use an iterative formula based on the equation in part (a) to determine $\\alpha$ correct to 2 decimal places. Give the result of each iteration to 4 decimal places.",
+          "marks": 3,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Use correct product rule",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct derivative in any form",
+          "guidance_markdown": "e.g. $$\\frac{dy}{dx} = e^{2x} + 2xe^{2x} - 5$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Equate derivative to zero and obtain $$\\alpha = \\frac{1}{2} \\ln \\left( \\frac{5}{1+2\\alpha} \\right)$$",
+          "guidance_markdown": "Given answer – need to see $$e^{2x} = 5/(1+2x)$$ or $$\\ln e^{2x} = \\ln (5/(1+2x))$$ in working. Must be in terms of $$\\alpha$$ not $$x$$. Allow $$\\alpha$$ to be used before equating to 0.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "Calculate the value of a relevant expression or values of a pair of expressions at $$x=0.4$$ and $$x=0.5$$",
+          "guidance_markdown": "Need to attempt BOTH values and have one correct.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Complete the argument correctly with correct calculated values",
+          "guidance_markdown": "e.g. $$0.4 < 0.51[08]$$ and $$0.5 > 0.458$$ or $$0.46$$ or $$0.45$$ or $$-0.11[08] < 0$$ and $$0.042 > 0$$ If use original derivative $$-0.994(0.4)$$ and $$0.437(0.5)$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "Use the iterative process $$\\alpha_{n+1} = \\frac{1}{2} \\ln \\left( \\frac{5}{1+2\\alpha_n} \\right)$$ correctly at least twice anywhere in iteration process",
+          "guidance_markdown": "Obtain one value and then substitute it into the formula to obtain a second value.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain final answer 0.47",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Show sufficient iterations to 4 d.p. to justify 0.47 to 2 d.p. or show there is a sign change in the interval $$(0.465, 0.475)$$",
+          "guidance_markdown": "0.4, 0.5108, 0.4528, 0.4823, 0.4670, 0.4749 0.45, 0.4838, 0.4663, 0.4753, 0.4707, 0.4730 0.5, 0.4581, 0.4795, 0.4685, 0.4742 Allow self correction.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": null,
+          "content_markdown": "3",
+          "guidance_markdown": "**SC B1** No working 0.47",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 10,
+          "source_image_index": 0,
+          "asset_type": "coordinate_grid",
+          "storage_path": "a_level/9709/2024/feb_march/32/question_paper/q7/page-10-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Stationary points",
+          "Exponential functions",
+          "Iterative methods (fixed-point iteration)",
+          "Error/accuracy to decimal places"
+        ],
+        "skills": [
+          "Form an equation for the x-coordinate of a minimum",
+          "Estimate the root interval",
+          "Carry out iterations to specified precision"
+        ],
+        "methods": [
+          "Differentiate y=xe^{2x}-5x and set dy/dx=0 to obtain the fixed-point equation for α",
+          "Use numerical evaluation to bracket/verify α in a given interval",
+          "Apply a fixed-point iteration derived from the equation and record iterates"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.85,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 8,
+      "stem_markdown": "",
+      "total_marks": 9,
+      "source_page_numbers": [
+        12,
+        13
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Express $3\\sin x + 2\\sqrt{2}\\cos\\left(x + \\frac{1}{4}\\pi\\right)$ in the form $R\\sin(x + \\alpha)$, where $R > 0$ and $0 < \\alpha < \\frac{1}{2}\\pi$. State the exact value of $R$ and give $\\alpha$ correct to 3 decimal places.",
+          "marks": 4,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Hence solve the equation\n\n$$6 \\sin \\frac{1}{2}\\theta + 4\\sqrt{2} \\cos\\left(\\frac{1}{2}\\theta + \\frac{1}{4}\\pi\\right) = 3$$\n\nfor $-4\\pi < \\theta < 4\\pi$.",
+          "marks": 5,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Use the correct expansion of $$\\cos\\left(x+\\frac{1}{4}\\pi\\right)$$ to obtain $$\\sin x+2\\cos x$$",
+          "guidance_markdown": "$$3\\sin x+2\\sqrt{2}\\left(\\frac{1}{\\sqrt{2}}\\cos x-\\frac{1}{\\sqrt{2}}\\sin x\\right).$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1 FT",
+          "content_markdown": "State $$R=\\sqrt{5}$$",
+          "guidance_markdown": "ISW FT *their* $$a\\sin x+b\\cos x$$ provided this expression obtained by correct method.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Use correct trig formulae to find $$\\alpha$$",
+          "guidance_markdown": "$$\\alpha=\\tan^{-1}(b/a)$$ from *their* $$a\\sin x+b\\cos x$$ or $$\\sin^{-1}$$ or $$\\cos^{-1}$$ provided this expression obtained by correct method. NB If $$\\cos\\alpha=1$$ and $$\\sin\\alpha=2$$ then **M0 A0**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\alpha=1.107$$",
+          "guidance_markdown": "3 d.p. CAO Treat answer in degrees as a misread (63.435°).",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1 FT",
+          "content_markdown": "$$\\sin^{-1}\\left(\\frac{1.5}{R}\\right)$$",
+          "guidance_markdown": "Follow *their R*.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "Use a correct method to obtain an un-simplified value of $$\\theta$$ with *their* $$\\alpha$$",
+          "guidance_markdown": "$$2\\left(\\sin^{-1}\\left(\\frac{1.5}{R}\\right)-\\alpha\\right)$$ or $$2\\left(\\pi-\\sin^{-1}\\left(\\frac{1.5}{R}\\right)-\\alpha\\right).$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain one correct answer e.g. $$-0.74$$ in the interval",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Obtain second correct answer e.g. $$2.60$$ (2.5986) or $$4\\pi-0.74=11.8$$ or $$2.60-4\\pi=-9.97$$ in the interval",
+          "guidance_markdown": "If uses $$1.11^\\circ$$ withhold first accuracy mark gained, but allow rest of accuracy marks. Allow 2.6(0).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain two more correct answers e.g. $$-9.97$$ and $$11.8$$ and no others in the interval",
+          "guidance_markdown": "Ignore answers outside the interval. Treat answers in degrees as a misread. $$(-571.1^\\circ,-42.6^\\circ,148.9^\\circ,677.2^\\circ).$$",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Trigonometry",
+        "subtopics": [
+          "Sine/cosine linear combinations",
+          "Phase-amplitude form",
+          "Solving trigonometric equations",
+          "Argument ranges"
+        ],
+        "skills": [
+          "Rewrite a sinusoidal expression as R sin(x+α) with constraints on α",
+          "Solve a trigonometric equation over a specified θ interval"
+        ],
+        "methods": [
+          "Use angle-shift identities to match coefficients and find R and α",
+          "Transform the equation using the same rewrite (or substitution with 1/2θ)",
+          "Solve for θ within -4π<θ<4π"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.92,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 9,
+      "stem_markdown": "Relative to the origin $O$, the position vectors of the points $A$, $B$ and $C$ are given by\n\n$$\\overrightarrow{OA} = 5\\mathbf{i} - 2\\mathbf{j} + \\mathbf{k},\\quad \\overrightarrow{OB} = 8\\mathbf{i} + 2\\mathbf{j} - 6\\mathbf{k}\\quad \\text{and}\\quad \\overrightarrow{OC} = 3\\mathbf{i} + 4\\mathbf{j} - 7\\mathbf{k}.$$",
+      "total_marks": 8,
+      "source_page_numbers": [
+        14,
+        15
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that $OABC$ is a rectangle.",
+          "marks": 4,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Use a scalar product to find the acute angle between the diagonals of $OABC$.",
+          "marks": 4,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Find the scalar product of a pair of adjacent sides",
+          "guidance_markdown": "$$\\overrightarrow{OA} = (5, -2, 1), \\overrightarrow{OB} = (8, 2, -6),$$ $$\\overrightarrow{OC} = (3, 4, -7), \\overrightarrow{CB} = (5, -2, 1),$$ $$\\overrightarrow{AB} = (3, 4, -7).$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Show that the sides are perpendicular",
+          "guidance_markdown": "e.g. $$\\overrightarrow{OA} \\cdot \\overrightarrow{OC} = 15 - 8 - 7 = 0$$. Need to see working of numerator, ignore denominator.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Compare a pair of opposite sides",
+          "guidance_markdown": "$$\\overrightarrow{OA}$$ and $$\\overrightarrow{CB}$$ or $$\\overrightarrow{OC}$$ and $$\\overrightarrow{AB}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Show that they are parallel and equal in length and hence $$OABC$$ is a rectangle",
+          "guidance_markdown": "e.g. $$\\overrightarrow{AB} = \\overrightarrow{AO} + \\overrightarrow{OB} = 3\\mathbf{i} + 4\\mathbf{j} - 7\\mathbf{k} = \\overrightarrow{OC}$$. If show $$\\overrightarrow{AB} = 3\\mathbf{i} + 4\\mathbf{j} - 7\\mathbf{k} = \\overrightarrow{OC}$$, then **M1 A1** since this implies parallel and of equal length. If only show lengths equal **M1**. If repeat for other pair of opposite sides then **A1**.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": null,
+          "content_markdown": "Show the diagonals $$\\overrightarrow{OB}$$ and $$\\overrightarrow{AC}$$ are equal in length $$(\\sqrt{104})$$",
+          "guidance_markdown": "$$\\overrightarrow{AC} = (-2, 6, -8).$$",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": null,
+          "content_markdown": "Show the diagonals bisect each other at $$(4, 1, -3)$$",
+          "guidance_markdown": "$$\\frac{\\overrightarrow{OB}}{2} = \\overrightarrow{OC} + \\frac{1}{2}(\\overrightarrow{OA} - \\overrightarrow{OC}) = (4, 1, -3).$$",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": null,
+          "content_markdown": "Show the quadrilateral is a parallelogram\nShow both pairs of opposite sides are equal in length and a pair of adjacent sides are perpendicular",
+          "guidance_markdown": "e.g. $$\\overrightarrow{OB} = \\overrightarrow{OA} + \\overrightarrow{OC}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": null,
+          "content_markdown": "4",
+          "guidance_markdown": "Without calculation of scalar product max is **M1 A1**.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "B1",
+          "content_markdown": "$$\\overline{AC} = \\pm (-2i + 6j - 8k)$$ or $$\\frac{\\overline{AC}}{2} = \\pm (-1i + 3j - 4k)$$",
+          "guidance_markdown": "Seen or implied using diagonals.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "M1",
+          "content_markdown": "Scalar product of a pair of relevant vectors",
+          "guidance_markdown": "e.g. $$\\overline{AC}.\\overline{OB} = -16 + 12 + 48$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "M1",
+          "content_markdown": "Using the correct process for the moduli, divide the scalar product by the product of the moduli and obtain the inverse cosine of the result.",
+          "guidance_markdown": "$$\\pm \\cos^{-1}\\left(\\frac{44}{104}\\right)$$. For any two vectors.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 12,
+          "mark_code": "A1",
+          "content_markdown": "Obtain answer 65.(0)°",
+          "guidance_markdown": "Accept 1.13 radians.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 13,
+          "mark_code": "M1",
+          "content_markdown": "Scalar product of a pair of relevant vectors",
+          "guidance_markdown": "e.g. $$\\overline{OA}.\\overline{OB} = 40 - 4 - 6$$ using one side and a diagonal. or $$\\overline{OC}.\\overline{OB} = 24 + 8 + 42$$. Must use scalar product.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 14,
+          "mark_code": "M1",
+          "content_markdown": "Using the correct process for the moduli, divide the scalar product by the product of the moduli and obtain the inverse cosine of the result. Any two vectors.",
+          "guidance_markdown": "$$\\pm \\cos^{-1}\\left(\\frac{\\sqrt{30}}{\\sqrt{104}}\\right)$$ or $$\\cos^{-1}\\left(\\frac{\\sqrt{74}}{\\sqrt{104}}\\right)$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 15,
+          "mark_code": "B1",
+          "content_markdown": "Required angle = $$180^\\circ - 2 \\times 57.5^\\circ$$ or $$180^\\circ - 2 \\times 32.5^\\circ = 115^\\circ$$ and $$180^\\circ - 115^\\circ$$ or $$2 \\times 32.5^\\circ$$",
+          "guidance_markdown": "OE SOI Complete method to find the acute angle.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 16,
+          "mark_code": "A1",
+          "content_markdown": "Obtain answer 65.0°",
+          "guidance_markdown": "Accept 1.13 radians.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Vectors",
+        "subtopics": [
+          "Vector geometry in 3D",
+          "Perpendicular vectors via dot products",
+          "Angles between lines/diagonals"
+        ],
+        "skills": [
+          "Show four points form a rectangle using vector relationships",
+          "Compute acute angle between two diagonals using scalar products"
+        ],
+        "methods": [
+          "Use perpendicularity/parallelism of adjacent sides (via dot products or difference vectors) to establish rectangle",
+          "Form diagonal direction vectors and use scalar product formula for angle"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.93,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 10,
+      "stem_markdown": "Let $f(x) = \\frac{36a^2}{(2a+x)(2a-x)(5a-2x)}$, where $a$ is a positive constant.",
+      "total_marks": 10,
+      "source_page_numbers": [
+        16,
+        17
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Express $f(x)$ in partial fractions.",
+          "marks": 5,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Hence find the exact value of $$\\int_{-a}^{a} f(x)\\,dx$$, giving your answer in the form $$p\\ln q + r\\ln s$$ where $p$ and $r$ are integers and $q$ and $s$ are prime numbers.",
+          "marks": 5,
+          "source_page_numbers": [
+            17
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "State or imply the form $$\\frac{A}{2a+x} + \\frac{B}{2a-x} + \\frac{C}{5a-2x}$$",
+          "guidance_markdown": "Allow if seen prior to assigning a value for *a*.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Use a correct method for finding a coefficient",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain one of $$A=1, B=9, C=-16$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain a second value",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain the third value",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": null,
+          "content_markdown": "5",
+          "guidance_markdown": "**SC** $$\\frac{Dx+E}{4a^2-x^2} + \\frac{C}{5a-2x}$$ **B0****M1** and $$C=-16$$ **A1** Max 2/5. **SC** Allow **M1** only for other incorrect partial fraction.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1 FT",
+          "content_markdown": "Integrate and obtain one of the terms $$\\ln | 2a + x | - 9\\ln | 2a - x | + 8\\ln | 5a - 2x | $$",
+          "guidance_markdown": "Condone missing modulus signs. Use *their A, B and C*.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1 FT",
+          "content_markdown": "Obtain a second correct term",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "B1 FT",
+          "content_markdown": "Obtain the third correct term",
+          "guidance_markdown": "Max 3/5 if value is assigned for *a* (award M0 A0).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "M1",
+          "content_markdown": "Substitute limits correctly in an integral of the form $$p\\ln | 2a + x | + q\\ln | 2a - x | + r\\ln | 5a - 2x | $$ and remove all *a*'s",
+          "guidance_markdown": "Either (i) collect terms with same coefficient and remove all *a*'s e.g. $$p\\ln 3a - p\\ln a + q\\ln a - q\\ln 3a + r\\ln 3a - r\\ln 7a$$ hence $$p\\ln 3 - q\\ln 3 + r\\ln 3 - r\\ln 7$$ or (ii) collect same ln terms and remove all *a*'s e.g. $$(p - q + r)\\ln 3a - (p - q)\\ln a - r\\ln 7a$$ and $$-(p - q)\\ln a = (-p + q - r)\\ln a + r\\ln a$$ hence $$p\\ln 3 - q\\ln 3 + r\\ln 3 - r\\ln 7$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$18\\ln 3 - 8\\ln 7$$ from correct working",
+          "guidance_markdown": "A0 if the solution involves logarithms of negative numbers.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Partial fractions",
+          "Definite integrals involving rational functions",
+          "Logarithmic forms from integrals"
+        ],
+        "skills": [
+          "Decompose a rational function into partial fractions",
+          "Integrate term-by-term over a symmetric interval",
+          "Simplify logarithmic results to specified form"
+        ],
+        "methods": [
+          "Compute partial fraction coefficients consistent with factors in the denominator",
+          "Integrate each simple fraction (handling odd/even cancellations if used)",
+          "Combine logarithmic terms to match p ln q + r ln s"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 5,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 11,
+      "stem_markdown": "The variables $y$ and $\\theta$ satisfy the differential equation\n\n$$(1+y)(1+\\cos 2\\theta)\\frac{dy}{d\\theta}=e^{3y}.$$\n\nIt is given that $y=0$ when $\\theta=\\frac{1}{4}\\pi$.\n\nSolve the differential equation and find the exact value of $\\tan\\theta$ when $y=1$.",
+      "total_marks": 9,
+      "source_page_numbers": [
+        18,
+        19
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Separate variables correctly",
+          "guidance_markdown": "$$\\int (1+y)e^{-3y} dy = \\int \\frac{1}{1+\\cos 2\\theta} d\\theta.$$ Allow $$1/e^{3y}$$ and missing integral signs.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Integrate to obtain $$p(1+y)e^{-3y} + \\int qe^{-3y} dy$$",
+          "guidance_markdown": "Allow unless clear evidence that formula used has a + sign.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{-1}{3}(1+y)e^{-3y} + \\int \\frac{1}{3}e^{-3y} dy$$",
+          "guidance_markdown": "Allow unsimplified.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{-1}{3}(1+y)e^{-3y} - \\frac{1}{9}e^{-3y}(+A)$$",
+          "guidance_markdown": "Condone no constant of integration.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Use correct double angle formula to obtain $$\\int \\frac{1}{2\\cos^2\\theta} d\\theta$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $$k\\tan\\theta[+B]$$",
+          "guidance_markdown": "Condone no constant of integration.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1*",
+          "content_markdown": "Use $$y=0$$, $$\\theta=\\frac{\\pi}{4}$$ to evaluate a constant of integration in an expression of the form $$\\alpha y e^{-3y}$$, $$\\beta e^{-3y}$$ and $$\\gamma \\tan\\theta$$ only.",
+          "guidance_markdown": "$$\\frac{1}{2} = -\\frac{1}{3} - \\frac{1}{9} + C \\left( C = \\frac{17}{18} \\right)$$ Allow $$\\alpha y e^{3y}$$ and $$\\beta e^{3y}$$. Must have integrated LHS twice.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "DM1",
+          "content_markdown": "Use $$y=1$$",
+          "guidance_markdown": "$$\\frac{-(1+1)}{3e^3} - 1(9e^3) = \\frac{1}{2} \\tan\\theta - \\frac{17}{18}$$. Must have integrated LHS.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\tan\\theta = \\frac{17}{9} - \\frac{14}{9}e^{-3}$$",
+          "guidance_markdown": "Or exact equivalent. Exact ISW. Allow $$\\theta = \\tan^{-1}\\left(\\frac{17}{9} - \\frac{14}{9}e^{-3}\\right)$$. If $$x$$ instead of $$\\theta$$ then withhold final **A1**.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Differential Equations",
+        "subtopics": [
+          "Separable differential equations",
+          "Trigonometric simplification",
+          "Initial condition to determine constant"
+        ],
+        "skills": [
+          "Separate variables and integrate",
+          "Use initial condition to find the constant",
+          "Solve for θ when y takes a given value (extract tan θ)"
+        ],
+        "methods": [
+          "Rewrite (1+cos 2θ) in terms of trig functions to aid separation",
+          "Integrate both sides after separation",
+          "Substitute y=0 at θ=π/4 to determine the constant",
+          "Set y=1 and solve the resulting trigonometric equation for tan θ"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.86,
+        "review_status": "pending"
+      }
+    }
+  ]
+}

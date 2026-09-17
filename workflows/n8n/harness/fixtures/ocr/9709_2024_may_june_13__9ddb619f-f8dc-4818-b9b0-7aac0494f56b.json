@@ -1,0 +1,217 @@
+{
+  "paper_key": "9709_2024_may_june_13",
+  "ingestion_run_id": "9ddb619f-f8dc-4818-b9b0-7aac0494f56b",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-04:a_level:9709:2024:may_june:13",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_13.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_13.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International AS & A Level\n\nMATHEMATICS\n\nPaper 1 Pure Mathematics 1\n\nMARK SCHEME\n\nMaximum Mark: 75\n\n9709/13\n\nMay/June 2024\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2024 series for most Cambridge IGCSE, Cambridge International A and AS Level and Cambridge Pre-U components, and some Cambridge O Level components.\n\nThis document consists of 17 printed pages.\n\n© Cambridge University Press & Assessment 2024\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\n|  **GENERIC MARKING PRINCIPLE 1:** Marks must be awarded in line with: - the specific content of the mark scheme or the generic level descriptors for the question - the specific skills defined in the mark scheme or in the generic level descriptors for the question - the standard of response required by a candidate as exemplified by the standardisation scripts.  |\n| --- |\n|  **GENERIC MARKING PRINCIPLE 2:** Marks awarded are always **whole marks** (not half marks, or other fractions).  |\n|  **GENERIC MARKING PRINCIPLE 3:** Marks must be awarded **positively**: - marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate - marks are awarded when candidates clearly demonstrate what they know and can do - marks are not deducted for errors - marks are not deducted for omissions - answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.  |\n|  **GENERIC MARKING PRINCIPLE 4:** Rules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.  |\n|  **GENERIC MARKING PRINCIPLE 5:** Marks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).  |\n|  **GENERIC MARKING PRINCIPLE 6:** Marks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 2 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n**PUBLISHED**\n\n# **Mathematics Specific Marking Principles**\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2024\n\nPage 3 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2024\n\nPage 4 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2024\n\nAbbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2024\n\nPage 5 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1 | Correct second term 30x in expansion of (1 + 3x)^{10} | **B1** | WWW, may be implied later.  |\n|   |  Correct third term + 405x^{2} | **B1** | Ignore subsequent terms, may be implied later.  |\n|   |  Multiply (2 - 5x) by *their* 30x + 405x^{2} to obtain two x^{2} terms only | **M1** | Expect -150x^{2}, 810x^{2}.  |\n|   |  Coefficient is 660 | **A1** | Must be clearly identified. Allow final answer 660x^{2}.  |\n|   |   | **4** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2(a) | State ($$\\frac{5}{3}\\pi$$, 0) for point A | **B1** | Or exact equivalent. Allow $$x = \\frac{5}{3}\\pi$$ or exact equivalent.  |\n|   |  $$x = \\frac{19}{6}\\pi$$ for point B | **B1** | Or exact equivalent. May be implied in coordinate or vector form.  |\n|   |  $$y = -k$$ for point B | **B1** | May be implied in coordinate or vector form.  |\n|   |   | **3** |   |\n|  2(b) | Solve at least as far as $$\\sin^{-1}3t = k\\pi$$ with correct value for $$\\cos^{-1}\\left(\\frac{1}{2}\\sqrt{2}\\right)$$ | **M1** | Allow use of $$\\pi = 3.14\\dots$$. Allow $$\\sin^{-1}3t = 30$$.  |\n|   |  $$\\sin^{-1}3t = \\frac{1}{6}\\pi$$ and hence $$t = \\frac{1}{6}$$ | **A1** | Or exact equivalent. Can use degrees if consistent.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 6 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3(a) | State $$2r + r\\theta = 65$$ and $$\\frac{1}{2}r^2\\theta = 225$$ | **B1** |   |\n|   |  Form a 3-term quadratic or cubic in $$r$$ or $$\\theta$$ or $$r\\theta$$ from correct arc and sector formula | ***M1** | Condone sign errors.  |\n|   |  Solve *their* 3 term quadratic or cubic to obtain values of $$r$$ or $$\\theta$$ | **DM1** | Expect $$2r^2 - 65r + 450 = (2r - 45)(r - 10)$$ or $$18\\theta^2 - 97\\theta + 72 = (9\\theta - 8)(2\\theta - 9)$$.  |\n|   |  $$r = 10$$ and $$\\theta = 4.5$$ ignore $$r = 22.5$$ and $$\\theta = \\frac{8}{9}$$, do not ignore $$r = 0$$ | **A1** | **B1 SC** if no quadratic or cubic solution. If $$r = 0$$ included A0 or B0 SC.  |\n|   |   | **4** |   |\n|  3(b) | Use correct formula for area of triangle with clear use of angle being $$2\\pi$$ – their $$\\theta$$ | **M1** | Expect 1.783 or 102.2°, *their* $$\\theta$$ must be reflex.  |\n|   |  48.9 | **A1** | AWRT, WWW or a second answer. Or greater accuracy; condone absence of units.  |\n|   |   | **2** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(a) | Use identity $$\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$$ | **M1** |   |\n|   |  Use identity $$\\cos^2\\theta = 1 - \\sin^2\\theta$$ | **M1** |   |\n|   |  $$\\pm(5\\sin^2\\theta + 7\\sin\\theta - 6 = 0)$$ | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 7 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4(b) | Attempt solution of *their* 3 term equation and correct process to find at least 1 value of sin x or sin 2x or sin θ | **M1** | Expect (5s - 3)(s + 2) = 0, s = 3 / 5.  |\n|   |  x = 18.4 | **A1** | Or greater accuracy. **B1 SC** if no solution to the quadratic.  |\n|   |  x = 71.6 or (90 – *their* 18.4) or greater accuracy; and no other solutions for 0° < x < 180° | **A1FT** | WWW **B1 SC FT** if no solution to the quadratic. **B1 SC** both correct in radians, 0.322, 1.25.  |\n|   |   | **3** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(a) | Differentiate to obtain $$4x + \\frac{1}{2}x^{-2}$$ | **B1** | OE Condone '+c'.  |\n|   |  Equate first derivative to zero and solve $$4x + \\frac{K}{x^2} = 0$$ as far as $$x^3 = k$$, K and k non-zero | **M1** | Not given if '+c' used.  |\n|   |  $$x = -\\frac{1}{2}$$ and $$y = \\frac{9}{2}$$ | **A1** | OE **B1 SC** if no visible solution of the cubic.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 8 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5(b) | Differentiate *their* first derivative, substitute *their* x value. Substitution may be implied by a correct inequality or correct value, | **M1** | Must differentiate one term correctly. Expect $$4 - x^{-3} = 12$$ at $$x = \\frac{-1}{2}$$ Alternative: substitute values of x into $$\\frac{dy}{dx}$$. One value $$x < -\\frac{1}{2}$$ and one value $$-\\frac{1}{2} < x < 0$$.  |\n|   |  conclude minimum | **A1** | Following correct work only  |\n|   |   | **2** |   |\n|  5(c) | State increasing ... | **B1** |   |\n|   |  ... with clear reference to first derivative always being positive [for x > 0] | **B1** | Dependent on first derivative being correct. It is not sufficient to substitute values of x.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 9 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Integrate to obtain form $$k(5x-3)^{-1}$$ | *M1 | OE  |\n|   |  $$4(5x-3)^{-1}$$ | A1 | Or unsimplified equivalent. Condone absence of ... + c so far.  |\n|   |  Substitute $$x=\\frac{4}{5}$$ and $$y=-3$$ to attempt value of c | DM1 | DM0 for substituting $$\\left(-3,\\frac{4}{5}\\right)$$.  |\n|   |  $$y=4(5x-3)^{-1}-7$$ allow f(x) or $$f=4(5x-3)^{-1}-7$$ | A1 | OE Condone $$c=-7$$ as the final answer providing $$y=\\text{or }f(x)=\\frac{4}{(5x-3)}+c$$ OE is seen earlier. Attempts to write equation in $$y=mx+c$$ form scores A0. Do not ISW. Gains max 3/4.  |\n|   |   | 4 |   |\n|  6(b) | Carry out stretch by replacing x by 2x in *their* equation | M1 | Award if given as the second transformation. Do not ignore sign errors.  |\n|   |  Carry out translation by replacing x by x-2 and y by y-10 | M1 | OE Award if given as the first transformation. Do not ignore sign errors.  |\n|   |  $$y=\\frac{4}{10x-23}+3$$ | A1 | Or similarly simplified equivalent, WWW.  |\n|   |   | 3 |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 10 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | $$5(3 + 9d) = 127.5$$ | **B1** | OE  |\n|   |  $$d = 2.5$$ | **B1** |   |\n|   |   | **2** |   |\n|  7(b) | Attempt to find either the first term or the last term in the set by considering $$1.5 + 2.5(n-1) > 25$$ or $$1.5 + 2.5(n-1) < 100$$ or equivalent equations | **M1** | Using *their d*. May be implied by correct answers.  |\n|   |  State or imply that 11th term or 26.5 is the first in the set | **A1** |   |\n|   |  State or imply that 40th term or 99 is the last in the set | **A1** |   |\n|   |  Either use $$S_{40} - S_{10}$$ Or use $$\\frac{1}{2}n(a+l)$$ with correct results for *their d* Or use $$\\frac{1}{2}n[2a+(n-1)d]$$ with correct results for *their d* | **DM1** | *Their 40 and 10 from correct working with their d.* Correct values 30, 26.5 and 99 respectively. Correct values 30, 26.5 and 2.5 respectively.  |\n|   |  Obtain 1882.5 | **A1** | OE  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 11 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8 | Substitute $x=0$ and attempt solution of 3-term quadratic equation in $y$ | **M1** | If $y=0$ used can score a maximum of M0 A0 B1 M1 A0 A1FT DM1 A0, i.e. 4/8.  |\n|   |  $-5$ and $3$ | **A1** | **B1 SC** if no working to solve the quadratic.  |\n|   |  State or imply centre of circle is $(3, -1)$ | **B1** | Condone errors which don't affect finding centre. May be implied by the correct final $y$ coordinate.  |\n|   |  Attempt gradient of $AC$ or $BC$ | ***M1** |   |\n|   |  $-\\frac{4}{3}$ or $\\frac{4}{3}$ | **A1** |   |\n|   |  State or imply gradient of tangent is $\\frac{3}{4}$ or $-\\frac{3}{4}$ | **A1FT** | Following *their* gradient of radius. Only FT when previous 2 marks are M1 A0.  |\n|   |  Either solve simultaneous equations (of 2 tangent equations) to find $x$- coordinate Or Substitute $y$-value of centre into either tangent equation | **DM1** |   |\n|   |  $x=-\\frac{16}{3},\\ y=-1$ | **A1** |   |\n|   |  **Alternative Method 1: for the 4th and 5th marks**  |   |   |\n|   |  Rearrange and differentiate the circle equation or differentiate implicitly | **(M1)** | Replaces the second M1.  |\n|  $$\\frac{dy}{dx}=\\frac{3-x}{y+1}\\ \\text{or}\\ \\frac{dy}{dx}=\\frac{3-x}{\\left(25-(x-3)^2\\right)^{\\frac{1}{2}}}$$ | **(A1)** | Replaces the second A1.  |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 12 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8 | **Alternative Method 2: for the last 5 marks**  |   |   |\n|   |  $$\\widehat{ACP} = \\widehat{MAP} = \\tan^{-1} \\frac{4}{3}$$ or identifying similar triangles *PMA* and *AMC* | **(M1A1)** | *C* is the circle centre, *P* is intersection of the two tangents, *M* is intersection of *PC* and the *y*-axis.  |\n|   |  $$\\tan MAP = \\frac{PM}{4}, \\frac{4}{3} = \\frac{PM}{4}, PM = \\frac{16}{3}$$ or use of similar triangles | **(M1A1)** |   |\n|   |  $$P \\text{ is } \\left( \\frac{-16}{3}, -1 \\right)$$ | **(A1)** |   |\n|   |  **Alternative Method 3: for the last 5 marks**  |   |   |\n|   |  Pythagoras on triangle *PAC*, $$PC^2 = PA^2 + AC^2$$, | **(M1)** | Identifies the required 3 sides and sets up formula.  |\n|   |  $$PC^2 = (PM + 3)^2, PA^2 = PM^2 + 4^2, AC = \\text{radius} = 5$$ | **(A1)** | Finds each side with two in terms of *PM* OE.  |\n|   |  $$(PM + 3)^2 = PM^2 + 4^2 + 5^2 \\text{ leads to } 6PM = 32, PM = \\frac{16}{3}$$ | **(M1A1)** | Sets up and solves equation.  |\n|   |  $$P \\text{ is } \\left( \\frac{-16}{3}, -1 \\right)$$ | **(A1)** |   |\n|   |   | **8** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 13 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(a) | Differentiate to obtain form $$kx^2(2x^3 + 10)^{-\\frac{1}{2}}$$ | **M1** | OE  |\n|   |  $$3x^2(2x^3 + 10)^{-\\frac{1}{2}}$$ | **A1** | Or unsimplified equivalent.  |\n|   |  Substitute $$x = 3$$ in first derivative and evaluate to find gradient | ***M1** | Expect $$\\frac{27}{8}$$. Allow if first derivative of forms $$k(2x^3 + 10)^{\\frac{-1}{2}}$$, $$kx(2x^3 + 10)^{\\frac{-1}{2}}$$ or $$kx^2(2x^3 + 10)^{\\frac{-1}{2}}$$.  |\n|   |  Attempt equation of tangent at $$(3,8)$$ with numerical gradient | **DM1** | Use of gradient of the normal is DM0.  |\n|   |  $$\\pm = 0$$ or integer multiples | **A1** |   |\n|   |   | **5** |   |\n|  9(b) | State or imply volume is $$\\pi \\int (2x^3 + 10) \\, dx$$ | **B1** | Implied if $$\\pi$$ appears only at the end. Do not allow an unsimplified: $$\\pi \\int \\left( (2x^3 + 10)^{1/2} \\right)^2$$.  |\n|   |  Integrate to obtain $$k_1x^4 + k_2x$$ and evaluate using limits 1 and 3 | **M1** | Where $$k_1k_2 \\neq 0$$.  |\n|   |  60$$\\pi$$ | **A1** | OE Allow from a correct integral and sight of limits. Allow numerical answers in the range 188-189.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 14 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(a) | Substitute to obtain equation $$9r^4 + 14r^2 - 8 = 0$$ | **B1** | OE  |\n|   |  Attempt solution of quadratic equation in $$r^2$$ to obtain at least one value of $$r$$ or $$r^2$$ | **M1** | Expect $$(9r^2 - 4)(r^2 + 2)$$.  |\n|   |  $$r = \\frac{2}{3}$$ only | **A1** | **SC B1** answer without working.  |\n|   |   | **3** |   |\n|  10(b) | Substitute $$a = 2$$ and *their* $$r$$ in correct formula and attempt to evaluate | **M1** | Expect $$\\frac{2\\left(1 - \\left(\\frac{2}{3}\\right)^{20}\\right)}{\\left(1 - \\frac{2}{3}\\right)}$$ or $$\\frac{2\\left(\\left(\\frac{2}{3}\\right)^{20} - 1\\right)}{\\left(\\frac{2}{3} - 1\\right)}$$.  |\n|   |  5.998 | **A1** | AWRT and no other value.  |\n|   |   | **2** |   |\n|  10(c) | Identify $$a_2 = \\frac{4}{3}$$ and common ratio as $$\\frac{8}{27}$$. | **B1 FT** | Following *their* $$r$$ provided $$|r| < 1$$. May be implied in the sum to infinity. Allow $$\\left(\\frac{2}{3}\\right)^3$$.  |\n|   |  Substitute *their* new $$a$$ and $$r$$ in correct formula for sum to infinity and evaluate | **M1** | $$|r| < 1$$ otherwise M0.  |\n|   |  $$\\frac{36}{19}$$ | **A1** | OE Accept 1.89 or better from 1.894736...  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 15 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme\n\nMay/June 2024\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  11(a) | Express $$f(x)$$ as: $$a - (x - 3)^2$$ or $$a - (3 - x)^2$$ where $$a = \\pm 19$$ or $$\\pm 1$$ | **M1** | OE If the form $$-f(x) = (x^2 - 6x - 10)$$ is used the form must be returned to $$f(x) = \\dots$$ Completed square form must give $$-x^2$$. Answers must come from completion of the square (not calculus or graphs).  |\n|   |  $$19 - (3 - x)^2$$ or $$19 - (x - 3)^2$$ | **A1** | OE  |\n|   |  $$f(x) \\leqslant 19$$ or $$y \\leqslant 19$$ with $$\\leqslant$$, not $$<$$ or $$-\\infty < f(x) \\leqslant 19$$ or $$-\\infty \\leqslant f(x) \\leqslant 19$$ or $$(-\\infty, 19]$$ or $$[-\\infty, 19]$$ | **A1 FT** | Using *their* constant following the award of M1. **SC B1** answer only or answer from a method not involving completion of the square.  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 16 of 17",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/13\n\nCambridge International AS & A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2024\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  11(b) | $$g^{-1}(x)=\\frac{1}{4}(x-k)$$ | **B1** |   |\n|   |  $$g^{-1}f(x)=\\frac{1}{4}(10+6x-x^2-k)=4x+k$$ | **M1** | OE May use *their* completed square form for f(x).  |\n|   |  Simplify the quadratic equation obtained from $$g^{-1}f(x)=g(x)$$ provided $$k$$ is present and apply $$b^2-4ac=0$$ to this quadratic equation | ***M1** | Expect $$x^2+10x-10+5k=0$$.  |\n|   |  Obtain $$100-4(5k-10)=0$$ and hence $$k=7$$ | **A1** |   |\n|   |  Use *their* $$k$$ to form and solve a quadratic in $$x$$ | **DM1** | Allow if *their* quadratic has two solutions.  |\n|   |  $$(-5,-13)$$ only | **A1** | **SC B1** if no method seen.  |\n|   |  **Alternative Method for first 4 marks** |  |   |\n|   |  State $$f(x)=gg(x)$$ | **(B1)** |   |\n|   |  $$gg(x)=16x+5k$$ | **(M1)** |   |\n|   |  Apply $$b^2-4ac=0$$ to quadratic equation obtained from $$f(x)=gg(x)$$ | **(*M1)** | Provided $$k$$ is present.  |\n|   |  $$100-4(5k-10)=0$$ and hence $$k=7$$ | **(A1)** |   |\n|   |   | **6** |   |\n\n© Cambridge University Press & Assessment 2024\n\nPage 17 of 17",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0019656641001 *\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\n## MATHEMATICS\n\nPaper 1 Pure Mathematics 1\n\n9709/13\n\nMay/June 2024\n\n1 hour 50 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\n## INSTRUCTIONS\n\n- Answer **all** questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do **not** use an erasable pen or correction fluid.\n- Do **not** write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\n## INFORMATION\n\n- The total mark for this paper is 75.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has **20** pages. Any blank pages are indicated.\n\nDC (KN/FC) 331715/3\n© UCLES 2024\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0019656641002 *\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\n# BLANK PAGE\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "* 0019656641003 *\n\n![img-4.jpeg](img-4.jpeg)\n\n3\n\n1 Find the coefficient of $x^2$ in the expansion of\n\n$$(2 - 5x)(1 + 3x)^{10}$$\n\n[4]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "* 0019656641004 *\n\n2 (a)\n\n4\n\n![img-5.jpeg](img-5.jpeg)\n\nThe diagram shows the curve $$y = k\\cos(x - \\frac{1}{6}\\pi)$$ where $$k$$ is a positive constant and $$x$$ is measured in radians. The curve crosses the $$x$$-axis at point $$A$$ and $$B$$ is a minimum point.\n\nFind the coordinates of $$A$$ and $$B$$.\n\n[3]\n\n(b) Find the exact value of $$t$$ that satisfies the equation\n\n$$3 \\sin^{-1}(3t) + 2 \\cos^{-1}\\left(\\frac{1}{2}\\sqrt{2}\\right) = \\pi.$$ [2]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\n\n* 0019656641005 *\n\n![img-6.jpeg](img-6.jpeg)\n\n5\n\n3\n\n![img-7.jpeg](img-7.jpeg)\n\nThe diagram shows a sector of a circle with centre C. The radii CA and CB each have length r cm and the size of the reflex angle ACB is θ radians. The sector, shaded in the diagram, has a perimeter of 65 cm and an area of 225 cm².\n\n(a) Find the values of r and θ.\n\n[4]\n\n(b) Find the area of triangle ACB.\n\n[2]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0019656641006 *\n\n![img-8.jpeg](img-8.jpeg)\n\n6\n\n4 (a) Show that the equation $$\\cos \\theta (7 \\tan \\theta - 5 \\cos \\theta) = 1$$ can be written in the form $$a \\sin^2 \\theta + b \\sin \\theta + c = 0$$, where $$a$$, $$b$$ and $$c$$ are integers to be found. [3]\n\n(b) Hence solve the equation $$\\cos 2x (7 \\tan 2x - 5 \\cos 2x) = 1$$ for $$0^\\circ < x < 180^\\circ$$. [3]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "* 0019656641007 *\n\n![img-9.jpeg](img-9.jpeg)\n\n7\n\n5 The equation of a curve is  $y = 2x^2 - \\frac{1}{2x} + 3$ .\n\n(a) Find the coordinates of the stationary point. [3]\n\n(b) Determine the nature of the stationary point. [2]\n\n(c) For positive values of  $x$ , determine whether the curve shows a function that is increasing, decreasing or neither. Give a reason for your answer. [2]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "* 0019656641008 *\n\n![img-10.jpeg](img-10.jpeg)\n\n8\n\n6 A curve passes through the point $\\left(\\frac{4}{5}, -3\\right)$ and is such that $\\frac{dy}{dx} = \\frac{-20}{(5x-3)^2}$.\n\n(a) Find the equation of the curve. [4]\n\n(b) The curve is transformed by a stretch in the $x$-direction with scale factor $\\frac{1}{2}$ followed by a translation of $\\left(\\frac{2}{10}\\right)$.\n\nFind the equation of the new curve. [3]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "* 0019656641009 *\n\n![img-11.jpeg](img-11.jpeg)\n\n9\n\n7 The first term of an arithmetic progression is 1.5 and the sum of the first ten terms is 127.5 .\n\n(a) Find the common difference.\n\n[2]\n\n(b) Find the sum of all the terms of the arithmetic progression whose values are between 25 and 100.\n\n© UCLES 2024\n\n9709/13/M/J/24\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0019656641010 *\n\n![img-12.jpeg](img-12.jpeg)\n\n10\n\n8 A circle with equation $$x^2 + y^2 - 6x + 2y - 15 = 0$$ meets the y-axis at the points A and B. The tangents to the circle at A and B meet at the point P.\n\nFind the coordinates of P.\n\n[8]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "* 0019656641111 *\n\n![img-13.jpeg](img-13.jpeg)\n\n11\n\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\n\n© UCLES 2024\n\n9709/13/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0019656641112 *\n\n9\n\n12\n\n![img-14.jpeg](img-14.jpeg)\n\nThe diagram shows the curve with equation $$y = \\sqrt{2x^3 + 10}$$.\n\n(a) Find the equation of the tangent to the curve at the point where $$x = 3$$. Give your answer in the form $$ax + by + c = 0$$ where $$a$$, $$b$$ and $$c$$ are integers. [5]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0019656641113 *\n\n![img-15.jpeg](img-15.jpeg)\n\n13\n\n(b) The region shaded in the diagram is enclosed by the curve and the straight lines x = 1, x = 3 and y = 0.\n\nFind the volume of the solid obtained when the shaded region is rotated through 360° about the x-axis. [3]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "* 0019656641114 *\n\n![img-16.jpeg](img-16.jpeg)\n\n14\n\n10 The geometric progression $a_1, a_2, a_3, \\ldots$ has first term 2 and common ratio $r$ where $r > 0$. It is given that $\\frac{9}{2}a_5 + 7a_3 = 8$.\n\n(a) Find the value of $r$.\n\n[3]\n\n(b) Find the sum of the first 20 terms of the geometric progression. Give your answer correct to 4 significant figures. [2]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0019656641115 *\n\n![img-17.jpeg](img-17.jpeg)\n\n15\n\n(c) Find the sum to infinity of the progression $a_2, a_5, a_8, \\ldots$.\n\n[3]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "* 0019656641116 *\n\n![img-18.jpeg](img-18.jpeg)\n\n16\n\n11 The function f is defined by f(x) = 10 + 6x - x^2 for x ∈ ℝ.\n\n(a) By completing the square, find the range of f.\n\n[3]\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0019656641117 *\n\n![img-19.jpeg](img-19.jpeg)\n\n17\n\nThe function g is defined by g(x) = 4x + k for x ∈ ℝ where k is a constant.\n\n(b) It is given that the graph of y = g⁻¹f(x) meets the graph of y = g(x) at a single point P.\n\nDetermine the coordinates of P.\n\n[6]\n\n© UCLES 2024\n\n9709/13/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "* 0019656641118 *\n\n![img-20.jpeg](img-20.jpeg)\n\n18\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "* 0019656641119 *\n\n![img-21.jpeg](img-21.jpeg)\n\n19\n\nBLANK PAGE\n\n© UCLES 2024\n\n9709/13/M/J/24",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "* 0019656641120 *\n\n![img-22.jpeg](img-22.jpeg)\n\n20\n\n# BLANK PAGE\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2024\n\n9709/13/M/J/24\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "name": "Shamo Pilot - Generate Search Embeddings",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Shamo search indexing\n\nRun only after a paper has been approved and published. This workflow batches all pending pilot search items into one inexpensive OpenAI embedding request, validates every 512-dimension vector, and saves the batch atomically through Supabase.\n\nThe default safety limit is 100 items and an estimated $0.05 maximum embedding cost.",
+        "height": 300,
+        "width": 520,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -260
+      ],
+      "id": "a391231e-3cf3-4831-9148-657218f0ad5a",
+      "name": "Search indexing note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        40
+      ],
+      "id": "3b43184b-5dbd-8fe9-303f-9d7717d41abc",
+      "name": "Index Published Questions Manually"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{\n  json: {\n    supabase_url: 'https://YOUR_PROJECT_REF.supabase.co',\n    embedding_model: 'text-embedding-3-small',\n    embedding_dimensions: 512,\n    requested_limit: 100,\n    price_per_million_tokens_usd: 0.02,\n    max_estimated_cost_usd: 0.05,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        40
+      ],
+      "id": "08057ec2-ae4f-bcbd-3e8e-ec2d17dd5927",
+      "name": "Search Configuration"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.supabase_url + '/rest/v1/rpc/shamo_get_pending_search_items' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ ({ requested_limit: $json.requested_limit }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        60,
+        40
+      ],
+      "id": "a1266a6c-34a0-3bc7-2516-e8b4b2f35c62",
+      "name": "Load Pending Search Items",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const config = $('Search Configuration').first().json;\nconst searchItems = $input\n  .all()\n  .flatMap((item) => Array.isArray(item.json) ? item.json : [item.json])\n  .filter((item) => item.question_id && item.ingestion_run_id && item.content);\n\nif (searchItems.length > config.requested_limit) {\n  throw new Error(\n    'Supabase returned more search items than the configured safety limit.',\n  );\n}\n\nconst estimatedTokens = Math.ceil(\n  searchItems.reduce((sum, item) => sum + String(item.content).length, 0) / 4,\n);\nconst estimatedCostUsd =\n  estimatedTokens / 1_000_000 * config.price_per_million_tokens_usd;\n\nif (estimatedCostUsd > config.max_estimated_cost_usd) {\n  throw new Error(\n    'Estimated embedding cost $' + estimatedCostUsd.toFixed(6) +\n    ' exceeds the configured $' +\n    config.max_estimated_cost_usd.toFixed(2) + ' safety limit.',\n  );\n}\n\nreturn [{\n  json: {\n    config,\n    search_items: searchItems,\n    has_pending_items: searchItems.length > 0,\n    item_count: searchItems.length,\n    estimated_tokens: estimatedTokens,\n    estimated_cost_usd: Number(estimatedCostUsd.toFixed(8)),\n    embedding_request: {\n      model: config.embedding_model,\n      input: searchItems.map((item) => item.content),\n      dimensions: config.embedding_dimensions,\n      encoding_format: 'float',\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        300,
+        40
+      ],
+      "id": "b548b676-1c5c-a45d-e731-de9636e6e646",
+      "name": "Prepare Embedding Batch"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "440d165d-7fb0-c641-3509-4d9b8e7f57a5",
+              "leftValue": "={{ $json.has_pending_items }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        540,
+        40
+      ],
+      "id": "6466c7c2-4548-1ab8-dd24-3fd3f09a8352",
+      "name": "Pending Items Found"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/embeddings",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.embedding_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        800,
+        -80
+      ],
+      "id": "afcc4ae7-be72-3770-e578-4692349f90d1",
+      "name": "OpenAI Search Embeddings",
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst batch = $('Prepare Embedding Batch').first().json;\nconst vectors = Array.isArray(response.data)\n  ? [...response.data].sort((a, b) => a.index - b.index)\n  : [];\n\nif (vectors.length !== batch.search_items.length) {\n  throw new Error(\n    'OpenAI returned ' + vectors.length + ' embeddings for ' +\n    batch.search_items.length + ' search items.',\n  );\n}\n\nconst embeddedItems = batch.search_items.map((item, index) => {\n  const vector = vectors[index]?.embedding;\n  if (!Array.isArray(vector) ||\n      vector.length !== batch.config.embedding_dimensions ||\n      vector.some((value) => !Number.isFinite(value))) {\n    throw new Error(\n      'Embedding ' + index + ' is not a valid ' +\n      batch.config.embedding_dimensions + '-dimension vector.',\n    );\n  }\n\n  return {\n    question_id: item.question_id,\n    question_part_id: item.question_part_id || null,\n    ingestion_run_id: item.ingestion_run_id,\n    content: item.content,\n    embedding: vector,\n  };\n});\n\nconst actualTokens = Number(\n  response.usage?.total_tokens ?? response.usage?.prompt_tokens ?? 0,\n);\nconst actualCostUsd =\n  actualTokens / 1_000_000 *\n  batch.config.price_per_million_tokens_usd;\n\nreturn [{\n  json: {\n    config: batch.config,\n    item_count: embeddedItems.length,\n    estimated_tokens: batch.estimated_tokens,\n    estimated_cost_usd: batch.estimated_cost_usd,\n    actual_tokens: actualTokens,\n    actual_cost_usd: Number(actualCostUsd.toFixed(8)),\n    embedded_items: embeddedItems,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        -80
+      ],
+      "id": "3777143f-d301-26ae-872a-c3d9840588ea",
+      "name": "Validate Embedding Response"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_store_question_embeddings' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ ({ requested_model: $json.config.embedding_model, embedded_items: $json.embedded_items }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1280,
+        -80
+      ],
+      "id": "c5feff5a-8b18-7701-2a83-84effe346f52",
+      "name": "Save Search Embeddings",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const saved = $input.first().json;\nconst prepared = $('Validate Embedding Response').first().json;\n\nreturn [{\n  json: {\n    success: true,\n    message: 'Published questions were indexed successfully.',\n    item_count: prepared.item_count,\n    embedding_model: prepared.config.embedding_model,\n    embedding_dimensions: prepared.config.embedding_dimensions,\n    actual_tokens: prepared.actual_tokens,\n    actual_cost_usd: prepared.actual_cost_usd,\n    estimated_cost_usd: prepared.estimated_cost_usd,\n    database_result: saved,\n    next_step:\n      'Run database/shamo_v2_search_verification.sql section by section.',\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        -80
+      ],
+      "id": "e3cd3752-33d1-3977-aeb5-7bc322496468",
+      "name": "Search Indexing Result"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{\n  json: {\n    success: true,\n    message: 'No published search items are waiting for embeddings.',\n    item_count: 0,\n    actual_cost_usd: 0,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        160
+      ],
+      "id": "1518515a-c478-0a08-3c79-f07e657f42df",
+      "name": "Nothing to Index"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Index Published Questions Manually": {
+      "main": [
+        [
+          {
+            "node": "Search Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Configuration": {
+      "main": [
+        [
+          {
+            "node": "Load Pending Search Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Pending Search Items": {
+      "main": [
+        [
+          {
+            "node": "Prepare Embedding Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Embedding Batch": {
+      "main": [
+        [
+          {
+            "node": "Pending Items Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pending Items Found": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Search Embeddings",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Nothing to Index",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Search Embeddings": {
+      "main": [
+        [
+          {
+            "node": "Validate Embedding Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Embedding Response": {
+      "main": [
+        [
+          {
+            "node": "Save Search Embeddings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Search Embeddings": {
+      "main": [
+        [
+          {
+            "node": "Search Indexing Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
+  },
+  "versionId": "d1cf7d77-3568-f31a-f31b-8deb42d0e9e1",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

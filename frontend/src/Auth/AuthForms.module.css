@@ -1,0 +1,152 @@
+.Form {
+    display: grid;
+    gap: 18px;
+}
+
+.FieldGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.Field {
+    display: grid;
+    gap: 8px;
+    color: #d5dae5;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.Field input {
+    width: 100%;
+    min-height: 3.2rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #f5f7fb;
+    padding: 0 18px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.Field input::placeholder {
+    color: #7e8596;
+}
+
+.Field input:focus {
+    outline: none;
+    border-color: rgba(139, 164, 249, 0.42);
+    box-shadow: 0 0 0 3px rgba(139, 164, 249, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.Error,
+.Notice {
+    border-radius: 16px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.Error {
+    border: 1px solid rgba(255, 114, 114, 0.28);
+    background: rgba(255, 114, 114, 0.08);
+    color: #ffc6c6;
+}
+
+.Notice {
+    border: 1px solid rgba(139, 164, 249, 0.25);
+    background: rgba(139, 164, 249, 0.08);
+    color: #dbe4ff;
+}
+
+.SubmitButton,
+.GoogleButton {
+    min-height: 3.15rem;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.SubmitButton:disabled,
+.GoogleButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.62;
+    transform: none;
+}
+
+.SubmitButton {
+    background: linear-gradient(180deg, #f8f8f8, #e8e8e8);
+    color: #121212;
+    box-shadow: 0 16px 28px rgba(255, 255, 255, 0.14);
+}
+
+.GoogleButton {
+    background: rgba(255, 255, 255, 0.04);
+    color: #f2f4f8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.SubmitButton:hover,
+.SubmitButton:focus,
+.GoogleButton:hover,
+.GoogleButton:focus {
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.GoogleButton:hover,
+.GoogleButton:focus {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(139, 164, 249, 0.3);
+}
+
+.Divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #7f8697;
+    font-size: 0.86rem;
+}
+
+.Divider::before,
+.Divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.GoogleIcon {
+    width: 1.55rem;
+    height: 1.55rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    color: #8ba4f9;
+    font-weight: 700;
+}
+
+@media (max-width: 640px) {
+    .Form {
+        gap: 14px;
+    }
+
+    .Field {
+        font-size: 0.86rem;
+    }
+
+    .Field input,
+    .SubmitButton,
+    .GoogleButton {
+        min-height: 2.9rem;
+        border-radius: 16px;
+    }
+}

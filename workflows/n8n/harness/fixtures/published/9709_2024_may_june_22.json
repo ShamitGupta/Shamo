@@ -1,0 +1,1067 @@
+{
+  "paper_key": "9709_2024_may_june_22",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "may_june",
+    "paper_variant": "22",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "1dcb0f86-1396-464d-857e-a131f31fa6a9",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_22.pdf",
+      "page_count": 16,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_22.pdf",
+      "page_count": 12,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "Solve the inequality \\(|5x + 7| > |2x - 3|\\).",
+      "total_marks": 4,
+      "source_page_numbers": [
+        2
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Solve $$5x + 7 = 2x - 3$$ to obtain $$-\\frac{10}{3}$$",
+          "guidance_markdown": "Or inequality.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Attempt solution of linear equation where $$5x$$ and $$2x$$ have different signs",
+          "guidance_markdown": "Or inequality.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$-\\frac{4}{7}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "State $$x < -\\frac{10}{3}, x > -\\frac{4}{7}$$",
+          "guidance_markdown": "A0 if ‘... and ...’ used.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "State or imply non-modulus equation $$(5x + 7)^2 = (2x - 3)^2$$",
+          "guidance_markdown": "Or inequality.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "Attempt solution of three-term quadratic equation",
+          "guidance_markdown": "Or inequality.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$-\\frac{10}{3}$$ and $$-\\frac{4}{7}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "State $$x < -\\frac{10}{3}, x > -\\frac{4}{7}$$",
+          "guidance_markdown": "A0 if ‘... and ...’ used.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Inequalities",
+          "Absolute value"
+        ],
+        "skills": [
+          "Rewrite inequalities involving absolute values using casework",
+          "Solve resulting linear inequalities"
+        ],
+        "methods": [
+          "Split into cases based on the signs of linear expressions inside absolute values",
+          "Solve and combine solutions"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 2,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.93,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "Use logarithms to solve the equation \\(6^{2x-1} = 5e^{3x+2}\\). Give your answer correct to 4 significant figures.",
+      "total_marks": 4,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$(2x - 1)\\ln 6$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "*M1",
+          "content_markdown": "$$\\ln 5 + 3x + 2$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt solution of linear equation",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain 9.256",
+          "guidance_markdown": "Or greater accuracy.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Exponential equations",
+          "Logarithms"
+        ],
+        "skills": [
+          "Take logarithms to solve an exponential equation",
+          "Solve for the unknown variable",
+          "Round to a specified significant figure accuracy"
+        ],
+        "methods": [
+          "Apply logarithms to both sides and simplify to a linear equation in x",
+          "Solve and evaluate numerically to 4 significant figures"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "The diagram shows the curve with equation \\(y = 8e^{-x} - e^{2x}\\). The curve crosses the \\(y\\)-axis at the point \\(A\\) and the \\(x\\)-axis at the point \\(B\\). The shaded region is bounded by the curve and the two axes.",
+      "total_marks": 8,
+      "source_page_numbers": [
+        4,
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the gradient of the curve at \\(A\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Show that the \\(x\\)-coordinate of \\(B\\) is \\(\\ln 2\\) and hence find the area of the shaded region.",
+          "marks": 5,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Differentiate to obtain form $k_1 e^{-x} + k_2 e^{2x}$",
+          "guidance_markdown": "Where $k_1 k_2 \\neq 0$, $k_1 \\neq 8$ **and** $k_2 \\neq -1$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $-8e^{-x} - 2e^{2x}$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Substitute $x = 0$ to obtain $-10$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "Attempt to find $x$-coordinate of $B$",
+          "guidance_markdown": "$8e^{-x} - e^{2x} = 0$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $e^{3x} = 8$ and hence $x = \\ln 2$",
+          "guidance_markdown": "AG so necessary detail needed. A0 if decimals used.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "Integrate to obtain $-8e^{-x} - \\frac{1}{2}e^{2x}$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Use limits 0 and $\\ln 2$ correctly to find area",
+          "guidance_markdown": "For integral of form $k_3 e^{-x} + k_4 e^{2x}$ where $k_3 k_4 \\neq 0$. $k_1 \\neq 8$ **and** $k_2 \\neq -1$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\frac{5}{2}$",
+          "guidance_markdown": "OE",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 4,
+          "source_image_index": 0,
+          "asset_type": "coordinate_grid",
+          "storage_path": "a_level/9709/2024/may_june/22/question_paper/q3/page-4-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Differentiation",
+          "Exponential functions",
+          "Integration and areas between curves"
+        ],
+        "skills": [
+          "Differentiate the given function",
+          "Evaluate the gradient at a specified x-value",
+          "Find intercept(s) with the axes",
+          "Integrate to find area of a region bounded by curves and axes"
+        ],
+        "methods": [
+          "Differentiate y = 8e^{-x} - e^{2x}",
+          "Use x-intercept condition to solve for x and hence set integration limits",
+          "Integrate the function over the required interval to obtain the area"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.86,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "A curve is defined by the parametric equations\n\n\\[\nx = 4\\cos^2 t, \\qquad y = \\sqrt{3}\\sin 2t,\n\\]\n\nfor values of \\(t\\) such that \\(0 < t < \\frac{1}{2}\\pi\\).\n\nFind the equation of the normal to the curve at the point for which \\(t = \\frac{1}{6}\\pi\\). Give your answer in the form \\(ax + by + c = 0\\) where \\(a\\), \\(b\\) and \\(c\\) are integers.",
+      "total_marks": 7,
+      "source_page_numbers": [
+        6
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Obtain forms $$\\frac{dx}{dt} = k_1 \\cos t \\sin t$$ or $$\\frac{dy}{dt} = k_2 \\cos 2t$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct $$-8 \\cos t \\sin t$$ or $$-4 \\sin 2t$$ and $$2\\sqrt{3} \\cos 2t$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "*DM1",
+          "content_markdown": "Attempt value of $$\\frac{dy}{dx}$$ when $$t = \\frac{1}{6}\\pi$$",
+          "guidance_markdown": "Need to see attempt at substitution.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{dy}{dx} = -\\frac{1}{2}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1 FT",
+          "content_markdown": "State or imply gradient of normal is 2",
+          "guidance_markdown": "Following *their* value of the first derivative.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt equation of normal",
+          "guidance_markdown": "Not tangent and with attempt to find coordinates $$\\left(3, \\frac{3}{2}\\right)$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$4x - 2y - 9 = 0$$",
+          "guidance_markdown": "Or equivalent of requested form.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Parametric curves",
+          "Differentiation",
+          "Normal to a curve"
+        ],
+        "skills": [
+          "Find dy/dx from parametric equations",
+          "Determine the gradient of the normal at a given parameter value",
+          "Form the normal line equation in standard linear form"
+        ],
+        "methods": [
+          "Compute dx/dt and dy/dt, then use dy/dx = (dy/dt)/(dx/dt)",
+          "Use perpendicular gradients to obtain the normal direction",
+          "Substitute the point coordinates for the given t and form ax + by + c = 0"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "The polynomial \\(p(x)\\) is defined by \\(p(x) = 9x^3 + 18x^2 + 5x + 4\\).",
+      "total_marks": 8,
+      "source_page_numbers": [
+        8,
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the quotient when \\(p(x)\\) is divided by \\((3x + 2)\\), and show that the remainder is 6.",
+          "marks": 3,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the value of \\(\\int_0^2 \\frac{p(x)}{3x+2}\\,dx\\), giving your answer in the form \\(a + \\ln b\\) where \\(a\\) and \\(b\\) are integers.",
+          "marks": 5,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Carry out division at least as far as $$3x^2 + k_1x$$",
+          "guidance_markdown": "Or equivalent (inspection, ...).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain quotient $$3x^2 + 4x - 1$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Confirm remainder is 6\n**SC B1** for use of the factor theorem to show remainder is 6 if no other marks are awarded.",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "Synthetic division",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain quotient $$3x^2 + 4x - 1$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Confirm remainder is 6",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1 FT",
+          "content_markdown": "Identify integrand as $$3x^2 + 4x - 1 + \\frac{6}{3x + 2}$$",
+          "guidance_markdown": "Following *their* quotient.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "*M1",
+          "content_markdown": "Integrate to obtain at least $$x^3$$ and $$k_2 \\ln(3x + 2)$$ terms",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$x^3 + 2x^2 - x + 2 \\ln(3x + 2)$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "DM1",
+          "content_markdown": "Apply limits and appropriate logarithm properties",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$14 + \\ln 16$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Polynomial division",
+          "Integrals involving rational functions",
+          "Logarithms from integration"
+        ],
+        "skills": [
+          "Divide a polynomial by a linear factor and identify the remainder theorem result",
+          "Use the division result to simplify an integrand",
+          "Integrate the simplified expression over a given interval",
+          "Express the answer in the required a + ln b form"
+        ],
+        "methods": [
+          "Carry out polynomial long division by (3x + 2)",
+          "Rewrite p(x)/(3x+2) as a polynomial plus a simple rational term",
+          "Integrate term-by-term, using log forms for integrals of 1/(linear) type"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.7,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "The diagram shows the curve with equation \\(y = \\frac{\\ln(2x+1)}{x+3}\\). The curve has a maximum point \\(M\\).",
+      "total_marks": 9,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find an expression for \\(\\frac{dy}{dx}\\).",
+          "marks": 2,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Show that the \\(x\\)-coordinate of \\(M\\) satisfies the equation \\(x = \\frac{x+3}{\\ln(2x+1)} - 0.5\\).",
+          "marks": 2,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Show by calculation that the \\(x\\)-coordinate of \\(M\\) lies between 2.5 and 3.0.",
+          "marks": 2,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "label_path": [
+            "d"
+          ],
+          "prompt_markdown": "Use an iterative formula based on the equation in part (b) to find the \\(x\\)-coordinate of \\(M\\) correct to 4 significant figures. Give the result of each iteration to 6 significant figures.",
+          "marks": 3,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Attempt use of quotient rule",
+          "guidance_markdown": "Or equivalent method.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{(x+3)\\frac{2}{2x+1} - \\ln(2x+1)}{(x+3)^2}$$",
+          "guidance_markdown": "OE",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Equate first derivative to zero and arrange as far as $$2x+1=\\dots$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Confirm $$x = \\frac{x+3}{\\ln(2x+1)} - 0.5$$",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Consider sign of $$x - \\frac{x+3}{\\ln(2x+1)} + 0.5$$ or equivalent for 2.5 and 3.0",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$-0.07 (0.0696\\dots)$$ and $$0.4 (0.4166\\dots)$$ and justify conclusion",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Consider the values of $$f(x) = \\frac{x+3}{\\ln(2x+1)} - 0.5$$ and obtain $$f(2.5) = 2.57 (2.5696\\dots)$$ and $$f(3) = 2.58 (2.58339\\dots)$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Conclude $$f(2.5) < 3$$ **and** $$f(3) > 2.5$$ so root lies in given interval",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "M1",
+          "content_markdown": "Use iterative process correctly at least once",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "Obtain final answer 2.569",
+          "guidance_markdown": "Answer required to exactly 4sf.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "A1",
+          "content_markdown": "Show sufficient iterations to 6 sf to justify answer or show sign change in interval [2.5685, 2.5695]",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 10,
+          "source_image_index": 0,
+          "asset_type": "coordinate_grid",
+          "storage_path": "a_level/9709/2024/may_june/22/question_paper/q6/page-10-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Numerical Methods",
+        "subtopics": [
+          "Numerical iteration",
+          "Optimisation via stationary points"
+        ],
+        "skills": [
+          "Differentiate the given function to obtain a condition for the maximum",
+          "Rearrange into a fixed-point (iterative) equation",
+          "Implement an iteration scheme starting from a given initial bracket",
+          "Stop at the specified accuracy and report intermediate iteration values"
+        ],
+        "methods": [
+          "Compute dy/dx and use dy/dx = 0 to derive an equation for the stationary x-coordinate",
+          "Convert the equation into an iterative form x_{n+1} = f(x_n)",
+          "Iterate to obtain x to 4 significant figures"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 5,
+        "calculator_required": true,
+        "diagram_required": true,
+        "classification_confidence": 0.7,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "",
+      "total_marks": 10,
+      "source_page_numbers": [
+        12,
+        13
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Prove that \\(2\\sin\\theta\\,\\cosec 2\\theta \\equiv \\sec\\theta\\).",
+          "marks": 2,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Solve the equation \\(\\tan^2\\theta + 7\\sin\\theta\\,\\cosec 2\\theta = 8\\) for \\(-\\pi < \\theta < \\pi\\).",
+          "marks": 5,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Find \\(\\int 8\\sin^2 \\frac{1}{2} x\\,\\cosec^2 x\\,dx\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Express left-hand side in terms of $$\\sin \\theta$$ and $$\\cos \\theta$$ using $$\\csc 2\\theta = \\frac{1}{\\sin 2\\theta}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{1}{\\cos \\theta}$$ and confirm $$\\sec \\theta$$",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt to obtain quadratic equation in $$\\sec \\theta$$ or $$\\cos \\theta$$ only",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\sec^2 \\theta - 1 + \\frac{7}{2} \\sec \\theta = 8$$ involving one trigonometric ratio",
+          "guidance_markdown": "Or equivalent, may be unsimplified, but reduce to $$2 \\sec^2 \\theta + 7 \\sec \\theta - 18 = 0$$ $$18 \\cos^2 \\theta - 7 \\cos \\theta - 2 = 0$$ .",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt to solve 3-term quadratic equation for $$\\sec \\theta$$, using a correct method, to find at least one value of $$\\theta$$",
+          "guidance_markdown": "Or equivalent using $$\\cos \\theta$$ .",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain any two of the four correct solutions $$\\pm 0.952$$, $$\\pm 1.76$$",
+          "guidance_markdown": "Or greater accuracy.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain remaining two correct solutions",
+          "guidance_markdown": "Or greater accuracy; and no others between $$-\\pi$$ and $$\\pi$$ .",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1",
+          "content_markdown": "Identify integrand as $$2 \\sec^2 \\frac{1}{2} x$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "M1",
+          "content_markdown": "Integrate $$k \\sec^2 \\frac{1}{2} x$$ to obtain $$2k \\tan \\frac{1}{2} x$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct $$4 \\tan \\frac{1}{2} x$$",
+          "guidance_markdown": "Condone omission of $$\\dots + c$$ .",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Trigonometry",
+        "subtopics": [
+          "Trigonometric identities",
+          "Trigonometric equations",
+          "Trigonometric integration"
+        ],
+        "skills": [
+          "Prove a trigonometric identity using standard relations",
+          "Solve a trigonometric equation over a specified interval",
+          "Use trigonometric identities to simplify an integrand before integrating"
+        ],
+        "methods": [
+          "Transform expressions using reciprocal identities (sec, csc) and Pythagorean identities",
+          "Convert to an equation in a single trig function and solve within the given range",
+          "Rewrite sin^2(½x) and use cosec^2 x to simplify before integration"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.85,
+        "review_status": "pending"
+      }
+    }
+  ]
+}

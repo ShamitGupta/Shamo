@@ -1,0 +1,379 @@
+{
+  "name": "Shamo Budget v1 - Approve Reviewed Paper and Metadata",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Human approval remains mandatory\nOpen the official question paper and mark scheme, review the staged extraction and topic labels, and resolve every blocking issue. Run this once for one approved ingestion run.",
+        "height": 300,
+        "width": 520,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -480
+      ],
+      "id": "5941e8a6-0ecf-228b-b6a1-946083d5b124",
+      "name": "Manual publication only"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        0
+      ],
+      "id": "dbc5b9af-d1eb-b182-f6f4-181b728932f9",
+      "name": "Approve One Reviewed Paper"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const config = {\n  supabase_url: 'https://YOUR_PROJECT_REF.supabase.co',\n  ingestion_run_id: 'PASTE_REVIEWED_INGESTION_RUN_ID_HERE',\n};\nif (config.supabase_url.includes('YOUR_PROJECT_REF')) {\n  throw new Error('Replace YOUR_PROJECT_REF before publishing.');\n}\nif (config.ingestion_run_id.includes('PASTE_')) {\n  throw new Error('Paste one reviewed ingestion_run_id before publishing.');\n}\nreturn [{ json: config }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        0
+      ],
+      "id": "4e9f86b0-1eb9-cf0e-c5c1-bbed6f7e46e2",
+      "name": "Publish Configuration"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.supabase_url + '/rest/v1/shamo_ingestion_runs?id=eq.' + $json.ingestion_run_id + '&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "8e04f670-a20a-863e-076a-08adea670add",
+      "name": "Load Reviewed Ingestion Run",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst run = Array.isArray(response) ? response[0] : response;\nif (!run?.id) throw new Error('Ingestion run was not found.');\nif (run.status !== 'awaiting_review' || run.review_status !== 'pending') {\n  throw new Error('Run must be awaiting_review/pending, but is ' + run.status + '/' + run.review_status + '.');\n}\nif (run.validation_report?.passed !== true) {\n  throw new Error('Deterministic validation did not pass.');\n}\nif (run.extraction_summary?.manual_review_required !== true) {\n  throw new Error('This is not a guarded bulk-ingestion run.');\n}\nif (!run.extraction_summary?.paper_bundle) {\n  throw new Error('The staged paper bundle is missing.');\n}\nreturn [{\n  json: {\n    config: $('Publish Configuration').first().json,\n    run,\n    paper_bundle: run.extraction_summary.paper_bundle,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        40,
+        0
+      ],
+      "id": "f821c102-30d6-bd37-3dfd-847d5382f010",
+      "name": "Inspect Reviewed Run"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_issues?ingestion_run_id=eq.' + $json.run.id + '&severity=eq.blocking&resolved=eq.false&select=id,issue_code,message' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        280,
+        0
+      ],
+      "id": "1a1eee56-2808-3bc2-50fb-4b580090aad8",
+      "name": "Load Open Blocking Issues",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst issues = Array.isArray(response) ? response : [];\nconst state = $('Inspect Reviewed Run').first().json;\nif (issues.length) {\n  throw new Error('Resolve all blocking issues before publishing: ' + JSON.stringify(issues));\n}\nreturn [{ json: state }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        0
+      ],
+      "id": "de1cac50-66e9-8cb3-3a41-869917d9c905",
+      "name": "Check Open Blocking Issues"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/rpc/shamo_publish_paper_bundle_with_metadata' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ ({ requested_ingestion_run_id: $json.run.id, paper_bundle: $json.paper_bundle }) }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        760,
+        0
+      ],
+      "id": "89d9af3a-84d8-e83e-da02-5ee9b15754cc",
+      "name": "Publish Reviewed Paper and Metadata Atomically",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const publication = $input.first().json;\nconst state = $('Check Open Blocking Issues').first().json;\nreturn [{\n  json: {\n    publication,\n    ingestion_run_id: state.run.id,\n    config: state.config,\n    cleanup_body: {\n      extraction_summary: {\n        ready_for_approval: true,\n        manual_review_required: true,\n        published: true,\n        published_at: new Date().toISOString(),\n        publication_result: publication,\n        metadata_result: publication.metadata_result || null,\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        0
+      ],
+      "id": "635b108b-926b-843c-45c2-d31e209a1f6d",
+      "name": "Prepare Staging Cleanup"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_runs?id=eq.' + $json.ingestion_run_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "return=minimal"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.cleanup_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1240,
+        0
+      ],
+      "id": "256cf85b-5ec0-a593-3971-5643fa153bb7",
+      "name": "Clear Temporary Staged Bundle",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $('Prepare Staging Cleanup').first().json;\nreturn [{\n  json: {\n    success: true,\n    message: 'Reviewed paper and its mathematical metadata were published.',\n    ingestion_run_id: state.ingestion_run_id,\n    publication: state.publication,\n    metadata: state.publication.metadata_result || null,\n    next_step: 'Inspect shamo_published_question_overview and shamo_question_metadata_review before generating embeddings.',\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        0
+      ],
+      "id": "dd7de482-7611-1518-b0eb-68f9182578cd",
+      "name": "Reviewed Publication Result"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Approve One Reviewed Paper": {
+      "main": [
+        [
+          {
+            "node": "Publish Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish Configuration": {
+      "main": [
+        [
+          {
+            "node": "Load Reviewed Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Reviewed Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Inspect Reviewed Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inspect Reviewed Run": {
+      "main": [
+        [
+          {
+            "node": "Load Open Blocking Issues",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Open Blocking Issues": {
+      "main": [
+        [
+          {
+            "node": "Check Open Blocking Issues",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Open Blocking Issues": {
+      "main": [
+        [
+          {
+            "node": "Publish Reviewed Paper and Metadata Atomically",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish Reviewed Paper and Metadata Atomically": {
+      "main": [
+        [
+          {
+            "node": "Prepare Staging Cleanup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Staging Cleanup": {
+      "main": [
+        [
+          {
+            "node": "Clear Temporary Staged Bundle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clear Temporary Staged Bundle": {
+      "main": [
+        [
+          {
+            "node": "Reviewed Publication Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
+  },
+  "versionId": "13ea3fa8-453a-e21f-19b0-cb3eaafb2f5a",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

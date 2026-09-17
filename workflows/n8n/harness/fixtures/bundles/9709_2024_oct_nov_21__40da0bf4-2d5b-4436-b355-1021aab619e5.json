@@ -1,0 +1,1427 @@
+{
+  "paper_key": "9709_2024_oct_nov_21",
+  "ingestion_run_id": "40da0bf4-2d5b-4436-b355-1021aab619e5",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-05:a_level:9709:2024:oct_nov:21",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 1
+      },
+      {
+        "message": "The question text refers to a diagram or graph but no asset was captured.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "TEXT_MENTIONS_DIAGRAM_WITHOUT_ASSET",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 1
+      }
+    ],
+    "passed": true,
+    "warning_count": 2,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": null
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 14,
+      "assets": 0,
+      "issues": 2,
+      "questions": 7,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.01587652
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 12591,
+              "total_tokens": 15389,
+              "output_tokens": 2798,
+              "input_tokens_details": {
+                "cached_tokens": 12032,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 1548
+              }
+            },
+            "response_id": "resp_00e3a1c8aa328f61016a79a0d64e8c819a9e3a3220cb9134ae",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 12591,
+            "priced_output_tokens": 2798,
+            "reported_total_tokens": 15389
+          },
+          "input_tokens": 12591,
+          "output_tokens": 2798,
+          "actual_cost_usd": 0.01391265,
+          "cached_input_tokens": 12032
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 5484,
+              "total_tokens": 5751,
+              "output_tokens": 267,
+              "input_tokens_details": {
+                "cached_tokens": 4864,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 151
+              }
+            },
+            "response_id": "resp_0562f88388c51ac6016a79a108f5ec819a92aca03c745d0d5f",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 5484,
+            "priced_output_tokens": 267,
+            "reported_total_tokens": 5751
+          },
+          "input_tokens": 5484,
+          "output_tokens": 267,
+          "actual_cost_usd": 0.00055503,
+          "cached_input_tokens": 4864
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2057,
+              "total_tokens": 3113,
+              "output_tokens": 1056,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 241
+              }
+            },
+            "response_id": "resp_0fd42d375383867e016a79a144f7748199b78adf9bfccb99a6",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2057,
+            "priced_output_tokens": 1056,
+            "reported_total_tokens": 3113
+          },
+          "input_tokens": 2057,
+          "output_tokens": 1056,
+          "actual_cost_usd": 0.00140884,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "paid_calls": 3,
+      "input_tokens": 20132,
+      "output_tokens": 4121,
+      "actual_cost_usd": 0.01587652,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 18688
+    },
+    "staged_at": "2026-08-10T10:00:50.335Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_qp_21.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_ms_21.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use logarithms to show that the gradient of the straight line is $\\frac{3}{2\\ln a}$.",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Given that the straight line passes through the points $(0.4,0.95)$ and $(3.3,3.80)$, find the values of $a$ and $k$.",
+              "source_page_numbers": [
+                2
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Take logarithms to linearise an exponential relationship",
+              "Find gradient of a straight line",
+              "Use two points to determine constants in a linear model"
+            ],
+            "methods": [
+              "logarithmic transformation",
+              "coordinate geometry of a straight line"
+            ],
+            "subtopics": [
+              "Straight-line form via logarithms"
+            ],
+            "main_topic": "Exponential and Logarithmic Functions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.74
+          },
+          "total_marks": 5,
+          "stem_markdown": "The variables $x$ and $y$ satisfy the equation $a^{2y}=e^{3x+k}$, where $a$ and $k$ are constants.\nThe graph of $y$ against $x$ is a straight line.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "State or imply $$2y\\ln a = 3x + k$$ and conclude that gradient is $$\\frac{3}{2\\ln a}$$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Equate $$\\frac{3}{2\\ln a}$$ to gradient of line",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $$\\frac{3}{2\\ln a} = \\frac{2.85}{2.9}$$ or equivalent and hence obtain $$a = 4.6$$ or $$a = e^{\\frac{29}{19}}$$",
+              "guidance_markdown": "Allow greater accuracy.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Substitute appropriate values to find value of $$k$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$k = 1.7$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain $$0.95(2\\ln a) = 3(0.4) + k$$ or $$a^{1.9} = e^{1.2+k}$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain $$3.80(2\\ln a) = 3(3.3) + k$$ or $$a^{7.6} = e^{9.9+k}$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Obtain $$a = 4.6$$ or $$a = e^{\\frac{29}{19}}$$",
+              "guidance_markdown": "Allow greater accuracy.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "Obtain $$k = 1.7$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Solve an inequality involving |x-a|",
+              "Use cases or sign analysis to remove absolute value",
+              "Simplify and combine inequalities"
+            ],
+            "methods": [
+              "casework for absolute value",
+              "algebraic inequality solving"
+            ],
+            "subtopics": [
+              "Inequalities",
+              "Absolute value inequalities"
+            ],
+            "main_topic": "Algebra",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 4,
+          "stem_markdown": "Solve the inequality $|x-7|>4x+3$.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Attempt solution of equation or inequality, where signs of $x$ and $4x$ are different",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $\\backslash frac\\{4\\}\\{5\\}$ ...",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "... and finally no other value",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Conclude $x\\; <\\; \\backslash frac\\{4\\}\\{5\\}$",
+              "guidance_markdown": "Allow $\\backslash left(\\backslash text\\{-\\backslash c\\},\\; \\backslash frac\\{4\\}\\{5\\})$",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "State or imply non-modulus equation $(x-7)^2\\; =\\; (4x+3)^2$ or inequality",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Attempt solution of three-term quadratic equation or inequality",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain finally $\\backslash frac\\{4\\}\\{5\\}$ only",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Conclude $x\\; <\\; \\backslash frac\\{4\\}\\{5\\}$",
+              "guidance_markdown": "Allow $\\backslash left(\\backslash text\\{-\\backslash c\\},\\; \\backslash frac\\{4\\}\\{5\\})$",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the exact value of $f'\\!\\left(\\frac23\\pi\\right)$.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the exact value of $\\int_0^{\\frac12\\pi}\\bigl(f(x)+\\sin x\\bigr)\\,dx$.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Differentiate a composite trigonometric function",
+              "Evaluate a definite integral exactly",
+              "Use trigonometric identities/symmetry where appropriate"
+            ],
+            "methods": [
+              "chain rule",
+              "trigonometric integral evaluation"
+            ],
+            "subtopics": [
+              "Differentiation of trigonometric functions",
+              "Definite integrals involving trigonometric functions",
+              "Exact values"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 7,
+          "stem_markdown": "The function $f$ is defined by $f(x)=\\tan^2\\!\\left(\\frac12 x\\right)$ for $0\\le x<\\pi$.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Differentiate to obtain form $k\\; \\backslash tan\\; \\backslash frac\\{1\\}\\{2\\}\\; x\\; sec^2\\; \\backslash frac\\{1\\}\\{2\\}\\; x$",
+              "guidance_markdown": "OE. May use identities before differentiation.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain correct $\\backslash tan\\; \\backslash frac\\{1\\}\\{2\\}\\; x\\; sec^2\\; \\backslash frac\\{1\\}\\{2\\}\\; x$",
+              "guidance_markdown": "OE. Allow unsimplified.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Substitute $\\backslash frac\\{2\\}\\{3\\}\\; \\backslash pi$ to obtain $4\\backslash sqrt\\{3\\}$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Express integrand as $$\\sec^2 \\frac{1}{2}x - 1 + \\sin x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Integrate to obtain $$k_1 \\tan \\frac{1}{2}x - x + k_2 \\cos x$$",
+              "guidance_markdown": "Where $$k_1 k_2 \\neq 0$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain correct $$2 \\tan \\frac{1}{2}x - x - \\cos x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "Apply limits correctly to obtain $$3 - \\frac{1}{2}\\pi$$ or exact equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4,
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the value of $a$.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Hence factorise $p(x)$ completely.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Solve the equation $p(\\cosec^2\\theta)=0$ for $-90^\\circ<\\theta<90^\\circ$.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Find a constant by using a factor",
+              "Factorise a polynomial completely",
+              "Solve an equation after substituting csc^2 θ",
+              "Find θ in a given interval using trig identities"
+            ],
+            "methods": [
+              "factor theorem",
+              "algebraic factorisation",
+              "trigonometric substitution and solving"
+            ],
+            "subtopics": [
+              "Factor theorem",
+              "Polynomial factorisation",
+              "Solving equations under substitution",
+              "Trigonometric substitution (cosec^2 θ)"
+            ],
+            "main_topic": "Algebra",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 8,
+          "stem_markdown": "The polynomial $p(x)$ is defined by\n\n$p(x)=ax^3-ax^2-15x+18$,\n\nwhere $a$ is a constant. It is given that $(x+2)$ is a factor of $p(x)$.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Substitute $$x = -2$$, equate to zero and attempt solution",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$a = 4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Divide by $$x + 2$$ at least as far as $$k_1 x^2 + k_2 x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain $$4x^2 - 12x + 9$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$(x + 2)(2x - 3)^2$$ or equivalent with integer coefficients only",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Equate $$\\sin^2 \\theta$$ to appropriate value from factorised form and attempt solution",
+              "guidance_markdown": "Using *their* $$\\frac{2}{3}$$.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain 54.7",
+              "guidance_markdown": "Or greater accuracy.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "Obtain -54.7",
+              "guidance_markdown": "Or greater accuracy. No others in $$-90^\\circ < \\theta < 90^\\circ$$.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $a=\\sqrt[3]{0.5e^{1.4}(2a+1)-0.5}$.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Use an iterative formula, based on the equation in part (a), to find the value of $a$ correct to 3 significant figures. Use an initial value of 2 and give the result of each iteration to 5 significant figures.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Evaluate/transform an integral containing a parameter",
+              "Use algebra to obtain an equation relating the parameter",
+              "Derive and use an iterative formula",
+              "Perform iterations to achieve a specified precision"
+            ],
+            "methods": [
+              "definite integration",
+              "algebraic rearrangement",
+              "fixed-point iteration"
+            ],
+            "subtopics": [
+              "Integration",
+              "Transformation to an equation",
+              "Iterative numerical methods"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": true,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 8,
+          "stem_markdown": "It is given that $\\int_a^{a^3}\\frac{10}{2x+1}\\,dx=7$, where $a$ is a constant greater than 1.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Obtain integral of form $$k \\ln(2x + 1)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain correct $$5 \\ln(2x + 1)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Apply limits correctly and equate to 7",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Apply appropriate logarithm property to reach at least $$a^3 = ...$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Confirm $$a = \\sqrt[3]{0.5e^{1.4}(2a + 1) - 0.5}$$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Use iterative process correctly at least once",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain final answer 2.18",
+              "guidance_markdown": "Answer required to exactly 3 sf.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "Show sufficient iterations to 5 sf to justify answer or show a sign change in the interval [2.175, 2.185]",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find an expression for $\\dfrac{dy}{dx}$ in terms of $t$.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the exact gradient of the curve at the point where the curve crosses the $y$-axis.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Differentiate parametric equations to form dy/dx in terms of the parameter",
+              "Evaluate the gradient at a specific point on the curve",
+              "Identify the parameter value corresponding to the given x- or y-intercept"
+            ],
+            "methods": [
+              "dy/dx = (dy/dt)/(dx/dt)",
+              "parameter substitution"
+            ],
+            "subtopics": [
+              "Parametric differentiation",
+              "Gradients from parametric forms"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.88
+          },
+          "total_marks": 7,
+          "stem_markdown": "A curve has parametric equations\n\n$ x=\\dfrac{e^{2t}-2}{e^{2t}+1},\\quad y=e^{3t}+1.$",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Differentiate $x$ using quotient rule or correct equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $\\frac{(e^{2t}+1)2e^{2t}-(e^{2t}-2)2e^{2t}}{(e^{2t}+1)^2}$ or equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Attempt expression for $\\frac{dy}{dx}$ in terms of $t$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Obtain $\\frac{1}{2}e^t(e^{2t}+1)^2$ or (unsimplified) equivalent",
+              "guidance_markdown": "No fractions within fractions. Attempt to simplify $(e^{2t}+1)2e^{2t}-(e^{2t}-2)2e^{2t}$ must be seen.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Identify $t=\\frac{1}{2}\\ln 2$ at point where curve crosses $y$-axis",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Substitute non-zero value of $t$ in *their* expression for $\\frac{dy}{dx}$ and attempt simplification",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "Obtain $\\frac{9}{2}\\sqrt{2}$ or exact equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Prove that $\\cos(\\theta+30^\\circ)\\cos(\\theta+60^\\circ)\\equiv\\frac14\\sqrt{3}-\\frac12\\sin 2\\theta$.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Solve the equation $5\\cos(2\\alpha+30^\\circ)\\cos(2\\alpha+60^\\circ)=1$ for $0^\\circ<\\alpha<90^\\circ$.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Show that the exact value of $\\cos 20^\\circ\\cos 50^\\circ+\\cos 40^\\circ\\cos 70^\\circ$ is $\\frac12\\sqrt{3}$.",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Prove a trigonometric identity",
+              "Solve an equation involving products of cosines over a restricted interval",
+              "Show an expression of cosines equals an exact surd"
+            ],
+            "methods": [
+              "use trig identities (angle addition/product-to-sum)",
+              "algebraic manipulation",
+              "solve using transformed trigonometric forms"
+            ],
+            "subtopics": [
+              "Product-to-sum identities",
+              "Trigonometric equation solving",
+              "Exact trigonometric values"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "proof_or_show",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 11,
+          "stem_markdown": "",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "State $$(\\cos\\theta\\cos30 - \\sin\\theta\\sin30)(\\cos\\theta\\cos60 - \\sin\\theta\\sin60)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Expand and use correct exact values",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $$\\frac{1}{4}\\sqrt{3}(\\cos^2\\theta + \\sin^2\\theta) - \\sin\\theta\\cos\\theta$$ or similarly simplified equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Conclude $$\\frac{1}{4}\\sqrt{3} - \\frac{1}{2}\\sin2\\theta$$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "*M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Use identity to obtain value for $$\\sin4\\alpha$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain $$\\sin4\\alpha = \\frac{1}{2}\\sqrt{3} - \\frac{2}{3}$$ or 0.466...",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Show correct process to obtain one value of $$\\alpha$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "Obtain 6.9 and 38.1",
+              "guidance_markdown": "Or greater accuracy; and no others between 0° and 90°.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "Substitute $$\\theta = -10$$ to obtain $$\\cos 20\\cos 50 = \\frac{1}{4}\\sqrt{3} - \\frac{1}{2}\\sin(-20)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Substitute $$\\theta = 10$$ to obtain $$\\cos 40\\cos 70 = \\frac{\\sqrt{3}}{4} - \\frac{1}{2}\\sin 20$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 11,
+              "content_markdown": "Add and confirm $$\\frac{1}{2}\\sqrt{3}$$ with clear indication that $$\\sin(-20) = -\\sin 20$$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "Rewrite as $$\\sin 70\\cos 50 + \\sin 50\\cos 70$$ or $$\\cos 20\\sin 40 + \\cos 40\\sin 20$$ or $$\\sin 70\\sin 40 + \\cos 70\\cos 40$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "Obtain $$\\sin 120$$ or $$\\sin 60$$ or $$\\cos 30$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "Confirm $$\\frac{1}{2}\\sqrt{3}$$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_00e3a1c8aa328f61016a79a0d64e8c819a9e3a3220cb9134ae",
+      "resp_0562f88388c51ac6016a79a108f5ec819a92aca03c745d0d5f",
+      "resp_0fd42d375383867e016a79a144f7748199b78adf9bfccb99a6"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

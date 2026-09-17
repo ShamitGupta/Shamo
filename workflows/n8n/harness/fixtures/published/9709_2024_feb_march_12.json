@@ -1,0 +1,1427 @@
+{
+  "paper_key": "9709_2024_feb_march_12",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "feb_march",
+    "paper_variant": "12",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "414a7734-2afe-4bab-9896-02649106d027",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_qp_12.pdf",
+      "page_count": 16,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_ms_12.pdf",
+      "page_count": 14,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "Find the exact value of $$\\int_3^\\infty \\frac{2}{x^2}\\,dx$$.",
+      "total_marks": 3,
+      "source_page_numbers": [
+        2
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Integrate to obtain $-2x^{-1}$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Substitute limits correctly with clear indication seen that upper limit gives 0",
+          "guidance_markdown": "For integral of form $-k x^{-n}$, where $k > 0$, $n > 0$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\frac{2}{3}$",
+          "guidance_markdown": "WWW Accept 0.667.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Integration of rational functions",
+          "Improper integrals"
+        ],
+        "skills": [
+          "Identify an integrable power form",
+          "Evaluate an improper integral using limits"
+        ],
+        "methods": [
+          "Direct integration",
+          "Introduce a finite upper limit, evaluate the definite integral and take the limit as the upper bound approaches infinity"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 1,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "The diagram shows part of the curve with equation $y = k \\sin \\frac{1}{2}x$, where $k$ is a positive constant and $x$ is measured in radians. The curve has a minimum point $A$.",
+      "total_marks": 4,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "State the coordinates of $A$.",
+          "marks": 1,
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "A sequence of transformations is applied to the curve in the following order.\n\nTranslation of 2 units in the negative $y$-direction\n\nReflection in the $x$-axis\n\nFind the equation of the new curve and determine the coordinates of the point on the new curve corresponding to $A$.",
+          "marks": 3,
+          "source_page_numbers": [
+            3
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "State $(3\\pi, -k)$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Obtain equation of form $[y =]c \\pm k \\sin \\frac{1}{2}x$",
+          "guidance_markdown": "Any non-zero $c$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct equation $[y =]2 - k \\sin \\frac{1}{2}x$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1 FT",
+          "content_markdown": "State $(3\\pi, 2 + k)$",
+          "guidance_markdown": "Following part (a), i.e. (*their x*, 2 – *their y*).",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 3,
+          "source_image_index": 0,
+          "asset_type": "graph",
+          "storage_path": "a_level/9709/2024/feb_march/12/question_paper/q2/page-3-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Trigonometry",
+        "subtopics": [
+          "Graphs of sine functions",
+          "Transformations of trigonometric graphs"
+        ],
+        "skills": [
+          "Determine coordinates of turning points",
+          "Apply translation and reflection to a trig function",
+          "Find corresponding point after transformations"
+        ],
+        "methods": [
+          "Use properties of sine minima",
+          "Transform function equations step-by-step"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 2,
+        "calculator_required": false,
+        "diagram_required": true,
+        "classification_confidence": 0.8,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "A curve is such that $$\\frac{dy}{dx} = 3(4x + 5)^{\\frac{1}{2}}$$. It is given that the points $(1, 9)$ and $(5, a)$ lie on the curve.\n\nFind the value of $a$.",
+      "total_marks": 5,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Integrate to obtain form $$k(4x+5)^{\\frac{3}{2}}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct $$\\frac{1}{2}(4x+5)^{\\frac{3}{2}}$$",
+          "guidance_markdown": "Or (unsimplified) equivalent. Condone missing ... +c so far.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Substitute $$x=1$$, $$y=9$$ to form an equation in $$c$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain or imply $$[y=]\\frac{1}{2}(4x+5)^{\\frac{3}{2}}-\\frac{9}{2}$$",
+          "guidance_markdown": "May be implied by $$[a=]\\frac{1}{2}(4(1)+5)^{\\frac{3}{2}}-\\frac{9}{2}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Substitute $$x=5$$ to obtain $$a=58$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Integration from a derivative function",
+          "Recovering a curve equation from its gradient",
+          "Finding constants from given points"
+        ],
+        "skills": [
+          "Integrate to find the function",
+          "Use given points to solve for constants"
+        ],
+        "methods": [
+          "Integrate dy/dx",
+          "Substitute coordinates to find remaining parameters"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "",
+      "total_marks": 6,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Prove that $$\\frac{(\\sin \\theta + \\cos \\theta)^2 - 1}{\\cos^2 \\theta} \\equiv 2 \\tan \\theta$$.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Hence solve the equation $$\\frac{(\\sin \\theta + \\cos \\theta)^2 - 1}{\\cos^2 \\theta} = \\frac{5}{2}$$ for $-90^\\circ < \\theta < 90^\\circ$.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Expand bracket to obtain 3 terms and use correct identity",
+          "guidance_markdown": "$$\\theta$$ may be missing or another symbol used.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Use identity $$\\frac{\\sin \\theta}{\\cos \\theta} = \\tan \\theta$$",
+          "guidance_markdown": "Does not require any further explanation. $$\\theta$$ may be missing or another symbol used.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Conclude with $$2 \\tan \\theta$$",
+          "guidance_markdown": "WWW AG",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "Attempt solution of $$5\\tan^3\\theta = 2\\tan\\theta$$ to obtain at least one value of $$\\tan\\theta$$",
+          "guidance_markdown": "SOI Can be awarded if $$\\tan\\theta$$ is cancelled and ignored.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain at least two of $$0, \\pm 32.3$$",
+          "guidance_markdown": "Or greater accuracy. SC B1 if no method shown.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain all three values",
+          "guidance_markdown": "Or greater accuracy; and no others in $$-90^\\circ < \\theta < 90^\\circ$$ range. Other units SC B1 only for all 3 angles. SC B1 if no method shown.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Trigonometry",
+        "subtopics": [
+          "Trig identities",
+          "Solving trigonometric equations"
+        ],
+        "skills": [
+          "Prove and simplify a trigonometric identity",
+          "Rearrange to solve for tan(theta)",
+          "Apply domain restriction to find valid angles"
+        ],
+        "methods": [
+          "Expand the numerator and use sin^2(theta)+cos^2(theta)=1 to obtain 2tan(theta)",
+          "Use the identity to solve 5tan^3(theta)=2tan(theta), retaining tan(theta)=0 and tan^2(theta)=2/5 before applying the stated interval"
+        ],
+        "question_style": "proof_or_show",
+        "difficulty_level": 4,
+        "calculator_required": true,
+        "diagram_required": false,
+        "classification_confidence": 0.74,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "A curve has the equation $y = \\frac{3}{2x^2 - 5}$.\n\nFind the equation of the normal to the curve at the point $(2, 1)$, giving your answer in the form $ax + by + c = 0$, where $a$, $b$ and $c$ are integers.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        6
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Differentiate to obtain form $$kx(2x^2 - 5)^{-2}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct $$-12x(2x^2 - 5)^{-2}$$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Substitute $$(2, 1)$$ to obtain gradient $$-\\frac{24}{9}$$",
+          "guidance_markdown": "OE e.g. $$-\\frac{8}{3}$$. Allow $$-2.67$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "*M1",
+          "content_markdown": "Apply negative reciprocal to *their* numerical gradient to obtain gradient of normal",
+          "guidance_markdown": "Must have been some attempt at differentiation. Expect $$\\frac{3}{8}$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt equation of normal using *their* gradient of the normal and $$(2, 1)$$",
+          "guidance_markdown": "Expect $$y - 1 = \\frac{3}{8}(x - 2)$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$3x - 8y + 2 = 0$$ (allow multiples)",
+          "guidance_markdown": "Or equivalent of requested form e.g. $$8y - 3x - 2 = 0$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Differentiation",
+          "Normals to curves",
+          "Equations of lines"
+        ],
+        "skills": [
+          "Differentiate to find gradient at a point",
+          "Use negative reciprocal for normal gradient",
+          "Form line equation in ax+by+c=0 form"
+        ],
+        "methods": [
+          "Differentiate rational function",
+          "Compute normal gradient",
+          "Use point-slope/standard form conversion"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.86,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "It is given that the coefficient of $x^3$ in the expansion of\n\n$$(2 + ax)^4(5 - ax)$$\n\nis 432.\n\nFind the value of the constant $a$.",
+      "total_marks": 5,
+      "source_page_numbers": [
+        7
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1 B1",
+          "content_markdown": "$$\\binom{4}{2}2^2(ax)^2,\\ \\binom{4}{3}2^1(ax)^3$$",
+          "guidance_markdown": "OE Expect $$24a^2x^2,\\ 8a^3x^3$$ (may be seen in an expansion).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "*M1",
+          "content_markdown": "Multiply terms involving $$x^2$$ and $$x^3$$ by $$5-ax$$ to obtain the $$x^3$$ term.",
+          "guidance_markdown": "Must find two products only (may be seen in an expansion).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Equate coefficient of $$x^3$$ to $$432$$ and solve for $$a$$.",
+          "guidance_markdown": "Ignore inclusion of $$x^3$$ at this stage.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$a=3$$ only",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Series",
+        "subtopics": [
+          "Binomial expansion",
+          "Coefficient comparison"
+        ],
+        "skills": [
+          "Expand using binomial theorem selectively",
+          "Identify coefficient of a specific power of x",
+          "Set up and solve an equation for a constant"
+        ],
+        "methods": [
+          "Binomial expansion for (2+ax)^4 and (5-ax)",
+          "Coefficient extraction and comparison"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.82,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "The straight line $y = x + 5$ meets the curve $2x^2 + 3y^2 = k$ at a single point $P$.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        8
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the value of the constant $k$.",
+          "marks": 4,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the coordinates of $P$.",
+          "marks": 2,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt substitution for y in quadratic equation (or substitution for x).",
+          "guidance_markdown": "Or substitution for $$x$$ ...",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$5x^2 + 30x + 75 - k[=0]$$ or $$5y^2 - 20y + 50 - k[=0]$$.",
+          "guidance_markdown": "OE e.g. $$x^2 + 6x + 15 - \\frac{k}{5}$$ (all terms gathered together).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Use $$b^2 - 4ac = 0$$ with *their* $$a$$, $$b$$ and $$c$$.",
+          "guidance_markdown": "‘=0’ may be implied in subsequent working or the answer.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$900 - 20(75 - k) = 0$$ or equivalent and hence $$k = 30$$.",
+          "guidance_markdown": "... obtaining $$400 - 20(50 - k) = 0$$ and $$k = 30$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Substitute *their* value of $$k$$ in equation from part (a) and attempt solution.",
+          "guidance_markdown": "Expect $$5x^2 + 30x + 45[=0]$$ or $$5y^2 - 20y + 20[=0]$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain coordinates $$(-3, 2)$$.",
+          "guidance_markdown": "**SC B1** only $$(-3, 2)$$ without attempt at quadratic solution.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Tangency and intersections of curves and lines",
+          "Quadratic equations",
+          "Repeated roots and the discriminant"
+        ],
+        "skills": [
+          "Substitute the line equation into the curve equation",
+          "Use the single-intersection condition by setting the discriminant to zero",
+          "Solve for the constant and the coordinates of the repeated intersection"
+        ],
+        "methods": [
+          "Substitute y=x+5 into 2x^2+3y^2=k",
+          "Use the discriminant-zero condition and solve the resulting quadratic"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 8,
+      "stem_markdown": "",
+      "total_marks": 8,
+      "source_page_numbers": [
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "An arithmetic progression is such that its first term is 6 and its tenth term is 19.5.\n\nFind the sum of the first 100 terms of this arithmetic progression.",
+          "marks": 4,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "A geometric progression $a_1, a_2, a_3, \\ldots$ is such that $a_1 = 1$ and the common ratio is $\\frac{1}{2}$.\n\nThe sum to infinity of this geometric progression is denoted by $S$. The sum to infinity of the even-numbered terms (i.e. $a_2, a_4, a_6, \\dots$) is denoted by $S_E$.\n\nFind the values of $S$ and $S_E$.",
+          "marks": 4,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Substitute $n=10$ and $a=6$ into $u_n=a+(n-1)d$",
+          "guidance_markdown": "Expect $6+9d=19.5$ or equivalent.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$[d=]1.5$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Substitute $a=6$ and *their d* into correct formula for the sum of 100 terms",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain 8025",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $S=48$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "Identify for $S_E$ first term 12 and common ratio $\\frac{1}{4}$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Attempt sum to infinity, $S_E$, with at least one of first term and common ratio correct",
+          "guidance_markdown": "Only awarded if $|r| < 1$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $S_E=16$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Series",
+        "subtopics": [
+          "Arithmetic sequences and series",
+          "Geometric series"
+        ],
+        "skills": [
+          "Use arithmetic progression formulas for terms and sum",
+          "Use infinite geometric series sum formula",
+          "Compute derived sum for even terms using ratio or splitting"
+        ],
+        "methods": [
+          "AP: use d and S_n",
+          "GP: S= a1/(1-r) and even-terms as geometric sub-sequence"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 2,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.71,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 9,
+      "stem_markdown": "The functions $f$ and $g$ are defined for all real values of $x$ by\n\n$$f(x) = (3x - 2)^2 + k \\quad \\text{and} \\quad g(x) = 5x - 1,$$\n\nwhere $k$ is a constant.",
+      "total_marks": 9,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Given that the range of the function $gf$ is $gf(x) \\ge 39$, find the value of $k$.",
+          "marks": 4,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "For this value of $k$, determine the range of the function $fg$.",
+          "marks": 2,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "The function $h$ is defined for all real values of $x$ and is such that $g(h(x)) = 35x + 19$.\n\nFind an expression for $g^{-1}(x)$ and hence, or otherwise, find an expression for $h(x)$.",
+          "marks": 3,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt to form expression for $$gf(x)$$",
+          "guidance_markdown": "Expect $$5((3x-2)^2+k)-1$$; $$fg(x)$$ is M0. Do not allow algebraic errors.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$5(3x-2)^2+5k-1$$",
+          "guidance_markdown": "OE e.g. $$45x^2-60x+5k+19$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Their $$5k-1=39$$ or $$5k-1\\geqslant 39$$",
+          "guidance_markdown": "Or use $$b^2-4ac=0$$ (must be $$=0$$, could be implied later) on $$45x^2-60x+5k+19-39\\geqslant 0$$ OE.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$k=8$$",
+          "guidance_markdown": "Do not accept $$k\\geqslant 8$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Obtaining $$(3(5x-1)-2)^2+\\text{their }k$$",
+          "guidance_markdown": "May simplify and/or use $$k$$ at this stage; $$k$$ may have come from an inequality in (a).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1 FT",
+          "content_markdown": "Conclude $$[fg(x)]\\geqslant 8$$ allow $$[y]\\geqslant 8$$",
+          "guidance_markdown": "OE Following *their* value of $$k$$; must be $$\\geqslant$$, not $$>$$. Allow an accurate written description.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1",
+          "content_markdown": "State $$g^{-1}(x)=\\frac{1}{5}(x+1)$$",
+          "guidance_markdown": "OE $$\\frac{1}{5}(x+1)$$ must be indicated as the inverse.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1 B1",
+          "content_markdown": "$$[h(x)=]7x+4$$",
+          "guidance_markdown": "If $$7x+4$$ only, it must be clear that this is $$h(x)$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Functions and composition",
+          "Inequalities to find parameter ranges",
+          "Inverse functions"
+        ],
+        "skills": [
+          "Compose functions and analyse minimum value of a quadratic",
+          "Use inequality to determine parameter value",
+          "Find range of a composite by transforming outputs",
+          "Rearrange to find inverse of a linear function and compose inverses"
+        ],
+        "methods": [
+          "Complete the square / quadratic minimum reasoning",
+          "Range determination from linear transformation",
+          "Inverse via algebraic rearrangement"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.72,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 10,
+      "stem_markdown": "The diagram shows the circle with centre $C(-4, 5)$ and radius $\\sqrt{20}$ units. The circle intersects the $y$-axis at the points $A$ and $B$. The size of angle $ACB$ is $\\theta$ radians.",
+      "total_marks": 12,
+      "source_page_numbers": [
+        12,
+        13
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the equation of the tangent to the circle at the point $(-6, 9)$.",
+          "marks": 3,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the equation of the circle in the form $x^2 + y^2 + ax + by + c = 0$.",
+          "marks": 2,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Find the value of $\\theta$ correct to 4 significant figures.",
+          "marks": 3,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "label_path": [
+            "d"
+          ],
+          "prompt_markdown": "Find the perimeter and area of the segment shaded in the diagram.",
+          "marks": 4,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Obtain gradient of relevant radius is -2",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Using $m_1 m_2 = -1$ obtain the gradient of the tangent and use it to form a straight line equation for a line containing $(-6, 9)$",
+          "guidance_markdown": "$m_1$ must be from an attempt to find the gradient of the radius using the centre and the given point.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $y = \\frac{1}{2}x + 12$",
+          "guidance_markdown": "OE e.g. $y - 9 = \\frac{1}{2}(x + 6)$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $(x + 4)^2 + (y - 5)^2 = 20$",
+          "guidance_markdown": "If $x^2 + y^2 - 2gx - 2fy + c = 0$ is used correctly with $(-g, -f) = (-4, 5)$ and $c = g^2 + f^2 - r^2$ then M1.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $x^2 + y^2 + 8x - 10y + 21 = 0$",
+          "guidance_markdown": "A1 if above method used.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "Substitute $x = 0$ in equation of circle to find $y$-values 3 and 7 or state $C$ to $AB = 4$",
+          "guidance_markdown": "May be implied by $AB = 4$ or use of $|x$-coordinate of $C|$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Attempt value of $\\theta$ either using cosine rule or via $\\frac{1}{2}\\theta$ using right-angled triangle",
+          "guidance_markdown": "Using *their AB*. If $\\theta/2$ used, must be multiplied by 2.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $\\theta = 0.9273$",
+          "guidance_markdown": "Or greater accuracy. A correct answer implies the M1.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "M1",
+          "content_markdown": "Attempt arc length using $r\\backslash \\theta$ formula with *their* $\\backslash θ$ (not *their* $\\backslash θ/2$) and $r\\; =\\; \\backslash sqrt\\{20\\}$",
+          "guidance_markdown": "Expect 4.15.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "Obtain perimeter = 8.15 or greater accuracy",
+          "guidance_markdown": "Condone missing units or incorrect units.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "M1",
+          "content_markdown": "Attempt area using $\\backslash frac\\{1\\}\\{2\\}\\; r^2\\; (\\backslash theta\\; -\\; \\backslash sin\\; \\backslash theta)$ formula or equivalent with *their* $\\backslash θ$ and $r\\; =\\; \\backslash sqrt\\{20\\}$",
+          "guidance_markdown": "If sector – triangle used, both formulae must be correct. If triangle ACM used, area must be multiplied by 2.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 12,
+          "mark_code": "A1",
+          "content_markdown": "Obtain area = 1.27 or greater accuracy",
+          "guidance_markdown": "Condone missing units or incorrect units.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 12,
+          "source_image_index": 0,
+          "asset_type": "coordinate_grid",
+          "storage_path": "a_level/9709/2024/feb_march/12/question_paper/q10/page-12-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Coordinate Geometry",
+        "subtopics": [
+          "Circles",
+          "Tangent and radius geometry",
+          "Circle equations and segment calculations"
+        ],
+        "skills": [
+          "Find tangent line at a given point using radius perpendicularity",
+          "Convert circle to general form",
+          "Compute central angle from chord/geometry",
+          "Calculate area and perimeter of a circular segment"
+        ],
+        "methods": [
+          "Use gradient/perpendicularity for tangent",
+          "Expand circle equation to standard form",
+          "Use triangle and trigonometry to find angle",
+          "Segment area = sector − triangle; perimeter = arc + chord"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": true,
+        "diagram_required": true,
+        "classification_confidence": 0.76,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 11,
+      "stem_markdown": "The diagram shows the curve with equation $y = 2x^{-\\frac{2}{3}} - 3x^{-\\frac{1}{3}} + 1$ for $x > 0$. The curve crosses the $x$-axis at points $A$ and $B$ and has a minimum point $M$.",
+      "total_marks": 11,
+      "source_page_numbers": [
+        14,
+        15
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the exact coordinates of $M$.",
+          "marks": 4,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the area of the region bounded by the curve and the line segment $AB$.",
+          "marks": 7,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Differentiate to obtain $-\\backslash frac\\{4\\}\\{3\\}\\; x^\\{-\\backslash frac\\{4\\}\\{3\\}\\}\\; +\\; x^\\{-\\backslash frac\\{4\\}\\{3\\}\\}$ or rewrite as a quadratic equation in $x^\\{-\\backslash frac\\{1\\}\\{3\\}\\}$ or $x^\\{-\\backslash frac\\{1\\}\\{3\\}\\}$",
+          "guidance_markdown": "Expect quadratic $2\\; \\backslash left(\\backslash frac\\{x^\\{-\\backslash frac\\{1\\}\\{3\\}\\}\\}\\{2\\}\\; -\\; 3x^\\{-\\backslash frac\\{1\\}\\{3\\}\\}\\; +\\; 1$ OE Allow $2x^2\\; -\\; 3x\\; +\\; 1$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Equate first derivative to zero and reach a solution for $x^\\{-\\backslash frac\\{1\\}\\{3\\}\\}$ or $x^\\{-\\backslash frac\\{1\\}\\{3\\}\\}$ with no error in use of indices or complete square to find minimum point $2\\; \\backslash left(\\backslash frac\\{a\\}\\{4\\}\\; -\\; \\backslash frac\\{3\\}\\{4\\}\\; a^\\{2\\}\\; -\\; \\backslash frac\\{1\\}\\{8\\}\\; \\backslash text\\{where\\; a\\}\\; =\\; x^\\{-\\backslash frac\\{1\\}\\{3\\}\\}$",
+          "guidance_markdown": "Substitution SOI if dealt with correctly later",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $x\\; =\\; \\backslash frac\\{64\\}\\{27\\}$",
+          "guidance_markdown": "Or exact equivalent. SC B1 if no working shown. Ignore extra solution $x\\; =\\; 0$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "$y\\; =\\; -\\backslash frac\\{1\\}\\{8\\}\\; \\backslash text\\{seen\\}$",
+          "guidance_markdown": "Or exact equivalent. Allow $-0.125$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Recognise equation as quadratic in $$x^{-\\frac{1}{3}}$$ or equivalent and attempt solution",
+          "guidance_markdown": "$$2a^2 - 3a + 1 [= 0]$$ where $$a = x^{-\\frac{1}{3}}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$x^{-\\frac{1}{3}} = 1$$ and $$x^{-\\frac{1}{3}} = \\frac{1}{2}$$",
+          "guidance_markdown": "OE **SC B1** if no M mark awarded.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain 1 and 8",
+          "guidance_markdown": "**SC B1** if no M mark awarded.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "*M1",
+          "content_markdown": "Integrate to obtain form $$k_1 x^{\\frac{1}{3}} + k_2 x^{\\frac{2}{3}} + x$$ or 2 out of 3 correct terms",
+          "guidance_markdown": "Expect $$6x^{\\frac{1}{3}} - \\frac{9}{2}x^{\\frac{2}{3}} + x$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain correct $$6x^{\\frac{1}{3}} - \\frac{9}{2}x^{\\frac{2}{3}} + x$$",
+          "guidance_markdown": "No other terms from a second integral.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "DM1",
+          "content_markdown": "Apply *their* limits correctly",
+          "guidance_markdown": "*Their* limits must be from *their* working.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "A1",
+          "content_markdown": "[Obtain -0.5 and conclude area is] 0.5",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            14
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 14,
+          "source_image_index": 0,
+          "asset_type": "graph",
+          "storage_path": "a_level/9709/2024/feb_march/12/question_paper/q11/page-14-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Differentiation",
+          "Turning points",
+          "Area between curve and line segments"
+        ],
+        "skills": [
+          "Differentiate to locate stationary points and classify minima via context",
+          "Solve for x-intercepts",
+          "Compute area bounded by curve and chord using integration"
+        ],
+        "methods": [
+          "Set derivative to zero to find minimum",
+          "Solve for intersections with x-axis",
+          "Integrate (function − line) over the interval"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": false,
+        "diagram_required": false,
+        "classification_confidence": 0.77,
+        "review_status": "approved"
+      }
+    }
+  ]
+}

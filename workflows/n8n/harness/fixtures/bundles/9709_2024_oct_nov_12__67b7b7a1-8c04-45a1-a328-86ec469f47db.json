@@ -1,0 +1,2794 @@
+{
+  "paper_key": "9709_2024_oct_nov_12",
+  "ingestion_run_id": "67b7b7a1-8c04-45a1-a328-86ec469f47db",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-06:a_level:9709:2024:oct_nov:12",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 6
+      },
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 7
+      },
+      {
+        "message": "Alternative-method rows are 38.1% of marked rows.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "ALTERNATIVE_METHOD_RATE_HIGH",
+        "page_number": null,
+        "document_type": null,
+        "question_number": null
+      }
+    ],
+    "passed": true,
+    "warning_count": 3,
+    "question_count": 10,
+    "source_total_marks": 75,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 75,
+    "source_question_count": 10
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 26,
+      "assets": 4,
+      "issues": 3,
+      "questions": 10,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.1030738
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 17888,
+              "total_tokens": 26929,
+              "output_tokens": 9041,
+              "input_tokens_details": {
+                "cached_tokens": 17280,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 5788
+              }
+            },
+            "response_id": "resp_09f7cebd76dbe2ae016a79ac2b7254819bbba419a3bf4c2457",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 17888,
+            "priced_output_tokens": 9041,
+            "reported_total_tokens": 26929
+          },
+          "input_tokens": 17888,
+          "output_tokens": 9041,
+          "actual_cost_usd": 0.0424365,
+          "cached_input_tokens": 17280
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 12678,
+              "total_tokens": 13101,
+              "output_tokens": 423,
+              "input_tokens_details": {
+                "cached_tokens": 12032,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 256
+              }
+            },
+            "response_id": "resp_0d0ae5c7f0707781016a79ac88d880819bb8081b6b4b9e14bb",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 12678,
+            "priced_output_tokens": 423,
+            "reported_total_tokens": 13101
+          },
+          "input_tokens": 12678,
+          "output_tokens": 423,
+          "actual_cost_usd": 0.00089859,
+          "cached_input_tokens": 12032
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_question_extraction",
+          "usage_audit": {
+            "usage_raw": [
+              {
+                "input_tokens": 1545,
+                "total_tokens": 2411,
+                "output_tokens": 866,
+                "input_tokens_details": {
+                  "cached_tokens": 0,
+                  "cache_write_tokens": 0
+                },
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                }
+              },
+              {
+                "input_tokens": 2773,
+                "total_tokens": 5295,
+                "output_tokens": 2522,
+                "input_tokens_details": {
+                  "cached_tokens": 1792,
+                  "cache_write_tokens": 0
+                },
+                "output_tokens_details": {
+                  "reasoning_tokens": 214
+                }
+              }
+            ],
+            "response_id": [
+              "resp_0ea31fc49923c57f016a79ad004838819b91b1449f9d362aa4",
+              "resp_0766ff9b7bcd9841016a79ad0242e0819a8f5807fedb0671ec"
+            ],
+            "model_reported": "gpt-5.4-nano",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 4318,
+            "priced_output_tokens": 3388,
+            "reported_total_tokens": 7706
+          },
+          "input_tokens": 4318,
+          "output_tokens": 3388,
+          "actual_cost_usd": 0.00477604,
+          "cached_input_tokens": 1792
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 3135,
+              "total_tokens": 5013,
+              "output_tokens": 1878,
+              "input_tokens_details": {
+                "cached_tokens": 2816,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 428
+              }
+            },
+            "response_id": "resp_0636c9244471c3e4016a79ad5dcf6c8199b7aaf421bfe11dd7",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 3135,
+            "priced_output_tokens": 1878,
+            "reported_total_tokens": 5013
+          },
+          "input_tokens": 3135,
+          "output_tokens": 1878,
+          "actual_cost_usd": 0.00246762,
+          "cached_input_tokens": 2816
+        },
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "targeted_question_repair",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 44389,
+              "total_tokens": 55242,
+              "output_tokens": 10853,
+              "input_tokens_details": {
+                "cached_tokens": 43904,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 4877
+              }
+            },
+            "response_id": "resp_0def68ec495cf4e4016a79ae884b18819b8b138aa85cda4118",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 44389,
+            "priced_output_tokens": 10853,
+            "reported_total_tokens": 55242
+          },
+          "input_tokens": 44389,
+          "output_tokens": 10853,
+          "actual_cost_usd": 0.05249505,
+          "cached_input_tokens": 43904
+        }
+      ],
+      "paid_calls": 5,
+      "input_tokens": 82408,
+      "output_tokens": 25583,
+      "actual_cost_usd": 0.1030738,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 77824
+    },
+    "staged_at": "2026-08-10T10:58:18.171Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 20,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_qp_12.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 24,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w24_ms_12.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "State the values of $a$, $b$ and $c$.",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": null,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "For these values of $a$, $b$ and $c$, determine the number of solutions in the interval $0 \\le x \\le 2\\pi$ for each of the following equations:",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b",
+                "i"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "$a\\sin(bx) + c = 7 - x$",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b",
+                "ii"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "$a\\sin(bx) + c = 2\\pi(x - 1)$.",
+              "source_page_numbers": [
+                2
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 15759,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "coordinate_grid",
+              "description": "Coordinate grid showing a periodic curve for $0 \\le x \\le 2\\pi$ with x-axis markings at $0$, $\\frac{1}{2}\\pi$, $\\pi$, $\\frac{3}{2}\\pi$ and $2\\pi$; the curve has maxima at about $y=7$ and minima at about $y=-1$.",
+              "bounding_box": {
+                "top_left_x": 166,
+                "top_left_y": 92,
+                "bottom_right_x": 577,
+                "bottom_right_y": 358
+              },
+              "storage_path": "a_level/9709/2024/oct_nov/12/question_paper/q1/page-2-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 2,
+              "mathematical_details": {
+                "equations": [
+                  "y = a\\sin(bx) + c"
+                ],
+                "coordinates": [
+                  "(0,3)",
+                  "(\\frac{1}{2}\\pi,7)",
+                  "(\\pi,-1)",
+                  "(\\frac{3}{2}\\pi,7)",
+                  "(2\\pi,3)"
+                ],
+                "measurements": [
+                  "Maximum value about 7",
+                  "Minimum value about -1"
+                ],
+                "relationships": [
+                  "The curve is periodic",
+                  "The curve is symmetric about $x=\\pi$"
+                ],
+                "visible_labels": [
+                  "0",
+                  "\\frac{1}{2}\\pi",
+                  "\\pi",
+                  "\\frac{3}{2}\\pi",
+                  "2\\pi",
+                  "-1",
+                  "0",
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Read off parameters from a given sinusoidal graph",
+              "Solve equations involving a sin(bx) + c form by determining intersections",
+              "Count number of solutions in an interval"
+            ],
+            "methods": [
+              "Use amplitude/period/vertical shift relationships",
+              "Use properties of sine graphs over 0 ≤ x ≤ 2π to count intersections with straight lines"
+            ],
+            "subtopics": [
+              "Graphing sinusoidal functions",
+              "Counting solutions of trigonometric equations"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 5,
+          "stem_markdown": "The diagram shows the curve with equation $y = a\\sin(bx) + c$ for $0 \\le x \\le 2\\pi$, where $a$, $b$ and $c$ are positive constants.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$a=4$$",
+              "guidance_markdown": "Allow $$4\\sin(2x)+3$$ if values of $$a$$, $$b$$ and $$c$$ are not stated.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$b=2$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$c=3$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "5",
+              "guidance_markdown": "Ignore attempts at finding solutions.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "1",
+              "guidance_markdown": "Ignore attempts at finding solutions.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the sum of the first 20 terms of the progression.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the value of $k$.",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use arithmetic progression sum formula",
+              "Set up and solve an equation involving sums of first 2k and first k terms",
+              "Find k using algebra"
+            ],
+            "methods": [
+              "Apply S_n = n/2[2a+(n-1)d]",
+              "Use S_{2k} = 10 S_k to form a linear equation in k"
+            ],
+            "subtopics": [
+              "Arithmetic progressions",
+              "Using sums of first n terms and algebraic relations"
+            ],
+            "main_topic": "Series",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 5,
+          "stem_markdown": "The first term of an arithmetic progression is $-20$ and the common difference is $5$.\n\nIt is given that the sum of the first $2k$ terms is $10$ times the sum of the first $k$ terms.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\frac{20}{2}(2 \\times -20 + (20 - 1) \\times 5)$$ or $$\\frac{20}{2}(-20 + 75)$$",
+              "guidance_markdown": "Correct use of either $$S_{20}$$ formula with $$a = -20$$ and $$d = 5$$.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "550",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\frac{2k}{2}(-40 + (2k - 1) \\times 5)$$ or $$\\frac{k}{2}(-40 + (k - 1) \\times 5)$$",
+              "guidance_markdown": "Correct use of $$S_n$$ formula with $$a = -20$$, $$d = 5$$ and either $$k$$ or $$2k$$. This mark can be awarded for clear use of $$\\frac{n}{2}(a + l)$$ when correct values of $$a$$ and $$d$$ are used.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$[-40k + 10k^2 - 5k = -200k + 25k^2 - 25k \\Rightarrow] 15k^2 - 180k = 0$$",
+              "guidance_markdown": "Equating their $$S_{2k}$$ to $$10 \\times \\text{their } S_k$$ and reaching a 2-term quadratic or 2 term linear equation if $$k$$ has been cancelled. Condone errors in simplification.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$k = 12$$",
+              "guidance_markdown": "Condone extra solution $$k = 0$$.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find and simplify an expression for the gradient of the chord $AB$ in terms of $h$.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Explain how the gradient of the curve at the point $A$ can be deduced from the answer to part (a), and state the value of this gradient.",
+              "source_page_numbers": [
+                4
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute gradient of chord AB in terms of h",
+              "Deduce derivative/instantaneous gradient from the chord gradient",
+              "Evaluate the derivative at the point x=2"
+            ],
+            "methods": [
+              "Use (f(2+h)-f(2))/h and simplify",
+              "Take the limit as h → 0 to obtain f'(2)"
+            ],
+            "subtopics": [
+              "Gradients and secants",
+              "Derivative as limit of chord gradient",
+              "Quadratic differentiation"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.88
+          },
+          "total_marks": 5,
+          "stem_markdown": "The equation of a curve is $y = 2x^2 - 3$. Two points $A$ and $B$ with $x$-coordinates $2$ and $(2+h)$ respectively lie on the curve.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$[f(2+h)=] 2(2+h)^2 - 3$$",
+              "guidance_markdown": "SOI",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\frac{(2(2+h)^2 - 3) - 5}{(2+h) - 2} \\left[ = \\frac{2h^2 + 8h}{h} \\right]$$",
+              "guidance_markdown": "$$\\frac{\\{\\text{their}(2(2+h)^2 - 3)\\} - \\text{their}5}{(2+h) - 2}$$ can be implied by the simplified expression or the correct answer. *Their 5 must come from $2(2)^2 - 3$.*",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$2h + 8 \\text{ or } 2(h + 4)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$h \\rightarrow 0$$, or chord [AB] $$\\rightarrow$$ tangent [at A]",
+              "guidance_markdown": "Either of these statements or any sight of $$h = 0$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "8",
+              "guidance_markdown": "Could come from anywhere except wrong working. Either correct or FT their linear expression from (a).",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "$\\left(x + \\frac{3}{x^2}\\right)^6$",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "$(4x^3 - 5)\\left(x + \\frac{3}{x^2}\\right)^6$",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Expand (x + 3/x^2)^6 selectively",
+              "Identify terms that contribute the x^0 (constant) power",
+              "Handle an extra polynomial factor (4x^3-5) when extracting the constant term"
+            ],
+            "methods": [
+              "Use general term of binomial expansion to find power of x equal to 0",
+              "Multiply selectively and collect constant terms"
+            ],
+            "subtopics": [
+              "Binomial expansion",
+              "Finding constant (independent of x) term"
+            ],
+            "main_topic": "Series",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 6,
+          "stem_markdown": "Find the term independent of $x$ in the expansion of each of the following:",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$15 \\text{ or } \\begin{pmatrix} 6 \\\\ 2 \\end{pmatrix} \\times x^4 \\left( \\frac{3}{x^2} \\right)^2 \\text{ or } x^6 \\times \\frac{6 \\times 5}{2} \\left( \\frac{3}{x^3} \\right)^2$$",
+              "guidance_markdown": "OE May be in a list. Allow $$\\begin{pmatrix} 6 \\\\ 4 \\end{pmatrix}$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "135",
+              "guidance_markdown": "Correct term must be identified if in a list. Allow $$135x^0$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$20 \\text{ or } \\left(\\frac{6}{3}\\right) \\times x^3 \\left(\\frac{3}{x^2}\\right)^3 \\text{ or } x^6 \\times \\frac{6.5.4}{3!} \\left(\\frac{3}{x^3}\\right)^3$$",
+              "guidance_markdown": "OE May be in a list.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$= \\frac{540}{x^3}$$",
+              "guidance_markdown": "Identifying $$\\frac{1}{x^3}$$ term. This can be implied by sight of 2160 as part of the constant term.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$4 \\times 540 - 5 \\times 135$$",
+              "guidance_markdown": "$$4 \\times \\text{their } 540 - 5 \\times \\text{their } 135$$",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "1485",
+              "guidance_markdown": "Allow $$1485x^0$$.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": null,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Answer parts (i) to (iii).",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "a",
+                "i"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "State the value of $f(-1)$.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "a",
+                "ii"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The diagram shows the graph of $y=f(x)$. Sketch the graph of $y=f^{-1}(x)$ on this diagram. Show any relevant mirror line.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "a",
+                "iii"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find an expression for $f^{-1}(x)$ and state the domain of the function $f^{-1}$.",
+              "source_page_numbers": [
+                6,
+                7
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The function $g$ is defined by $g(x) = 3x + 2$ for $x \\in \\mathbb{R}$.\n\nSolve the equation $f(x) = g f\\!\\left(\\frac{1}{4}\\right)$.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 11538,
+              "mime_type": "image/jpeg",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "asset_type": "coordinate_grid",
+              "description": "Coordinate grid showing the graph of $y=f(x)$ as a hyperbola-like curve with the axes marked and a curve drawn on the diagram for sketching the inverse graph.",
+              "bounding_box": {
+                "top_left_x": 245,
+                "top_left_y": 304,
+                "bottom_right_x": 554,
+                "bottom_right_y": 613
+              },
+              "storage_path": "a_level/9709/2024/oct_nov/12/question_paper/q5-part-a-ii/page-6-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 6,
+              "mathematical_details": {
+                "equations": [
+                  "y = f(x)"
+                ],
+                "coordinates": [],
+                "measurements": [],
+                "relationships": [
+                  "The graph is to be reflected in the line $y=x$ to obtain $y=f^{-1}(x)$"
+                ],
+                "visible_labels": [
+                  "x",
+                  "y",
+                  "0",
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "-1",
+                  "-2",
+                  "-3",
+                  "-4"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Evaluate a rational function at a given x",
+              "Sketch inverse function graph using reflection in y=x",
+              "Find explicit formula for inverse and its domain",
+              "Solve an equation involving compositions f(x) and gf(1/4)"
+            ],
+            "methods": [
+              "Substitute x values into f(x)",
+              "Use reflection principle y = f^{-1}(x) <-> swap x and y",
+              "Solve y = f(x) for x to get f^{-1}(x) and enforce validity conditions",
+              "Substitute the inverse-expression or simplify using composition"
+            ],
+            "subtopics": [
+              "Rational functions",
+              "Inverse functions",
+              "Inverse function domain and range",
+              "Sketching inverse via reflection"
+            ],
+            "main_topic": "Functions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 10,
+          "stem_markdown": "The function $f$ is defined by $f(x) = \\frac{2x+1}{2x-1}$ for $x < \\frac{1}{2}$.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "i"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "$$[f(-1)] = \\frac{1}{3}$$",
+              "guidance_markdown": "Condone 0.333.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "",
+              "guidance_markdown": "For showing the correct mirror line.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "For correct shape: the curves should intersect in the first square in the third quadrant. To the left of the point of intersection, the reflection is below the original and crosses the x-axis. To the right of the point of intersection, the reflection is to the right the original.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\frac{2x+1}{2x-1} = y \\Rightarrow 2x+1 = y(2x-1)$$",
+              "guidance_markdown": "Equating $$y$$ to the given function and clearing of fractions. $$x$$ and $$y$$ may be interchanged at this stage.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$2xy - 2x = y + 1$$",
+              "guidance_markdown": "Condone $$\\pm$$ errors during simplification.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$\\frac{x+1}{2(x-1)}, \\frac{-x-1}{2-2x}$$",
+              "guidance_markdown": "Allow ‘$$f^{-1}$$’ or ‘$$y$$=’ but NOT ‘$$x$$=’, nor fractions within fractions.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "[Domain of $$f^{-1}$$ is] $$x < 1$$",
+              "guidance_markdown": "Accept $$-\\infty < x < 1$$ or $$-\\infty, 1$$, condone $$[-\\infty, 1)$$.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$y=1+\\frac{2}{2x-1} \\Rightarrow y-1=\\frac{2}{2x-1}$$",
+              "guidance_markdown": "Equating $$y$$ to the given function after division by $$2x-1$$. Isolating the term in $$x$$. $$x$$ and $$y$$ may be interchanged at this stage.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$2x=\\frac{2}{y-1}+1$$",
+              "guidance_markdown": "Condone $$\\pm$$ errors during simplification.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$\\frac{1}{x-1}+\\frac{1}{2}$$",
+              "guidance_markdown": "OE Allow ‘$$f^{-1}$$’ or ‘$$y$$=’ but NOT ‘$$x$$=’, nor fractions within fractions.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a",
+                "iii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "[Domain of $$f^{-1}$$ is] $$x < 1$$",
+              "guidance_markdown": "Accept $$-\\infty < x < 1$$ or $$-\\infty, 1$$, condone $$[-\\infty, 1)$$.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$$gf\\left(\\frac{1}{4}\\right)=-7$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "$$\\frac{2x+1}{2x-1}=-7$$",
+              "guidance_markdown": "Equating $$\\frac{2x+1}{2x-1}$$ to their $$gf\\left(\\frac{1}{4}\\right)$$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 14,
+              "content_markdown": "$$[x=]\\frac{3}{8}$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "$$gf\\left(\\frac{1}{4}\\right)=-7$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "$$x=f^{-1}(-7)$$",
+              "guidance_markdown": "$$x=f^{-1}\\left(\\text{their }gf\\left(\\frac{1}{4}\\right)\\right)$$",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "$$[x=]\\frac{3}{8}$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 8160,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "geometry_diagram",
+              "description": "Geometry diagram of metal plate OABCDEF made from sectors of two circles with centre O. The radii OA, OB, OE and OF are marked, with AOB and EOF having radius $r$ and COD having radius $2r$; the angles at O are labelled $\\theta$, $2\\theta$, $2\\theta$, $2\\theta$, $\\theta$.",
+              "bounding_box": {
+                "top_left_x": 234,
+                "top_left_y": 87,
+                "bottom_right_x": 486,
+                "bottom_right_y": 331
+              },
+              "storage_path": "a_level/9709/2024/oct_nov/12/question_paper/q6/page-8-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 8,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [
+                  "Perimeter of plate = 14 cm",
+                  "Area of plate = 10 cm^2"
+                ],
+                "relationships": [
+                  "The plate consists of sectors of two circles with common centre O",
+                  "Angles around O sum to $2\\pi$ radians"
+                ],
+                "visible_labels": [
+                  "O",
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "E",
+                  "F",
+                  "r cm",
+                  "2r cm",
+                  "\\theta",
+                  "2\\theta"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Set up expressions for perimeter and area from sector geometry",
+              "Use given inequalities to select physically valid solutions",
+              "Solve for r and θ"
+            ],
+            "methods": [
+              "Compute sector arc lengths and radii-based area contributions",
+              "Form two equations (perimeter=14, area=10) and solve for r, θ"
+            ],
+            "subtopics": [
+              "Areas and perimeters of sector-based composite shapes",
+              "Arc/sector perimeter relations",
+              "Using simultaneous equations with given constraints"
+            ],
+            "main_topic": "Circular Measure",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.74
+          },
+          "total_marks": 6,
+          "stem_markdown": "The diagram shows a metal plate OABCDEF consisting of sectors of two circles, each with centre O.\nThe radii of sectors AOB and EOF are $r$ cm and the radius of sector COD is $2r$ cm.\n\nAngle AOB = angle EOF = $\\theta$ radians and angle COD = $2\\theta$ radians.\n\nIt is given that the perimeter of the plate is 14 cm and the area of the plate is 10 cm$^2$.\n\nGiven that $r > \\frac{3}{2}$ and $\\theta < \\frac{3}{4}$, find the values of $r$ and $\\theta$.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "[Perimeter =] $$r + r\\theta + r + 2r \\times 2\\theta + r + r\\theta + r$$ $$[= 4r + 6r\\theta]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "[Area =] $$\\frac{1}{2}r^2\\theta + \\frac{1}{2}(2r)^2 \\times 2\\theta + \\frac{1}{2}r^2\\theta$$ $$[= 5r^2\\theta]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$4r + 6r\\theta = 14$$ and $$5r^2\\theta = 10$$",
+              "guidance_markdown": "ar + br\\theta = 14 and cr^2\\theta = 10 where a, b and c are constants \\neq 0. Terms may be uncollected.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$5r^2 \\frac{14 - 4r}{6r} = 10$$ or $$4r + 6r \\left( \\frac{10}{5r^2} \\right) = 14$$",
+              "guidance_markdown": "Eliminate $$\\theta$$ to get an equation in $$r$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$[\\Rightarrow 2r^2 - 7r + 6 = 0 \\Rightarrow] (r - 2)(2r - 3) = 0$$",
+              "guidance_markdown": "Factorise or other accepted method for solving their 3-term quadratic.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$5 \\left( \\frac{14}{4 + 6\\theta} \\right)^2 \\theta = 10$$ or $$4 \\left( \\sqrt{\\frac{10}{5\\theta}} \\right) + 6 \\left( \\sqrt{\\frac{10}{5\\theta}} \\right) \\theta = 14$$",
+              "guidance_markdown": "Eliminate $$r$$ to get an equation in $$\\theta$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$[\\Rightarrow 18\\theta^2 - 25\\theta + 8 = 0 \\Rightarrow] (9\\theta - 8)(2\\theta - 1) = 0$$",
+              "guidance_markdown": "Factorise or other accepted method for solving their 3-term quadratic.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$$r = 2$$ and $$\\theta = 0.5$$",
+              "guidance_markdown": "Condone extra answers $$r = \\frac{3}{2}$$ and $$\\theta = \\frac{8}{9}$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "By expressing $-2x^2 + 8x + 11$ in the form $-a(x - b)^2 + c$, where $a$, $b$ and $c$ are positive integers, find the coordinates of the vertex of the graph with equation $y = -2x^2 + 8x + 11$.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The diagram shows part of the curve with equation $y = -2x^2 + 8x + 11$ and the line with equation $y = 8x + 9$.\n\nFind the area of the shaded region.",
+              "source_page_numbers": [
+                10
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 7440,
+              "mime_type": "image/jpeg",
+              "part_path": [
+                "b"
+              ],
+              "asset_type": "coordinate_grid",
+              "description": "Coordinate grid showing part of the curve $y = -2x^2 + 8x + 11$ and the line $y = 8x + 9$, with a shaded region between them.",
+              "bounding_box": {
+                "top_left_x": 110,
+                "top_left_y": 398,
+                "bottom_right_x": 659,
+                "bottom_right_y": 586
+              },
+              "storage_path": "a_level/9709/2024/oct_nov/12/question_paper/q7-part-b/page-10-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 10,
+              "mathematical_details": {
+                "equations": [
+                  "y = -2x^2 + 8x + 11",
+                  "y = 8x + 9"
+                ],
+                "coordinates": [
+                  "(0,0)"
+                ],
+                "measurements": [],
+                "relationships": [
+                  "The curve and line are both drawn on the same coordinate axes",
+                  "A shaded region is indicated between the curve and the line"
+                ],
+                "visible_labels": [
+                  "O",
+                  "x",
+                  "y"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Complete the square to find the vertex coordinates",
+              "Find intersections with a line and determine bounds",
+              "Compute area of the shaded region between a quadratic and a line"
+            ],
+            "methods": [
+              "Rewrite quadratic as -a(x-b)^2 + c to read vertex",
+              "Use integration (or equivalent definite-area method) between intersection points"
+            ],
+            "subtopics": [
+              "Quadratic completing the square",
+              "Areas bounded by a curve and a line"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.7
+          },
+          "total_marks": 8,
+          "stem_markdown": "The equation of a curve is $y=-2x^2+8x+11$.",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$-2\\left((x \\pm p)^2 \\pm q\\right)$$ or $$-2(x \\pm p)^2 \\pm q$$",
+              "guidance_markdown": "$$p \\neq 0$$.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$-2\\left((x-2)^2 \\pm q\\right)$$ or $$-2(x-2)^2 \\pm q$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$-2(x-2)^2 + 19$$ and (2, 19)",
+              "guidance_markdown": "Accept $$x = 2, y = 19$$ or 2, 19.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$[x =] \\pm 1$$",
+              "guidance_markdown": "Both $$x$$ co-ordinates for the points of intersection.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Subtract and attempt to integrate",
+              "guidance_markdown": "Apply *their* limits, one positive and one negative, obtained from equating the line and the curve to their integrated expression.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$\\left[ \\int (-2x^2 + 2)dx \\right] - \\frac{2}{3}x^3 + 2x$$",
+              "guidance_markdown": "Both terms correct.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$\\left( -\\frac{2}{3} + 2 \\right) - \\left( \\frac{2}{3} - 2 \\right)$$",
+              "guidance_markdown": "Apply *their* limits, one positive and one negative, obtained from equating the line and the curve to *their* integrated expression.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DB1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$$= \\frac{8}{3}, 2\\frac{2}{3}$$",
+              "guidance_markdown": "AWRT 2.67 WWW. Condone $$\\frac{-8}{3} \\rightarrow \\frac{8}{3}$$. **SC B1** for mistaking triangle for trapezium leading to $$\\frac{11}{3}$$, i.e. a total of 2/5.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$[x =] \\pm 1$$",
+              "guidance_markdown": "Both $$x$$ co-ordinates for the points of intersection.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Attempt to integrate and subtract",
+              "guidance_markdown": "The second integral can be replaced with what is clearly their area of a trapezium.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$\\left\\{ \\frac{-2x^3}{3} + \\frac{8}{2}x^2 + 11x \\right\\} [-] \\left\\{ \\frac{8}{2}x^2 + 9x \\right\\}$$",
+              "guidance_markdown": "OE All terms correct. The second integral can be replaced by $$\\frac{1}{2}(1+17) \\times 2$$ OE.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$$\\left\\{ \\left( \\frac{-2}{3} + 4 + 11 \\right) - \\left( \\frac{2}{3} + 4 - 11 \\right) \\right\\} [-] \\left\\{ (4+9) - (4-9) \\right\\}$$",
+              "guidance_markdown": "Apply *their* limits, one positive and one negative, obtained from equating the line and the curve, to *their* integrated expressions. If the trapezium has been used, the second integral can be replaced by *their* 18.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DB1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 13,
+              "content_markdown": "$$= \\frac{8}{3}, 2\\frac{2}{3}$$",
+              "guidance_markdown": "AWRT 2.67 WWW. Condone $$\\frac{-8}{3} \\rightarrow \\frac{8}{3}$$. **SC B1** for mistaking triangle for trapezium leading to $$\\frac{11}{3}$$, i.e. a total of 2/5.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "$$[x=] \\pm 1$$",
+              "guidance_markdown": "Both *x* co-ordinates for the points of intersection.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "Subtract and attempt to integrate",
+              "guidance_markdown": "Apply *their* limits, one positive and one negative, obtained from equating the line and the curve, to *their* integrated expression.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "$$-\\frac{2}{3}(x-2)^3 - \\frac{8}{2}x^2 + 10x$$",
+              "guidance_markdown": "All terms correct.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "$$\\left( \\frac{2}{3} - 4 + 10 \\right) - (18 - 4 - 10)$$",
+              "guidance_markdown": "Apply *their* limits, one positive and one negative, obtained from equating the line and the curve, to *their* integrated expression.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DB1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 18,
+              "content_markdown": "$$= \\frac{8}{3}, 2\\frac{2}{3}$$",
+              "guidance_markdown": "AWRT 2.67 WWW.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 19,
+              "content_markdown": "$$[x =] \\pm 1$$",
+              "guidance_markdown": "Both $$x$$ co-ordinates for the points of intersection.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 20,
+              "content_markdown": "Attempt to integrate and subtract",
+              "guidance_markdown": "The second integral can be replaced with what is clearly *their* area of a trapezium.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 21,
+              "content_markdown": "$$\\left\\{ -\\frac{2}{3}(x-2)^3 + 19x \\right\\} [-] \\left\\{ \\frac{8}{2}x^2 + 9x \\right\\}$$",
+              "guidance_markdown": "All terms correct. The second integral can be replaced with $$\\frac{1}{2}(1+17) \\times 2$$ OE.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 22,
+              "content_markdown": "$$\\left\\{ \\left( \\frac{2}{3} + 19 \\right) - (18 - 19) \\right\\} [-] \\left\\{ (4+9) - (4-9) \\right\\}$$",
+              "guidance_markdown": "Apply *their* limits, one positive and one negative, obtained from equating the line and the curve, to *their* integrated expression. If the trapezium has been used the second integral can be replaced with *their* 18 OE.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DB1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 23,
+              "content_markdown": "$$= \\frac{8}{3}, 2\\frac{2}{3}$$",
+              "guidance_markdown": "AWRT 2.67 WWW. Condone $$\\frac{-8}{3} \\rightarrow \\frac{8}{3}$$. **SC B1** for mistaking triangle for trapezium leading to $$\\frac{11}{3}$$, i.e. a total of 2/5.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Express the equation in the form $(x-a)^2 + (y-b)^2 = r^2$, where $a$ is to be given in terms of $p$ and $r^2$ is to be given in terms of $p$ and $q$.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": null,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "The line with equation $x + 2y = 10$ is the tangent to the circle at the point $A(4,3)$.",
+              "source_page_numbers": [
+                12,
+                13
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b",
+                "i"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the equation of the normal to the circle at the point $A$.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b",
+                "ii"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the values of $p$ and $q$.",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Convert general circle equation to centre-radius form",
+              "Use radius-to-tangency geometry to relate tangent at a point",
+              "Find the normal line at a point on the circle",
+              "Determine p and q using the circle equation"
+            ],
+            "methods": [
+              "Complete squares to identify centre and r^2",
+              "Use perpendicularity between tangent and radius/normal directions",
+              "Use the condition that the given line is tangent at A to constrain p, q"
+            ],
+            "subtopics": [
+              "Completing the square for circles",
+              "Tangent and normal to a circle",
+              "Centre-radius form",
+              "Finding circle parameters from tangency"
+            ],
+            "main_topic": "Coordinate Geometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 10,
+          "stem_markdown": "The equation of a circle is $x^2 + y^2 + px + 2y + q = 0$, where $p$ and $q$ are constants.",
+          "question_number": 8,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1*",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\left(x - \\left(-\\frac{1}{2}p\\right)\\right)^2 + \\left(y - (-1)\\right)^2$$ OE",
+              "guidance_markdown": "Allow $$a = -\\frac{1}{2}p$$ and $$b = -1$$, or centre is $$\\left(-\\frac{1}{2}p, -1\\right)$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DB1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "$$\\left(x - \\left(-\\frac{1}{2}p\\right)\\right)^2 + \\left(y - (-1)\\right)^2 = -q + 1 + \\left(-\\frac{1}{2}p\\right)^2$$ OE",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "[Gradient of tangent =] $$-\\frac{1}{2}$$",
+              "guidance_markdown": "OE SOI",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "[Gradient of normal =] 2",
+              "guidance_markdown": "Use of $$m_1 m_2 = -1$$ with *their* numeric tangent gradient.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "i"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$\\frac{y-3}{x-4} = 2$$ [$$y = 2x - 5$$]",
+              "guidance_markdown": "OE ISW Allow $$y = 2x + c$$, $$3 = 2 \\times 4 + c \\Rightarrow c = -5$$.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$-1 - 3 = 2\\left(-\\frac{1}{2}p - 4\\right)$$ or $$-1 = -p - 5$$",
+              "guidance_markdown": "Using *their* stated centre or $$\\left(\\frac{\\pm p}{2}, \\pm 1\\right)$$ in *their* equation of the normal.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$p = -4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$-1 = 2x - 5 \\Rightarrow x = 2 \\Rightarrow -\\frac{1}{2}p = 2$$",
+              "guidance_markdown": "Using their normal equation and *their* stated centre or $$\\left(\\frac{\\pm p}{2}, \\pm 1\\right)$$.",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$p = -4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$2x + 2y\\frac{dy}{dx} + p + 2\\frac{dy}{dx} = 0 \\quad \\left[\\Rightarrow p = -8 - 8\\frac{dy}{dx}\\right]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$\\left[\\frac{dy}{dx} = -\\frac{1}{2} \\Rightarrow\\right]\\ p = -4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                18
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$$r^2 = (4-2)^2 + (3-(-1))^2 \\quad [= 20]$$",
+              "guidance_markdown": "Using (4, 3) and *their* centre or $$\\left( \\frac{\\pm their\\ p}{2}, \\pm 1 \\right)$$ to find $$r^2$$ or $$r$$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "$$-q+1+\\frac{1}{4}p^2=20$$",
+              "guidance_markdown": "OE Using *their* expression for $$r^2$$ (from **(a)**) equated to *their* 20.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 14,
+              "content_markdown": "$$q=-15$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "$$r = \\frac{ | 2-2-10 | }{\\sqrt{5}} \\quad \\left[ = \\frac{10}{\\sqrt{5}} \\right]$$",
+              "guidance_markdown": "Using $$(2,-1)$$ and $$x+2y-10=0$$ (distance from a point to a line).",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "$$-q+1+\\frac{1}{4}p^2 = \\left( \\frac{10}{\\sqrt{5}} \\right)^2$$",
+              "guidance_markdown": "OE Using *their* expression for $$r^2$$ equated to *their* $$\\left( \\frac{10}{\\sqrt{5}} \\right)^2$$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "$$q=-15$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 18,
+              "content_markdown": "$$4^2+3^2+4p+6+q=0 \\quad [\\Rightarrow 4p+q+31=0]$$ OR $$\\left( 4 - \\left( -\\frac{1}{2}p \\right) \\right)^2 + (3-(-1))^2 = -q+1 + \\left( -\\frac{1}{2}p \\right)^2$$",
+              "guidance_markdown": "Substituting (4,3) into their circle equation.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 19,
+              "content_markdown": "$$4(-4)+q+31=0$$",
+              "guidance_markdown": "Substituting *their* $$p=-4$$.",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 20,
+              "content_markdown": "$$q=-15$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                19
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 21,
+              "content_markdown": "$$4^2 + 3^2 + 4p + 6 + q = 0$$ $$x^2 + (2x - 5)^2 + px + 2(2x - 5) + q = 0$$ with $$x = 4$$ $$x^2 + \\left(\\frac{10 - x}{2}\\right)^2 + px + 2\\left(\\frac{10 - x}{2}\\right) + q = 0$$ with $$x = 4$$ $$\\left(\\frac{y + 5}{2}\\right)^2 + y^2 + p\\left(\\frac{y + 5}{2}\\right) + 2y + q = 0$$ with $$y = 3$$ $$\\left(10 - 2y\\right)^2 + y^2 + p(10 - 2y) + 2y + q = 0$$ with $$y = 3$$ $$\\{ \\text{Each of these} \\Rightarrow 4p + q + 31 = 0 \\}$$",
+              "guidance_markdown": "Substituting $$(4, 3)$$ into *their* circle equation, or replacing $$y$$ with $$2x - 5$$ from the normal equation, or replacing $$y$$ with $$\\frac{10 - x}{2}$$ from the tangent equation, or replacing $$x$$ with $$\\frac{y + 5}{2}$$ from the normal equation, or replacing $$x$$ with $$10 - 2y$$ from the tangent equation, and using either $$x = 4$$ or $$y = 3$$ to form an equation in $$p$$ and $$q$$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 22,
+              "content_markdown": "$$\\frac{5}{4}x^2 + (p - 6)x + 35 + q = 0 \\Rightarrow (p - 6)^2 - 4 \\times \\frac{5}{4} \\times (35 + q) = 0$$ OR $$5y^2 - y(38 + 2p) + 100 + 10p + q = 0 \\Rightarrow (38 + 2p)^2 - 4 \\times 5 \\times (100 + 10p + q) = 0$$ $$\\{ \\text{Each of these} \\Rightarrow p^2 - 12p - 139 - 5q = 0 \\}$$",
+              "guidance_markdown": "Solving the tangent and circle equations simultaneously to form a quadratic equation in either $$x$$ or $$y$$. Then using $$b^2 - 4ac = 0$$ on their quadratic to form an equation in $$p$$ and $$q$$.",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 23,
+              "content_markdown": "Solving the equations simultaneously to find $$p$$ or $$q$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 24,
+              "content_markdown": "$$p = -4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b",
+                "ii"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 25,
+              "content_markdown": "$$q = -15$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                20
+              ],
+              "is_alternative_method": true
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 7,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "It is given that one of the points of intersection of the curve and the line has coordinates $\\left(\\frac{5}{2}, \\frac{1}{2}\\right)$.\n\nFind the values of $k$ and $p$, and find the coordinates of the other point of intersection.",
+              "source_page_numbers": [
+                14
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "It is given instead that the line and the curve do not intersect.\n\nFind the set of possible values of $p$.",
+              "source_page_numbers": [
+                15
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Substitute an intersection point to form equations for k and p",
+              "Solve for the other intersection point",
+              "Find parameter conditions on p when the line and curve do not intersect"
+            ],
+            "methods": [
+              "Use simultaneous equations by substitution",
+              "Solve quadratic resulting from substituting y=kx+p into y=...",
+              "Use discriminant < 0 (or equivalent) to ensure no intersection"
+            ],
+            "subtopics": [
+              "Intersection of a line and a quadratic",
+              "Parameter determination",
+              "Discriminant condition for non-intersection"
+            ],
+            "main_topic": "Coordinate Geometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 10,
+          "stem_markdown": "The equation of a curve is $y = \\frac{1}{2}k^2x^2 - 2kx + 2$ and the equation of a line is $y = kx + p$, where $k$ and $p$ are constants with $0 < k < 1$.",
+          "question_number": 9,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "\\[ \\backslash left\\{ \\backslash frac\\{1\\}\\{2\\}, k^2\\; \\backslash times\\; \\backslash frac\\{25\\}\\{4\\}, -2k\\; \\backslash times\\; \\backslash frac\\{5\\}\\{2\\}, +2\\; =\\; \\backslash frac\\{1\\}\\{2\\} \\] OR \\[ \\backslash left\\{ \\backslash frac\\{1\\}\\{2\\}, k^2\\; \\backslash times\\; \\backslash frac\\{25\\}\\{4\\}, -2k\\; \\backslash times\\; \\backslash frac\\{5\\}\\{2\\}, +2\\; =\\; k\\; \\backslash times\\; \\backslash frac\\{5\\}\\{2\\}, +\\; \\backslash left(\\backslash frac\\{1\\}\\{2\\}, -\\backslash frac\\{5\\}\\{2\\}, k) \\] \\[ 25k^2\\; -40k\\; +12\\; \\backslash left[=0] \\]",
+              "guidance_markdown": "Using $\\backslash left(\\backslash frac\\{5\\}\\{2\\}, \\backslash frac\\{1\\}\\{2\\})$ in the curve equation or equating the line and the curve and then using $x\\; =\\; \\backslash frac\\{5\\}\\{2\\}$ and $p\\; =\\; \\backslash frac\\{1\\}\\{2\\}, -\\backslash frac\\{5\\}\\{2\\}, k$. Simplify to get a three-term quadratic in $k$. Condone errors in simplification.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$k\\; =\\; \\backslash frac\\{2\\}\\{5\\}$",
+              "guidance_markdown": "OE Condone inclusion of $k\\; =\\; \\backslash frac\\{6\\}\\{5\\}$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1*",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$\\backslash frac\\{1\\}\\{2\\}\\; =\\; \\backslash left(\\backslash their\\; \\backslash frac\\{2\\}\\{5\\})\\; \\backslash left(\\backslash frac\\{5\\}\\{2\\})\\; +\\; p\\; \\backslash right\\; \\backslash right\\; p\\; =$",
+              "guidance_markdown": "Using $\\backslash left(\\backslash frac\\{5\\}\\{2\\}, \\backslash frac\\{1\\}\\{2\\})$ and $their\\; k$ in an equation in $p$. Either the line (as shown) or $4p^2\\; +12p\\; +5\\; =0$ are the most likely and solving for $p$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$p\\; =\\; -\\backslash frac\\{1\\}\\{2\\}$",
+              "guidance_markdown": "OE Condone inclusion of $p\\; =\\; -\\backslash frac\\{5\\}\\{2\\}$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$\\backslash frac\\{2\\}\\{25\\}, x^2\\; -\\backslash frac\\{6\\}\\{5\\}, x\\; +\\; \\backslash frac\\{5\\}\\{2\\}, \\backslash left[=0]\\; \\backslash left[4x^2\\; -60x\\; +125\\; \\backslash left[=0]] \\]",
+              "guidance_markdown": "Equating the line and curve using $their\\; k$ and $p$ and simplify to get a three-term quadratic $[=0]$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$\\backslash left(\\backslash frac\\{25\\}\\{2\\}, \\backslash frac\\{9\\}\\{2\\})$",
+              "guidance_markdown": "OE Accept $x\\; =\\; \\backslash frac\\{25\\}\\{2\\},\\; y\\; =\\; \\backslash frac\\{9\\}\\{2\\}$.",
+              "source_page_numbers": [
+                21
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$\\left[ \\frac{1}{2} k^2 \\times \\frac{25}{4} - 2k \\times \\frac{5}{2} + 2 = k \\times \\frac{5}{2} + p \\right]$$ $$4p^2 + 12p + 5 \\quad [= 0]$$",
+              "guidance_markdown": "OE Using $$\\left( \\frac{5}{2}, \\frac{1}{2} \\right)$$ in the curve equation or equating the line and the curve and then using $$x = \\frac{5}{2}$$ and $$k = \\frac{1}{5} - \\frac{2}{5} p$$. Simplify to get a three-term quadratic in $$p \\quad [= 0]$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$p = -\\frac{1}{2}$$ OE",
+              "guidance_markdown": "Condone inclusion of $$p = -\\frac{5}{2}$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1*",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$\\frac{1}{2} = \\left( \\frac{5}{2} k \\right) + \\left( \\text{their} - \\frac{1}{2} \\right) \\Rightarrow k =$$",
+              "guidance_markdown": "Using $$\\left( \\frac{5}{2}, \\frac{1}{2} \\right)$$ and *their* $$p$$ in the line equation and solving for $$k$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$k = \\frac{2}{5}$$",
+              "guidance_markdown": "OE Condone inclusion of $$k = \\frac{6}{5}$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$\\frac{2}{25} x^2 - \\frac{6}{5} x + \\frac{5}{2} [= 0] \\quad [4x^2 - 60x + 125[= 0]]$$",
+              "guidance_markdown": "Equating the line and curve using *their* $$k$$ and $$p$$ and simplify to get a three-term quadratic $$[= 0]$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1 A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "$$\\left( \\frac{25}{2}, \\frac{9}{2} \\right)$$",
+              "guidance_markdown": "OE Accept $$x = \\frac{25}{2}$$, $$y = \\frac{9}{2}$$.",
+              "source_page_numbers": [
+                22
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "$$\\left[ \\frac{1}{2} k^2 x^2 - 2kx + 2 = kx + p \\Rightarrow \\right] \\frac{1}{2} k^2 x^2 - 3kx + 2 - p$$",
+              "guidance_markdown": "Equate the original equations of the curve and the line and collect like terms; $$k$$ and $$p$$ must still be present.",
+              "source_page_numbers": [
+                23
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "$$9k^2 - 4 \\times \\frac{1}{2} k^2 (2 - p)$$",
+              "guidance_markdown": "Use of $$b^2 - 4ac$$ for their quadratic in $$x$$ to give an expression in $$k$$ and $$p$$. This expression can come from *their* equation in **(a)**.",
+              "source_page_numbers": [
+                23
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 15,
+              "content_markdown": "$$p < -\\frac{5}{2}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                23
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            14,
+            15
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the equation of the normal to the curve at the point $(1, 0)$.",
+              "source_page_numbers": [
+                16
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find $f(x)$.",
+              "source_page_numbers": [
+                16
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "It is given that the equation $f'(x) = 0$ can be expressed in the form\n\n$$125x^2 - 128x + 192 = 0.$$ \n\nDetermine, making your reasoning clear, whether $f$ is an increasing function, a decreasing function or neither.",
+              "source_page_numbers": [
+                17
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Find gradient at a point using f'(x)",
+              "Use perpendicular-gradient rule to form the normal equation",
+              "Integrate f'(x) to obtain f(x) and use a point to find the constant",
+              "Determine whether f is increasing/decreasing using roots of f'(x)"
+            ],
+            "methods": [
+              "Evaluate f'(1) and use slope product -1 for normal",
+              "Integrate f'(x) term-by-term and apply f(1)=0",
+              "Solve 125x^2-128x+192=0 for critical points and sign-test f'(x)"
+            ],
+            "subtopics": [
+              "Differentiation and integration to recover f(x)",
+              "Tangents and normals",
+              "Function monotonicity via f'(x) sign"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 10,
+          "stem_markdown": "A function $f$ with domain $x > 0$ is such that $f'(x) = 8(2x - 3)^{\\frac{1}{3}} - 10x^{\\frac{2}{3}}$. It is given that the curve with equation $y = f(x)$ passes through the point $(1, 0)$.",
+          "question_number": 10,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$-18$$",
+              "guidance_markdown": "SOI",
+              "source_page_numbers": [
+                23
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\frac{1}{18}$$",
+              "guidance_markdown": "Use of $$m_1 m_2 = -1$$ from $$f'(x)$$ with $$x = 1$$.",
+              "source_page_numbers": [
+                23
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$\\frac{y[-0]}{x-1} = \\frac{1}{18}$$",
+              "guidance_markdown": "OE ISW",
+              "source_page_numbers": [
+                23
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$[f(x)=] \\left\\{ 8(2x-3)^{\\frac{4}{3}} \\cdot \\frac{1}{2} \\cdot \\frac{1}{\\frac{4}{3}} \\right\\} \\left\\{ -10x^{\\frac{5}{3}} \\cdot \\frac{1}{\\frac{5}{3}} \\right\\} [+c]$$ $$\\left[ 3(2x-3)^{\\frac{4}{3}} - 6x^{\\frac{5}{3}} + c \\right]$$",
+              "guidance_markdown": "B1 for each unsimplified {}. Can be implied by equivalent simplified or partly simplified versions.",
+              "source_page_numbers": [
+                24
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$0 = 3(2(1)-3)^{\\frac{4}{3}} - 6(1)^{\\frac{5}{3}} + c \\quad [0=3-6+c]$$",
+              "guidance_markdown": "Use of $$x=1$$ and $$y=0$$ in *their* integrated $$f'(x)$$, defined as an expression with at least one correct power, which must contain $$+c$$.",
+              "source_page_numbers": [
+                24
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$[f(x) \\text{ or } y=] 3(2x-3)^{\\frac{4}{3}} - 6x^{\\frac{5}{3}} + 3$$",
+              "guidance_markdown": "Only condone $$c=3$$ as their final answer if all coefficients have previously been simplified in a correct statement.",
+              "source_page_numbers": [
+                24
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$b^2 - 4ac = 128^2 - 4 \\times 125 \\times 192$$ and stating “$$< 0$$” OR use of the quadratic formula and stating “No solutions” OR completing the square for the given quadratic and stating positive or $$> 0$$. OR sketch of the given quadratic and stating positive.",
+              "guidance_markdown": "$$b^2 - 4ac = -79616$$ can be accepted in place of working.",
+              "source_page_numbers": [
+                24
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "No turning points [in the original function.]",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                24
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Decreasing because $$f'(\\text{any positive } x \\text{ value}) < 0$$",
+              "guidance_markdown": "WWW e.g. $$f'(1) = -18$$.",
+              "source_page_numbers": [
+                24
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            16,
+            17
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_09f7cebd76dbe2ae016a79ac2b7254819bbba419a3bf4c2457",
+      "resp_0d0ae5c7f0707781016a79ac88d880819bb8081b6b4b9e14bb",
+      "resp_0ea31fc49923c57f016a79ad004838819b91b1449f9d362aa4",
+      "resp_0766ff9b7bcd9841016a79ad0242e0819a8f5807fedb0671ec",
+      "resp_0636c9244471c3e4016a79ad5dcf6c8199b7aaf421bfe11dd7",
+      "resp_0def68ec495cf4e4016a79ae884b18819b8b138aa85cda4118"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

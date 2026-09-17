@@ -1,0 +1,237 @@
+{
+  "paper_key": "9709_2025_may_june_31",
+  "ingestion_run_id": "4ed329cd-be33-4056-a5ac-ca9fff4a1745",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-09:a_level:9709:2025:may_june:31",
+  "run_status": "awaiting_review",
+  "paper_status": "staging",
+  "ocr_model": "mistral-ocr-latest",
+  "source_documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_qp_31.pdf",
+      "page_count": null
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_ms_31.pdf",
+      "page_count": null
+    }
+  ],
+  "documents": [
+    {
+      "document_type": "mark_scheme",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "CAMBRIDGE\nInternational Education\n\n# Cambridge International A Level\n\nMATHEMATICS\n\nPaper 3 Pure Mathematics 3\n\nMARK SCHEME\n\nMaximum Mark: 75\n\n9709/31\n\nMay/June 2025\n\nPublished\n\nThis mark scheme is published as an aid to teachers and candidates, to indicate the requirements of the examination. It shows the basis on which Examiners were instructed to award marks. It does not indicate the details of the discussions that took place at an Examiners' meeting before marking began, which would have considered the acceptability of alternative answers.\n\nMark schemes should be read in conjunction with the question paper and the Principal Examiner Report for Teachers.\n\nCambridge International will not enter into discussions about these mark schemes.\n\nCambridge International is publishing the mark schemes for the May/June 2025 series for most Cambridge IGCSE, Cambridge International A and AS Level components, and some Cambridge O Level components.\n\nThis document consists of 21 printed pages.\n\n© Cambridge University Press & Assessment 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\n# **PUBLISHED**\n\n# **Generic Marking Principles**\n\nThese general marking principles must be applied by all examiners when marking candidate answers. They should be applied alongside the specific content of the mark scheme or generic level descriptions for a question. Each question paper and mark scheme will also comply with these marking principles.\n\nGENERIC MARKING PRINCIPLE 1:\n\nMarks must be awarded in line with:\n\n- the specific content of the mark scheme or the generic level descriptors for the question\n- the specific skills defined in the mark scheme or in the generic level descriptors for the question\n- the standard of response required by a candidate as exemplified by the standardisation scripts.\n\nGENERIC MARKING PRINCIPLE 2:\n\nMarks awarded are always **whole marks** (not half marks, or other fractions).\n\nGENERIC MARKING PRINCIPLE 3:\n\nMarks must be awarded **positively**:\n\n- marks are awarded for correct/valid answers, as defined in the mark scheme. However, credit is given for valid answers which go beyond the scope of the syllabus and mark scheme, referring to your Team Leader as appropriate\n- marks are awarded when candidates clearly demonstrate what they know and can do\n- marks are not deducted for errors\n- marks are not deducted for omissions\n- answers should only be judged on the quality of spelling, punctuation and grammar when these features are specifically assessed by the question as indicated by the mark scheme. The meaning, however, should be unambiguous.\n\nGENERIC MARKING PRINCIPLE 4:\n\nRules must be applied consistently, e.g. in situations where candidates have not followed instructions or in the application of generic level descriptors.\n\nGENERIC MARKING PRINCIPLE 5:\n\nMarks should be awarded using the full range of marks defined in the mark scheme for the question (however; the use of the full mark range may be limited according to the quality of the candidate responses seen).\n\nGENERIC MARKING PRINCIPLE 6:\n\nMarks awarded are based solely on the requirements as defined in the mark scheme. Marks should not be awarded with grade thresholds or grade descriptors in mind.\n\n© Cambridge University Press & Assessment 2025\n\nPage 2 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2025\n\n# Mathematics-Specific Marking Principles\n\n1 Unless a particular method has been specified in the question, full marks may be awarded for any correct method. However, if a calculation is required then no marks will be awarded for a scale drawing.\n2 Unless specified in the question, non-integer answers may be given as fractions, decimals or in standard form. Ignore superfluous zeros, provided that the degree of accuracy is not affected.\n3 Allow alternative conventions for notation if used consistently throughout the paper, e.g. commas being used as decimal points.\n4 Unless otherwise indicated, marks once gained cannot subsequently be lost, e.g. wrong working following a correct form of answer is ignored (isw).\n5 Where a candidate has misread a number or sign in the question and used that value consistently throughout, provided that number does not alter the difficulty or the method required, award all marks earned and deduct just 1 A or B mark for the misread.\n6 Recovery within working is allowed, e.g. a notation error in the working where the following line of working makes the candidate's intent clear.\n\n© Cambridge University Press & Assessment 2025\n\nPage 3 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n# **Annotations guidance for centres**\n\nExaminers use a system of annotations as a shorthand for communicating their marking decisions to one another. Examiners are trained during the standardisation process on how and when to use annotations. The purpose of annotations is to inform the standardisation and monitoring processes and guide the supervising examiners when they are checking the work of examiners within their team. The meaning of annotations and how they are used is specific to each component and is understood by all examiners who mark the component.\n\nWe publish annotations in our mark schemes to help centres understand the annotations they may see on copies of scripts. Note that there may not be a direct correlation between the number of annotations on a script and the mark awarded. Similarly, the use of an annotation may not be an indication of the quality of the response.\n\nThe annotations listed below were available to examiners marking this component in this series.\n\n# **Annotations**\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  ^ | More information required  |\n|  A0 | Accuracy mark awarded zero  |\n|  A1 | Accuracy mark awarded one  |\n|  B0 | Independent accuracy mark awarded zero  |\n|  B1 | Independent accuracy mark awarded one  |\n|  B2 | Independent accuracy mark awarded two  |\n|  BOD | Benefit of the doubt  |\n|  BP | Blank Page  |\n|  ✗ | Incorrect  |\n|  Dep | Used to indicate DM0 or DM1  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 4 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  DM1 | Dependent on the previous M1 mark(s)  |\n|  FT | Follow through  |\n|  ~~~ | Indicate working that is right or wrong  |\n|  Highlighter | Highlight a key point in the working  |\n|  ISW | Ignore subsequent work  |\n|  J | Judgement  |\n|  JU | Judgement  |\n|  M0 | Method mark awarded zero  |\n|  Y1 | Method mark awarded one  |\n|  M2 | Method mark awarded two  |\n|  MR | Misread  |\n|  O | Omission or Other solution  |\n|  Off-page comment | Allows comments to be entered at the bottom of the RM marking window and then displayed when the associated question item is navigated to.  |\n|  On-page comment | Allows comments to be entered in speech bubbles on the candidate response.  |\n|  PE | Judgment made by the PE  |\n|  Pre | Premature approximation  |\n|  SC | Special case  |\n|  SEEN | Indicates that work/page has been seen  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 5 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] **PUBLISHED**\n\nMay/June 2025\n\n|  Annotation | Meaning  |\n| --- | --- |\n|  SF | Error in number of significant figures  |\n|  ✓ | Correct  |\n|  TE | Transcription error  |\n|  XP | Correct answer from incorrect working  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 6 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\n# **PUBLISHED**\n\n# **Mark Scheme Notes**\n\nThe following notes are intended to aid interpretation of mark schemes in general, but individual mark schemes may include marks awarded for specific reasons outside the scope of these notes.\n\n# **Types of mark**\n\n**M** Method mark, awarded for a valid method applied to the problem. Method marks are not lost for numerical errors, algebraic slips or errors in units. However, it is not usually sufficient for a candidate just to indicate an intention of using some method or just to quote a formula; the formula or idea must be applied to the specific problem in hand, e.g. by substituting the relevant quantities into the formula. Correct application of a formula without the formula being quoted obviously earns the M mark and in some cases an M mark can be implied from a correct answer.\n\n**A** Accuracy mark, awarded for a correct answer or intermediate step correctly obtained. Accuracy marks cannot be given unless the associated method mark is earned (or implied).\n\n**B** Mark for a correct result or statement independent of method marks.\n\n**DM or DB** When a part of a question has two or more ‘method’ steps, the M marks are generally independent unless the scheme specifically says otherwise; and similarly, when there are several B marks allocated. The notation DM or DB is used to indicate that a particular M or B mark is dependent on an earlier M or B (asterisked) mark in the scheme. When two or more steps are run together by the candidate, the earlier marks are implied and full credit is given.\n\n**FT** Implies that the A or B mark indicated is allowed for work correctly following on from previously incorrect results. Otherwise, A or B marks are given for correct work only.\n\n- A or B marks are given for correct work only (not for results obtained from incorrect working) unless follow through is allowed (see abbreviation FT above).\n- For a numerical answer, allow the A or B mark if the answer is correct to 3 significant figures or would be correct to 3 significant figures if rounded (1 decimal place for angles in degrees).\n- The total number of marks available for each question is shown at the bottom of the Marks column.\n- Wrong or missing units in an answer should not result in loss of marks unless the guidance indicates otherwise.\n- Square brackets [ ] around text or numbers show extra information not needed for the mark to be awarded.\n\n© Cambridge University Press & Assessment 2025\n\nPage 7 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2025\n\nAbbreviations\n\n|  AEF/OE | Any Equivalent Form (of answer is equally acceptable) / Or Equivalent  |\n| --- | --- |\n|  AG | Answer Given on the question paper (so extra checking is needed to ensure that the detailed working leading to the result is valid)  |\n|  CAO | Correct Answer Only (emphasising that no ‘follow through’ from a previous error is allowed)  |\n|  CWO | Correct Working Only  |\n|  ISW | Ignore Subsequent Working  |\n|  SOI | Seen Or Implied  |\n|  SC | Special Case (detailing the mark to be given for a specific wrong solution, or a case where some standard marking practice is to be varied in the light of a particular circumstance)  |\n|  WWW | Without Wrong Working  |\n|  AWRT | Answer Which Rounds To  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 8 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  1(a) |  | **B1** | Symmetrical. In correct position. Condone if no complete scale shown, but must see 3 and 3/2 marked. Needs to exist for negative x. Must be intending straight lines. Ignore y = 3x - 1 if seen.  |\n|   |   | **1** |   |\n|  1(b) | Obtain critical value 4/5 from 3x - 1 = 3 - 2x | **B1** |   |\n|   |  State final answer x < 4/5 | **B1** |   |\n|   |  **Alternative Method for Question 1(b)**  |   |   |\n|   |  Obtain critical value 4/5 from (3x - 1)² = (3 - 2x)² | **B1** | Ignore x = -2 if seen.  |\n|   |  State final answer x < 4/5 | **B1** |   |\n|   |  | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 9 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  2 | Use logarithm of a root or a power | **M1** | E.g. $$2 \\ln p = \\ln p^2, \\frac{1}{2} \\ln(q+1) = \\ln \\sqrt{q+1}$$ or $$3 = \\ln e^3$$.  |\n|   |  Obtain $$p^2(p-1) = e^3 \\sqrt{q+1}$$ | **A1** | OE without logs.  |\n|   |  Obtain $$q = \\left( \\frac{p^2(p-1)}{e^3} \\right)^2 - 1$$ | **A1** | OE, ISW  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 10 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  3 | $$\\frac{x+i(y+5)}{(x-5)+iy} \\times \\frac{(x-5)-iy}{(x-5)-iy}$$ | *M1 | Multiply numerator (and denominator) by the conjugate of the denominator.  |\n|   |  Equate imaginary part of numerator to zero | DM1 | Numerator $$=x(x-5)+y(y+5)+i((y+5)(x-5)-xy).$$  |\n|   |  Obtain $$x-y=5$$ | A1 | OE  |\n|   |  Correct use of modulus and solve for $$x$$ and $$y$$ | M1 | $$x^2+(x-5)^2=17 \\Rightarrow x^2-5x+4=0$$ Or $$x-y=5$$ and $$xy=-4$$.  |\n|   |  $$\\Rightarrow z=4-i$$ | A1 |   |\n|   |  $$\\Rightarrow z=1-4i$$ | A1 |   |\n|   |  **Alternative Method for the first two marks of Question 3**  |   |   |\n|   |  Quotient real $$\\Rightarrow \\frac{x}{x+5}=\\frac{y+5}{y}$$ | M1 |   |\n|   |  Rearrange to linear form and simplify | M1 |   |\n|   |   | 6 |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 11 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | At (e, 3), $$\\tan t = 1$$ or $$t = \\frac{\\pi}{4}$$ | **B1** | SOI  |\n|   |  $$\\frac{dx}{dt} = \\sec^2 t \\times e^{\\tan t}$$ | **B1** |   |\n|   |  $$\\frac{dy}{dt} = 6 \\tan t \\times \\sec^2 t$$ | **B1** |   |\n|   |  $$\\frac{dy}{dx} = \\frac{6 \\tan t \\times \\sec^2 t}{\\sec^2 t \\times e^{\\tan t}} \\quad (= 6 \\tan t \\times e^{-\\tan t})$$ | ***M1** | Correct use of *their* derivatives.  |\n|   |  $$y - 3 = \\frac{6}{e}(x - e)$$ | **DM1** | Substitute for *t*, and use correct method for the equation of the line.  |\n|   |  $$y = \\frac{6}{e}x - 3$$ | **A1** | Or exact equivalent.  |\n|   |  **Alternative Method for Question 4**  |   |   |\n|   |  Correct cartesian form, e.g. $$x = e^{\\sqrt{\\frac{y}{3}}}$$ or $$\\ln x = \\sqrt{\\frac{y}{3}}$$ or $$y = 3(\\ln x)^2$$ | **B1** | SOI  |\n|   |  Differentiate function of a function | ***M1** | Complete method.  |\n|   |  Obtain $$\\frac{dx}{dy} = k \\sqrt{\\frac{x}{y}} e^{\\sqrt{\\frac{y}{3}}}$$ or $$\\frac{dy}{dx} = k \\times \\frac{1}{x} \\ln x$$ | **A1** |   |\n|   |  Obtain $$\\frac{dx}{dy} = \\frac{1}{6} \\sqrt{\\frac{3}{y}} e^{\\sqrt{\\frac{y}{3}}}$$ or $$\\frac{dy}{dx} = 6 \\times \\frac{1}{x} \\ln x$$ | **A1** |   |\n|   |  $$y - 3 = \\frac{6}{e}(x - e)$$ | **DM1** | Use correct method for the equation of the line.  |\n\n© Cambridge University Press & Assessment 2025\n\nPage 12 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  4 | $$y = \\frac{6}{e}x - 3$$ | **A1** | Or exact equivalent.  |\n|   |   | **6** |   |\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  5 | Use $$f(-2a) = -22a^3$$ | **M1** | Or use long division and equate a constant remainder to $$-22a^3$$.  |\n|   |  Obtain $$-24a^3 + 4pa^3 - 14a^3 + qa^3 = -22a^3$$ | **A1** | Must evaluate the terms. OE, e.g. $$4p + q = 16$$.  |\n|   |  Use $$f\\left(\\frac{a}{3}\\right) = -a^3$$ | **M1** | Or use long division and equate a constant remainder to $$-a^3$$.  |\n|   |  Obtain $$\\frac{1}{9}a^3 + \\frac{1}{9}pa^3 + \\frac{7}{3}a^3 + qa^3 = -a^3$$ | **A1** | Must evaluate the terms. OE, e.g. $$p + 9q = -31$$  |\n|   |  Obtain $$p = 5, q = -4$$ | **A1** |   |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 13 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\nPUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  6(a) | Obtain $$\\omega z_1 = 6e^{i\\frac{1}{2}\\pi}$$ | **B1** |   |\n|   |  Obtain $$\\omega z_2 = 3e^{i\\frac{1}{2}\\pi}$$ | **B1** |   |\n|   |   |  | **SC B1** for both moduli correct or both arguments correct.  |\n|   |   | **2** |   |\n|  6(b) | *A* and *B* plotted correctly | **B1** | Follow *their* answers to part (a)  |\n|   |  *C* and *D* plotted with angles relatively correct and the same stretch implied. | **B1FT** | *C* and *D* correct, or FT *their A* and *B*.  |\n|   |   | **2** |   |\n|  6(c) | Rotation $$\\frac{\\pi}{2}$$ radians (anticlockwise), or rotation $$\\frac{3\\pi}{2}$$ radians clockwise | **B1** | Accept 90°. Not required to state the centre of the rotation, but B0 if an incorrect statement seen.  |\n|   |  Enlargement (scale) factor 2 | **B1** | Not required to state the centre of the enlargement, but B0 if an incorrect statement seen. Allow ‘expansion’ or ‘stretch’.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 14 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  7(a) | Expand $$5\\sin\\left(x+\\frac{\\pi}{6}\\right)-4\\cos x$$ to obtain $$\\frac{5}{2}\\sqrt{3}\\sin x-\\frac{3}{2}\\cos x$$ | **B1** | Or exact 2 term equivalent.  |\n|   |  State $$R=\\sqrt{21}$$ | **B1ft** | Follow *their* $$\\frac{5}{2}\\sqrt{3}$$ and $$\\frac{3}{2}$$.  |\n|   |  Use correct trig formulae to obtain $$\\tan \\alpha$$ | **M1** | OE, WWW. E.g. $$\\tan \\alpha=\\frac{3}{5\\sqrt{3}}\\left(=\\frac{\\sqrt{3}}{5}\\right)$$, $$\\sin \\alpha=\\frac{3}{2\\sqrt{21}}\\left(=\\frac{\\sqrt{3}}{2\\sqrt{7}}\\right)$$, $$\\cos \\alpha=\\frac{5\\sqrt{3}}{2\\sqrt{21}}\\left(=\\frac{5}{2\\sqrt{7}}\\right)$$.  |\n|   |  Obtain $$\\alpha=0.333$$ | **A1** |   |\n|   |   | **4** |   |\n|  7(b) | $$\\sin^{-1}\\left(\\frac{\\sqrt{7}}{\\sqrt{21}}\\right)$$ | **B1FT** | SOI 0.615... can be implied by one correct answer. Follow *their* $$\\sqrt{21}$$.  |\n|   |  Use a correct method to obtain a value of $$\\theta$$ in the interval | **M1** |   |\n|   |  Obtain one correct answer, e.g. 0.47 | **A1** |   |\n|   |  Obtain second correct answer, e.g. 1.43, and no others in the interval | **A1** |   |\n|   |   | **4** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 15 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  8(a) | Use a correct method to form an equation for $l_1$ | **M1** | Accept column vectors.  |\n|   |  Obtain $\\mathbf{r} = (2\\mathbf{i} + 4\\mathbf{k}) + \\lambda(3\\mathbf{i} + \\mathbf{j} + 2\\mathbf{k})$ | **A1** | OE, e.g. $\\mathbf{r} = (5\\mathbf{i} + \\mathbf{j} + 6\\mathbf{k}) + \\lambda(3\\mathbf{i} + \\mathbf{j} + 2\\mathbf{k})$. Must have $\\mathbf{r} = \\dots$, or in $x, y, z$ or $\\mathbf{R} = \\dots$.  |\n|   |   | **2** |   |\n|  8(b) | Express general point of a line in component form | **B1ft** | E.g. $\\begin{pmatrix} 2 + \\mu \\\\ 1 + 2\\mu \\\\ 5 + 3\\mu \\end{pmatrix}$ or $\\begin{pmatrix} 2 + 3\\lambda \\\\ \\lambda \\\\ 4 + 2\\lambda \\end{pmatrix}$ or $\\begin{pmatrix} 5 + 3\\lambda \\\\ 1 + \\lambda \\\\ 6 + 2\\lambda \\end{pmatrix}$.  |\n|   |  Equate two pairs of components of $l_2$ and their $l_1$, and solve for $\\lambda$ or $\\mu$ | **M1** | $\\begin{pmatrix} 2 + \\mu \\\\ 1 + 2\\mu \\\\ 5 + 3\\mu \\end{pmatrix} = \\begin{pmatrix} 2 + 3\\lambda \\\\ \\lambda \\\\ 4 + 2\\lambda \\end{pmatrix}$  |\n|   |  Obtain e.g. $\\lambda = -\\frac{1}{5}, \\mu = -\\frac{3}{5}$ | **A1** | Or $\\lambda = -\\frac{1}{7}, \\mu = -\\frac{3}{7}$ or $\\lambda = -1, \\mu = -1$.  |\n|   |  Show that this does not fit the third component and hence the lines do not intersect. | **A1** | $\\frac{16}{5} \\neq \\frac{18}{5}$ or $\\frac{1}{7} \\neq -\\frac{1}{7}$ or $1 \\neq -1$.  |\n|   |   | **4** |   |\n|  8(c) | Carry out the correct process for evaluating the scalar product of the direction vector of $l_1$ and $l_2$ | **M1** | E.g. $(\\mathbf{i} + 2\\mathbf{j} + 3\\mathbf{k}) \\cdot (3\\mathbf{i} + \\mathbf{j} + 2\\mathbf{k}) = 3 + 2 + 6$.  |\n|   |  Using the correct process for the moduli, divide their scalar product by the product of the moduli of their vectors and evaluate the inverse cosine of the result | **M1** | $\\theta = \\cos^{-1} \\left( \\frac{3 + 2 + 6}{\\sqrt{14} \\times \\sqrt{14}} \\right)$  |\n|   |  Obtain AWRT $38.2^\\circ$ or 0.667 radians | **A1** |   |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 16 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(a) | Commence integration and reach $$px^2 \\ln x + q \\int x \\, dx$$ | **M1*** | Allow M1 with $$q \\int \\frac{x^2}{x} \\, dx$$.  |\n|   |  Obtain $$3x^2 \\ln x - 3 \\int x \\, dx$$ | **A1** | $$\\frac{x^2}{x}$$ must be simplified.  |\n|   |  Complete integration and obtain $$3x^2 \\ln x - \\frac{3}{2}x^2$$ | **A1** |   |\n|   |  Use limits correctly in an expression of the form $$ax^2 \\ln x - bx^2$$ and equate to 4, having integrated twice | **DM1** | $$3a^2 \\ln a - \\frac{3}{2}a^2 - 0 + \\frac{3}{2} = 4$$  |\n|   |  Obtain $$a = \\exp\\left(\\frac{1}{6}\\left(\\frac{5}{a^2} + 3\\right)\\right)$$ correctly | **A1** | AG  |\n|   |   | **5** |   |\n|  9(b) | Calculate the values of a relevant expression or pair of expressions at $$a = 2$$ and $$a = 2.1$$ | **M1** | Not from using calculator to evaluate the original integral.  |\n|   |  Justify the given statement with correct calculated values | **A1** | E.g., using $$f(x) = 6x^2 \\ln x - 3x^2$$ $$f(2) = 4.636 < 5$$ and $$f(2.1) = 6.402 > 5$$, or using the exponential, $$2 < 2.0306$$ and $$2.1 > 1.9917$$ or $$0.0306 > 0$$ and $$-0.1083 < 0$$.  |\n|   |   | **2** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 17 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\n\nMay/June 2025\n\n# PUBLISHED\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  9(c) | Use the iterative process $$a_{n+1} = \\exp\\left(\\frac{1}{6}\\left(\\frac{5}{a_n^2} + 3\\right)\\right)$$ correctly at least once. | **M1** |   |\n|   |  Obtain final answer 2.02 | **A1** |   |\n|   |  Show sufficient iterations to at least 4 d.p. to justify 2.02 to 2 d.p. or show that there is a sign change in (2.015, 2.025) | **A1** | E.g. 2 → 2.0306 → 2.0180 → 2.0231... 2.05 → 2.0103 → 2.0263 → 2.0197 → 2.0224.. 2.1 → 1.9917 → 2.0342 → 2.0166 → 2.0237..  |\n|   |   | **3** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 18 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2025",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme^{}[] PUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  10(b) | Separate variables correctly and obtain $$\\int 6y\\,dy = 3y^2$$ | **B1** | OE from $$\\int 6y\\,dy = \\int \\frac{x^3 + 5x^2 - 2x - 15}{x^2 - 3}\\,dx$$.  |\n|   |  Obtain $$\\frac{1}{2}x^2 + 5x$$ | **B1ft** | Follow *their* linear quotient.  |\n|   |  Obtain $$\\frac{1}{2}\\ln(x^2 - 3)$$ | **B1ft** | From the *x* term in *their* remainder $$ax + b$$.  |\n|   |  Use $$y = 2$$, $$x = 2$$ to evaluate the constant of integration in an integral containing $$k\\ln(x^2 - 3)$$ | **M1** | $$12 = 2 + 10 + \\frac{1}{2}\\ln 1 + C \\Rightarrow C = 0$$  |\n|   |  Obtain $$y^2 = \\frac{1}{6}x^2 + \\frac{5}{3}x + \\frac{1}{6}\\ln(x^2 - 3)$$ | **A1** | OE  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 20 of 21",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 21,
+          "raw_markdown": "9709/31\n\nCambridge International A Level – Mark Scheme\nPUBLISHED\n\nMay/June 2025\n\n|  Question | Answer | Marks | Guidance  |\n| --- | --- | --- | --- |\n|  11(a) | $$\\frac{d}{dx}\\sqrt{\\sin 2x} = \\frac{2\\cos 2x}{2\\sqrt{\\sin 2x}}$$ Accept $$k\\frac{\\cos 2x}{\\sqrt{\\sin 2x}}$$ | **B1** | SOI  |\n|   |  Use correct product rule | **M1*** |   |\n|   |  Obtain correct derivative in any form | **A1** | E.g. $$\\frac{dy}{dx} = -\\sin x\\sqrt{\\sin 2x} + \\cos x \\times \\frac{2\\cos 2x}{2\\sqrt{\\sin 2x}}$$  |\n|   |  Equate the derivative to zero and obtain a horizontal equation | **DM1** | E.g. $$-\\sin a\\sin 2a + \\cos a\\cos 2a = 0$$  |\n|   |  Use correct trig formulae to obtain an equation in one trig function | **DM1** | E.g. $$\\cos 3a = 0$$ or $$\\sin^2 a = \\frac{1}{4}$$  |\n|   |  Obtain $$a = \\frac{1}{6}\\pi$$ | **A1** | Exact answer in radians only.  |\n|   |   | **6** |   |\n|  11(b) | Use $$[\\pi]\\int y^2 dx$$ | **M1*** |   |\n|   |  Use double angle formula to obtain a form that can be integrated directly, e.g. $$\\int \\cos^2 x\\sin 2x\\,dx = \\int 2\\cos^3 x\\sin x\\,dx$$ | **DM1** | Or $$\\int \\frac{1}{4}\\sin 4x + \\frac{1}{2}\\sin 2x\\,dx$$, or $$\\int 2(u - u^3)\\,du$$ by substituting $$u = \\sin x$$.  |\n|   |  Obtain $$-(\\pi) \\times \\frac{1}{2}\\cos^4 x$$ | **A1** | Or $$-[\\pi]\\left(\\frac{1}{16}\\cos 4x + \\frac{1}{4}\\cos 2x\\right)$$, OE.  |\n|   |  Use correct limits correctly | **DM1** | $$[-[\\pi] \\times \\frac{1}{2}\\cos^4 x]_{0}^{2} = -[\\pi]\\left(\\frac{1}{2}\\cos\\left(\\frac{1}{2}\\pi\\right) - \\frac{1}{2}\\right)$$, or $$-[\\pi]\\left(\\frac{1}{16}\\cos 2\\pi + \\frac{1}{4}\\cos \\pi - \\frac{1}{16} - \\frac{1}{4}\\right)$$ OE.  |\n|   |  Obtain final answer $$\\frac{1}{2}\\pi$$ | **A1** | If the factor of $$\\pi$$ is missing throughout, allow the first 4 marks and A0 here.  |\n|   |   | **5** |   |\n\n© Cambridge University Press & Assessment 2025\n\nPage 21 of 21",
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "document_type": "question_paper",
+      "pages": [
+        {
+          "page_number": 1,
+          "raw_markdown": "* 0000800000001 *\n\n![img-0.jpeg](img-0.jpeg)\n\nCambridge Assessment\nInternational Education\n\n# Cambridge International AS & A Level\n\nCANDIDATE\nNAME\n\nCENTRE\nNUMBER\n\n![img-1.jpeg](img-1.jpeg)\n\nCANDIDATE\nNUMBER\n\n![img-2.jpeg](img-2.jpeg)\n\nMATHEMATICS\n\n9709/31\n\nPaper 3 Pure Mathematics 3\n\nMay/June 2025\n\n1 hour 50 minutes\n\nYou must answer on the question paper.\n\nYou will need: List of formulae (MF19)\n\nINSTRUCTIONS\n\n- Answer all questions.\n- Use a black or dark blue pen. You may use an HB pencil for any diagrams or graphs.\n- Write your name, centre number and candidate number in the boxes at the top of the page.\n- Write your answer to each question in the space provided.\n- Do not use an erasable pen or correction fluid.\n- Do not write on any bar codes.\n- If additional space is needed, you should use the lined page at the end of this booklet; the question number or numbers must be clearly shown.\n- You should use a calculator where appropriate.\n- You must show all necessary working clearly; no marks will be given for unsupported answers from a calculator.\n- Give non-exact numerical answers correct to 3 significant figures, or 1 decimal place for angles in degrees, unless a different level of accuracy is specified in the question.\n\nINFORMATION\n\n- The total mark for this paper is 75.\n- The number of marks for each question or part question is shown in brackets [ ].\n\nThis document has 20 pages.\n\nDC (PQ/SW) 342946/3\n© UCLES 2025\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 2,
+          "raw_markdown": "* 0000800000002 *\n\n![img-3.jpeg](img-3.jpeg)\n\n2\n\n1 (a) Sketch the graph of $y = |2x - 3|$.\n\n[1]\n\n(b) Solve the inequality $3x - 1 < |2x - 3|$.\n\n[2]\n\n...\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 3,
+          "raw_markdown": "* 0000800000003 *\n\n![img-4.jpeg](img-4.jpeg)\n\n3\n\n2 It is given that $2 \\ln p + \\ln(p-1) - \\frac{1}{2} \\ln(q+1) = 3$.\n\nFind $q$ in terms of $p$.\n\n[3]\n\n...\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 4,
+          "raw_markdown": "* 0000800000004 *\n\n![img-5.jpeg](img-5.jpeg)\n\n4\n\n3 Find the complex numbers $z$ for which $\\frac{z+5i}{z-5}$ is real and $|z|=\\sqrt{17}$. Give your answers in the form $z=x+iy$, where $x$ and $y$ are real. [6]\n\n...\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 5,
+          "raw_markdown": "* 0000800000005 *\n\n![img-6.jpeg](img-6.jpeg)\n\n5\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 6,
+          "raw_markdown": "* 0000800000006 *\n\n![img-7.jpeg](img-7.jpeg)\n\n6\n\n# 4 The parametric equations of a curve are\n\n$$x = e^{\\tan t}, \\quad y = 3 \\tan^2 t.$$\n\nFind the equation of the tangent to the curve at the point (e, 3). Give your answer in the form $y = mx + c$, where $m$ and $c$ are exact. [6]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 7,
+          "raw_markdown": "* 0000800000007 *\n\n![img-8.jpeg](img-8.jpeg)\n\n7\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 8,
+          "raw_markdown": "* 0000800000008 *\n\n![img-9.jpeg](img-9.jpeg)\n\n8\n\n5 The polynomial $3x^3 + pax^2 + 7a^2x + qa^3$ is denoted by $f(x)$, where $p$, $q$ and $a$ are constants and $a \\neq 0$.\n\nWhen $f(x)$ is divided by $(x+2a)$ the remainder is $-22a^3$. When $f(x)$ is divided by $(3x-a)$ the remainder is $-a^3$.\n\nFind the values of $p$ and $q$.\n\n[5]\n\n...\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 9,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000009 *\n\n![img-10.jpeg](img-10.jpeg)\n\n9\n\n6 It is given that $z_1 = 3e^{\\frac{1}{4}\\pi i}$, $z_2 = \\frac{3}{2}e^{\\frac{1}{6}\\pi i}$ and $\\omega = 2e^{\\frac{1}{2}\\pi i}$.\n\n(a) State the values of $\\omega z_1$ and $\\omega z_2$. Give your answers in the form $re^{i\\theta}$, where $r > 0$ and $-\\pi < \\theta \\leqslant \\pi$. [2]\n\n(b) On a sketch of an Argand diagram with origin $O$, show the points $A, B, C$ and $D$ representing the complex numbers $z_1, z_2, \\omega z_1$ and $\\omega z_2$ respectively. [2]\n\n(c) State the geometric effects of multiplying $z_1$ and $z_2$ by $\\omega$. [2]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 10,
+          "raw_markdown": "* 0000800000010 *\n\n![img-11.jpeg](img-11.jpeg)\n\n10\n\n7 (a) Express $5 \\sin\\left(x + \\frac{1}{6}\\pi\\right) - 4 \\cos x$ in the form $R \\sin(x - \\alpha)$, where $R > 0$ and $0 < \\alpha < \\frac{1}{2}\\pi$. State the exact value of $R$ and give the value of $\\alpha$ correct to 3 decimal places. [4]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 11,
+          "raw_markdown": "* 0000800000011 *\n\n![img-12.jpeg](img-12.jpeg)\n\n11\n\n(b) Hence solve the equation $5 \\sin \\left(2\\theta + \\frac{1}{6}\\pi\\right) - 4 \\cos 2\\theta = \\sqrt{7}$ for $0 \\leqslant \\theta \\leqslant \\pi$. Give your answers correct to 2 decimal places. [4]\n\n...\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over]\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 12,
+          "raw_markdown": "* 0000800000012 *\n\n![img-13.jpeg](img-13.jpeg)\n\n12\n\n8 With respect to the origin O, the points A and B have position vectors 2i+4k and 5i+j+6k respectively. The line l₁ passes through the points A and B.\n\n(a) Find a vector equation for the line l₁.\n\n[2]\n\nThe line l₂ has equation r = 2i + j + 5k + μ(i + 2j + 3k).\n\n(b) Show that l₁ and l₂ do not intersect.\n\n[4]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 13,
+          "raw_markdown": "DO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n* 0000800000013 *\n\n![img-14.jpeg](img-14.jpeg)\n\n13\n\n(c) Find the acute angle between the directions of $l_1$ and $l_2$.\n\n[3]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 14,
+          "raw_markdown": "* 0000800000014 *\n\n![img-15.jpeg](img-15.jpeg)\n\n14\n\n9 The constant $a$ is such that $\\int_{1}^{a} 6x \\ln x \\, \\mathrm{d}x = 4$.\n\n(a) Show that $a = \\exp\\left(\\frac{1}{6}\\left(\\frac{5}{a^2} + 3\\right)\\right)$, where $\\exp(x)$ denotes $e^x$. [5]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 15,
+          "raw_markdown": "* 0000800000015 *\n\n![img-16.jpeg](img-16.jpeg)\n\n15\n\n(b) Verify by calculation that a lies between 2 and 2.1.\n\n[2]\n\n(c) Use an iterative formula based on the equation in part (a) to determine a correct to 2 decimal places. Give the result of each iteration to 4 decimal places. [3]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 16,
+          "raw_markdown": "* 0000800000016 *\n\n![img-17.jpeg](img-17.jpeg)\n\n16\n\n10 (a) Find the quotient and remainder when $x^3 + 5x^2 - 2x - 15$ is divided by $x^2 - 3$. [3]\n\n(b) The variables $x$ and $y$ satisfy the differential equation\n\n$$\\frac{dy}{dx} = \\frac{x^3 + 5x^2 - 2x - 15}{6y(x^2 - 3)}.$$\n\nIt is given that $y = 2$ when $x = 2$.\n\nSolve the differential equation to obtain an expression for $y^2$ in terms of $x$. [5]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 17,
+          "raw_markdown": "* 0000800000017 *\n\n![img-18.jpeg](img-18.jpeg)\n\n17\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\n© UCLES 2025\n\n9709/31/M/J/25\n\n[Turn over]",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 18,
+          "raw_markdown": "* 0000800000018 *\n\n![img-19.jpeg](img-19.jpeg)\n\n18\n\n11\n\n![img-20.jpeg](img-20.jpeg)\n\nThe diagram shows the curve $$y = \\cos x\\sqrt{\\sin 2x}$$ for $$0 \\leqslant x \\leqslant \\frac{1}{2}\\pi$$. The curve has a maximum point at $$M$$, where $$x = a$$.\n\n(a) Find the exact value of $$a$$.\n\n[6]\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 19,
+          "raw_markdown": "* 0000800000019 *\n\n![img-21.jpeg](img-21.jpeg)\n\n19\n\n(b) The region enclosed between the x-axis and the curve is rotated through 2π radians about the x-axis.\n\nFind the exact volume of the solid generated.\n\n[5]\n\n![img-22.jpeg](img-22.jpeg)\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        },
+        {
+          "page_number": 20,
+          "raw_markdown": "* 0000800000020 *\n\n![img-23.jpeg](img-23.jpeg)\n\n20\n\n# Additional page\n\nIf you use the following page to complete the answer to any question, the question number must be clearly shown.\n\nPermission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the publisher will be pleased to make amends at the earliest possible opportunity.\n\nTo avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download at www.cambridgeinternational.org after the live examination series.\n\nCambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.\n\n© UCLES 2025\n\n9709/31/M/J/25\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN\n\nDO NOT WRITE IN THIS MARGIN",
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1013 @@
+{
+  "paper_key": "9709_2024_feb_march_22",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "feb_march",
+    "paper_variant": "22",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "25aae4c0-d59a-4b64-8f61-40264c435c6b",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_qp_22.pdf",
+      "page_count": 16,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_ms_22.pdf",
+      "page_count": 11,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "Use logarithms to solve the equation \\(3^{4x+3} = 5^{2x+7}\\). Give your answer correct to 3 significant figures.",
+      "total_marks": 4,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Apply logarithms to both sides and apply power law at least once",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$(4x+3)\\ln 3 = (2x+7)\\ln 5$$",
+          "guidance_markdown": "Or equivalent with x not in a power.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt solution of linear equation",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain 6.78",
+          "guidance_markdown": "Or greater accuracy.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Exponential and Logarithmic Functions",
+        "subtopics": [
+          "Logarithmic equations"
+        ],
+        "skills": [
+          "Rewrite exponential equation using logarithms",
+          "Solve for the unknown linear expression in x",
+          "Give answer to required significant figures"
+        ],
+        "methods": [
+          "logarithm properties",
+          "algebraic rearrangement"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 2,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "",
+      "total_marks": 4,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Sketch the graph of \\(y = |3x - 7|\\), stating the coordinates of the points where the graph meets the axes.",
+          "marks": 2,
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Hence find the set of values of the constant \\(k\\) for which the equation \\(|3x - 7| = k(x - 4)\\) has exactly two real roots.",
+          "marks": 2,
+          "source_page_numbers": [
+            4
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Draw V-shaped graph with vertex on positive x-axis",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "State $$(\\frac{7}{3}, 0)$$ and $$(0, 7)$$",
+          "guidance_markdown": "Allow if only $$\\frac{7}{3}$$ and 7 shown on relevant axes.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "B1",
+          "content_markdown": "State or imply that gradient of left-hand part of graph is -3",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "State $$-3 < k < 0$$",
+          "guidance_markdown": "Using $$<$$ and not $$\\leq$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Modulus/absolute value graphs",
+          "Piecewise equations and root counting"
+        ],
+        "skills": [
+          "Sketch graph of an absolute value function",
+          "Identify x- and y-intercepts",
+          "Solve an absolute value equation by considering cases",
+          "Determine parameter values for which exactly two real roots occur"
+        ],
+        "methods": [
+          "piecewise analysis for |...|",
+          "coordinate-intercept evaluation",
+          "casework to count roots"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 2,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "The polynomial \\(p(x)\\) is defined by\n\n\\[p(x) = 6x^3 + ax^2 + 3x - 10,\\]\n\nwhere \\(a\\) is a constant. It is given that \\((2x - 1)\\) is a factor of \\(p(x)\\).",
+      "total_marks": 7,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the value of \\(a\\) and hence factorise \\(p(x)\\) completely.",
+          "marks": 5,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Solve the equation \\(p(\\csc \\theta) = 0\\) for \\(-90^\\circ < \\theta < 90^\\circ\\).",
+          "marks": 2,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Substitute $$x = \\frac{1}{2}$$, equate to zero and attempt solution",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$a = 31$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Divide by $$2x - 1$$ at least as far as $$3x^2 + mx$$",
+          "guidance_markdown": "Or equivalent (for example by inspection, ...).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$3x^2 + 17x + 10$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$(2x - 1)(3x + 2)(x + 5)$$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "Attempt solution of $$\\sin \\theta = k$$ where $$k$$ is valid constant from answer to part (a)",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$-11.5$$",
+          "guidance_markdown": "Or greater accuracy.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Algebra",
+        "subtopics": [
+          "Factor theorem and polynomial factorisation",
+          "Trigonometric substitution and solving for angles"
+        ],
+        "skills": [
+          "Use factor condition to find constant a",
+          "Factorise the polynomial completely",
+          "Solve p(csc θ)=0 within a specified angle range"
+        ],
+        "methods": [
+          "factor theorem / substitution x=1/2",
+          "polynomial algebra",
+          "trigonometric equation solving using csc θ"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "The diagram shows the curve with equation \\(y = \\sqrt{1 + e^{0.5x}}\\). The shaded region is bounded by the curve and the straight lines \\(x = 0, x = 6\\) and \\(y = 0\\).",
+      "total_marks": 7,
+      "source_page_numbers": [
+        6,
+        7
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Use the trapezium rule with three intervals to find an approximation to the area of the shaded region. Give your answer correct to 3 significant figures.",
+          "marks": 3,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "The shaded region is rotated completely about the x-axis.\n\nFind the exact volume of the solid produced.",
+          "marks": 4,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Use $$y$$-values $$\\sqrt{2}$$, $$\\sqrt{1+e}$$, $$\\sqrt{1+e^2}$$, $$\\sqrt{1+e^3}$$",
+          "guidance_markdown": "Or decimal equivalents",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Use correct formula, or equivalent, with $$h = 2$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$15.7$$",
+          "guidance_markdown": "Or greater accuracy.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "State or imply that volume is $$\\pi \\int (1 + e^{0.5x}) \\, dx$$",
+          "guidance_markdown": "Implied if $$\\pi$$ appears only at the end.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Integrate to obtain form $$k_1 x + k_2 e^{0.5x}$$",
+          "guidance_markdown": "Where $$k_1 k_2 \\neq 0$$ with or without $$\\pi$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\pi(x + 2e^{0.5x})$$ or $$x + 2e^{0.5x}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$4\\pi + 2\\pi e^3$$",
+          "guidance_markdown": "Or exact equivalent.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 6,
+          "source_image_index": 0,
+          "asset_type": "coordinate_grid",
+          "storage_path": "a_level/9709/2024/feb_march/22/question_paper/q4/page-6-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Numerical integration (trapezium rule)",
+          "Volumes of revolution"
+        ],
+        "skills": [
+          "Apply the trapezium rule with a specified number of subintervals",
+          "Approximate an area under a given curve",
+          "Set up and evaluate an exact volume of revolution about the x-axis"
+        ],
+        "methods": [
+          "trapezium rule",
+          "integration with square-root/exponential functions",
+          "volume formula using disc method"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.74,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "The diagram shows part of the curve with equation \\(y = \\frac{x^3}{x+2}\\). At the point \\(P\\), the gradient of the curve is 6.",
+      "total_marks": 9,
+      "source_page_numbers": [
+        8,
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that the \\(x\\)-coordinate of \\(P\\) satisfies the equation \\(x = \\sqrt[3]{12x+12}\\).",
+          "marks": 4,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Show by calculation that the x-coordinate of \\(P\\) lies between 3.8 and 4.0 .",
+          "marks": 2,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Use an iterative formula, based on the equation in part (a), to find the x-coordinate of \\(P\\) correct to 3 significant figures. Show the result of each iteration to 5 significant figures.",
+          "marks": 3,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Differentiate using quotient rule",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{(x+2)3x^2 - x^3}{(x+2)^2}$$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DM1",
+          "content_markdown": "Equate first derivative to 6 and simplify at least as far as $$x^3 = ...$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Confirm $$x = \\sqrt[3]{12x+12}$$",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Consider sign of $$x - \\sqrt[3]{12x+12}$$, or equivalent, for 3.8 and 4.0",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Obtain -0.06... and 0.08..., or equivalents, and justify conclusion",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Use iterative process correctly at least once",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Obtain final answer 3.88",
+          "guidance_markdown": "Answer required to exactly 3 sf.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Show sufficient iterations to 5 sf to justify answer or show sign change in the interval [3.875, 3.885]",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 8,
+          "source_image_index": 0,
+          "asset_type": "coordinate_grid",
+          "storage_path": "a_level/9709/2024/feb_march/22/question_paper/q5/page-8-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Iterative numerical solution of an equation (root finding)"
+        ],
+        "skills": [
+          "Use the given gradient to derive an equation for the x-coordinate",
+          "Bound the solution using calculation/inequalities",
+          "Use an iterative formula to approximate the root to 3 s.f. and report iterations"
+        ],
+        "methods": [
+          "differentiation/gradient condition leading to algebraic equation",
+          "interval bounding",
+          "iteration scheme (fixed-point/Newton-type from provided relation)"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.76,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "The diagram shows the curve with parametric equations\n\n\\[x = 1 + \\sqrt{t}, \\quad y = (\\ln t + 2)(\\ln t - 3),\\]\n\nfor \\(0 < t < 25\\). The curve crosses the \\(x\\)-axis at the points \\(A\\) and \\(B\\) and has a minimum point \\(M\\).",
+      "total_marks": 9,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that \\(\\frac{dy}{dx} = \\frac{4\\ln t - 2}{\\sqrt{t}}\\).",
+          "marks": 4,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the exact gradient of the curve at \\(B\\).",
+          "marks": 2,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Find the exact coordinates of \\(M\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Use product rule to find $$\\frac{dy}{dt}$$",
+          "guidance_markdown": "Or chain rule if expression expanded before differentiation.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$\\frac{dy}{dt} = \\frac{2\\ln t}{t} - \\frac{1}{t}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Divide attempt at $$\\frac{dy}{dt}$$ by attempt at $$\\frac{dx}{dt}$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Confirm $$\\frac{dy}{dx} = \\frac{4\\ln t - 2}{\\sqrt{t}}$$",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "State or imply $$t = e^3$$ at point $$B$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "Obtain gradient $$10e^{-\\frac{3}{2}}$$ or exact equivalent",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Equate first derivative to zero and obtain value for $$\\ln t$$ or $$t$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$x$$-coordinate $$1 + e^{\\frac{1}{4}}$$",
+          "guidance_markdown": "Or exact equivalent.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Obtain $$y$$-coordinate $$-\\frac{25}{4}$$",
+          "guidance_markdown": "Or equivalent.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 10,
+          "source_image_index": 0,
+          "asset_type": "coordinate_grid",
+          "storage_path": "a_level/9709/2024/feb_march/22/question_paper/q6/page-10-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Calculus",
+        "subtopics": [
+          "Parametric differentiation",
+          "Finding stationary points"
+        ],
+        "skills": [
+          "Differentiate parametric equations using dy/dx = (dy/dt)/(dx/dt)",
+          "Find the exact gradient at a specified x-intercept point",
+          "Find coordinates of the minimum point on a parametric curve"
+        ],
+        "methods": [
+          "parametric derivative formula",
+          "solve for t-values where y=0 or dy/dx=0",
+          "exact substitution to obtain coordinates"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.82,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "",
+      "total_marks": 10,
+      "source_page_numbers": [
+        12,
+        13
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Prove that\n\n\\[\\sin 2\\theta (a \\cot \\theta + b \\tan \\theta) \\equiv a + b + (a - b) \\cos 2\\theta,\\]\n\nwhere \\(a\\) and \\(b\\) are constants.",
+          "marks": 4,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the exact value of\n\n\\[\\int_{\\frac{1}{12}\\pi}^{\\frac{1}{6}\\pi} \\sin 2\\theta (5 \\cot \\theta + 3 \\tan \\theta)\\, d\\theta.\\]",
+          "marks": 3,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Solve the equation\n\n\\[\\sin \\frac{2}{3}\\alpha \\left(2 \\cot \\frac{1}{3}\\alpha + 7 \\tan \\frac{1}{3}\\alpha\\right) = 11\\]\n\nfor \\(-\\pi < \\alpha < \\pi\\).",
+          "marks": 3,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Use correct identity for $$\\sin 2\\theta$$ or for $$\\cot \\theta$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Express left-hand side in terms of $$\\sin \\theta$$ and $$\\cos \\theta$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Attempt to express $$k_1 \\cos^2 \\theta + k_2 \\sin^2 \\theta$$ in terms of $$\\cos 2\\theta$$ only",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "Confirm $$a + b + (a - b)\\cos 2\\theta$$",
+          "guidance_markdown": "Answer given – necessary detail needed.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "Obtain integrand $$8 + 2\\cos 2\\theta$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "Integrate to obtain $$8\\theta + \\sin 2\\theta$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1",
+          "content_markdown": "Apply limits correctly to obtain $$\\frac{2}{3}\\pi + \\frac{1}{2}\\sqrt{3} - \\frac{1}{2}$$",
+          "guidance_markdown": "Or exact equivalent.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1",
+          "content_markdown": "Use identity to obtain $$5\\cos\\frac{2}{3}\\alpha = -2$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $$\\alpha = 2.97$$",
+          "guidance_markdown": "Or greater accuracy.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "B1",
+          "content_markdown": "Obtain $$\\alpha = -2.97$$",
+          "guidance_markdown": "Or greater accuracy; and no others between $$-\\pi$$ and $$\\pi$$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Trigonometry",
+        "subtopics": [
+          "Trigonometric identities",
+          "Trigonometric integrals",
+          "Solving trigonometric equations with tan/cot"
+        ],
+        "skills": [
+          "Prove a trigonometric identity involving tan and cot",
+          "Evaluate a definite integral containing tan/cot expressions",
+          "Solve a trig equation in a given interval"
+        ],
+        "methods": [
+          "use standard tan/cot and double-angle identities",
+          "simplify integrand via algebraic manipulation",
+          "trig equation reduction and solving under angle constraints"
+        ],
+        "question_style": "proof_or_show",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.9,
+        "review_status": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+/* These four are load-bearing. .Chat is align-items: flex-end, so without all
+   of them this block hugs the right edge while the QuestionPanel above it stays
+   correctly centred. */
+.Wrapper {
+    margin: 0 auto 1rem;
+    max-width: 52rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* The closed state: one quiet line, not a panel. Suggestions are an offer, and
+   an offer should not outweigh the question it is made about. */
+.Toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.4rem 0.75rem 0.4rem 0.55rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.07);
+    color: #c3cbd8;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.Toggle:hover {
+    background: rgba(157, 180, 255, 0.12);
+    border-color: rgba(157, 180, 255, 0.4);
+    color: #f1f5fb;
+}
+
+.ToggleOpen {
+    color: #f1f5fb;
+    border-color: rgba(157, 180, 255, 0.4);
+    background: rgba(157, 180, 255, 0.12);
+}
+
+.Chevron {
+    flex-shrink: 0;
+    transition: transform 0.18s ease;
+}
+
+.ToggleOpen .Chevron {
+    transform: rotate(90deg);
+}
+
+.Count {
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(157, 180, 255, 0.22);
+    color: #dfe6ff;
+}
+
+.Panel {
+    margin: 0.6rem 0 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(148, 163, 184, 0.32);
+    border-radius: 12px;
+    background: #17191f;
+    color: #eef2f7;
+    padding: 1rem 1.15rem;
+}
+
+.Results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+}
+
+/* Only when the skeleton list follows the "Finding…" note. */
+.EmptyNote + .Results {
+    margin-top: 0.7rem;
+}
+
+.ResultItem {
+    margin: 0;
+}
+
+.Result {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid rgba(157, 180, 255, 0.18);
+    border-radius: 8px;
+    background: rgba(157, 180, 255, 0.07);
+    color: #e7ebf2;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.Result:hover {
+    background: rgba(157, 180, 255, 0.14);
+    border-color: rgba(157, 180, 255, 0.4);
+}
+
+/* A whole card is too large for the background-shift-only focus treatment the
+   smaller suggested-action chips use, so keep a real outline here. */
+.Result:focus-visible {
+    outline: 2px solid rgba(157, 180, 255, 0.7);
+    outline-offset: 2px;
+}
+
+.ResultHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.Meta {
+    color: #f8fafc;
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.Paper {
+    display: block;
+    margin-top: 0.15rem;
+    color: #aeb8c7;
+    font-size: 0.76rem;
+}
+
+.Snippet {
+    display: block;
+    margin-top: 0.4rem;
+    color: #dfe6f3;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    /* A height cap rather than -webkit-line-clamp: clamping can slice a KaTeX
+       span mid-formula and leave half a fraction visible. */
+    max-height: 3rem;
+    overflow: hidden;
+}
+
+.SnippetLine {
+    display: block;
+    margin: 0;
+}
+
+.Snippet :global(.katex) {
+    color: #f5f7fb;
+}
+
+.Snippet :global(.katex-display) {
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.Band {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.BandLabel {
+    color: #9db4ff;
+    font-size: 0.72rem;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.Bars {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.Bars i {
+    width: 4px;
+    height: 10px;
+    border-radius: 2px;
+    background: rgba(157, 180, 255, 0.22);
+}
+
+.Band[data-level='1'] .Bars i:nth-child(1),
+.Band[data-level='2'] .Bars i:nth-child(-n + 2),
+.Band[data-level='3'] .Bars i {
+    background: #9db4ff;
+}
+
+/* Deliberately muted, never error styling. Having no close match is a normal
+   outcome for roughly one question in ten, not a failure. */
+.EmptyNote {
+    margin: 0;
+    color: #aeb8c7;
+    font-size: 0.84rem;
+    line-height: 1.55;
+}
+
+.SignedOut {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.SignInButton,
+.ConfirmPrimary {
+    border: 1px solid rgba(157, 180, 255, 0.3);
+    border-radius: 999px;
+    background: rgba(157, 180, 255, 0.1);
+    color: #dce5ff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.7rem;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.SignInButton:hover,
+.SignInButton:focus-visible,
+.ConfirmPrimary:hover,
+.ConfirmPrimary:focus-visible {
+    background: rgba(157, 180, 255, 0.18);
+    border-color: rgba(157, 180, 255, 0.48);
+    color: #ffffff;
+    outline: none;
+}
+
+.Confirm {
+    margin-top: 0.85rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgba(157, 180, 255, 0.3);
+    background: rgba(157, 180, 255, 0.08);
+}
+
+.ConfirmText {
+    margin: 0 0 0.6rem;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: #e7ebf2;
+}
+
+.ConfirmActions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.ErrorText {
+    margin: 0.5rem 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: #f2d4d4;
+}
+
+.Skeleton {
+    height: 3.4rem;
+    border-radius: 8px;
+    background: rgba(157, 180, 255, 0.07);
+}
+
+.TextButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    color: #c8d3e2;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+}
+
+.TextButton:hover,
+.TextButton:focus-visible {
+    color: #ffffff;
+}
+
+@media (max-width: 720px) {
+    .ResultHead {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .Band {
+        align-self: flex-start;
+    }
+}

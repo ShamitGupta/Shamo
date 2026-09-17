@@ -1,0 +1,1712 @@
+{
+  "paper_key": "9709_2024_feb_march_52",
+  "ingestion_run_id": "01a6257b-292b-4c74-adbe-2357c826353d",
+  "idempotency_key": "budget-v1:a-level-9709-test2-pilot-v1-batch-01:a_level:9709:2024:feb_march:52",
+  "pipeline_version": "budget-v1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "The source indicates 50 marks but extracted question totals add to 49.",
+        "severity": "blocking",
+        "part_path": [],
+        "issue_code": "PAPER_MARK_TOTAL_MISMATCH",
+        "page_number": null,
+        "document_type": null,
+        "question_number": null
+      },
+      {
+        "message": "Primary mark codes cover 4 marks but the question is worth 6.",
+        "severity": "blocking",
+        "part_path": [],
+        "issue_code": "MARK_CODE_COVERAGE_TOO_LOW",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 2
+      },
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 2
+      },
+      {
+        "message": "Part marks add to 8 but the question total is 12.",
+        "severity": "blocking",
+        "part_path": [],
+        "issue_code": "QUESTION_MARK_TOTAL_MISMATCH",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 3
+      },
+      {
+        "message": "A guidance-only row must have mark_code=null.",
+        "severity": "blocking",
+        "part_path": [
+          "3",
+          "a"
+        ],
+        "issue_code": "GUIDANCE_ONLY_ROW_HAS_MARK_CODE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 3
+      },
+      {
+        "message": "Primary mark codes cover 8 marks but the question is worth 12.",
+        "severity": "blocking",
+        "part_path": [],
+        "issue_code": "MARK_CODE_COVERAGE_TOO_LOW",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 3
+      },
+      {
+        "message": "A guidance-only row must have mark_code=null.",
+        "severity": "blocking",
+        "part_path": [
+          "4",
+          "c"
+        ],
+        "issue_code": "GUIDANCE_ONLY_ROW_HAS_MARK_CODE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 4
+      },
+      {
+        "message": "A guidance-only row must have mark_code=null.",
+        "severity": "blocking",
+        "part_path": [
+          "6",
+          "c"
+        ],
+        "issue_code": "GUIDANCE_ONLY_ROW_HAS_MARK_CODE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 6
+      }
+    ],
+    "passed": false,
+    "warning_count": 1,
+    "question_count": 6,
+    "source_total_marks": 50,
+    "blocking_issue_count": 16,
+    "extracted_total_marks": 49,
+    "source_question_count": 6
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 15,
+      "assets": 1,
+      "issues": 8,
+      "questions": 6,
+      "blocking_issues": 7,
+      "openai_cost_usd": 0.01691966
+    },
+    "api_usage": {
+      "input_tokens": 11993,
+      "output_tokens": 13202,
+      "actual_cost_usd": 0.01691966,
+      "cached_input_tokens": 11008
+    },
+    "staged_at": "2026-07-25T15:50:49.239Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_qp_52.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 17,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_m24_ms_52.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "1",
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the probability that both the marbles chosen are red. [1]",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "1",
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the probability that the first marble chosen is blue given that the second marble chosen is red. [3]",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute probabilities in a two-step process with different replacement rules",
+              "Use conditional probability to reverse a condition"
+            ],
+            "methods": [
+              "Tree/conditional probability",
+              "Bayes-style fraction construction"
+            ],
+            "subtopics": [
+              "Conditional probability",
+              "Two-stage probability with replacement/not replaced"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 4,
+          "stem_markdown": "A bag contains 9 blue marbles and 3 red marbles. One marble is chosen at random from the bag. If this marble is blue, it is replaced back into the bag. If this marble is red, it is **not** returned to the bag. A second marble is now chosen at random from the bag.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "1",
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "$$\\left[ \\frac{3}{12} \\times \\frac{2}{11} \\right] = \\frac{1}{22}$$",
+              "guidance_markdown": "Accept $$\\frac{6}{132}$$, 0.04545... to at least three significant figures.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "1",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "**1**",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "1",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$P(B1 | R2) = \\frac{\\frac{9}{12} \\times \\frac{3}{12}}{\\frac{9}{12} \\times \\frac{3}{12} + \\frac{3}{12} \\times \\frac{2}{11}}$$",
+              "guidance_markdown": "$$\\frac{9}{12} \\times \\frac{3}{12} = \\frac{27}{144}$$, $$\\frac{3}{16}$$, 0.1875 seen as numerator or denominator of a fraction.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "1",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "**M1**",
+              "guidance_markdown": "Their $$\\frac{9}{12} \\times \\frac{3}{12}$$ + their $$\\left( \\frac{3}{12} \\times \\frac{2}{11} \\right)$$ or their $$\\frac{27}{144}$$ + their $$\\frac{1}{22}$$ seen as denominator of a fraction. FT from part (a).",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "1",
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$\\left[ = \\frac{\\frac{3}{16}}{\\frac{3}{16} + \\frac{1}{22}} \\right] = \\frac{33}{41}$$, 0.805",
+              "guidance_markdown": "Accept $$\\frac{4752}{5904}$$ oe, 0.804878... rounded to at least three significant figures. If A0, **SC B1** for correct final answer www.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "1",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "**3**",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "2",
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Sam makes 10 attempts at scoring goals.\n\nFind the probability that Sam will score goals on fewer than 8 of these attempts. [3]",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "2",
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Calculate an estimate for the mean time for these students to complete the puzzle. [3]",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Model the number of successes in repeated independent trials",
+              "Calculate binomial probabilities"
+            ],
+            "methods": [
+              "Binomial theorem / combination terms"
+            ],
+            "subtopics": [
+              "Binomial distribution"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": true,
+            "classification_confidence": 0.55
+          },
+          "total_marks": 6,
+          "stem_markdown": "Sam is a member of a soccer club. She is practising scoring goals. The probability that Sam will score a goal on any attempt is 0.7, independently of all other attempts.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": null,
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "**Method 1**",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$[P(X < 8) = 1 - P(8, 9, 10) =]$$ $$1 - (^{10}C_8(0.7)^8(0.3)^2 + ^{10}C_9(0.7)^9(0.3) + (0.7)^{10})$$",
+              "guidance_markdown": "One term $$^{10}C_x(p)^x(1-p)^{10-x}$$ with $$0 < p < 1$$, $$x \\neq 0$$ or 10.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "**A1**",
+              "guidance_markdown": "Correct unsimplified expression. Condone omission of last bracket only.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$= [1 - (0.2335 + 0.1211 + 0.0282)] = 0.617$$",
+              "guidance_markdown": "$$0.617 \\leqslant p < 0.6175$$ www.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "**Method 2**",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$[P(0,1,2,3,4,5,6,7) = ]$$ $$0.3^{10} + ^{10}C_9 0.7 0.3^9 + \\dots + ^{10}C_3 0.7^7 0.3^3$$",
+              "guidance_markdown": "One term $$^{10}C_x(p)^x(1-p)^{10-x}$$ with $$0 < p < 1$$, $$x \\neq 0$$ or 10.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$[= 5.905 \\times 10^{-6} + 1.378 \\times 10^{-3} + \\dots + 0.2668]$$ $$= 0.617$$",
+              "guidance_markdown": " $$0.617 \\leqslant p < 0.6175$$ www.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "2",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "**3**",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "3",
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Draw a histogram to represent this information.\n\n[4]",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "3",
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Calculate an estimate for the mean time for these students to complete the puzzle. [3]",
+              "source_page_numbers": [
+                7
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "3",
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find the percentage of students whose time is between 30 and 35 minutes. [?]",
+              "source_page_numbers": [
+                10
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 63330,
+              "mime_type": "image/jpeg",
+              "part_path": [
+                "3",
+                "a"
+              ],
+              "asset_type": "coordinate_grid",
+              "description": "Blank coordinate grid used for drawing the histogram.",
+              "bounding_box": {
+                "top_left_x": 114,
+                "top_left_y": 308,
+                "bottom_right_x": 631,
+                "bottom_right_y": 720
+              },
+              "storage_path": "a_level/9709/2024/feb_march/52/question_paper/q3-part-3-a/page-6-image-0.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 0,
+              "source_page_number": 6,
+              "mathematical_details": {
+                "equations": [],
+                "coordinates": [],
+                "measurements": [],
+                "relationships": [],
+                "visible_labels": []
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Construct a histogram using frequency densities from grouped data",
+              "Estimate the mean from class midpoints",
+              "Identify the relevant class interval"
+            ],
+            "methods": [
+              "Histogram construction",
+              "Midpoint weighted mean"
+            ],
+            "subtopics": [
+              "Histograms",
+              "Grouped data",
+              "Frequency density",
+              "Estimated mean"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 12,
+          "stem_markdown": "The times taken, in minutes, by 150 students to complete a puzzle are summarised in the table.\n\n|  Time taken (*t* minutes) | $$0 \\leqslant t < 20$$ | $$20 \\leqslant t < 30$$ | $$30 \\leqslant t < 35$$ | $$35 \\leqslant t < 40$$ | $$40 \\leqslant t < 50$$ | $$50 \\leqslant t < 70$$  |\n| --- | --- | --- | --- | --- | --- | --- |\n|  Frequency | 8 | 23 | 35 | 52 | 20 | 12  |",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "3",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Class width | 20 | 10 | 5 | 5 | 10 | 20",
+              "guidance_markdown": "At least five frequency densities (f/cw), e.g. $\\backslash frac\\{8\\}\\{20\\},\\; \\backslash frac\\{23\\}\\{10\\},\\; \\backslash dots\\; \\backslash dots$ Accept unsimplified.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "3",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Frequency density | 0.4 | 2.3 | 7.0 | 10.4 | 2.0 | 0.6",
+              "guidance_markdown": "All heights correct on graph (no FT).",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "3",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "Bar ends at [0,] 20, 30, 35, 40, 50, 70 with a linear scale and at least three values indicated 'linearly'.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "3",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "",
+              "guidance_markdown": "Axes labelled frequency density (fd) and time (mins). Frequency density scale vertical starts at 0 with a linear scale and at least three values indicated 'linearly'. Axes can be reversed.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "3",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Midpoints 10, 25, 32.5, 37.5, 45, 60",
+              "guidance_markdown": "At least five correct mid-points seen or used in formula.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "3",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Mean = $$\\frac{10 \\times 8 + 25 \\times 23 + 32.5 \\times 35 + 37.5 \\times 52 + 45 \\times 20 + 60 \\times 12}{150}$$ $$\\left[ = \\frac{5362.5}{150} \\right]$$",
+              "guidance_markdown": "Correct mean formula using their 6 midpoints (must be within class, not upper bound, lower bound). Condone one error. If correct midpoints seen, accept $$\\frac{5362.5}{150}$$ or $$\\frac{80 + 575 + 1137.5 + 1950 + 900 + 720}{150}$$.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "3",
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "= 35.75, 35$$\\frac{3}{4}$$",
+              "guidance_markdown": "Accept 35.8, not $$\\frac{143}{4}$$. If A0 scored, **SC B1** for 35.75, 35$$\\frac{3}{4}$$ only.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "3",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "",
+              "guidance_markdown": "**3**",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "3",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "30 ≤ t < 35",
+              "guidance_markdown": "Condone ‘3rd’ interval, 30 – 35.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "3",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "",
+              "guidance_markdown": "**1**",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "4",
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "In a random sample of 500 of these small bags of rice, how many would you expect to have a mass greater than 1.26 kg? [4]",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "4",
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the value of $\\sigma$. [3]",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "4",
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Use a suitable approximation to find the probability that fewer than 22 of these large bags of rice have a mass less than 2.40 kg. [5]",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Standardise normal variables and compute tail probabilities",
+              "Scale probabilities to expected counts in samples",
+              "Use approximation to compute a probability for a number of successes"
+            ],
+            "methods": [
+              "Normal distribution with z-scores",
+              "Continuity correction and normal approximation to binomial"
+            ],
+            "subtopics": [
+              "Normal distribution",
+              "Standardisation",
+              "Binomial approximation"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": true,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 12,
+          "stem_markdown": "A company sells small and large bags of rice. The masses of the small bags of rice are normally distributed with mean 1.20 kg and standard deviation 0.16 kg.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "4",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$[P(X > 1.26) = P\\left(Z >]\\frac{1.26 - 1.20}{0.16}\\right)$$ $$[= P(Z > 0.375)]$$",
+              "guidance_markdown": "Use of $\\pm$ standardisation formula with 1.26, 1.20 and 0.16, not $\\sigma^2$, not $\\sigma$, no continuity correction.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "4",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$= 1 - 0.6462$$",
+              "guidance_markdown": "Calculating the appropriate probability area, (leading to their final probability, expect $< 0.5$).",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "4",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$= 0.354$$",
+              "guidance_markdown": "0.3538, 0.3535 $< p \\leq 0.354$. Only dependent on the 2nd M mark. SC B1 for 0.3535 $< p \\leq 0.354$ if M0M0A0 awarded.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "4",
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$[500 \\times \\text{their } 0.3538] = 176, 177$$",
+              "guidance_markdown": "FT Strict FT *their* at least 4-figure calculated probability, seen anywhere (not a $z$-value). Final answer must be a single positive integer value, no approximation or rounding stated.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "4",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "",
+              "guidance_markdown": "**4**",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "4",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$\\left[P\\left(Z > \\frac{2.40 - 2.50}{\\sigma}\\right) = 0.20\\right]$$",
+              "guidance_markdown": "$-0.842 \\leq z < -0.8415$ or $0.8415 < z \\leq 0.842$ seen.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "4",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$\\frac{2.40 - 2.50}{\\sigma} = -0.842$$",
+              "guidance_markdown": "Use of the $\\pm$ standardisation formula with 2.40, 2.50, $\\sigma$ and a $z$-value (not 0.20, 0.80, 0.158, 0.7881, 0.2119, 0.5793, 0.4207, ...), not $\\sigma^2$. Condone continuity correction of $\\pm 0.005$. Condone $\\frac{0.1}{\\sigma} = -0.842$ etc. for M1.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "4",
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "$$\\sigma = 0.119$$",
+              "guidance_markdown": "$0.1185 < \\sigma \\leq 0.119$.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "4",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "",
+              "guidance_markdown": "**3**",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "4",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "[Mean = 80×0.2=]16 [Variance = 80×0.2×0.8=]12.8",
+              "guidance_markdown": "16 and 12.8 seen, allow unsimplified. May be seen in standardisation formula. $$\\frac{8\\sqrt{5}}{5}$$, 3.5777... to at least three significant figures implies correct variance. Incorrect notation penalised.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "4",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "$$[P(X < 22) = P(Z <]\\frac{21.5 - 16}{\\sqrt{12.8}})$$ $$[P(Z < 1.537) = \\Phi(1.537)]$$",
+              "guidance_markdown": "Substituting *their* 16 (not 1.2, 2.5) and *their* 12.8 (not 0.16, *their* 0.119) in the ±standardising formula (any number for 21.5), condone $$\\sigma^2$$ or $$\\sqrt{\\sigma}$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "4",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "",
+              "guidance_markdown": "Using continuity correction 21.5 or 22.5 in *their* standardisation formula.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "4",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 13,
+              "content_markdown": "",
+              "guidance_markdown": "Appropriate area $$\\Phi$$, from final process, must be a probability.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "4",
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 14,
+              "content_markdown": "0.938",
+              "guidance_markdown": "$$0.9375 < p \\leq 0.938$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "4",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "",
+              "guidance_markdown": "**5**",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "5",
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $P(X = 2) = 0.114$ .\n\n[2]",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "5",
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Complete the probability distribution table for $X$.\n\n[3]\n\n|  $x$ | 0 | 1 | 2 | 3 | 4 | 5 | 6  |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n|  $P(X = x)$ |  |  | 0.114 | 0.207 | 0.285 |  | 0.125  |",
+              "source_page_numbers": [
+                10
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Enumerate outcome patterns contributing to a total score",
+              "Compute and complete a probability distribution table"
+            ],
+            "methods": [
+              "Binomial/multinomial-style counting",
+              "PMF construction"
+            ],
+            "subtopics": [
+              "Discrete random variables",
+              "Probability distribution"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 5,
+          "stem_markdown": "Anil is taking part in a tournament. In each game in this tournament, players are awarded 2 points for a win, 1 point for a draw and 0 points for a loss. For each of Anil's games, the probabilities that he will win, draw or lose are 0.5, 0.3 and 0.2 respectively. The results of the games are all independent of each other.\n\nThe random variable $X$ is the total number of points that Anil scores in his first 3 games in the tournament.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "5",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$P(X = 2) = P(WLL or DDL) = 0.5×0.2²×³C₁ + 0.3²×0.2×³C₁ = [0.06+0.054]$$",
+              "guidance_markdown": "0.5×0.2²×³Cₐ(or 3) + x; 0 < x < 1; a = 1, 2. Or 0.3²×0.2×³Cₕ(or 3) + y; 0 < y < 1; b = 1, 2. Or 0.5×0.2²×a + 0.3²×0.2×b; a, b = 1, 2, 3.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "5",
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "$$= 0.114$$",
+              "guidance_markdown": "AG. Fully correct solutions with outcomes identified and linked to appropriate probabilities. Condone 2 = W, 1 = D, 0 = L. Probabilities alone do not identify outcomes. If individual scenarios are identified, separate calculations must correspond to the order.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "5",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "",
+              "guidance_markdown": "**2**",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "5",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "x",
+              "guidance_markdown": "One additional correct probability in table or clearly identified.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "5",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "P(X = x)",
+              "guidance_markdown": "A second additional correct probability in table or clearly identified.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "5",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "0.008 1/125",
+              "guidance_markdown": "Final correct probability, all probabilities in table. If 0/3 scored, SC B1 for three additional probabilities in table that sum to 0.269 exactly.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "5",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "0.036 9/250",
+              "guidance_markdown": "**3**",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "5",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "0.114 0.207 0.285 0.225 9/40 0.125",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "6",
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "In how many ways can the committee of 5 members be chosen if it must include at least 2 men and at least 1 woman? [4]",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "6",
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "How many different arrangements are there of the 10 members if all the men stand together and all the women stand together? [2]",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "6",
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "For a second photograph, the members stand in two rows, with 6 on the back row and 4 on the front row. Olly and his sister Petra are two of the members of the club.\n\n(c) How many different arrangements are there of the 10 members in which Olly and Petra stand next to each other on the front row? [4]",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Count committees under membership constraints",
+              "Compute permutations with grouped individuals",
+              "Count arrangements with adjacency condition in a specific row"
+            ],
+            "methods": [
+              "Combinations and permutations",
+              "Casework for adjacency"
+            ],
+            "subtopics": [
+              "Combinations",
+              "Permutations",
+              "Arrangements in rows"
+            ],
+            "main_topic": "Combinatorics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": false,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 10,
+          "stem_markdown": "A new village social club has 10 members of whom 6 are men and 4 are women. The club committee will consist of 5 members.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "4M 1W: $$^6C_4 \\times {}^4C_1 = 60$$",
+              "guidance_markdown": "$$^6C_a \\times {}^4C_b$$ with $$a + b = 5$$ seen, no extra terms.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "6",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "3M 2W: $$^6C_3 \\times {}^4C_2 = 120$$",
+              "guidance_markdown": "Correct outcome/value for one clearly identified scenario. Accept unsimplified, www. Condone use of $$\\times {}^5C_0$$.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "2M 3W: $$^6C_2 \\times {}^4C_3 = 60$$",
+              "guidance_markdown": "Add values of three correct scenarios, no incorrect scenarios, no repeated scenarios. Condone $$^6C_a \\times {}^4C_b$$ with $$a + b = 5$$ to identify M, W for this mark.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "6",
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Total 240",
+              "guidance_markdown": "Not dependent on B1. If A0 scored, **SC B1** for 240 www.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "6",
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "",
+              "guidance_markdown": "**4**",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$6! \\times 4! \\times 2$$",
+              "guidance_markdown": "$$6! \\times 4! \\times k; k = 1, 2, 1$$ can be implied.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "6",
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "$$= 34 560$$",
+              "guidance_markdown": "Cao. If M0 scored, **SC B1** for 34 560 www.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "6",
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "",
+              "guidance_markdown": "**2**",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "**Method 1** – Arrangements of OP in front row, 8 remaining people arranged.",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$8! \\times 3 \\times 2$$",
+              "guidance_markdown": "$$8! \\times g$$, $$g$$ an integer greater than 1.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 11,
+              "content_markdown": "",
+              "guidance_markdown": "$$h! \\times 3 \\times j$$; $$h = 7, 8, 9$$; $$j = 1, 2$$ (1 may be implied). Condone $$^3C_1$$ for 3.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 12,
+              "content_markdown": "",
+              "guidance_markdown": "$$h! \\times 3 \\times 2$$; $$h = 7, 8, 9$$. Condone $$^2C_1$$ for 2. (Condone $$h! \\times 3!$$ For M1M1).",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 13,
+              "content_markdown": "$$= 241\\,920$$",
+              "guidance_markdown": "If A0 Scored, **SC B1** for 241 920.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 14,
+              "content_markdown": "**Method 2** – Two additional people selected for front row, front row arranged, remaining 6 people arranged in back row.",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 15,
+              "content_markdown": "$$^8C_2 \\times 6! \\times 3! \\times 2$$",
+              "guidance_markdown": "$$^8C_a \\times d$$, $$a = 2, 6$$, $$d$$ an integer greater than 1.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 16,
+              "content_markdown": "",
+              "guidance_markdown": "$$6! \\times e$$, $$e$$ an integer greater than 1.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 17,
+              "content_markdown": "",
+              "guidance_markdown": "$$^8C_a \\times f! \\times 3! \\times 2$$ or $$^8C_a \\times f! \\times 6 \\times 2$$; $$a = 2, 6$$; $$f = 5, 6, 7$$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 18,
+              "content_markdown": "$$= 241\\,920$$",
+              "guidance_markdown": "If A0 Scored, **SCB1** for 241 920.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 19,
+              "content_markdown": "**Method 3** – Arrangements of two additional people for front row, front row arranged, remaining 6 people arranged in back row.",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 20,
+              "content_markdown": "$$^8P_2 \\times 6! \\times 3!$$",
+              "guidance_markdown": "$$^8P_2 \\times d$$, $$d$$ an integer greater than 1.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 21,
+              "content_markdown": "",
+              "guidance_markdown": "$$6! \\times e$$, $$e$$ an integer greater than 1.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 22,
+              "content_markdown": "",
+              "guidance_markdown": "$$^8P_2 \\times h! \\times 3!$$ or $$^8P_2 \\times h! \\times 6$$; $$h = 5, 6, 7$$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 23,
+              "content_markdown": "$$= 241\\,920$$",
+              "guidance_markdown": "If A0 Scored, **SC B1** for 241 920.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 24,
+              "content_markdown": "**Method 4** – Arrangements of 6 people for back row, front row arranged.",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 25,
+              "content_markdown": "$$^{8}P_{6} × 3! × 2!$$",
+              "guidance_markdown": "$$^{8}P_{6} × *d*, *d* an integer greater than 1.$$",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 26,
+              "content_markdown": "",
+              "guidance_markdown": "$$3! × *e*, *e* an integer greater than 1.$$",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 27,
+              "content_markdown": "",
+              "guidance_markdown": "$$^{8}P_{6} × *j*! × 2; *j* = 1, 2, 3.$$",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 28,
+              "content_markdown": "$$= 241\\,920$$",
+              "guidance_markdown": "If A0 Scored, **SC B1** for 241 920.",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "6",
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 29,
+              "content_markdown": "",
+              "guidance_markdown": "**4**",
+              "source_page_numbers": [
+                17
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": false,
+    "extraction_response_id": "resp_0a211fc014459e9d016a64dafc3e408199a477c47dc5e39570",
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

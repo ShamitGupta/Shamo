@@ -1,0 +1,1300 @@
+{
+  "paper_key": "9709_2024_may_june_62",
+  "ingestion_run_id": "9e1805f1-50e0-4351-a440-640271141405",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.2-batch-02:a_level:9709:2024:may_june:62",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Removed 2 printed subtotal rows before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_SCHEME_SUBTOTAL_ROW_REMOVED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 1
+      },
+      {
+        "message": "Removed 3 printed subtotal rows before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_SCHEME_SUBTOTAL_ROW_REMOVED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 2
+      },
+      {
+        "message": "Removed 1 printed subtotal rows before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_SCHEME_SUBTOTAL_ROW_REMOVED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 3
+      },
+      {
+        "message": "Removed 2 printed subtotal rows before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_SCHEME_SUBTOTAL_ROW_REMOVED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 4
+      },
+      {
+        "message": "Removed 3 printed subtotal rows before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_SCHEME_SUBTOTAL_ROW_REMOVED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 5
+      },
+      {
+        "message": "Removed 2 printed subtotal rows before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_SCHEME_SUBTOTAL_ROW_REMOVED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 6
+      },
+      {
+        "message": "Removed 3 printed subtotal rows before validation.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "MARK_SCHEME_SUBTOTAL_ROW_REMOVED",
+        "page_number": null,
+        "document_type": "mark_scheme",
+        "question_number": 7
+      },
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 2
+      }
+    ],
+    "passed": true,
+    "warning_count": 8,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": 7
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 15,
+      "assets": 0,
+      "issues": 8,
+      "questions": 7,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.02696025
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "input_tokens": 7567,
+          "output_tokens": 5156,
+          "actual_cost_usd": 0.02421165,
+          "cached_input_tokens": 6912
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "input_tokens": 6197,
+          "output_tokens": 288,
+          "actual_cost_usd": 0.00053956,
+          "cached_input_tokens": 5888
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "input_tokens": 1933,
+          "output_tokens": 1716,
+          "actual_cost_usd": 0.00220904,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "input_tokens": 15697,
+      "output_tokens": 7160,
+      "actual_cost_usd": 0.02696025,
+      "cached_input_tokens": 14592
+    },
+    "staged_at": "2026-08-08T01:57:50.955Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 12,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_62.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 11,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_62.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use a suitable approximating distribution to calculate $P(X \\leq 150)$.",
+              "source_page_numbers": [
+                2
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Justify the use of your approximating distribution in this case.",
+              "source_page_numbers": [
+                2
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute a Poisson probability using a suitable approximation",
+              "Calculate and compare a normal approximation",
+              "Give a brief justification based on approximation conditions"
+            ],
+            "methods": [
+              "Choose a normal approximation to Poisson",
+              "Standardise to a normal distribution",
+              "Use the normal CDF (or normal tables) to evaluate P(X ≤ 150)",
+              "Justify approximation choice using parameter size"
+            ],
+            "subtopics": [
+              "Poisson distribution",
+              "Normal approximation to Poisson",
+              "Calculation of cumulative probabilities",
+              "Justification of approximation"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 5,
+          "stem_markdown": "A random variable $X$ has the distribution $\\mathrm{Po}(145)$.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "N(145, 145)",
+              "guidance_markdown": "Stated or implied.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\pm \\frac{150.5-145}{\\sqrt{145}}$$ [= $$\\pm 0.457$$]",
+              "guidance_markdown": "Condone incorrect or omitted continuity correction.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\Phi(\\text{'0.457'})$$",
+              "guidance_markdown": "For area consistent with their working.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "= 0.676 (3sf)",
+              "guidance_markdown": "**SC:** Unsupported answer of 0.676 scores **B3**. Unsupported answer of 0.646 or 0.661 scores **B2**. Unsupported answer of 0.6799 scores **B1**.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "145 > 15",
+              "guidance_markdown": "Explicit. $$\\lambda > 15$$ **B0** if $$\\lambda = 145$$ not stated. Accept $$\\geqslant$$ Accept mean for $$\\lambda$$.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            2
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use Henri's digits to find the numbers of the next two students in the sample.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "There were 30 students in Henri's sample. He asked each of them how much time, $X$ hours, they spent on social media each week, on average. He summarised the results as follows.\n\n$$n = 30 \\quad \\Sigma x = 610 \\quad \\Sigma x^2 = 12405$$\n\nUse this information to calculate an unbiased estimate of the mean of $X$ and show that an unbiased estimate of the variance of $X$ is less than 0.1.",
+              "source_page_numbers": [
+                3
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Henri's friend claims that Henri has probably made a mistake in his calculation of $\\Sigma x$ or $\\Sigma x^2$.\n\nUse your answer to part (b) to comment on this claim.",
+              "source_page_numbers": [
+                3
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Generate subsequent sample indices from given random digits",
+              "Compute an unbiased estimate of the mean from Σx and Σx²",
+              "Compute an unbiased estimate of the variance and assess an inequality",
+              "Use computed values to comment on whether Σx or Σx² is likely incorrect"
+            ],
+            "methods": [
+              "Interpret random digits as student numbers (continuing the digit stream as required)",
+              "Use x̄ = (Σx)/n for the sample mean",
+              "Use unbiased variance estimator using Σx and Σx²",
+              "Evaluate whether the unbiased variance estimate is < 0.1"
+            ],
+            "subtopics": [
+              "Random sampling using random digits",
+              "Estimator for mean",
+              "Estimator for variance",
+              "Unbiased estimation",
+              "Consistency check via bounds"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.74
+          },
+          "total_marks": 6,
+          "stem_markdown": "Henri wants to choose a random sample from the 804 students at his college. He numbers the students from 1 to 804 and then uses random numbers generated by his calculator. The first 20 random digits produced by his calculator are as follows.\n\n5 6 7 1 0 9 8 4 3 1 0 9 6 6 5 0 2 1 7 6\n\nHenri's first two student numbers are 567 and 109.",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B2",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "[567, 109], 665, 21",
+              "guidance_markdown": "B1 for each. Allow 021. If more than 2 **answers** given, count first two and ISW.",
+              "source_page_numbers": [
+                4
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\text{Est}(\\mu) = \\frac{610}{30} \\text{ or } \\frac{61}{3}$$",
+              "guidance_markdown": "OE or 20.3.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\text{Est}(\\sigma^2) = \\frac{30}{29} \\left( \\frac{12405}{30} - \\left( \\frac{610}{30} \\right)^2 \\right) \\text{ or } \\frac{1}{29} \\left( 12405 - \\frac{610^2}{30} \\right)$$",
+              "guidance_markdown": "Use of correct formula.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$= 0.0575 \\text{ (3sf)}$$",
+              "guidance_markdown": "Accept $$\\frac{5}{87}$$.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Variance is [unrealistically] small so Henri has [probably] made a mistake/claim is [probably] correct",
+              "guidance_markdown": "Need both parts. Need ‘small’ OE, not just < 0.1. FT *their* < 0.1 variance value (not –ve), e.g. 0.0556 (if omit $$\\frac{30}{29}$$). Accept ‘s.d. = 0.24 is small, so Henri has probably made a mistake’. Note: ‘mean is large/small’ scores B0, but ‘mean large compared to variance so Henri prob made a mistake’ scores B1.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use the given lower confidence limit to determine the confidence parameter",
+              "Set up the confidence interval formula for a proportion",
+              "Solve for α (and hence α% confidence) using the normal quantile"
+            ],
+            "methods": [
+              "Model the sample proportion as approximately normal",
+              "Use the relationship between confidence interval bounds and z critical values",
+              "Solve for α using the given numerical lower limit (to the required rounding)"
+            ],
+            "subtopics": [
+              "Confidence intervals for a proportion",
+              "Binomial model",
+              "Normal approximation to the binomial proportion",
+              "Determining confidence level from a bound"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 4,
+          "stem_markdown": "A student wishes to estimate the proportion, $p$, of students at her college who have exactly one brother. She surveys a random sample of 50 students at her college and finds that 18 of them have exactly one brother. She calculates an approximate $\\alpha\\%$ confidence interval for $p$ and finds that the lower limit of the confidence interval is 0.244 correct to 3 significant figures.\n\nFind $\\alpha$ correct to the nearest integer.",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$\\frac{18}{50} - z \\times \\sqrt{\\frac{\\frac{18}{50} \\times (1 - \\frac{18}{50})}{50}} = 0.244$$",
+              "guidance_markdown": "Use of correct equation.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$z = 1.709 \\text{ or } 1.708$$",
+              "guidance_markdown": "Accept 1.71 if nothing better seen.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\phi^{-1}(1.709) = 0.956 ; 1 - 2(1 - 0.956) \\quad [= 0.912]$$",
+              "guidance_markdown": "Attempt area above or below their 1.709 and use correct method to find $$\\alpha$$.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "$$\\alpha = 91$$",
+              "guidance_markdown": "Allow $$\\alpha = 91\\%$$ 0.91 or 91.2 score A0.",
+              "source_page_numbers": [
+                5
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 1,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Write down the value of $P(X_1 > X_2)$.",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find $P(X_1 > 2X_2 - 3)$.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Relate probabilities involving two independent normal variables",
+              "Find the distribution of a linear expression in independent normals",
+              "Compute the required probability from the standard normal distribution"
+            ],
+            "methods": [
+              "Use symmetry/independence to evaluate P(X1 > X2)",
+              "Compute the distribution of X1 − 2X2 + 3",
+              "Convert the event to a single inequality involving one normal variable and standardise",
+              "Use the normal CDF to obtain the probability"
+            ],
+            "subtopics": [
+              "Normal distribution",
+              "Distribution of linear combinations",
+              "Probability involving independent normals"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.77
+          },
+          "total_marks": 6,
+          "stem_markdown": "A random variable $X$ has the distribution $N(10,12)$. Two independent values of $X$, denoted by $X_1$ and $X_2$, are chosen at random.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 1,
+              "content_markdown": "0.5",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$E(X_1 - 2X_2 + 3) = 10 - 20 + 3 \\quad [= -7]$$ or $$E(2X_2 - X_1 - 3) = 20 - 10 - 3 \\quad [= 7]$$",
+              "guidance_markdown": "Or equivalent using $$X_1 - 2X_2 = 10 - 20 \\quad [= -10]$$ or $$2X_2 - X_1 = 20 - 10 \\quad [= +10]$$.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$\\text{Var}(X_1 - 2X_2 + 3) = 12 + 2^2 \\times 12 + 0 \\quad [= 60]$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\frac{0 - (-7')}{\\sqrt{60'}} \\quad [= 0.904]$$",
+              "guidance_markdown": "Or numerator 3–‘10’ or –3–(‘–10’), but not ‘–3 –10’ (i.e. numerator must be ‘7’ or ‘–7’).",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$1 - \\Phi(\\text{‘0.904’})$$",
+              "guidance_markdown": "For area consistent with their working.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "$$= 0.183$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find $P(X < 4)$.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the probability that, in a randomly chosen match, the team scores at least 5 goals.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Given that the team scores a total of 5 goals in a randomly chosen match, find the probability that they score exactly 3 goals in the first half.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute probabilities for Poisson variables using summation or CDF",
+              "Compute probabilities for at least a number of events",
+              "Use conditional distribution given the sum of independent Poisson variables"
+            ],
+            "methods": [
+              "Compute P(X < 4) using Poisson CDF",
+              "Use P(Y ≥ 5) = 1 − P(Y ≤ 4) with Poisson probabilities",
+              "Use: if X ~ Po(λ1), Y ~ Po(λ2) independent, then given X+Y, X is binomial with parameters (X+Y, λ1/(λ1+λ2))",
+              "Evaluate the conditional probability for exactly 3 goals in the first half"
+            ],
+            "subtopics": [
+              "Poisson distribution",
+              "Cumulative Poisson probabilities",
+              "Complementary probability",
+              "Conditional probability for independent Poisson variables"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 9,
+          "stem_markdown": "The number of goals scored by a sports team in the first half of any match has the distribution $X \\sim \\text{Po}(3.1)$. The number of goals scored by the same team in the second half of any match has the distribution $Y \\sim \\text{Po}(2.4)$. You may assume that the distributions of $X$ and $Y$ are independent.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$e^{-3.1}(1 + 3.1 + \\frac{3.1^2}{2^2} + \\frac{3.1^3}{3^2})$$ or $$e^{-3.1}(1 + 3.1 + 4.805 + 4.965)$$ or $$0.0450 + 0.1397 + 0.2165 + 0.22368$$",
+              "guidance_markdown": "Condone one end error. Any $$\\lambda$$. Accept fully correct $$\\Sigma$$ notation. Expression must be seen.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "$$= 0.625 \\text{ (3sf)}$$",
+              "guidance_markdown": "Correct answer with no working scores **SC B1**.",
+              "source_page_numbers": [
+                6
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "$$[\\lambda] = 5.5$$",
+              "guidance_markdown": "SOI",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$1 - e^{-5.5}(1 + 5.5 + \\frac{5.5^2}{2!} + \\frac{5.5^3}{3!} + \\frac{5.5^4}{4!})$$ or $$1 - e^{-5.5}(1 + 5.5 + 15.125 + 27.7292 + 38.1276)$$ or $$1 - e^{-5.5}(0.004087 + 0.0224772 + 0.061812 + 0.113323 + 0.155819)$$",
+              "guidance_markdown": "Condone one end error. Any $$\\lambda$$. Accept fully correct $$\\Sigma$$ notation. Expression must be seen.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "$$= 0.642$$ or $$0.643$$ (3sf)",
+              "guidance_markdown": "Correct answer with no working scores **SC B1 B1**.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$[P(X=3) \\times P(Y=2) = ] = e^{-3.1} \\times \\frac{3.1^3}{3!} \\times e^{-2.4} \\times \\frac{2.4^2}{2!}$$ or $$0.223676 \\times 0.261267 [= 0.05844]$$",
+              "guidance_markdown": "Find P(3 in first half AND 2 in second half). Must see expression.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$[P(\\text{total } 5) = ] e^{-5.5} \\times \\frac{5.5^5}{5!} \\text{ or } 0.17140$$",
+              "guidance_markdown": "Use of 5.5 to find P(5).",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$P(P(\\text{exactly } 3 \\text{ in } 1^{\\text{st}} \\text{ half given total } 5) = \\frac{P(\\text{exactly } 3 \\text{ in } 1^{\\text{st}} \\text{ half and total } 5)}{P(\\text{total } 5)}$$",
+              "guidance_markdown": "Attempt at conditional probability; numerator = *their* 0.05844 and denominator = P(total 5) Note: $$(\\frac{3.1^3}{3!} \\times \\frac{2.4^2}{2!}) \\div (\\frac{5.5^4}{5!})$$ scores M1 M1 M1.",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "$$[= \\frac{0.05844}{0.17140}] = 0.341$$ (3sf)",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                7
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Test at the 2.5% significance level whether the mean mass of cereal boxes filled by the machine has decreased.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Later the inspector carries out a similar test at the 2.5% significance level, using the same hypotheses and another 120 randomly chosen cereal boxes.\n\nGiven that the mean mass is now actually 506 grams, find the probability of a Type II error.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Perform a one-sample z test for a mean decrease",
+              "Determine the critical region at a given significance level",
+              "Compute the probability of a Type II error under a specified true mean"
+            ],
+            "methods": [
+              "Set up H0 and H1 for a decreased mean",
+              "Compute the z statistic using known σ and sample size",
+              "Find the rejection region corresponding to 2.5% significance",
+              "Calculate β = P(fail to reject | true mean = 506) and hence Type II error probability"
+            ],
+            "subtopics": [
+              "Hypothesis testing for a population mean",
+              "Known population standard deviation",
+              "Type I and Type II errors",
+              "Normal test statistic"
+            ],
+            "main_topic": "Statistics",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 10,
+          "stem_markdown": "The masses of cereal boxes filled by a certain machine have mean 510 grams. An adjustment is made to the machine and an inspector wishes to test whether the mean mass of cereal boxes filled by the machine has decreased.\n\nAfter the adjustment is made, he chooses a random sample of 120 cereal boxes. The mean mass of these boxes is found to be 508 grams.\n\nAssume that the standard deviation of the masses is 10 grams.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "H_{0}: Population mean mass = 510 g H_{1}: Population mean mass < 510 g",
+              "guidance_markdown": "Allow ‘μ’ but not just ‘mean’.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$\\pm \\frac{508 - 510}{10 + \\sqrt{120}}$$",
+              "guidance_markdown": "Standardising must have $$\\sqrt{120}$$.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "= ± -2.191 or -2.190",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "-2.191 < -1.96 or 2.191 > 1.96 Area comparison: 0.0143 or 0.0142 < 0.025",
+              "guidance_markdown": "OE For valid comparison. Inequality sign the wrong way round scores M1 A0.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "[Reject H_{0}] There is sufficient evidence to suggest that the [mean] mass has decreased",
+              "guidance_markdown": "OE In context (must be ‘decreased’ OE, not ‘changed’); not definite. No contradictions. Condone ‘there is sufficient evidence to support the inspector’s claim’. NB: Accept alternative method using critical value (= 508.21) and comparison with 508. Condone 509.79 compared with 510. Two tail test scores maximum B0 M1 A1 M1 A0; must have comparison with 0.0125 or 2.24/2.241.",
+              "source_page_numbers": [
+                8
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "$$\\frac{cv - 510}{10 \\div \\sqrt{120}} = -1.96$$",
+              "guidance_markdown": "Standardising to find critical value (must use 510 and $$10 \\div \\sqrt{120}$$). Accept $$\\pm 1.96$$.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "$$cv = 508.21$$",
+              "guidance_markdown": "Accept 3 sf if nothing better seen. Note: cv could be found in **(a)**.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$z = \\pm \\frac{508.21 - 506}{10 \\div \\sqrt{120}} \\quad [= 2.421]$$",
+              "guidance_markdown": "Standardising with their 508.21 and 506 (must use $$10 \\div \\sqrt{120}$$).",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$P(\\bar{X} > 508.21 \\mid \\mu = 506) = 1 - \\Phi(\\cdot 2.421')$$",
+              "guidance_markdown": "For area consistent with their working.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "$$= 0.0077 \\text{ to } 0.0080 \\text{ (2sf)}$$",
+              "guidance_markdown": "Note: $$\\frac{510 - 506}{10 \\div \\sqrt{120}}$$ scores max M0 A0 M1 M1 A0.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $k=\\frac{1}{\\pi}$.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Verify that the median of $X$ lies between 0.83 and 0.84.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find the exact value of $E(X)$.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Normalise a given density by enforcing total probability 1",
+              "Construct the cumulative distribution function and use it to locate the median",
+              "Compute E(X) by integrating x f(x) over the support"
+            ],
+            "methods": [
+              "Find k from ∫₀^π k(1+cos x) dx = 1",
+              "Derive F(x) = ∫₀^x f(t) dt and solve F(m)=1/2 for the median bounds",
+              "Compute E(X) = ∫₀^π x f(x) dx and simplify to an exact value"
+            ],
+            "subtopics": [
+              "Probability density functions",
+              "Determining normalising constant",
+              "Median from the CDF",
+              "Expectation of a continuous random variable"
+            ],
+            "main_topic": "Probability",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.84
+          },
+          "total_marks": 10,
+          "stem_markdown": "The probability density function, $f$, of a random variable $X$ is given by\n\n$$f(x)=\\begin{cases}k(1+\\cos x) & 0\\leq x\\leq \\pi,\\\\ 0 & \\text{otherwise},\\end{cases}$$\n\nwhere $k$ is a constant.",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "$$k \\int_0^\\pi (1 + \\cos x) dx = 1$$",
+              "guidance_markdown": "Attempt integrate $$f(x)$$ with correct limits and equate to 1.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "$$k[x + \\sin x]_0^\\pi = 1$$",
+              "guidance_markdown": "Correct integration.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "$$[\\text{e.g. } k(\\pi + \\sin \\pi - (0 + 0)) = 1], k\\pi = 1, k = \\frac{1}{\\pi}$$",
+              "guidance_markdown": "AG Some evidence of substitution of limits, i.e. at least one interim step (e.g. $$k\\pi = 1$$) as minimum requirement. Convincingly obtained; no errors seen.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "$$\\frac{1}{\\pi} [x + \\sin x]_0^{0.83}$$ or $$\\frac{1}{\\pi} (0.83 + \\sin 0.83)$$ | $$\\frac{1}{\\pi} [x + \\sin x]_0^{0.84}$$ or $$\\frac{1}{\\pi} (0.84 + \\sin 0.84)$$",
+              "guidance_markdown": "Substitute correct limits into their integral. OR_{1}: integrate 0 to 0.83 and 0.84 to $$\\pi$$. OR_{2}: use $$g(m) = m + \\sin m - (\\pi/2)$$ and find $$g(0.83)$$ and $$g(0.84)$$. OR_{3}: use $$h(m) = m + \\sin m$$ and find $$h(0.83)$$ and $$h(0.84)$$. Both attempted.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "$$= 0.499 \\text{ (3 sf)}$$ | $$= 0.504 \\text{ (3 sf)}$$",
+              "guidance_markdown": "OR_{1}: 0.499 and 0.496. OR_{2}: $$g(0.83) = -0.00286/7$$ and $$g(0.84) = 0.0138/9$$. OR_{3}: $$h(0.83) = 1.57$$ and $$h(0.84) = 1.58$$ or 1.59. Both correct.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "‘0.499’ < 0.5 < ‘0.504’ hence 0.83 < median < 0.84 Equivalent to $$-0.000912 < 0 < 0.00441$$ hence 0.83 < median < 0.84",
+              "guidance_markdown": "FT their areas; dep 0.5 is between their areas OE. OR_{1}: 0.499 < 0.5 and 0.496 < 0.5, so $$0.83 < m < 0.84$$. OR_{2}: $$g(0.83) > 0$$ $$g(0.84) < 0$$ OE, so $$0.83 < m < 0.84$$. OR_{3}: $$h(0.83) < \\frac{\\pi}{2}$$ $$h(0.84) > \\frac{\\pi}{2}$$, so $$0.83 < m < 0.84$$. Both statements needed. Note: A score of M1 A0 A1FT is possible.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": null,
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "",
+              "guidance_markdown": "If 0 scored, **SC**: $$\\frac{1}{\\pi} (m + \\sin m) = 0.5$$ **B1** and $$m = 0.831$$ to 0.832, so $$0.83 < m < 0.84$$ **B1**.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "$$\\frac{1}{\\pi} \\int_0^\\pi (x + x \\cos x) dx$$",
+              "guidance_markdown": "Attempt integrate $$x f(x)$$. Ignore limits.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "$$= \\frac{1}{\\pi} \\left( \\left[ \\frac{x^2}{2} \\right]_0^\\pi + [x \\sin x]_0^\\pi - \\int_0^\\pi (\\sin x) dx \\right)$$",
+              "guidance_markdown": "OE Attempt to integrate (using ‘parts’) with correct limits, reaching an expression of the form $$ax^2 + uv - \\int v du$$. OR using parts to integrate $$x(1+\\cos x)$$ reaching an expression of the form $$uv - \\int v du$$ i.e. $$\\frac{1}{\\pi} (x^2 + x \\sin x - \\int (x + \\sin x) dx)$$",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "$$= \\frac{1}{\\pi} \\left( \\frac{x^2}{2} + x \\sin x + \\cos x \\right)$$ or e.g. $$\\frac{\\pi}{2} + \\frac{1}{\\pi} (0 - [-\\cos x]_0^\\pi)$$ or e.g. $$\\frac{\\pi}{2} + \\frac{1}{\\pi} ((-1 - 1))$$",
+              "guidance_markdown": "Integration fully correct.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 11,
+              "content_markdown": "$$= \\frac{\\pi}{2} - \\frac{2}{\\pi}$$",
+              "guidance_markdown": "OE ISW after correct exact value seen. **SC1:** Unsupported answer of $$\\frac{\\pi}{2} - \\frac{2}{\\pi}$$ scores **B3**. **SC2:** Unsupported answer of 0.934 scores **B2**.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_03806f3d5e529894016a768c99ce18819a8fddd9ada36e8440",
+      "resp_0cfeae4879291273016a768cd6ad14819886e64db064df1d7d",
+      "resp_0f2c22151e0068a7016a768d12e824819ab891576e23d28c0d"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

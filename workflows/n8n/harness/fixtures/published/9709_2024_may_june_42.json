@@ -1,0 +1,1296 @@
+{
+  "paper_key": "9709_2024_may_june_42",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "may_june",
+    "paper_variant": "42",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "96714cd3-59d0-45cb-934a-7b7e9227d39a",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_42.pdf",
+      "page_count": 12,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_42.pdf",
+      "page_count": 21,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "A cyclist and bicycle have a total mass of $72\\text{ kg}$. The cyclist rides along a horizontal road against a total resistance force of $28\\text{ N}$.\n\nFind the total work done by the cyclist to increase his speed from $8\\text{ m s}^{-1}$ to $16\\text{ m s}^{-1}$ while travelling a distance of 100 metres.",
+      "total_marks": 3,
+      "source_page_numbers": [
+        2
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Initial KE = $$\\frac{1}{2} \\times 72 \\times 8^2 [= 2304]$$ OR Final KE = $$\\frac{1}{2} \\times 72 \\times 16^2 [= 9216]$$ OR Work done against resistance = $$28 \\times 100 [= 2800]$$",
+          "guidance_markdown": "Correct expression for either KE or correct expression for work done against resistance. For reference, $$\\frac{1}{2} \\times 72 \\times (16^2 - 8^2) = 6912$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "Attempt at work-energy equation $$\\left[ \\frac{1}{2} \\times 72 \\times 8^2 + \\text{WD} = \\frac{1}{2} \\times 72 \\times 16^2 + 28 \\times 100 \\right]$$",
+          "guidance_markdown": "4 terms; allow sign errors; dimensionally correct.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "WD = 9712 J",
+          "guidance_markdown": "OE. Condone 9710 J. Do not ISW.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "$$[16^2 = 8^2 + 2 \\times 100 \\times a \\Rightarrow] \\quad a = \\frac{16^2 - 8^2}{2 \\times 100} = 0.96$$",
+          "guidance_markdown": "OE, e.g. $$a = \\frac{192}{200}$$. Use of suvat in a complete method to find an expression for $$a$$. Must be of the form '$$a = ...$$'.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Attempt at Newton's second law $$[\\text{DF} - 28 = 72 \\times (\\text{their } 0.96)]$$",
+          "guidance_markdown": "Three terms; dimensionally correct; allow sign errors; must be using *their* value of $$a$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "WD[$$= 97.12 \\times 100$$] = 9712 J",
+          "guidance_markdown": "OE. Condone 9710 J. Do not ISW.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Energy, Work and Power",
+        "subtopics": [
+          "Work done by a resisting force",
+          "Kinetic energy change"
+        ],
+        "skills": [
+          "Apply the work–energy principle",
+          "Use W=F s (with resistance acting opposite motion)",
+          "Compute change in kinetic energy from speeds"
+        ],
+        "methods": [
+          "Work–energy principle",
+          "Resolve total resistance as a constant opposing force"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 2,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.86,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "A particle $P$ moves in a straight line. At time $t$ s after leaving a point $O$ on the line, $P$ has velocity $v\\text{ m s}^{-1}$, where $v = 44t - 6t^2 - 36$.",
+      "total_marks": 5,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the set of values of $t$ for which the acceleration of the particle is positive.",
+          "marks": 2,
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the two values of $t$ at which $P$ returns to $O$.",
+          "marks": 3,
+          "source_page_numbers": [
+            3
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "Attempt to differentiate given $v$",
+          "guidance_markdown": "Decrease power by 1 and a change in coefficient in at least one term (which must be the same term); allow unsimplified. Use of $a = \\frac{v}{t}$ scores M0.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$[44 - 12t > 0 \\Rightarrow]\\ t < \\frac{11}{3}$",
+          "guidance_markdown": "OE, e.g. $\\frac{44}{12}$, $3\\frac{2}{3}$, 3.67 or better. Do not allow $t \\leq \\frac{11}{3}$. May solve $44 - 12t = 0$, but final answer must be $t < \\frac{11}{3}$. If a lower limit included it must be 0. Allow $t > 0$ or $t \\geq 0$. Allow $\\left[0, \\frac{11}{3}\\right)$ or $\\left(0, \\frac{11}{3}\\right)$.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "Use completing the square to get $-6\\left[\\left(t - \\frac{11}{3}\\right)^2 + \\dots\\right] + \\dots$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$t < \\frac{11}{3}$",
+          "guidance_markdown": "CWO If a lower limit included it must be 0. Allow $t > 0$ or $t \\geq 0$. Allow $\\left[0, \\frac{11}{3}\\right)$ or $\\left(0, \\frac{11}{3}\\right)$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Solving $$44t - 6t^2 - 36 = 0$$ and find $$\\frac{t_1 + t_2}{2}$$, or equivalent.",
+          "guidance_markdown": "Complete method for finding the value of $$t$$ at maximum, or use $$-\\frac{b}{2a}$$ with correct $$a$$ and $$b$$. For reference, $$t = \\frac{11 \\pm \\sqrt{67}}{3}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$$t < \\frac{11}{3}$$",
+          "guidance_markdown": "If a lower limit included it must be 0. Allow $$t > 0$$ or $$t \\geqslant 0$$. Allow $$\\left[0, \\frac{11}{3}\\right]$$ or $$\\left(0, \\frac{11}{3}\\right)$$.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "Attempt to integrate given $$v$$",
+          "guidance_markdown": "Increase power by 1 and a change in coefficient in at least one term (which must be the same term). Use of $$s = vt$$ is M0.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "$$(s =) \\frac{44}{1+1} t^{1+1} - \\frac{6}{2+1} t^{2+1} - 36t(+c) = 22t^2 - 2t^3 - 36t(+c)$$",
+          "guidance_markdown": "Allow unsimplified.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "$$[22t^2 - 2t^3 - 36t = 0 \\Rightarrow]$$ $$t = 2, 9 \\text{ (and } 0)$$ ONLY",
+          "guidance_markdown": "CWO Ignore $$t = 0$$ if not rejected.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Kinematics",
+        "subtopics": [
+          "Acceleration from a velocity function",
+          "Sign of quadratic acceleration",
+          "Turning back and roots for position=0"
+        ],
+        "skills": [
+          "Differentiate velocity to obtain acceleration",
+          "Solve an inequality for acceleration being positive",
+          "Integrate velocity to obtain displacement (or use position function) and solve for return times"
+        ],
+        "methods": [
+          "Kinematics with v(t)",
+          "Differentiation and inequality solving",
+          "Time when displacement from origin is zero"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "Four coplanar forces of magnitude $PN$, $10N$, $16N$ and $2N$ act at a point in the directions shown in the diagram. It is given that the forces are in equilibrium.\n\nFind the values of $\\theta$ and $P$.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Resolving either direction to get an equation",
+          "guidance_markdown": "Correct number of relevant terms; allow sign errors; allow sin/cos mix.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$10\\cos 25 = 2\\cos 40 + 16\\sin \\theta$$ $$\\left[ 9.06307787 = 1.532088886 + 16\\sin \\theta \\right]$$ $$7.530988984 = 16\\sin \\theta$$ $$\\sin \\theta = 0.4706868115$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$P = 10\\sin 25 + 16\\cos \\theta + 2\\sin 40$$ $$\\left[ P = 4.226182617 + 16\\cos \\theta + 1.285575219 \\right]$$ $$P = 5.511757837 + 16\\cos \\theta$$",
+          "guidance_markdown": "This may be with *their* $$\\theta$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt to solve for $$\\theta = \\sin^{-1} \\left( \\frac{10\\cos 25 - 2\\cos 40}{16} \\right)$$",
+          "guidance_markdown": "From equation(s) with correct number of relevant terms. Must be a numerical expression for $$\\theta$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt to solve for $$P = 10\\sin 25 + 16\\cos(\\text{their } \\theta) + 2\\sin 40$$",
+          "guidance_markdown": "From equation(s) with correct number of relevant terms. Using *their* $$\\theta$$. Must be a numerical expression for $$P$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "$$\\theta = 28.1$$ AND $$P = 19.6$$",
+          "guidance_markdown": "28.07888819 and 19.6285636. AWRT 28.1 and AWRT 19.6 from correct work.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 4,
+          "source_image_index": 0,
+          "asset_type": "mechanics_diagram",
+          "storage_path": "a_level/9709/2024/may_june/42/question_paper/q3/page-4-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Forces and Equilibrium",
+        "subtopics": [
+          "Resultant of concurrent forces",
+          "Triangle of forces (force balance)",
+          "Resolving forces into components"
+        ],
+        "skills": [
+          "Use equilibrium conditions (sum of components = 0)",
+          "Set up simultaneous equations for unknowns",
+          "Interpret direction angles in the force diagram"
+        ],
+        "methods": [
+          "Resolution into x/y components",
+          "Equilibrium of coplanar concurrent forces"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.78,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "A car has mass $1400\\text{ kg}$. When the speed of the car is $v\\text{ m s}^{-1}$ the magnitude of the resistance to motion is $kv^2\\text{ N}$ where $k$ is a constant.",
+      "total_marks": 7,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "The car moves at a constant speed of $24\\text{ m s}^{-1}$ up a hill inclined at an angle of $\\alpha$ to the horizontal where $\\sin\\alpha = 0.12$. At this speed the magnitude of the resistance to motion is $480\\text{ N}$.",
+          "marks": null,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "a",
+            "i"
+          ],
+          "prompt_markdown": "Find the value of $k$.",
+          "marks": 1,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "a",
+            "ii"
+          ],
+          "prompt_markdown": "Find the power of the car's engine.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "The car now moves at a constant speed on a straight level road.\n\nGiven that its engine is working at $54\\text{ kW}$, find this speed.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "$$[k \\times 24^2 = 480 \\Rightarrow] k = \\frac{5}{6}$$",
+          "guidance_markdown": "OE, e.g. $$\\frac{480}{576}$$, 0.833 or better.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt at Newton's second law $$[DF = 480 + 1400g \\times 0.12 \\Rightarrow DF = 2160]$$",
+          "guidance_markdown": "3 terms; allow sign errors; allow sin/cos mix. Allow $$DF = 480 + 1400g \\times \\sin 6.9$$ or better. May see $$DF = \\left( \\text{their } \\frac{5}{6} \\right) 24^2 + 1400g \\times 0.12$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "DB1",
+          "content_markdown": "Power = $$(\\text{their } 2160) \\times 24$$",
+          "guidance_markdown": "For using $$P = DF \\times v$$, where $$DF$$ is numerical.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "51840 W",
+          "guidance_markdown": "Allow W missing, but if given in kW units must be present. Allow 51.84 kW. Allow 51800, 51.8 kW.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "*B1 FT",
+          "content_markdown": "$$DF = \\frac{54000}{v}$$ and $$DF = \\left( \\text{their } \\frac{5}{6} \\right) v^2$$",
+          "guidance_markdown": "FT $$\\text{their } \\frac{5}{6} > 0$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "DM1",
+          "content_markdown": "Get an equation of the form $$av^3 = b$$ and attempt to solve for $$v$$ to get a positive value",
+          "guidance_markdown": "$$a$$ and $$b$$ must both be positive or both negative. Must get to a value for $$v$$; if cubic not seen, the cubic may be implied by the correct answer for their equation.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Speed = $$40.2 \\text{ m s}^{-1}$$",
+          "guidance_markdown": "40.165977. AWRT 40.2 from correct work.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Energy, Work and Power",
+        "subtopics": [
+          "Power with resistive forces",
+          "Energy balance at constant speed",
+          "Resistance proportional to v^2"
+        ],
+        "skills": [
+          "Use constant-speed condition to relate resistance and driving/engine power",
+          "Determine the constant k from a given resistance at a speed",
+          "Compute engine power as P=Fv",
+          "Use power to find speed on the flat road"
+        ],
+        "methods": [
+          "Resistance model F=kv^2",
+          "Power relation P=Fv",
+          "Constant speed force balance"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.83,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "A particle of mass $0.8\\text{ kg}$ lies on a rough plane which is inclined at an angle of $28^\\circ$ to the horizontal. The particle is kept in equilibrium by a force of magnitude $T\\text{ N}$. This force acts at an angle of $35^\\circ$ above a line of greatest slope of the plane (see diagram). The coefficient of friction between the particle and the plane is $0.2$. Find the least and greatest possible values of $T$.",
+      "total_marks": 8,
+      "source_page_numbers": [
+        6
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt at resolving perpendicular to plane to get an equation",
+          "guidance_markdown": "3 relevant terms; allow sign errors; allow sin/cos mix; allow g missing; m = 0.8 must be used; correct angles must be used.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$R + T \\sin 35 = 0.8g \\cos 28 \\quad [R + (0.57357\\dots)T = 7.06358]$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt to resolve parallel to plane for one of the possible cases to get an equation",
+          "guidance_markdown": "3 relevant terms; allow sign errors; allow sin/cos mix; allow g missing; m = 0.8 must be used; correct angles must be used.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$$T \\cos 35 = 0.8g \\sin 28 + F \\quad [(0.81915\\dots)T = 3.75577\\dots + F]$$",
+          "guidance_markdown": "May use *their F*.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "$$T \\cos 35 = 0.8g \\sin 28 - F \\quad [(0.81915\\dots)T = 3.75577\\dots - F]$$",
+          "guidance_markdown": "May use *their F*.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "DM1",
+          "content_markdown": "Use of $$F = 0.2R$$ to get an equation in $$T$$ only",
+          "guidance_markdown": "Dependent on previous 2 M marks. May be implied by correct $$T$$ value. Allow $$g$$ missing. If resolved equations incorrect and no working seen, then this mark is implied by the correct $$T$$ value for their equations.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "Solve to get $$T = 5.53$$",
+          "guidance_markdown": "5.534499898 AWRT 5.53 from correct work. Allow 5.54 from correct work.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "Solve to get $$T = 3.33$$",
+          "guidance_markdown": "3.326141531 AWRT 3.33 from correct work. Allow 3.32 from correct work.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 6,
+          "source_image_index": 0,
+          "asset_type": "mechanics_diagram",
+          "storage_path": "a_level/9709/2024/may_june/42/question_paper/q5/page-6-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Forces and Equilibrium",
+        "subtopics": [
+          "Equilibrium on an inclined rough plane",
+          "Friction limits and least/greatest T",
+          "Resolve forces along/perpendicular to plane"
+        ],
+        "skills": [
+          "Resolve the applied force into components parallel/perpendicular to the plane",
+          "Write equilibrium equations including friction as μR",
+          "Determine friction direction based on impending motion",
+          "Find extrema of T over friction limit"
+        ],
+        "methods": [
+          "Equilibrium with limiting friction (μR)",
+          "Component analysis using greatest slope direction"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.74,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "Three particles $A$, $B$ and $C$ of masses $5\\text{ kg}$, $1\\text{ kg}$ and $2\\text{ kg}$ respectively lie at rest in that order on a straight smooth horizontal track $XYZ$. Initially $A$ is at $X$, $B$ is at $Y$ and $C$ is at $Z$. Particle $A$ is projected towards $B$ with a speed of $6\\text{ m s}^{-1}$ and at the same instant $C$ is projected towards $B$ with a speed of $\\nu\\text{ m s}^{-1}$. In the subsequent motion, $A$ collides and coalesces with $B$ to form particle $D$. Particle $D$ then collides and coalesces with $C$ to form particle $E$ and $E$ moves towards $Z$.",
+      "total_marks": 11,
+      "source_page_numbers": [
+        8
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that after the second collision the speed of $E$ is $\\frac{15 - \\nu}{4}\\,\\text{m s}^{-1}$.",
+          "marks": 3,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "The total loss of kinetic energy of the system due to the two collisions is $63\\text{ J}$. Use the result from (a) to show that $\\nu = 3$.",
+          "marks": 3,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "It is given that the distance $XY$ is $36\\text{ m}$ and the distance $YZ$ is $98\\text{ m}$.",
+          "marks": null,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "label_path": [
+            "c",
+            "i"
+          ],
+          "prompt_markdown": "Find the time between the two collisions.",
+          "marks": 4,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "label_path": [
+            "c",
+            "ii"
+          ],
+          "prompt_markdown": "Find the time between the instant that $A$ is projected from $X$ and the instant that $E$ reaches $Z$.",
+          "marks": 1,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt at conservation of momentum for the 1st collision $$[5 \\times 6 = (5 + 1)v_D]$$",
+          "guidance_markdown": "3 non-zero terms; allow sign errors; using correct masses. For reference $$v_D = 5$$. If $$mgv$$ used, allow M1 M1 A0 max.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "DM1",
+          "content_markdown": "Attempt at conservation of momentum for the 2nd collision $$[(5 + 1)(their\\ v_D) - 2v = (5 + 1 + 2)v_E]$$",
+          "guidance_markdown": "6 non-zero terms; allow sign errors; using correct masses; allow their numerical $$v_D$$. Allow $$v = v_E$$ for this mark. Note: $$5 \\times 6 - 2v = (5 + 1 + 2)v_E$$ is M2. If $$mgv$$ used, allow M1 M1 A0 max.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$(v_E) = \\frac{15 - v}{4}$$",
+          "guidance_markdown": "AG Must in terms of $$v$$, as $$v$$ is given in the question or explicitly defined their letter used as $$v$$. Do not allow $$v = v_E$$ for this mark. Any error seen is A0 but condone saying ‘divide by 2’ or equivalent. If $$mgv$$ used, allow M1 M1 A0 max.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "$$KE_{initial} = \\frac{1}{2} \\times 5 \\times 6^2 + \\frac{1}{2} \\times 2 \\times v^2 \\left[ = 90 + v^2 \\right]$$ $$KE_{final} = \\frac{1}{2} (5 + 1 + 2) \\left( \\frac{15 - v}{4} \\right)^2$$",
+          "guidance_markdown": "For either $$KE_{initial}$$ or $$KE_{final}$$ correct.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "Attempt difference in KE is 63 to get an equation $$\\left[ \\frac{1}{2} \\times 5 \\times 6^2 + \\frac{1}{2} \\times 2 \\times v^2 - \\frac{1}{2} (5 + 1 + 2) \\left( \\frac{15 - v}{4} \\right)^2 = 63 \\right]$$",
+          "guidance_markdown": "Using (sum of two initial $$KEs$$) – $$KE_{final} = \\pm 63$$. Correct number of relevant terms – correct masses, must be adding 2 KE terms for $$KE_{initial}$$. (sum of two initial $$KEs$$) and $$KE_{final}$$ coming from use of correct formula and of the correct form.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "Solve algebraically $$3v^2 + 30v - 117 = 0$$ OE to get $$v = 3$$ ONLY",
+          "guidance_markdown": "AG Any error seen is A0. Allow solving correct quadratic expression, rather than correct quadratic equation, for full marks. If $$v = -13$$ seen it must be discarded. Must see solving for this mark. A quadratic equation followed by the answer is insufficient.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1",
+          "content_markdown": "$$KE_{after\\ 1\\text{st} collision} = \\frac{1}{2} \\times 6 \\times 5^2 + \\frac{1}{2} \\times 2 \\times v^2 \\left[ = 75 + v^2 \\right]$$ $$KE_{final} = \\frac{1}{2}(5 + 1 + 2)\\left(\\frac{15 - v}{4}\\right)^2$$",
+          "guidance_markdown": "For either $$KE_{after\\ 1\\text{st} collision}$$ or $$KE_{final}$$ correct.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "Attempt difference in KE is $$63 - \\left(\\frac{1}{2} \\times 5 \\times 6^2 - \\frac{1}{2} \\times 6 \\times 5^2\\right) \\left[ = 63 - 15 = 48 \\right]$$ to get an equation $$\\left[ \\frac{1}{2} \\times 6 \\times 5^2 + \\frac{1}{2} \\times 2 \\times v^2 - \\frac{1}{2}(5 + 1 + 2)\\left(\\frac{15 - v}{4}\\right)^2 = 63 - 15 \\right]$$",
+          "guidance_markdown": "Using $$KE_{after\\ 1\\text{st} collision} - KE_{final} = \\pm(63 - \\text{their } 15)$$. Correct number of relevant terms. $$KE_{after\\ 1\\text{st} collision}$$, $$KE_{final}$$ and *their* 15 coming from use of correct formula and of the correct form.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "Solve algebraically $$3v^2 + 30v - 117 = 0$$ OE to get $$v = 3$$ ONLY",
+          "guidance_markdown": "AG Any error seen is A0. If $$v = -13$$ seen it must be discarded. Must see solving for this mark. A quadratic equation followed by the answer is insufficient.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "B1",
+          "content_markdown": "$$KE_{initial} = \\frac{1}{2} \\times 5 \\times 6^2 + \\frac{1}{2} \\times 2 \\times 3^2 = 99$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "B1",
+          "content_markdown": "$$KE_{final} = \\frac{1}{2}(5 + 1 + 2)\\left(\\frac{15 - 3}{4}\\right)^2 = 36$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 12,
+          "mark_code": "B1",
+          "content_markdown": "$$KE_{initial} - KE_{final} = 63$$, hence loss in KE is 63 J",
+          "guidance_markdown": "Must have a conclusion for this mark.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            14
+          ]
+        },
+        {
+          "sequence_number": 13,
+          "mark_code": "B1",
+          "content_markdown": "Time $A$ to $B = 6\\,\\text{s}$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 14,
+          "mark_code": "*B1 FT",
+          "content_markdown": "Distance $BC = 98 - 3 \\times (\\text{their } 6)\\; [= 80]$",
+          "guidance_markdown": "FT *their* 6 which MUST come from $6t = 36$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 15,
+          "mark_code": "DM1",
+          "content_markdown": "Use sum of distance moved by $D$ and distance moved by $C$ is $80\\,\\text{m}$ $[(\\text{their } 5)t + 3t = \\text{their } 80]$ OR use distance moved by $C$ divided by relative velocity $\\left[ \\frac{80}{(\\text{their } 5) + 3} \\right]$",
+          "guidance_markdown": "Using *their*$v_D$ from part **(a)**. $v_D \\neq 6$ or 3 and *their*$80 \\neq 98$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 16,
+          "mark_code": "A1",
+          "content_markdown": "Time = $10\\,\\text{s}$",
+          "guidance_markdown": "Do not ISW.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        },
+        {
+          "sequence_number": 17,
+          "mark_code": "B1",
+          "content_markdown": "$\\left[ 6 + 10 + \\frac{3 \\times 10 + 3 \\times 6}{3} = \\right] 32\\,\\text{s}$",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            15
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Momentum",
+        "subtopics": [
+          "Inelastic collisions (coalescence)",
+          "Conservation of momentum for perfectly inelastic collisions",
+          "Kinetic energy loss in collisions",
+          "Relative timing with constant velocities after collisions"
+        ],
+        "skills": [
+          "Apply conservation of momentum to determine velocities after collisions",
+          "Use kinetic energy change to solve for an unknown parameter",
+          "Compute times using distance/velocity on smooth track",
+          "Set up piecewise motion intervals between projection, collisions, and final travel"
+        ],
+        "methods": [
+          "1D conservation of momentum in inelastic collisions",
+          "Kinetic energy loss calculation",
+          "Kinematics with constant velocities after each collision"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 5,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.76,
+        "review_status": "pending"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "Two particles $P$ and $Q$ of masses $2.5\\text{ kg}$ and $0.5\\text{ kg}$ respectively are connected by a light inextensible string that passes over a small smooth pulley fixed at the top of a plane inclined at an angle of $30^\\circ$ to the horizontal. Particle $P$ is on the plane and $Q$ hangs below the pulley such that the level of $Q$ is $2\\text{ m}$ below the level of $P$ (see diagram).\n\nParticle $P$ is released from rest with the string taut and slides down the plane. The plane is rough with coefficient of friction $0.2$ between the plane and $P$.",
+      "total_marks": 10,
+      "source_page_numbers": [
+        10
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find the acceleration of $P$.",
+          "marks": 5,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Use an energy method to find the speed of the particles at the instant when they are at the same vertical height.",
+          "marks": 5,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "$$R = 2.5g \\cos 30 \\left[ = \\frac{25\\sqrt{3}}{2} = 21.65063509 \\right]$$",
+          "guidance_markdown": "Note: $$F = 0.5g \\cos 30 = \\frac{5\\sqrt{3}}{2} = 4.330127019$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "*M1",
+          "content_markdown": "Attempt at Newton’s second law",
+          "guidance_markdown": "Correct number of dimensionally correct/relevant terms; allow sign errors; allow sin/cos mix. Using this twice to get equations for $$P$$ and $$Q$$; allow different $$T$$'s (equations with 0.5 and 2.5). Using once to get a system equation (equation with $$0.5 + 2.5$$).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "EITHER: $$T - 0.5g = 0.5a$$ AND $$2.5g \\sin 30 - F - T = 2.5a$$ OR: $$2.5g \\sin 30 - F - 0.5g = (2.5 + 0.5)a$$",
+          "guidance_markdown": "EITHER: Both correct; allow their $$F$$; must be the same $$T$$. OR: correct system equation; allow their $$F$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "DM1",
+          "content_markdown": "Use $$F = 0.2R$$ to get an equation in $$a$$ only $$[2.5g \\sin 30 - 0.2 \\times 2.5g \\cos 30 - 0.5g = (2.5 + 0.5)a]$$",
+          "guidance_markdown": "Where $$R$$ is a component of weight of $$P$$ only; from equation(s) with the correct number of dimensionally correct/relevant terms.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "$$a = 1.06 \\text{ ms}^{-2}$$",
+          "guidance_markdown": "Allow $$\\frac{15 - 5\\sqrt{3}}{6}$$. 1.05662433. AWRT 1.06 from correct work.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            16
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "*B1",
+          "content_markdown": "$$[x \\sin 30 = 2 - x \\Rightarrow] x = \\frac{4}{3}$$ OR $$[(2 - y) \\sin 30 = y \\Rightarrow] y = \\frac{2}{3}$$ OR $$\\left[ \\frac{1}{2} \\times 1.056 \\dots \\times t^2 + \\frac{1}{2} \\times 1.056 \\dots \\times t^2 \\times \\sin 30 = 2 \\Rightarrow t = 1.5886 \\dots \\right]$$ $$\\Rightarrow x \\left[ = \\frac{1}{2} \\times 1.056 \\dots \\times (1.5886 \\dots)^2 \\sin 30 \\right] = \\frac{2}{3}$$ OR $$\\Rightarrow y \\left[ = \\frac{1}{2} \\times 1.056 \\dots \\times (1.5886 \\dots)^2 \\right] = \\frac{4}{3}$$",
+          "guidance_markdown": "Where $x$ is the distance $P$ moves down the plane or $Q$ moves vertically upwards, or where $y$ is the vertical distance of $Q$ below $P$'s starting point. Allow $x = 1.3$ or better; allow $y = 0.67$ or better.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1",
+          "content_markdown": "Change in PE $$= \\pm (2.5g(their\\ x) \\sin 30 - 0.5g(their\\ x)) \\left[ = \\pm \\frac{3}{4}g(their\\ x) \\right]$$ OR $$= \\pm (2.5g(2 - their\\ y) \\sin 30 - 0.5g(2 - their\\ y))$$ $$[ = \\pm (3(their\\ y) - 1)g]$$",
+          "guidance_markdown": "Using $their\\ x (\\neq 2 \\text{ or } 1 \\text{ or } 0)$, $0 < x < 2$; or $their\\ y (\\neq 2 \\text{ or } 1 \\text{ or } 0)$, $0 < y < 2$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1",
+          "content_markdown": "WD against friction $$= 0.2 \\times 2.5g \\cos 30 \\times (their\\ x) \\left[ = 4.33(their\\ x) \\right]$$ OR WD against friction $$= 0.2 \\times 2.5g \\cos 30 \\times (2 - (their\\ y))$$",
+          "guidance_markdown": "Using $their\\ x (\\neq 2 \\text{ or } 1 \\text{ or } 0)$, $0 < x < 2$; or $their\\ y (\\neq 2 \\text{ or } 1 \\text{ or } 0)$, $0 < y < 2$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "DM1",
+          "content_markdown": "$$\\frac{1}{2} \\times 2.5 \\times v^2 + \\frac{1}{2} \\times 0.5 \\times v^2 =$$ $$2.5g \\left( \\frac{4}{3} \\right) \\sin 30 - 0.5g \\left( \\frac{4}{3} \\right) - 0.2 \\times 2.5g \\cos 30 \\times \\left( \\frac{4}{3} \\right)$$ OR $$\\frac{1}{2} \\times 2.5 \\times v^2 + \\frac{1}{2} \\times 0.5 \\times v^2 =$$ $$2.5g \\left( 2 - \\frac{2}{3} \\right) \\sin 30 - 0.5g \\left( 2 - \\frac{2}{3} \\right) - 0.2 \\times 2.5g \\cos 30 \\times \\left( 2 - \\frac{2}{3} \\right)$$",
+          "guidance_markdown": "Attempt at work energy equation; dimensionally correct; 5 relevant terms; allow sign errors; allow sin/cos mix. Must be using correct values of $x$ or $y$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            17
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "$$v=1.68$$",
+          "guidance_markdown": "1.67859014 AWRT 1.68 from correct work.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            18
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": null,
+          "content_markdown": "**Alternative Method for Question 7(b): Considering energy on Q only** **Must be using tension and mass 0.5kg only to be awarded the last 4 marks**",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 12,
+          "mark_code": "*B1",
+          "content_markdown": "$$[x \\sin 30 = 2 - x \\Rightarrow] x = \\frac{4}{3}$$ OR $$[(2 - y) \\sin 30 = y \\Rightarrow] y = \\frac{2}{3}$$ OR $$\\left[ \\frac{1}{2} \\times 1.056 \\dots \\times t^2 + \\frac{1}{2} \\times 1.056 \\dots \\times t^2 \\times \\sin 30 = 2 \\Rightarrow t = 1.5886 \\dots \\right]$$ $$\\Rightarrow x \\left[ = \\frac{1}{2} \\times 1.056 \\dots \\times (1.5886 \\dots)^2 \\sin 30 \\right] = \\frac{2}{3}$$ OR $$\\Rightarrow y \\left[ = \\frac{1}{2} \\times 1.056 \\dots \\times (1.5886 \\dots)^2 \\right] = \\frac{4}{3}$$",
+          "guidance_markdown": "Where x is the distance P moves down the plane or Q moves vertically upwards, or where y is the vertical distance of Q below P's starting point. Allow x = 1.3 or better; allow y = 0.67 or better.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 13,
+          "mark_code": "B1",
+          "content_markdown": "Change in PE = $$\\pm 0.5g \\times (\\text{their } x)$$ OR Change in PE = $$\\pm 0.5g \\times (2 - (\\text{their } y))$$",
+          "guidance_markdown": "Using their x ($$\\neq 2$$ or 1 or 0), 0 < x < 2; or their y ($$\\neq 2$$ or 1 or 0), 0 < y < 2.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 14,
+          "mark_code": "B1",
+          "content_markdown": "WD by tension = $$(\\text{their } 5.528312164) \\times (\\text{their } x)$$ OR WD by tension = $$(\\text{their } 5.528312164) \\times (2 - (\\text{their } y))$$",
+          "guidance_markdown": "Using their tension from **7(a)** from equation(s) with the correct number of dimensionally correct/relevant terms. Using their x ($$\\neq 2$$ or 1 or 0), 0 < x < 2; or their y ($$\\neq 2$$ or 1 or 0), 0 < y < 2.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 15,
+          "mark_code": "DM1",
+          "content_markdown": "$$0.5g \\left( \\frac{4}{3} \\right) + \\frac{1}{2} \\times 0.5 \\times v^2 = (\\text{their } 5.528312164) \\times \\left( \\frac{4}{3} \\right)$$ OR $$0.5g \\left( 2 - \\frac{2}{3} \\right) + \\frac{1}{2} \\times 0.5 \\times v^2 = (\\text{their } 5.528312164) \\times \\left( 2 - \\frac{2}{3} \\right)$$",
+          "guidance_markdown": "Using their tension from **7(a)** from equation(s) with the correct number of dimensionally correct/relevant terms. Attempt at work energy equation; dimensionally correct; 3 relevant terms; allow sign errors. Must be using correct values of x or y.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 16,
+          "mark_code": "A1",
+          "content_markdown": "$$v = 1.68$$",
+          "guidance_markdown": "1.67859014 AWRT 1.68 from correct work.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            19
+          ]
+        },
+        {
+          "sequence_number": 17,
+          "mark_code": null,
+          "content_markdown": "**Alternative Method 2 for Question 7(b): Considering energy on P only** **Note: must be using tension and mass 2.5kg only to be awarded the last 4 marks**",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 18,
+          "mark_code": "*B1",
+          "content_markdown": "$$[x \\sin 30 = 2 - x \\Rightarrow] x = \\frac{4}{3} \\text{ OR } [(2 - y) \\sin 30 = y \\Rightarrow] y = \\frac{2}{3} \\text{ OR } \\left[ \\frac{1}{2} \\times 1.056\\dots \\times t^2 + \\frac{1}{2} \\times 1.056\\dots \\times t^2 \\times \\sin 30 = 2 \\Rightarrow t = 1.5886\\dots \\right] \\Rightarrow x \\left[ = \\frac{1}{2} \\times 1.056\\dots \\times (1.5886\\dots)^2 \\sin 30 \\right] = \\frac{2}{3} \\text{ OR } \\Rightarrow y \\left[ = \\frac{1}{2} \\times 1.056\\dots \\times (1.5886\\dots)^2 \\right] = \\frac{4}{3}$$",
+          "guidance_markdown": "Where x is the distance P moves down the plane or Q moves vertically upwards, or where y is the vertical distance of Q below P's starting point. Allow x = 1.3 or better; allow y = 0.67 or better.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 19,
+          "mark_code": "B1",
+          "content_markdown": "Change in PE = $$\\pm 2.5g(\\text{their } x) \\sin 30$$ OR = $$\\pm 2.5g(\\text{their } y)$$",
+          "guidance_markdown": "Using their x ($$\\neq 2$$ or 1 or 0), 0 < x < 2; or their y ($$\\neq 2$$ or 1 or 0), 0 < y < 2.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 20,
+          "mark_code": "B1",
+          "content_markdown": "WD by tension = $$(\\text{their } 5.528312164) \\times (\\text{their } x)$$ OR WD against friction = $$0.2 \\times 2.5g \\cos 30 \\times (\\text{their } x)$$",
+          "guidance_markdown": "Using their tension from **7(a)** from equation(s) with the correct number of dimensionally correct/relevant terms. Using their x ($$\\neq 2$$ or 1 or 0), 0 < x < 2; or their y ($$\\neq 2$$ or 1 or 0), 0 < y < 2.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 21,
+          "mark_code": "DM1",
+          "content_markdown": "$$2.5g \\left( \\frac{4}{3} \\right) \\sin 30 = \\frac{1}{2} \\times 2.5 \\times v^2 + 0.2 \\times 2.5g \\cos 30 \\times \\left( \\frac{4}{3} \\right) + (\\text{their } 5.528312164) \\times \\left( \\frac{4}{3} \\right)$$",
+          "guidance_markdown": "Using their tension from **7(a)** from equation(s) with the correct number of dimensionally correct/relevant terms. Attempt at work energy equation; dimensionally correct; 4 relevant terms; allow sign errors; allow sin/cos mix. Must be using correct values of x or y.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 22,
+          "mark_code": "A1",
+          "content_markdown": "$$v = 1.68$$",
+          "guidance_markdown": "1.67859014 AWRT 1.68 from correct work.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            20
+          ]
+        },
+        {
+          "sequence_number": 23,
+          "mark_code": "B1",
+          "content_markdown": "$$[x \\sin 30 = 2 - x \\Rightarrow] x = \\frac{4}{3}$$ OR $$[(2 - y) \\sin 30 = y \\Rightarrow] y = \\frac{2}{3}$$ OR $$\\left[ \\frac{1}{2} \\times 1.056 \\dots \\times t^2 + \\frac{1}{2} \\times 1.056 \\dots \\times t^2 \\times \\sin 30 = 2 \\Rightarrow t = 1.5886 \\dots \\right]$$ $$\\Rightarrow x \\left[ = \\frac{1}{2} \\times 1.056 \\dots \\times (1.5886 \\dots)^2 \\sin 30 \\right] = \\frac{2}{3}$$ OR $$\\Rightarrow y \\left[ = \\frac{1}{2} \\times 1.056 \\dots \\times (1.5886 \\dots)^2 \\right] = \\frac{4}{3}$$",
+          "guidance_markdown": "Where $$x$$ is the distance $$P$$ moves down the plane or $$Q$$ moves vertically upwards, or where $$y$$ is the vertical distance of $$Q$$ below $$P$$'s starting point. Allow $$x = 1.3$$ or better; allow $$y = 0.67$$ or better.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            21
+          ]
+        },
+        {
+          "sequence_number": 24,
+          "mark_code": "B1",
+          "content_markdown": "$$[v^2 = 2 \\times 1.06 \\times \\frac{4}{3} \\Rightarrow] v = 1.68$$",
+          "guidance_markdown": "1.67859014 AWRT 1.68 from correct work.",
+          "is_final_answer": false,
+          "is_alternative_method": true,
+          "source_page_numbers": [
+            21
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 10,
+          "source_image_index": 0,
+          "asset_type": "mechanics_diagram",
+          "storage_path": "a_level/9709/2024/may_june/42/question_paper/q7/page-10-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Newton's Laws of Motion",
+        "subtopics": [
+          "Coupled motion with string and pulley",
+          "Equations of motion with acceleration from net force",
+          "Energy at equal vertical heights"
+        ],
+        "skills": [
+          "Use constraint relating accelerations of the two masses",
+          "For the acceleration: write net force along each body and solve",
+          "For equal vertical height: use energy transfer to relate speeds",
+          "Combine kinetic energies using the work done by gravity and friction"
+        ],
+        "methods": [
+          "Newton’s laws with string constraint (momentum-based dynamics)",
+          "Energy method for speeds at specified configuration"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": true,
+        "classification_confidence": 0.66,
+        "review_status": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1331 @@
+{
+  "paper_key": "9709_2025_oct_nov_23",
+  "ingestion_run_id": "f1655d30-d7df-4c98-98ca-32388c4bd951",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-14:a_level:9709:2025:oct_nov:23",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [],
+    "passed": true,
+    "warning_count": 0,
+    "question_count": 8,
+    "source_total_marks": 50,
+    "blocking_issue_count": 0,
+    "extracted_total_marks": 50,
+    "source_question_count": 8
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 10,
+      "assets": 1,
+      "issues": 0,
+      "questions": 8,
+      "blocking_issues": 0,
+      "openai_cost_usd": 0.0359086
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 11747,
+              "total_tokens": 18830,
+              "output_tokens": 7083,
+              "input_tokens_details": {
+                "cached_tokens": 11008,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 5645
+              }
+            },
+            "response_id": "resp_05bdc8b468db7af3016a7ae14b02c8819abe87300f038e7e74",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 11747,
+            "priced_output_tokens": 7083,
+            "reported_total_tokens": 18830
+          },
+          "input_tokens": 11747,
+          "output_tokens": 7083,
+          "actual_cost_usd": 0.03325335,
+          "cached_input_tokens": 11008
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 6420,
+              "total_tokens": 6683,
+              "output_tokens": 263,
+              "input_tokens_details": {
+                "cached_tokens": 5888,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 140
+              }
+            },
+            "response_id": "resp_07e0a0b85a752afe016a7ae19145d4819987f6938315b85595",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 6420,
+            "priced_output_tokens": 263,
+            "reported_total_tokens": 6683
+          },
+          "input_tokens": 6420,
+          "output_tokens": 263,
+          "actual_cost_usd": 0.00055291,
+          "cached_input_tokens": 5888
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2037,
+              "total_tokens": 3651,
+              "output_tokens": 1614,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 296
+              }
+            },
+            "response_id": "resp_0f3cc5ed4f4c9049016a7ae1cbe418819b9dcd25df44c768c5",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2037,
+            "priced_output_tokens": 1614,
+            "reported_total_tokens": 3651
+          },
+          "input_tokens": 2037,
+          "output_tokens": 1614,
+          "actual_cost_usd": 0.00210234,
+          "cached_input_tokens": 1792
+        }
+      ],
+      "paid_calls": 3,
+      "input_tokens": 20204,
+      "output_tokens": 8960,
+      "actual_cost_usd": 0.0359086,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 18688
+    },
+    "staged_at": "2026-08-11T08:48:25.977Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_qp_23.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_w25_ms_23.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Evaluate a definite/indefinite integral involving trigonometric functions",
+              "Use trig identities to simplify the integrand"
+            ],
+            "methods": [
+              "Use the identity \\(\\sin^2 x=\\tfrac{1}{2}(1-\\cos 2x)\\) (or equivalent)",
+              "Integrate term-by-term"
+            ],
+            "subtopics": [
+              "Trigonometric integrals",
+              "Integration of powers of sine"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 1,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.9
+          },
+          "total_marks": 3,
+          "stem_markdown": "Find \\(\\int 6\\sin^2 x\\,dx\\).",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Use identity to express integrand in the form $k_1 + k_2 \\cos 2x$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain correct $3 - 3 \\cos 2x$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Integrate to obtain $3x - \\frac{1}{2} \\sin 2x$",
+              "guidance_markdown": "Condone omission of $+c$.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Solve an equation involving exponentials",
+              "Use substitution to reduce to a polynomial in \\(e^{2x}\\)"
+            ],
+            "methods": [
+              "Let \\(u=e^{2x}\\) to form and solve a quadratic/cubic in \\(u\\)",
+              "Back-substitute to find \\(x\\)"
+            ],
+            "subtopics": [
+              "Solving exponential equations",
+              "Substitution for exponential expressions"
+            ],
+            "main_topic": "Exponential and Logarithmic Functions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 3,
+          "stem_markdown": "Solve the equation \\(e^{2x}(e^{2x} - 8) = 48\\).",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Attempt solution of quadratic equation in $e^{2x}$ to obtain at least one value of $e^{2x}$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $(e^{2x} - 12)(e^{2x} + 4) = 0$ OE, and hence at least $e^{2x} = 12$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $x = \\frac{1}{2} \\ln 12$ or 1.24 and no other solution",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Solve the equation \\(|2x - 3| = |5x + 2|\\).",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Hence solve the equation \\(|2\\sec\\theta - 3| = |5\\sec\\theta + 2|\\) for \\(\\pi < \\theta < 2\\pi\\). Give your answer correct to 3 significant figures.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Solve absolute value equations in linear form",
+              "Solve an absolute value equation involving \\(\\sec\\theta\\) over a restricted interval",
+              "Handle sign/branch cases from absolute values"
+            ],
+            "methods": [
+              "Convert \\(|A|=|B|\\) into \\(A=\\pm B\\) and solve",
+              "For part (b), set up cases leading to equations in \\(\\sec\\theta\\) and apply \\(\\pi<\\theta<2\\pi\\)"
+            ],
+            "subtopics": [
+              "Absolute value equations",
+              "Secant equations",
+              "Algebraic solution of trig expressions"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 6,
+          "stem_markdown": "",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Solve $$2x - 3 = 5x + 2$$ to obtain $$-\\frac{5}{3}$$",
+              "guidance_markdown": "Or exact equivalent.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Attempt solution of linear equation where $$2x$$ and $$5x$$ have different signs",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $$\\frac{1}{7}$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "State or imply non-modulus equation $$(2x - 3)^2 = (5x + 2)^2$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Attempt complete solution of three-term quadratic equation",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain $$-\\frac{5}{3}$$ and $$\\frac{1}{7}$$ or equivalents",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "B1 FT",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "State or imply $$\\cos \\theta = -\\frac{3}{5}$$",
+              "guidance_markdown": "Following an appropriate answer from part (a).",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Attempt correct process for finding third quadrant angle",
+              "guidance_markdown": "Condone working in degrees for this mark.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Obtain 4.07",
+              "guidance_markdown": "Or greater accuracy 4.0688...",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Solve a trigonometric equation using identities",
+              "Find solutions in a given range"
+            ],
+            "methods": [
+              "Rewrite \\(\\cot\\theta\\tan(\\theta+45^\\circ)\\) using trig identities (and/or convert to \\(\\sin/\\cos\\))",
+              "Solve the resulting equation and apply \\(0^\\circ<\\theta<90^\\circ\\)"
+            ],
+            "subtopics": [
+              "Trigonometric equations",
+              "Cotangent and tangent identities",
+              "Angle restriction"
+            ],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.85
+          },
+          "total_marks": 5,
+          "stem_markdown": "Solve the equation \\(\\cot\\theta\\tan(\\theta + 45^\\circ) = 7\\) for \\(0^\\circ < \\theta < 90^\\circ\\).",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1*",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Attempt to express equation in terms of $$\\tan \\theta$$ only",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$\\frac{1}{\\tan \\theta} \\times \\frac{\\tan \\theta + \\tan 45}{1 - \\tan \\theta \\tan 45} = 7$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Simplify to obtain equation $$7 \\tan^2 \\theta - 6 \\tan \\theta + 1 = 0$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Attempt solution of three-term quadratic equation in $$\\tan \\theta$$ to obtain at least one value of $$\\theta$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$\\tan \\theta = \\frac{1}{7}(3 \\pm \\sqrt{2})$$ or equivalent and hence 12.8 and 32.2, and no others in the given range",
+              "guidance_markdown": "Or greater accuracy 12.764..., 32.235...",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that the \\(x\\)-coordinate of \\(B\\) is \\(6\\ln 2\\).",
+              "source_page_numbers": [
+                7
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the area of the shaded region. Give your answer in the form \\(p\\ln 2 - q\\), where \\(p\\) and \\(q\\) are positive integers.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 3180,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "graph",
+              "description": "Coordinate axes with a curve labelled by the equation \\(y = 8e^{-\\frac{1}{2}x} - 1\\). The curve meets the axes at points \\(A\\) and \\(B\\), and the shaded region is bounded by the curve and the line segment \\(AB\\).",
+              "bounding_box": {
+                "top_left_x": 275,
+                "top_left_y": 97,
+                "bottom_right_x": 430,
+                "bottom_right_y": 268
+              },
+              "storage_path": "a_level/9709/2025/oct_nov/23/question_paper/q5/page-7-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 7,
+              "mathematical_details": {
+                "equations": [
+                  "y = 8e^{-\\frac{1}{2}x} - 1"
+                ],
+                "coordinates": [],
+                "measurements": [],
+                "relationships": [
+                  "The curve meets the axes at A and B.",
+                  "The shaded region is bounded by the curve and the line segment AB."
+                ],
+                "visible_labels": [
+                  "A",
+                  "B",
+                  "O",
+                  "x-axis",
+                  "y-axis"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Find the x-coordinate of an intercept from the curve equation",
+              "Integrate to find the area of a region bounded by the curve and a line segment",
+              "Express the final answer in the required logarithmic form"
+            ],
+            "methods": [
+              "Solve \\(y=0\\) to get intercept coordinates (producing \\(\\ln 2\\))",
+              "Set up an area integral using the line segment between intercepts",
+              "Integrate exponential terms to obtain expressions in \\(\\ln 2\\)"
+            ],
+            "subtopics": [
+              "Integration involving exponentials",
+              "Finding intercepts",
+              "Area under/between a curve and a line segment"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.82
+          },
+          "total_marks": 7,
+          "stem_markdown": "The diagram shows the curve with equation \\(y = 8e^{-\\frac{1}{2}x} - 1\\). The curve meets the axes at the points \\(A\\) and \\(B\\). The shaded region is bounded by the curve and the line segment \\(AB\\).",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Attempt solution of $$8e^{-\\frac{1}{2}x} - 1 = 0$$ with use of a relevant logarithm property",
+              "guidance_markdown": "E.g. $$\\frac{1}{2}\\ln x = \\ln 8$$",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "Confirm $$x = 6\\ln 2$$",
+              "guidance_markdown": "AG – necessary detail needed. Need to see $$\\ln 8 = 3\\ln 2$$ or $$64 = 2^6$$ OE used.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Substitute $$x = 6\\ln 2$$ in $$8e^{-\\frac{1}{2}x} - 1$$ and show use of a relevant logarithm property",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain $$8e^{-3\\ln 2} - 1$$ and hence $$8e^{\\ln \\frac{1}{6}} - 1$$ or equivalent and verify answer 0",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": true
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Integrate $$8e^{-\\frac{1}{2}x} - 1$$ to obtain the form $$ke^{-\\frac{1}{2}x} - x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain correct $$-16e^{-\\frac{1}{2}x} - x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Apply limits 0 and $$6\\ln 2$$ to obtain $$-16e^{-\\frac{1}{2} \\times 6\\ln 2} - 6\\ln 2 + 16$$",
+              "guidance_markdown": "OE $$14 - 6\\ln 2$$",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Attempt area of triangle minus area under curve",
+              "guidance_markdown": "Allow decimals for this mark (14.56).",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Obtain $$\\frac{1}{2} \\times 6\\ln 2 \\times 7 - (14 - 6\\ln 2)$$ or equivalent, and hence $$27\\ln 2 - 14$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that \\(\\frac{dy}{dx} = 6\\cos^5\\theta - 5\\cos^3\\theta\\).",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 5,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the equation of the normal to the curve at the point where it crosses the \\(x\\)-axis. Give your answer in the form \\(y = mx + c\\), where \\(m\\) and \\(c\\) are exact constants.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Compute \\(\\frac{dy}{dx}\\) from parametric equations",
+              "Find the normal line at a specified point (where the curve crosses the x-axis)",
+              "Determine the exact equation of a normal in the form \\(y=mx+c\\)"
+            ],
+            "methods": [
+              "Use \\(\\frac{dy}{dx}=(\\frac{dy}{d\\theta})/(\\frac{dx}{d\\theta})\\)",
+              "At the x-axis crossing, find the gradient of the normal as the negative reciprocal of the tangent gradient",
+              "Form \\(y=mx+c\\) using point and gradient"
+            ],
+            "subtopics": [
+              "Differentiation of parametric equations",
+              "Normals to curves",
+              "Chain rule in parametric form"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.88
+          },
+          "total_marks": 9,
+          "stem_markdown": "A curve has parametric equations\n\n\\(x = \\tan\\theta,\\quad y = \\sin\\theta - 2\\sin^3\\theta,\\)\n\nfor \\(0 < \\theta < \\frac{1}{2}\\pi\\).",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Attempt use of chain rule for differentiation of $y$ or simplification of $y$ and use of the product rule.",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $\\frac{dx}{d\\theta}=\\sec^2\\theta$ and $\\frac{dy}{d\\theta}=\\cos\\theta-6\\sin^2\\theta\\cos\\theta$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Attempt expression for $\\frac{dy}{dx}$ in terms of $\\cos\\theta$ only using *their* $\\frac{dx}{d\\theta}$ and $\\frac{dy}{d\\theta}$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Obtain $6\\cos^5\\theta-5\\cos^3\\theta$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Attempt solution of $y=0$ to find value of $\\theta$",
+              "guidance_markdown": "Allow if degrees used",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain $\\sin^2\\theta=\\frac{1}{2}$ and hence $\\theta=\\frac{1}{4}\\pi$",
+              "guidance_markdown": "Must be in radians here",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain gradient of curve at the point is $-\\frac{1}{\\sqrt{2}}$ or exact equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Attempt equation of normal using negative reciprocal for their gradient",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Obtain $y=\\sqrt{2}x-\\sqrt{2}$ or exact equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the value of \\(k\\).",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "State the value of \\(\\alpha\\) and show that \\(\\beta\\) satisfies the equation \\(x = \\sqrt[3]{-2x - 4.5}\\).",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Show by calculation that \\(-1.4 < \\beta < -1.0\\).",
+              "source_page_numbers": [
+                11
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "d"
+              ],
+              "sort_order": 4,
+              "prompt_markdown": "Use an iterative formula, based on the equation in part (b), to find the value of \\(\\beta\\) correct to 3 significant figures. Give the result of each iteration to 5 significant figures.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use the factor theorem to find a parameter",
+              "Determine integer and non-integer roots properties",
+              "Verify bounds for a root",
+              "Apply an iterative formula to approximate a root to specified accuracy"
+            ],
+            "methods": [
+              "Set \\(p(-2)=0\\) to find \\(k\\)",
+              "Use relationships from \\(p(x)=0\\) to identify \\(\\alpha\\) and derive an equation for \\(\\beta\\)",
+              "Use calculation to bound \\(\\beta\\)",
+              "Apply a fixed-point/iteration scheme derived from the given equation until convergence, reporting each iteration"
+            ],
+            "subtopics": [
+              "Polynomials",
+              "Factor theorem",
+              "Roots and inequalities",
+              "Iterative methods (numerical refinement)"
+            ],
+            "main_topic": "Algebra",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 11,
+          "stem_markdown": "The polynomial \\(p(x)\\) is defined by\n\n\\(p(x) = 2x^4 + kx^3 + kx^2 + 17x + 18,\\)\n\nwhere \\(k\\) is a constant. It is given that \\((x + 2)\\) is a factor of \\(p(x)\\).\n\nIt is given that the equation \\(p(x) = 0\\) has exactly two real roots, denoted by \\(\\alpha\\) and \\(\\beta\\), where \\(\\alpha\\) is an integer and \\(\\beta\\) is not an integer.",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Substitute $$x = -2$$, equate to zero and attempt solution",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$32 - 8k + 4k - 34 + 18 = 0$$ or equivalent and hence $$k = 4$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "State $$\\alpha = -2$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Divide by $$x + 2$$ at least as far as $$2x^3 + mx$$",
+              "guidance_markdown": "Or equivalent method, e.g. inspection.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$2x^3 + 4x + 9$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Rearrange $$2x^3 + 4x + 9 = 0$$ to confirm $$x = \\sqrt[3]{-2x - 4.5}$$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Consider sign of $$x - \\sqrt[3]{-2x - 4.5}$$ or equivalent for $$-1.4$$ and $$-1.0$$",
+              "guidance_markdown": "Or Example 1: $$f(x) = 2x^3 + 4x + 9$$, finding $$f(-1.4)$$ and $$f(-1)$$. Example 2: $$f(x) = \\sqrt[3]{-2x - 4.5}$$, finding $$f(-1.4)$$ and $$f(-1)$$.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 8,
+              "content_markdown": "Obtain $$-0.2\\dots$$ and $$0.3\\dots$$ or equivalents and justify conclusion",
+              "guidance_markdown": "Example 1: $$f(-1) = 3$$, $$f(-1.4) = -1.2\\dots$$ with a correct conclusion. Example 2: $$f(-1) = -1.357\\dots$$ so $$-1 > -1.357\\dots$$ $$f(-1.4) = -1.193\\dots$$ so $$-1.4 < -1.19\\dots$$ with a correct conclusion. AG – necessary detail needed.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 9,
+              "content_markdown": "Use iterative process correctly at least once",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 10,
+              "content_markdown": "Obtain final answer –1.26",
+              "guidance_markdown": "Answer required to exactly 3 significant figures.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "d"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 11,
+              "content_markdown": "Show sufficient iterations to 5 sf to justify answer or show sign change in interval [–1.265, –1.255]",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        },
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Differentiate a composite function to find stationary points",
+              "Solve \\(\\frac{dy}{dx}=0\\) exactly to obtain the stationary point coordinates"
+            ],
+            "methods": [
+              "Differentiate using product rule and chain rule (for \\(e^{1-2x}\\) and \\(\\sqrt{3x-1}\\))",
+              "Set derivative to zero, simplify to an equation in \\(x\\), solve for the relevant \\(x\\) value (respecting \\(3x-1\\ge 0\\))",
+              "Substitute back to find the corresponding y-coordinate"
+            ],
+            "subtopics": [
+              "Stationary points",
+              "Differentiation of products/chain rule",
+              "Solving \\(\\frac{dy}{dx}=0\\) with restricted domain"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 6,
+          "stem_markdown": "The equation of a curve is \\(y = 4e^{1-2x}\\sqrt{3x-1}\\).\n\nFind the exact coordinates of the stationary point of the curve.",
+          "question_number": 8,
+          "mark_scheme_items": [
+            {
+              "mark_code": "*M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Differentiate to obtain the form $$k_1 e^{1-2x} (3x-1)^{\\frac{1}{2}} + k_2 e^{1-2x} (3x-1)^{-\\frac{1}{2}}$$",
+              "guidance_markdown": "Where $$k_1 k_2 \\neq 0$$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain correct first term $$-8e^{1-2x} (3x-1)^{\\frac{1}{2}}$$",
+              "guidance_markdown": "OE. Allow unsimplified",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain correct second term $$+6e^{1-2x} (3x-1)^{-\\frac{1}{2}}$$",
+              "guidance_markdown": "OE. Allow unsimplified",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "DM1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Equate first derivative to zero and attempt solution as far as $$3x-1=k$$",
+              "guidance_markdown": "OE. Must be in the form $$k_1 e^{1-2x} (3x-1)^{\\frac{1}{2}} + k_2 e^{1-2x} (3x-1)^{-\\frac{1}{2}}$$.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$3x-1=\\frac{3}{4}$$ OE, and hence $$x=\\frac{7}{12}$$",
+              "guidance_markdown": "Or exact equivalent.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "Obtain $$y=2\\sqrt{3}e^{-\\frac{1}{4}}$$",
+              "guidance_markdown": "Or exact equivalent.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            12
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": true,
+    "extraction_response_id": [
+      "resp_05bdc8b468db7af3016a7ae14b02c8819abe87300f038e7e74",
+      "resp_07e0a0b85a752afe016a7ae19145d4819987f6938315b85595",
+      "resp_0f3cc5ed4f4c9049016a7ae1cbe418819b9dcd25df44c768c5"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

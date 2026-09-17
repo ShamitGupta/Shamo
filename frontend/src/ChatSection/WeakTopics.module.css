@@ -1,0 +1,275 @@
+.Panel {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.Header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.Title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ededed;
+}
+
+.Toggle {
+    background: transparent;
+    border: none;
+    color: #8a8a8a;
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 2px 4px;
+}
+
+.Toggle:hover {
+    color: #ffffff;
+}
+
+.List {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.RowTop {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.Topic {
+    color: #ededed;
+    font-size: 0.9rem;
+}
+
+.Band {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.BarTrack {
+    margin-top: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.BarFill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+/* Tones are shared by the band pill and the bar, so the two never disagree. */
+.low {
+    color: #ffb4a8;
+}
+
+.BarFill.low {
+    background-color: #c2543f;
+}
+
+.Band.low {
+    background-color: rgba(194, 84, 63, 0.18);
+}
+
+.mid {
+    color: #ffd9a0;
+}
+
+.BarFill.mid {
+    background-color: #b58234;
+}
+
+.Band.mid {
+    background-color: rgba(181, 130, 52, 0.18);
+}
+
+.high {
+    color: #a8e6bd;
+}
+
+.BarFill.high {
+    background-color: #3f8a5c;
+}
+
+.Band.high {
+    background-color: rgba(63, 138, 92, 0.18);
+}
+
+.unknown {
+    color: #a0a0a0;
+}
+
+.Band.unknown {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* The evidence line. Never omit it: the band alone is not checkable. */
+.Evidence {
+    margin: 6px 0 0;
+    color: #9a9a9a;
+    font-size: 0.78rem;
+}
+
+.Note {
+    margin: 12px 0 0;
+    color: #9a9a9a;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.Pending {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.PendingHeading {
+    margin: 0;
+    color: #8a8a8a;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.PendingList {
+    margin: 6px 0 0;
+    color: #9a9a9a;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.Error {
+    margin: 0;
+    color: #ff8a80;
+    font-size: 0.82rem;
+}
+
+.Practise {
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    color: #cfcfcf;
+    font: inherit;
+    font-size: 0.76rem;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.Practise:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.Practice {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.PracticeItem {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.PracticeItem:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.PracticeRef {
+    color: #ededed;
+    font-size: 0.82rem;
+}
+
+.PracticeWhy {
+    color: #8a8a8a;
+    font-size: 0.75rem;
+}
+
+/* Sidebar variant. Only spacing and type size change -- every row keeps its
+   band, its bar and its evidence line, because a narrower column is not a
+   reason to make a claim about a student less checkable. */
+.Compact {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin-top: 0;
+    background-color: transparent;
+}
+
+.Compact .Title {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6f6f6f;
+    font-weight: 500;
+}
+
+.Compact .Header {
+    padding: 0 2px;
+}
+
+.Compact .Toggle {
+    font-size: 0.72rem;
+}
+
+.Compact .List {
+    margin-top: 10px;
+    gap: 12px;
+}
+
+.Compact .Topic {
+    font-size: 0.85rem;
+}
+
+.Compact .Band {
+    font-size: 0.68rem;
+    padding: 1px 6px;
+}
+
+.Compact .Evidence,
+.Compact .Note,
+.Compact .PendingList {
+    font-size: 0.74rem;
+    line-height: 1.45;
+}
+
+.Compact .PracticeRef {
+    font-size: 0.76rem;
+}
+
+.Compact .PracticeWhy {
+    font-size: 0.7rem;
+}
+
+.Compact .Pending {
+    margin-top: 12px;
+    padding-top: 10px;
+}

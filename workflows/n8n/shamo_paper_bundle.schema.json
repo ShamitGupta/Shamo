@@ -1,0 +1,383 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shamo paper publication bundle",
+  "type": "object",
+  "properties": {
+    "documents": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string",
+            "enum": [
+              "question_paper",
+              "mark_scheme"
+            ]
+          },
+          "source_url": {
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "source_url_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "page_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "ocr_model": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "document_type",
+          "source_url",
+          "source_url_hash",
+          "page_count",
+          "ocr_model"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "question_number": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "stem_markdown": {
+            "type": "string"
+          },
+          "total_marks": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source_page_numbers": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label_path": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9]+$"
+                  }
+                },
+                "prompt_markdown": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "marks": {
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "source_page_numbers": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "sort_order": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "label_path",
+                "prompt_markdown",
+                "marks",
+                "source_page_numbers",
+                "sort_order"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "mark_scheme_items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "sequence_number": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "part_path": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9]+$"
+                  }
+                },
+                "mark_code": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "content_markdown": {
+                  "type": "string"
+                },
+                "guidance_markdown": {
+                  "type": "string"
+                },
+                "is_final_answer": {
+                  "type": "boolean"
+                },
+                "is_alternative_method": {
+                  "type": "boolean"
+                },
+                "source_page_numbers": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              },
+              "required": [
+                "sequence_number",
+                "part_path",
+                "mark_code",
+                "content_markdown",
+                "guidance_markdown",
+                "is_final_answer",
+                "is_alternative_method",
+                "source_page_numbers"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "part_path": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9]+$"
+                  }
+                },
+                "document_type": {
+                  "type": "string",
+                  "enum": [
+                    "question_paper",
+                    "mark_scheme"
+                  ]
+                },
+                "source_page_number": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "source_image_index": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "asset_type": {
+                  "type": "string",
+                  "enum": [
+                    "graph",
+                    "geometry_diagram",
+                    "mechanics_diagram",
+                    "table",
+                    "number_line",
+                    "coordinate_grid",
+                    "other_instructional"
+                  ]
+                },
+                "bounding_box": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "top_left_x": {
+                          "type": "number"
+                        },
+                        "top_left_y": {
+                          "type": "number"
+                        },
+                        "bottom_right_x": {
+                          "type": "number"
+                        },
+                        "bottom_right_y": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "top_left_x",
+                        "top_left_y",
+                        "bottom_right_x",
+                        "bottom_right_y"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "mathematical_details": {
+                  "type": "object",
+                  "properties": {
+                    "visible_labels": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "equations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "coordinates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "measurements": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "relationships": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "visible_labels",
+                    "equations",
+                    "coordinates",
+                    "measurements",
+                    "relationships"
+                  ],
+                  "additionalProperties": false
+                },
+                "required_to_solve": {
+                  "type": "boolean"
+                },
+                "storage_bucket": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "storage_path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "mime_type": {
+                  "type": "string",
+                  "pattern": "^image/"
+                },
+                "byte_size": {
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "checksum": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "part_path",
+                "document_type",
+                "source_page_number",
+                "source_image_index",
+                "asset_type",
+                "bounding_box",
+                "description",
+                "mathematical_details",
+                "required_to_solve",
+                "storage_bucket",
+                "storage_path",
+                "mime_type",
+                "byte_size",
+                "checksum"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "question_number",
+          "stem_markdown",
+          "total_marks",
+          "source_page_numbers",
+          "parts",
+          "mark_scheme_items",
+          "assets"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "documents",
+    "questions"
+  ],
+  "additionalProperties": false
+}

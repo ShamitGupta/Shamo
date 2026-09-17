@@ -1,0 +1,1063 @@
+{
+  "paper_key": "9709_2024_may_june_61",
+  "paper": {
+    "qualification": "a_level",
+    "syllabus_code": "9709",
+    "subject": "Mathematics",
+    "year": 2024,
+    "exam_session": "may_june",
+    "paper_variant": "61",
+    "status": "published"
+  },
+  "current_ingestion_run_id": "054f296f-e08c-4360-a27d-325d064b2496",
+  "trust": {
+    "structure": "A",
+    "part_marks": "A",
+    "metadata": "A",
+    "mark_rows": "B -- never source-reviewed; agreement, not accuracy"
+  },
+  "documents": [
+    {
+      "document_type": "question_paper",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_qp_61.pdf",
+      "page_count": 16,
+      "ocr_model": "mistral-ocr-latest"
+    },
+    {
+      "document_type": "mark_scheme",
+      "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s24_ms_61.pdf",
+      "page_count": 12,
+      "ocr_model": "mistral-ocr-latest"
+    }
+  ],
+  "questions": [
+    {
+      "question_number": 1,
+      "stem_markdown": "A bus station has exactly four entrances. In the morning the numbers of passengers arriving at these entrances during a 10-second period have the independent distributions Po(0.4), Po(0.1), Po(0.2) and Po(0.5).\n\nFind the probability that the total number of passengers arriving at the four entrances to the bus station during a randomly chosen 1-minute period in the morning is more than 3.",
+      "total_marks": 3,
+      "source_page_numbers": [
+        3
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "$$\\lambda = 7.2$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "$$P(X > 3) = 1 - e^{-7.2}(1 + 7.2 + \\frac{7.2^2}{2!} + \\frac{7.2^3}{3!})$$ or $$1 - e^{-7.2}(1 + 7.2 + 25.92 + 62.21)$$ or $$1 - (0.0007466 + 0.005375 + 0.01935 + 0.04644)$$",
+          "guidance_markdown": "Allow any $$\\lambda$$. Allow one end error. Must see expression. Allow fully correct sigma notation.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$= 0.928$$ (3sf)",
+          "guidance_markdown": "SC 0.928 with no working seen scores **B1 B1**.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "The Poisson Distribution",
+        "subtopics": [
+          "Poisson distribution",
+          "Poisson process scaling",
+          "Summation of independent Poisson variables",
+          "Probability calculations"
+        ],
+        "skills": [
+          "Convert between time periods for Poisson rates",
+          "Use that sums of independent Poisson variables are Poisson",
+          "Compute tail probabilities for a Poisson random variable"
+        ],
+        "methods": [
+          "Poisson modelling for event counts",
+          "Rate scaling proportional to time",
+          "Poisson distribution with parameter equal to expected count",
+          "Direct probability from Poisson CDF"
+        ],
+        "question_style": "routine_calculation",
+        "difficulty_level": 2,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.82,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 2,
+      "stem_markdown": "The random variable $X$ has the distribution $N(31.2,\\,10.4^2)$. Two independent random values of $X$, denoted by $X_1$ and $X_2$, are chosen.\n\nFind $P(X_1>3X_2)$.",
+      "total_marks": 5,
+      "source_page_numbers": [
+        4
+      ],
+      "parts": [],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "$$E(X_1 - 3X_2) = 31.2 - 3 \\times 31.2$$ $$[=-62.4]$$",
+          "guidance_markdown": "$$OE E(3X_2 - X_1) = +62.4$$",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "$$Var(X_1 - 3X_2) = 10.4^2 + 3^2 \\times 10.4^2$$ $$[=1081.6]$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "$$\\frac{0 - (-62.4)}{\\sqrt{1081.6}}$$ $$[=1.897]$$",
+          "guidance_markdown": "Standardising (with attempt at E and Var, not just using 31.2 and 10.4).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "$$1 - \\Phi(1.897)$$",
+          "guidance_markdown": "For area consistent with their working.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "$$= 0.0289$$ (3 sf)",
+          "guidance_markdown": "",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            6
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Linear Combinations of Random Variables",
+        "subtopics": [
+          "Normal distribution",
+          "Linear combinations of normal variables",
+          "Probability with inequalities"
+        ],
+        "skills": [
+          "Model  X1 and X2 as independent normal variables",
+          "Transform inequality into a statement about a single normal variable",
+          "Standardize and use normal CDF"
+        ],
+        "methods": [
+          "Normal distribution properties",
+          "Variance scaling under multiplication",
+          "Standardization of normal variables"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 2,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.78,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 3,
+      "stem_markdown": "The time taken in minutes for a certain daily train journey has a normal distribution with standard deviation 5.8. For a random sample of 20 days the journey times were noted and the mean journey time was found to be 81.5 minutes.",
+      "total_marks": 6,
+      "source_page_numbers": [
+        5
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Calculate a 98% confidence interval for the population mean journey time.",
+          "marks": 3,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Explain briefly whether this statement is true or not.\n\n“The times for 98% of these journeys are likely to be within the confidence interval.”",
+          "marks": 1,
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Given that at least one of these intervals contains the population mean, find the probability that both intervals contain the population mean.",
+          "marks": 2,
+          "source_page_numbers": [
+            5
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$81.5 \\pm z \\times \\frac{5.8}{\\sqrt{20}}$$",
+          "guidance_markdown": "For a correct expression (accept if only one side of the interval calculated). Any z (must be a z).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "z = 2.326",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "78.5 to 84.5 (3sf)",
+          "guidance_markdown": "Must be an interval.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "B1",
+          "content_markdown": "Not true. C. I. is for mean time, not individual times.",
+          "guidance_markdown": "OE Both comments needed.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "M1",
+          "content_markdown": "$$\\frac{0.98^2}{1-0.02^2}$$",
+          "guidance_markdown": "Attempt $$\\frac{P(\\text{both contain }\\mu)}{P(\\text{at least one contains }\\mu)}$$ with numerator attempt $$0.98^2$$ and denominator attempt involving 0.02. Must see their quotient.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "A1",
+          "content_markdown": "= 0.961 (3sf)",
+          "guidance_markdown": "NB: $$[0.98^2]$$ 0.9604 scores M0 A0.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Sampling and Estimation",
+        "subtopics": [
+          "Confidence intervals",
+          "Normal distribution sampling",
+          "Interpretation of confidence level",
+          "Probability involving confidence intervals"
+        ],
+        "skills": [
+          "Construct a confidence interval for a population mean with known/estimated variance setup",
+          "Interpret what a confidence interval statement does and does not mean",
+          "Use properties of coverage for independent confidence intervals to compute a joint probability"
+        ],
+        "methods": [
+          "Confidence interval for mean under normal sampling",
+          "Interpretation of 98% CI coverage",
+          "Independence/coverage probability argument for two intervals"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.74,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 4,
+      "stem_markdown": "A random sample of 8 boxes of cereal from a certain supplier was taken. Each box was weighed and the masses in grams were as follows.\n\n261 249 259 252 255 256 258 254",
+      "total_marks": 9,
+      "source_page_numbers": [
+        6,
+        7
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Find unbiased estimates of the population mean and variance.",
+          "marks": 3,
+          "source_page_numbers": [
+            6
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "The supplier claims that the mean mass of boxes of cereal is 253 g. A quality control officer suspects that the mean mass is actually more than 253 g. In order to test this claim, he weighs a random sample of 100 boxes of cereal and finds that the total mass is 25 360 g.",
+          "marks": null,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "label_path": [
+            "b",
+            "i"
+          ],
+          "prompt_markdown": "Given that the population standard deviation of the masses is 3.5 g, test at the 5% significance level whether the population mean mass is more than 253 g.",
+          "marks": 5,
+          "source_page_numbers": [
+            7
+          ]
+        },
+        {
+          "label_path": [
+            "b",
+            "ii"
+          ],
+          "prompt_markdown": "Explain briefly whether this statement is true or not.\n\n“This test is invalid because it uses the normal distribution, but we do not know whether the masses of the boxes are normally distributed.”",
+          "marks": 1,
+          "source_page_numbers": [
+            7
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "$$\\text{Est}(\\mu) = \\frac{2044}{8} \\text{ [=255.5]}$$",
+          "guidance_markdown": "Accept 3sf if nothing better seen.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "$$\\text{Est}(\\sigma^2) = \\frac{8}{7} \\left( \\frac{522348}{8} - '255.5'^2 \\right) \\text{ or } \\frac{1}{7} \\left( '522348' - \\frac{2044'^2}{8} \\right)$$\n\n",
+          "guidance_markdown": "Attempt to find $$\\Sigma x^2$$ and substitute in correct formula. May be implied by correct answer. Biased 13.25 scores M0.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$= 15.1 \\text{ (3 sf) or } \\frac{106}{7}$$",
+          "guidance_markdown": "OE",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "$$H_0: \\mu = 253$$ $$H_1: \\mu > 253$$",
+          "guidance_markdown": "Allow 'Population mean' but not just 'mean'.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "$$\\frac{253.60}{100} - 253$$ $$3.5 \\div \\sqrt{100}$$",
+          "guidance_markdown": "Standardising must have $$\\sqrt{100}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "A1",
+          "content_markdown": "$$= 1.714$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "M1",
+          "content_markdown": "$$1.714 > 1.645 \\text{ or } 0.0432 < 0.05$$",
+          "guidance_markdown": "OE",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1FT",
+          "content_markdown": "[Reject $$H_0$$] There is sufficient evidence (at 5% level) to suggest [mean] mass is greater than 253",
+          "guidance_markdown": "OE FT *their* '1.714' in context, not definite, no contradictions. Accept critical value method of $$253.57 < 253.60$$ or $$253.02 > 253$$. Use of a two-tailed test scores B0 M1 A1 M1 A0 (comp with $$\\frac{0.025}{1.96}$$).",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "B1",
+          "content_markdown": "Not true. Large sample, [so sample mean is approx normally distributed].",
+          "guidance_markdown": "OE Allow 'Not true. Large sample' or 'Not true. $n$ is large' or 'Not true. CLT used'.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Sampling and Estimation",
+        "subtopics": [
+          "Sampling and estimation",
+          "Unbiased estimators of mean and variance",
+          "Hypothesis testing for a population mean",
+          "Central limit theorem",
+          "One-tailed significance tests"
+        ],
+        "skills": [
+          "Compute unbiased sample estimates of population mean and variance",
+          "Formulate a one-sided hypothesis test for the mean",
+          "Use the appropriate test statistic given the information about variance",
+          "Compute p-value/test critical value and conclude",
+          "Assess validity of using normal/t assumptions"
+        ],
+        "methods": [
+          "Sample mean and unbiased variance formulas",
+          "Hypothesis testing with known population standard deviation",
+          "Test statistic with normal distribution assumption",
+          "Brief reasoning about distributional assumptions"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.8,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 5,
+      "stem_markdown": "Sales of cell phones at a certain shop occur singly, randomly and independently.\n\nThe average number of sales per hour is 1.2.\n\nAssume now that a Poisson distribution is a suitable model.",
+      "total_marks": 8,
+      "source_page_numbers": [
+        8,
+        9
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "State one further condition that must be satisfied for the number of sales in a certain time period to be well modelled by a Poisson distribution.",
+          "marks": 1,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Find the probability that the number of sales during a randomly chosen 12-hour period will be more than 12 and less than 16.",
+          "marks": 3,
+          "source_page_numbers": [
+            8
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Use a suitable approximating distribution to find the probability that the number of sales during a randomly chosen 1-month period (140 hours) will be less than 150.",
+          "marks": 4,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "Constant average rate",
+          "guidance_markdown": "OE Accept constant rate. Allow without context.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "B1",
+          "content_markdown": "$$\\lambda = 14.4$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "$$e^{-14.4}\\left(\\frac{14.4^{13}}{13!}+\\frac{14.4^{14}}{14!}+\\frac{14.4^{15}}{15!}\\right)$$",
+          "guidance_markdown": "Poisson P(13, 14, 15). Expression must be seen. Allow one end error; allow any $$\\lambda$$. Allow fully correct sigma notation.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "A1",
+          "content_markdown": "$$=\\;0.309$$ (3sf)",
+          "guidance_markdown": "SC: 0.309 with no working scores **B1 B1**.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "B1",
+          "content_markdown": "$$N(140\\times1.2,140\\times1.2)$$ or $$N(168,168)$$",
+          "guidance_markdown": "Stated or implied.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "M1",
+          "content_markdown": "$$\\frac{149.5-168}{\\sqrt{168}}\\;[=-1.427]$$",
+          "guidance_markdown": "Standardising using their mean and variance. Allow with wrong or no continuity correction.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "$$\\Phi(-1.427)=1-\\Phi(1.427)$$",
+          "guidance_markdown": "For area consistent with their working.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "$$=\\;0.0768$$ or $$0.0767$$ (3sf)",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            9
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "The Poisson Distribution",
+        "subtopics": [
+          "Poisson distribution",
+          "Poisson modelling of counts",
+          "Probability bounds",
+          "Approximations for Poisson (normal approximation)"
+        ],
+        "skills": [
+          "Use additional Poisson modelling condition (e.g. independence/constant rate)",
+          "Compute Poisson probabilities for given time period",
+          "Approximate a Poisson probability using a suitable distribution when the mean is large",
+          "Apply continuity correction if using normal approximation"
+        ],
+        "methods": [
+          "Poisson probability mass function",
+          "Time-period scaling of Poisson mean",
+          "Normal approximation to Poisson for large rate"
+        ],
+        "question_style": "multi_step_problem",
+        "difficulty_level": 3,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.77,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 6,
+      "stem_markdown": "The diagram shows the graph of the probability density function, $f$, of a random variable $X$. The graph is a quarter circle entirely in the first quadrant with centre $(0,0)$ and radius $a$, where $a$ is a positive constant. Elsewhere $f(x)=0$.",
+      "total_marks": 8,
+      "source_page_numbers": [
+        10,
+        11
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Show that $\\frac14\\pi a^2=1$.",
+          "marks": 2,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Show that $f(x)=\\sqrt{\\frac{4}{\\pi}-x^2}$.",
+          "marks": 2,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Show that $E(X)=\\frac{8}{3\\sqrt{\\pi^3}}$.",
+          "marks": 4,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "M1",
+          "content_markdown": "$$\\frac14\\pi a^2=1$$",
+          "guidance_markdown": "OE Attempt to set area = 1.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "A1",
+          "content_markdown": "$$a=\\frac{2}{\\sqrt{\\pi}}$$",
+          "guidance_markdown": "AG Correct equation and correctly rearranged to $$a=\\dots$$ No errors seen.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "M1",
+          "content_markdown": "$$x^2+y^2=\\left(\\frac{2}{\\sqrt{\\pi}}\\right)^2$$",
+          "guidance_markdown": "Or $$x^2+y^2=a^2$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": null,
+          "content_markdown": "$$[y^2=\\frac{4}{\\pi}-x^2]$$",
+          "guidance_markdown": "Must see at least one intermediate step",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1",
+          "content_markdown": "$$f(x)=\\sqrt{\\frac{4}{\\pi}-x^2}$$",
+          "guidance_markdown": "AG Convincingly rearranged to reach given answer. No errors seen.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            10
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1",
+          "content_markdown": "$$\\int_0^{\\frac{2}{\\sqrt{\\pi}}} x\\sqrt{\\frac{4}{\\pi}-x^2}\\,dx$$",
+          "guidance_markdown": "Correct expression for $$E(X)=\\int xf(x)\\,dx$$ with correct limits (accept limits 0 and $$a$$).",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "M1",
+          "content_markdown": "$$-\\frac13\\left[\\left(\\frac{4}{\\pi}-x^2\\right)^{\\frac32}\\right]_0^{\\frac{2}{\\sqrt{\\pi}}}$$",
+          "guidance_markdown": "Integrate $$xf(x)$$ with any limits or none. Must reach expression of form: any constant $$\\times \\left(\\frac{4}{\\pi}-x^2\\right)^{\\frac32}$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "A1",
+          "content_markdown": "",
+          "guidance_markdown": "Wholly correct integration and limits.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "A1",
+          "content_markdown": "$$\\frac{8}{3\\sqrt{\\pi^3}}$$",
+          "guidance_markdown": "AG Correctly obtained with no errors seen.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "source_page_number": 10,
+          "source_image_index": 0,
+          "asset_type": "graph",
+          "storage_path": "a_level/9709/2024/may_june/61/question_paper/q6/page-10-image-0.jpg",
+          "required_to_solve": true
+        }
+      ],
+      "metadata": {
+        "main_topic": "Continuous Random Variables",
+        "subtopics": [
+          "Probability density functions",
+          "Normalization (finding constants)",
+          "Integration",
+          "Expected value of a continuous random variable"
+        ],
+        "skills": [
+          "Use total probability equals 1 to find unknown parameter",
+          "Derive the pdf expression from the geometric definition",
+          "Compute expectation using an integral over the support"
+        ],
+        "methods": [
+          "Use the area of a quarter circle to normalize the density",
+          "Derive the density from the equation of the circle",
+          "Compute E(X) by integrating x f(x) over the support"
+        ],
+        "question_style": "proof_or_show",
+        "difficulty_level": 3,
+        "calculator_required": false,
+        "diagram_required": true,
+        "classification_confidence": 0.83,
+        "review_status": "approved"
+      }
+    },
+    {
+      "question_number": 7,
+      "stem_markdown": "Every July, as part of a research project, Rita collects data about sightings of a particular kind of bird. Each day in July she notes whether she sees this kind of bird or not, and she records the number $X$ of days on which she sees it. She models the distribution of $X$ by $B(31,p)$, where $p$ is the probability of seeing this kind of bird on a randomly chosen day in July.\n\nData from previous years suggests that $p=0.3$, but in 2022 Rita suspected that the value of $p$ had been reduced. She decided to carry out a hypothesis test.\n\nIn July 2022, she saw this kind of bird on 4 days.",
+      "total_marks": 11,
+      "source_page_numbers": [
+        12,
+        13
+      ],
+      "parts": [
+        {
+          "label_path": [
+            "a"
+          ],
+          "prompt_markdown": "Use the binomial distribution to test at the 5% significance level whether Rita's suspicion is justified.",
+          "marks": 5,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "b"
+          ],
+          "prompt_markdown": "Calculate the probability of a Type I error.",
+          "marks": 2,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "label_path": [
+            "c"
+          ],
+          "prompt_markdown": "Rita models the number of sightings, $Y$, per year of a different, very rare, kind of bird by the distribution $B(365,0.01)$.",
+          "marks": null,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "label_path": [
+            "c",
+            "i"
+          ],
+          "prompt_markdown": "Use a suitable approximating distribution to find $P(Y=4)$.",
+          "marks": 3,
+          "source_page_numbers": [
+            13
+          ]
+        },
+        {
+          "label_path": [
+            "c",
+            "ii"
+          ],
+          "prompt_markdown": "Justify your approximating distribution in this context.",
+          "marks": 1,
+          "source_page_numbers": [
+            13
+          ]
+        }
+      ],
+      "mark_scheme_items": [
+        {
+          "sequence_number": 1,
+          "mark_code": "B1",
+          "content_markdown": "$$H_0: p=0.3$$\n$$H_1: p<0.3$$",
+          "guidance_markdown": "",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 2,
+          "mark_code": "M1",
+          "content_markdown": "$$B(31,0.3),\\ P(X\\leq 4)=0.7^{31}+31\\times0.7^{30}\\times0.3+\\binom{31}{2}0.7^{29}0.3^2+\\binom{31}{3}0.7^{28}0.3^3+\\binom{31}{4}0.7^{27}0.3^4$$",
+          "guidance_markdown": "No end errors.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 3,
+          "mark_code": "A1",
+          "content_markdown": "$$=0.0239$$ (3sf)",
+          "guidance_markdown": "SC 0.0239 with no working scores B1.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 4,
+          "mark_code": "M1",
+          "content_markdown": "$$0.0239<0.05$$",
+          "guidance_markdown": "Valid comparison.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 5,
+          "mark_code": "A1FT",
+          "content_markdown": "$$[\\text{reject }H_0]$$\nThere is sufficient evidence (at 5% level) to support Rita's suspicion, or There is sufficient evidence to suggest the probability of seeing this type of bird has decreased",
+          "guidance_markdown": "In context. Not definite. No contradictions. FT their 0.0239.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 6,
+          "mark_code": "B1FT",
+          "content_markdown": "$$P(X\\leq 5)=[0.0239+\\binom{31}{5}0.7^{26}0.3^5]=0.0627\\ [\\text{which is } >0.05]$$",
+          "guidance_markdown": "Attempt $$P(X\\leq 5)$$. Only FT if > 0.05. Only FT their 0.0239 if $$P(X\\leq 4)$$ attempted in (a); arithmetic error only.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 7,
+          "mark_code": "B1FT",
+          "content_markdown": "$$P(\\text{Type I error})=0.0239$$",
+          "guidance_markdown": "Only FT their 0.0239 if $$P(X\\leq 4)$$ attempted in (a); arithmetic error only and their 0.0239 < 0.05.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            11
+          ]
+        },
+        {
+          "sequence_number": 8,
+          "mark_code": "B1",
+          "content_markdown": "$$[\\lambda=]\\ 3.65$$",
+          "guidance_markdown": "Stated or implied.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 9,
+          "mark_code": "M1",
+          "content_markdown": "$$e^{-3.65}\\times\\frac{3.65^4}{4!}$$",
+          "guidance_markdown": "Must see expression. Any $$\\lambda$$.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 10,
+          "mark_code": "A1",
+          "content_markdown": "$$=0.192$$ (3sf)",
+          "guidance_markdown": "SC: Use of Binomial. 0.193 scores B1. SC: 0.192 with no working scores B1 B1.",
+          "is_final_answer": true,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        },
+        {
+          "sequence_number": 11,
+          "mark_code": "B1",
+          "content_markdown": "$$n=365>50$$\n$$np=3.65<5$$ or $$p=0.01<0.1$$",
+          "guidance_markdown": "Explicit. Both needed. Note: and 'n large, p small' is insufficient.",
+          "is_final_answer": false,
+          "is_alternative_method": false,
+          "source_page_numbers": [
+            12
+          ]
+        }
+      ],
+      "assets": [],
+      "metadata": {
+        "main_topic": "Hypothesis Tests",
+        "subtopics": [
+          "Binomial distribution",
+          "Hypothesis testing (one-sample)",
+          "Type I error",
+          "Approximating binomial with Poisson"
+        ],
+        "skills": [
+          "Set up a one-sided hypothesis test using binomial probabilities",
+          "Determine the rejection region at the specified significance level",
+          "Compute Type I error probability from the null distribution",
+          "Approximate a binomial pmf using a Poisson approximation for rare events",
+          "Justify the approximation by checking conditions (n large, p small, np moderate)"
+        ],
+        "methods": [
+          "Exact binomial hypothesis test",
+          "Type I error under null",
+          "Poisson approximation to Binomial (law of rare events)"
+        ],
+        "question_style": "mixed",
+        "difficulty_level": 4,
+        "calculator_required": null,
+        "diagram_required": false,
+        "classification_confidence": 0.76,
+        "review_status": "approved"
+      }
+    }
+  ]
+}

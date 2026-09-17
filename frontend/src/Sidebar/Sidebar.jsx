@@ -1,12 +1,42 @@
 import styles from './Sidebar.module.css'
 import logo from '../assets/ShamoLogo.png'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-function Sidebar(){
+import AuthActions from '../Auth/AuthActions'
+import ConversationList from '../Conversations/ConversationList'
+import WeakTopics from '../ChatSection/WeakTopics'
+import MyMarkCodes from '../ChatSection/MyMarkCodes'
+import { useConversations } from '../Conversations/conversationContext.js'
+import { useAuth } from '../Auth/authContext.js'
+import { useWorkspace } from '../Workspace/workspaceContext.js'
+
+function Sidebar({ onOpenAuth }){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const handleRefresh = () => {
-        location.reload();
+    // Log In / Sign Up moved here from the chat top bar, so the account lives
+    // at the bottom of the sidebar rather than in the corner above the
+    // conversation. The overlay itself is owned by App.
+    const { user, profile, tier, actionStatus, signOut, isStaff } = useAuth();
+    const { startNewConversation } = useConversations();
+    // The topic panel hands the student a question to practise, and clicking
+    // one has to move the selection the chat is grounded in. That selection
+    // lives in WorkspaceProvider precisely so both sides can reach it.
+    const { catalogue, progressToken } = useWorkspace();
+
+    const handlePractiseNavigate = (reference) => {
+        const moved = catalogue.selectReference(reference);
+        if (moved) handleMenuClose();
+        return moved;
+    };
+
+    // Was location.reload(), back when a conversation only existed in memory and
+    // throwing the page away was the only way to clear it. Threads are saved
+    // now, so this starts a fresh one and leaves the previous conversation in
+    // the list rather than destroying it.
+    const handleNewChat = () => {
+        startNewConversation();
+        handleMenuClose();
     }
 
     useEffect(() => {
@@ -79,15 +109,81 @@ function Sidebar(){
                     <p className = {styles.Label}>Shamo AI</p>
                 </div>
 
+                {/* New Chat is the one button here a student presses often, so
+                    it is the only one that looks like a button. The rest are
+                    small links -- they were taking a third of the sidebar from
+                    the thread list, which is the part that grows. */}
+                <button type="button" className={styles.NewChatButton} onClick={handleNewChat}>
+                    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+                        <path d="M8 3.2v9.6M3.2 8h9.6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                    </svg>
+                    New chat
+                </button>
+
+                {/* A teacher can use the tutor themselves -- seeing what you are
+                    setting is the point -- so the way back to the dashboard has
+                    to be permanently on screen rather than a browser Back away. */}
+                {isStaff && (
+                    <Link className={styles.StaffLink} to="/dashboard" onClick={handleMenuClose}>
+                        Teacher dashboard
+                    </Link>
+                )}
+
                 <div className = {styles.SidebarButtonsContainer}>
-                    <button className = {styles.SidebarButtons} onClick={handleRefresh}>New Chat</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>About Us</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>Report an Issue</button>
                     <button className = {styles.SidebarButtons} onClick={handleMenuClose}>Contact Us</button>
                 </div>
+
+                {user && <ConversationList onNavigate={handleMenuClose} />}
+
+                {/* Always on screen, never behind a scroll to the bottom of a
+                    conversation. What a student is weakest at is the thing that
+                    should be visible while they choose what to do next. */}
+                {user && (
+                    <div className={styles.TopicsRegion}>
+                        <WeakTopics
+                            refreshToken={progressToken}
+                            onNavigate={handlePractiseNavigate}
+                            variant="sidebar"
+                        />
+                        {/* WHICH topics, then WHY the marks go. The second is
+                            useless without the first, so it sits beneath and
+                            renders nothing at all until something has been
+                            marked. */}
+                        <MyMarkCodes refreshToken={progressToken} />
+                    </div>
+                )}
+
+                <div className={styles.SidebarFooter}>
+                    {/* The teacher door. Deliberately quiet -- it is for the one
+                        adult in a room of students, not a second call to action --
+                        but it has to EXIST somewhere: a separate signup page with
+                        no link to it is reachable only by someone who already
+                        knows the URL, which is nobody. Hidden once the account is
+                        already staff, since the dashboard link above covers it. */}
+                    {!isStaff && (
+                        <Link
+                            className={styles.TeacherLink}
+                            to="/teacher"
+                            onClick={handleMenuClose}
+                        >
+                            Teacher? Set up school access
+                        </Link>
+                    )}
+                    <AuthActions
+                        user={user}
+                        profile={profile}
+                        tier={tier}
+                        isLoading={actionStatus === 'loading'}
+                        onOpenSignUp={() => { handleMenuClose(); onOpenAuth('signup'); }}
+                        onOpenLogIn={() => { handleMenuClose(); onOpenAuth('login'); }}
+                        onSignOut={signOut}
+                    />
+                </div>
             </div>
         </>
-        
+
     )
 }
 

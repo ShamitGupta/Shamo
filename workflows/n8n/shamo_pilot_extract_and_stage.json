@@ -1,0 +1,1550 @@
+{
+  "name": "Shamo Pilot v3 - Extract Repair Verify and Stage 9709 M25 Paper 12",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Before running\n1. Run both v2 SQL patches in Supabase, including `shamo_v2_guidance_only_rows_patch.sql`.\n2. Edit **Pilot Configuration** with your Supabase project URL.\n3. Open **Get Test Rows** and select the `Test` sheet.\n4. Confirm the Supabase credential contains a **secret/service_role** key.\n5. Select a Mistral HTTP Header Auth credential on **Mistral OCR**.\n6. Keep this workflow manual during the pilot.",
+        "height": 340,
+        "width": 520,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -840,
+        -520
+      ],
+      "id": "e16ef722-b7d4-7760-dcc9-078336aadb35",
+      "name": "Before running"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        0
+      ],
+      "id": "d9d9b63a-714e-e1b3-7d6b-733d4804d1e6",
+      "name": "Run Pilot Manually"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const config = {\n  supabase_url: 'https://YOUR_PROJECT_REF.supabase.co',\n  google_document_id: '14QHYH5T22qyGQJH-6SLW00q9yTuDhGwe1mEM7liaEbY',\n  google_sheet_name: 'Test',\n  qualification: 'a_level',\n  syllabus_code: '9709',\n  subject: 'Mathematics',\n  year: 2025,\n  exam_session: 'feb_march',\n  paper_variant: '12',\n  expected_question_count: 11,\n  expected_total_marks: 75,\n  expected_page_counts: {\n    question_paper: 16,\n    mark_scheme: 22,\n  },\n  mark_scheme_question_pages: {\n    1: [9],\n    2: [9, 10],\n    3: [10, 11],\n    4: [11],\n    5: [12],\n    6: [13],\n    7: [14],\n    8: [15, 16],\n    9: [17, 18],\n    10: [19, 20, 21],\n    11: [21, 22],\n  },\n  ocr_model: 'mistral-ocr-latest',\n  extraction_model: 'gpt-5.6-terra',\n  mark_scheme_extraction_model: 'gpt-5.6-sol',\n  verifier_model: 'gpt-5.6-sol',\n  storage_bucket: 'past-paper-assets',\n};\n\nif (config.supabase_url.includes('YOUR_PROJECT_REF')) {\n  throw new Error('Edit this node and replace YOUR_PROJECT_REF with your Supabase project reference before running.');\n}\n\nreturn [{ json: config }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        0
+      ],
+      "id": "a31a9d5c-36de-49cc-b08f-dad5f9c3f7fd",
+      "name": "Pilot Configuration"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "14QHYH5T22qyGQJH-6SLW00q9yTuDhGwe1mEM7liaEbY",
+          "mode": "list",
+          "cachedResultName": "Past paper data - Alevel Maths (final)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14QHYH5T22qyGQJH-6SLW00q9yTuDhGwe1mEM7liaEbY/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Test",
+          "mode": "list",
+          "cachedResultName": "Test"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -320,
+        0
+      ],
+      "id": "e43a0ac0-5a23-161b-e216-b349679cb844",
+      "name": "Get Test Rows",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xzcR7RoAo3n5rpoV",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const rows = $input.all().map((item) => item.json);\nconst config = $('Pilot Configuration').first().json;\nconst nonEmpty = rows.filter((row) => row['Paper Link'] || row['Document type']);\n\nif (nonEmpty.length !== 2) {\n  throw new Error('The Test sheet must contain exactly two data rows: one Question Paper and one Mark Scheme.');\n}\n\nconst normalizeDocumentType = (value) => {\n  const normalized = String(value || '').trim().toLowerCase();\n  if (normalized === 'question paper') return 'question_paper';\n  if (normalized === 'mark scheme') return 'mark_scheme';\n  throw new Error('Unexpected Document type: ' + value);\n};\n\nconst normalizedRows = nonEmpty.map((row) => ({\n  grade: String(row.Grade || '').trim(),\n  subject: String(row.Subject || '').trim(),\n  exam_session: String(row['Exam session'] || '').trim(),\n  document_type: normalizeDocumentType(row['Document type']),\n  paper_variant: String(row['Paper Variant'] || '').trim(),\n  source_url: String(row['Paper Link'] || '').trim(),\n  year: Number(row.Year),\n}));\n\nconst documentTypes = new Set(normalizedRows.map((row) => row.document_type));\nif (!documentTypes.has('question_paper') || !documentTypes.has('mark_scheme')) {\n  throw new Error('The pilot pair must contain one Question Paper and one Mark Scheme.');\n}\n\nfor (const row of normalizedRows) {\n  if (row.grade !== 'A-levels') throw new Error('Pilot Grade must be A-levels.');\n  if (row.subject !== config.subject) throw new Error('Pilot Subject does not match the configuration.');\n  if (row.exam_session !== 'February/March') throw new Error('Pilot Exam session must be February/March.');\n  if (row.paper_variant !== config.paper_variant) throw new Error('Both rows must use Paper Variant 12.');\n  if (row.year !== config.year) throw new Error('Both rows must use Year 2025.');\n  if (!/^https:\\/\\/.+9709_m25_(qp|ms)_12\\.pdf$/i.test(row.source_url)) {\n    throw new Error('Unexpected or mismatched paper URL: ' + row.source_url);\n  }\n  if (row.document_type === 'question_paper' && !/_qp_12\\.pdf$/i.test(row.source_url)) {\n    throw new Error('Question Paper row points to the wrong document.');\n  }\n  if (row.document_type === 'mark_scheme' && !/_ms_12\\.pdf$/i.test(row.source_url)) {\n    throw new Error('Mark Scheme row points to the wrong document.');\n  }\n}\n\nconst sourceKey = [\n  config.qualification,\n  config.syllabus_code,\n  config.year,\n  config.exam_session,\n  config.paper_variant,\n].join(':');\n\nreturn [{\n  json: {\n    config,\n    source_key: sourceKey,\n    paper_row: {\n      qualification: config.qualification,\n      syllabus_code: config.syllabus_code,\n      subject: config.subject,\n      year: config.year,\n      exam_session: config.exam_session,\n      paper_variant: config.paper_variant,\n    },\n    documents: normalizedRows\n      .sort((a, b) => a.document_type.localeCompare(b.document_type))\n      .map((row) => ({\n        document_type: row.document_type,\n        source_url: row.source_url,\n        expected_page_count: config.expected_page_counts[row.document_type],\n      })),\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "5b7bde29-4b21-6200-aeab-05391abc80f6",
+      "name": "Pair and Validate Pilot"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Pilot Configuration').first().json.supabase_url + '/rest/v1/shamo_papers?on_conflict=qualification,syllabus_code,year,exam_session,paper_variant&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=representation"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.paper_row }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        160,
+        0
+      ],
+      "id": "013bd2bc-025e-6d35-9730-36cd2173244f",
+      "name": "Upsert Paper",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst paper = Array.isArray(response) ? response[0] : response;\nif (!paper || !paper.id) throw new Error('Supabase did not return the upserted paper row.');\nconst state = $('Pair and Validate Pilot').first().json;\nreturn [{ json: { ...state, paper_id: paper.id } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        0
+      ],
+      "id": "e12898d1-6c5b-c3c7-5174-ad298057927e",
+      "name": "Attach Paper ID"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst executionId = String($execution.id);\nreturn [{\n  json: {\n    ...state,\n    run_body: {\n      paper_id: state.paper_id,\n      idempotency_key: 'pilot:' + state.source_key + ':execution:' + executionId,\n      mode: 'pilot',\n      status: 'processing',\n      review_status: 'pending',\n      source_key: state.source_key,\n      ocr_model: state.config.ocr_model,\n      extraction_model:\n        state.config.extraction_model +\n        ' + ' +\n        state.config.mark_scheme_extraction_model,\n      verifier_model: state.config.verifier_model,\n      attempt_count: 1,\n      source_summary: {\n        google_sheet: state.config.google_sheet_name,\n        workflow_execution_id: executionId,\n        documents: state.documents,\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        0
+      ],
+      "id": "dc015e6a-8ef3-bbcf-9da8-6d64b6123ede",
+      "name": "Prepare Ingestion Run"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Pilot Configuration').first().json.supabase_url + '/rest/v1/shamo_ingestion_runs?on_conflict=idempotency_key&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=representation"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.run_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        880,
+        0
+      ],
+      "id": "14b08744-1c9c-1b35-fca1-de839974f919",
+      "name": "Create Ingestion Run",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst run = Array.isArray(response) ? response[0] : response;\nif (!run || !run.id) throw new Error('Supabase did not return the ingestion run.');\nconst state = $('Prepare Ingestion Run').first().json;\nreturn state.documents.map((document, index) => {\n  const mistralRequest = {\n    model: state.config.ocr_model,\n    document: {\n      type: 'document_url',\n      document_url: document.source_url,\n    },\n    bbox_annotation_format: {\n      type: 'json_schema',\n      json_schema: {\n        name: 'shamo_instructional_asset',\n        strict: true,\n        schema: {\"type\":\"object\",\"properties\":{\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"decorative_or_irrelevant\",\"other_instructional\"]},\"description\":{\"type\":\"string\"},\"required_to_solve\":{\"type\":\"boolean\"},\"likely_question_number\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\"}},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false}},\"required\":[\"asset_type\",\"description\",\"required_to_solve\",\"likely_question_number\",\"part_path\",\"mathematical_details\"],\"additionalProperties\":false},\n      },\n    },\n    include_image_base64: true,\n    confidence_scores_granularity: 'page',\n  };\n\n  return {\n    json: {\n      config: state.config,\n      paper_id: state.paper_id,\n      ingestion_run_id: run.id,\n      source_key: state.source_key,\n      document,\n      mistral_request: mistralRequest,\n    },\n    pairedItem: { item: index },\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "91df60e9-19d4-e340-c3e9-b1e2a16fe888",
+      "name": "Expand Pilot Documents"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.mistral_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1360,
+        0
+      ],
+      "id": "79578ed1-aa61-6d83-0543-5e8f759448c8",
+      "name": "Mistral OCR"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const responses = $input.all();\nconst sourceItems = $('Expand Pilot Documents').all();\nif (responses.length !== sourceItems.length) {\n  throw new Error('OCR response count does not match the two pilot documents.');\n}\nreturn responses.map((item, index) => {\n  const source = sourceItems[index].json;\n  const ocr = item.json;\n  if (!Array.isArray(ocr.pages)) {\n    throw new Error('Mistral OCR did not return a pages array for ' + source.document.document_type);\n  }\n  if (ocr.pages.length !== source.document.expected_page_count) {\n    throw new Error(\n      source.document.document_type + ' expected ' +\n      source.document.expected_page_count + ' pages but OCR returned ' +\n      ocr.pages.length\n    );\n  }\n  return {\n    json: {\n      ...source,\n      ocr_model_returned: ocr.model || source.config.ocr_model,\n      ocr_usage: ocr.usage_info || {},\n      pages: ocr.pages,\n    },\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        0
+      ],
+      "id": "734039a6-a0cf-0e4c-d328-1914b0be66c7",
+      "name": "Attach OCR Metadata"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const documents = $input.all().map((item) => item.json);\nif (documents.length !== 2) throw new Error('Expected OCR output for exactly two documents.');\nconst first = documents[0];\n\nconst pageRows = [];\nconst compactDocuments = [];\nfor (const document of documents) {\n  const compactPages = [];\n  for (const page of document.pages) {\n    const pageNumber = Number(page.index) + 1;\n    pageRows.push({\n      ingestion_run_id: document.ingestion_run_id,\n      document_type: document.document.document_type,\n      page_number: pageNumber,\n      raw_markdown: page.markdown || '',\n      ocr_confidence: page.confidence ?? page.confidence_score ?? null,\n    });\n    compactPages.push({\n      page_number: pageNumber,\n      markdown: page.markdown || '',\n      images: (page.images || []).map((image, imageIndex) => ({\n        source_image_index: imageIndex,\n        id: image.id || null,\n        top_left_x: image.top_left_x ?? null,\n        top_left_y: image.top_left_y ?? null,\n        bottom_right_x: image.bottom_right_x ?? null,\n        bottom_right_y: image.bottom_right_y ?? null,\n        image_annotation: image.image_annotation || null,\n      })),\n    });\n  }\n  compactDocuments.push({\n    document_type: document.document.document_type,\n    source_url: document.document.source_url,\n    page_count: document.pages.length,\n    ocr_model: document.ocr_model_returned,\n    pages: compactPages,\n  });\n}\n\nconst knownDocuments = compactDocuments.map((document) => ({\n  document_type: document.document_type,\n  source_url: document.source_url,\n  source_url_hash: null,\n  page_count: document.page_count,\n  ocr_model: document.ocr_model,\n}));\n\nreturn [{\n  json: {\n    config: first.config,\n    paper_id: first.paper_id,\n    ingestion_run_id: first.ingestion_run_id,\n    source_key: first.source_key,\n    ocr_documents: documents,\n    compact_documents: compactDocuments,\n    known_documents: knownDocuments,\n    ocr_page_rows: pageRows,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1840,
+        0
+      ],
+      "id": "bdc4d269-86cd-7caf-3d32-58b15c566de6",
+      "name": "Build Extraction State"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Pilot Configuration').first().json.supabase_url + '/rest/v1/shamo_ingestion_pages?on_conflict=ingestion_run_id,document_type,page_number' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=minimal"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.ocr_page_rows }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2080,
+        0
+      ],
+      "id": "761f7a8c-7a8f-3ad4-df7e-8aa6473d6f20",
+      "name": "Store Temporary OCR Pages",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Build Extraction State').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        0
+      ],
+      "id": "cf04d8f8-7686-7800-7427-d62ded5375b5",
+      "name": "Restore Extraction State"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst questionPaper = state.compact_documents.find(\n  (document) => document.document_type === 'question_paper'\n);\nif (!questionPaper) throw new Error('Question-paper OCR document is missing.');\n\nconst prompt = [\n  'Extract only the question paper for Cambridge 9709/12 February/March 2025.',\n  'Return exactly 11 main questions worth 75 marks in total.',\n  'Use the question-paper PDF as the visual source of truth and OCR JSON as a page-indexed aid.',\n  'Transcribe every mathematical sign, exponent, radical, limit, coordinate and inequality exactly.',\n  'Represent question 4 part (a) as question_number 4 and label_path [\"a\"].',\n  'Never place part labels inside question_number.',\n  'Create a part only when a label such as (a), (b) or (i) is visibly printed in the source.',\n  'For an unparted question, return parts=[] and put the complete question in stem_markdown.',\n  'Never invent a single part (a) merely because the question has one instruction or one mark allocation.',\n  'Never repeat the same instruction in both stem_markdown and a part prompt.',\n  'Separate shared question text into stem_markdown and part-specific text into parts.',\n  'Use 1-based PDF page numbers.',\n  'Ignore answer lines, barcodes, copyright footers and DO NOT WRITE IN THIS MARGIN text.',\n  'Include only instructional diagrams or tables in assets.',\n  'For every asset, use the exact page number and zero-based source_image_index from the OCR JSON.',\n  'Do not extract any mark-scheme content in this call.',\n].join('\\n');\n\nreturn [{\n  json: {\n    ...state,\n    question_paper_request: {\n      model: state.config.extraction_model,\n      reasoning: { effort: 'medium' },\n      store: false,\n      max_output_tokens: 18000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: 'Question-paper metadata and OCR JSON:\\n' + JSON.stringify({\n                qualification: state.config.qualification,\n                syllabus_code: state.config.syllabus_code,\n                subject: state.config.subject,\n                year: state.config.year,\n                exam_session: state.config.exam_session,\n                paper_variant: state.config.paper_variant,\n                document: questionPaper,\n              }),\n            },\n            {\n              type: 'input_file',\n              file_url: questionPaper.source_url,\n            },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_question_paper_extraction',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"questions\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"stem_markdown\":{\"type\":\"string\"},\"total_marks\":{\"type\":\"integer\",\"minimum\":0},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"label_path\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"prompt_markdown\":{\"type\":\"string\"},\"marks\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"sort_order\":{\"type\":\"integer\",\"minimum\":0}},\"required\":[\"label_path\",\"prompt_markdown\",\"marks\",\"source_page_numbers\",\"sort_order\"],\"additionalProperties\":false}},\"assets\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"document_type\":{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},\"source_page_number\":{\"type\":\"integer\",\"minimum\":1},\"source_image_index\":{\"type\":\"integer\",\"minimum\":0},\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"other_instructional\"]},\"bounding_box\":{\"anyOf\":[{\"type\":\"object\",\"properties\":{\"top_left_x\":{\"type\":\"number\"},\"top_left_y\":{\"type\":\"number\"},\"bottom_right_x\":{\"type\":\"number\"},\"bottom_right_y\":{\"type\":\"number\"}},\"required\":[\"top_left_x\",\"top_left_y\",\"bottom_right_x\",\"bottom_right_y\"],\"additionalProperties\":false},{\"type\":\"null\"}]},\"description\":{\"type\":\"string\"},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false},\"required_to_solve\":{\"type\":\"boolean\"}},\"required\":[\"part_path\",\"document_type\",\"source_page_number\",\"source_image_index\",\"asset_type\",\"bounding_box\",\"description\",\"mathematical_details\",\"required_to_solve\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"stem_markdown\",\"total_marks\",\"source_page_numbers\",\"parts\",\"assets\"],\"additionalProperties\":false}}},\"required\":[\"questions\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        0
+      ],
+      "id": "3c3f71c5-3d46-7089-5b7e-c30d2b79d21c",
+      "name": "Build Question Paper Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.question_paper_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2800,
+        0
+      ],
+      "id": "29438e5c-1eaf-b027-c675-005c2b13c272",
+      "name": "OpenAI Question Paper Extraction",
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst state = $('Build Question Paper Request').first().json;\nif (response.status === 'incomplete') {\n  throw new Error('Question-paper extraction was incomplete: ' + JSON.stringify(response.incomplete_details || {}));\n}\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nif (!message) throw new Error('Question-paper extraction returned no message output.');\nconst refusal = (message.content || []).find((entry) => entry.type === 'refusal');\nif (refusal) throw new Error('Question-paper extraction refused: ' + (refusal.refusal || 'unknown refusal'));\nconst outputText = (message.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText || !outputText.text) throw new Error('Question-paper extraction returned no structured text.');\nlet extracted;\ntry {\n  extracted = JSON.parse(outputText.text);\n} catch (error) {\n  throw new Error('Could not parse question-paper JSON: ' + error.message);\n}\nif (!Array.isArray(extracted.questions)) {\n  throw new Error('Question-paper extraction has no questions array.');\n}\n\nreturn [{\n  json: {\n    ...state,\n    extraction_response_id: response.id || null,\n    question_paper_questions: extracted.questions,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        0
+      ],
+      "id": "a8c21b09-8e6a-d356-a6cd-1030ba3e2946",
+      "name": "Parse Question Paper"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst markScheme = state.compact_documents.find(\n  (document) => document.document_type === 'mark_scheme'\n);\nif (!markScheme) throw new Error('Mark-scheme OCR document is missing.');\n\nconst questionByNumber = new Map(\n  state.question_paper_questions.map((question) => [\n    question.question_number,\n    question,\n  ])\n);\nconst pageByNumber = new Map(\n  markScheme.pages.map((page) => [page.page_number, page])\n);\n\nconst prompt = [\n  'Extract exactly one question from the official Cambridge mark scheme.',\n  'The source is a table with Question, Answer, Marks and Guidance columns.',\n  'Return one mark_scheme_item for every visible source row containing Answer, Marks or Guidance information.',\n  'Do not combine rows that have different Marks cells or different Guidance cells.',\n  'content_markdown must contain only the complete Answer cell or marking step.',\n  'guidance_markdown must contain the complete associated Guidance cell without summarising or omitting text.',\n  'The Marks column alone determines mark_code. Never copy SCB1, B1 or another award written only inside Guidance into mark_code.',\n  'For a guidance-only source row with blank Answer and Marks cells, return content_markdown=\"\", mark_code=null, is_final_answer=false and preserve the complete Guidance cell.',\n  'If the source Guidance cell is genuinely blank, return an empty string.',\n  'Preserve examiner shorthand exactly, including OE, FT, CWO, AWRT, AG, SC, implied, condone, allow and special-case conditions.',\n  'Preserve every sign, factor, bracket, exponent and dependency asterisk exactly.',\n  'A missing factor, negative exponent or leading asterisk in a mark code is a blocking mathematical error.',\n  'Use semantic angle notation such as \\\\angle OAB; never turn a printed angle symbol into overbar notation.',\n  'Use only the question-paper part paths supplied in the request.',\n  'When question_structure.parts is empty, every mark_scheme_item must have part_path=[].',\n  'Use 1-based PDF page numbers from the supplied OCR pages.',\n  'Number sequence_number from 1 in visible source order for this question.',\n  'Mark separate alternative solutions with is_alternative_method=true.',\n  'Do not invent guidance that is not visible in the supplied OCR.',\n].join('\\n');\n\nconst outputs = [];\nfor (\n  let questionNumber = 1;\n  questionNumber <= state.config.expected_question_count;\n  questionNumber++\n) {\n  const question = questionByNumber.get(questionNumber);\n  if (!question) {\n    throw new Error('Question ' + questionNumber + ' is missing before mark-scheme extraction.');\n  }\n  const requestedPages =\n    state.config.mark_scheme_question_pages[String(questionNumber)] ||\n    state.config.mark_scheme_question_pages[questionNumber];\n  if (!Array.isArray(requestedPages) || !requestedPages.length) {\n    throw new Error('No mark-scheme page map exists for question ' + questionNumber + '.');\n  }\n  const pages = requestedPages.map((pageNumber) => {\n    const page = pageByNumber.get(pageNumber);\n    if (!page) {\n      throw new Error(\n        'Mark-scheme OCR page ' + pageNumber +\n        ' is missing for question ' + questionNumber + '.'\n      );\n    }\n    return page;\n  });\n\n  outputs.push({\n    json: {\n      question_number: questionNumber,\n      expected_pages: requestedPages,\n      mark_scheme_request: {\n        model: state.config.mark_scheme_extraction_model,\n        reasoning: { effort: 'medium' },\n        store: false,\n        max_output_tokens: 6000,\n        input: [\n          { role: 'system', content: prompt },\n          {\n            role: 'user',\n            content: [\n              {\n                type: 'input_text',\n                text: JSON.stringify({\n                  paper: {\n                    syllabus_code: state.config.syllabus_code,\n                    year: state.config.year,\n                    exam_session: state.config.exam_session,\n                    paper_variant: state.config.paper_variant,\n                  },\n                  question_number: questionNumber,\n                  question_structure: {\n                    stem_markdown: question.stem_markdown,\n                    total_marks: question.total_marks,\n                    parts: question.parts,\n                  },\n                  mark_scheme_ocr_pages: pages,\n                }),\n              },\n            ],\n          },\n        ],\n        text: {\n          format: {\n            type: 'json_schema',\n            name: 'shamo_mark_scheme_question',\n            strict: true,\n            schema: {\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"mark_scheme_items\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"sequence_number\":{\"type\":\"integer\",\"minimum\":1},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"mark_code\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}]},\"content_markdown\":{\"type\":\"string\"},\"guidance_markdown\":{\"type\":\"string\"},\"is_final_answer\":{\"type\":\"boolean\"},\"is_alternative_method\":{\"type\":\"boolean\"},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}}},\"required\":[\"sequence_number\",\"part_path\",\"mark_code\",\"content_markdown\",\"guidance_markdown\",\"is_final_answer\",\"is_alternative_method\",\"source_page_numbers\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"mark_scheme_items\"],\"additionalProperties\":false},\n          },\n        },\n      },\n    },\n    pairedItem: { item: 0 },\n  });\n}\n\nreturn outputs;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3280,
+        0
+      ],
+      "id": "c16c49ac-773b-bc66-536d-53ca815ff793",
+      "name": "Build Mark Scheme Requests"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.mark_scheme_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        3520,
+        0
+      ],
+      "id": "76814d89-991e-68d3-5369-4c5188652846",
+      "name": "OpenAI Mark Scheme Questions",
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const responses = $input.all();\nconst sources = $('Build Mark Scheme Requests').all();\nconst state = $('Parse Question Paper').first().json;\nif (responses.length !== sources.length) {\n  throw new Error(\n    'Mark-scheme response count ' + responses.length +\n    ' does not match request count ' + sources.length + '.'\n  );\n}\n\nconst results = [];\nconst responseIds = [];\nfor (let index = 0; index < responses.length; index++) {\n  const response = responses[index].json;\n  const source = sources[index].json;\n  if (response.status === 'incomplete') {\n    throw new Error(\n      'Mark-scheme extraction for question ' + source.question_number +\n      ' was incomplete: ' + JSON.stringify(response.incomplete_details || {})\n    );\n  }\n  const message = (response.output || []).find((entry) => entry.type === 'message');\n  if (!message) {\n    throw new Error(\n      'Mark-scheme extraction returned no message for question ' +\n      source.question_number + '.'\n    );\n  }\n  const refusal = (message.content || []).find((entry) => entry.type === 'refusal');\n  if (refusal) {\n    throw new Error(\n      'Mark-scheme extraction refused question ' + source.question_number +\n      ': ' + (refusal.refusal || 'unknown refusal')\n    );\n  }\n  const outputText = (message.content || []).find(\n    (entry) => entry.type === 'output_text'\n  );\n  if (!outputText || !outputText.text) {\n    throw new Error(\n      'Mark-scheme extraction returned no structured text for question ' +\n      source.question_number + '.'\n    );\n  }\n  let extracted;\n  try {\n    extracted = JSON.parse(outputText.text);\n  } catch (error) {\n    throw new Error(\n      'Could not parse mark-scheme JSON for question ' +\n      source.question_number + ': ' + error.message\n    );\n  }\n  if (extracted.question_number !== source.question_number) {\n    throw new Error(\n      'Mark-scheme response expected question ' + source.question_number +\n      ' but returned question ' + extracted.question_number + '.'\n    );\n  }\n  const items = (extracted.mark_scheme_items || [])\n    .sort((left, right) => left.sequence_number - right.sequence_number)\n    .map((item, itemIndex) => ({\n      ...item,\n      sequence_number: itemIndex + 1,\n    }));\n  if (!items.length) {\n    throw new Error(\n      'Question ' + source.question_number + ' has no mark-scheme items.'\n    );\n  }\n  results.push({\n    question_number: source.question_number,\n    expected_pages: source.expected_pages,\n    mark_scheme_items: items,\n  });\n  responseIds.push(response.id || null);\n}\n\nresults.sort((left, right) => left.question_number - right.question_number);\nreturn [{\n  json: {\n    ...state,\n    mark_scheme_results: results,\n    mark_scheme_response_ids: responseIds,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3760,
+        0
+      ],
+      "id": "e32cf931-d952-2330-f824-2777edede3f6",
+      "name": "Parse Mark Scheme Responses"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst markSchemeByQuestion = new Map(\n  state.mark_scheme_results.map((result) => [\n    result.question_number,\n    result.mark_scheme_items,\n  ])\n);\n\nconst questions = state.question_paper_questions\n  .sort((left, right) => left.question_number - right.question_number)\n  .map((question) => {\n    const markSchemeItems = markSchemeByQuestion.get(question.question_number);\n    if (!markSchemeItems) {\n      throw new Error(\n        'No mark-scheme result exists for question ' + question.question_number + '.'\n      );\n    }\n    return {\n      ...question,\n      mark_scheme_items: markSchemeItems,\n    };\n  });\n\nreturn [{\n  json: {\n    ...state,\n    paper_bundle: {\n      documents: state.known_documents,\n      questions,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4000,
+        0
+      ],
+      "id": "87d787b4-2017-3aeb-3e00-1b19d7432888",
+      "name": "Merge Paper Bundle"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst bundle = state.paper_bundle;\nconst config = state.config;\nconst issues = [];\nconst addIssue = (severity, issue_code, message, extra = {}) => {\n  issues.push({\n    severity,\n    issue_code,\n    document_type: extra.document_type || null,\n    page_number: extra.page_number || null,\n    question_number: extra.question_number || null,\n    part_path: extra.part_path || [],\n    message,\n  });\n};\n\nif (!bundle || !Array.isArray(bundle.questions)) {\n  throw new Error('The extracted paper bundle is missing its questions array.');\n}\n\nconst numbers = bundle.questions.map((question) => question.question_number);\nconst uniqueNumbers = new Set(numbers);\nif (numbers.length !== config.expected_question_count) {\n  addIssue('blocking', 'QUESTION_COUNT_MISMATCH',\n    'Expected ' + config.expected_question_count + ' questions but extracted ' + numbers.length + '.');\n}\nif (uniqueNumbers.size !== numbers.length) {\n  addIssue('blocking', 'DUPLICATE_QUESTION_NUMBER', 'Duplicate question numbers were extracted.');\n}\nfor (let number = 1; number <= config.expected_question_count; number++) {\n  if (!uniqueNumbers.has(number)) {\n    addIssue('blocking', 'MISSING_QUESTION_NUMBER', 'Question ' + number + ' is missing.', {\n      question_number: number,\n    });\n  }\n}\n\nconst totalMarks = bundle.questions.reduce((sum, question) => sum + Number(question.total_marks || 0), 0);\nif (totalMarks !== config.expected_total_marks) {\n  addIssue('blocking', 'PAPER_MARK_TOTAL_MISMATCH',\n    'Expected ' + config.expected_total_marks + ' marks but extracted ' + totalMarks + '.');\n}\n\nconst forbiddenPattern = /(DO NOT WRITE IN THIS MARGIN|0000800000|\\*{1,2}\\d{8,}\\*{1,2})/i;\n  const imageKeys = new Set();\n  const imageDataKeys = new Set();\nfor (const document of state.ocr_documents) {\n  for (const page of document.pages) {\n    (page.images || []).forEach((image, imageIndex) => {\n      const imageKey = [\n        document.document.document_type,\n        Number(page.index) + 1,\n        imageIndex,\n      ].join(':');\n      imageKeys.add(imageKey);\n      if (image.image_base64) imageDataKeys.add(imageKey);\n    });\n  }\n}\n\nfor (const question of bundle.questions) {\n  const qn = question.question_number;\n  if ((!question.stem_markdown || !question.stem_markdown.trim()) && (!question.parts || question.parts.length === 0)) {\n    addIssue('blocking', 'EMPTY_QUESTION_TEXT', 'Question has no stem or parts.', { question_number: qn });\n  }\n  if (forbiddenPattern.test(question.stem_markdown || '')) {\n    addIssue('blocking', 'OCR_ARTIFACT_IN_QUESTION', 'Question text contains a margin or barcode artifact.', {\n      question_number: qn,\n    });\n  }\n  const qpPages = question.source_page_numbers || [];\n  if (!qpPages.length || qpPages.some((page) => page < 1 || page > config.expected_page_counts.question_paper)) {\n    addIssue('blocking', 'INVALID_QUESTION_PAGE', 'Question has an invalid question-paper page reference.', {\n      question_number: qn,\n    });\n  }\n\n  const partPaths = new Set();\n  let partMarkTotal = 0;\n  for (const part of question.parts || []) {\n    const pathKey = part.label_path.join('.');\n    if (partPaths.has(pathKey)) {\n      addIssue('blocking', 'DUPLICATE_PART_PATH', 'Duplicate part path ' + pathKey + '.', {\n        question_number: qn,\n        part_path: part.label_path,\n      });\n    }\n    partPaths.add(pathKey);\n    partMarkTotal += Number(part.marks || 0);\n    if (forbiddenPattern.test(part.prompt_markdown || '')) {\n      addIssue('blocking', 'OCR_ARTIFACT_IN_PART', 'Part text contains a margin or barcode artifact.', {\n        question_number: qn,\n        part_path: part.label_path,\n      });\n    }\n  }\n  if ((question.parts || []).length > 0 && partMarkTotal !== Number(question.total_marks)) {\n    addIssue('blocking', 'QUESTION_MARK_TOTAL_MISMATCH',\n      'Part marks total ' + partMarkTotal + ' but question total_marks is ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n\n  const markItems = question.mark_scheme_items || [];\n  if (!markItems.length) {\n    addIssue('blocking', 'MISSING_MARK_SCHEME', 'Question has no mark-scheme items.', {\n      question_number: qn,\n    });\n  }\n  const markSequenceNumbers = new Set();\n  let primaryMarkCodeCount = 0;\n  let nonEmptyGuidanceCount = 0;\n  for (const mark of markItems) {\n    if (markSequenceNumbers.has(mark.sequence_number)) {\n      addIssue('blocking', 'DUPLICATE_MARK_SCHEME_SEQUENCE',\n        'Duplicate mark-scheme sequence number ' + mark.sequence_number + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    markSequenceNumbers.add(mark.sequence_number);\n    const partKey = (mark.part_path || []).join('.');\n    if (partKey && !partPaths.has(partKey)) {\n      addIssue('blocking', 'MARK_SCHEME_UNKNOWN_PART',\n        'Mark-scheme item references missing part ' + partKey + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    const pages = mark.source_page_numbers || [];\n    if (!pages.length || pages.some((page) => page < 1 || page > config.expected_page_counts.mark_scheme)) {\n      addIssue('blocking', 'INVALID_MARK_SCHEME_PAGE',\n        'Mark-scheme item has an invalid mark-scheme page reference.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    const hasAnswer =\n      typeof mark.content_markdown === 'string' &&\n      mark.content_markdown.trim().length > 0;\n    const hasGuidance =\n      typeof mark.guidance_markdown === 'string' &&\n      mark.guidance_markdown.trim().length > 0;\n    if (!hasAnswer && !hasGuidance) {\n      addIssue('blocking', 'EMPTY_MARK_SCHEME_ROW',\n        'Mark-scheme item has neither Answer nor Guidance content.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (typeof mark.guidance_markdown !== 'string') {\n      addIssue('blocking', 'MISSING_MARK_SCHEME_GUIDANCE_FIELD',\n        'Mark-scheme item does not contain guidance_markdown.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    } else if (mark.guidance_markdown.trim()) {\n      nonEmptyGuidanceCount++;\n    }\n    if (!hasAnswer && mark.mark_code !== null) {\n      addIssue('blocking', 'GUIDANCE_ONLY_ROW_HAS_MARK_CODE',\n        'A guidance-only row must have mark_code=null because its source Marks cell is blank.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (!hasAnswer && mark.is_final_answer) {\n      addIssue('blocking', 'GUIDANCE_ONLY_ROW_IS_FINAL_ANSWER',\n        'A guidance-only row cannot be marked as a final-answer row.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (!mark.is_alternative_method && mark.mark_code) {\n      const codes = String(mark.mark_code).match(/(?:\\*?D?M1|A1|B1)/g) || [];\n      primaryMarkCodeCount += codes.length;\n    }\n  }\n  if (nonEmptyGuidanceCount === 0) {\n    addIssue('blocking', 'QUESTION_MARK_SCHEME_GUIDANCE_EMPTY',\n      'No examiner guidance was captured for this question.', {\n        question_number: qn,\n      });\n  }\n  if (primaryMarkCodeCount < Number(question.total_marks)) {\n    addIssue('blocking', 'MARK_CODE_COVERAGE_TOO_LOW',\n      'Primary mark codes account for ' + primaryMarkCodeCount +\n      ' marks but the question is worth ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n\n  for (const asset of question.assets || []) {\n    const key = [asset.document_type, asset.source_page_number, asset.source_image_index].join(':');\n    if (!imageKeys.has(key)) {\n      addIssue('blocking', 'ASSET_SOURCE_NOT_FOUND',\n        'Asset does not match an OCR image: ' + key + '.', {\n          document_type: asset.document_type,\n          page_number: asset.source_page_number,\n          question_number: qn,\n          part_path: asset.part_path || [],\n        });\n    } else if (!imageDataKeys.has(key)) {\n      addIssue('blocking', 'ASSET_IMAGE_DATA_MISSING',\n        'OCR found the asset but did not return its image data: ' + key + '.', {\n          document_type: asset.document_type,\n          page_number: asset.source_page_number,\n          question_number: qn,\n          part_path: asset.part_path || [],\n        });\n    }\n  }\n}\n\nconst blockingCount = issues.filter((issue) => issue.severity === 'blocking').length;\nconst warningCount = issues.filter((issue) => issue.severity === 'warning').length;\nreturn [{\n  json: {\n    ...state,\n    validation_report: {\n      passed: blockingCount === 0,\n      expected_question_count: config.expected_question_count,\n      actual_question_count: bundle.questions.length,\n      expected_total_marks: config.expected_total_marks,\n      actual_total_marks: totalMarks,\n      blocking_issue_count: blockingCount,\n      warning_count: warningCount,\n      issues,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4240,
+        0
+      ],
+      "id": "dc87569d-cc74-8d46-c697-b96bdff9efc5",
+      "name": "Deterministic Validation"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst qp = state.paper_bundle.documents.find((document) => document.document_type === 'question_paper');\nconst ms = state.paper_bundle.documents.find((document) => document.document_type === 'mark_scheme');\nconst prompt = [\n  'Independently verify this extracted Cambridge 9709/12 February/March 2025 paper bundle.',\n  'Compare it directly against both PDFs.',\n  'Check all 11 questions, all part labels, mathematical expressions, mark allocations, mark-scheme steps, page references, and instructional diagram references.',\n  'A question is unparted unless a part label is visibly printed; synthetic single parts and duplicated prompts are blocking issues.',\n  'For every mark-scheme row, compare content_markdown with the Answer column and guidance_markdown with the complete Guidance column.',\n  'The Marks column alone determines mark_code, including any leading dependency asterisk.',\n  'A guidance-only source row with blank Answer and Marks is valid only as content_markdown=\"\", mark_code=null, is_final_answer=false with complete guidance.',\n  'Treat any omitted examiner condition, acceptance rule, follow-through restriction, special case, implied-mark rule, sign or exponent as a blocking issue.',\n  'A blank guidance_markdown is acceptable only when the corresponding source Guidance cell is blank.',\n  'The paper total must be 75 marks.',\n  'Do not rewrite or silently correct the bundle. Report every discrepancy as an issue.',\n  'Set passed=false if any blocking issue exists.',\n].join('\\n');\n\nreturn [{\n  json: {\n    ...state,\n    verifier_request: {\n      model: state.config.verifier_model,\n      reasoning: { effort: 'high' },\n      store: false,\n      max_output_tokens: 10000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: 'Extracted bundle to verify:\\n' + JSON.stringify(state.paper_bundle),\n            },\n            { type: 'input_file', file_url: qp.source_url },\n            { type: 'input_file', file_url: ms.source_url },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_paper_verification',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"passed\":{\"type\":\"boolean\"},\"summary\":{\"type\":\"string\"},\"paper_identity_correct\":{\"type\":\"boolean\"},\"question_numbering_complete\":{\"type\":\"boolean\"},\"marks_consistent\":{\"type\":\"boolean\"},\"question_text_faithful\":{\"type\":\"boolean\"},\"mark_scheme_faithful\":{\"type\":\"boolean\"},\"asset_references_correct\":{\"type\":\"boolean\"},\"issues\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"severity\":{\"type\":\"string\",\"enum\":[\"warning\",\"blocking\"]},\"issue_code\":{\"type\":\"string\",\"pattern\":\"^[A-Z0-9_]+$\"},\"document_type\":{\"anyOf\":[{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},{\"type\":\"null\"}]},\"page_number\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"question_number\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"message\":{\"type\":\"string\"}},\"required\":[\"severity\",\"issue_code\",\"document_type\",\"page_number\",\"question_number\",\"part_path\",\"message\"],\"additionalProperties\":false}}},\"required\":[\"passed\",\"summary\",\"paper_identity_correct\",\"question_numbering_complete\",\"marks_consistent\",\"question_text_faithful\",\"mark_scheme_faithful\",\"asset_references_correct\",\"issues\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4480,
+        0
+      ],
+      "id": "b907c430-8ae1-6d28-2f29-cfe46f7f6615",
+      "name": "Build Verifier Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.verifier_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        4720,
+        0
+      ],
+      "id": "4ad2870c-d985-51f2-a3ac-50b999708e46",
+      "name": "OpenAI Independent Verifier",
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst state = $('Build Verifier Request').first().json;\nif (response.status === 'incomplete') {\n  throw new Error('OpenAI verification was incomplete: ' + JSON.stringify(response.incomplete_details || {}));\n}\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nif (!message) throw new Error('OpenAI verifier returned no message output.');\nconst refusal = (message.content || []).find((entry) => entry.type === 'refusal');\nif (refusal) throw new Error('OpenAI verifier refused: ' + (refusal.refusal || 'unknown refusal'));\nconst outputText = (message.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText || !outputText.text) throw new Error('OpenAI verifier returned no structured text.');\nlet verifierReport;\ntry {\n  verifierReport = JSON.parse(outputText.text);\n} catch (error) {\n  throw new Error('Could not parse verifier JSON: ' + error.message);\n}\nif ((verifierReport.issues || []).some((issue) => issue.severity === 'blocking')) {\n  verifierReport.passed = false;\n}\nreturn [{\n  json: {\n    ...state,\n    verifier_response_id: response.id || null,\n    verifier_report: verifierReport,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4960,
+        0
+      ],
+      "id": "f0d51857-ee6f-01b9-a0ff-b5880a6236e4",
+      "name": "Parse Verifier Result"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst blockingIssues = [\n  ...(state.validation_report?.issues || []),\n  ...(state.verifier_report?.issues || []),\n].filter((issue) => issue.severity === 'blocking');\n\nconst initialState = {\n  ...state,\n  initial_validation_report: state.validation_report,\n  initial_verifier_report: state.verifier_report,\n  initial_verifier_response_id: state.verifier_response_id || null,\n};\n\nif (!blockingIssues.length) {\n  return [{\n    json: {\n      ...initialState,\n      repair_needed: false,\n      repair_question_numbers: [],\n      repair_response_id: null,\n    },\n  }];\n}\n\nconst allQuestionNumbers = state.paper_bundle.questions.map(\n  (question) => question.question_number\n);\nconst issueQuestionNumbers = blockingIssues\n  .map((issue) => issue.question_number)\n  .filter((value) => Number.isInteger(value));\nconst repairQuestionNumbers =\n  issueQuestionNumbers.length === blockingIssues.length\n    ? [...new Set(issueQuestionNumbers)].sort((a, b) => a - b)\n    : allQuestionNumbers;\n\nconst qp = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'question_paper'\n);\nconst ms = state.paper_bundle.documents.find(\n  (document) => document.document_type === 'mark_scheme'\n);\nconst affectedQuestions = state.paper_bundle.questions.filter(\n  (question) => repairQuestionNumbers.includes(question.question_number)\n);\n\nconst prompt = [\n  'Repair only the listed questions in an extracted Cambridge past-paper bundle.',\n  'Use both official PDFs as the source of truth and independently confirm every reported issue.',\n  'Return exactly one complete corrected question for every requested question number and no other questions.',\n  'Do not remove correct mark-scheme rows, alternatives, examiner guidance, page references or instructional assets.',\n  'A part exists only if its label is visibly printed. For an unparted question use parts=[] and mark-scheme part_path=[].',\n  'Never repeat an unparted instruction in both stem_markdown and a synthetic part.',\n  'The Marks column alone determines mark_code. Preserve leading dependency asterisks exactly.',\n  'For a source row with blank Answer and Marks but non-empty Guidance, use content_markdown=\"\", mark_code=null and is_final_answer=false.',\n  'Preserve every factor, sign, bracket, exponent, angle symbol and examiner condition.',\n  'Use semantic LaTeX such as \\\\angle OAB for an angle; never use an overbar for a printed angle symbol.',\n  'Correct the data, not the issue report. Do not merely copy suggested wording without checking the PDFs.',\n].join('\\n');\n\nreturn [{\n  json: {\n    ...initialState,\n    repair_needed: true,\n    repair_question_numbers: repairQuestionNumbers,\n    repair_request: {\n      model: state.config.verifier_model,\n      reasoning: { effort: 'high' },\n      store: false,\n      max_output_tokens: 30000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: JSON.stringify({\n                requested_question_numbers: repairQuestionNumbers,\n                blocking_issues: blockingIssues,\n                questions_to_repair: affectedQuestions,\n              }),\n            },\n            { type: 'input_file', file_url: qp.source_url },\n            { type: 'input_file', file_url: ms.source_url },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_targeted_question_repairs',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"corrected_questions\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"question_number\":{\"type\":\"integer\",\"minimum\":1},\"stem_markdown\":{\"type\":\"string\"},\"total_marks\":{\"type\":\"integer\",\"minimum\":0},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"label_path\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"prompt_markdown\":{\"type\":\"string\"},\"marks\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}},\"sort_order\":{\"type\":\"integer\",\"minimum\":0}},\"required\":[\"label_path\",\"prompt_markdown\",\"marks\",\"source_page_numbers\",\"sort_order\"],\"additionalProperties\":false}},\"mark_scheme_items\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"sequence_number\":{\"type\":\"integer\",\"minimum\":1},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"mark_code\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}]},\"content_markdown\":{\"type\":\"string\"},\"guidance_markdown\":{\"type\":\"string\"},\"is_final_answer\":{\"type\":\"boolean\"},\"is_alternative_method\":{\"type\":\"boolean\"},\"source_page_numbers\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"integer\",\"minimum\":1}}},\"required\":[\"sequence_number\",\"part_path\",\"mark_code\",\"content_markdown\",\"guidance_markdown\",\"is_final_answer\",\"is_alternative_method\",\"source_page_numbers\"],\"additionalProperties\":false}},\"assets\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"document_type\":{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},\"source_page_number\":{\"type\":\"integer\",\"minimum\":1},\"source_image_index\":{\"type\":\"integer\",\"minimum\":0},\"asset_type\":{\"type\":\"string\",\"enum\":[\"graph\",\"geometry_diagram\",\"mechanics_diagram\",\"table\",\"number_line\",\"coordinate_grid\",\"other_instructional\"]},\"bounding_box\":{\"anyOf\":[{\"type\":\"object\",\"properties\":{\"top_left_x\":{\"type\":\"number\"},\"top_left_y\":{\"type\":\"number\"},\"bottom_right_x\":{\"type\":\"number\"},\"bottom_right_y\":{\"type\":\"number\"}},\"required\":[\"top_left_x\",\"top_left_y\",\"bottom_right_x\",\"bottom_right_y\"],\"additionalProperties\":false},{\"type\":\"null\"}]},\"description\":{\"type\":\"string\"},\"mathematical_details\":{\"type\":\"object\",\"properties\":{\"visible_labels\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"equations\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"coordinates\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"measurements\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"relationships\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"visible_labels\",\"equations\",\"coordinates\",\"measurements\",\"relationships\"],\"additionalProperties\":false},\"required_to_solve\":{\"type\":\"boolean\"}},\"required\":[\"part_path\",\"document_type\",\"source_page_number\",\"source_image_index\",\"asset_type\",\"bounding_box\",\"description\",\"mathematical_details\",\"required_to_solve\"],\"additionalProperties\":false}}},\"required\":[\"question_number\",\"stem_markdown\",\"total_marks\",\"source_page_numbers\",\"parts\",\"mark_scheme_items\",\"assets\"],\"additionalProperties\":false}}},\"required\":[\"corrected_questions\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5200,
+        0
+      ],
+      "id": "623fdd7c-2a0e-f692-948c-8a73a431a184",
+      "name": "Build Targeted Repair Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "98923f78-1fab-6736-c1fb-4e1a388191a1",
+              "leftValue": "={{ $json.repair_needed }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5440,
+        0
+      ],
+      "id": "421dbc1f-510f-fe5e-2e1d-5a100932e7c9",
+      "name": "Repair Needed"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.repair_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        5680,
+        -160
+      ],
+      "id": "8bcbd7cd-41ed-f5ea-8b21-72b2a9f6b61d",
+      "name": "OpenAI Targeted Question Repair",
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst state = $('Build Targeted Repair Request').first().json;\nif (response.status === 'incomplete') {\n  throw new Error('OpenAI repair was incomplete: ' + JSON.stringify(response.incomplete_details || {}));\n}\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nif (!message) throw new Error('OpenAI repair returned no message output.');\nconst refusal = (message.content || []).find((entry) => entry.type === 'refusal');\nif (refusal) throw new Error('OpenAI repair refused: ' + (refusal.refusal || 'unknown refusal'));\nconst outputText = (message.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText || !outputText.text) throw new Error('OpenAI repair returned no structured text.');\n\nlet repaired;\ntry {\n  repaired = JSON.parse(outputText.text);\n} catch (error) {\n  throw new Error('Could not parse repair JSON: ' + error.message);\n}\n\nconst correctedQuestions = repaired.corrected_questions || [];\nconst expectedNumbers = state.repair_question_numbers;\nconst actualNumbers = correctedQuestions.map(\n  (question) => question.question_number\n);\nif (actualNumbers.length !== expectedNumbers.length) {\n  throw new Error(\n    'Repair returned ' + actualNumbers.length +\n    ' questions but expected ' + expectedNumbers.length + '.'\n  );\n}\nif (new Set(actualNumbers).size !== actualNumbers.length) {\n  throw new Error('Repair returned duplicate question numbers.');\n}\nfor (const expectedNumber of expectedNumbers) {\n  if (!actualNumbers.includes(expectedNumber)) {\n    throw new Error('Repair omitted question ' + expectedNumber + '.');\n  }\n}\nfor (const actualNumber of actualNumbers) {\n  if (!expectedNumbers.includes(actualNumber)) {\n    throw new Error('Repair unexpectedly returned question ' + actualNumber + '.');\n  }\n}\n\nconst originalByNumber = new Map(\n  state.paper_bundle.questions.map((question) => [\n    question.question_number,\n    question,\n  ])\n);\nconst correctedByNumber = new Map(\n  correctedQuestions.map((question) => [\n    question.question_number,\n    question,\n  ])\n);\nconst mergedQuestions = state.paper_bundle.questions.map((question) => {\n  const corrected = correctedByNumber.get(question.question_number);\n  if (!corrected) return question;\n  return {\n    ...corrected,\n    assets: originalByNumber.get(question.question_number).assets || [],\n  };\n});\n\nreturn [{\n  json: {\n    ...state,\n    paper_bundle: {\n      ...state.paper_bundle,\n      questions: mergedQuestions,\n    },\n    repair_applied: true,\n    repair_response_id: response.id || null,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5920,
+        -160
+      ],
+      "id": "45efe0d8-bfc5-8da6-160b-fd8caa6315ba",
+      "name": "Parse Targeted Repair"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst bundle = state.paper_bundle;\nconst config = state.config;\nconst issues = [];\nconst addIssue = (severity, issue_code, message, extra = {}) => {\n  issues.push({\n    severity,\n    issue_code,\n    document_type: extra.document_type || null,\n    page_number: extra.page_number || null,\n    question_number: extra.question_number || null,\n    part_path: extra.part_path || [],\n    message,\n  });\n};\n\nif (!bundle || !Array.isArray(bundle.questions)) {\n  throw new Error('The extracted paper bundle is missing its questions array.');\n}\n\nconst numbers = bundle.questions.map((question) => question.question_number);\nconst uniqueNumbers = new Set(numbers);\nif (numbers.length !== config.expected_question_count) {\n  addIssue('blocking', 'QUESTION_COUNT_MISMATCH',\n    'Expected ' + config.expected_question_count + ' questions but extracted ' + numbers.length + '.');\n}\nif (uniqueNumbers.size !== numbers.length) {\n  addIssue('blocking', 'DUPLICATE_QUESTION_NUMBER', 'Duplicate question numbers were extracted.');\n}\nfor (let number = 1; number <= config.expected_question_count; number++) {\n  if (!uniqueNumbers.has(number)) {\n    addIssue('blocking', 'MISSING_QUESTION_NUMBER', 'Question ' + number + ' is missing.', {\n      question_number: number,\n    });\n  }\n}\n\nconst totalMarks = bundle.questions.reduce((sum, question) => sum + Number(question.total_marks || 0), 0);\nif (totalMarks !== config.expected_total_marks) {\n  addIssue('blocking', 'PAPER_MARK_TOTAL_MISMATCH',\n    'Expected ' + config.expected_total_marks + ' marks but extracted ' + totalMarks + '.');\n}\n\nconst forbiddenPattern = /(DO NOT WRITE IN THIS MARGIN|0000800000|\\*{1,2}\\d{8,}\\*{1,2})/i;\n  const imageKeys = new Set();\n  const imageDataKeys = new Set();\nfor (const document of state.ocr_documents) {\n  for (const page of document.pages) {\n    (page.images || []).forEach((image, imageIndex) => {\n      const imageKey = [\n        document.document.document_type,\n        Number(page.index) + 1,\n        imageIndex,\n      ].join(':');\n      imageKeys.add(imageKey);\n      if (image.image_base64) imageDataKeys.add(imageKey);\n    });\n  }\n}\n\nfor (const question of bundle.questions) {\n  const qn = question.question_number;\n  if ((!question.stem_markdown || !question.stem_markdown.trim()) && (!question.parts || question.parts.length === 0)) {\n    addIssue('blocking', 'EMPTY_QUESTION_TEXT', 'Question has no stem or parts.', { question_number: qn });\n  }\n  if (forbiddenPattern.test(question.stem_markdown || '')) {\n    addIssue('blocking', 'OCR_ARTIFACT_IN_QUESTION', 'Question text contains a margin or barcode artifact.', {\n      question_number: qn,\n    });\n  }\n  const qpPages = question.source_page_numbers || [];\n  if (!qpPages.length || qpPages.some((page) => page < 1 || page > config.expected_page_counts.question_paper)) {\n    addIssue('blocking', 'INVALID_QUESTION_PAGE', 'Question has an invalid question-paper page reference.', {\n      question_number: qn,\n    });\n  }\n\n  const partPaths = new Set();\n  let partMarkTotal = 0;\n  for (const part of question.parts || []) {\n    const pathKey = part.label_path.join('.');\n    if (partPaths.has(pathKey)) {\n      addIssue('blocking', 'DUPLICATE_PART_PATH', 'Duplicate part path ' + pathKey + '.', {\n        question_number: qn,\n        part_path: part.label_path,\n      });\n    }\n    partPaths.add(pathKey);\n    partMarkTotal += Number(part.marks || 0);\n    if (forbiddenPattern.test(part.prompt_markdown || '')) {\n      addIssue('blocking', 'OCR_ARTIFACT_IN_PART', 'Part text contains a margin or barcode artifact.', {\n        question_number: qn,\n        part_path: part.label_path,\n      });\n    }\n  }\n  if ((question.parts || []).length > 0 && partMarkTotal !== Number(question.total_marks)) {\n    addIssue('blocking', 'QUESTION_MARK_TOTAL_MISMATCH',\n      'Part marks total ' + partMarkTotal + ' but question total_marks is ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n\n  const markItems = question.mark_scheme_items || [];\n  if (!markItems.length) {\n    addIssue('blocking', 'MISSING_MARK_SCHEME', 'Question has no mark-scheme items.', {\n      question_number: qn,\n    });\n  }\n  const markSequenceNumbers = new Set();\n  let primaryMarkCodeCount = 0;\n  let nonEmptyGuidanceCount = 0;\n  for (const mark of markItems) {\n    if (markSequenceNumbers.has(mark.sequence_number)) {\n      addIssue('blocking', 'DUPLICATE_MARK_SCHEME_SEQUENCE',\n        'Duplicate mark-scheme sequence number ' + mark.sequence_number + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    markSequenceNumbers.add(mark.sequence_number);\n    const partKey = (mark.part_path || []).join('.');\n    if (partKey && !partPaths.has(partKey)) {\n      addIssue('blocking', 'MARK_SCHEME_UNKNOWN_PART',\n        'Mark-scheme item references missing part ' + partKey + '.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    const pages = mark.source_page_numbers || [];\n    if (!pages.length || pages.some((page) => page < 1 || page > config.expected_page_counts.mark_scheme)) {\n      addIssue('blocking', 'INVALID_MARK_SCHEME_PAGE',\n        'Mark-scheme item has an invalid mark-scheme page reference.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    const hasAnswer =\n      typeof mark.content_markdown === 'string' &&\n      mark.content_markdown.trim().length > 0;\n    const hasGuidance =\n      typeof mark.guidance_markdown === 'string' &&\n      mark.guidance_markdown.trim().length > 0;\n    if (!hasAnswer && !hasGuidance) {\n      addIssue('blocking', 'EMPTY_MARK_SCHEME_ROW',\n        'Mark-scheme item has neither Answer nor Guidance content.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (typeof mark.guidance_markdown !== 'string') {\n      addIssue('blocking', 'MISSING_MARK_SCHEME_GUIDANCE_FIELD',\n        'Mark-scheme item does not contain guidance_markdown.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    } else if (mark.guidance_markdown.trim()) {\n      nonEmptyGuidanceCount++;\n    }\n    if (!hasAnswer && mark.mark_code !== null) {\n      addIssue('blocking', 'GUIDANCE_ONLY_ROW_HAS_MARK_CODE',\n        'A guidance-only row must have mark_code=null because its source Marks cell is blank.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (!hasAnswer && mark.is_final_answer) {\n      addIssue('blocking', 'GUIDANCE_ONLY_ROW_IS_FINAL_ANSWER',\n        'A guidance-only row cannot be marked as a final-answer row.', {\n          question_number: qn,\n          part_path: mark.part_path || [],\n        });\n    }\n    if (!mark.is_alternative_method && mark.mark_code) {\n      const codes = String(mark.mark_code).match(/(?:\\*?D?M1|A1|B1)/g) || [];\n      primaryMarkCodeCount += codes.length;\n    }\n  }\n  if (nonEmptyGuidanceCount === 0) {\n    addIssue('blocking', 'QUESTION_MARK_SCHEME_GUIDANCE_EMPTY',\n      'No examiner guidance was captured for this question.', {\n        question_number: qn,\n      });\n  }\n  if (primaryMarkCodeCount < Number(question.total_marks)) {\n    addIssue('blocking', 'MARK_CODE_COVERAGE_TOO_LOW',\n      'Primary mark codes account for ' + primaryMarkCodeCount +\n      ' marks but the question is worth ' + question.total_marks + '.', {\n        question_number: qn,\n      });\n  }\n\n  for (const asset of question.assets || []) {\n    const key = [asset.document_type, asset.source_page_number, asset.source_image_index].join(':');\n    if (!imageKeys.has(key)) {\n      addIssue('blocking', 'ASSET_SOURCE_NOT_FOUND',\n        'Asset does not match an OCR image: ' + key + '.', {\n          document_type: asset.document_type,\n          page_number: asset.source_page_number,\n          question_number: qn,\n          part_path: asset.part_path || [],\n        });\n    } else if (!imageDataKeys.has(key)) {\n      addIssue('blocking', 'ASSET_IMAGE_DATA_MISSING',\n        'OCR found the asset but did not return its image data: ' + key + '.', {\n          document_type: asset.document_type,\n          page_number: asset.source_page_number,\n          question_number: qn,\n          part_path: asset.part_path || [],\n        });\n    }\n  }\n}\n\nconst blockingCount = issues.filter((issue) => issue.severity === 'blocking').length;\nconst warningCount = issues.filter((issue) => issue.severity === 'warning').length;\nreturn [{\n  json: {\n    ...state,\n    validation_report: {\n      passed: blockingCount === 0,\n      expected_question_count: config.expected_question_count,\n      actual_question_count: bundle.questions.length,\n      expected_total_marks: config.expected_total_marks,\n      actual_total_marks: totalMarks,\n      blocking_issue_count: blockingCount,\n      warning_count: warningCount,\n      issues,\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6160,
+        -160
+      ],
+      "id": "ea8f9f3c-b319-2965-d1ed-74a0b8604626",
+      "name": "Deterministic Validation After Repair"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst qp = state.paper_bundle.documents.find((document) => document.document_type === 'question_paper');\nconst ms = state.paper_bundle.documents.find((document) => document.document_type === 'mark_scheme');\nconst prompt = [\n  'Independently verify this extracted Cambridge 9709/12 February/March 2025 paper bundle.',\n  'Compare it directly against both PDFs.',\n  'Check all 11 questions, all part labels, mathematical expressions, mark allocations, mark-scheme steps, page references, and instructional diagram references.',\n  'A question is unparted unless a part label is visibly printed; synthetic single parts and duplicated prompts are blocking issues.',\n  'For every mark-scheme row, compare content_markdown with the Answer column and guidance_markdown with the complete Guidance column.',\n  'The Marks column alone determines mark_code, including any leading dependency asterisk.',\n  'A guidance-only source row with blank Answer and Marks is valid only as content_markdown=\"\", mark_code=null, is_final_answer=false with complete guidance.',\n  'Treat any omitted examiner condition, acceptance rule, follow-through restriction, special case, implied-mark rule, sign or exponent as a blocking issue.',\n  'A blank guidance_markdown is acceptable only when the corresponding source Guidance cell is blank.',\n  'The paper total must be 75 marks.',\n  'Do not rewrite or silently correct the bundle. Report every discrepancy as an issue.',\n  'Set passed=false if any blocking issue exists.',\n].join('\\n');\n\nreturn [{\n  json: {\n    ...state,\n    verifier_request: {\n      model: state.config.verifier_model,\n      reasoning: { effort: 'high' },\n      store: false,\n      max_output_tokens: 10000,\n      input: [\n        { role: 'system', content: prompt },\n        {\n          role: 'user',\n          content: [\n            {\n              type: 'input_text',\n              text: 'Extracted bundle to verify:\\n' + JSON.stringify(state.paper_bundle),\n            },\n            { type: 'input_file', file_url: qp.source_url },\n            { type: 'input_file', file_url: ms.source_url },\n          ],\n        },\n      ],\n      text: {\n        format: {\n          type: 'json_schema',\n          name: 'shamo_paper_verification',\n          strict: true,\n          schema: {\"type\":\"object\",\"properties\":{\"passed\":{\"type\":\"boolean\"},\"summary\":{\"type\":\"string\"},\"paper_identity_correct\":{\"type\":\"boolean\"},\"question_numbering_complete\":{\"type\":\"boolean\"},\"marks_consistent\":{\"type\":\"boolean\"},\"question_text_faithful\":{\"type\":\"boolean\"},\"mark_scheme_faithful\":{\"type\":\"boolean\"},\"asset_references_correct\":{\"type\":\"boolean\"},\"issues\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"severity\":{\"type\":\"string\",\"enum\":[\"warning\",\"blocking\"]},\"issue_code\":{\"type\":\"string\",\"pattern\":\"^[A-Z0-9_]+$\"},\"document_type\":{\"anyOf\":[{\"type\":\"string\",\"enum\":[\"question_paper\",\"mark_scheme\"]},{\"type\":\"null\"}]},\"page_number\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"question_number\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"part_path\":{\"type\":\"array\",\"maxItems\":4,\"items\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9]+$\"}},\"message\":{\"type\":\"string\"}},\"required\":[\"severity\",\"issue_code\",\"document_type\",\"page_number\",\"question_number\",\"part_path\",\"message\"],\"additionalProperties\":false}}},\"required\":[\"passed\",\"summary\",\"paper_identity_correct\",\"question_numbering_complete\",\"marks_consistent\",\"question_text_faithful\",\"mark_scheme_faithful\",\"asset_references_correct\",\"issues\"],\"additionalProperties\":false},\n        },\n      },\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6400,
+        -160
+      ],
+      "id": "328be95d-b3ca-86b0-7812-275b3841ad8f",
+      "name": "Build Final Verifier Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.verifier_request }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        6640,
+        -160
+      ],
+      "id": "bf353e53-e86f-7f50-9780-14baa6f23766",
+      "name": "OpenAI Final Independent Verifier",
+      "credentials": {
+        "openAiApi": {
+          "id": "DS6la6WpBRQEKxEY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst state = $('Build Final Verifier Request').first().json;\nif (response.status === 'incomplete') {\n  throw new Error('OpenAI verification was incomplete: ' + JSON.stringify(response.incomplete_details || {}));\n}\nconst message = (response.output || []).find((entry) => entry.type === 'message');\nif (!message) throw new Error('OpenAI verifier returned no message output.');\nconst refusal = (message.content || []).find((entry) => entry.type === 'refusal');\nif (refusal) throw new Error('OpenAI verifier refused: ' + (refusal.refusal || 'unknown refusal'));\nconst outputText = (message.content || []).find((entry) => entry.type === 'output_text');\nif (!outputText || !outputText.text) throw new Error('OpenAI verifier returned no structured text.');\nlet verifierReport;\ntry {\n  verifierReport = JSON.parse(outputText.text);\n} catch (error) {\n  throw new Error('Could not parse verifier JSON: ' + error.message);\n}\nif ((verifierReport.issues || []).some((issue) => issue.severity === 'blocking')) {\n  verifierReport.passed = false;\n}\nreturn [{\n  json: {\n    ...state,\n    verifier_response_id: response.id || null,\n    verifier_report: verifierReport,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        6880,
+        -160
+      ],
+      "id": "ff926a2b-efa5-38f1-58ac-1bf359f70b4e",
+      "name": "Parse Final Verifier Result"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{\n  json: {\n    ...$input.first().json,\n    repair_applied: false,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5680,
+        160
+      ],
+      "id": "0bc7289e-8dae-e567-12dc-de8009079893",
+      "name": "Use Original Verified Bundle"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $input.first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7120,
+        0
+      ],
+      "id": "62f7bbda-84a5-459f-1efe-aacb311ffe81",
+      "name": "Select Final Validation State"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $input.first().json;\nconst imageMap = new Map();\nfor (const document of state.ocr_documents) {\n  for (const page of document.pages) {\n    (page.images || []).forEach((image, imageIndex) => {\n      imageMap.set([\n        document.document.document_type,\n        Number(page.index) + 1,\n        imageIndex,\n      ].join(':'), image);\n    });\n  }\n}\n\nconst output = [];\nstate.paper_bundle.questions.forEach((question, questionIndex) => {\n  (question.assets || []).forEach((asset, assetIndex) => {\n    const key = [asset.document_type, asset.source_page_number, asset.source_image_index].join(':');\n    const image = imageMap.get(key);\n    if (!image || !image.image_base64) return;\n    const match = String(image.image_base64).match(/^data:(image\\/[A-Za-z0-9.+-]+);base64,(.+)$/s);\n    const mimeType = match ? match[1] : 'image/png';\n    const base64 = match ? match[2] : String(image.image_base64);\n    const extension = mimeType.includes('jpeg') ? 'jpg' : mimeType.split('/')[1].replace('+xml', '') || 'png';\n    const partSuffix = (asset.part_path || []).length ? '-part-' + asset.part_path.join('-') : '';\n    const storagePath = [\n      state.config.qualification,\n      state.config.syllabus_code,\n      state.config.year,\n      state.config.exam_session,\n      state.config.paper_variant,\n      asset.document_type,\n      'q' + question.question_number + partSuffix,\n      'page-' + asset.source_page_number + '-image-' + asset.source_image_index + '.' + extension,\n    ].join('/');\n    output.push({\n      json: {\n        skip_upload: false,\n        question_index: questionIndex,\n        asset_index: assetIndex,\n        storage_path: storagePath,\n        storage_bucket: state.config.storage_bucket,\n        mime_type: mimeType,\n        byte_size: Math.floor(base64.length * 3 / 4),\n        checksum: null,\n      },\n      binary: {\n        data: {\n          data: base64,\n          mimeType,\n          fileName: storagePath.split('/').pop(),\n          fileExtension: extension,\n        },\n      },\n    });\n  });\n});\n\nif (!output.length) {\n  return [{ json: { skip_upload: true } }];\n}\nreturn output;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7360,
+        0
+      ],
+      "id": "66f3e027-df5c-d227-9cc9-f258d68530f3",
+      "name": "Prepare Asset Uploads"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9133aac0-a216-2c29-fa73-d246f0f3bce0",
+              "leftValue": "={{ !$json.skip_upload }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        7600,
+        0
+      ],
+      "id": "4a6299b9-6cae-a2d0-bd56-624e93685555",
+      "name": "Has Assets to Upload"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Pilot Configuration').first().json.supabase_url + '/storage/v1/object/' + $json.storage_bucket + '/' + $json.storage_path }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-upsert",
+              "value": "true"
+            },
+            {
+              "name": "Content-Type",
+              "value": "={{ $json.mime_type }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "binaryData",
+        "inputDataFieldName": "data",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        7840,
+        -120
+      ],
+      "id": "3a18510f-63c7-7634-1c8f-9547b1f91ca6",
+      "name": "Upload Assets to Supabase Storage",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const prepared = $('Prepare Asset Uploads').all().filter((item) => !item.json.skip_upload);\nconst responses = $input.all();\nif (responses.length !== prepared.length) {\n  throw new Error('Supabase Storage response count does not match prepared assets.');\n}\nreturn [{\n  json: {\n    uploaded_assets: prepared.map((item, index) => ({\n      ...item.json,\n      upload_response: responses[index].json,\n    })),\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        8080,
+        -120
+      ],
+      "id": "12732a0e-eba3-419a-cd4c-f5d162b825c6",
+      "name": "Collect Upload Results"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: { uploaded_assets: [] } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7840,
+        140
+      ],
+      "id": "b56e155f-0b2b-53a1-5347-4a115ce9ad31",
+      "name": "No Asset Uploads"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $('Select Final Validation State').first().json;\nconst branch = $input.first().json;\nconst uploaded = branch.uploaded_assets || [];\nconst bundle = JSON.parse(JSON.stringify(state.paper_bundle));\nconst extractedAssetCount = bundle.questions.reduce(\n  (sum, question) => sum + (question.assets || []).length,\n  0\n);\n\nfor (const uploadedAsset of uploaded) {\n  const asset = bundle.questions[uploadedAsset.question_index].assets[uploadedAsset.asset_index];\n  asset.storage_bucket = uploadedAsset.storage_bucket;\n  asset.storage_path = uploadedAsset.storage_path;\n  asset.mime_type = uploadedAsset.mime_type;\n  asset.byte_size = uploadedAsset.byte_size || null;\n  asset.checksum = uploadedAsset.checksum || null;\n}\n\nfor (const question of bundle.questions) {\n  question.assets = (question.assets || []).filter((asset) => asset.storage_path);\n}\n\nconst combinedIssues = [\n  ...(state.validation_report.issues || []),\n  ...(state.verifier_report.issues || []),\n];\nif (uploaded.length !== extractedAssetCount) {\n  combinedIssues.push({\n    severity: 'blocking',\n    issue_code: 'ASSET_UPLOAD_COUNT_MISMATCH',\n    document_type: null,\n    page_number: null,\n    question_number: null,\n    part_path: [],\n    message:\n      'Extracted ' + extractedAssetCount + ' instructional assets but uploaded ' +\n      uploaded.length + '.',\n  });\n}\nconst seen = new Set();\nconst uniqueIssues = combinedIssues.filter((issue) => {\n  const key = JSON.stringify([\n    issue.severity,\n    issue.issue_code,\n    issue.document_type,\n    issue.page_number,\n    issue.question_number,\n    issue.part_path,\n    issue.message,\n  ]);\n  if (seen.has(key)) return false;\n  seen.add(key);\n  return true;\n});\nconst issueRows = uniqueIssues.map((issue) => ({\n  ingestion_run_id: state.ingestion_run_id,\n  severity: issue.severity,\n  issue_code: issue.issue_code,\n  document_type: issue.document_type || null,\n  page_number: issue.page_number || null,\n  question_number: issue.question_number || null,\n  part_path: (issue.part_path || []).length ? issue.part_path : null,\n  message: issue.message,\n}));\n\nconst questionPartCount = bundle.questions.reduce(\n  (sum, question) => sum + (question.parts || []).length,\n  0\n);\nconst assetCount = bundle.questions.reduce(\n  (sum, question) => sum + (question.assets || []).length,\n  0\n);\nconst readyForApproval =\n  state.validation_report.passed === true &&\n  state.verifier_report.passed === true &&\n  !uniqueIssues.some((issue) => issue.severity === 'blocking');\n\nconst summary = {\n  questions: bundle.questions.length,\n  parts: questionPartCount,\n  assets: assetCount,\n  issues: issueRows.length,\n  blocking_issues: issueRows.filter((issue) => issue.severity === 'blocking').length,\n};\n\nconst updateBody = {\n  status: 'awaiting_review',\n  review_status: 'pending',\n  extraction_summary: {\n    paper_bundle: bundle,\n    extraction_response_id: state.extraction_response_id,\n    mark_scheme_response_ids: state.mark_scheme_response_ids,\n    initial_verifier_response_id: state.initial_verifier_response_id || null,\n    repair_response_id: state.repair_response_id || null,\n    verifier_response_id: state.verifier_response_id,\n    ready_for_approval: readyForApproval,\n    staged_at: new Date().toISOString(),\n    summary,\n  },\n  verifier_report: state.verifier_report,\n  validation_report: state.validation_report,\n  question_count: bundle.questions.length,\n  question_part_count: questionPartCount,\n  asset_count: assetCount,\n  finished_at: new Date().toISOString(),\n};\n\nreturn [{\n  json: {\n    config: state.config,\n    paper_id: state.paper_id,\n    ingestion_run_id: state.ingestion_run_id,\n    paper_bundle: bundle,\n    issue_rows: issueRows,\n    update_body: updateBody,\n    ready_for_approval: readyForApproval,\n    summary,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        8320,
+        0
+      ],
+      "id": "2fb4ec6f-5c8c-3c92-3449-372239926f67",
+      "name": "Finalize Staging Package"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $('Pilot Configuration').first().json.supabase_url + '/rest/v1/shamo_ingestion_runs?id=eq.' + $json.ingestion_run_id + '&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.update_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        8560,
+        0
+      ],
+      "id": "7e2e2f1e-9233-263d-0725-8119865a24e0",
+      "name": "Update Staged Ingestion Run",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: $('Finalize Staging Package').first().json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        8800,
+        0
+      ],
+      "id": "ad29fc92-2a73-1e6b-b5f1-c23b552efd8c",
+      "name": "Restore Final Stage State"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ebd6b108-928f-f610-3bb6-0cf7eaa9f990",
+              "leftValue": "={{ $json.issue_rows.length > 0 }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        9040,
+        0
+      ],
+      "id": "0393b61f-6af2-9258-5e01-9637efc9e6b8",
+      "name": "Has Validation Issues"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Pilot Configuration').first().json.supabase_url + '/rest/v1/shamo_ingestion_issues' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "return=minimal"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.issue_rows }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        9280,
+        -120
+      ],
+      "id": "a0c68074-11c1-68e1-7ac7-6694e6d1c3d1",
+      "name": "Store Validation Issues",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const state = $('Restore Final Stage State').first().json;\nreturn [{\n  json: {\n    success: true,\n    message: state.ready_for_approval\n      ? 'Pilot extraction is staged and ready for your manual review.'\n      : 'Pilot extraction is staged, but blocking issues must be reviewed before publication.',\n    ingestion_run_id: state.ingestion_run_id,\n    paper_id: state.paper_id,\n    ready_for_approval: state.ready_for_approval,\n    summary: state.summary,\n    next_step: 'Inspect this execution output and Supabase shamo_ingestion_review_queue. If correct, run the separate Shamo Pilot v4 - Atomic Approve and Publish workflow with this ingestion_run_id.',\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        9520,
+        0
+      ],
+      "id": "acf3e752-59df-47c8-117c-9f73d2a15373",
+      "name": "Pilot Stage Result"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Run Pilot Manually": {
+      "main": [
+        [
+          {
+            "node": "Pilot Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pilot Configuration": {
+      "main": [
+        [
+          {
+            "node": "Get Test Rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Test Rows": {
+      "main": [
+        [
+          {
+            "node": "Pair and Validate Pilot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pair and Validate Pilot": {
+      "main": [
+        [
+          {
+            "node": "Upsert Paper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert Paper": {
+      "main": [
+        [
+          {
+            "node": "Attach Paper ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach Paper ID": {
+      "main": [
+        [
+          {
+            "node": "Prepare Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Create Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Expand Pilot Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expand Pilot Documents": {
+      "main": [
+        [
+          {
+            "node": "Mistral OCR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral OCR": {
+      "main": [
+        [
+          {
+            "node": "Attach OCR Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach OCR Metadata": {
+      "main": [
+        [
+          {
+            "node": "Build Extraction State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Extraction State": {
+      "main": [
+        [
+          {
+            "node": "Store Temporary OCR Pages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Temporary OCR Pages": {
+      "main": [
+        [
+          {
+            "node": "Restore Extraction State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Extraction State": {
+      "main": [
+        [
+          {
+            "node": "Build Question Paper Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Question Paper Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Question Paper Extraction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Question Paper Extraction": {
+      "main": [
+        [
+          {
+            "node": "Parse Question Paper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Question Paper": {
+      "main": [
+        [
+          {
+            "node": "Build Mark Scheme Requests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Mark Scheme Requests": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Mark Scheme Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Mark Scheme Questions": {
+      "main": [
+        [
+          {
+            "node": "Parse Mark Scheme Responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Mark Scheme Responses": {
+      "main": [
+        [
+          {
+            "node": "Merge Paper Bundle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Paper Bundle": {
+      "main": [
+        [
+          {
+            "node": "Deterministic Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deterministic Validation": {
+      "main": [
+        [
+          {
+            "node": "Build Verifier Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Verifier Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Independent Verifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Independent Verifier": {
+      "main": [
+        [
+          {
+            "node": "Parse Verifier Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Verifier Result": {
+      "main": [
+        [
+          {
+            "node": "Build Targeted Repair Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Targeted Repair Request": {
+      "main": [
+        [
+          {
+            "node": "Repair Needed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Repair Needed": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Targeted Question Repair",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Use Original Verified Bundle",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Targeted Question Repair": {
+      "main": [
+        [
+          {
+            "node": "Parse Targeted Repair",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Targeted Repair": {
+      "main": [
+        [
+          {
+            "node": "Deterministic Validation After Repair",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deterministic Validation After Repair": {
+      "main": [
+        [
+          {
+            "node": "Build Final Verifier Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Final Verifier Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Final Independent Verifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Final Independent Verifier": {
+      "main": [
+        [
+          {
+            "node": "Parse Final Verifier Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Final Verifier Result": {
+      "main": [
+        [
+          {
+            "node": "Select Final Validation State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Use Original Verified Bundle": {
+      "main": [
+        [
+          {
+            "node": "Select Final Validation State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Final Validation State": {
+      "main": [
+        [
+          {
+            "node": "Prepare Asset Uploads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Asset Uploads": {
+      "main": [
+        [
+          {
+            "node": "Has Assets to Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Assets to Upload": {
+      "main": [
+        [
+          {
+            "node": "Upload Assets to Supabase Storage",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Asset Uploads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Assets to Supabase Storage": {
+      "main": [
+        [
+          {
+            "node": "Collect Upload Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Upload Results": {
+      "main": [
+        [
+          {
+            "node": "Finalize Staging Package",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Asset Uploads": {
+      "main": [
+        [
+          {
+            "node": "Finalize Staging Package",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Staging Package": {
+      "main": [
+        [
+          {
+            "node": "Update Staged Ingestion Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Staged Ingestion Run": {
+      "main": [
+        [
+          {
+            "node": "Restore Final Stage State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Final Stage State": {
+      "main": [
+        [
+          {
+            "node": "Has Validation Issues",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Validation Issues": {
+      "main": [
+        [
+          {
+            "node": "Store Validation Issues",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pilot Stage Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Validation Issues": {
+      "main": [
+        [
+          {
+            "node": "Pilot Stage Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
+  },
+  "versionId": "20ff4f97-ace9-97c8-aa98-d6387d2ab477",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

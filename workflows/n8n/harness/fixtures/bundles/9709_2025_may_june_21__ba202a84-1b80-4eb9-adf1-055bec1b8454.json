@@ -1,0 +1,1381 @@
+{
+  "paper_key": "9709_2025_may_june_21",
+  "ingestion_run_id": "ba202a84-1b80-4eb9-adf1-055bec1b8454",
+  "idempotency_key": "budget-v2.1:a-level-9709-test2-pilot-v1-v2.3-batch-09:a_level:9709:2025:may_june:21",
+  "pipeline_version": "budget-v2.1",
+  "run_status": "awaiting_review",
+  "review_status": "pending",
+  "validation_report": {
+    "issues": [
+      {
+        "message": "Topic/skill classification confidence is below 0.75 and should be reviewed.",
+        "severity": "warning",
+        "part_path": [],
+        "issue_code": "LOW_METADATA_CONFIDENCE",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 3
+      },
+      {
+        "message": "Metadata marks this question as requiring a source diagram but no asset was captured.",
+        "severity": "blocking",
+        "part_path": [],
+        "issue_code": "DIAGRAM_REQUIRED_WITHOUT_ASSET",
+        "page_number": null,
+        "document_type": null,
+        "question_number": 3
+      },
+      {
+        "message": "Targeted repair ran but 1 blocking issues remain. There is no second repair pass, so this paper needs human correction before approval.",
+        "severity": "blocking",
+        "part_path": [],
+        "issue_code": "REPAIR_DID_NOT_CLEAR_BLOCKERS",
+        "page_number": null,
+        "document_type": null,
+        "question_number": null
+      }
+    ],
+    "passed": false,
+    "warning_count": 1,
+    "question_count": 7,
+    "source_total_marks": 50,
+    "blocking_issue_count": 1,
+    "extracted_total_marks": 50,
+    "source_question_count": 7
+  },
+  "extraction_summary": {
+    "summary": {
+      "parts": 17,
+      "assets": 1,
+      "issues": 3,
+      "questions": 7,
+      "blocking_issues": 2,
+      "openai_cost_usd": 0.0383761
+    },
+    "api_usage": {
+      "events": [
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "question_paper_extraction",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 12674,
+              "total_tokens": 17904,
+              "output_tokens": 5230,
+              "input_tokens_details": {
+                "cached_tokens": 12032,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 3624
+              }
+            },
+            "response_id": "resp_08718dcd32c9e4f3016a79d9c5eb9c8199ba549ebc18a69ef7",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 12674,
+            "priced_output_tokens": 5230,
+            "reported_total_tokens": 17904
+          },
+          "input_tokens": 12674,
+          "output_tokens": 5230,
+          "actual_cost_usd": 0.0249189,
+          "cached_input_tokens": 12032
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "mark_scheme_page_map",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 6143,
+              "total_tokens": 6339,
+              "output_tokens": 196,
+              "input_tokens_details": {
+                "cached_tokens": 5888,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 84
+              }
+            },
+            "response_id": "resp_05122ebb8120b7cc016a79da2051bc819889403a34345b918c",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 6143,
+            "priced_output_tokens": 196,
+            "reported_total_tokens": 6339
+          },
+          "input_tokens": 6143,
+          "output_tokens": 196,
+          "actual_cost_usd": 0.00041376,
+          "cached_input_tokens": 5888
+        },
+        {
+          "model": "gpt-5.4-nano",
+          "operation": "question_metadata",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 2234,
+              "total_tokens": 3545,
+              "output_tokens": 1311,
+              "input_tokens_details": {
+                "cached_tokens": 1792,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 448
+              }
+            },
+            "response_id": "resp_02ddf4b9d6b3cfbb016a79db16bd60819a9ef8b96f670d44f5",
+            "model_reported": "gpt-5.4-nano-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 2234,
+            "priced_output_tokens": 1311,
+            "reported_total_tokens": 3545
+          },
+          "input_tokens": 2234,
+          "output_tokens": 1311,
+          "actual_cost_usd": 0.00176299,
+          "cached_input_tokens": 1792
+        },
+        {
+          "model": "gpt-5.4-mini",
+          "operation": "targeted_question_repair",
+          "usage_audit": {
+            "usage_raw": {
+              "input_tokens": 23293,
+              "total_tokens": 25316,
+              "output_tokens": 2023,
+              "input_tokens_details": {
+                "cached_tokens": 22656,
+                "cache_write_tokens": 0
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 1263
+              }
+            },
+            "response_id": "resp_067e5549b5822e47016a79db9f8a288199ab72c42c8b953a5e",
+            "model_reported": "gpt-5.4-mini-2026-03-17",
+            "unaccounted_tokens": 0,
+            "priced_input_tokens": 23293,
+            "priced_output_tokens": 2023,
+            "reported_total_tokens": 25316
+          },
+          "input_tokens": 23293,
+          "output_tokens": 2023,
+          "actual_cost_usd": 0.01128045,
+          "cached_input_tokens": 22656
+        }
+      ],
+      "paid_calls": 4,
+      "input_tokens": 44344,
+      "output_tokens": 8760,
+      "actual_cost_usd": 0.0383761,
+      "unaccounted_tokens": 0,
+      "cached_input_tokens": 42368
+    },
+    "staged_at": "2026-08-10T14:09:52.093Z",
+    "paper_bundle": {
+      "documents": [
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_qp_21.pdf",
+          "document_type": "question_paper",
+          "source_url_hash": null
+        },
+        {
+          "ocr_model": "mistral-ocr-latest",
+          "page_count": 16,
+          "source_url": "https://pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/9709_s25_ms_21.pdf",
+          "document_type": "mark_scheme",
+          "source_url_hash": null
+        }
+      ],
+      "questions": [
+        {
+          "parts": [],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Differentiate a product of functions",
+              "Apply the chain rule to composite expressions"
+            ],
+            "methods": [
+              "Use product rule",
+              "Use chain rule"
+            ],
+            "subtopics": [],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "routine_calculation",
+            "diagram_required": false,
+            "difficulty_level": 1,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.86
+          },
+          "total_marks": 2,
+          "stem_markdown": "Given that $y = 6x \\cos(x^2 + 1)$, find an expression for $\\frac{dy}{dx}$.",
+          "question_number": 1,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Attempt use of product rule",
+              "guidance_markdown": "Allow for $$6\\cos(x^2+1)-12x\\sin(x^2+1)$$ $$6\\cos(x^2+1)-12\\sin(x^2+1)$$ $$6\\cos(x^2+1)-6x\\sin(x^2+1)$$ $$6\\cos(x^2+1)-6x^2\\sin(x^2+1)$$",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$6\\cos(x^2+1)-12x^2\\sin(x^2+1)$$",
+              "guidance_markdown": "Allow unsimplified.",
+              "source_page_numbers": [
+                9
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            3
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Use logarithms to solve the inequality $4^x < 0.05$. Give your answer in the form $x < a$, where the value of $a$ is correct to 3 significant figures.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Solve the inequality $|3x + 8| < 9$.",
+              "source_page_numbers": [
+                4
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Hence state the integers that satisfy both of the inequalities in parts (a) and (b).",
+              "source_page_numbers": [
+                4
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Take logarithms to solve an exponential inequality",
+              "Solve and combine inequalities involving absolute values",
+              "Find the intersection of solution sets"
+            ],
+            "methods": [
+              "Apply logarithms to linearise 4^x",
+              "Solve |...| inequality by considering sign cases",
+              "Combine inequalities to form x < a"
+            ],
+            "subtopics": [
+              "Algebra"
+            ],
+            "main_topic": "Exponential and Logarithmic Functions",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 2,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.78
+          },
+          "total_marks": 6,
+          "stem_markdown": "",
+          "question_number": 2,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Apply logarithms to both sides and use relevant logarithm property",
+              "guidance_markdown": "Allow for $x\\; <\\; \\backslash log\\_4\\; 0.05$.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $x\\; <\\; \\backslash frac\\{\\backslash ln\\; 0.05\\}\\{\\backslash ln\\; 4\\}$ or equivalent and hence $x\\; <\\; -2.16$",
+              "guidance_markdown": "Allow greater accuracy.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Attempt solution of equations $3x\\; +\\; 8\\; =\\; \\backslash \\pm 9$ or of quadratic equation $(3x\\; +\\; 8)^2\\; =\\; 9^2$",
+              "guidance_markdown": "Need a complete method to obtain 2 values.",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Obtain values $-\\backslash frac\\{17\\}\\{3\\}$ and $\\backslash frac\\{1\\}\\{3\\}$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Conclude $-\\backslash frac\\{17\\}\\{3\\}\\; <\\; x\\; <\\; \\backslash frac\\{1\\}\\{3\\}$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 6,
+              "content_markdown": "State $-5,\\; -4,\\; -3$ only",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                10
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            4
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 2,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Sketch, on a single diagram, the graphs of $y=3e^{-2x}$ and $y=\\sec x$ for values of $x$ such that $0\\leqslant x<\\frac12\\pi$.",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Show that the $x$-coordinate of the point of intersection of the two graphs satisfies the equation $x=\\frac12\\ln(3\\cos x)$.",
+              "source_page_numbers": [
+                5
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Use an iterative formula, based on the equation in part (b), to find the $x$-coordinate of the point of intersection correct to 3 decimal places. Give the result of each iteration to 5 decimal places.",
+              "source_page_numbers": [
+                5
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Sketch graphs of exponential/trigonometric functions",
+              "Form an equation for the intersection point",
+              "Construct and apply an iterative scheme to approximate a root",
+              "State accuracy to specified decimal places"
+            ],
+            "methods": [
+              "Sketch key features over a given interval",
+              "Solve intersection using algebraic manipulation and logarithms",
+              "Use a fixed-point iteration derived from the intersection equation"
+            ],
+            "subtopics": [
+              "Trigonometry",
+              "Exponential and Logarithmic Functions"
+            ],
+            "main_topic": "Numerical Methods",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.63
+          },
+          "total_marks": 7,
+          "stem_markdown": "",
+          "question_number": 3,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Sketch decreasing positive curve for $y=3e^{-2x}$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 2,
+              "content_markdown": "Sketch curve for $y=\\sec x$",
+              "guidance_markdown": "Correctly placed with reference to first sketch or correct with ‘1’ marked on $y$-axis.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Equate and arrange at least as far as $e^{-2x}=\\dots$ or $e^{2x}=\\dots$ with $\\cos x$ present",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Confirm $x=\\frac12\\ln(3\\cos x)$",
+              "guidance_markdown": "AG – necessary detail needed.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Use iterative process correctly at least once",
+              "guidance_markdown": "Calculator must be in radian mode.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain final answer 0.487",
+              "guidance_markdown": "Required to precisely 3 decimal places.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "Show sufficient iterations to justify answer, or show a sign change in the interval $[0.4865,0.4875]$",
+              "guidance_markdown": "Allow iterations to greater accuracy.",
+              "source_page_numbers": [
+                11
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            5
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the exact $x$-coordinate of the maximum point.",
+              "source_page_numbers": [
+                6
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the area of the shaded region. Give your answer in the form $\\frac{p}{q}$, where $p$ and $q$ are integers.",
+              "source_page_numbers": [
+                7
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "checksum": null,
+              "byte_size": 2829,
+              "mime_type": "image/jpeg",
+              "part_path": [],
+              "asset_type": "graph",
+              "description": "Graph of the curve $y = 6e^{2x} - e^{3x}$ with the $x$-axis and $y$-axis shown. The shaded region is bounded by the axes and the curve.",
+              "bounding_box": {
+                "top_left_x": 285,
+                "top_left_y": 90,
+                "bottom_right_x": 432,
+                "bottom_right_y": 246
+              },
+              "storage_path": "a_level/9709/2025/may_june/21/question_paper/q4/page-6-image-1.jpg",
+              "document_type": "question_paper",
+              "storage_bucket": "past-paper-assets",
+              "required_to_solve": true,
+              "source_image_index": 1,
+              "source_page_number": 6,
+              "mathematical_details": {
+                "equations": [
+                  "y = 6e^{2x} - e^{3x}"
+                ],
+                "coordinates": [
+                  "O (0,0)"
+                ],
+                "measurements": [],
+                "relationships": [
+                  "The curve intersects the axes and encloses a shaded region with them."
+                ],
+                "visible_labels": [
+                  "x-axis",
+                  "y-axis",
+                  "O"
+                ]
+              }
+            }
+          ],
+          "metadata": {
+            "skills": [
+              "Find the exact x-coordinate of a maximum point of an exponential expression",
+              "Determine turning points using differentiation",
+              "Integrate to find the area between a curve and the axes"
+            ],
+            "methods": [
+              "Differentiate y and solve dy/dx = 0",
+              "Use first-derivative/second-derivative test for a maximum",
+              "Integrate (or split) the function over the x-range of the shaded region"
+            ],
+            "subtopics": [
+              "Exponential and Logarithmic Functions"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": true,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.84
+          },
+          "total_marks": 7,
+          "stem_markdown": "The diagram shows the curve with equation $y = 6e^{2x} - e^{3x}$. The shaded region is bounded by the axes and the curve.",
+          "question_number": 4,
+          "mark_scheme_items": [
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Differentiate to obtain $$12e^{2x} - 3e^{3x}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Attempt solution for $$x$$ of equation of form $$k_1e^{2x} + k_2e^{3x} = 0$$ (but not for $$y = 0$$), to obtain $$e^{\\pm x} = k$$",
+              "guidance_markdown": "SOI",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $$x = \\ln 4$$ or $$x = 2\\ln 2$$",
+              "guidance_markdown": "$$x = 1.386$$ scores A0.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Identify $$x = \\ln 6$$ as point where curve meets $$x$$-axis",
+              "guidance_markdown": "May see in part **(a)** but must be used here.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Integrate to obtain the form $$k_3e^{2x} + k_4e^{3x}$$",
+              "guidance_markdown": "Where $$k_3 \\neq 6$$ and $$k_4 \\neq -1$$",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain $$3e^{2x} - \\frac{1}{3}e^{3x}$$",
+              "guidance_markdown": "May see inclusion of $$+ c$$.",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "Apply limits to obtain answer $$\\frac{100}{3}$$ only",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                12
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            6,
+            7
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 4,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Find the values of $a$ and $b$.",
+              "source_page_numbers": [
+                8
+              ]
+            },
+            {
+              "marks": 3,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Hence factorise $p(x)$ completely.",
+              "source_page_numbers": [
+                9
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Hence solve the equation $p(3\\cosec\\theta) = 0$ for $90^\\circ < \\theta < 270^\\circ$.",
+              "source_page_numbers": [
+                9
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Use factor and remainder information to determine unknown coefficients",
+              "Factorise a polynomial completely",
+              "Solve a trigonometric equation by converting it to algebraic conditions"
+            ],
+            "methods": [
+              "Apply the factor theorem and remainder theorem to find a and b",
+              "Factorise using the known linear factor",
+              "Substitute p(3 cosec θ)=0 and solve using csc/sin relationships"
+            ],
+            "subtopics": [
+              "Trigonometry"
+            ],
+            "main_topic": "Algebra",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 9,
+          "stem_markdown": "The polynomial $p(x)$ is defined by\n\n$$p(x) = ax^3 + bx^2 - ax - 24,$$\n\nwhere $a$ and $b$ are constants. It is given that $(2x-3)$ is a factor of $p(x)$ and that the remainder is $-15$ when $p(x)$ is divided by $(x+1)$.",
+          "question_number": 5,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Substitute $$x = \\frac{3}{2}$$ equating to 0, and $$x = -1$$ equating to $$-15$$",
+              "guidance_markdown": "Allow algebraic long division, but must result in two expressions correctly equated to 0 and $$-15$$. **SC B1** for $$b=9$$ if M0 scored.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$\\frac{27}{8}a + \\frac{9}{4}b - \\frac{3}{2}a - 24 = 0$$",
+              "guidance_markdown": "OE Powers of $$\\frac{3}{2}$$ must be evaluated.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $$-a + b + a - 24 = -15$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 4,
+              "content_markdown": "Solve to obtain $$a = 2$$ and $$b = 9$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 5,
+              "content_markdown": "Divide $$p(x)$$ by $$2x - 3$$",
+              "guidance_markdown": "OE method, such as inspection. For algebraic long division, must go as far as the term in $$x$$. Allow attempt at synthetic division. $$\\frac{3}{2}$$ 2 9 $$-2$$ $$-24$$ 3 18 24 $$2x^2 + 12x + 16$$ Allow one sign error.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Obtain quotient $$x^2 + 6x + 8$$",
+              "guidance_markdown": "Allow $$2x^2 + 12x + 16$$ from synthetic division.",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 7,
+              "content_markdown": "Conclude $$(2x - 3)(x + 2)(x + 4)$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                13
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Use factorised form to determine value of $$\\sin \\theta$$, with $$-1 < \\sin \\theta < 1$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Obtain finally $$\\sin \\theta = -\\frac{3}{4}$$ only and hence angle 228.6",
+              "guidance_markdown": "Or greater accuracy 228.590... Ignore solutions outside the range.",
+              "source_page_numbers": [
+                14
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            8,
+            9
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 5,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Show that $\\frac{dy}{dx}$ can be expressed in the form $c(3t+4)$ and state the value of the constant $c$.",
+              "source_page_numbers": [
+                10
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "It is given that the gradient of the curve at the point $(a, \\ln100)$ is $m$.\n\nFind the values of $a$ and $m$.",
+              "source_page_numbers": [
+                11
+              ]
+            },
+            {
+              "marks": 1,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "State whether the curve represents a decreasing function or an increasing function or neither. Give a reason for your answer.",
+              "source_page_numbers": [
+                11
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Differentiate a parametric set to obtain dy/dx",
+              "Express dy/dx in terms of the parameter",
+              "Use given point information to find parameter values",
+              "Classify the function as increasing or decreasing"
+            ],
+            "methods": [
+              "Compute dy/dx = (dy/dt)/(dx/dt)",
+              "Solve for t from y = ln100 and then find x=a",
+              "Determine monotonicity from the sign of dy/dx"
+            ],
+            "subtopics": [
+              "Exponential and Logarithmic Functions"
+            ],
+            "main_topic": "Calculus",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "multi_step_problem",
+            "diagram_required": false,
+            "difficulty_level": 3,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.83
+          },
+          "total_marks": 10,
+          "stem_markdown": "The parametric equations of a curve are\n\n$$x = \\frac{2t+1}{3t+4}, \\quad y = 2\\ln(3t+4),$$\n\nwhere $t > -\\frac{4}{3}$.",
+          "question_number": 6,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Attempt use of quotient rule (or equivalent) for derivative of $x$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $\\backslash frac\\{5\\}\\{(3t+4)^2\\}$ or unsimplified equivalent",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 3,
+              "content_markdown": "Obtain $\\backslash frac\\{6\\}\\{3t+4\\}$ for derivative of $y$",
+              "guidance_markdown": "Allow unsimplified.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Attempt to express $\\backslash frac\\{dy\\}\\{dx\\}$ in terms of $t$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $\\backslash frac\\{6\\}\\{5\\}\\; (3t+4)$ stating or implying that $c=\\backslash frac\\{6\\}\\{5\\}$",
+              "guidance_markdown": "Form of answer given. Necessary detail needed.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "Attempt solution of $2\\backslash ln\\; (3t+4)=\\backslash ln\\; 100$",
+              "guidance_markdown": "Must be using logarithms correctly.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Obtain $3t+4=10$ (or equivalent) and hence $t=2$ (only)",
+              "guidance_markdown": "May be implied by only one (correct) value for $a$.",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Substitute to obtain $a=\\backslash frac\\{1\\}\\{2\\}$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Substitute to obtain $m=12$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 10,
+              "content_markdown": "State increasing, with reference to positive gradient",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                15
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            10,
+            11
+          ]
+        },
+        {
+          "parts": [
+            {
+              "marks": 3,
+              "label_path": [
+                "a"
+              ],
+              "sort_order": 1,
+              "prompt_markdown": "Prove that $$\\sin^2 2x + 4\\cos^2 x\\cos 2x \\equiv 4\\cos^4 x$$.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 2,
+              "label_path": [
+                "b"
+              ],
+              "sort_order": 2,
+              "prompt_markdown": "Find the set of possible values of the constant $k$ for which the equation\n\n$$\\sin^2 2x + 4\\cos^2 x\\cos 2x + 5 = k$$\n\nhas no real solutions.",
+              "source_page_numbers": [
+                12
+              ]
+            },
+            {
+              "marks": 4,
+              "label_path": [
+                "c"
+              ],
+              "sort_order": 3,
+              "prompt_markdown": "Find the exact value of $$\\int_{-\\frac{1}{2}\\pi}^{\\frac{1}{2}\\pi} \\sqrt{\\sin^2 t + 4 \\cos^2 \\left(\\frac{1}{2}t\\right) \\cos t} \\, dt$$.",
+              "source_page_numbers": [
+                13
+              ]
+            }
+          ],
+          "assets": [],
+          "metadata": {
+            "skills": [
+              "Prove an identity using trigonometric formulae",
+              "Determine the range of a trigonometric expression to find k with no real solutions",
+              "Evaluate a definite integral involving trigonometric functions and radicals using symmetry/substitution"
+            ],
+            "methods": [
+              "Use double-angle and Pythagorean identities",
+              "Rewrite expression in terms of a single trig function and bound it",
+              "Simplify the integrand and use symmetry to evaluate the definite integral"
+            ],
+            "subtopics": [],
+            "main_topic": "Trigonometry",
+            "metadata_model": "gpt-5.4-nano",
+            "question_style": "mixed",
+            "diagram_required": false,
+            "difficulty_level": 4,
+            "taxonomy_version": "cambridge-maths-v1",
+            "calculator_required": null,
+            "classification_confidence": 0.8
+          },
+          "total_marks": 9,
+          "stem_markdown": "",
+          "question_number": 7,
+          "mark_scheme_items": [
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 1,
+              "content_markdown": "Use correct identities to express in terms of $$\\sin x$$ and $$\\cos x$$",
+              "guidance_markdown": "Allow for $$2\\sin^2 x\\cos^2 x + 4\\cos^2 x(\\cos^2 x - \\sin^2 x)$$, OE.",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 2,
+              "content_markdown": "Obtain $$4\\sin^2 x\\cos^2 x + 4\\cos^2 x(\\cos^2 x - \\sin^2 x)$$",
+              "guidance_markdown": "OE",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "a"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 3,
+              "content_markdown": "Confirm $$4\\cos^4 x$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 4,
+              "content_markdown": "Use identity from part (a) to obtain $$k < 5$$ or $$k > 9$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "B1",
+              "part_path": [
+                "b"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 5,
+              "content_markdown": "Obtain $$k < 5$$, $$k > 9$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1*",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 6,
+              "content_markdown": "State or imply integrand is $$2\\cos^2 \\frac{1}{2}t$$ or $$\\sqrt{4\\cos^4 \\frac{t}{2}}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "M1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 7,
+              "content_markdown": "Use double-angle identity to express in terms of $$\\cos t$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": false,
+              "sequence_number": 8,
+              "content_markdown": "Obtain $$1 + \\cos t$$ and integrate to obtain $$t + \\sin t$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            },
+            {
+              "mark_code": "A1",
+              "part_path": [
+                "c"
+              ],
+              "is_final_answer": true,
+              "sequence_number": 9,
+              "content_markdown": "Use limits to obtain $$\\frac{2}{3}\\pi + \\sqrt{3}$$",
+              "guidance_markdown": "",
+              "source_page_numbers": [
+                16
+              ],
+              "is_alternative_method": false
+            }
+          ],
+          "source_page_numbers": [
+            12,
+            13
+          ]
+        }
+      ]
+    },
+    "ready_for_approval": false,
+    "extraction_response_id": [
+      "resp_08718dcd32c9e4f3016a79d9c5eb9c8199ba549ebc18a69ef7",
+      "resp_05122ebb8120b7cc016a79da2051bc819889403a34345b918c",
+      "resp_02ddf4b9d6b3cfbb016a79db16bd60819a9ef8b96f670d44f5",
+      "resp_067e5549b5822e47016a79db9f8a288199ab72c42c8b953a5e"
+    ],
+    "manual_review_required": true,
+    "independent_paid_verifier_used": false
+  }
+}

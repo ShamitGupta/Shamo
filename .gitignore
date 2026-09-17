@@ -1,0 +1,59 @@
+# Secrets. Never commit these -- the Supabase service_role key and the OpenAI
+# key both grant full access, and git history is forever even after a delete.
+.env
+.env.*
+!.env.example
+!*.env.example
+!.env.*.example
+
+# The deployed backend's secrets file. Does NOT match the .env patterns above
+# because of the leading "api", which is exactly the kind of near-miss that
+# gets a service_role key committed.
+deploy/api.env
+
+# Agent operating guides. Deliberately local-only: they carry the detailed
+# extraction methodology, prompts and operational state.
+CLAUDE.md
+AGENTS.md
+
+# Local audit artifacts and downloaded source PDFs. ~25 MB of scratch that is
+# reproducible and is not product code.
+tmp/
+
+# Vendored third-party skill documentation, installed from skills-lock.json.
+# Same relationship as node_modules to package-lock.json: commit the lockfile,
+# not the contents.
+.agents/skills/
+.claude/skills/
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Live-workflow backups written by sync_live_workflow.mjs before each write.
+# Recovery artifacts, not source.
+workflows/n8n/harness/backup_*.json
+
+# Archived WordPress site content. The SQL dump carries user accounts,
+# password hashes and commenter email addresses, and wp-content/uploads is
+# typically hundreds of MB of media -- neither belongs in this repository.
+# The compose file and README in that directory ARE tracked.
+archive/wordpress-local/restore.sql
+archive/wordpress-local/wp-content/
+archive/wordpress-local/*.zip
+archive/wordpress-local/*.tar.gz
+archive/wordpress-local/wp-config.php

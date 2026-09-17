@@ -1,0 +1,28 @@
+# Build context is the repository root (see deploy/Dockerfile). Only
+# backend_v2/app and backend_v2/requirements.txt are actually needed, so
+# everything else is excluded -- this keeps the context from shipping the
+# ~180MB of node_modules, fixtures and PDFs across the wire on every build.
+
+.git
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+
+# Secrets must never enter an image layer.
+**/.env
+**/.env.*
+!**/.env.example
+
+frontend/
+workflows/
+database/
+backend/
+tmp/
+docs/
+*.md
+!backend_v2/README.md
+
+.claude
+.agents
+.mcp.json

@@ -1,0 +1,599 @@
+{
+  "name": "Shamo Budget v1 - Test 2 Six Paper Controller",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Budget-controlled Test 2 pilot\nThis controller selects at most six complete paper pairs. It runs them sequentially, pauses for 10 minutes after paper 5, and stops at a $3 batch / $15 campaign OpenAI ceiling.\n\nAfter importing both workflows, select **Shamo Budget v1 - Stage One Maths Paper** inside **Run One Paper Sub-workflow**.",
+        "height": 340,
+        "width": 600,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        -520
+      ],
+      "id": "9bc68641-eb54-a0a0-d3d9-fefa6417b6b0",
+      "name": "First six only"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -820,
+        0
+      ],
+      "id": "bf4ee4bc-26d0-fb71-f764-db40b1ecd3e0",
+      "name": "Run Guarded Batch Manually"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const config = {\n  supabase_url: 'https://YOUR_PROJECT_REF.supabase.co',\n  google_document_id: '14QHYH5T22qyGQJH-6SLW00q9yTuDhGwe1mEM7liaEbY',\n  google_sheet_name: 'Test 2',\n  qualification: 'a_level',\n  syllabus_code: '9709',\n  subject: 'Mathematics',\n  campaign_key: 'a-level-9709-test2-pilot-v1',\n  batch_number: 1,\n  max_papers_per_run: 6,\n  pause_after_papers: 5,\n  pause_minutes: 10,\n  // Lowered from 3.00 on 9 August 2026, and the reason is not caution for its\n  // own sake. The caps are enforced against OUR ledger, and the ledger is\n  // measurably low: on 9 August it recorded USD 0.065450 against a provider\n  // dashboard reading of USD 0.17 for the same day, a factor of 2.6. Until that\n  // is reconciled, a nominal $3 cap permits roughly $7.80 of real spend.\n  //\n  // At 1.00 the worst case is about $2.60 real per batch, which is inside the\n  // original intent. Restore 3.00 once the ledger and the dashboard agree.\n  batch_budget_limit_usd: 1.00,\n  campaign_budget_limit_usd: 15.00,\n  openai_reservation_usd: 0.25,\n  database_safety_megabytes: 350,\n  ocr_model: 'mistral-ocr-latest',\n  openai_model: 'gpt-5.4-nano',\n  openai_prices_per_million: {\n    input: 0.20,\n    cached_input: 0.02,\n    output: 1.25,\n  },\n  storage_bucket: 'past-paper-assets',\n};\nif (config.supabase_url.includes('YOUR_PROJECT_REF')) {\n  throw new Error('Replace YOUR_PROJECT_REF before running this workflow.');\n}\nif (config.max_papers_per_run > 6) {\n  throw new Error('Safety stop: max_papers_per_run cannot exceed 6.');\n}\nif (config.batch_budget_limit_usd > 3) {\n  throw new Error('Safety stop: the first-six batch budget cannot exceed $3.');\n}\nif (config.campaign_budget_limit_usd > 15) {\n  throw new Error('Safety stop: the Test 2 pilot campaign cannot exceed $15.');\n}\nreturn [{ json: config }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -580,
+        0
+      ],
+      "id": "17678940-f0fb-2307-183a-3ea872b1ea4a",
+      "name": "Budget Configuration"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.supabase_url + '/rest/v1/shamo_database_usage?select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -340,
+        0
+      ],
+      "id": "d0497c63-8590-8d35-e870-e53836388b09",
+      "name": "Read Database Usage",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst usage = Array.isArray(response) ? response[0] : response;\nconst config = $('Budget Configuration').first().json;\nconst megabytes = Number(usage?.database_megabytes);\nif (!Number.isFinite(megabytes)) {\n  throw new Error('Could not read shamo_database_usage from Supabase.');\n}\nif (megabytes >= Number(config.database_safety_megabytes)) {\n  throw new Error(\n    'Database safety stop: ' + megabytes + ' MB is at or above the ' +\n    config.database_safety_megabytes + ' MB bulk-ingestion limit.'\n  );\n}\nreturn [{ json: { ...config, database_megabytes_before: megabytes } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        0
+      ],
+      "id": "3100e7af-4e0e-fa2b-1e6a-e3301f74c8a0",
+      "name": "Check Database Free-Tier Safety"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "14QHYH5T22qyGQJH-6SLW00q9yTuDhGwe1mEM7liaEbY",
+          "mode": "list",
+          "cachedResultName": "Past paper data - Alevel Maths (final)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14QHYH5T22qyGQJH-6SLW00q9yTuDhGwe1mEM7liaEbY/edit"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Test 2",
+          "mode": "list",
+          "cachedResultName": "Test 2"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        140,
+        0
+      ],
+      "id": "e5069616-7023-b80a-4b9e-d9640a47226e",
+      "name": "Get Test 2 Rows",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xzcR7RoAo3n5rpoV",
+          "name": "Google Sheets account"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const rows = $input.all().map((item) => item.json).filter(\n  (row) => row['Paper Link'] || row['Document type']\n);\nconst config = $('Check Database Free-Tier Safety').first().json;\nconst normalizeDocumentType = (value) => {\n  const normalized = String(value || '').trim().toLowerCase();\n  if (normalized === 'question paper') return 'question_paper';\n  if (normalized === 'mark scheme') return 'mark_scheme';\n  throw new Error('Unexpected Document type: ' + value);\n};\nconst sessionMap = {\n  'February/March': 'feb_march',\n  'May/June': 'may_june',\n  'October/November': 'oct_nov',\n};\nconst parsed = rows.map((row, rowIndex) => {\n  const url = String(row['Paper Link'] || '').trim();\n  const match = url.match(/\\/(\\d{4})_([msw])(\\d{2})_(qp|ms)_(\\d{2})\\.pdf$/i);\n  if (!match) throw new Error('Could not parse paper identity from row ' + (rowIndex + 2) + ': ' + url);\n  const year = 2000 + Number(match[3]);\n  const sessionFromUrl = { m: 'feb_march', s: 'may_june', w: 'oct_nov' }[\n    match[2].toLowerCase()\n  ];\n  const documentType = normalizeDocumentType(row['Document type']);\n  const urlDocumentType = match[4].toLowerCase() === 'qp'\n    ? 'question_paper'\n    : 'mark_scheme';\n  if (documentType !== urlDocumentType) {\n    throw new Error('Document type does not match URL on row ' + (rowIndex + 2) + '.');\n  }\n  if (String(row.Grade || '').trim() !== 'A-levels') {\n    throw new Error('Test 2 row ' + (rowIndex + 2) + ' is not A-levels.');\n  }\n  if (String(row.Subject || '').trim() !== config.subject) {\n    throw new Error('Subject mismatch on row ' + (rowIndex + 2) + '.');\n  }\n  if (Number(row.Year) !== year) {\n    throw new Error('Year mismatch on row ' + (rowIndex + 2) + '.');\n  }\n  if (sessionMap[String(row['Exam session'] || '').trim()] !== sessionFromUrl) {\n    throw new Error('Exam-session mismatch on row ' + (rowIndex + 2) + '.');\n  }\n  if (String(row['Paper Variant'] || '').trim() !== match[5]) {\n    throw new Error('Paper-variant mismatch on row ' + (rowIndex + 2) + '.');\n  }\n  return {\n    qualification: config.qualification,\n    syllabus_code: match[1],\n    subject: config.subject,\n    year,\n    exam_session: sessionFromUrl,\n    paper_variant: match[5],\n    document_type: documentType,\n    source_url: url,\n  };\n});\nconst grouped = new Map();\nfor (const row of parsed) {\n  const key = [\n    row.qualification,\n    row.syllabus_code,\n    row.year,\n    row.exam_session,\n    row.paper_variant,\n  ].join(':');\n  if (!grouped.has(key)) {\n    grouped.set(key, {\n      qualification: row.qualification,\n      syllabus_code: row.syllabus_code,\n      subject: row.subject,\n      year: row.year,\n      exam_session: row.exam_session,\n      paper_variant: row.paper_variant,\n      documents: [],\n    });\n  }\n  grouped.get(key).documents.push({\n    document_type: row.document_type,\n    source_url: row.source_url,\n  });\n}\nconst sessionOrder = { feb_march: 0, may_june: 1, oct_nov: 2 };\nconst pairs = [...grouped.values()].sort((a, b) =>\n  a.paper_variant.localeCompare(b.paper_variant) ||\n  a.year - b.year ||\n  sessionOrder[a.exam_session] - sessionOrder[b.exam_session]\n);\nfor (const pair of pairs) {\n  if (pair.documents.length !== 2) {\n    throw new Error(\n      'Paper ' + pair.year + '/' + pair.exam_session + '/' + pair.paper_variant +\n      ' does not contain exactly two rows.'\n    );\n  }\n  const types = new Set(pair.documents.map((document) => document.document_type));\n  if (!types.has('question_paper') || !types.has('mark_scheme')) {\n    throw new Error('A paper pair is missing its question paper or mark scheme.');\n  }\n}\n// Selection must not be hardwired to the calibration set.\n//\n// This previously asserted exactly 24 pairs and exactly 4 per paper type, and\n// indexed modulo 4. Those three assumptions meant a 25th paper in the Google\n// Sheet made the controller THROW -- the pipeline could not ingest anything\n// beyond the original calibration manifest, which is a hard blocker on scaling\n// and was invisible because the sheet happened to hold exactly 24.\n//\n// The generalisation keeps every property that mattered -- deterministic,\n// idempotent, balanced across paper types -- while accepting any manifest size.\n// Build one stable global ordering by taking the first paper of each type, then\n// the second of each type, and so on, then hand this batch its slice.\nif (!pairs.length) {\n  throw new Error('The manifest contains no complete question-paper/mark-scheme pairs.');\n}\nconst byPaperType = new Map();\nfor (const pair of pairs) {\n  const paperType = String(pair.paper_variant).charAt(0);\n  if (!byPaperType.has(paperType)) byPaperType.set(paperType, []);\n  byPaperType.get(paperType).push(pair);\n}\nconst paperTypes = Array.from(byPaperType.keys()).sort();\nfor (const paperType of paperTypes) {\n  byPaperType.get(paperType).sort((a, b) =>\n    a.year - b.year ||\n    sessionOrder[a.exam_session] - sessionOrder[b.exam_session] ||\n    a.paper_variant.localeCompare(b.paper_variant)\n  );\n}\nconst deepest = Math.max.apply(null, paperTypes.map(function (t) { return byPaperType.get(t).length; }));\nconst ordered = [];\nfor (let depth = 0; depth < deepest; depth += 1) {\n  for (const paperType of paperTypes) {\n    const pair = byPaperType.get(paperType)[depth];\n    if (pair) ordered.push(pair);\n  }\n}\nconst batchSize = Math.max(1, Number(config.max_papers_per_run) || 6);\nconst batchIndex = Math.max(1, Number(config.batch_number)) - 1;\nconst selected = ordered.slice(batchIndex * batchSize, (batchIndex + 1) * batchSize);\nif (!selected.length) {\n  throw new Error(\n    'Batch number ' + config.batch_number + ' is past the end of the manifest: ' +\n    ordered.length + ' complete pairs across ' + paperTypes.length + ' paper types, ' +\n    'batch size ' + batchSize + '.'\n  );\n}\nconst batchKey = config.campaign_key + '-batch-' +\n  String(config.batch_number).padStart(2, '0');\nreturn [{\n  json: {\n    config,\n    batch_key: batchKey,\n    pairs: selected,\n    batch_body: {\n      batch_key: batchKey,\n      campaign_key: config.campaign_key,\n      source_sheet: config.google_sheet_name,\n      qualification: config.qualification,\n      syllabus_code: config.syllabus_code,\n      subject: config.subject,\n      max_papers: config.max_papers_per_run,\n      planned_papers: selected.length,\n      batch_budget_limit_usd: config.batch_budget_limit_usd,\n      campaign_budget_limit_usd: config.campaign_budget_limit_usd,\n      status: 'planned',\n    },\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        380,
+        0
+      ],
+      "id": "322b64b6-aeea-2da9-11f7-635d394c60c4",
+      "name": "Pair and Select Test 2 Papers"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_batches?on_conflict=batch_key&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=representation"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.batch_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        620,
+        0
+      ],
+      "id": "eacbc041-79bd-3781-b9f9-87d8950d715d",
+      "name": "Create or Reuse Ingestion Batch",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst batch = Array.isArray(response) ? response[0] : response;\nconst state = $('Pair and Select Test 2 Papers').first().json;\nif (!batch?.id) throw new Error('Supabase did not return the ingestion batch.');\nreturn state.pairs.map((pair, index) => ({\n  json: {\n    config: state.config,\n    batch,\n    pair,\n    batch_position: index + 1,\n    batch_size: state.pairs.length,\n  },\n  pairedItem: { item: index },\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        860,
+        0
+      ],
+      "id": "1cccd8f3-1fb6-450c-2d17-6889ca7d5a89",
+      "name": "Expand Selected Batch"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "78e3733d-b11b-a9b8-2222-be0f72d89ffc",
+      "name": "Loop Through Papers"
+    },
+    {
+      "parameters": {
+        "source": "database",
+        "workflowId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list"
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        1340,
+        120
+      ],
+      "id": "d285e45f-f8b7-2f7e-8596-59cb644062a9",
+      "name": "Run One Paper Sub-workflow"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3b31c5-c5b1-7833-1c3f-3090d6505aa9",
+              "leftValue": "={{ $json.batch_position === $json.config.pause_after_papers && $json.batch_size > $json.config.pause_after_papers }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1580,
+        120
+      ],
+      "id": "4a41d060-710d-485b-72e0-45d23cecbd0b",
+      "name": "Pause After Paper Five"
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": "={{ $json.config.pause_minutes }}",
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1820,
+        20
+      ],
+      "id": "b6ae9cb5-6393-d229-e94a-9c0189567311",
+      "name": "Ten Minute OCR Pause",
+      "webhookId": "99c3705a-9490-681c-f3fb-79ff02711564"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const results = $input.all().map((item) => item.json);\nif (!results.length) throw new Error('The batch produced no paper results.');\nconst first = results[0];\nconst failed = results.filter((result) => result.success !== true);\nconst updateBody = {\n  status: failed.length ? 'failed' : 'awaiting_review',\n  finished_at: new Date().toISOString(),\n};\nreturn [{\n  json: {\n    config: first.config,\n    batch_id: first.batch_id,\n    batch_key: first.batch_key || first.config.campaign_key,\n    results,\n    update_body: updateBody,\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        -200
+      ],
+      "id": "ac21d3eb-0d53-5600-b3d3-40a32ee9435d",
+      "name": "Prepare Batch Completion"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ $json.config.supabase_url + '/rest/v1/shamo_ingestion_batches?id=eq.' + $json.batch_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Prefer",
+              "value": "return=minimal"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 600000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.update_body }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1580,
+        -200
+      ],
+      "id": "ca7b45aa-9397-9ee4-0fc4-51bb419ffd69",
+      "name": "Mark Batch Awaiting Review",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $('Prepare Batch Completion').first().json.config.supabase_url + '/rest/v1/shamo_api_budget_overview?batch_id=eq.' + $('Prepare Batch Completion').first().json.batch_id + '&select=*' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1820,
+        -200
+      ],
+      "id": "e4ec4533-3094-642d-18ec-f69eebde3e33",
+      "name": "Read Final Batch Budget",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ZOrMcplmMcgPYpOL",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $input.first().json;\nconst budget = Array.isArray(response) ? response[0] : response;\nconst state = $('Prepare Batch Completion').first().json;\nconst processed = state.results.filter((result) => !result.skipped_existing);\nconst skipped = state.results.filter((result) => result.skipped_existing);\nreturn [{\n  json: {\n    success: true,\n    message: 'The guarded batch finished and all new papers are waiting for manual review.',\n    batch_id: state.batch_id,\n    paper_results: state.results,\n    summary: {\n      selected_papers: state.results.length,\n      newly_processed: processed.length,\n      skipped_existing: skipped.length,\n      ready_for_approval: state.results.filter((result) => result.ready_for_approval).length,\n      needs_correction: state.results.filter((result) => !result.ready_for_approval).length,\n      actual_openai_cost_usd: Number(budget?.actual_usd || 0),\n      reserved_openai_usd: Number(budget?.reserved_usd || 0),\n      batch_budget_limit_usd: Number(budget?.batch_budget_limit_usd || 0),\n      campaign_committed_usd: Number(budget?.campaign_committed_usd || 0),\n      campaign_budget_limit_usd: Number(budget?.campaign_budget_limit_usd || 0),\n    },\n    next_step: 'Review every paper in shamo_ingestion_review_queue. Do not run another batch or publish until quality and actual cost are checked.',\n  },\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2060,
+        -200
+      ],
+      "id": "e6b78362-587f-13fb-8667-0f0031aca2b6",
+      "name": "Guarded Batch Result"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Run Guarded Batch Manually": {
+      "main": [
+        [
+          {
+            "node": "Budget Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Budget Configuration": {
+      "main": [
+        [
+          {
+            "node": "Read Database Usage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Database Usage": {
+      "main": [
+        [
+          {
+            "node": "Check Database Free-Tier Safety",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Database Free-Tier Safety": {
+      "main": [
+        [
+          {
+            "node": "Get Test 2 Rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Test 2 Rows": {
+      "main": [
+        [
+          {
+            "node": "Pair and Select Test 2 Papers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pair and Select Test 2 Papers": {
+      "main": [
+        [
+          {
+            "node": "Create or Reuse Ingestion Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create or Reuse Ingestion Batch": {
+      "main": [
+        [
+          {
+            "node": "Expand Selected Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expand Selected Batch": {
+      "main": [
+        [
+          {
+            "node": "Loop Through Papers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Through Papers": {
+      "main": [
+        [
+          {
+            "node": "Prepare Batch Completion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Run One Paper Sub-workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run One Paper Sub-workflow": {
+      "main": [
+        [
+          {
+            "node": "Pause After Paper Five",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pause After Paper Five": {
+      "main": [
+        [
+          {
+            "node": "Ten Minute OCR Pause",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Through Papers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ten Minute OCR Pause": {
+      "main": [
+        [
+          {
+            "node": "Loop Through Papers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Batch Completion": {
+      "main": [
+        [
+          {
+            "node": "Mark Batch Awaiting Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Batch Awaiting Review": {
+      "main": [
+        [
+          {
+            "node": "Read Final Batch Budget",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Final Batch Budget": {
+      "main": [
+        [
+          {
+            "node": "Guarded Batch Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all"
+  },
+  "versionId": "60e1f3e6-5535-c7f1-70fa-6760ff80fe70",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
