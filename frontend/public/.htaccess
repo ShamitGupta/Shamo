@@ -1,0 +1,50 @@
+# SPA fallback for the React app served from https://shamoclasses.com/chatbot
+#
+# WHY THIS FILE EXISTS
+# The site root is WordPress, whose own .htaccess ends with a catch-all that
+# sends anything which is not a real file or directory to index.php. A client
+# -side route like /chatbot/dashboard is not a real file, so without the rules
+# below WordPress answers it -- and the visitor gets the WordPress 404 page
+# every time they refresh or open a link directly. The app itself works on a
+# first load and appears to break only on reload, which makes this confusing
+# to diagnose after the fact.
+#
+# Apache does not inherit a parent's mod_rewrite rules into a subdirectory, so
+# turning RewriteEngine on here replaces WordPress's rules for /chatbot only.
+# WordPress is unaffected.
+#
+# RewriteBase MUST match `base` in vite.config.js (VITE_BASE_PATH at build
+# time). If the app ever moves to the domain root, change both together.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /chatbot/
+
+    # MultiViews lets Apache answer /chatbot/teacher with a file called
+    # teacher.something by guessing. That guess would pre-empt the SPA.
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    # Anything that really exists -- the bundle, CSS, favicon -- is served as
+    # itself. Listed first so assets never fall through to the shell.
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Everything else is a React Router path. Hand over the SPA shell and let
+    # the browser resolve it.
+    RewriteRule . /chatbot/index.html [L]
+</IfModule>
+
+# index.html must never be cached, or a republish leaves browsers asking for
+# hashed asset filenames that no longer exist. Files under assets/ are content
+# -hashed by Vite and safe to cache forever.
+<IfModule mod_headers.c>
+    <FilesMatch "index\.html$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+    <FilesMatch "\.(js|css|woff2|svg|png|jpg|webp)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
