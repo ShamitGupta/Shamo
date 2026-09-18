@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getCurrentUser, claimStaffRole, ApiError } from '../api/tutorApi.js';
 import { isSupabaseConfigured, supabase } from '../api/supabaseClient.js';
 import { AuthContext } from './authContext.js';
+import { APP_BASE_URL, appUrl } from '../appBase.js';
 
 function userMessage(error) {
     if (error instanceof ApiError) return error.message;
@@ -88,7 +89,7 @@ export function AuthProvider({ children }) {
                 email,
                 password,
                 options: {
-                    emailRedirectTo: window.location.origin,
+                    emailRedirectTo: APP_BASE_URL,
                     data: {
                         display_name: name,
                         grade: grade || null,
@@ -160,9 +161,12 @@ export function AuthProvider({ children }) {
         try {
             // Guarded on the type, not just on truthiness: this is also passed
             // straight to onClick in places, and a click event is truthy.
+            // appUrl keeps the deployment's base path. Resolving against the
+            // bare origin would send a /teacher sign-in back to the site root
+            // rather than to the app when it is served from a subpath.
             const redirectTo = typeof returnPath === 'string' && returnPath
-                ? new URL(returnPath, window.location.origin).toString()
-                : window.location.origin;
+                ? appUrl(returnPath)
+                : APP_BASE_URL;
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: { redirectTo },

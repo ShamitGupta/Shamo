@@ -1,3 +1,6 @@
+/* global process */
+// Vite config runs in Node, where `process` is a global. The lint config
+// targets browser sources, so it needs telling for this file alone.
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
