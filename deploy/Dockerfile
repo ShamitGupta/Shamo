@@ -62,11 +62,18 @@ USER shamo
 EXPOSE 8000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=45s --retries=3 \
-    CMD curl -fsS http://127.0.0.1:8000/health || exit 1
+    CMD curl -fsS "http://127.0.0.1:${PORT:-8000}/health" || exit 1
 
 # Two workers for a 2-vCPU box. /visualize is a sync `def`, so FastAPI already
 # runs it in a threadpool and a 60s Manim render cannot block the event loop --
 # the worker count is about CPU parallelism, not request concurrency. Each
-# worker holds its own Manim import (~300MB resident), so do not raise this
-# without raising the instance size to match.
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+# worker holds its own Manim import (~300MB resident), so do not raise
+# WEB_CONCURRENCY without raising the instance size to match.
+#
+# PORT and WEB_CONCURRENCY are read from the environment so one image serves
+# both deployment targets. docker-compose sets neither and gets 8000/2, which
+# is what the Caddyfile proxies to. A PaaS that assigns its own port (Railway
+# injects PORT) is honoured without a second Dockerfile or an overridden start
+# command. Shell form is required for the expansion, and `exec` keeps uvicorn
+# as PID 1 so it still receives SIGTERM directly and shuts down gracefully.
+CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port \"${PORT:-8000}\" --workers \"${WEB_CONCURRENCY:-2}\""]

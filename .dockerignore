@@ -17,7 +17,11 @@
 frontend/
 workflows/
 database/
-backend/
+# Capital B: the tracked directory is "Backend/". A lowercase pattern matches
+# it on Windows/macOS but NOT in a Linux build, so the superseded prototype
+# was reaching the build context on exactly the builds that matter.
+Backend/
+archive/
 tmp/
 docs/
 *.md
