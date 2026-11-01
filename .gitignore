@@ -57,3 +57,6 @@ archive/wordpress-local/wp-content/
 archive/wordpress-local/*.zip
 archive/wordpress-local/*.tar.gz
 archive/wordpress-local/wp-config.php
+
+# Deck assets (screenshots, founder photo) -- not source
+deck/assets/
