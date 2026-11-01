@@ -1,0 +1,9 @@
+# Build context for deploy/web.Dockerfile.
+node_modules
+dist
+
+# Vite reads .env files during a build, and these point at localhost or at the
+# retired Railway API. The image takes its values from build arguments instead,
+# so a stray local file can never be baked into a deployed bundle.
+.env
+.env.*
