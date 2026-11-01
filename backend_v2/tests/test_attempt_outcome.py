@@ -23,6 +23,7 @@ os.environ.setdefault("OPENAI_API_KEY", "test-key")
 
 from app.attempt_outcome import (  # noqa: E402
     build_outcome,
+    collect_mark_code_counts,
     collect_mark_codes,
     _expand_code,
     _marks_available,
@@ -272,6 +273,126 @@ def test_codes_are_normalized_and_deduplicated():
     )
     assert outcome is not None
     assert outcome.earned_codes == ["M1"]
+
+
+# 9709/13 Oct/Nov 2025 Q9, as published: the main method's eight rows and the
+# start of its alternative. A live Check reply credited M1, A1 and *M1 for 3/8,
+# and the record stored [M1, A1] -- the *M1 collapsed into the M1 before it.
+Q9_CONTEXT = QuestionContext(
+    paper=CONTEXT.paper,
+    question={
+        "id": "bf9170be-f363-4650-abc4-5b4c0fc22d12",
+        "question_number": 9,
+        "total_marks": 8,
+        "stem_markdown": "Find the exact volume of the solid formed.",
+        "root_mark_scheme": [
+            {"mark_code": "M1"},
+            {"mark_code": "A1"},
+            {"mark_code": "A1 FT"},
+            {"mark_code": "*M1"},
+            {"mark_code": "A1"},
+            {"mark_code": "A1"},
+            {"mark_code": "DM1"},
+            {"mark_code": "A1"},
+            {"mark_code": "M1", "is_alternative_method": True},
+            {"mark_code": "A1", "is_alternative_method": True},
+            {"mark_code": "*M1", "is_alternative_method": True},
+        ],
+        "parts": [],
+    },
+    documents=[],
+)
+
+
+def test_counts_follow_the_scheme_not_the_set_of_spellings():
+    counts = collect_mark_code_counts(Q9_CONTEXT)
+    # M1, *M1, and the M1 inside DM1.
+    assert counts["M1"] == 3
+    # Four A1 rows plus the A1 inside "A1 FT".
+    assert counts["A1"] == 5
+    assert counts["DM1"] == 1
+
+
+def test_alternative_rows_do_not_add_to_the_main_method():
+    """A student follows one route. Summing both would let one attempt claim
+    the alternative's marks on top of the main method's."""
+    counts = collect_mark_code_counts(Q9_CONTEXT)
+    # The alternative's two M1-family rows are fewer than the main method's
+    # three, so the main count stands rather than becoming five.
+    assert counts["M1"] == 3
+
+
+def test_two_marks_in_one_row_count_twice():
+    context = QuestionContext(
+        paper=CONTEXT.paper,
+        question={"question_number": 1, "total_marks": 2, "root_mark_scheme": [{"mark_code": "B1 B1"}], "parts": []},
+        documents=[],
+    )
+    assert collect_mark_code_counts(context)["B1"] == 2
+
+
+def test_a_banded_code_is_one_award_not_several():
+    context = QuestionContext(
+        paper=CONTEXT.paper,
+        question={"question_number": 1, "total_marks": 2, "root_mark_scheme": [{"mark_code": "B2,1,0"}], "parts": []},
+        documents=[],
+    )
+    counts = collect_mark_code_counts(context)
+    assert counts["B2"] == 1 and counts["B1"] == 1
+
+
+def test_a_repeated_mark_is_kept_when_the_scheme_awards_it_twice():
+    """The live defect: *M1 normalizes to M1, and the old de-duplication
+    dropped it as a repeat of the first M1."""
+    outcome = build_outcome(
+        {"earned_codes": ["M1", "A1", "*M1"], "marks_earned": 3, "marks_available": 8, "confidence": 0.8},
+        known_codes=collect_mark_code_counts(Q9_CONTEXT),
+        marks_available=8,
+        model="m",
+    )
+    assert outcome is not None
+    assert outcome.earned_codes == ["M1", "A1", "M1"]
+
+
+def test_a_code_is_capped_at_what_the_scheme_awards():
+    outcome = build_outcome(
+        {"earned_codes": ["B1", "B1", "B1"], "marks_earned": 2, "confidence": 0.9},
+        known_codes={"B1": 2},
+        marks_available=5,
+        model="m",
+    )
+    assert outcome is not None
+    assert outcome.earned_codes == ["B1", "B1"]
+
+
+def test_one_a1_earned_and_another_missed_is_not_a_contradiction():
+    outcome = build_outcome(
+        {
+            "earned_codes": ["M1", "A1"],
+            "missed_codes": ["A1", "A1", "DM1"],
+            "marks_earned": 2,
+            "confidence": 0.9,
+        },
+        known_codes=collect_mark_code_counts(Q9_CONTEXT),
+        marks_available=8,
+        model="m",
+    )
+    assert outcome is not None
+    assert outcome.missed_codes == ["A1", "A1", "DM1"]
+
+
+def test_claiming_more_of_a_code_than_the_scheme_holds_is_still_rejected():
+    assert build_outcome(
+        {
+            "earned_codes": ["B1", "B1"],
+            "missed_codes": ["B1"],
+            "marks_earned": 2,
+            "confidence": 0.9,
+        },
+        known_codes={"B1": 2},
+        marks_available=5,
+        model="m",
+    ) is None
 
 
 def test_non_string_entries_do_not_crash_the_extractor():

@@ -37,6 +37,13 @@ results for reading):
     This is the safe direction and it only arises when the tutor itself names a
     non-existent code -- but it does mean one bad code costs the whole record,
     so do not read a missing outcome as proof the student was not assessed.
+
+Re-measured 1 November 2026, after codes became counted rather than
+de-duplicated: the unknown-code reply above now records M1 earned and A1
+missed (confidence 0.55) instead of nothing. On 9709/13 Oct/Nov 2025 Q9, a
+reply crediting M1, A1 and *M1 records all three (it used to store [M1, A1]),
+and a reply that earned one A1 and missed later ones is kept rather than
+rejected as a contradiction. Two runs each, identical results.
 """
 
 from __future__ import annotations
@@ -44,6 +51,8 @@ from __future__ import annotations
 import json
 import logging
 import re
+from collections import Counter
+from collections.abc import Mapping
 from typing import Any
 
 from openai import OpenAI
@@ -73,33 +82,44 @@ _BANDED_PATTERN = re.compile(r"^([A-Z]{1,3})((?:\d+,)+\d+)$")
 _ATOM_PATTERN = re.compile(r"([A-Z]{1,3})(\d+)\s*(FT|CAO|OE|WWW)?")
 
 
-def _expand_code(raw: Any) -> set[str]:
-    """Every atomic code a tutor might reasonably cite for one mark-scheme row.
+def _code_counts(raw: Any) -> Counter[str]:
+    """Every atomic code a tutor might reasonably cite for one mark-scheme row,
+    with how many marks of that code the row awards.
 
     Deliberately permissive. The job of this whitelist is to stop a FABRICATED
     code being stored, not to police how a tutor spells a real one -- and being
     too strict silently throws away correct records, which is the worse failure
     and the one that actually happened.
+
+    Counts matter because codes repeat: "B1 B1" is two marks, and a scheme with
+    three A1 rows can award A1 three times. A set here once collapsed those, so a
+    reply crediting M1 and *M1 was stored as a single M1.
     """
     text = str(raw or "").upper().replace("*", " ").strip()
     if not text:
-        return set()
+        return Counter()
 
     banded = _BANDED_PATTERN.match(text.replace(" ", ""))
     if banded:
+        # One award of 2, 1 or 0 -- never several marks.
         letter, numbers = banded.group(1), banded.group(2)
-        return {f"{letter}{number}" for number in numbers.split(",")}
+        return Counter({f"{letter}{number}": 1 for number in numbers.split(",")})
 
-    codes: set[str] = set()
+    counts: Counter[str] = Counter()
     for letter, number, suffix in _ATOM_PATTERN.findall(text):
         base = f"{letter}{number}"
-        codes.add(base)
+        counts[base] += 1
         if suffix:
-            codes.add(f"{base}{suffix}")
+            counts[f"{base}{suffix}"] += 1
         # A dependent mark may be cited either way round ("DM1" or "M1").
         if len(letter) > 1 and letter.startswith("D"):
-            codes.add(f"{letter[1:]}{number}")
-    return codes
+            counts[f"{letter[1:]}{number}"] += 1
+    return counts
+
+
+def _expand_code(raw: Any) -> set[str]:
+    """The spellings `_code_counts` accepts for one row, without the counts."""
+    return set(_code_counts(raw))
 
 
 def normalize_code(raw: str) -> str:
@@ -120,6 +140,9 @@ Return JSON with exactly these keys:
   "confidence":      0.0-1.0, how clearly the reply stated this
 
 Rules:
+- List a code once for EACH mark it stands for. If the tutor credited A1 twice,
+  "earned_codes" contains "A1" twice; the mark scheme list below shows how many
+  times each code can be awarded. Never list one mark twice under two spellings.
 - Use only mark codes that appear in the mark scheme shown below, spelled
   exactly as they appear there. Never substitute a similar-looking code from
   that list for one the tutor actually said -- reporting "M1" when the tutor
@@ -165,7 +188,7 @@ class AttemptOutcomeExtractor:
         number would be worse than a missing one -- it would quietly distort a
         student's weak-topic ranking with no way to tell.
         """
-        known_codes = collect_mark_codes(context)
+        known_codes = collect_mark_code_counts(context)
         if not known_codes:
             # Nothing to validate against. A question whose mark scheme carries
             # no codes at all cannot produce a trustworthy record.
@@ -188,7 +211,8 @@ class AttemptOutcomeExtractor:
                     {
                         "role": "user",
                         "content": (
-                            f"MARK SCHEME CODES FOR THIS QUESTION\n{', '.join(sorted(known_codes))}\n\n"
+                            f"MARK SCHEME CODES FOR THIS QUESTION (code x times it can be awarded)\n"
+                            f"{', '.join(f'{code} x{count}' for code, count in sorted(known_codes.items()))}\n\n"
                             f"WHOLE QUESTION TOTAL: {default_total}\n\n"
                             f"THE STUDENT'S ATTEMPT\n{attempt}\n\n"
                             f"THE TUTOR'S REPLY\n{transcript}"
@@ -211,19 +235,33 @@ class AttemptOutcomeExtractor:
         )
 
 
-def collect_mark_codes(context: QuestionContext) -> set[str]:
-    """Every mark code this question's mark scheme actually contains.
+def collect_mark_code_counts(context: QuestionContext) -> Counter[str]:
+    """Every mark code this question's mark scheme contains, and how many times
+    a single attempt could be awarded it.
 
     This is the whitelist the model's answer is filtered against, so it is built
     from the retrieved source rather than from anything the model supplies.
+
+    Alternative-method rows restate the main method's codes for a different
+    route, and a student follows one route, not both. So the main and the
+    alternative rows are counted separately and the larger count wins, rather
+    than adding them -- which would let one attempt claim both routes' marks.
     """
-    codes: set[str] = set()
     rows: list[dict[str, Any]] = list(context.question.get("root_mark_scheme") or [])
     for part in context.parts:
         rows.extend(part.get("mark_scheme_items") or [])
+    main: Counter[str] = Counter()
+    alternative: Counter[str] = Counter()
     for row in rows:
-        codes |= _expand_code((row or {}).get("mark_code"))
-    return codes
+        row = row or {}
+        target = alternative if row.get("is_alternative_method") else main
+        target.update(_code_counts(row.get("mark_code")))
+    return main | alternative
+
+
+def collect_mark_codes(context: QuestionContext) -> set[str]:
+    """Every mark code this question's mark scheme contains, ignoring counts."""
+    return set(collect_mark_code_counts(context))
 
 
 def plausible_denominators(context: QuestionContext) -> set[int]:
@@ -271,7 +309,7 @@ MIN_CONFIDENCE = 0.35
 def build_outcome(
     payload: dict[str, Any],
     *,
-    known_codes: set[str],
+    known_codes: Mapping[str, int] | set[str],
     marks_available: int | None,
     model: str,
     allowed_totals: set[int] | None = None,
@@ -280,14 +318,26 @@ def build_outcome(
 
     Separate from the model call so it can be tested against fixed payloads,
     including the ones that must be REJECTED.
-    """
-    earned = _clean_codes(payload.get("earned_codes"), known_codes)
-    missed = _clean_codes(payload.get("missed_codes"), known_codes)
 
-    # A code cannot be both earned and missed. That contradiction means the
-    # reply was not read cleanly, and a half-right record is worse than none.
-    if set(earned) & set(missed):
-        logger.info("Outcome rejected: a code was both earned and missed.")
+    `known_codes` maps each code to how many times it can be awarded. A plain
+    set means each code can be awarded once.
+    """
+    if isinstance(known_codes, Mapping):
+        limits: Mapping[str, int] = known_codes
+    else:
+        limits = {code: 1 for code in known_codes}
+
+    earned = _clean_codes(payload.get("earned_codes"), limits)
+    missed = _clean_codes(payload.get("missed_codes"), limits)
+
+    # A mark cannot be both earned and missed. A code appearing in both lists is
+    # fine when the scheme awards it more than once (the first A1 earned, a later
+    # A1 missed); claiming more of a code than the scheme holds is the
+    # contradiction, and it means the reply was not read cleanly. A half-right
+    # record is worse than none.
+    claimed = Counter(earned) + Counter(missed)
+    if any(count > limits[code] for code, count in claimed.items()):
+        logger.info("Outcome rejected: more of a code claimed than the scheme awards.")
         return None
 
     try:
@@ -346,10 +396,13 @@ def build_outcome(
     )
 
 
-def _clean_codes(raw: Any, known_codes: set[str]) -> list[str]:
-    """Keep only codes the mark scheme actually contains, in a stable order.
+def _clean_codes(raw: Any, limits: Mapping[str, int]) -> list[str]:
+    """Keep only codes the mark scheme actually contains, in a stable order,
+    and no more of each than the scheme can award.
 
     This is the line that stops a fabricated mark code from ever being stored.
+    The cap is what stops one mark spelled two ways ("M1", "*M1") counting
+    twice, without collapsing two genuinely separate M1 marks into one.
     """
     if not isinstance(raw, list):
         return []
@@ -358,6 +411,6 @@ def _clean_codes(raw: Any, known_codes: set[str]) -> list[str]:
         if not isinstance(entry, str):
             continue
         cleaned = normalize_code(entry)
-        if cleaned in known_codes and cleaned not in kept:
+        if kept.count(cleaned) < limits.get(cleaned, 0):
             kept.append(cleaned)
     return kept
