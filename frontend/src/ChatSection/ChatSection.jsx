@@ -1,6 +1,7 @@
 import styles from './ChatSection.module.css'
 import { Fragment, useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
@@ -704,7 +705,7 @@ function ChatSection({ onOpenAuth }) {
                         ) : msg.isError ? (
                             <div className={styles.Notice}>{msg.title}</div>
                         ) : (
-                            <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                            <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
                                 {sanitizeLatex(msg.title)}
                             </ReactMarkdown>
                         )}
@@ -729,7 +730,7 @@ function ChatSection({ onOpenAuth }) {
                         )}
                         {msg.validationStatus === 'render_failed' && !msg.artifacts?.length && msg.fallbackMarkdown && (
                             <div className={styles.VisualFallbackNote}>
-                                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
                                     {sanitizeLatex(msg.fallbackMarkdown)}
                                 </ReactMarkdown>
                             </div>

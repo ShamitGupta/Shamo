@@ -54,6 +54,27 @@
     overflow-y: hidden;
 }
 
+/* Some questions print a data table (frequency tables, x/y values). */
+.Body table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 0 0 0.6rem;
+}
+
+.Body th,
+.Body td {
+    border: 1px solid #3a4150;
+    padding: 4px 10px;
+    text-align: center;
+}
+
+.Body th {
+    background-color: rgba(255, 255, 255, 0.04);
+    font-weight: 600;
+}
+
 .Stem :global(p) {
     margin: 0 0 0.6rem;
 }

@@ -153,6 +153,31 @@
     margin-bottom: 0.6rem;
 }
 
+/* Check mode answers with a mark table. display:block lets a wide table
+   scroll inside the bubble instead of pushing the page sideways. */
+.ResponseBubble table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-bottom: 1.2rem;
+    font-size: 0.95em;
+}
+
+.ResponseBubble th,
+.ResponseBubble td {
+    border: 1px solid #3a3a3a;
+    padding: 6px 10px;
+    vertical-align: top;
+}
+
+.ResponseBubble th {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+}
+
 .ResponseBubble > *:last-child {
     margin-bottom: 0;
 }
